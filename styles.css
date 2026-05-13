@@ -264,6 +264,7 @@ select {
 }
 
 .section {
+  scroll-margin-top: 112px;
   padding: 84px clamp(18px, 4vw, 64px);
 }
 
