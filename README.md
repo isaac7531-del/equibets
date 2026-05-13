@@ -17,5 +17,5 @@ The initial source registry lives in `data/event_sources.json` and is loaded wit
 Run the source registry checks with:
 
 ```bash
-python -m unittest
+python3 -m unittest discover -s tests
 ```
