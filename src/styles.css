@@ -305,6 +305,10 @@ td span {
   font-weight: 900;
 }
 
+.breakdown-cell {
+  white-space: nowrap;
+}
+
 .link-button {
   background: transparent;
   color: #9a4a2e;

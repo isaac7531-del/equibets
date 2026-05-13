@@ -79,13 +79,7 @@ export default function App() {
     const nextResults = [newResult, ...results];
     setResults(nextResults);
     saveResults(nextResults);
-    setForm((current) => ({
-      ...defaultFormState,
-      rider: current.rider,
-      horse: current.horse,
-      date: current.date,
-      eventName: current.eventName,
-    }));
+    setForm(defaultFormState);
   };
 
   const removeResult = (id: string) => {
@@ -321,7 +315,7 @@ export default function App() {
                         <span>{result.date}</span>
                       </td>
                       <td className="total-cell">{result.score.totalPenalties.toFixed(1)}</td>
-                      <td>
+                      <td className="breakdown-cell">
                         D {result.score.dressagePenalties.toFixed(1)} / SJ{' '}
                         {result.score.showJumpingPenalties.toFixed(1)} / XC{' '}
                         {(result.score.crossCountryJumpPenalties + result.score.crossCountryTimePenalties).toFixed(1)}
