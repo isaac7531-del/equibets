@@ -11,6 +11,14 @@ likely finishing score at upcoming events.
 See `docs/results_calculator_feature.md` for the weekly update flow, user-score
 handling, and prediction surface.
 
+## Setup
+
+Install the package metadata and declared dependencies with:
+
+```bash
+python3 -m pip install -e .
+```
+
 ## Event results source priority
 
 The initial source registry lives in `data/event_sources.json` and is loaded with
