@@ -2,6 +2,15 @@
 
 Building a personal eventing results calculator and data store.
 
+## Results calculator feature
+
+The calculator is designed as a website/application feature where users can add
+their own scores, view consolidated public results, and estimate a combination's
+likely finishing score at upcoming events.
+
+See `docs/results_calculator_feature.md` for the weekly update flow, user-score
+handling, and prediction surface.
+
 ## Event results source priority
 
 The initial source registry lives in `data/event_sources.json` and is loaded with
