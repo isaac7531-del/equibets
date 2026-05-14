@@ -89,7 +89,8 @@ button:disabled {
 .hero-card,
 .dashboard article,
 .calculator-card,
-.results-card {
+.results-card,
+.live-card {
   background: rgba(255, 252, 245, 0.88);
   border: 1px solid rgba(35, 67, 45, 0.12);
   box-shadow: 0 24px 80px rgba(67, 55, 37, 0.11);
@@ -129,7 +130,7 @@ button:disabled {
 .dashboard {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   margin-bottom: 1rem;
 }
 
@@ -154,9 +155,14 @@ button:disabled {
 }
 
 .calculator-card,
-.results-card {
+.results-card,
+.live-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
+}
+
+.live-card {
+  margin-bottom: 1rem;
 }
 
 .section-heading h2,
@@ -246,6 +252,46 @@ legend {
   margin-bottom: 1rem;
 }
 
+.freshness-badge {
+  background: #edf4e6;
+  border: 1px solid rgba(35, 67, 45, 0.12);
+  border-radius: 999px;
+  color: #315d3d;
+  font-size: 0.82rem;
+  font-weight: 900;
+  margin: 0;
+  padding: 0.55rem 0.8rem;
+  white-space: nowrap;
+}
+
+.event-strip {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-bottom: 1rem;
+}
+
+.event-strip a {
+  background: #f8f2e4;
+  border: 1px solid rgba(35, 67, 45, 0.12);
+  border-radius: 1.1rem;
+  color: inherit;
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.9rem;
+  text-decoration: none;
+}
+
+.event-strip a:hover {
+  border-color: rgba(149, 109, 38, 0.38);
+}
+
+.event-strip span {
+  color: #65705f;
+  font-size: 0.84rem;
+  line-height: 1.35;
+}
+
 .secondary-button {
   background: #eee1c7;
   color: #23432d;
@@ -313,6 +359,17 @@ td span {
   background: transparent;
   color: #9a4a2e;
   padding: 0;
+}
+
+.source-link {
+  color: #315d3d;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.source-link:hover {
+  color: #23432d;
+  text-decoration: underline;
 }
 
 .link-button:hover:not(:disabled) {

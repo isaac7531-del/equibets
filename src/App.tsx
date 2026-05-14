@@ -7,6 +7,7 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import { formatEventStatus, formatLiveTimestamp, liveScoreFeed, sortLiveScoresByBestScore } from './liveScoring';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -55,6 +56,8 @@ export default function App() {
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const liveScores = useMemo(() => sortLiveScoresByBestScore(liveScoreFeed.scores), []);
+  const topLiveScore = liveScores[0];
   const bestResult = sortedResults[0];
 
   const updateField = (field: keyof FormState, value: string) => {
@@ -134,6 +137,81 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Live leaders</span>
+          <strong>{liveScores.length}</strong>
+          <p>{topLiveScore ? `${topLiveScore.horse_name} leads on ${topLiveScore.score.toFixed(1)}` : 'Awaiting public scores'}</p>
+        </article>
+      </section>
+
+      <section className="live-card" aria-labelledby="live-scoring-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-scoring-heading">Live scoring feed</h2>
+          </div>
+          <p className="freshness-badge">Pulled {formatLiveTimestamp(liveScoreFeed.generated_at)}</p>
+        </div>
+
+        <div className="event-strip" aria-label="Current and recent events">
+          {liveScoreFeed.events.map((event) => (
+            <a key={event.event_id} href={event.source_url} target="_blank" rel="noreferrer">
+              <strong>{event.name}</strong>
+              <span>
+                {event.date_label} · {event.location} · {formatEventStatus(event.status)}
+              </span>
+            </a>
+          ))}
+        </div>
+
+        {liveScores.length === 0 ? (
+          <div className="empty-state">
+            <strong>No public live scores found.</strong>
+            <p>The refresh feed has current event listings, but score tables are not posted yet.</p>
+          </div>
+        ) : (
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Combination</th>
+                  <th>Event</th>
+                  <th>Division</th>
+                  <th>Live score</th>
+                  <th>Source</th>
+                </tr>
+              </thead>
+              <tbody>
+                {liveScores.slice(0, 12).map((score, index) => (
+                  <tr key={`${score.event_id}-${score.division}-${score.rider_name}-${score.horse_name}`}>
+                    <td>#{index + 1}</td>
+                    <td>
+                      <strong>{score.horse_name}</strong>
+                      <span>{score.rider_name}</span>
+                    </td>
+                    <td>
+                      <strong>{score.event_name}</strong>
+                      <span>
+                        {score.event_date} · {score.location}
+                      </span>
+                    </td>
+                    <td>
+                      <strong>{score.division}</strong>
+                      <span>{score.phase}</span>
+                    </td>
+                    <td className="total-cell">{score.score.toFixed(1)}</td>
+                    <td>
+                      <a className="source-link" href={score.source_url} target="_blank" rel="noreferrer">
+                        {liveScoreFeed.source.name}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">

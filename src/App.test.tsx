@@ -28,4 +28,13 @@ describe('App', () => {
     expect(screen.getByText('Juniper')).toBeInTheDocument();
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
   });
+
+  it('shows pulled current-event live scores', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /live scoring feed/i })).toBeInTheDocument();
+    expect(screen.getAllByText('Queeny Park Horse Trials')[0]).toBeInTheDocument();
+    expect(screen.getByText('Hard Pass')).toBeInTheDocument();
+    expect(screen.getByRole('cell', { name: '23.9' })).toBeInTheDocument();
+  });
 });
