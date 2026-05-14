@@ -297,6 +297,18 @@
     }))
   }));
 
+  const allResultRows = combinationsWithResults.flatMap((combination) =>
+    combination.previousResults.map((result) => ({
+      id: `${combination.id}-${result.year}-${result.event.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`,
+      combinationId: combination.id,
+      rider: combination.rider,
+      horse: combination.horse,
+      country: combination.country,
+      shortCountry: combination.shortCountry,
+      ...result
+    }))
+  );
+
   const events = [
     {
       id: "weg-aachen-2026",
@@ -438,6 +450,7 @@
   global.EquiBetsData = {
     feiSearchPages,
     riderCombinations: combinationsWithResults,
+    allResultRows,
     events
   };
 

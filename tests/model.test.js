@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { feiSearchPages, riderCombinations, events } = require("../js/data.js");
+const { feiSearchPages, riderCombinations, allResultRows, events } = require("../js/data.js");
 const {
   calculatePrediction,
   rankEventPredictions,
@@ -61,11 +61,24 @@ test("calendar data includes 5-star and 4-star upcoming events", () => {
 
 test("every combination has previous result rows for result pages", () => {
   assert.ok(riderCombinations.every((combination) => combination.previousResults.length >= 3));
+  assert.equal(
+    allResultRows.length,
+    riderCombinations.reduce((total, combination) => total + combination.previousResults.length, 0)
+  );
   assert.ok(
     riderCombinations.every((combination) =>
       combination.previousResults.every((result) => typeof result.finishingScore === "number")
     )
   );
+});
+
+test("all result rows expose searchable rider and event fields", () => {
+  const badmintonRows = allResultRows.filter((result) =>
+    `${result.rider} ${result.horse} ${result.event} ${result.level} ${result.country}`.toLowerCase().includes("badminton")
+  );
+
+  assert.ok(badmintonRows.length > 0);
+  assert.ok(allResultRows.every((result) => result.rider && result.horse && result.event && result.sourceUrl));
 });
 
 test("website result rows link back to FEI lookup pages", () => {

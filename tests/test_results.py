@@ -1,6 +1,12 @@
 import unittest
 
-from equibets.results import EventingResult, consolidate_results, predict_finishing_score
+from equibets.results import (
+    EventingResult,
+    consolidate_results,
+    list_riders,
+    predict_finishing_score,
+    search_results,
+)
 
 
 def result(**overrides):
@@ -71,6 +77,31 @@ class ResultConsolidationTests(unittest.TestCase):
         self.assertEqual(prediction.confidence, "medium")
         self.assertEqual(prediction.source_ids, ("data_fei", "user_submission"))
         self.assertEqual(prediction.likely_finishing_score, 33.4)
+
+    def test_search_results_matches_rider_horse_event_level_and_country(self):
+        results = [
+            result(source_record_id="fei-1", rider_name="Ros Canter", horse_name="Lordships Graffalo", event_name="Badminton Horse Trials", level="CCI5*-L", country="GBR"),
+            result(source_record_id="fei-2", rider_name="Laura Collett", horse_name="London 52", event_name="Luhmuhlen Horse Trials", level="CCI5*-L", country="GBR"),
+            result(source_record_id="fei-3", rider_name="Boyd Martin", horse_name="Fedarman B", event_name="Maryland 5 Star", level="CCI5*-L", country="USA"),
+        ]
+
+        self.assertEqual([item.rider_name for item in search_results(results, "badminton")], ["Ros Canter"])
+        self.assertEqual([item.rider_name for item in search_results(results, "London")], ["Laura Collett"])
+        self.assertEqual([item.rider_name for item in search_results(results, "USA")], ["Boyd Martin"])
+
+    def test_list_riders_summarizes_searchable_combinations(self):
+        results = [
+            result(source_record_id="fei-1", rider_name="Ros Canter", horse_name="Lordships Graffalo", event_date="2024-05-05", dressage_score=26.0),
+            result(source_record_id="fei-2", rider_name="Ros Canter", horse_name="Lordships Graffalo", event_date="2023-08-12", dressage_score=21.3),
+            result(source_record_id="fei-3", rider_name="Laura Collett", horse_name="London 52", event_date="2023-06-18", dressage_score=20.3),
+        ]
+
+        summaries = list_riders(results, query="Ros")
+
+        self.assertEqual(len(summaries), 1)
+        self.assertEqual(summaries[0].rider_name, "Ros Canter")
+        self.assertEqual(summaries[0].result_count, 2)
+        self.assertEqual(summaries[0].best_finishing_score, 26.9)
 
 
 if __name__ == "__main__":

@@ -62,6 +62,8 @@ The first prediction output includes:
 ## Website feature outline
 
 - Combination profile page: recent starts, phase penalties, and likely score.
+- All-data search page: rider, horse, event, level, country, and result search
+  across imported FEI data.
 - Upcoming event page: predicted finishing scores for entered combinations.
 - Add my score form: rider, horse, event, date, level, country, phase scores.
 - Data freshness badge: last weekly public-data refresh and source coverage.

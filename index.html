@@ -21,6 +21,7 @@
           <a href="#riders">Rider combinations</a>
           <a href="#events">Upcoming events</a>
           <a href="#star-events">5* & 4* events</a>
+          <a href="#database">All data</a>
           <a href="#results">Results</a>
           <a href="#guesses">Team guesses</a>
           <a href="#method">Prediction model</a>
@@ -81,6 +82,32 @@
           </label>
         </div>
         <div class="card-grid" id="combination-grid"></div>
+      </section>
+
+      <section class="section muted" id="database">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">Search database</p>
+            <h2>All riders and results</h2>
+            <p>Search every stored combination and every result row. FEI imports will appear here as the data grows.</p>
+          </div>
+          <label class="search-box">
+            <span>Search riders, horses, events, levels, or countries</span>
+            <input id="global-search" type="search" placeholder="Try Ros, Badminton, GBR, 5-star" />
+          </label>
+        </div>
+        <div class="tabs filter-tabs" id="global-search-tabs" role="tablist" aria-label="Database result filters"></div>
+        <div class="database-summary" id="database-summary"></div>
+        <div class="database-grid">
+          <section>
+            <h3>Riders</h3>
+            <div id="all-riders-list" class="search-results-list" aria-live="polite"></div>
+          </section>
+          <section>
+            <h3>Results</h3>
+            <div id="all-results-list" class="search-results-list" aria-live="polite"></div>
+          </section>
+        </div>
       </section>
 
       <section class="section muted" id="results">

@@ -199,6 +199,7 @@ select {
 .event-card,
 .star-event-card,
 .result-profile,
+.search-result-card,
 .guess-form,
 .saved-guesses,
 .method-grid article {
@@ -308,6 +309,7 @@ select {
 }
 
 .search-box input,
+.search-box select,
 .guess-form select {
   width: 100%;
   border: 1px solid var(--line);
@@ -331,6 +333,7 @@ select {
 .stat-card,
 .combination-card,
 .event-card,
+.search-result-card,
 .method-grid article {
   padding: 24px;
 }
@@ -455,6 +458,50 @@ select {
 .filter-tabs {
   max-width: 1180px;
   margin: 0 auto 14px;
+}
+
+.database-summary,
+.database-grid {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.database-summary {
+  margin-bottom: 18px;
+}
+
+.database-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.database-grid h3 {
+  margin: 0 0 12px;
+  color: var(--sage-dark);
+}
+
+.search-results-list {
+  display: grid;
+  gap: 12px;
+}
+
+.search-result-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  box-shadow: none;
+}
+
+.search-result-card h4 {
+  margin: 8px 0 4px;
+  font-size: 1rem;
+}
+
+.search-result-card p {
+  margin: 0;
+  color: var(--muted-ink);
 }
 
 .event-detail {
@@ -676,7 +723,8 @@ footer {
   .section-heading.split,
   .guess-layout,
   .event-detail,
-  .result-profile {
+  .result-profile,
+  .database-grid {
     grid-template-columns: 1fr;
   }
 

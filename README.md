@@ -14,6 +14,8 @@ registry used to build a more complete eventing data store.
   Games and Olympics.
 - 5-star and 4-star event calendar sections for major form checks.
 - Previous result pages for rider and horse combinations.
+- Searchable all-data view across every stored rider, horse, event, and result
+  row.
 - Predicted finishing scores with confidence, risk, range, and data-quality
   signals.
 

@@ -103,6 +103,18 @@ class CombinationPrediction:
     confidence: str
 
 
+@dataclass(frozen=True)
+class RiderResultSummary:
+    """Searchable rider and horse summary from imported results."""
+
+    rider_name: str
+    horse_name: str
+    country: str
+    result_count: int
+    best_finishing_score: float
+    latest_event_date: date
+
+
 def load_results(path: Path | str) -> list[EventingResult]:
     """Load eventing results from JSON."""
 
@@ -110,6 +122,54 @@ def load_results(path: Path | str) -> list[EventingResult]:
         payload = json.load(results_file)
 
     return [EventingResult.from_mapping(item) for item in payload["results"]]
+
+
+def list_riders(results: list[EventingResult], *, query: str = "") -> list[RiderResultSummary]:
+    """Return searchable rider/horse summaries from consolidated results."""
+
+    normalized_query = _slug(query)
+    grouped: dict[str, list[EventingResult]] = {}
+    for result in consolidate_results(results):
+        if normalized_query and normalized_query not in _slug(
+            f"{result.rider_name} {result.horse_name} {result.country}"
+        ):
+            continue
+        grouped.setdefault(result.combination_key, []).append(result)
+
+    summaries = []
+    for combination_results in grouped.values():
+        latest = max(combination_results, key=lambda result: result.event_date)
+        summaries.append(
+            RiderResultSummary(
+                rider_name=latest.rider_name,
+                horse_name=latest.horse_name,
+                country=latest.country,
+                result_count=len(combination_results),
+                best_finishing_score=min(result.finishing_score for result in combination_results),
+                latest_event_date=latest.event_date,
+            )
+        )
+
+    return sorted(summaries, key=lambda summary: (summary.rider_name, summary.horse_name))
+
+
+def search_results(results: list[EventingResult], query: str) -> list[EventingResult]:
+    """Search all consolidated result rows by rider, horse, event, level, or country."""
+
+    normalized_query = _slug(query)
+    consolidated = consolidate_results(results)
+    if not normalized_query:
+        return consolidated
+
+    return [
+        result
+        for result in consolidated
+        if normalized_query
+        in _slug(
+            f"{result.rider_name} {result.horse_name} {result.event_name} "
+            f"{result.level} {result.country} {result.event_date.isoformat()}"
+        )
+    ]
 
 
 def consolidate_results(results: list[EventingResult]) -> list[EventingResult]:

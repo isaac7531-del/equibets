@@ -1,5 +1,5 @@
 (function initialiseApp(global) {
-  const { feiSearchPages, riderCombinations, events } = global.EquiBetsData;
+  const { feiSearchPages, riderCombinations, allResultRows, events } = global.EquiBetsData;
   const { rankEventPredictions, getTeamRecommendations } = global.EquiBetsModel;
   const storage = global.localStorage;
   const favouriteKey = "equibets:favourites";
@@ -10,7 +10,9 @@
     guesses: readStoredObject(guessKey),
     selectedEventId: events[0].id,
     selectedEventLevel: "all",
-    selectedResultId: riderCombinations[0].id
+    selectedResultId: riderCombinations[0].id,
+    globalQuery: "",
+    globalFilter: "all"
   };
 
   const elements = {
@@ -20,6 +22,11 @@
     statsGrid: document.querySelector("#stats-grid"),
     combinationGrid: document.querySelector("#combination-grid"),
     combinationSearch: document.querySelector("#combination-search"),
+    globalSearch: document.querySelector("#global-search"),
+    globalSearchTabs: document.querySelector("#global-search-tabs"),
+    databaseSummary: document.querySelector("#database-summary"),
+    allRidersList: document.querySelector("#all-riders-list"),
+    allResultsList: document.querySelector("#all-results-list"),
     eventTabs: document.querySelector("#event-tabs"),
     eventLevelTabs: document.querySelector("#event-level-tabs"),
     eventPanel: document.querySelector("#event-panel"),
@@ -71,6 +78,7 @@
     renderHero();
     renderStats();
     renderCombinations();
+    renderGlobalSearch();
     renderResultsPicker();
     renderResultDetail();
     renderEventLevelTabs();
@@ -96,6 +104,7 @@
     const fourStarCount = events.filter((event) => event.level === "4-star").length;
     elements.statsGrid.innerHTML = [
       statCard("Followed combinations", state.favourites.length, "Saved favourites stay highlighted everywhere."),
+      statCard("Result rows", allResultRows.length, "Searchable rider and event history records."),
       statCard("Upcoming events", events.length, "Includes championships plus 5-star and 4-star events."),
       statCard(
         "Best predicted score",
@@ -103,8 +112,7 @@
         `${topPrediction.combination.rider} at ${topEvent.name}.`
       ),
       statCard("Saved team guesses", guessesCount, "Event and country selections stored locally."),
-      statCard("5-star events", fiveStarCount, "Badminton, Kentucky, and Burghley style tests."),
-      statCard("4-star events", fourStarCount, "Selection checkpoints and form-building events.")
+      statCard("Star events", fiveStarCount + fourStarCount, "5-star and 4-star form checks.")
     ].join("");
   }
 
@@ -159,6 +167,96 @@
 
   function metric(label, value) {
     return `<div class="metric"><strong>${value}</strong><span>${label}</span></div>`;
+  }
+
+  function renderGlobalSearch() {
+    const riders = getFilteredRiders();
+    const results = getFilteredResults();
+    const showRiders = state.globalFilter === "all" || state.globalFilter === "riders";
+    const showResults = state.globalFilter === "all" || state.globalFilter === "results";
+
+    elements.globalSearchTabs.innerHTML = [
+      { id: "all", label: "All" },
+      { id: "riders", label: "Riders" },
+      { id: "results", label: "Results" }
+    ]
+      .map(
+        (filter) => `
+          <button class="tab-button" type="button" role="tab" data-global-filter="${filter.id}" aria-selected="${filter.id === state.globalFilter}">
+            ${filter.label}
+          </button>
+        `
+      )
+      .join("");
+
+    elements.databaseSummary.innerHTML = `
+      <article class="stat-card">
+        <span>Search scope</span>
+        <strong>${riders.length + results.length}</strong>
+        <p>${riders.length} rider combinations and ${results.length} result rows match${state.globalQuery ? ` "${state.globalQuery}"` : ""}.</p>
+      </article>
+    `;
+
+    elements.allRidersList.parentElement.hidden = !showRiders;
+    elements.allResultsList.parentElement.hidden = !showResults;
+    elements.allRidersList.innerHTML = riders.length
+      ? riders.map(renderRiderSearchResult).join("")
+      : '<p class="muted-text">No riders match this search.</p>';
+    elements.allResultsList.innerHTML = results.length
+      ? results.map(renderResultSearchRow).join("")
+      : '<p class="muted-text">No results match this search.</p>';
+  }
+
+  function getFilteredRiders() {
+    const query = state.globalQuery.trim().toLowerCase();
+    if (!query) {
+      return riderCombinations;
+    }
+
+    return riderCombinations.filter((combination) =>
+      `${combination.rider} ${combination.horse} ${combination.country} ${combination.shortCountry}`
+        .toLowerCase()
+        .includes(query)
+    );
+  }
+
+  function getFilteredResults() {
+    const query = state.globalQuery.trim().toLowerCase();
+    if (!query) {
+      return allResultRows;
+    }
+
+    return allResultRows.filter((result) =>
+      `${result.rider} ${result.horse} ${result.country} ${result.shortCountry} ${result.event} ${result.level} ${result.year} ${result.placing}`
+        .toLowerCase()
+        .includes(query)
+    );
+  }
+
+  function renderRiderSearchResult(combination) {
+    return `
+      <article class="search-result-card">
+        <div>
+          <span class="tag">${combination.shortCountry}</span>
+          <h4>${combination.rider} + ${combination.horse}</h4>
+          <p>${combination.country} · ${combination.previousResults.length} result rows</p>
+        </div>
+        <a class="button secondary" href="#results" data-result-link="${combination.id}">Open results</a>
+      </article>
+    `;
+  }
+
+  function renderResultSearchRow(result) {
+    return `
+      <article class="search-result-card">
+        <div>
+          <span class="tag">${result.level}</span>
+          <h4>${result.rider} + ${result.horse}</h4>
+          <p>${result.year} ${result.event} · ${result.placing} · ${result.finishingScore.toFixed(1)} penalties</p>
+        </div>
+        <a class="button ghost" href="${result.sourceUrl}" target="_blank" rel="noreferrer">${result.source}</a>
+      </article>
+    `;
   }
 
   function renderResultsPicker() {
@@ -452,6 +550,10 @@
     });
 
     elements.combinationSearch.addEventListener("input", renderCombinations);
+    elements.globalSearch.addEventListener("input", () => {
+      state.globalQuery = elements.globalSearch.value;
+      renderGlobalSearch();
+    });
 
     document.addEventListener("click", (event) => {
       const favouriteButton = event.target.closest("[data-favourite]");
@@ -459,6 +561,7 @@
       const levelButton = event.target.closest("[data-event-level]");
       const resultLink = event.target.closest("[data-result-link]");
       const openEventButton = event.target.closest("[data-open-event]");
+      const globalFilterButton = event.target.closest("[data-global-filter]");
 
       if (favouriteButton) {
         toggleFavourite(favouriteButton.dataset.favourite);
@@ -473,6 +576,11 @@
       if (levelButton) {
         state.selectedEventLevel = levelButton.dataset.eventLevel;
         render();
+      }
+
+      if (globalFilterButton) {
+        state.globalFilter = globalFilterButton.dataset.globalFilter;
+        renderGlobalSearch();
       }
 
       if (resultLink) {
