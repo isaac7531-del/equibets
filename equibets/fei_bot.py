@@ -8,9 +8,11 @@ returned HTML instead of relying on undocumented query parameters.
 from __future__ import annotations
 
 import argparse
+import importlib.util
 import hashlib
 import json
 import re
+import shutil
 import time
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
@@ -131,6 +133,264 @@ class FeiHttpClient:
             raise RuntimeError(f"FEI request failed: {exc.code} {exc.reason}: {url}\n{message}") from exc
 
 
+class FeiBrowserClient:
+    """Playwright-backed client for FEI pages that require JavaScript."""
+
+    def __init__(
+        self,
+        *,
+        cookie: str | None = None,
+        headless: bool = True,
+        executable_path: str | None = None,
+        storage_state: Path | str | None = None,
+        challenge_wait_seconds: float = 10.0,
+    ) -> None:
+        self.cookie = cookie
+        self.headless = headless
+        self.executable_path = executable_path or _default_browser_executable()
+        self.storage_state = Path(storage_state) if storage_state else None
+        self.challenge_wait_seconds = challenge_wait_seconds
+        self._playwright: object | None = None
+        self._browser: object | None = None
+        self._context: object | None = None
+        self._page: object | None = None
+        self._ignore_storage_state = False
+
+    def get(self, url: str) -> str:
+        page = self._ensure_page()
+        page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+        self._wait_ready()
+        return page.content()
+
+    def post(self, url: str, data: Mapping[str, str]) -> str:
+        page = self._ensure_page()
+        if page.url != url:
+            page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+            self._wait_ready()
+        if page.locator("form").count() == 0:
+            self._reset_browser_session()
+            page = self._ensure_page()
+            page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+            self._wait_ready()
+        for name, value in data.items():
+            self._fill_form_field(name, value)
+        self._click_submit(data)
+        self._wait_after_action()
+        self._wait_ready()
+        return page.content()
+
+    def open_past_shows(self) -> str:
+        """Switch FEI calendar search results to the Past Shows tab."""
+
+        page = self._ensure_page()
+        link = page.locator("#PlaceHolderMain_lbBefore, a:has-text('Past Shows')")
+        if link.count() == 0:
+            return page.content()
+        try:
+            link.first.click(timeout=5_000)
+        except Exception:
+            link.first.evaluate("element => element.click()")
+        self._wait_after_action()
+        self._wait_ready()
+        return page.content()
+
+    def close(self) -> None:
+        if self.storage_state and self._context is not None:
+            self.storage_state.parent.mkdir(parents=True, exist_ok=True)
+            self._context.storage_state(path=str(self.storage_state))
+        if self._browser is not None:
+            self._browser.close()
+        if self._playwright is not None:
+            self._playwright.stop()
+
+    def _ensure_page(self):
+        if self._page is not None:
+            return self._page
+        try:
+            from playwright.sync_api import sync_playwright
+        except ImportError as exc:
+            raise RuntimeError(
+                "Browser driver requires Playwright. Install it with "
+                "`python3 -m pip install -r requirements.txt`."
+            ) from exc
+
+        self._playwright = sync_playwright().start()
+        launch_kwargs: dict[str, object] = {
+            "headless": self.headless,
+            "args": ["--no-sandbox", "--disable-blink-features=AutomationControlled"],
+            "ignore_default_args": ["--enable-automation"],
+        }
+        if self.executable_path:
+            launch_kwargs["executable_path"] = self.executable_path
+        self._browser = self._playwright.chromium.launch(**launch_kwargs)
+        context_kwargs: dict[str, object] = {
+            "user_agent": (
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+            ),
+            "viewport": {"width": 1366, "height": 900},
+            "locale": "en-GB",
+            "timezone_id": "Europe/London",
+        }
+        if self.storage_state and self.storage_state.exists() and not self._ignore_storage_state:
+            context_kwargs["storage_state"] = str(self.storage_state)
+        self._context = self._browser.new_context(**context_kwargs)
+        if self.cookie:
+            self._context.add_cookies(_cookie_header_to_playwright(self.cookie, "data.fei.org"))
+        self._page = self._context.new_page()
+        self._page.add_init_script(
+            "Object.defineProperty(navigator, 'webdriver', {get: () => undefined});"
+        )
+        return self._page
+
+    def _reset_browser_session(self) -> None:
+        self._ignore_storage_state = True
+        for item in (self._browser, self._playwright):
+            if item is not None:
+                try:
+                    item.close() if item is self._browser else item.stop()
+                except Exception:
+                    pass
+        self._browser = None
+        self._context = None
+        self._page = None
+        self._playwright = None
+
+    def _wait_ready(self) -> None:
+        page = self._ensure_page()
+        try:
+            page.wait_for_load_state("domcontentloaded", timeout=30_000)
+        except Exception:
+            pass
+        for _ in range(6):
+            try:
+                body = page.locator("body").inner_text(timeout=5_000)
+            except Exception:
+                body = ""
+            title = page.title()
+            waiting_on_challenge = (
+                "Please enable JS" in body
+                or "disable any ad blocker" in body
+                or title.lower() == "fei.org"
+                or not body.strip()
+            )
+            if not waiting_on_challenge:
+                return
+            page.wait_for_timeout(int(self.challenge_wait_seconds * 1000))
+
+    def _wait_after_action(self) -> None:
+        page = self._ensure_page()
+        try:
+            page.wait_for_load_state("networkidle", timeout=30_000)
+        except Exception:
+            pass
+        page.wait_for_timeout(3_000)
+
+    def _fill_form_field(self, name: str, value: str) -> bool:
+        if value == "" or name.startswith("__"):
+            return False
+        page = self._ensure_page()
+        selector = f"[name={json.dumps(name)}]"
+        locator = page.locator(selector)
+        if locator.count() == 0:
+            return False
+        element = locator.first
+        try:
+            info = element.evaluate(
+                """element => ({
+                    tag: element.tagName.toLowerCase(),
+                    type: (element.type || '').toLowerCase(),
+                    value: element.value || '',
+                    disabled: element.disabled
+                })"""
+            )
+        except Exception:
+            return False
+
+        if info["disabled"] or value == info["value"]:
+            return False
+        element_type = info["type"]
+        if element_type in {"hidden", "submit", "button", "image", "reset"}:
+            return False
+        if info["tag"] == "select":
+            try:
+                element.select_option(label=value)
+            except Exception:
+                try:
+                    element.select_option(value=value)
+                except Exception:
+                    return False
+            return True
+        if element_type == "radio":
+            choice = page.locator(f"{selector}[value={json.dumps(value)}]")
+            (choice.first if choice.count() else element).check()
+            return True
+        if element_type == "checkbox":
+            if _truthy(value):
+                element.check()
+            else:
+                element.uncheck()
+            return True
+
+        element.fill(value)
+        return True
+
+    def _click_submit(self, data: Mapping[str, str]) -> None:
+        page = self._ensure_page()
+        for name, value in data.items():
+            normalized = f"{_header(name)} {_header(value)}"
+            if "search" not in normalized:
+                continue
+            locator = page.locator(f"[name={json.dumps(name)}]")
+            if locator.count():
+                try:
+                    locator.first.click(timeout=5_000)
+                except Exception:
+                    if not self._submit_with_javascript(name):
+                        raise
+                return
+
+        buttons = page.locator("input[type=submit], button, input[type=button]")
+        for index in range(buttons.count()):
+            button = buttons.nth(index)
+            text = _header((button.get_attribute("value") or "") + " " + button.inner_text(timeout=1_000))
+            if "search" in text:
+                try:
+                    button.click(timeout=5_000)
+                except Exception:
+                    if not self._submit_with_javascript(button.get_attribute("name")):
+                        raise
+                return
+        if not self._submit_with_javascript(None):
+            raise RuntimeError("Could not submit FEI form because no form was available")
+
+    def _submit_with_javascript(self, submit_name: str | None) -> bool:
+        page = self._ensure_page()
+        return bool(
+            page.evaluate(
+                """submitName => {
+                    const submitter = submitName
+                        ? document.querySelector(`[name="${CSS.escape(submitName)}"]`)
+                        : null;
+                    if (submitter) {
+                        submitter.click();
+                        return true;
+                    }
+                    if (document.forms.length === 0) {
+                        return false;
+                    }
+                    if (document.forms[0].requestSubmit) {
+                        document.forms[0].requestSubmit();
+                    } else {
+                        document.forms[0].submit();
+                    }
+                    return true;
+                }""",
+                submit_name,
+            )
+        )
+
+
 class FeiDataBot:
     """Collect eventing results from FEI calendar event pages."""
 
@@ -156,22 +416,43 @@ class FeiDataBot:
 
         search_page = self.client.get(CALENDAR_SEARCH_URL)
         form = extract_form_fields(search_page)
+        browser_form: dict[str, str] = {}
+
+        def set_field(required_tokens: Sequence[str], value: str | None) -> bool:
+            if value is None:
+                return False
+            for name in form:
+                normalized = _header(name)
+                if all(token in normalized for token in required_tokens):
+                    form[name] = value
+                    browser_form[name] = value
+                    return True
+            return False
+
         if start_date:
-            start_value = start_date.isoformat()
-            if not _set_matching_field(form, ("date", "start"), start_value):
-                _set_matching_field(form, ("date", "from"), start_value)
+            start_value = _fei_date(start_date)
+            if not set_field(("date", "start"), start_value):
+                set_field(("date", "from"), start_value)
         if end_date:
-            end_value = end_date.isoformat()
-            if not _set_matching_field(form, ("date", "end"), end_value):
-                _set_matching_field(form, ("date", "to"), end_value)
-        _set_matching_field(form, ("discipline",), "Eventing")
-        _set_matching_field(form, ("search",), "Search")
+            end_value = _fei_date(end_date)
+            if not set_field(("date", "end"), end_value):
+                set_field(("date", "to"), end_value)
+        set_field(("discipline",), "Eventing")
+        set_field(("result", "status"), "With results")
+        set_field(("search",), "Search")
         if form_fields:
             form.update(form_fields)
+            browser_form.update(form_fields)
 
-        results_page = self.client.post(CALENDAR_SEARCH_URL, form)
+        post_form = browser_form if isinstance(self.client, FeiBrowserClient) else form
+        results_page = self.client.post(CALENDAR_SEARCH_URL, post_form)
         _write_raw(self.raw_dir, CALENDAR_SEARCH_URL, results_page)
-        return parse_calendar_events(results_page, CALENDAR_SEARCH_URL)
+        events = parse_calendar_events(results_page, CALENDAR_SEARCH_URL)
+        if not events and hasattr(self.client, "open_past_shows"):
+            results_page = self.client.open_past_shows()
+            _write_raw(self.raw_dir, f"{CALENDAR_SEARCH_URL}#past", results_page)
+            events = parse_calendar_events(results_page, CALENDAR_SEARCH_URL)
+        return events
 
     def collect(
         self,
@@ -246,19 +527,23 @@ class FeiDataBot:
     ) -> tuple[list[EventingResult], int]:
         """Open one event page, then each result page linked from it."""
 
-        event_page = self.client.get(event.url)
-        _write_raw(self.raw_dir, event.url, event_page)
-        result_links = parse_result_links(event_page, event.url)
-        if not result_links:
-            return parse_eventing_results(event_page, event, event.url, collected_at), 1
-
         results: list[EventingResult] = []
-        pages_opened = 1
-        for result_url in result_links:
-            result_page = self.client.get(result_url)
+        pages_opened = 0
+        seen = {event.url}
+        queue: list[tuple[str, int]] = [(event.url, 0)]
+        while queue:
+            page_url, depth = queue.pop(0)
+            result_page = self.client.get(page_url)
             pages_opened += 1
-            _write_raw(self.raw_dir, result_url, result_page)
-            results.extend(parse_eventing_results(result_page, event, result_url, collected_at))
+            _write_raw(self.raw_dir, page_url, result_page)
+            page_results = parse_eventing_results(result_page, event, page_url, collected_at)
+            results.extend(page_results)
+            if page_results or depth >= 2:
+                continue
+            for result_url in parse_result_links(result_page, page_url):
+                if result_url not in seen:
+                    seen.add(result_url)
+                    queue.append((result_url, depth + 1))
         return results, pages_opened
 
     def _verify_result(self, result: EventingResult) -> bool:
@@ -288,11 +573,24 @@ class FeiVerifier:
 
         search_page = self.client.get(url)
         form = extract_form_fields(search_page)
-        if not _set_matching_field(form, ("name",), name):
+        browser_form: dict[str, str] = {}
+        matched_name = False
+        for field_name in form:
+            if "name" in _header(field_name):
+                form[field_name] = name
+                browser_form[field_name] = name
+                matched_name = True
+                break
+        if not matched_name:
             _set_first_text_field(search_page, form, name)
-        _set_matching_field(form, ("search",), "Search")
+        for field_name in form:
+            if "search" in _header(field_name):
+                form[field_name] = "Search"
+                browser_form[field_name] = "Search"
+                break
 
-        result_page = self.client.post(url, form)
+        post_form = browser_form if isinstance(self.client, FeiBrowserClient) else form
+        result_page = self.client.post(url, post_form)
         normalized_page = _search_key(result_page)
         cache[key] = key in normalized_page
         return cache[key]
@@ -378,10 +676,10 @@ def parse_calendar_events(html: str, page_url: str = CALENDAR_SEARCH_URL) -> lis
             or event_link.text
             or event_url
         )
-        start_date = _first_date(data, ("start", "from", "date"))
-        end_date = _first_date(data, ("end", "to", "date")) or start_date
+        start_date = _first_date(data, ("start", "from")) or _first_date(data, ("date",))
+        end_date = _first_date(data, ("end", "to")) or start_date
         country = _first_value(data, ("country", "nation", "nf")) or ""
-        level = _first_value(data, ("level", "category", "type", "competition", "event code")) or ""
+        level = _first_value(data, ("level", "category", "type", "competition", "event code", "events")) or ""
         discipline = _first_value(data, ("discipline",)) or "Eventing"
 
         events.append(
@@ -409,9 +707,12 @@ def parse_result_links(html: str, page_url: str) -> list[str]:
     seen: set[str] = set()
     for link in parser.links:
         searchable = f"{link.text} {link.href}".lower()
-        if not any(keyword in searchable for keyword in ("result", "ranking", "standing", "competition")):
+        if not any(
+            keyword in searchable
+            for keyword in ("result", "competition", "eventdetail.aspx", "resultlist.aspx")
+        ):
             continue
-        if any(skip in searchable for skip in ("calendar/search", "javascript:", "#")):
+        if any(skip in searchable for skip in ("calendar/search", "ranking/", "standing", "javascript:", "#")):
             continue
         url = urljoin(page_url, link.href)
         if url not in seen:
@@ -436,11 +737,27 @@ def parse_eventing_results(
         if not rider_name or not horse_name:
             continue
 
-        total = _number_from(data, ("total", "final", "score", "result"), ())
-        dressage = _number_from(data, ("dressage", "dr", "phase a"), ("rank", "place"))
-        show_jumping = _number_from(data, ("show jumping", "jumping", "sj"), ("cross", "xc", "rank", "place"))
-        xc_jump = _number_from(data, ("cross country jumping", "xc jump", "cross jump", "obstacle"), ("time",))
-        xc_time = _number_from(data, ("cross country time", "xc time", "time penalty"), ("dressage", "show"))
+        score_text = _first_value(data, ("score", "total", "final", "result"))
+        total = _parse_score_number(score_text) if score_text else None
+        if score_text and total is None:
+            continue
+
+        dressage = _number_exact(data, "d") or _number_from(data, ("dressage", "dr", "phase a"), ("rank", "place"))
+        show_jumping = _sum_numbers(data, ("j obs", "j tim")) or _number_from(
+            data,
+            ("show jumping", "jumping", "sj"),
+            ("cross", "xc", "rank", "place"),
+        )
+        xc_jump = _number_from(
+            data,
+            ("xc obs", "cross country jumping", "xc jump", "cross jump", "obstacle"),
+            ("time",),
+        )
+        xc_time = _number_from(
+            data,
+            ("xc tim", "cross country time", "xc time", "time penalty"),
+            ("dressage", "show"),
+        )
 
         if dressage is None:
             dressage = total
@@ -487,6 +804,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--raw-dir", type=Path, help="Optional directory for raw FEI HTML responses")
     parser.add_argument("--max-events", type=int, help="Maximum events to open")
     parser.add_argument("--rate-limit", type=float, default=1.0, help="Delay between FEI requests in seconds")
+    parser.add_argument("--driver", choices=("auto", "browser", "http"), default="auto", help="FEI page driver")
+    parser.add_argument("--headful", action="store_true", help="Show the browser window for manual login/debugging")
+    parser.add_argument("--browser-executable", help="Chrome/Chromium executable for the browser driver")
+    parser.add_argument("--storage-state", type=Path, help="Persist Playwright cookies/session state")
+    parser.add_argument("--challenge-wait", type=float, default=10.0, help="Seconds to wait for FEI JS challenges")
     parser.add_argument("--cookie", help="FEI session cookie header")
     parser.add_argument("--cookie-env", default="FEI_COOKIE", help="Environment variable containing FEI cookie")
     parser.add_argument("--verify", choices=("none", "warn", "require"), default="none")
@@ -494,19 +816,23 @@ def main(argv: Sequence[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     cookie = args.cookie or _env_value(args.cookie_env)
-    client = FeiHttpClient(cookie=cookie, rate_limit_seconds=args.rate_limit)
+    client = _build_client(args, cookie)
     verifier = FeiVerifier(client) if args.verify != "none" else None
     bot = FeiDataBot(client, verifier=verifier, raw_dir=args.raw_dir)
     form_fields = _key_values(args.form_field)
 
-    results, summary = bot.collect(
-        start_date=args.start_date,
-        end_date=args.end_date,
-        event_urls=args.event_url,
-        form_fields=form_fields,
-        max_events=args.max_events,
-        verify=args.verify,
-    )
+    try:
+        results, summary = bot.collect(
+            start_date=args.start_date,
+            end_date=args.end_date,
+            event_urls=args.event_url,
+            form_fields=form_fields,
+            max_events=args.max_events,
+            verify=args.verify,
+        )
+    finally:
+        if hasattr(client, "close"):
+            client.close()
 
     if not args.dry_run:
         store = FeiResultStore(args.output)
@@ -533,14 +859,27 @@ class _FormParser(HTMLParser):
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
         self.fields: dict[str, str] = {}
+        self._select_name: str | None = None
+        self._select_value: str = ""
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        if tag.lower() != "input":
-            return
+        tag = tag.lower()
         values = dict(attrs)
-        name = values.get("name")
-        if name:
-            self.fields[name] = values.get("value") or ""
+        if tag == "input":
+            name = values.get("name")
+            if name:
+                self.fields[name] = values.get("value") or ""
+        elif tag == "select":
+            self._select_name = values.get("name")
+            self._select_value = ""
+        elif tag == "option" and self._select_name and "selected" in values:
+            self._select_value = values.get("value") or ""
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag.lower() == "select" and self._select_name:
+            self.fields[self._select_name] = self._select_value
+            self._select_name = None
+            self._select_value = ""
 
 
 class _InputParser(HTMLParser):
@@ -771,6 +1110,26 @@ def _parse_number(value: str) -> float | None:
     return float(match.group(0))
 
 
+def _parse_score_number(value: str) -> float | None:
+    value = _clean_text(value).replace(",", ".")
+    if re.fullmatch(r"-?\d+(?:\.\d+)?", value):
+        return float(value)
+    return None
+
+
+def _number_exact(data: Mapping[str, str], header: str) -> float | None:
+    value = data.get(header)
+    return _parse_number(value) if value else None
+
+
+def _sum_numbers(data: Mapping[str, str], headers: Sequence[str]) -> float | None:
+    values = [_number_exact(data, header) for header in headers]
+    numbers = [value for value in values if value is not None]
+    if not numbers:
+        return None
+    return sum(numbers)
+
+
 def _record_id(*parts: object) -> str:
     return f"fei:{_stable_id('|'.join(str(part) for part in parts))}"
 
@@ -798,6 +1157,60 @@ def _write_raw(raw_dir: Path | None, url: str, html: str) -> None:
     raw_dir.mkdir(parents=True, exist_ok=True)
     path = raw_dir / f"{_stable_id(url)}.html"
     path.write_text(html, encoding="utf-8")
+
+
+def _build_client(args: argparse.Namespace, cookie: str | None) -> FeiHttpClient | FeiBrowserClient:
+    if args.driver == "http":
+        return FeiHttpClient(cookie=cookie, rate_limit_seconds=args.rate_limit)
+    if args.driver == "browser":
+        return FeiBrowserClient(
+            cookie=cookie,
+            headless=not args.headful,
+            executable_path=args.browser_executable,
+            storage_state=args.storage_state,
+            challenge_wait_seconds=args.challenge_wait,
+        )
+    if importlib.util.find_spec("playwright") is not None:
+        return FeiBrowserClient(
+            cookie=cookie,
+            headless=not args.headful,
+            executable_path=args.browser_executable,
+            storage_state=args.storage_state,
+            challenge_wait_seconds=args.challenge_wait,
+        )
+    return FeiHttpClient(cookie=cookie, rate_limit_seconds=args.rate_limit)
+
+
+def _default_browser_executable() -> str | None:
+    for executable in (
+        "google-chrome",
+        "google-chrome-stable",
+        "chromium",
+        "chromium-browser",
+    ):
+        path = shutil.which(executable)
+        if path:
+            return path
+    return None
+
+
+def _cookie_header_to_playwright(cookie_header: str, domain: str) -> list[dict[str, object]]:
+    cookies: list[dict[str, object]] = []
+    for item in cookie_header.split(";"):
+        if "=" not in item:
+            continue
+        name, value = item.strip().split("=", 1)
+        if name:
+            cookies.append({"name": name, "value": value, "domain": domain, "path": "/"})
+    return cookies
+
+
+def _truthy(value: str) -> bool:
+    return value.lower() not in {"", "0", "false", "no", "off"}
+
+
+def _fei_date(value: date) -> str:
+    return value.strftime("%d/%m/%Y")
 
 
 def _key_values(items: Sequence[str]) -> dict[str, str]:

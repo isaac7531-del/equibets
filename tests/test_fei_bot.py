@@ -44,6 +44,10 @@ class FeiBotTests(unittest.TestCase):
         <form>
           <input type="hidden" name="__VIEWSTATE" value="state-value" />
           <input type="text" name="ctl00$Main$DateStart" />
+          <select name="ctl00$Main$Discipline">
+            <option value="">-</option>
+            <option value="3" selected>Eventing</option>
+          </select>
         </form>
         """
 
@@ -51,6 +55,7 @@ class FeiBotTests(unittest.TestCase):
 
         self.assertEqual(fields["__VIEWSTATE"], "state-value")
         self.assertEqual(fields["ctl00$Main$DateStart"], "")
+        self.assertEqual(fields["ctl00$Main$Discipline"], "3")
 
     def test_parse_calendar_events_discovers_event_detail_links(self):
         events = parse_calendar_events(calendar_results_html())
@@ -89,6 +94,30 @@ class FeiBotTests(unittest.TestCase):
         self.assertEqual(results[0].finishing_score, 35.8)
         self.assertEqual(results[0].source_id, "data_fei")
 
+    def test_parse_live_fei_result_headers(self):
+        event = FeiEvent(
+            source_event_id="abc",
+            name="Quillota",
+            url=EVENT_URL,
+            start_date=datetime(2025, 12, 18).date(),
+            country="CHI",
+            level="CCI3*-S",
+        )
+
+        results = parse_eventing_results(
+            live_result_page_html(),
+            event,
+            RESULT_URL,
+            datetime(2026, 5, 2, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0].dressage_score, 37.6)
+        self.assertEqual(results[0].show_jumping_penalties, 8.0)
+        self.assertEqual(results[0].cross_country_jump_penalties, 0.0)
+        self.assertEqual(results[0].cross_country_time_penalties, 10.0)
+        self.assertEqual(results[0].finishing_score, 55.6)
+
     def test_bot_submits_calendar_opens_event_and_result_pages(self):
         client = FakeClient(
             {
@@ -109,8 +138,8 @@ class FeiBotTests(unittest.TestCase):
         self.assertEqual(summary.events_found, 1)
         self.assertEqual(summary.result_pages_opened, 2)
         post_data = client.requests[1][2]
-        self.assertEqual(post_data["ctl00$Main$DateStart"], "2026-05-01")
-        self.assertEqual(post_data["ctl00$Main$DateEnd"], "2026-05-05")
+        self.assertEqual(post_data["ctl00$Main$DateStart"], "01/05/2026")
+        self.assertEqual(post_data["ctl00$Main$DateEnd"], "05/05/2026")
         self.assertEqual(post_data["ctl00$Main$Discipline"], "Eventing")
 
     def test_verifier_checks_person_and_horse_search_pages(self):
@@ -222,6 +251,61 @@ def result_page_html():
         <td>1.6</td>
         <td>GBR</td>
         <td>CCI5*-L</td>
+      </tr>
+    </table>
+    """
+
+
+def live_result_page_html():
+    return """
+    <table>
+      <tr>
+        <th>Pos</th>
+        <th>FEI ID</th>
+        <th>Athlete</th>
+        <th>FEI ID</th>
+        <th>Horse</th>
+        <th>Studbook</th>
+        <th>MER</th>
+        <th>D</th>
+        <th>XC Obs</th>
+        <th>XC Tim</th>
+        <th>J Obs</th>
+        <th>J Tim</th>
+        <th>Prize Money</th>
+        <th>Score</th>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>10000001</td>
+        <td>Juan CANALES ZENTENO (CHI)</td>
+        <td>107BH10</td>
+        <td>TINQUILCO</td>
+        <td></td>
+        <td></td>
+        <td>37.6</td>
+        <td>0</td>
+        <td>10</td>
+        <td>8</td>
+        <td>0</td>
+        <td></td>
+        <td>55.6</td>
+      </tr>
+      <tr>
+        <td>EL</td>
+        <td>10000002</td>
+        <td>Eliminated Rider</td>
+        <td>107BH17</td>
+        <td>ALL RED</td>
+        <td></td>
+        <td></td>
+        <td>43.2</td>
+        <td>0</td>
+        <td>19.2</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>2nd HI</td>
       </tr>
     </table>
     """

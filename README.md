@@ -37,6 +37,7 @@ results in the same shape used by the results calculator.
 Example:
 
 ```bash
+python3 -m pip install -r requirements.txt
 FEI_COOKIE="your-data-fei-session-cookie" \
 python3 -m equibets.fei_bot \
   --start-date 2026-05-01 \
@@ -46,9 +47,12 @@ python3 -m equibets.fei_bot \
   --verify warn
 ```
 
-The bot submits `https://data.fei.org/Calendar/Search.aspx`, keeps ASP.NET
-hidden form fields such as `__VIEWSTATE`, opens each discovered event, follows
-its result links, and writes deduplicated `data_fei` records. Use
+The bot defaults to a Playwright browser driver so FEI's JavaScript challenge
+can run before search pages are submitted. It opens
+`https://data.fei.org/Calendar/Search.aspx`, fills FEI dates as `dd/MM/yyyy`,
+keeps ASP.NET hidden form fields such as `__VIEWSTATE`, opens each discovered
+event, follows its result links, and writes deduplicated `data_fei` records.
+Use `--storage-state data/fei_state.json` to reuse browser cookies,
 `--form-field name=value` for FEI form controls that need explicit values in a
 particular session, `--event-url` to crawl a known event page directly, and
 `FEI_COOKIE` or `--cookie` when the FEI Data session requires login.
