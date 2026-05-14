@@ -2,17 +2,29 @@
 
 ## Cursor Cloud specific instructions
 
-This is a greenfield repository ("equibets" — a personal eventing results calculator and data storage system). As of now, the repository contains only a `README.md` with no application code, dependencies, or configuration.
+**Equibets** is a full-stack TypeScript app for tracking event bets and results.
 
-### Current state
+### Architecture
 
-- **No application code, build system, or dependency files exist yet.**
-- No lint, test, or build commands are available.
-- No services to start or ports to expose.
+- **`server/`** — Express API + SQLite (better-sqlite3). Runs on port 3001.
+- **`client/`** — React + Vite SPA. Runs on port 5173, proxies `/api` to the server.
+- **Root** — npm workspaces monorepo. ESLint configured at root level.
 
-### When code is added
+### Common commands
 
-Once the project is bootstrapped with a framework and dependency files, future agents should:
+| Task | Command |
+|---|---|
+| Install deps | `npm install` (from root) |
+| Dev (both) | `npm run dev` |
+| Dev server only | `npm run dev:server` |
+| Dev client only | `npm run dev:client` |
+| Lint | `npm run lint` |
+| Test all | `npm test` |
+| Build | `npm run build` |
 
-1. Update the VM environment update script (via `SetupVmEnvironment`) to install dependencies (e.g., `npm install`, `pip install -r requirements.txt`).
-2. Update this section with lint/test/build/run commands and any non-obvious caveats.
+### Non-obvious notes
+
+- The SQLite database file (`equibets.db`) is created automatically in `server/` on first run; it is git-ignored.
+- Start the server **before** the client when running them separately — Vite proxies `/api` requests to `localhost:3001`.
+- Server tests use in-memory SQLite (`:memory:`) and ephemeral ports, so they are fully isolated.
+- Client tests use jsdom + `@testing-library/react` with a mocked `fetch`.
