@@ -14,7 +14,7 @@ describe('App', () => {
 
     await user.type(screen.getByLabelText(/rider/i), 'Avery Stone');
     await user.type(screen.getByLabelText(/horse/i), 'Juniper');
-    await user.type(screen.getByLabelText(/event/i), 'Spring Horse Trials');
+    await user.type(screen.getByLabelText(/^event$/i), 'Spring Horse Trials');
     await user.clear(screen.getByLabelText(/dressage/i));
     await user.type(screen.getByLabelText(/dressage/i), '70');
     await user.clear(screen.getByLabelText(/show jumping/i));
@@ -27,5 +27,13 @@ describe('App', () => {
     expect(screen.getByRole('cell', { name: '34.0' })).toBeInTheDocument();
     expect(screen.getByText('Juniper')).toBeInTheDocument();
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
+  });
+
+  it('shows the current-event live scoring pull status', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /live scoring pull/i })).toBeInTheDocument();
+    expect(screen.getByText(/no active live scores found/i)).toBeInTheDocument();
+    expect(screen.getByText(/ram tap may sht/i)).toBeInTheDocument();
   });
 });
