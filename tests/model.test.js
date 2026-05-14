@@ -49,3 +49,21 @@ test("higher event uncertainty reduces confidence for the same combination", () 
 
   assert.ok(stablePrediction.confidence > uncertainPrediction.confidence);
 });
+
+test("calendar data includes 5-star and 4-star upcoming events", () => {
+  const levels = new Set(events.map((event) => event.level));
+
+  assert.ok(levels.has("5-star"));
+  assert.ok(levels.has("4-star"));
+  assert.ok(events.filter((event) => event.level === "5-star").length >= 3);
+  assert.ok(events.filter((event) => event.level === "4-star").length >= 3);
+});
+
+test("every combination has previous result rows for result pages", () => {
+  assert.ok(riderCombinations.every((combination) => combination.previousResults.length >= 3));
+  assert.ok(
+    riderCombinations.every((combination) =>
+      combination.previousResults.every((result) => typeof result.finishingScore === "number")
+    )
+  );
+});

@@ -11,6 +11,8 @@ scores for upcoming events.
 - Browser-local favourite rider and horse combinations.
 - Team guess builder for international events including the World Equestrian
   Games and Olympics.
+- 5-star and 4-star event calendar sections for major form checks.
+- Previous result pages for rider and horse combinations.
 - Predicted finishing scores with confidence, risk, range, and data-quality
   signals.
 

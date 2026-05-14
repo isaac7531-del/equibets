@@ -20,6 +20,8 @@
           <a href="#dashboard">Dashboard</a>
           <a href="#riders">Rider combinations</a>
           <a href="#events">Upcoming events</a>
+          <a href="#star-events">5* & 4* events</a>
+          <a href="#results">Results</a>
           <a href="#guesses">Team guesses</a>
           <a href="#method">Prediction model</a>
         </div>
@@ -31,7 +33,8 @@
           <h1>Follow combinations, predict teams, and preview championship scores.</h1>
           <p>
             Save favourite rider and horse combinations, build team guesses for major events,
-            and compare transparent score predictions with confidence ratings.
+            compare transparent score predictions, and review previous results from top 5-star
+            and 4-star form lines.
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#riders">Start following riders</a>
@@ -80,6 +83,21 @@
         <div class="card-grid" id="combination-grid"></div>
       </section>
 
+      <section class="section muted" id="results">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">Previous results</p>
+            <h2>Combination result pages</h2>
+            <p>Open a combination page to see recent 5-star, 4-star, and championship results.</p>
+          </div>
+          <label class="search-box">
+            <span>Combination</span>
+            <select id="results-combination"></select>
+          </label>
+        </div>
+        <div id="result-detail" class="result-detail"></div>
+      </section>
+
       <section class="section muted" id="events">
         <div class="section-heading">
           <p class="eyebrow">Upcoming international events</p>
@@ -88,8 +106,20 @@
             Each forecast ranks combinations by predicted finishing score, confidence, and risk profile.
           </p>
         </div>
+        <div class="tabs filter-tabs" id="event-level-tabs" role="tablist" aria-label="Event level filters"></div>
         <div class="tabs" id="event-tabs" role="tablist" aria-label="Upcoming events"></div>
         <div id="event-panel"></div>
+      </section>
+
+      <section class="section" id="star-events">
+        <div class="section-heading">
+          <p class="eyebrow">5-star and 4-star calendar</p>
+          <h2>Track major CCI5*-L and CCI4* form checks</h2>
+          <p>
+            Star events show where combinations build form before championship team selection.
+          </p>
+        </div>
+        <div class="star-event-grid" id="star-event-grid"></div>
       </section>
 
       <section class="section" id="guesses">
