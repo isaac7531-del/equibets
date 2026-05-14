@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EquiBets | Eventing Predictions</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="hero" id="top">
+      <nav class="topbar" aria-label="Main navigation">
+        <a class="brand" href="#top" aria-label="EquiBets home">
+          <span class="brand-mark">EB</span>
+          <span>EquiBets</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+          Menu
+        </button>
+        <div class="nav-links" id="primary-nav">
+          <a href="#dashboard">Dashboard</a>
+          <a href="#riders">Rider combinations</a>
+          <a href="#events">Upcoming events</a>
+          <a href="#star-events">5* & 4* events</a>
+          <a href="#database">All data</a>
+          <a href="#results">Results</a>
+          <a href="#guesses">Team guesses</a>
+          <a href="#method">Prediction model</a>
+        </div>
+      </nav>
+
+      <div class="hero-grid">
+        <section class="hero-copy">
+          <p class="eyebrow">International eventing intelligence</p>
+          <h1>Follow combinations, predict teams, and preview championship scores.</h1>
+          <p>
+            Save favourite rider and horse combinations, build team guesses for major events,
+            compare transparent score predictions, and review previous results from top 5-star
+            and 4-star form lines.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#riders">Start following riders</a>
+            <a class="button secondary" href="#events">See event forecasts</a>
+          </div>
+        </section>
+
+        <aside class="hero-card" aria-label="Prediction summary">
+          <span class="status-dot"></span>
+          <p class="eyebrow">Top forecast</p>
+          <h2 id="hero-pick">Loading forecast...</h2>
+          <p id="hero-score">Calculating predicted score.</p>
+          <div class="confidence-meter" aria-hidden="true">
+            <span id="hero-confidence"></span>
+          </div>
+          <small>
+            Forecasts are research tools only. Betting use needs audited data, compliance,
+            and ongoing model validation.
+          </small>
+        </aside>
+      </div>
+    </header>
+
+    <main>
+      <section class="section dashboard" id="dashboard">
+        <div class="section-heading">
+          <p class="eyebrow">Quick view</p>
+          <h2>Your eventing command centre</h2>
+          <p>Navigate from favourites to upcoming predictions without digging through spreadsheets.</p>
+        </div>
+        <div class="stats-grid" id="stats-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="section" id="riders">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">Follow combinations</p>
+            <h2>Rider and horse combinations</h2>
+            <p>Save favourites locally in this browser and keep them visible across the app.</p>
+          </div>
+          <label class="search-box">
+            <span>Search</span>
+            <input id="combination-search" type="search" placeholder="Rider, horse, or country" />
+          </label>
+        </div>
+        <div class="card-grid" id="combination-grid"></div>
+      </section>
+
+      <section class="section muted" id="database">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">Search database</p>
+            <h2>All riders and results</h2>
+            <p>Search every stored combination and every result row. FEI imports will appear here as the data grows.</p>
+          </div>
+          <label class="search-box">
+            <span>Search riders, horses, events, levels, or countries</span>
+            <input id="global-search" type="search" placeholder="Try Ros, Badminton, GBR, 5-star" />
+          </label>
+        </div>
+        <div class="tabs filter-tabs" id="global-search-tabs" role="tablist" aria-label="Database result filters"></div>
+        <div class="database-summary" id="database-summary"></div>
+        <div class="database-grid">
+          <section>
+            <h3>Riders</h3>
+            <div id="all-riders-list" class="search-results-list" aria-live="polite"></div>
+          </section>
+          <section>
+            <h3>Results</h3>
+            <div id="all-results-list" class="search-results-list" aria-live="polite"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="section muted" id="results">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">Previous results</p>
+            <h2>Combination result pages</h2>
+            <p>Open a combination page to see recent 5-star, 4-star, and championship results.</p>
+          </div>
+          <label class="search-box">
+            <span>Combination</span>
+            <select id="results-combination"></select>
+          </label>
+        </div>
+        <div id="result-detail" class="result-detail"></div>
+      </section>
+
+      <section class="section muted" id="events">
+        <div class="section-heading">
+          <p class="eyebrow">Upcoming international events</p>
+          <h2>Predicted scores and medal pressure</h2>
+          <p>
+            Each forecast ranks combinations by predicted finishing score, confidence, and risk profile.
+          </p>
+        </div>
+        <div class="tabs filter-tabs" id="event-level-tabs" role="tablist" aria-label="Event level filters"></div>
+        <div class="tabs" id="event-tabs" role="tablist" aria-label="Upcoming events"></div>
+        <div id="event-panel"></div>
+      </section>
+
+      <section class="section" id="star-events">
+        <div class="section-heading">
+          <p class="eyebrow">5-star and 4-star calendar</p>
+          <h2>Track major CCI5*-L and CCI4* form checks</h2>
+          <p>
+            Star events show where combinations build form before championship team selection.
+          </p>
+        </div>
+        <div class="star-event-grid" id="star-event-grid"></div>
+      </section>
+
+      <section class="section" id="guesses">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">Team selector</p>
+            <h2>Save your team guesses</h2>
+            <p>Pick who you think should make the team for events such as the World Equestrian Games and Olympics.</p>
+          </div>
+          <button class="button secondary" id="clear-guesses" type="button">Clear guesses</button>
+        </div>
+        <div class="guess-layout">
+          <form class="guess-form" id="guess-form">
+            <label>
+              Event
+              <select id="guess-event"></select>
+            </label>
+            <label>
+              Team country
+              <select id="guess-country"></select>
+            </label>
+            <fieldset>
+              <legend>Select up to four combinations</legend>
+              <div id="guess-options" class="guess-options"></div>
+            </fieldset>
+            <button class="button primary" type="submit">Save team guess</button>
+          </form>
+          <aside class="saved-guesses">
+            <h3>Saved guesses</h3>
+            <div id="saved-guesses" aria-live="polite"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section muted" id="method">
+        <div class="section-heading">
+          <p class="eyebrow">Prediction model</p>
+          <h2>Accuracy needs trustworthy data, not magic</h2>
+          <p>
+            The app combines historical finishing score, form, reliability, championship experience,
+            travel pressure, terrain fit, and recency into a transparent forecast.
+          </p>
+        </div>
+        <div class="method-grid">
+          <article>
+            <h3>Data quality first</h3>
+            <p>Confidence drops when starts are sparse, results are stale, or event uncertainty is high.</p>
+          </article>
+          <article>
+            <h3>Lower score wins</h3>
+            <p>Predictions follow eventing scoring: dressage score plus cross-country and jumping penalties.</p>
+          </article>
+          <article>
+            <h3>Betting readiness</h3>
+            <p>Before betting, add audited live feeds, injury/scratch monitoring, back-testing, and legal compliance.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>EquiBets stores favourites and guesses in your browser only.</p>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/model.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

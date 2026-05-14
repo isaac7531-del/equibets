@@ -27,13 +27,23 @@ override official results.
 
 ## Weekly update flow
 
-1. Pull new FEI results from `data.fei.org`.
+1. Pull new FEI results from the configured search pages:
+   - `https://data.fei.org/Person/Search.aspx`
+   - `https://data.fei.org/Horse/Search.aspx`
+   - `https://data.fei.org/Calendar/Search.aspx`
+   - `https://data.fei.org/Ranking/Search.aspx`
 2. Pull national-event updates from the priority regions.
 3. Pull global national-federation results as a backfill.
 4. Store raw source payloads for auditability.
 5. Normalize records into the common result table.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
+
+Rows exported from FEI result tables should be normalized with
+`equibets.fei.load_fei_results_csv()` before consolidation. Rows exported from
+FEI world rankings should be normalized with
+`equibets.fei.load_fei_world_rankings_csv()` and joined by rider name/person ID
+for ranking context.
 
 ## Prediction logic
 
@@ -52,6 +62,8 @@ The first prediction output includes:
 ## Website feature outline
 
 - Combination profile page: recent starts, phase penalties, and likely score.
+- All-data search page: rider, horse, event, level, country, and result search
+  across imported FEI data.
 - Upcoming event page: predicted finishing scores for entered combinations.
 - Add my score form: rider, horse, event, date, level, country, phase scores.
 - Data freshness badge: last weekly public-data refresh and source coverage.

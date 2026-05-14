@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "source_id": "data_fei",
+  "pages": {
+    "person_search": {
+      "label": "FEI Person Search",
+      "url": "https://data.fei.org/Person/Search.aspx",
+      "use": "Find rider profiles and confirm person identifiers before matching results."
+    },
+    "horse_search": {
+      "label": "FEI Horse Search",
+      "url": "https://data.fei.org/Horse/Search.aspx",
+      "use": "Find horse profiles and confirm horse identifiers before matching results."
+    },
+    "calendar_search": {
+      "label": "FEI Calendar Search",
+      "url": "https://data.fei.org/Calendar/Search.aspx",
+      "use": "Find event schedules and result pages for international eventing starts."
+    },
+    "world_rankings": {
+      "label": "FEI World Rankings",
+      "url": "https://data.fei.org/Ranking/Search.aspx",
+      "use": "Find current FEI eventing world ranking positions and points for rider form context."
+    }
+  }
+}
