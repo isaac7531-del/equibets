@@ -7,6 +7,7 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import { formatCollectedAt, getLiveScoreRows, liveScoringFeed, phaseTotal } from './liveScoring';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -55,7 +56,10 @@ export default function App() {
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const liveRows = useMemo(() => getLiveScoreRows(), []);
   const bestResult = sortedResults[0];
+  const liveScoreCount = liveScoringFeed.events.reduce((total, event) => total + event.scores.length, 0);
+  const latestLiveRefresh = formatCollectedAt(liveScoringFeed.collected_at);
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -134,6 +138,72 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Live feed</span>
+          <strong>{liveScoreCount}</strong>
+          <p>{liveScoringFeed.events.length} current events</p>
+        </article>
+      </section>
+
+      <section className="live-card" aria-labelledby="live-scoring-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-scoring-heading">Live current-event scoring</h2>
+          </div>
+          <div className="live-meta">
+            <span>Last pulled</span>
+            <strong>{latestLiveRefresh}</strong>
+          </div>
+        </div>
+        <p className="live-summary">
+          Pulled from searchable public result pages and ranked by lowest current finishing score. Source links stay attached
+          to each row for quick verification.
+        </p>
+
+        <div className="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Combination</th>
+                <th>Event</th>
+                <th>Total</th>
+                <th>Breakdown</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              {liveRows.map((score, index) => (
+                <tr key={`${score.eventId}-${score.division}-${score.horse_name}-${score.rider_name}`}>
+                  <td>#{index + 1}</td>
+                  <td>
+                    <strong>{score.horse_name}</strong>
+                    <span>{score.rider_name}</span>
+                  </td>
+                  <td>
+                    <strong>{score.eventName}</strong>
+                    <span>
+                      {score.division} / Place {score.place}
+                    </span>
+                  </td>
+                  <td className="total-cell">{score.total_penalties.toFixed(1)}</td>
+                  <td className="breakdown-cell">
+                    D {score.dressage_score.toFixed(1)} / SJ{' '}
+                    {(score.show_jumping_penalties + score.show_jumping_time_penalties).toFixed(1)} / XC{' '}
+                    {(score.cross_country_jump_penalties + score.cross_country_time_penalties).toFixed(1)}
+                    {phaseTotal(score) !== score.total_penalties ? ` / Src ${score.total_penalties.toFixed(1)}` : ''}
+                  </td>
+                  <td>
+                    <a className="source-link" href={score.sourceUrl} target="_blank" rel="noreferrer">
+                      {score.sourceName}
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section className="workspace-grid">

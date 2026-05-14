@@ -28,4 +28,12 @@ describe('App', () => {
     expect(screen.getByText('Juniper')).toBeInTheDocument();
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
   });
+
+  it('shows pulled current-event scoring rows', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /live current-event scoring/i })).toBeInTheDocument();
+    expect(screen.getByText('Weekapaug Groove')).toBeInTheDocument();
+    expect(screen.getByText('United States Eventing Association')).toBeInTheDocument();
+  });
 });

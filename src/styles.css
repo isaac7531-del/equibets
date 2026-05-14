@@ -89,7 +89,8 @@ button:disabled {
 .hero-card,
 .dashboard article,
 .calculator-card,
-.results-card {
+.results-card,
+.live-card {
   background: rgba(255, 252, 245, 0.88);
   border: 1px solid rgba(35, 67, 45, 0.12);
   box-shadow: 0 24px 80px rgba(67, 55, 37, 0.11);
@@ -129,7 +130,7 @@ button:disabled {
 .dashboard {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   margin-bottom: 1rem;
 }
 
@@ -154,7 +155,8 @@ button:disabled {
 }
 
 .calculator-card,
-.results-card {
+.results-card,
+.live-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
 }
@@ -163,6 +165,39 @@ button:disabled {
 .results-header h2 {
   font-size: 1.55rem;
   margin: 0;
+}
+
+.live-card {
+  margin-bottom: 1rem;
+}
+
+.live-summary {
+  color: #526050;
+  line-height: 1.65;
+  margin: -0.35rem 0 1rem;
+  max-width: 860px;
+}
+
+.live-meta {
+  background: #f4ecd9;
+  border-radius: 1rem;
+  color: #526050;
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.75rem 0.9rem;
+  text-align: right;
+}
+
+.live-meta span {
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.live-meta strong {
+  color: #23432d;
+  font-size: 0.9rem;
 }
 
 .form-grid {
@@ -321,6 +356,13 @@ td span {
   color: #71331f;
 }
 
+.source-link {
+  color: #23432d;
+  font-weight: 900;
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.2em;
+}
+
 @media (max-width: 900px) {
   .hero,
   .workspace-grid {
@@ -329,6 +371,10 @@ td span {
 
   .dashboard {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .live-meta {
+    text-align: left;
   }
 }
 
