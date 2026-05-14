@@ -11,14 +11,12 @@ import argparse
 import hashlib
 import json
 import re
-import sys
 import time
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
-from typing import Any
 from urllib.error import HTTPError
 from urllib.parse import urlencode, urljoin, urlsplit
 from urllib.request import Request, build_opener

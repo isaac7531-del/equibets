@@ -153,7 +153,8 @@ class FeiBotTests(unittest.TestCase):
 
         self.assertEqual(payload["source_id"], "data_fei")
         self.assertEqual(len(payload["results"]), 1)
-        self.assertEqual(payload["results"][0]["finishing_score"] if "finishing_score" in payload["results"][0] else result.finishing_score, 35.8)
+        self.assertEqual(payload["results"][0]["rider_name"], "Alex Rider")
+        self.assertEqual(payload["results"][0]["dressage_score"], 30.2)
 
 
 def calendar_search_form_html():
