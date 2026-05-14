@@ -1,4 +1,10 @@
 (function attachData(global) {
+  const feiSearchPages = {
+    person: "https://data.fei.org/Person/Search.aspx",
+    horse: "https://data.fei.org/Horse/Search.aspx",
+    calendar: "https://data.fei.org/Calendar/Search.aspx"
+  };
+
   const riderCombinations = [
     {
       id: "ros-canter-lordships-graffalo",
@@ -283,7 +289,11 @@
 
   const combinationsWithResults = riderCombinations.map((combination) => ({
     ...combination,
-    previousResults: previousResultsByCombination[combination.id] || []
+    previousResults: (previousResultsByCombination[combination.id] || []).map((result) => ({
+      source: "FEI lookup",
+      sourceUrl: feiSearchPages.calendar,
+      ...result
+    }))
   }));
 
   const events = [
@@ -425,6 +435,7 @@
   ];
 
   global.EquiBetsData = {
+    feiSearchPages,
     riderCombinations: combinationsWithResults,
     events
   };

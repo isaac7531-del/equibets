@@ -29,6 +29,11 @@
       ],
       "source_type": "primary_database",
       "base_url": "https://data.fei.org/",
+      "search_pages": {
+        "person": "https://data.fei.org/Person/Search.aspx",
+        "horse": "https://data.fei.org/Horse/Search.aspx",
+        "calendar": "https://data.fei.org/Calendar/Search.aspx"
+      },
       "status": "active",
       "notes": "Primary eventing source. Use before national sources whenever a result appears in the FEI database."
     },

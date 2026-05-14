@@ -1,5 +1,5 @@
 (function initialiseApp(global) {
-  const { riderCombinations, events } = global.EquiBetsData;
+  const { feiSearchPages, riderCombinations, events } = global.EquiBetsData;
   const { rankEventPredictions, getTeamRecommendations } = global.EquiBetsModel;
   const storage = global.localStorage;
   const favouriteKey = "equibets:favourites";
@@ -179,6 +179,11 @@
           <p class="eyebrow">${combination.shortCountry} result page</p>
           <h3>${combination.rider} + ${combination.horse}</h3>
           <p>${combination.notes}</p>
+          <div class="source-links" aria-label="FEI lookup links">
+            <a href="${feiSearchPages.person}" target="_blank" rel="noreferrer">FEI Person Search</a>
+            <a href="${feiSearchPages.horse}" target="_blank" rel="noreferrer">FEI Horse Search</a>
+            <a href="${feiSearchPages.calendar}" target="_blank" rel="noreferrer">FEI Calendar Search</a>
+          </div>
         </div>
         <div class="metrics">
           ${metric("Best", bestScore.toFixed(1))}
@@ -198,6 +203,7 @@
               <th>Dressage</th>
               <th>XC</th>
               <th>SJ</th>
+              <th>Source</th>
             </tr>
           </thead>
           <tbody>
@@ -213,6 +219,7 @@
                     <td>${result.dressage.toFixed(1)}</td>
                     <td>${result.crossCountry.toFixed(1)}</td>
                     <td>${result.showJumping.toFixed(1)}</td>
+                    <td><a href="${result.sourceUrl}" target="_blank" rel="noreferrer">${result.source || "FEI lookup"}</a></td>
                   </tr>
                 `
               )

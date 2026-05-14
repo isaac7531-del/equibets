@@ -1,6 +1,6 @@
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const { riderCombinations, events } = require("../js/data.js");
+const { feiSearchPages, riderCombinations, events } = require("../js/data.js");
 const {
   calculatePrediction,
   rankEventPredictions,
@@ -64,6 +64,17 @@ test("every combination has previous result rows for result pages", () => {
   assert.ok(
     riderCombinations.every((combination) =>
       combination.previousResults.every((result) => typeof result.finishingScore === "number")
+    )
+  );
+});
+
+test("website result rows link back to FEI lookup pages", () => {
+  assert.equal(feiSearchPages.person, "https://data.fei.org/Person/Search.aspx");
+  assert.equal(feiSearchPages.horse, "https://data.fei.org/Horse/Search.aspx");
+  assert.equal(feiSearchPages.calendar, "https://data.fei.org/Calendar/Search.aspx");
+  assert.ok(
+    riderCombinations.every((combination) =>
+      combination.previousResults.every((result) => result.sourceUrl === feiSearchPages.calendar)
     )
   );
 });

@@ -539,6 +539,19 @@ select {
   letter-spacing: -0.04em;
 }
 
+.source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.source-links a,
+.result-table a {
+  color: var(--sage-dark);
+  font-weight: 900;
+}
+
 .result-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--line);
@@ -550,7 +563,7 @@ select {
 .result-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 820px;
+  min-width: 920px;
 }
 
 .result-table th,

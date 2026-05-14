@@ -37,6 +37,19 @@ Run the source registry checks with:
 python3 -m unittest discover -s tests
 ```
 
+## FEI data pulls
+
+FEI lookup pages are tracked in `data/fei_search_pages.json`:
+
+- Person Search: `https://data.fei.org/Person/Search.aspx`
+- Horse Search: `https://data.fei.org/Horse/Search.aspx`
+- Calendar Search: `https://data.fei.org/Calendar/Search.aspx`
+
+Use `equibets.fei.load_fei_results_csv()` to normalize rows exported from FEI
+result tables into `EventingResult` records. The website result pages link back
+to the FEI search pages so new rider, horse, and calendar lookups can be added
+to the weekly update flow.
+
 ## Results calculator feature
 
 The calculator is designed as a website/application feature where users can add
