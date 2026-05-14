@@ -30,10 +30,12 @@ override official results.
 1. Pull new FEI results from `data.fei.org`.
 2. Pull national-event updates from the priority regions.
 3. Pull global national-federation results as a backfill.
-4. Store raw source payloads for auditability.
-5. Normalize records into the common result table.
-6. Re-run consolidation and prediction calculations.
-7. Show the latest `collected_at` timestamp in the website UI.
+4. Write current-event feed snapshots to `data/current_events.json` for live
+   scoring search in the website.
+5. Store raw source payloads for auditability.
+6. Normalize records into the common result table.
+7. Re-run consolidation and prediction calculations.
+8. Show the latest `collected_at` timestamp in the website UI.
 
 ## Prediction logic
 

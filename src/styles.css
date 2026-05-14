@@ -129,7 +129,7 @@ button:disabled {
 .dashboard {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   margin-bottom: 1rem;
 }
 
@@ -157,6 +157,11 @@ button:disabled {
 .results-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
+}
+
+.results-stack {
+  display: grid;
+  gap: 1rem;
 }
 
 .section-heading h2,
@@ -253,6 +258,26 @@ legend {
 
 .secondary-button:hover:not(:disabled) {
   background: #e3d2ad;
+}
+
+.freshness-badge {
+  background: #e9f0de;
+  border-radius: 999px;
+  color: #315d3d;
+  font-size: 0.78rem;
+  font-weight: 900;
+  padding: 0.45rem 0.7rem;
+  white-space: nowrap;
+}
+
+.feed-summary {
+  color: #526050;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+
+.search-field {
+  margin-bottom: 1rem;
 }
 
 .empty-state {

@@ -7,6 +7,7 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import { currentEventFeed, searchCurrentEventResults, type CurrentEventScore } from './currentEvents';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -41,6 +42,42 @@ const defaultFormState: FormState = {
 
 const numberValue = (value: string) => Number.parseFloat(value || '0');
 
+const formatTenths = (value: number) => value.toFixed(1);
+
+const secondsToTimeParts = (totalSeconds: number) => ({
+  minutes: Math.floor(totalSeconds / 60).toString(),
+  seconds: (totalSeconds % 60).toString(),
+});
+
+const scoreToCalculatorForm = (liveResult: CurrentEventScore): FormState => {
+  const crossCountryTimeSeconds = Math.round((liveResult.crossCountryTimePenalties ?? 0) / 0.4);
+  const actualTime = secondsToTimeParts(crossCountryTimeSeconds);
+
+  return {
+    rider: liveResult.riderName,
+    horse: liveResult.horseName,
+    eventName: liveResult.eventName,
+    date: liveResult.eventDate,
+    dressagePercentage:
+      liveResult.dressageScore === null ? defaultFormState.dressagePercentage : formatTenths(100 - liveResult.dressageScore),
+    showJumpingPenalties:
+      liveResult.showJumpingPenalties === null ? '0' : formatTenths(liveResult.showJumpingPenalties),
+    crossCountryJumpPenalties:
+      liveResult.crossCountryJumpPenalties === null ? '0' : formatTenths(liveResult.crossCountryJumpPenalties),
+    optimumMinutes: '0',
+    optimumSeconds: '0',
+    actualMinutes: actualTime.minutes,
+    actualSeconds: actualTime.seconds,
+    notes: `Pulled from ${liveResult.sourceId} current-event feed at ${liveResult.collectedAt}. ${liveResult.phaseLabel}.`,
+  };
+};
+
+const formatCollectedAt = (value: string) =>
+  new Intl.DateTimeFormat(undefined, {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  }).format(new Date(value));
+
 const createScoreInput = (form: FormState): EventingScoreInput => ({
   dressagePercentage: numberValue(form.dressagePercentage),
   showJumpingPenalties: numberValue(form.showJumpingPenalties),
@@ -52,10 +89,14 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 export default function App() {
   const [form, setForm] = useState<FormState>(defaultFormState);
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [currentEventQuery, setCurrentEventQuery] = useState('');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const liveScores = useMemo(() => searchCurrentEventResults(''), []);
+  const currentEventMatches = useMemo(() => searchCurrentEventResults(currentEventQuery), [currentEventQuery]);
   const bestResult = sortedResults[0];
+  const liveLeader = liveScores[0];
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -93,6 +134,10 @@ export default function App() {
     saveResults([]);
   };
 
+  const pullCurrentEventScore = (liveResult: CurrentEventScore) => {
+    setForm(scoreToCalculatorForm(liveResult));
+  };
+
   return (
     <main className="app-shell">
       <section className="hero">
@@ -100,13 +145,13 @@ export default function App() {
           <p className="eyebrow">Equibets</p>
           <h1>Eventing score calculator and results tracker</h1>
           <p className="hero-copy">
-            Capture dressage, show jumping, and cross-country penalties in one place, then keep a local record of
-            horse-and-rider results.
+            Capture dressage, show jumping, and cross-country penalties in one place, search current-event feeds, and
+            pull live scores into your local record.
           </p>
         </div>
         <div className="hero-card" aria-live="polite">
           <span>Live total</span>
-          <strong>{currentScore.totalPenalties.toFixed(1)}</strong>
+          <strong>{formatTenths(currentScore.totalPenalties)}</strong>
           <p>penalties</p>
         </div>
       </section>
@@ -114,25 +159,30 @@ export default function App() {
       <section className="dashboard" aria-label="Score summary">
         <article>
           <span>Dressage</span>
-          <strong>{currentScore.dressagePenalties.toFixed(1)}</strong>
+          <strong>{formatTenths(currentScore.dressagePenalties)}</strong>
           <p>100 minus percentage score</p>
         </article>
         <article>
           <span>Jumping</span>
-          <strong>{(currentScore.showJumpingPenalties + currentScore.crossCountryJumpPenalties).toFixed(1)}</strong>
+          <strong>{formatTenths(currentScore.showJumpingPenalties + currentScore.crossCountryJumpPenalties)}</strong>
           <p>Stadium plus XC jumping penalties</p>
         </article>
         <article>
           <span>XC time</span>
-          <strong>{currentScore.crossCountryTimePenalties.toFixed(1)}</strong>
+          <strong>{formatTenths(currentScore.crossCountryTimePenalties)}</strong>
           <p>
             {formatSeconds(scoreInput.actualTimeSeconds)} against {formatSeconds(scoreInput.optimumTimeSeconds)}
           </p>
         </article>
         <article>
           <span>Best saved</span>
-          <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
+          <strong>{bestResult ? formatTenths(bestResult.score.totalPenalties) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
+        </article>
+        <article>
+          <span>Current leader</span>
+          <strong>{liveLeader ? formatTenths(liveLeader.score.totalPenalties) : '--'}</strong>
+          <p>{liveLeader ? `${liveLeader.horseName}, ${liveLeader.phaseLabel}` : 'No current feed loaded'}</p>
         </article>
       </section>
 
@@ -273,7 +323,76 @@ export default function App() {
           <button type="submit">Save result</button>
         </form>
 
-        <section className="results-card" aria-labelledby="saved-results-heading">
+        <div className="results-stack">
+          <section className="current-events-card results-card" aria-labelledby="current-events-heading">
+            <div className="results-header">
+              <div>
+                <p className="eyebrow">Live scoring</p>
+                <h2 id="current-events-heading">Current event feed</h2>
+              </div>
+              <span className="freshness-badge">Updated {formatCollectedAt(currentEventFeed.collectedAt)}</span>
+            </div>
+
+            <p className="feed-summary">{currentEventFeed.sourceSummary}</p>
+
+            <label className="search-field">
+              Search current-event results
+              <input
+                value={currentEventQuery}
+                onChange={(event) => setCurrentEventQuery(event.target.value)}
+                placeholder="Horse, rider, event, country, source"
+              />
+            </label>
+
+            {currentEventMatches.length === 0 ? (
+              <div className="empty-state">
+                <strong>No current results found.</strong>
+                <p>Try another horse, rider, event, country, level, or source.</p>
+              </div>
+            ) : (
+              <div className="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Combination</th>
+                      <th>Event</th>
+                      <th>Live total</th>
+                      <th>Phase</th>
+                      <th aria-label="Actions" />
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentEventMatches.map((liveResult) => (
+                      <tr key={liveResult.id}>
+                        <td>
+                          <strong>{liveResult.horseName}</strong>
+                          <span>{liveResult.riderName}</span>
+                        </td>
+                        <td>
+                          <strong>{liveResult.eventName}</strong>
+                          <span>
+                            {liveResult.level} / {liveResult.country} / {liveResult.sourceId}
+                          </span>
+                        </td>
+                        <td className="total-cell">{formatTenths(liveResult.score.totalPenalties)}</td>
+                        <td>
+                          <strong>{liveResult.phaseLabel}</strong>
+                          <span>{formatCollectedAt(liveResult.collectedAt)}</span>
+                        </td>
+                        <td>
+                          <button className="link-button" type="button" onClick={() => pullCurrentEventScore(liveResult)}>
+                            Pull live score
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </section>
+
+          <section className="results-card" aria-labelledby="saved-results-heading">
           <div className="results-header">
             <div>
               <p className="eyebrow">Data storage</p>
@@ -331,7 +450,8 @@ export default function App() {
               </table>
             </div>
           )}
-        </section>
+          </section>
+        </div>
       </section>
     </main>
   );

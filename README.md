@@ -5,6 +5,7 @@ Personal eventing results calculator, browser-based results tracker, and data so
 ## What it does
 
 - Calculates dressage, show jumping, cross-country jumping, and cross-country time penalties.
+- Searches the current-event feed and pulls live public scores into the calculator.
 - Saves horse-and-rider results to local browser storage.
 - Ranks saved results from lowest total penalties to highest.
 - Tracks public event-results sources for FEI and national-event coverage.
@@ -56,4 +57,22 @@ Run the source registry checks with:
 
 ```bash
 python3 -m unittest discover -s tests
+```
+
+## Current-event live scoring feed
+
+The app reads `data/current_events.json` as the current-event feed snapshot. An
+hourly pull job can replace this file with fresh FEI or national-source rows in
+the same shape, then the website will expose search, live totals, and a "Pull
+live score" action.
+
+Python helpers in `equibets.current_events` can load a local JSON file or HTTPS
+URL, search rows, rank the live leaderboard, and normalize rows into
+`EventingResult` records:
+
+```python
+from equibets.current_events import load_current_event_results, search_current_event_results
+
+results = load_current_event_results("data/current_events.json")
+matches = search_current_event_results(results, "Copper Chance")
 ```
