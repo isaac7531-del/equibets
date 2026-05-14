@@ -14,7 +14,7 @@ describe('App', () => {
 
     await user.type(screen.getByLabelText(/rider/i), 'Avery Stone');
     await user.type(screen.getByLabelText(/horse/i), 'Juniper');
-    await user.type(screen.getByLabelText(/event/i), 'Spring Horse Trials');
+    await user.type(screen.getByLabelText(/^event$/i), 'Spring Horse Trials');
     await user.clear(screen.getByLabelText(/dressage/i));
     await user.type(screen.getByLabelText(/dressage/i), '70');
     await user.clear(screen.getByLabelText(/show jumping/i));
@@ -34,6 +34,6 @@ describe('App', () => {
 
     expect(screen.getByRole('heading', { name: /live current-event scoring/i })).toBeInTheDocument();
     expect(screen.getByText('Weekapaug Groove')).toBeInTheDocument();
-    expect(screen.getByText('United States Eventing Association')).toBeInTheDocument();
+    expect(screen.getAllByText('United States Eventing Association')).not.toHaveLength(0);
   });
 });
