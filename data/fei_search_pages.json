@@ -16,6 +16,11 @@
       "label": "FEI Calendar Search",
       "url": "https://data.fei.org/Calendar/Search.aspx",
       "use": "Find event schedules and result pages for international eventing starts."
+    },
+    "world_rankings": {
+      "label": "FEI World Rankings",
+      "url": "https://data.fei.org/Ranking/Search.aspx",
+      "use": "Find current FEI eventing world ranking positions and points for rider form context."
     }
   }
 }

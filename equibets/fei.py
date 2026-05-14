@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import csv
 import json
+from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import TextIO
@@ -14,6 +15,19 @@ from equibets.results import EventingResult
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "fei_search_pages.json"
 DEFAULT_COLLECTED_AT = "2026-05-14T00:00:00"
 DEFAULT_SOURCE_PRIORITY = 0
+
+
+@dataclass(frozen=True)
+class FEIWorldRanking:
+    """One FEI world-ranking row for rider form context."""
+
+    ranking_name: str
+    rank: int
+    rider_name: str
+    country: str
+    points: float
+    as_of: str
+    source_url: str
 
 
 def load_fei_search_pages(path: Path | str = DATA_FILE) -> dict[str, dict[str, str]]:
@@ -40,6 +54,26 @@ def load_fei_results_csv(csv_file: TextIO, *, collected_at: str = DEFAULT_COLLEC
         EventingResult.from_mapping(_result_mapping(row, index, collected_at))
         for index, row in enumerate(csv.DictReader(csv_file), start=1)
     ]
+
+
+def load_fei_world_rankings_csv(csv_file: TextIO) -> list[FEIWorldRanking]:
+    """Normalize rows exported from the FEI world rankings page."""
+
+    rankings = []
+    for row in csv.DictReader(csv_file):
+        rankings.append(
+            FEIWorldRanking(
+                ranking_name=_first_present(row, "ranking_name", "ranking", "list"),
+                rank=int(_number(row, "rank", "position")),
+                rider_name=_first_present(row, "rider_name", "person_name", "athlete"),
+                country=_first_present(row, "country", "nf", "nation"),
+                points=_number(row, "points", "score"),
+                as_of=_first_present(row, "as_of", "date", "published_at"),
+                source_url=load_fei_search_pages()["world_rankings"]["url"],
+            )
+        )
+
+    return rankings
 
 
 def _validate_page(name: str, values: object) -> dict[str, str]:

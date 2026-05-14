@@ -44,11 +44,14 @@ FEI lookup pages are tracked in `data/fei_search_pages.json`:
 - Person Search: `https://data.fei.org/Person/Search.aspx`
 - Horse Search: `https://data.fei.org/Horse/Search.aspx`
 - Calendar Search: `https://data.fei.org/Calendar/Search.aspx`
+- World Rankings: `https://data.fei.org/Ranking/Search.aspx`
 
 Use `equibets.fei.load_fei_results_csv()` to normalize rows exported from FEI
-result tables into `EventingResult` records. The website result pages link back
-to the FEI search pages so new rider, horse, and calendar lookups can be added
-to the weekly update flow.
+result tables into `EventingResult` records. Use
+`equibets.fei.load_fei_world_rankings_csv()` to normalize world-ranking exports
+for rider form context. The website result pages link back to the FEI search and
+ranking pages so new rider, horse, calendar, and ranking lookups can be added to
+the weekly update flow.
 
 ## Results calculator feature
 

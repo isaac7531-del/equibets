@@ -31,6 +31,7 @@ override official results.
    - `https://data.fei.org/Person/Search.aspx`
    - `https://data.fei.org/Horse/Search.aspx`
    - `https://data.fei.org/Calendar/Search.aspx`
+   - `https://data.fei.org/Ranking/Search.aspx`
 2. Pull national-event updates from the priority regions.
 3. Pull global national-federation results as a backfill.
 4. Store raw source payloads for auditability.
@@ -39,7 +40,10 @@ override official results.
 7. Show the latest `collected_at` timestamp in the website UI.
 
 Rows exported from FEI result tables should be normalized with
-`equibets.fei.load_fei_results_csv()` before consolidation.
+`equibets.fei.load_fei_results_csv()` before consolidation. Rows exported from
+FEI world rankings should be normalized with
+`equibets.fei.load_fei_world_rankings_csv()` and joined by rider name/person ID
+for ranking context.
 
 ## Prediction logic
 

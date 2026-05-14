@@ -149,6 +149,9 @@
           <a class="button secondary" href="#results" data-result-link="${combination.id}">
             Previous results
           </a>
+          <a class="button ghost" href="${feiSearchPages.rankings}" target="_blank" rel="noreferrer">
+            FEI rankings
+          </a>
         </div>
       </article>
     `;
@@ -183,6 +186,7 @@
             <a href="${feiSearchPages.person}" target="_blank" rel="noreferrer">FEI Person Search</a>
             <a href="${feiSearchPages.horse}" target="_blank" rel="noreferrer">FEI Horse Search</a>
             <a href="${feiSearchPages.calendar}" target="_blank" rel="noreferrer">FEI Calendar Search</a>
+            <a href="${feiSearchPages.rankings}" target="_blank" rel="noreferrer">FEI World Rankings</a>
           </div>
         </div>
         <div class="metrics">

@@ -1,7 +1,11 @@
 import io
 import unittest
 
-from equibets.fei import load_fei_results_csv, load_fei_search_pages
+from equibets.fei import (
+    load_fei_results_csv,
+    load_fei_search_pages,
+    load_fei_world_rankings_csv,
+)
 
 
 class FEIImportTests(unittest.TestCase):
@@ -11,6 +15,7 @@ class FEIImportTests(unittest.TestCase):
         self.assertEqual(pages["person_search"]["url"], "https://data.fei.org/Person/Search.aspx")
         self.assertEqual(pages["horse_search"]["url"], "https://data.fei.org/Horse/Search.aspx")
         self.assertEqual(pages["calendar_search"]["url"], "https://data.fei.org/Calendar/Search.aspx")
+        self.assertEqual(pages["world_rankings"]["url"], "https://data.fei.org/Ranking/Search.aspx")
 
     def test_fei_csv_export_rows_normalize_to_eventing_results(self):
         export = io.StringIO(
@@ -30,6 +35,24 @@ class FEIImportTests(unittest.TestCase):
         self.assertEqual(results[0].event_date.isoformat(), "2024-05-05")
         self.assertEqual(results[0].finishing_score, 35.3)
         self.assertEqual(results[1].finishing_score, 20.3)
+
+    def test_fei_world_ranking_export_rows_normalize(self):
+        export = io.StringIO(
+            "\n".join(
+                [
+                    "ranking_name,rank,rider_name,country,points,as_of",
+                    "Eventing World Athlete Rankings,1,Ros Canter,GBR,612.0,2026-05-01",
+                    "Eventing World Athlete Rankings,2,Laura Collett,GBR,588.5,2026-05-01",
+                ]
+            )
+        )
+
+        rankings = load_fei_world_rankings_csv(export)
+
+        self.assertEqual(len(rankings), 2)
+        self.assertEqual(rankings[0].rank, 1)
+        self.assertEqual(rankings[0].rider_name, "Ros Canter")
+        self.assertEqual(rankings[0].source_url, "https://data.fei.org/Ranking/Search.aspx")
 
 
 if __name__ == "__main__":

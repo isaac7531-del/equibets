@@ -2,7 +2,8 @@
   const feiSearchPages = {
     person: "https://data.fei.org/Person/Search.aspx",
     horse: "https://data.fei.org/Horse/Search.aspx",
-    calendar: "https://data.fei.org/Calendar/Search.aspx"
+    calendar: "https://data.fei.org/Calendar/Search.aspx",
+    rankings: "https://data.fei.org/Ranking/Search.aspx"
   };
 
   const riderCombinations = [

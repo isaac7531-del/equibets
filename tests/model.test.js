@@ -72,6 +72,7 @@ test("website result rows link back to FEI lookup pages", () => {
   assert.equal(feiSearchPages.person, "https://data.fei.org/Person/Search.aspx");
   assert.equal(feiSearchPages.horse, "https://data.fei.org/Horse/Search.aspx");
   assert.equal(feiSearchPages.calendar, "https://data.fei.org/Calendar/Search.aspx");
+  assert.equal(feiSearchPages.rankings, "https://data.fei.org/Ranking/Search.aspx");
   assert.ok(
     riderCombinations.every((combination) =>
       combination.previousResults.every((result) => result.sourceUrl === feiSearchPages.calendar)
