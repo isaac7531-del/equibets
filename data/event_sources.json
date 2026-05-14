@@ -125,6 +125,32 @@
       "notes": "High-priority national-event source for New Zealand coverage."
     },
     {
+      "id": "startbox_scoring",
+      "name": "StartBox Scoring eventing scores",
+      "priority": 45,
+      "scope": "national",
+      "regions": [
+        "usa",
+        "canada"
+      ],
+      "countries": [
+        "USA",
+        "CAN"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national",
+        "regional",
+        "schooling"
+      ],
+      "source_type": "scoring_provider",
+      "base_url": "https://eventing.startboxscoring.com/",
+      "status": "active",
+      "notes": "Active public StartBox event calendar and live scoring provider for US and Canadian eventing shows."
+    },
+    {
       "id": "usea",
       "name": "United States Eventing Association results",
       "priority": 50,
