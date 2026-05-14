@@ -28,3 +28,27 @@ Run the source registry checks with:
 ```bash
 python3 -m unittest discover -s tests
 ```
+
+## FEI Data bot
+
+The FEI crawler lives in `equibets.fei_bot` and stores normalized eventing
+results in the same shape used by the results calculator.
+
+Example:
+
+```bash
+FEI_COOKIE="your-data-fei-session-cookie" \
+python3 -m equibets.fei_bot \
+  --start-date 2026-05-01 \
+  --end-date 2026-05-31 \
+  --output data/fei_results.json \
+  --raw-dir data/raw/fei \
+  --verify warn
+```
+
+The bot submits `https://data.fei.org/Calendar/Search.aspx`, keeps ASP.NET
+hidden form fields such as `__VIEWSTATE`, opens each discovered event, follows
+its result links, and writes deduplicated `data_fei` records. Use
+`--form-field name=value` for FEI form controls that need explicit values in a
+particular session, `--event-url` to crawl a known event page directly, and
+`FEI_COOKIE` or `--cookie` when the FEI Data session requires login.
