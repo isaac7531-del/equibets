@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { calculateScore, formatSeconds, parseTimeToSeconds, sortByBestScore, type StoredResult } from './scoring';
+import {
+  calculateScore,
+  calculateScoreFromPenalties,
+  formatSeconds,
+  parseTimeToSeconds,
+  sortByBestScore,
+  type StoredResult,
+} from './scoring';
 
 describe('eventing scoring', () => {
   it('calculates dressage and time penalties in tenths', () => {
@@ -30,6 +37,17 @@ describe('eventing scoring', () => {
         actualTimeSeconds: 326,
       }).totalPenalties,
     ).toBe(28);
+  });
+
+  it('totals imported public result phase penalties', () => {
+    expect(
+      calculateScoreFromPenalties({
+        dressagePenalties: 27.9,
+        showJumpingPenalties: 5.2,
+        crossCountryJumpPenalties: 0,
+        crossCountryTimePenalties: 13.2,
+      }).totalPenalties,
+    ).toBe(46.3);
   });
 
   it('parses and formats course times', () => {

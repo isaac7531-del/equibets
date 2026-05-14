@@ -28,4 +28,13 @@ describe('App', () => {
     expect(screen.getByText('Juniper')).toBeInTheDocument();
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
   });
+
+  it('renders live current-event scoring from the public snapshot', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /live scoring pull/i })).toBeInTheDocument();
+    expect(screen.getByText('Weekapaug Groove')).toBeInTheDocument();
+    expect(screen.getByText('Windridge Farm Spring H.T.')).toBeInTheDocument();
+    expect(screen.getByText(/3 events/i)).toBeInTheDocument();
+  });
 });

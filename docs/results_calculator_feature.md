@@ -35,6 +35,16 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Current-event live scoring snapshot
+
+Hourly automation can update `data/live_event_results.json` with the most
+recent public scores found during the refresh. Each row keeps source
+provenance, event metadata, phase/status, placing, and normalized phase
+penalties so both the website and Python helpers can rank current totals with
+the same scoring logic. Completed rows are final scores; rows marked
+`after_cross_country` are live totals that are expected to change after show
+jumping.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a

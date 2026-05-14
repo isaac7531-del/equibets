@@ -144,8 +144,34 @@
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
-      "status": "planned",
-      "notes": "High-priority national-event source for USA coverage."
+      "status": "active",
+      "notes": "High-priority national-event source for USA coverage, including public event pages and official result listings."
+    },
+    {
+      "id": "startbox_scoring",
+      "name": "StartBox Scoring eventing results",
+      "priority": 55,
+      "scope": "national",
+      "regions": [
+        "usa",
+        "canada"
+      ],
+      "countries": [
+        "USA",
+        "CAN"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national",
+        "regional",
+        "schooling"
+      ],
+      "source_type": "scoring_platform",
+      "base_url": "https://eventing.startboxscoring.com/",
+      "status": "active",
+      "notes": "Public live-scoring and completed-result platform used by many North American eventing competitions."
     },
     {
       "id": "global_national_federations",

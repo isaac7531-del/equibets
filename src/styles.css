@@ -89,7 +89,8 @@ button:disabled {
 .hero-card,
 .dashboard article,
 .calculator-card,
-.results-card {
+.results-card,
+.live-card {
   background: rgba(255, 252, 245, 0.88);
   border: 1px solid rgba(35, 67, 45, 0.12);
   box-shadow: 0 24px 80px rgba(67, 55, 37, 0.11);
@@ -129,7 +130,7 @@ button:disabled {
 .dashboard {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   margin-bottom: 1rem;
 }
 
@@ -154,9 +155,78 @@ button:disabled {
 }
 
 .calculator-card,
-.results-card {
+.results-card,
+.live-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
+}
+
+.live-card {
+  margin-bottom: 1rem;
+}
+
+.live-header {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.live-header h2 {
+  font-size: 1.55rem;
+  margin: 0;
+}
+
+.live-header p:not(.eyebrow) {
+  color: #65705f;
+  line-height: 1.6;
+  margin: 0.4rem 0 0;
+  max-width: 760px;
+}
+
+.freshness-badge {
+  background: #23432d;
+  border-radius: 1.25rem;
+  color: #fff9ec;
+  min-width: 190px;
+  padding: 1rem;
+  text-align: right;
+}
+
+.freshness-badge span,
+.freshness-badge small {
+  color: rgba(255, 249, 236, 0.72);
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.freshness-badge strong {
+  display: block;
+  font-size: 1.15rem;
+  margin: 0.2rem 0;
+}
+
+.live-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.live-meta span,
+.status-pill {
+  background: #f4ecd9;
+  border: 1px solid rgba(35, 67, 45, 0.1);
+  border-radius: 999px;
+  color: #23432d;
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 900;
+  padding: 0.35rem 0.65rem;
 }
 
 .section-heading h2,
@@ -299,6 +369,11 @@ td span {
   margin-top: 0.15rem;
 }
 
+td a {
+  color: #23432d;
+  font-weight: 900;
+}
+
 .total-cell {
   color: #23432d;
   font-size: 1.4rem;
@@ -323,8 +398,18 @@ td span {
 
 @media (max-width: 900px) {
   .hero,
-  .workspace-grid {
+  .workspace-grid,
+  .live-header {
     grid-template-columns: 1fr;
+  }
+
+  .live-header {
+    align-items: stretch;
+    display: grid;
+  }
+
+  .freshness-badge {
+    text-align: left;
   }
 
   .dashboard {

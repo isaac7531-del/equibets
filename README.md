@@ -8,6 +8,7 @@ Personal eventing results calculator, browser-based results tracker, and data so
 - Saves horse-and-rider results to local browser storage.
 - Ranks saved results from lowest total penalties to highest.
 - Tracks public event-results sources for FEI and national-event coverage.
+- Displays a current-event live scoring snapshot pulled from public result pages.
 
 ## Results calculator feature
 
@@ -17,6 +18,20 @@ likely finishing score at upcoming events.
 
 See `docs/results_calculator_feature.md` for the weekly update flow, user-score
 handling, and prediction surface.
+
+## Live current-event scoring
+
+The scheduled refresh writes normalized public scores to
+`data/live_event_results.json`. The website imports that snapshot to show the
+latest pull timestamp, event/source coverage, and ranked current totals. Python
+helpers in `equibets.results` can load the same file:
+
+```python
+from equibets.results import live_leaderboard
+
+for result in live_leaderboard(limit=5):
+    print(result.event_name, result.horse_name, result.finishing_score)
+```
 
 ## Website development
 

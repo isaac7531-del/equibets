@@ -9,6 +9,7 @@ from datetime import date, datetime
 from pathlib import Path
 
 
+LIVE_RESULTS_FILE = Path(__file__).resolve().parents[1] / "data" / "live_event_results.json"
 USER_ENTERED_PRIORITY = 100
 
 
@@ -110,6 +111,31 @@ def load_results(path: Path | str) -> list[EventingResult]:
         payload = json.load(results_file)
 
     return [EventingResult.from_mapping(item) for item in payload["results"]]
+
+
+def load_current_event_results(path: Path | str = LIVE_RESULTS_FILE) -> list[EventingResult]:
+    """Load the latest public current-event score snapshot."""
+
+    return load_results(path)
+
+
+def live_leaderboard(
+    path: Path | str = LIVE_RESULTS_FILE,
+    *,
+    limit: int | None = None,
+) -> list[EventingResult]:
+    """Rank live/current results by lowest current total penalties."""
+
+    ranked_results = sorted(
+        consolidate_results(load_current_event_results(path)),
+        key=lambda result: (
+            result.finishing_score,
+            result.event_date,
+            result.rider_name,
+            result.horse_name,
+        ),
+    )
+    return ranked_results if limit is None else ranked_results[:limit]
 
 
 def consolidate_results(results: list[EventingResult]) -> list[EventingResult]:

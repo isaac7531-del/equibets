@@ -7,6 +7,7 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import { liveEventCount, liveEventSnapshot, rankedLiveResults } from './liveResults';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -41,6 +42,21 @@ const defaultFormState: FormState = {
 
 const numberValue = (value: string) => Number.parseFloat(value || '0');
 
+const formatSnapshotTime = (value: string) =>
+  new Intl.DateTimeFormat('en', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+    timeZone: 'UTC',
+  }).format(new Date(value));
+
+const formatLiveStatus = (status: string) => {
+  if (status === 'after_cross_country') {
+    return 'After XC';
+  }
+
+  return 'Final';
+};
+
 const createScoreInput = (form: FormState): EventingScoreInput => ({
   dressagePercentage: numberValue(form.dressagePercentage),
   showJumpingPenalties: numberValue(form.showJumpingPenalties),
@@ -56,6 +72,9 @@ export default function App() {
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
   const bestResult = sortedResults[0];
+  const liveLeaders = rankedLiveResults.slice(0, 8);
+  const bestLiveResult = liveLeaders[0];
+  const liveUpdatedAt = formatSnapshotTime(liveEventSnapshot.collectedAt);
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -101,7 +120,7 @@ export default function App() {
           <h1>Eventing score calculator and results tracker</h1>
           <p className="hero-copy">
             Capture dressage, show jumping, and cross-country penalties in one place, then keep a local record of
-            horse-and-rider results.
+            horse-and-rider results alongside the latest public event scores.
           </p>
         </div>
         <div className="hero-card" aria-live="polite">
@@ -134,6 +153,78 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Best live</span>
+          <strong>{bestLiveResult ? bestLiveResult.score.totalPenalties.toFixed(1) : '--'}</strong>
+          <p>{bestLiveResult ? `${bestLiveResult.horse} / ${bestLiveResult.eventName}` : 'No public scores loaded'}</p>
+        </article>
+      </section>
+
+      <section className="live-card" aria-labelledby="live-results-heading">
+        <div className="live-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-results-heading">Live scoring pull</h2>
+            <p>{liveEventSnapshot.summary}</p>
+          </div>
+          <div className="freshness-badge" aria-label={`Live data updated ${liveUpdatedAt} UTC`}>
+            <span>Updated</span>
+            <strong>{liveUpdatedAt}</strong>
+            <small>UTC</small>
+          </div>
+        </div>
+
+        <div className="live-meta" aria-label="Live scoring coverage">
+          <span>{liveEventCount} events</span>
+          <span>{rankedLiveResults.length} scores</span>
+          <span>{liveEventSnapshot.sources.length} sources</span>
+        </div>
+
+        <div className="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Place</th>
+                <th>Combination</th>
+                <th>Event</th>
+                <th>Total</th>
+                <th>Breakdown</th>
+                <th>Phase</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              {liveLeaders.map((result) => (
+                <tr key={result.id}>
+                  <td>#{result.placing}</td>
+                  <td>
+                    <strong>{result.horseName}</strong>
+                    <span>{result.riderName}</span>
+                  </td>
+                  <td>
+                    <strong>{result.eventName}</strong>
+                    <span>
+                      {result.division} / {result.level}
+                    </span>
+                  </td>
+                  <td className="total-cell">{result.score.totalPenalties.toFixed(1)}</td>
+                  <td className="breakdown-cell">
+                    D {result.score.dressagePenalties.toFixed(1)} / SJ {result.score.showJumpingPenalties.toFixed(1)} /
+                    XC {(result.score.crossCountryJumpPenalties + result.score.crossCountryTimePenalties).toFixed(1)}
+                  </td>
+                  <td>
+                    <span className="status-pill">{formatLiveStatus(result.status)}</span>
+                  </td>
+                  <td>
+                    <a href={result.sourceUrl} target="_blank" rel="noreferrer">
+                      {result.sourceId}
+                    </a>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section className="workspace-grid">

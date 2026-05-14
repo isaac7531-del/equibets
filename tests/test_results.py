@@ -1,6 +1,12 @@
 import unittest
 
-from equibets.results import EventingResult, consolidate_results, predict_finishing_score
+from equibets.results import (
+    EventingResult,
+    consolidate_results,
+    live_leaderboard,
+    load_current_event_results,
+    predict_finishing_score,
+)
 
 
 def result(**overrides):
@@ -71,6 +77,16 @@ class ResultConsolidationTests(unittest.TestCase):
         self.assertEqual(prediction.confidence, "medium")
         self.assertEqual(prediction.source_ids, ("data_fei", "user_submission"))
         self.assertEqual(prediction.likely_finishing_score, 33.4)
+
+    def test_current_event_snapshot_loads_live_scores(self):
+        results = load_current_event_results()
+        leaderboard = live_leaderboard(limit=3)
+
+        self.assertGreaterEqual(len(results), 15)
+        self.assertEqual(leaderboard[0].horse_name, "Weekapaug Groove")
+        self.assertEqual(leaderboard[0].finishing_score, 18.5)
+        self.assertEqual(leaderboard[1].horse_name, "Lost at Sea")
+        self.assertEqual(leaderboard[2].source_id, "badminton_horse_trials")
 
 
 if __name__ == "__main__":
