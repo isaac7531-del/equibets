@@ -59,6 +59,19 @@ test("calendar data includes 5-star and 4-star upcoming events", () => {
   assert.ok(events.filter((event) => event.level === "4-star").length >= 3);
 });
 
+test("rider database covers expanded international countries", () => {
+  const countries = new Set(riderCombinations.map((combination) => combination.country));
+
+  assert.equal(riderCombinations.length, 18);
+  assert.ok(countries.has("France"));
+  assert.ok(countries.has("Australia"));
+  assert.ok(countries.has("Ireland"));
+  assert.ok(countries.has("Japan"));
+  assert.ok(countries.has("Switzerland"));
+  assert.ok(countries.has("Netherlands"));
+  assert.ok(events.every((event) => event.countries.length >= countries.size));
+});
+
 test("every combination has previous result rows for result pages", () => {
   assert.ok(riderCombinations.every((combination) => combination.previousResults.length >= 3));
   assert.equal(

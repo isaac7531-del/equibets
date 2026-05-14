@@ -222,6 +222,114 @@
       travelResilience: 82,
       climateFitness: 81,
       notes: "Medal-level pairing with a sharp recent-form profile."
+    },
+    {
+      id: "astier-nicolas-alertamalibor",
+      rider: "Astier Nicolas",
+      horse: "Alertamalib'or",
+      country: "France",
+      shortCountry: "FRA",
+      baseScore: 31.8,
+      formScore: 83,
+      reliability: 82,
+      championshipExperience: 89,
+      internationalStarts: 24,
+      lastResultDays: 63,
+      trend: 0.7,
+      stamina: 86,
+      travelResilience: 84,
+      climateFitness: 80,
+      notes: "Experienced French championship rider with strong team-selection relevance."
+    },
+    {
+      id: "shane-rose-virgil",
+      rider: "Shane Rose",
+      horse: "Virgil",
+      country: "Australia",
+      shortCountry: "AUS",
+      baseScore: 32.7,
+      formScore: 82,
+      reliability: 83,
+      championshipExperience: 88,
+      internationalStarts: 26,
+      lastResultDays: 70,
+      trend: 0.5,
+      stamina: 88,
+      travelResilience: 89,
+      climateFitness: 86,
+      notes: "Australian long-format profile with proven travel and team experience."
+    },
+    {
+      id: "austin-oconnor-colorado-blue",
+      rider: "Austin O'Connor",
+      horse: "Colorado Blue",
+      country: "Ireland",
+      shortCountry: "IRL",
+      baseScore: 30.9,
+      formScore: 86,
+      reliability: 84,
+      championshipExperience: 87,
+      internationalStarts: 22,
+      lastResultDays: 57,
+      trend: 1.3,
+      stamina: 91,
+      travelResilience: 86,
+      climateFitness: 79,
+      notes: "Fast cross-country combination with strong 5-star and championship value."
+    },
+    {
+      id: "kazuma-tomoto-vinci-de-la-vigne",
+      rider: "Kazuma Tomoto",
+      horse: "Vinci de la Vigne",
+      country: "Japan",
+      shortCountry: "JPN",
+      baseScore: 31.4,
+      formScore: 84,
+      reliability: 81,
+      championshipExperience: 86,
+      internationalStarts: 20,
+      lastResultDays: 66,
+      trend: 0.9,
+      stamina: 84,
+      travelResilience: 88,
+      climateFitness: 85,
+      notes: "Japanese championship contender with useful travel-resilience signals."
+    },
+    {
+      id: "felix-vogg-colero",
+      rider: "Felix Vogg",
+      horse: "Colero",
+      country: "Switzerland",
+      shortCountry: "SUI",
+      baseScore: 33.4,
+      formScore: 80,
+      reliability: 80,
+      championshipExperience: 85,
+      internationalStarts: 23,
+      lastResultDays: 81,
+      trend: 0.2,
+      stamina: 87,
+      travelResilience: 83,
+      climateFitness: 78,
+      notes: "Swiss five-star winner with a reliable high-pressure record."
+    },
+    {
+      id: "merel-blom-crossborder-radar-love",
+      rider: "Merel Blom",
+      horse: "Crossborder Radar Love",
+      country: "Netherlands",
+      shortCountry: "NED",
+      baseScore: 34.2,
+      formScore: 79,
+      reliability: 78,
+      championshipExperience: 82,
+      internationalStarts: 18,
+      lastResultDays: 76,
+      trend: 0.4,
+      stamina: 82,
+      travelResilience: 81,
+      climateFitness: 77,
+      notes: "Dutch team option with useful continental championship experience."
     }
   ];
 
@@ -285,6 +393,36 @@
       { event: "World Championships", level: "Championship", year: 2022, placing: "1st", finishingScore: 23.2, dressage: 22.0, crossCountry: 1.2, showJumping: 0 },
       { event: "Kentucky Three-Day Event", level: "5-star", year: 2024, placing: "3rd", finishingScore: 35.6, dressage: 26.0, crossCountry: 5.6, showJumping: 4.0 },
       { event: "Bramham International", level: "4-star", year: 2023, placing: "1st", finishingScore: 27.9, dressage: 25.1, crossCountry: 2.8, showJumping: 0 }
+    ],
+    "astier-nicolas-alertamalibor": [
+      { event: "Pau Horse Trials", level: "5-star", year: 2023, placing: "4th", finishingScore: 36.2, dressage: 30.6, crossCountry: 1.6, showJumping: 4.0 },
+      { event: "European Championships", level: "Championship", year: 2023, placing: "Team bronze", finishingScore: 38.8, dressage: 31.2, crossCountry: 3.6, showJumping: 4.0 },
+      { event: "Le Pin au Haras", level: "4-star", year: 2024, placing: "2nd", finishingScore: 32.9, dressage: 29.3, crossCountry: 3.6, showJumping: 0 }
+    ],
+    "shane-rose-virgil": [
+      { event: "Adelaide Equestrian Festival", level: "5-star", year: 2024, placing: "2nd", finishingScore: 37.4, dressage: 31.0, crossCountry: 2.4, showJumping: 4.0 },
+      { event: "Tokyo Olympics", level: "Championship", year: 2021, placing: "Team silver", finishingScore: 38.9, dressage: 31.7, crossCountry: 3.2, showJumping: 4.0 },
+      { event: "Melbourne International", level: "4-star", year: 2023, placing: "1st", finishingScore: 31.8, dressage: 29.0, crossCountry: 2.8, showJumping: 0 }
+    ],
+    "austin-oconnor-colorado-blue": [
+      { event: "Maryland 5 Star", level: "5-star", year: 2023, placing: "1st", finishingScore: 33.7, dressage: 31.7, crossCountry: 2.0, showJumping: 0 },
+      { event: "World Championships", level: "Championship", year: 2022, placing: "13th", finishingScore: 39.8, dressage: 34.2, crossCountry: 1.6, showJumping: 4.0 },
+      { event: "Millstreet International", level: "4-star", year: 2024, placing: "3rd", finishingScore: 32.6, dressage: 29.4, crossCountry: 3.2, showJumping: 0 }
+    ],
+    "kazuma-tomoto-vinci-de-la-vigne": [
+      { event: "Tokyo Olympics", level: "Championship", year: 2021, placing: "4th", finishingScore: 31.5, dressage: 25.9, crossCountry: 1.6, showJumping: 4.0 },
+      { event: "Luhmuhlen Horse Trials", level: "5-star", year: 2023, placing: "8th", finishingScore: 42.1, dressage: 31.7, crossCountry: 6.4, showJumping: 4.0 },
+      { event: "Strzegom International", level: "4-star", year: 2024, placing: "5th", finishingScore: 35.6, dressage: 30.8, crossCountry: 0.8, showJumping: 4.0 }
+    ],
+    "felix-vogg-colero": [
+      { event: "Luhmuhlen Horse Trials", level: "5-star", year: 2022, placing: "1st", finishingScore: 29.0, dressage: 29.0, crossCountry: 0, showJumping: 0 },
+      { event: "World Championships", level: "Championship", year: 2022, placing: "15th", finishingScore: 42.6, dressage: 32.2, crossCountry: 6.4, showJumping: 4.0 },
+      { event: "Avenches International", level: "4-star", year: 2023, placing: "3rd", finishingScore: 34.1, dressage: 30.5, crossCountry: 3.6, showJumping: 0 }
+    ],
+    "merel-blom-crossborder-radar-love": [
+      { event: "Boekelo Nations Cup", level: "4-star", year: 2024, placing: "6th", finishingScore: 37.8, dressage: 31.4, crossCountry: 2.4, showJumping: 4.0 },
+      { event: "European Championships", level: "Championship", year: 2023, placing: "Team 5th", finishingScore: 43.2, dressage: 33.6, crossCountry: 5.6, showJumping: 4.0 },
+      { event: "Pau Horse Trials", level: "5-star", year: 2022, placing: "12th", finishingScore: 48.5, dressage: 35.3, crossCountry: 9.2, showJumping: 4.0 }
     ]
   };
 
@@ -309,6 +447,19 @@
     }))
   );
 
+  const trackedCountries = [
+    "Great Britain",
+    "Germany",
+    "United States",
+    "New Zealand",
+    "France",
+    "Australia",
+    "Ireland",
+    "Japan",
+    "Switzerland",
+    "Netherlands"
+  ];
+
   const events = [
     {
       id: "weg-aachen-2026",
@@ -322,7 +473,7 @@
       climateStress: 64,
       pressure: 92,
       uncertainty: 12,
-      countries: ["Great Britain", "Germany", "United States", "New Zealand"],
+      countries: trackedCountries,
       summary: "Championship pressure, technical cross-country questions, and deep European fields."
     },
     {
@@ -337,7 +488,7 @@
       climateStress: 82,
       pressure: 98,
       uncertainty: 22,
-      countries: ["Great Britain", "Germany", "United States", "New Zealand"],
+      countries: trackedCountries,
       summary: "Maximum pressure with heat, travel, selection volatility, and longer-range uncertainty."
     },
     {
@@ -352,7 +503,7 @@
       climateStress: 58,
       pressure: 76,
       uncertainty: 9,
-      countries: ["Great Britain", "Germany", "United States", "New Zealand"],
+      countries: trackedCountries,
       summary: "Useful team-form indicator with lower pressure than a championship."
     },
     {
@@ -367,7 +518,7 @@
       climateStress: 55,
       pressure: 88,
       uncertainty: 15,
-      countries: ["Great Britain", "Germany", "United States", "New Zealand"],
+      countries: trackedCountries,
       summary: "One of the toughest CCI5*-L tests, valuable for stamina and jumping reliability signals."
     },
     {
@@ -382,7 +533,7 @@
       climateStress: 70,
       pressure: 84,
       uncertainty: 13,
-      countries: ["Great Britain", "Germany", "United States", "New Zealand"],
+      countries: trackedCountries,
       summary: "A major North American CCI5*-L with useful travel and championship selection read-through."
     },
     {
@@ -397,7 +548,7 @@
       climateStress: 58,
       pressure: 87,
       uncertainty: 16,
-      countries: ["Great Britain", "Germany", "United States", "New Zealand"],
+      countries: trackedCountries,
       summary: "Demanding CCI5*-L terrain makes this a strong test for proven cross-country stamina."
     },
     {
@@ -412,7 +563,7 @@
       climateStress: 54,
       pressure: 72,
       uncertainty: 10,
-      countries: ["Great Britain", "Germany", "United States", "New Zealand"],
+      countries: trackedCountries,
       summary: "A CCI4*-L selection checkpoint for combinations stepping toward championship teams."
     },
     {
@@ -427,7 +578,7 @@
       climateStress: 57,
       pressure: 74,
       uncertainty: 11,
-      countries: ["Great Britain", "Germany", "United States", "New Zealand"],
+      countries: trackedCountries,
       summary: "A team-format CCI4*-L event that helps compare national depth and selection options."
     },
     {
@@ -442,7 +593,7 @@
       climateStress: 56,
       pressure: 70,
       uncertainty: 10,
-      countries: ["Great Britain", "Germany", "United States", "New Zealand"],
+      countries: trackedCountries,
       summary: "A CCI4*-L form builder for younger horses and combinations returning to peak fitness."
     }
   ];
