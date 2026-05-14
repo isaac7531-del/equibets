@@ -1,6 +1,13 @@
-# equibets
+# Equibets
 
-Building a personal eventing results calculator and data store.
+Personal eventing results calculator, browser-based results tracker, and data source registry.
+
+## What it does
+
+- Calculates dressage, show jumping, cross-country jumping, and cross-country time penalties.
+- Saves horse-and-rider results to local browser storage.
+- Ranks saved results from lowest total penalties to highest.
+- Tracks public event-results sources for FEI and national-event coverage.
 
 ## Results calculator feature
 
@@ -11,7 +18,21 @@ likely finishing score at upcoming events.
 See `docs/results_calculator_feature.md` for the weekly update flow, user-score
 handling, and prediction surface.
 
-## Setup
+## Website development
+
+```bash
+npm install
+npm run dev
+```
+
+## Checks
+
+```bash
+npm test
+npm run build
+```
+
+## Python package setup
 
 Install the package metadata and declared dependencies with:
 
