@@ -88,6 +88,7 @@ button:disabled {
 
 .hero-card,
 .dashboard article,
+.live-scoring-card,
 .calculator-card,
 .results-card {
   background: rgba(255, 252, 245, 0.88);
@@ -144,6 +145,126 @@ button:disabled {
   font-size: 2rem;
   letter-spacing: -0.04em;
   margin-top: 0.2rem;
+}
+
+.live-scoring-card {
+  border-radius: 1.8rem;
+  margin-bottom: 1rem;
+  padding: 1.35rem;
+}
+
+.status-pill {
+  background: #eee1c7;
+  border-radius: 999px;
+  color: #23432d;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 0.55rem 0.8rem;
+  text-transform: uppercase;
+}
+
+.status-pill.live {
+  background: #d9ead2;
+  color: #1f5a2c;
+}
+
+.live-summary-grid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: 0.65fr 0.9fr 1.2fr;
+  margin-bottom: 1rem;
+}
+
+.live-summary-grid article {
+  background: #f8f2e4;
+  border: 1px solid rgba(35, 67, 45, 0.1);
+  border-radius: 1.2rem;
+  padding: 1rem;
+}
+
+.live-summary-grid span,
+.event-card a,
+.event-status {
+  color: #65705f;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.live-summary-grid strong {
+  color: #23432d;
+  display: block;
+  font-size: 1.4rem;
+  margin-top: 0.2rem;
+}
+
+.live-summary-grid p {
+  color: #65705f;
+  line-height: 1.45;
+  margin: 0.35rem 0 0;
+}
+
+.event-feed {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.event-card {
+  border: 1px solid rgba(35, 67, 45, 0.12);
+  border-radius: 1.2rem;
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.event-card h3 {
+  color: #132015;
+  font-size: 1rem;
+  margin: 0.25rem 0;
+}
+
+.event-card p {
+  color: #65705f;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.event-card a {
+  color: #956d26;
+  text-decoration: none;
+}
+
+.event-card a:hover {
+  text-decoration: underline;
+}
+
+.event-status {
+  display: inline-block;
+}
+
+.event-status.live {
+  color: #1f5a2c;
+}
+
+.event-status.completed {
+  color: #65705f;
+}
+
+.mini-table-wrap {
+  overflow-x: auto;
+}
+
+.mini-table-wrap table {
+  min-width: 520px;
+}
+
+.pending-copy {
+  background: #f8f2e4;
+  border-radius: 0.9rem;
+  padding: 0.8rem;
 }
 
 .workspace-grid {
@@ -327,7 +448,9 @@ td span {
     grid-template-columns: 1fr;
   }
 
-  .dashboard {
+  .dashboard,
+  .event-feed,
+  .live-summary-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -338,7 +461,9 @@ td span {
   }
 
   .dashboard,
+  .event-feed,
   .form-grid,
+  .live-summary-grid,
   .time-grid {
     grid-template-columns: 1fr;
   }

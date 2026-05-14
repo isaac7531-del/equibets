@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "generatedAt": "2026-05-14T22:02:00.000Z",
+  "searchQuery": "EventingScores live results current eventing scores 2026 May 14",
+  "statusMessage": "No open live-scored starts were found in the May 14 pull. The feed keeps nearby current and upcoming events ready for live scoring when source pages publish starts.",
+  "sources": [
+    {
+      "sourceId": "startbox_2026_archive",
+      "name": "StartBox Eventing Scores 2026 Event Calendar",
+      "url": "https://eventing.startboxscoring.com/archives.php?Year=2026",
+      "fetchedAt": "2026-05-14T22:02:00.000Z",
+      "notes": "Calendar pull listed future May events and recent completed May results; the Open/Currently Running section had no events in the fetched snapshot."
+    },
+    {
+      "sourceId": "eventingscores_live",
+      "name": "EventingScores live event page",
+      "url": "https://www.eventingscores.co.uk/events/event.php?eventid=1881",
+      "fetchedAt": "2026-05-14T22:02:00.000Z",
+      "notes": "Live dressage, rider or horse search, statistics, and cross-country action links were present, but scored starts were not included in the fetched page snapshot."
+    }
+  ],
+  "events": [
+    {
+      "id": "lynnleigh-may-2026-schooling-2-phase",
+      "name": "Lynnleigh Farm May 16, 2026 Schooling 2-Phase",
+      "dateRange": "2026-05-16",
+      "location": "Sandy, UT",
+      "country": "US",
+      "status": "upcoming",
+      "sourceId": "startbox_2026_archive",
+      "sourceUrl": "http://eventingscores.com/eventsu/lynnleigh/sht0526",
+      "sourceLabel": "Entries"
+    },
+    {
+      "id": "ram-tap-may-sht-2026",
+      "name": "Ram Tap May SHT",
+      "dateRange": "2026-05-16/2026-05-17",
+      "location": "Fresno, CA",
+      "country": "US",
+      "status": "upcoming",
+      "sourceId": "startbox_2026_archive",
+      "sourceUrl": "http://eventingscores.com/eventsu/ramtap/sht0526",
+      "sourceLabel": "Times"
+    },
+    {
+      "id": "bucks-county-horse-park-may-schooling-2026",
+      "name": "Bucks County Horse Park May Schooling Horse Trial",
+      "dateRange": "2026-05-17",
+      "location": "Revere, PA",
+      "country": "US",
+      "status": "upcoming",
+      "sourceId": "startbox_2026_archive",
+      "sourceUrl": "http://eventingscores.com/eventsu/bucks/sht0526",
+      "sourceLabel": "Times"
+    },
+    {
+      "id": "red-fox-equestrian-mini-trial-2026",
+      "name": "Red Fox Equestrian Mini Trial and Jumper",
+      "dateRange": "2026-05-10",
+      "location": "Fairborn, OH",
+      "country": "US",
+      "status": "completed",
+      "sourceId": "startbox_2026_archive",
+      "sourceUrl": "http://eventingscores.com/eventsu/redfox/ht0526",
+      "sourceLabel": "Results"
+    },
+    {
+      "id": "queeny-park-horse-trials-2026",
+      "name": "Queeny Park Horse Trials",
+      "dateRange": "2026-05-09/2026-05-10",
+      "location": "St. Louis, MO",
+      "country": "US",
+      "status": "completed",
+      "sourceId": "startbox_2026_archive",
+      "sourceUrl": "http://eventingscores.com/eventsr/queeny/ht0526",
+      "sourceLabel": "Results"
+    },
+    {
+      "id": "hitching-post-farm-horse-trials-2026",
+      "name": "Hitching Post Farm Horse Trials",
+      "dateRange": "2026-05-09",
+      "location": "South Royalton, VT",
+      "country": "US",
+      "status": "completed",
+      "sourceId": "startbox_2026_archive",
+      "sourceUrl": "http://eventingscores.com/eventsr/hitching/ht0526",
+      "sourceLabel": "Results"
+    }
+  ],
+  "scoredStarts": []
+}

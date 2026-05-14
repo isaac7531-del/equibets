@@ -35,6 +35,20 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Current-event live scoring pull
+
+Hourly current-event pulls should update `data/live_scoring_snapshot.json` with:
+
+- `generatedAt` and `searchQuery` for auditability.
+- `sources` searched or fetched, including `fetchedAt`, URL, and notes.
+- `events` discovered near the current date, with status `live`, `upcoming`, or
+  `completed`.
+- `scoredStarts` when public source pages expose live scores.
+
+The website ranks `scoredStarts` from lowest total penalties to highest and
+groups them under their event. If no scored starts are found, it still displays
+the watched current and upcoming events so users can jump to the source pages.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a

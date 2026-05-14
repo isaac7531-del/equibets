@@ -1,4 +1,5 @@
 import { FormEvent, useMemo, useState } from 'react';
+import liveScoringSnapshot from '../data/live_scoring_snapshot.json';
 import {
   calculateScore,
   formatSeconds,
@@ -7,6 +8,11 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import {
+  buildLiveScoringSummary,
+  sourceNamesById,
+  type LiveScoringSnapshot,
+} from './liveScoring';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -41,6 +47,8 @@ const defaultFormState: FormState = {
 
 const numberValue = (value: string) => Number.parseFloat(value || '0');
 
+const currentLiveScoringSnapshot = liveScoringSnapshot as LiveScoringSnapshot;
+
 const createScoreInput = (form: FormState): EventingScoreInput => ({
   dressagePercentage: numberValue(form.dressagePercentage),
   showJumpingPenalties: numberValue(form.showJumpingPenalties),
@@ -55,6 +63,8 @@ export default function App() {
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const liveScoring = useMemo(() => buildLiveScoringSummary(currentLiveScoringSnapshot), []);
+  const sourceNames = useMemo(() => sourceNamesById(currentLiveScoringSnapshot.sources), []);
   const bestResult = sortedResults[0];
 
   const updateField = (field: keyof FormState, value: string) => {
@@ -134,6 +144,85 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+      </section>
+
+      <section className="live-scoring-card" aria-labelledby="live-scoring-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-scoring-heading">Live scoring pull</h2>
+          </div>
+          <div className={liveScoring.hasLiveScores ? 'status-pill live' : 'status-pill'}>
+            {liveScoring.statusLabel}
+          </div>
+        </div>
+
+        <div className="live-summary-grid">
+          <article>
+            <span>Events watched</span>
+            <strong>{liveScoring.eventCount}</strong>
+            <p>{liveScoring.liveEventCount} currently marked live</p>
+          </article>
+          <article>
+            <span>Scored starts</span>
+            <strong>{liveScoring.scoredStartCount}</strong>
+            <p>{currentLiveScoringSnapshot.statusMessage}</p>
+          </article>
+          <article>
+            <span>Last pull</span>
+            <strong>{new Date(liveScoring.latestFetchedAt).toLocaleString()}</strong>
+            <p>Search: {currentLiveScoringSnapshot.searchQuery}</p>
+          </article>
+        </div>
+
+        <div className="event-feed" aria-label="Pulled current event sources">
+          {liveScoring.eventSummaries.map((event) => (
+            <article key={event.id} className="event-card">
+              <div>
+                <span className={`event-status ${event.status}`}>{event.status}</span>
+                <h3>{event.name}</h3>
+                <p>
+                  {event.dateRange} · {event.location}, {event.country}
+                </p>
+              </div>
+              <a href={event.sourceUrl} target="_blank" rel="noreferrer">
+                {event.sourceLabel} from {sourceNames.get(event.sourceId) ?? event.sourceId}
+              </a>
+
+              {event.rankedStarts.length > 0 ? (
+                <div className="mini-table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Rank</th>
+                        <th>Combination</th>
+                        <th>Level</th>
+                        <th>Phase</th>
+                        <th>Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {event.rankedStarts.map((start) => (
+                        <tr key={start.id}>
+                          <td>#{start.rank}</td>
+                          <td>
+                            <strong>{start.horse}</strong>
+                            <span>{start.rider}</span>
+                          </td>
+                          <td>{start.level}</td>
+                          <td>{start.phase.replace('_', ' ')}</td>
+                          <td className="total-cell">{start.totalPenalties.toFixed(1)}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p className="pending-copy">No scored starts were published in this pull; open the linked source for times, entries, or newly posted results.</p>
+              )}
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="workspace-grid">

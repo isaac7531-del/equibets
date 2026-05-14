@@ -5,6 +5,7 @@ Personal eventing results calculator, browser-based results tracker, and data so
 ## What it does
 
 - Calculates dressage, show jumping, cross-country jumping, and cross-country time penalties.
+- Shows the latest current-event scoring pull, nearby events, and any live scored starts.
 - Saves horse-and-rider results to local browser storage.
 - Ranks saved results from lowest total penalties to highest.
 - Tracks public event-results sources for FEI and national-event coverage.
@@ -17,6 +18,17 @@ likely finishing score at upcoming events.
 
 See `docs/results_calculator_feature.md` for the weekly update flow, user-score
 handling, and prediction surface.
+
+## Current-event live scoring
+
+The current-event snapshot lives in `data/live_scoring_snapshot.json`. It records
+the latest search query, source URLs, nearby current or upcoming events, and any
+scored starts that were available when the pull ran. The website reads this file
+and ranks live scored starts by lowest total penalties.
+
+The May 14, 2026 pull found StartBox/EventingScores event pages but no active
+live-scored starts, so the app displays the watched events and source links while
+waiting for published scores.
 
 ## Website development
 
