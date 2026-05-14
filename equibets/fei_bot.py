@@ -1,0 +1,1242 @@
+"""FEI Data crawler and JSON result store.
+
+The FEI site is an ASP.NET application, so the crawler preserves hidden form
+fields from search pages and follows the event/result links discovered in the
+returned HTML instead of relying on undocumented query parameters.
+"""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import hashlib
+import json
+import re
+import shutil
+import time
+from collections.abc import Iterable, Mapping, Sequence
+from dataclasses import dataclass
+from datetime import date, datetime, timezone
+from html.parser import HTMLParser
+from pathlib import Path
+from urllib.error import HTTPError
+from urllib.parse import urlencode, urljoin, urlsplit
+from urllib.request import Request, build_opener
+
+from equibets.results import EventingResult, consolidate_results
+
+
+BASE_URL = "https://data.fei.org/"
+CALENDAR_SEARCH_URL = urljoin(BASE_URL, "Calendar/Search.aspx")
+PERSON_SEARCH_URL = urljoin(BASE_URL, "Person/Search.aspx")
+HORSE_SEARCH_URL = urljoin(BASE_URL, "Horse/Search.aspx")
+DEFAULT_RESULTS_FILE = Path(__file__).resolve().parents[1] / "data" / "fei_results.json"
+
+
+@dataclass(frozen=True)
+class FeiEvent:
+    """A calendar event discovered from FEI Data."""
+
+    source_event_id: str
+    name: str
+    url: str
+    start_date: date | None = None
+    end_date: date | None = None
+    country: str = ""
+    discipline: str = "Eventing"
+    level: str = ""
+
+
+@dataclass(frozen=True)
+class FeiCrawlSummary:
+    """Counts reported by one crawl run."""
+
+    events_found: int
+    events_opened: int
+    result_pages_opened: int
+    results_collected: int
+    results_verified: int
+    results_rejected: int
+
+
+@dataclass(frozen=True)
+class _Link:
+    text: str
+    href: str
+
+
+@dataclass(frozen=True)
+class _Cell:
+    text: str
+    links: tuple[_Link, ...]
+    is_header: bool
+
+
+@dataclass(frozen=True)
+class _Row:
+    cells: tuple[_Cell, ...]
+
+
+@dataclass(frozen=True)
+class _Table:
+    rows: tuple[_Row, ...]
+
+
+class FeiHttpClient:
+    """Small HTTP client with cookie, rate-limit, and ASP.NET form support."""
+
+    def __init__(
+        self,
+        *,
+        base_url: str = BASE_URL,
+        user_agent: str = "EquibetsFEIBot/0.1",
+        cookie: str | None = None,
+        rate_limit_seconds: float = 1.0,
+    ) -> None:
+        self.base_url = base_url
+        self.user_agent = user_agent
+        self.cookie = cookie
+        self.rate_limit_seconds = rate_limit_seconds
+        self._opener = build_opener()
+        self._last_request_at = 0.0
+
+    def get(self, url: str) -> str:
+        """Fetch a page as text."""
+
+        return self._open(url, None)
+
+    def post(self, url: str, data: Mapping[str, str]) -> str:
+        """Submit a form as application/x-www-form-urlencoded."""
+
+        body = urlencode(data).encode("utf-8")
+        return self._open(url, body)
+
+    def _open(self, url: str, body: bytes | None) -> str:
+        wait_for = self.rate_limit_seconds - (time.monotonic() - self._last_request_at)
+        if wait_for > 0:
+            time.sleep(wait_for)
+
+        headers = {"User-Agent": self.user_agent}
+        if body is not None:
+            headers["Content-Type"] = "application/x-www-form-urlencoded"
+        if self.cookie:
+            headers["Cookie"] = self.cookie
+
+        request = Request(url, data=body, headers=headers, method="POST" if body else "GET")
+        try:
+            with self._opener.open(request, timeout=45) as response:
+                self._last_request_at = time.monotonic()
+                charset = response.headers.get_content_charset() or "utf-8"
+                return response.read().decode(charset, "replace")
+        except HTTPError as exc:
+            message = exc.read().decode("utf-8", "replace")[:500]
+            raise RuntimeError(f"FEI request failed: {exc.code} {exc.reason}: {url}\n{message}") from exc
+
+
+class FeiBrowserClient:
+    """Playwright-backed client for FEI pages that require JavaScript."""
+
+    def __init__(
+        self,
+        *,
+        cookie: str | None = None,
+        headless: bool = True,
+        executable_path: str | None = None,
+        storage_state: Path | str | None = None,
+        challenge_wait_seconds: float = 10.0,
+    ) -> None:
+        self.cookie = cookie
+        self.headless = headless
+        self.executable_path = executable_path or _default_browser_executable()
+        self.storage_state = Path(storage_state) if storage_state else None
+        self.challenge_wait_seconds = challenge_wait_seconds
+        self._playwright: object | None = None
+        self._browser: object | None = None
+        self._context: object | None = None
+        self._page: object | None = None
+        self._ignore_storage_state = False
+
+    def get(self, url: str) -> str:
+        page = self._ensure_page()
+        page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+        self._wait_ready()
+        return page.content()
+
+    def post(self, url: str, data: Mapping[str, str]) -> str:
+        page = self._ensure_page()
+        if page.url != url:
+            page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+            self._wait_ready()
+        if page.locator("form").count() == 0:
+            self._reset_browser_session()
+            page = self._ensure_page()
+            page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+            self._wait_ready()
+        for name, value in data.items():
+            self._fill_form_field(name, value)
+        self._click_submit(data)
+        self._wait_after_action()
+        self._wait_ready()
+        return page.content()
+
+    def open_past_shows(self) -> str:
+        """Switch FEI calendar search results to the Past Shows tab."""
+
+        page = self._ensure_page()
+        link = page.locator("#PlaceHolderMain_lbBefore, a:has-text('Past Shows')")
+        if link.count() == 0:
+            return page.content()
+        try:
+            link.first.click(timeout=5_000)
+        except Exception:
+            link.first.evaluate("element => element.click()")
+        self._wait_after_action()
+        self._wait_ready()
+        return page.content()
+
+    def close(self) -> None:
+        if self.storage_state and self._context is not None:
+            self.storage_state.parent.mkdir(parents=True, exist_ok=True)
+            self._context.storage_state(path=str(self.storage_state))
+        if self._browser is not None:
+            self._browser.close()
+        if self._playwright is not None:
+            self._playwright.stop()
+
+    def _ensure_page(self):
+        if self._page is not None:
+            return self._page
+        try:
+            from playwright.sync_api import sync_playwright
+        except ImportError as exc:
+            raise RuntimeError(
+                "Browser driver requires Playwright. Install it with "
+                "`python3 -m pip install -r requirements.txt`."
+            ) from exc
+
+        self._playwright = sync_playwright().start()
+        launch_kwargs: dict[str, object] = {
+            "headless": self.headless,
+            "args": ["--no-sandbox", "--disable-blink-features=AutomationControlled"],
+            "ignore_default_args": ["--enable-automation"],
+        }
+        if self.executable_path:
+            launch_kwargs["executable_path"] = self.executable_path
+        self._browser = self._playwright.chromium.launch(**launch_kwargs)
+        context_kwargs: dict[str, object] = {
+            "user_agent": (
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36"
+            ),
+            "viewport": {"width": 1366, "height": 900},
+            "locale": "en-GB",
+            "timezone_id": "Europe/London",
+        }
+        if self.storage_state and self.storage_state.exists() and not self._ignore_storage_state:
+            context_kwargs["storage_state"] = str(self.storage_state)
+        self._context = self._browser.new_context(**context_kwargs)
+        if self.cookie:
+            self._context.add_cookies(_cookie_header_to_playwright(self.cookie, "data.fei.org"))
+        self._page = self._context.new_page()
+        self._page.add_init_script(
+            "Object.defineProperty(navigator, 'webdriver', {get: () => undefined});"
+        )
+        return self._page
+
+    def _reset_browser_session(self) -> None:
+        self._ignore_storage_state = True
+        for item in (self._browser, self._playwright):
+            if item is not None:
+                try:
+                    item.close() if item is self._browser else item.stop()
+                except Exception:
+                    pass
+        self._browser = None
+        self._context = None
+        self._page = None
+        self._playwright = None
+
+    def _wait_ready(self) -> None:
+        page = self._ensure_page()
+        try:
+            page.wait_for_load_state("domcontentloaded", timeout=30_000)
+        except Exception:
+            pass
+        for _ in range(6):
+            try:
+                body = page.locator("body").inner_text(timeout=5_000)
+            except Exception:
+                body = ""
+            title = page.title()
+            waiting_on_challenge = (
+                "Please enable JS" in body
+                or "disable any ad blocker" in body
+                or title.lower() == "fei.org"
+                or not body.strip()
+            )
+            if not waiting_on_challenge:
+                return
+            page.wait_for_timeout(int(self.challenge_wait_seconds * 1000))
+
+    def _wait_after_action(self) -> None:
+        page = self._ensure_page()
+        try:
+            page.wait_for_load_state("networkidle", timeout=30_000)
+        except Exception:
+            pass
+        page.wait_for_timeout(3_000)
+
+    def _fill_form_field(self, name: str, value: str) -> bool:
+        if value == "" or name.startswith("__"):
+            return False
+        page = self._ensure_page()
+        selector = f"[name={json.dumps(name)}]"
+        locator = page.locator(selector)
+        if locator.count() == 0:
+            return False
+        element = locator.first
+        try:
+            info = element.evaluate(
+                """element => ({
+                    tag: element.tagName.toLowerCase(),
+                    type: (element.type || '').toLowerCase(),
+                    value: element.value || '',
+                    disabled: element.disabled
+                })"""
+            )
+        except Exception:
+            return False
+
+        if info["disabled"] or value == info["value"]:
+            return False
+        element_type = info["type"]
+        if element_type in {"hidden", "submit", "button", "image", "reset"}:
+            return False
+        if info["tag"] == "select":
+            try:
+                element.select_option(label=value)
+            except Exception:
+                try:
+                    element.select_option(value=value)
+                except Exception:
+                    return False
+            return True
+        if element_type == "radio":
+            choice = page.locator(f"{selector}[value={json.dumps(value)}]")
+            (choice.first if choice.count() else element).check()
+            return True
+        if element_type == "checkbox":
+            if _truthy(value):
+                element.check()
+            else:
+                element.uncheck()
+            return True
+
+        element.fill(value)
+        return True
+
+    def _click_submit(self, data: Mapping[str, str]) -> None:
+        page = self._ensure_page()
+        for name, value in data.items():
+            normalized = f"{_header(name)} {_header(value)}"
+            if "search" not in normalized:
+                continue
+            locator = page.locator(f"[name={json.dumps(name)}]")
+            if locator.count():
+                try:
+                    locator.first.click(timeout=5_000)
+                except Exception:
+                    if not self._submit_with_javascript(name):
+                        raise
+                return
+
+        buttons = page.locator("input[type=submit], button, input[type=button]")
+        for index in range(buttons.count()):
+            button = buttons.nth(index)
+            text = _header((button.get_attribute("value") or "") + " " + button.inner_text(timeout=1_000))
+            if "search" in text:
+                try:
+                    button.click(timeout=5_000)
+                except Exception:
+                    if not self._submit_with_javascript(button.get_attribute("name")):
+                        raise
+                return
+        if not self._submit_with_javascript(None):
+            raise RuntimeError("Could not submit FEI form because no form was available")
+
+    def _submit_with_javascript(self, submit_name: str | None) -> bool:
+        page = self._ensure_page()
+        return bool(
+            page.evaluate(
+                """submitName => {
+                    const submitter = submitName
+                        ? document.querySelector(`[name="${CSS.escape(submitName)}"]`)
+                        : null;
+                    if (submitter) {
+                        submitter.click();
+                        return true;
+                    }
+                    if (document.forms.length === 0) {
+                        return false;
+                    }
+                    if (document.forms[0].requestSubmit) {
+                        document.forms[0].requestSubmit();
+                    } else {
+                        document.forms[0].submit();
+                    }
+                    return true;
+                }""",
+                submit_name,
+            )
+        )
+
+
+class FeiDataBot:
+    """Collect eventing results from FEI calendar event pages."""
+
+    def __init__(
+        self,
+        client: FeiHttpClient,
+        *,
+        verifier: "FeiVerifier | None" = None,
+        raw_dir: Path | str | None = None,
+    ) -> None:
+        self.client = client
+        self.verifier = verifier
+        self.raw_dir = Path(raw_dir) if raw_dir else None
+
+    def search_calendar(
+        self,
+        *,
+        start_date: date | None = None,
+        end_date: date | None = None,
+        form_fields: Mapping[str, str] | None = None,
+    ) -> list[FeiEvent]:
+        """Submit the FEI calendar search page and return discovered events."""
+
+        search_page = self.client.get(CALENDAR_SEARCH_URL)
+        form = extract_form_fields(search_page)
+        browser_form: dict[str, str] = {}
+
+        def set_field(required_tokens: Sequence[str], value: str | None) -> bool:
+            if value is None:
+                return False
+            for name in form:
+                normalized = _header(name)
+                if all(token in normalized for token in required_tokens):
+                    form[name] = value
+                    browser_form[name] = value
+                    return True
+            return False
+
+        if start_date:
+            start_value = _fei_date(start_date)
+            if not set_field(("date", "start"), start_value):
+                set_field(("date", "from"), start_value)
+        if end_date:
+            end_value = _fei_date(end_date)
+            if not set_field(("date", "end"), end_value):
+                set_field(("date", "to"), end_value)
+        set_field(("discipline",), "Eventing")
+        set_field(("result", "status"), "With results")
+        set_field(("search",), "Search")
+        if form_fields:
+            form.update(form_fields)
+            browser_form.update(form_fields)
+
+        post_form = browser_form if isinstance(self.client, FeiBrowserClient) else form
+        results_page = self.client.post(CALENDAR_SEARCH_URL, post_form)
+        _write_raw(self.raw_dir, CALENDAR_SEARCH_URL, results_page)
+        events = parse_calendar_events(results_page, CALENDAR_SEARCH_URL)
+        if not events and hasattr(self.client, "open_past_shows"):
+            results_page = self.client.open_past_shows()
+            _write_raw(self.raw_dir, f"{CALENDAR_SEARCH_URL}#past", results_page)
+            events = parse_calendar_events(results_page, CALENDAR_SEARCH_URL)
+        return events
+
+    def collect(
+        self,
+        *,
+        start_date: date | None = None,
+        end_date: date | None = None,
+        event_urls: Sequence[str] = (),
+        form_fields: Mapping[str, str] | None = None,
+        max_events: int | None = None,
+        verify: str = "none",
+    ) -> tuple[list[EventingResult], FeiCrawlSummary]:
+        """Collect normalized results from calendar events or explicit URLs."""
+
+        if event_urls:
+            events = [
+                FeiEvent(
+                    source_event_id=_stable_id(url),
+                    name=urlsplit(url).path.rsplit("/", 1)[-1] or url,
+                    url=url,
+                    start_date=start_date,
+                    end_date=end_date,
+                )
+                for url in event_urls
+            ]
+        else:
+            events = self.search_calendar(
+                start_date=start_date,
+                end_date=end_date,
+                form_fields=form_fields,
+            )
+
+        if max_events is not None:
+            events = events[:max_events]
+
+        collected_at = datetime.now(timezone.utc).replace(microsecond=0)
+        all_results: list[EventingResult] = []
+        result_pages_opened = 0
+        verified = 0
+        rejected = 0
+
+        for event in events:
+            event_results, pages_opened = self.collect_event(event, collected_at=collected_at)
+            result_pages_opened += pages_opened
+            for result in event_results:
+                if verify == "none":
+                    all_results.append(result)
+                    continue
+
+                is_verified = self._verify_result(result)
+                if is_verified:
+                    verified += 1
+                    all_results.append(result)
+                elif verify == "warn":
+                    all_results.append(result)
+                else:
+                    rejected += 1
+
+        return all_results, FeiCrawlSummary(
+            events_found=len(events),
+            events_opened=len(events),
+            result_pages_opened=result_pages_opened,
+            results_collected=len(all_results),
+            results_verified=verified,
+            results_rejected=rejected,
+        )
+
+    def collect_event(
+        self,
+        event: FeiEvent,
+        *,
+        collected_at: datetime,
+    ) -> tuple[list[EventingResult], int]:
+        """Open one event page, then each result page linked from it."""
+
+        results: list[EventingResult] = []
+        pages_opened = 0
+        seen = {event.url}
+        queue: list[tuple[str, int]] = [(event.url, 0)]
+        while queue:
+            page_url, depth = queue.pop(0)
+            result_page = self.client.get(page_url)
+            pages_opened += 1
+            _write_raw(self.raw_dir, page_url, result_page)
+            page_results = parse_eventing_results(result_page, event, page_url, collected_at)
+            results.extend(page_results)
+            if page_results or depth >= 2:
+                continue
+            for result_url in parse_result_links(result_page, page_url):
+                if result_url not in seen:
+                    seen.add(result_url)
+                    queue.append((result_url, depth + 1))
+        return results, pages_opened
+
+    def _verify_result(self, result: EventingResult) -> bool:
+        if self.verifier is None:
+            return False
+        return self.verifier.verify_person(result.rider_name) and self.verifier.verify_horse(result.horse_name)
+
+
+class FeiVerifier:
+    """Verify rider and horse names through the FEI person and horse searches."""
+
+    def __init__(self, client: FeiHttpClient) -> None:
+        self.client = client
+        self._person_cache: dict[str, bool] = {}
+        self._horse_cache: dict[str, bool] = {}
+
+    def verify_person(self, name: str) -> bool:
+        return self._verify(PERSON_SEARCH_URL, name, self._person_cache)
+
+    def verify_horse(self, name: str) -> bool:
+        return self._verify(HORSE_SEARCH_URL, name, self._horse_cache)
+
+    def _verify(self, url: str, name: str, cache: dict[str, bool]) -> bool:
+        key = _search_key(name)
+        if key in cache:
+            return cache[key]
+
+        search_page = self.client.get(url)
+        form = extract_form_fields(search_page)
+        browser_form: dict[str, str] = {}
+        matched_name = False
+        for field_name in form:
+            if "name" in _header(field_name):
+                form[field_name] = name
+                browser_form[field_name] = name
+                matched_name = True
+                break
+        if not matched_name:
+            _set_first_text_field(search_page, form, name)
+        for field_name in form:
+            if "search" in _header(field_name):
+                form[field_name] = "Search"
+                browser_form[field_name] = "Search"
+                break
+
+        post_form = browser_form if isinstance(self.client, FeiBrowserClient) else form
+        result_page = self.client.post(url, post_form)
+        normalized_page = _search_key(result_page)
+        cache[key] = key in normalized_page
+        return cache[key]
+
+
+class FeiResultStore:
+    """Persist FEI results in the project's JSON result format."""
+
+    def __init__(self, path: Path | str = DEFAULT_RESULTS_FILE) -> None:
+        self.path = Path(path)
+
+    def load(self) -> list[EventingResult]:
+        if not self.path.exists():
+            return []
+        with self.path.open(encoding="utf-8") as results_file:
+            payload = json.load(results_file)
+        return [EventingResult.from_mapping(item) for item in payload.get("results", [])]
+
+    def merge(self, new_results: Iterable[EventingResult]) -> list[EventingResult]:
+        return consolidate_results([*self.load(), *new_results])
+
+    def save(self, results: Sequence[EventingResult]) -> None:
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        payload = {
+            "version": 1,
+            "source_id": "data_fei",
+            "updated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+            "results": [result_to_mapping(result) for result in results],
+        }
+        with self.path.open("w", encoding="utf-8") as results_file:
+            json.dump(payload, results_file, indent=2, sort_keys=True)
+            results_file.write("\n")
+
+
+def result_to_mapping(result: EventingResult) -> dict[str, object]:
+    """Convert an EventingResult to JSON-serializable values."""
+
+    return {
+        "source_id": result.source_id,
+        "source_record_id": result.source_record_id,
+        "source_priority": result.source_priority,
+        "rider_name": result.rider_name,
+        "horse_name": result.horse_name,
+        "event_name": result.event_name,
+        "event_date": result.event_date.isoformat(),
+        "level": result.level,
+        "country": result.country,
+        "dressage_score": result.dressage_score,
+        "show_jumping_penalties": result.show_jumping_penalties,
+        "cross_country_jump_penalties": result.cross_country_jump_penalties,
+        "cross_country_time_penalties": result.cross_country_time_penalties,
+        "collected_at": result.collected_at.isoformat(),
+        "is_user_entered": result.is_user_entered,
+    }
+
+
+def extract_form_fields(html: str) -> dict[str, str]:
+    """Return named input fields and current values from an HTML form."""
+
+    parser = _FormParser()
+    parser.feed(html)
+    return parser.fields
+
+
+def parse_calendar_events(html: str, page_url: str = CALENDAR_SEARCH_URL) -> list[FeiEvent]:
+    """Extract calendar events from FEI search results HTML."""
+
+    events: list[FeiEvent] = []
+    seen_urls: set[str] = set()
+    for headers, row in _iter_table_rows(html):
+        links = [link for cell in row.cells for link in cell.links]
+        event_link = _choose_calendar_link(links)
+        if event_link is None:
+            continue
+
+        event_url = urljoin(page_url, event_link.href)
+        if event_url in seen_urls:
+            continue
+
+        data = _row_mapping(headers, row)
+        event_name = (
+            _first_value(data, ("show", "event", "name", "venue"))
+            or event_link.text
+            or event_url
+        )
+        start_date = _first_date(data, ("start", "from")) or _first_date(data, ("date",))
+        end_date = _first_date(data, ("end", "to")) or start_date
+        country = _first_value(data, ("country", "nation", "nf")) or ""
+        level = _first_value(data, ("level", "category", "type", "competition", "event code", "events")) or ""
+        discipline = _first_value(data, ("discipline",)) or "Eventing"
+
+        events.append(
+            FeiEvent(
+                source_event_id=_stable_id(event_url),
+                name=event_name,
+                url=event_url,
+                start_date=start_date,
+                end_date=end_date,
+                country=country,
+                discipline=discipline,
+                level=level,
+            )
+        )
+        seen_urls.add(event_url)
+    return events
+
+
+def parse_result_links(html: str, page_url: str) -> list[str]:
+    """Extract result page links from an event detail page."""
+
+    parser = _LinkParser()
+    parser.feed(html)
+    urls: list[str] = []
+    seen: set[str] = set()
+    for link in parser.links:
+        searchable = f"{link.text} {link.href}".lower()
+        if not any(
+            keyword in searchable
+            for keyword in ("result", "competition", "eventdetail.aspx", "resultlist.aspx")
+        ):
+            continue
+        if any(skip in searchable for skip in ("calendar/search", "ranking/", "standing", "javascript:", "#")):
+            continue
+        url = urljoin(page_url, link.href)
+        if url not in seen:
+            seen.add(url)
+            urls.append(url)
+    return urls
+
+
+def parse_eventing_results(
+    html: str,
+    event: FeiEvent,
+    source_url: str,
+    collected_at: datetime,
+) -> list[EventingResult]:
+    """Normalize result rows from FEI result tables."""
+
+    results: list[EventingResult] = []
+    for headers, row in _iter_table_rows(html):
+        data = _row_mapping(headers, row)
+        rider_name = _first_value(data, ("rider", "athlete", "person"))
+        horse_name = _first_value(data, ("horse",))
+        if not rider_name or not horse_name:
+            continue
+
+        score_text = _first_value(data, ("score", "total", "final", "result"))
+        total = _parse_score_number(score_text) if score_text else None
+        if score_text and total is None:
+            continue
+
+        dressage = _number_exact(data, "d") or _number_from(data, ("dressage", "dr", "phase a"), ("rank", "place"))
+        show_jumping = _sum_numbers(data, ("j obs", "j tim")) or _number_from(
+            data,
+            ("show jumping", "jumping", "sj"),
+            ("cross", "xc", "rank", "place"),
+        )
+        xc_jump = _number_from(
+            data,
+            ("xc obs", "cross country jumping", "xc jump", "cross jump", "obstacle"),
+            ("time",),
+        )
+        xc_time = _number_from(
+            data,
+            ("xc tim", "cross country time", "xc time", "time penalty"),
+            ("dressage", "show"),
+        )
+
+        if dressage is None:
+            dressage = total
+        if dressage is None:
+            continue
+
+        event_date = event.start_date or _first_date(data, ("date",))
+        if event_date is None:
+            continue
+
+        level = _first_value(data, ("level", "category", "competition", "class")) or event.level or "Unknown"
+        country = _first_value(data, ("country", "nation", "nf")) or event.country or "Unknown"
+        record_id = _record_id(source_url, event.name, event_date, level, rider_name, horse_name)
+
+        results.append(
+            EventingResult(
+                source_id="data_fei",
+                source_record_id=record_id,
+                source_priority=0,
+                rider_name=rider_name,
+                horse_name=horse_name,
+                event_name=event.name,
+                event_date=event_date,
+                level=level,
+                country=country,
+                dressage_score=dressage,
+                show_jumping_penalties=show_jumping or 0.0,
+                cross_country_jump_penalties=xc_jump or 0.0,
+                cross_country_time_penalties=xc_time or 0.0,
+                collected_at=collected_at,
+                is_user_entered=False,
+            )
+        )
+    return results
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description="Collect FEI eventing results from data.fei.org")
+    parser.add_argument("--start-date", type=_date_arg, help="Calendar start date, YYYY-MM-DD")
+    parser.add_argument("--end-date", type=_date_arg, help="Calendar end date, YYYY-MM-DD")
+    parser.add_argument("--event-url", action="append", default=[], help="Specific FEI event/result URL to open")
+    parser.add_argument("--form-field", action="append", default=[], help="Extra FEI search form value as name=value")
+    parser.add_argument("--output", type=Path, default=DEFAULT_RESULTS_FILE, help="JSON result store path")
+    parser.add_argument("--raw-dir", type=Path, help="Optional directory for raw FEI HTML responses")
+    parser.add_argument("--max-events", type=int, help="Maximum events to open")
+    parser.add_argument("--rate-limit", type=float, default=1.0, help="Delay between FEI requests in seconds")
+    parser.add_argument("--driver", choices=("auto", "browser", "http"), default="auto", help="FEI page driver")
+    parser.add_argument("--headful", action="store_true", help="Show the browser window for manual login/debugging")
+    parser.add_argument("--browser-executable", help="Chrome/Chromium executable for the browser driver")
+    parser.add_argument("--storage-state", type=Path, help="Persist Playwright cookies/session state")
+    parser.add_argument("--challenge-wait", type=float, default=10.0, help="Seconds to wait for FEI JS challenges")
+    parser.add_argument("--cookie", help="FEI session cookie header")
+    parser.add_argument("--cookie-env", default="FEI_COOKIE", help="Environment variable containing FEI cookie")
+    parser.add_argument("--verify", choices=("none", "warn", "require"), default="none")
+    parser.add_argument("--dry-run", action="store_true", help="Collect and summarize without writing output")
+    args = parser.parse_args(argv)
+
+    cookie = args.cookie or _env_value(args.cookie_env)
+    client = _build_client(args, cookie)
+    verifier = FeiVerifier(client) if args.verify != "none" else None
+    bot = FeiDataBot(client, verifier=verifier, raw_dir=args.raw_dir)
+    form_fields = _key_values(args.form_field)
+
+    try:
+        results, summary = bot.collect(
+            start_date=args.start_date,
+            end_date=args.end_date,
+            event_urls=args.event_url,
+            form_fields=form_fields,
+            max_events=args.max_events,
+            verify=args.verify,
+        )
+    finally:
+        if hasattr(client, "close"):
+            client.close()
+
+    if not args.dry_run:
+        store = FeiResultStore(args.output)
+        merged = store.merge(results)
+        store.save(merged)
+        written = len(merged)
+    else:
+        written = 0
+
+    print(
+        "FEI crawl complete: "
+        f"events_found={summary.events_found}, "
+        f"events_opened={summary.events_opened}, "
+        f"result_pages_opened={summary.result_pages_opened}, "
+        f"results_collected={summary.results_collected}, "
+        f"results_verified={summary.results_verified}, "
+        f"results_rejected={summary.results_rejected}, "
+        f"results_in_store={written}"
+    )
+    return 0
+
+
+class _FormParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.fields: dict[str, str] = {}
+        self._select_name: str | None = None
+        self._select_value: str = ""
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        tag = tag.lower()
+        values = dict(attrs)
+        if tag == "input":
+            name = values.get("name")
+            if name:
+                self.fields[name] = values.get("value") or ""
+        elif tag == "select":
+            self._select_name = values.get("name")
+            self._select_value = ""
+        elif tag == "option" and self._select_name and "selected" in values:
+            self._select_value = values.get("value") or ""
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag.lower() == "select" and self._select_name:
+            self.fields[self._select_name] = self._select_value
+            self._select_name = None
+            self._select_value = ""
+
+
+class _InputParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.text_input_names: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag.lower() != "input":
+            return
+        values = dict(attrs)
+        input_type = (values.get("type") or "text").lower()
+        name = values.get("name")
+        if name and input_type in {"text", "search"}:
+            self.text_input_names.append(name)
+
+
+class _LinkParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.links: list[_Link] = []
+        self._href: str | None = None
+        self._text_parts: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag.lower() == "a":
+            self._href = dict(attrs).get("href")
+            self._text_parts = []
+
+    def handle_data(self, data: str) -> None:
+        if self._href is not None:
+            self._text_parts.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag.lower() == "a" and self._href:
+            self.links.append(_Link(_clean_text(" ".join(self._text_parts)), self._href))
+            self._href = None
+            self._text_parts = []
+
+
+class _TableParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.tables: list[_Table] = []
+        self._table_depth = 0
+        self._rows: list[_Row] = []
+        self._cells: list[_Cell] | None = None
+        self._cell_parts: list[str] | None = None
+        self._cell_links: list[_Link] | None = None
+        self._cell_is_header = False
+        self._link_href: str | None = None
+        self._link_parts: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        tag = tag.lower()
+        if tag == "table":
+            if self._table_depth == 0:
+                self._rows = []
+            self._table_depth += 1
+        elif self._table_depth and tag == "tr":
+            self._cells = []
+        elif self._table_depth and tag in {"td", "th"}:
+            self._cell_parts = []
+            self._cell_links = []
+            self._cell_is_header = tag == "th"
+        elif self._cell_parts is not None and tag == "a":
+            self._link_href = dict(attrs).get("href")
+            self._link_parts = []
+
+    def handle_data(self, data: str) -> None:
+        if self._cell_parts is not None:
+            self._cell_parts.append(data)
+        if self._link_href is not None:
+            self._link_parts.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        tag = tag.lower()
+        if tag == "a" and self._link_href is not None and self._cell_links is not None:
+            self._cell_links.append(_Link(_clean_text(" ".join(self._link_parts)), self._link_href))
+            self._link_href = None
+            self._link_parts = []
+        elif tag in {"td", "th"} and self._cells is not None and self._cell_parts is not None:
+            self._cells.append(
+                _Cell(
+                    text=_clean_text(" ".join(self._cell_parts)),
+                    links=tuple(self._cell_links or []),
+                    is_header=self._cell_is_header,
+                )
+            )
+            self._cell_parts = None
+            self._cell_links = None
+            self._cell_is_header = False
+        elif tag == "tr" and self._cells is not None:
+            if self._cells:
+                self._rows.append(_Row(tuple(self._cells)))
+            self._cells = None
+        elif tag == "table" and self._table_depth:
+            self._table_depth -= 1
+            if self._table_depth == 0 and self._rows:
+                self.tables.append(_Table(tuple(self._rows)))
+
+
+def _iter_table_rows(html: str) -> Iterable[tuple[list[str], _Row]]:
+    parser = _TableParser()
+    parser.feed(html)
+    for table in parser.tables:
+        headers: list[str] = []
+        for row in table.rows:
+            if _is_header_row(row, has_headers=bool(headers)):
+                headers = [_header(cell.text) for cell in row.cells]
+                continue
+            if headers:
+                yield headers, row
+
+
+def _is_header_row(row: _Row, *, has_headers: bool = False) -> bool:
+    if any(cell.is_header for cell in row.cells):
+        return True
+    if has_headers:
+        return False
+    text = " ".join(cell.text.lower() for cell in row.cells)
+    return not any(cell.links for cell in row.cells) and any(
+        keyword in text
+        for keyword in (
+            "athlete",
+            "rider",
+            "horse",
+            "show",
+            "event",
+            "country",
+            "date",
+            "discipline",
+        )
+    )
+
+
+def _row_mapping(headers: Sequence[str], row: _Row) -> dict[str, str]:
+    values: dict[str, str] = {}
+    for index, cell in enumerate(row.cells):
+        header = headers[index] if index < len(headers) and headers[index] else f"column_{index + 1}"
+        values[header] = cell.text
+    return values
+
+
+def _choose_calendar_link(links: Sequence[_Link]) -> _Link | None:
+    for link in links:
+        candidate = f"{link.href} {link.text}".lower()
+        if "calendar" in candidate and any(keyword in candidate for keyword in ("event", "show")):
+            return link
+    for link in links:
+        candidate = f"{link.href} {link.text}".lower()
+        if any(keyword in candidate for keyword in ("event", "show")):
+            return link
+    return None
+
+
+def _set_matching_field(form: dict[str, str], required_tokens: Sequence[str], value: str | None) -> bool:
+    if value is None:
+        return False
+    for name in form:
+        normalized = _header(name)
+        if all(token in normalized for token in required_tokens):
+            form[name] = value
+            return True
+    return False
+
+
+def _set_first_text_field(html: str, form: dict[str, str], value: str) -> None:
+    parser = _InputParser()
+    parser.feed(html)
+    for name in parser.text_input_names:
+        if name in form:
+            form[name] = value
+            return
+
+
+def _first_value(data: Mapping[str, str], include_tokens: Sequence[str]) -> str | None:
+    for header, value in data.items():
+        if value and any(token in header for token in include_tokens):
+            return value
+    return None
+
+
+def _first_date(data: Mapping[str, str], include_tokens: Sequence[str]) -> date | None:
+    for header, value in data.items():
+        if value and any(token in header for token in include_tokens):
+            parsed = _parse_date(value)
+            if parsed:
+                return parsed
+    return None
+
+
+def _number_from(
+    data: Mapping[str, str],
+    include_tokens: Sequence[str],
+    exclude_tokens: Sequence[str],
+) -> float | None:
+    for header, value in data.items():
+        if not value:
+            continue
+        if not any(token in header for token in include_tokens):
+            continue
+        if any(token in header for token in exclude_tokens):
+            continue
+        return _parse_number(value)
+    return None
+
+
+def _parse_date(value: str) -> date | None:
+    value = _clean_text(value)
+    for pattern in ("%Y-%m-%d", "%d/%m/%Y", "%d.%m.%Y", "%d-%m-%Y", "%d %b %Y", "%d %B %Y"):
+        try:
+            return datetime.strptime(value[:32], pattern).date()
+        except ValueError:
+            continue
+    match = re.search(r"(\d{4})-(\d{2})-(\d{2})", value)
+    if match:
+        return date.fromisoformat(match.group(0))
+    return None
+
+
+def _parse_number(value: str) -> float | None:
+    if re.search(r"\b(el|ret|wd|dns|dq)\b", value, re.IGNORECASE):
+        return None
+    match = re.search(r"-?\d+(?:\.\d+)?", value.replace(",", "."))
+    if not match:
+        return None
+    return float(match.group(0))
+
+
+def _parse_score_number(value: str) -> float | None:
+    value = _clean_text(value).replace(",", ".")
+    if re.fullmatch(r"-?\d+(?:\.\d+)?", value):
+        return float(value)
+    return None
+
+
+def _number_exact(data: Mapping[str, str], header: str) -> float | None:
+    value = data.get(header)
+    return _parse_number(value) if value else None
+
+
+def _sum_numbers(data: Mapping[str, str], headers: Sequence[str]) -> float | None:
+    values = [_number_exact(data, header) for header in headers]
+    numbers = [value for value in values if value is not None]
+    if not numbers:
+        return None
+    return sum(numbers)
+
+
+def _record_id(*parts: object) -> str:
+    return f"fei:{_stable_id('|'.join(str(part) for part in parts))}"
+
+
+def _stable_id(value: str) -> str:
+    return hashlib.sha1(value.encode("utf-8")).hexdigest()[:16]
+
+
+def _search_key(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
+
+
+def _header(value: str) -> str:
+    spaced = re.sub(r"([a-z])([A-Z])", r"\1 \2", value)
+    return _search_key(spaced)
+
+
+def _clean_text(value: str) -> str:
+    return re.sub(r"\s+", " ", value).strip()
+
+
+def _write_raw(raw_dir: Path | None, url: str, html: str) -> None:
+    if raw_dir is None:
+        return
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    path = raw_dir / f"{_stable_id(url)}.html"
+    path.write_text(html, encoding="utf-8")
+
+
+def _build_client(args: argparse.Namespace, cookie: str | None) -> FeiHttpClient | FeiBrowserClient:
+    if args.driver == "http":
+        return FeiHttpClient(cookie=cookie, rate_limit_seconds=args.rate_limit)
+    if args.driver == "browser":
+        return FeiBrowserClient(
+            cookie=cookie,
+            headless=not args.headful,
+            executable_path=args.browser_executable,
+            storage_state=args.storage_state,
+            challenge_wait_seconds=args.challenge_wait,
+        )
+    if importlib.util.find_spec("playwright") is not None:
+        return FeiBrowserClient(
+            cookie=cookie,
+            headless=not args.headful,
+            executable_path=args.browser_executable,
+            storage_state=args.storage_state,
+            challenge_wait_seconds=args.challenge_wait,
+        )
+    return FeiHttpClient(cookie=cookie, rate_limit_seconds=args.rate_limit)
+
+
+def _default_browser_executable() -> str | None:
+    for executable in (
+        "google-chrome",
+        "google-chrome-stable",
+        "chromium",
+        "chromium-browser",
+    ):
+        path = shutil.which(executable)
+        if path:
+            return path
+    return None
+
+
+def _cookie_header_to_playwright(cookie_header: str, domain: str) -> list[dict[str, object]]:
+    cookies: list[dict[str, object]] = []
+    for item in cookie_header.split(";"):
+        if "=" not in item:
+            continue
+        name, value = item.strip().split("=", 1)
+        if name:
+            cookies.append({"name": name, "value": value, "domain": domain, "path": "/"})
+    return cookies
+
+
+def _truthy(value: str) -> bool:
+    return value.lower() not in {"", "0", "false", "no", "off"}
+
+
+def _fei_date(value: date) -> str:
+    return value.strftime("%d/%m/%Y")
+
+
+def _key_values(items: Sequence[str]) -> dict[str, str]:
+    values: dict[str, str] = {}
+    for item in items:
+        if "=" not in item:
+            raise SystemExit(f"--form-field must be name=value, got {item!r}")
+        name, value = item.split("=", 1)
+        if not name:
+            raise SystemExit("--form-field name cannot be empty")
+        values[name] = value
+    return values
+
+
+def _date_arg(value: str) -> date:
+    try:
+        return date.fromisoformat(value)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError("date must be YYYY-MM-DD") from exc
+
+
+def _env_value(name: str) -> str | None:
+    import os
+
+    return os.environ.get(name)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
