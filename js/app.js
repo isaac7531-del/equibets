@@ -189,11 +189,12 @@
       )
       .join("");
 
+    const summary = getGlobalSearchSummary(riders.length, results.length);
     elements.databaseSummary.innerHTML = `
       <article class="stat-card">
-        <span>Search scope</span>
-        <strong>${riders.length + results.length}</strong>
-        <p>${countLabel(riders.length, "rider combination")} and ${countLabel(results.length, "result row")} match${state.globalQuery ? ` "${state.globalQuery}"` : ""}.</p>
+        <span>${summary.label}</span>
+        <strong>${summary.count}</strong>
+        <p>${summary.description}</p>
       </article>
     `;
 
@@ -261,6 +262,32 @@
 
   function countLabel(count, label) {
     return `${count} ${label}${count === 1 ? "" : "s"}`;
+  }
+
+  function getGlobalSearchSummary(riderCount, resultCount) {
+    const suffix = state.globalQuery ? ` match "${state.globalQuery}"` : " available";
+
+    if (state.globalFilter === "riders") {
+      return {
+        label: "Rider matches",
+        count: riderCount,
+        description: `${countLabel(riderCount, "rider combination")}${suffix}.`
+      };
+    }
+
+    if (state.globalFilter === "results") {
+      return {
+        label: "Result matches",
+        count: resultCount,
+        description: `${countLabel(resultCount, "result row")}${suffix}.`
+      };
+    }
+
+    return {
+      label: "All database matches",
+      count: riderCount + resultCount,
+      description: `${countLabel(riderCount, "rider combination")} and ${countLabel(resultCount, "result row")}${suffix}.`
+    };
   }
 
   function renderResultsPicker() {
