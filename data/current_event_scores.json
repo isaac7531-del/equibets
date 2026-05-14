@@ -1,0 +1,214 @@
+{
+  "version": 1,
+  "collected_at": "2026-05-14T23:04:00Z",
+  "coverage_note": "Hourly live-scoring snapshot from public FEI, StartBox, USEA, and event-organizer result pages.",
+  "events": [
+    {
+      "id": "fei-nations-cup-marbach-2026",
+      "source_id": "data_fei",
+      "source_name": "FEI Eventing Nations Cup",
+      "source_url": "https://inside.fei.org/fei/disc/eventing/main-events/fei-nations-cup-series-eventing/calendar-2026",
+      "event_name": "FEI Eventing Nations Cup - Gestut Marbach",
+      "event_date": "2026-05-14",
+      "event_end_date": "2026-05-17",
+      "country": "GER",
+      "level": "CCIO4*-NC-S",
+      "status": "active",
+      "phase": "scheduled",
+      "leaders": [],
+      "notes": "The FEI calendar lists Marbach as the first 2026 Nations Cup qualifier. FEI standings are not published yet."
+    },
+    {
+      "id": "badminton-cross-country-2026",
+      "source_id": "badminton_horse_trials",
+      "source_name": "Badminton Horse Trials",
+      "source_url": "https://www.badminton-horse.co.uk/cross-country-results-2026/",
+      "event_name": "Badminton Horse Trials",
+      "event_date": "2026-05-06",
+      "event_end_date": "2026-05-10",
+      "country": "GBR",
+      "level": "CCI5*-L",
+      "status": "recent",
+      "phase": "cross_country",
+      "leaders": [
+        {
+          "division": "CCI5*-L",
+          "place": 1,
+          "rider_name": "Rosalind Canter",
+          "horse_name": "Lordships Graffalo",
+          "score": 23.7,
+          "phase": "cross_country"
+        },
+        {
+          "division": "CCI5*-L",
+          "place": 2,
+          "rider_name": "Harry Meade",
+          "horse_name": "Annaghmore Valoner",
+          "score": 30.3,
+          "phase": "cross_country"
+        },
+        {
+          "division": "CCI5*-L",
+          "place": 3,
+          "rider_name": "Sarah Bullimore",
+          "horse_name": "Corimiro",
+          "score": 32.1,
+          "phase": "cross_country"
+        },
+        {
+          "division": "CCI5*-L",
+          "place": 4,
+          "rider_name": "Katie Magee",
+          "horse_name": "Treworra",
+          "score": 33.3,
+          "phase": "cross_country"
+        },
+        {
+          "division": "CCI5*-L",
+          "place": 5,
+          "rider_name": "Lucy Latta",
+          "horse_name": "RCA Patron Saint",
+          "score": 33.9,
+          "phase": "cross_country"
+        }
+      ],
+      "notes": "Organizer page publishes the cross-country leaderboard and points to the official app for on-course live following."
+    },
+    {
+      "id": "hitching-post-farm-ht-2026",
+      "source_id": "startbox",
+      "source_name": "StartBox Online Scoring",
+      "source_url": "https://eventing.startboxscoring.com/eventsr/hitching/ht0526/",
+      "event_name": "Hitching Post Farm Horse Trials",
+      "event_date": "2026-05-09",
+      "event_end_date": "2026-05-09",
+      "country": "USA",
+      "level": "national",
+      "status": "completed",
+      "phase": "final",
+      "leaders": [
+        {
+          "division": "Open Modified",
+          "place": 1,
+          "rider_name": "Taryn Pearce",
+          "horse_name": "Ninja Turtle",
+          "score": 37.2,
+          "phase": "final"
+        },
+        {
+          "division": "Open Training",
+          "place": 1,
+          "rider_name": "Alana Pollard",
+          "horse_name": "Give Me A Chance",
+          "score": 31.5,
+          "phase": "final"
+        },
+        {
+          "division": "Open Novice",
+          "place": 1,
+          "rider_name": "Cora Phelps",
+          "horse_name": "GTB Carnabay Johnny",
+          "score": 27.8,
+          "phase": "final"
+        },
+        {
+          "division": "Beginner Novice Open",
+          "place": 1,
+          "rider_name": "David Wilson",
+          "horse_name": "Eugene",
+          "score": 34.1,
+          "phase": "final"
+        },
+        {
+          "division": "Beginner Novice-Jr",
+          "place": 1,
+          "rider_name": "Miriam Evans",
+          "horse_name": "Union Commander",
+          "score": 30.0,
+          "phase": "final"
+        },
+        {
+          "division": "Starter",
+          "place": 1,
+          "rider_name": "Elena Ahlschwede",
+          "horse_name": "He's My Romeo",
+          "score": 33.2,
+          "phase": "final"
+        }
+      ],
+      "notes": "StartBox lists current division leaders and links to each final-score division page."
+    },
+    {
+      "id": "windridge-farm-spring-ht-2026",
+      "source_id": "usea",
+      "source_name": "United States Eventing Association",
+      "source_url": "https://useventing.com/events-competitions/resources/results/item?event=18976",
+      "event_name": "Windridge Farm Spring H.T.",
+      "event_date": "2026-05-01",
+      "event_end_date": "2026-05-31",
+      "country": "USA",
+      "level": "national",
+      "status": "completed",
+      "phase": "final",
+      "leaders": [
+        {
+          "division": "Starter",
+          "place": 1,
+          "rider_name": "Karen Taylor",
+          "horse_name": "Weekapaug Groove",
+          "score": 18.5,
+          "phase": "final"
+        },
+        {
+          "division": "Intermediate",
+          "place": 1,
+          "rider_name": "Jodie S. Potts",
+          "horse_name": "Wapiti Byrd",
+          "score": 91.5,
+          "phase": "final"
+        },
+        {
+          "division": "Preliminary",
+          "place": 1,
+          "rider_name": "Carly Seus",
+          "horse_name": "EHF Casiro Royale",
+          "score": 46.3,
+          "phase": "final"
+        },
+        {
+          "division": "Training OT:1",
+          "place": 1,
+          "rider_name": "Lisa Borgia",
+          "horse_name": "Whisperycrown",
+          "score": 30.8,
+          "phase": "final"
+        },
+        {
+          "division": "Training OT:2",
+          "place": 1,
+          "rider_name": "Emily Cardin",
+          "horse_name": "Hacker",
+          "score": 26.5,
+          "phase": "final"
+        },
+        {
+          "division": "Novice ON:1",
+          "place": 1,
+          "rider_name": "Kathleen Bertuna",
+          "horse_name": "Sullivan of Scarteen",
+          "score": 26.8,
+          "phase": "final"
+        },
+        {
+          "division": "Beginner Novice OBN:1",
+          "place": 1,
+          "rider_name": "Frances Hope",
+          "horse_name": "Lost at Sea",
+          "score": 20.3,
+          "phase": "final"
+        }
+      ],
+      "notes": "USEA result page publishes phase breakdowns for all listed divisions."
+    }
+  ]
+}

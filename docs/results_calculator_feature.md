@@ -35,6 +35,25 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Hourly current-event live scoring
+
+The live scoring surface uses `data/current_event_scores.json` as the normalized
+snapshot produced by an hourly search of public result pages. The snapshot keeps
+active events even before leaders are available, then adds division leader rows
+as public pages publish phase or final scores.
+
+The first pull includes:
+
+- FEI Eventing Nations Cup calendar coverage for the active Marbach qualifier,
+  with a note that FEI standings are not yet published.
+- Badminton Horse Trials cross-country leaders from the organizer results page.
+- StartBox division leaders for Hitching Post Farm Horse Trials.
+- USEA division leaders for Windridge Farm Spring H.T.
+
+Each event stores the source URL, source name, event dates, country, level,
+status, phase, notes, and leader rows. This lets the website show a freshness
+badge and link users back to the official/public result page for verification.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a

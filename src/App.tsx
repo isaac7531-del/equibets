@@ -7,6 +7,7 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import { formatSnapshotTime, getDisplayLiveEvents, getLiveScoreSummary } from './liveScores';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -55,6 +56,8 @@ export default function App() {
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const liveEvents = useMemo(() => getDisplayLiveEvents(), []);
+  const liveSummary = useMemo(() => getLiveScoreSummary(), []);
   const bestResult = sortedResults[0];
 
   const updateField = (field: keyof FormState, value: string) => {
@@ -134,6 +137,64 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Live pulls</span>
+          <strong>{liveSummary.leaderCount}</strong>
+          <p>{liveSummary.activeEventCount} active event in latest search</p>
+        </article>
+      </section>
+
+      <section className="live-score-card" aria-labelledby="live-score-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-score-heading">Live scoring pull</h2>
+          </div>
+          <span className="freshness-badge">Updated {formatSnapshotTime(liveSummary.collectedAt)}</span>
+        </div>
+
+        <p className="live-score-intro">
+          Public result pages are searched for new eventing scores, then normalized into this leaderboard snapshot.
+          {liveSummary.bestLeader
+            ? ` Best pulled score: ${liveSummary.bestLeader.horseName} on ${liveSummary.bestLeader.score.toFixed(1)}.`
+            : ' No leader scores have been published yet.'}
+        </p>
+
+        <div className="live-score-grid">
+          {liveEvents.map((event) => (
+            <article className="live-event" key={event.id}>
+              <div className="live-event-header">
+                <div>
+                  <span className={`status-pill status-${event.status}`}>{event.status}</span>
+                  <h3>{event.eventName}</h3>
+                  <p>
+                    {event.country} / {event.level} / {event.phase.replaceAll('_', ' ')}
+                  </p>
+                </div>
+                <a href={event.sourceUrl} target="_blank" rel="noreferrer">
+                  Source
+                </a>
+              </div>
+
+              {event.leaders.length > 0 ? (
+                <ol className="leader-list">
+                  {event.leaders.slice(0, 4).map((leader) => (
+                    <li key={`${event.id}-${leader.division}-${leader.place}-${leader.horseName}`}>
+                      <span>
+                        #{leader.place} {leader.division}
+                      </span>
+                      <strong>{leader.horseName}</strong>
+                      <span>{leader.riderName}</span>
+                      <b>{leader.score.toFixed(1)}</b>
+                    </li>
+                  ))}
+                </ol>
+              ) : (
+                <p className="live-empty">No leader rows are published yet. This event stays on the board for refreshes.</p>
+              )}
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="workspace-grid">
