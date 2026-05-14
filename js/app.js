@@ -193,7 +193,7 @@
       <article class="stat-card">
         <span>Search scope</span>
         <strong>${riders.length + results.length}</strong>
-        <p>${riders.length} rider combinations and ${results.length} result rows match${state.globalQuery ? ` "${state.globalQuery}"` : ""}.</p>
+        <p>${countLabel(riders.length, "rider combination")} and ${countLabel(results.length, "result row")} match${state.globalQuery ? ` "${state.globalQuery}"` : ""}.</p>
       </article>
     `;
 
@@ -257,6 +257,10 @@
         <a class="button ghost" href="${result.sourceUrl}" target="_blank" rel="noreferrer">${result.source}</a>
       </article>
     `;
+  }
+
+  function countLabel(count, label) {
+    return `${count} ${label}${count === 1 ? "" : "s"}`;
   }
 
   function renderResultsPicker() {
