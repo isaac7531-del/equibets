@@ -156,7 +156,7 @@ export default function App() {
         <article>
           <span>Best live</span>
           <strong>{bestLiveResult ? bestLiveResult.score.totalPenalties.toFixed(1) : '--'}</strong>
-          <p>{bestLiveResult ? `${bestLiveResult.horse} / ${bestLiveResult.eventName}` : 'No public scores loaded'}</p>
+          <p>{bestLiveResult ? `${bestLiveResult.horseName} / ${bestLiveResult.eventName}` : 'No public scores loaded'}</p>
         </article>
       </section>
 

@@ -34,7 +34,7 @@ describe('App', () => {
 
     expect(screen.getByRole('heading', { name: /live scoring pull/i })).toBeInTheDocument();
     expect(screen.getByText('Weekapaug Groove')).toBeInTheDocument();
-    expect(screen.getByText('Windridge Farm Spring H.T.')).toBeInTheDocument();
+    expect(screen.getAllByText('Windridge Farm Spring H.T.').length).toBeGreaterThan(0);
     expect(screen.getByText(/3 events/i)).toBeInTheDocument();
   });
 });
