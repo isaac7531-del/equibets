@@ -7,6 +7,7 @@ Personal eventing results calculator, browser-based results tracker, and data so
 - Calculates dressage, show jumping, cross-country jumping, and cross-country time penalties.
 - Saves horse-and-rider results to local browser storage.
 - Ranks saved results from lowest total penalties to highest.
+- Searches a live current-events feed and pulls public scores into saved results.
 - Tracks public event-results sources for FEI and national-event coverage.
 
 ## Results calculator feature
@@ -24,6 +25,13 @@ handling, and prediction surface.
 npm install
 npm run dev
 ```
+
+## Current-events live scoring feed
+
+The website fetches `/current-events.json` at runtime and validates each record
+before calculating live penalty totals. Refresh `public/current-events.json` from
+FEI or national-event source jobs to update the live scoring search without
+rebuilding the React app.
 
 ## Checks
 

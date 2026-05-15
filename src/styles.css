@@ -89,7 +89,8 @@ button:disabled {
 .hero-card,
 .dashboard article,
 .calculator-card,
-.results-card {
+.results-card,
+.live-card {
   background: rgba(255, 252, 245, 0.88);
   border: 1px solid rgba(35, 67, 45, 0.12);
   box-shadow: 0 24px 80px rgba(67, 55, 37, 0.11);
@@ -154,7 +155,8 @@ button:disabled {
 }
 
 .calculator-card,
-.results-card {
+.results-card,
+.live-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
 }
@@ -244,6 +246,25 @@ legend {
   gap: 1rem;
   justify-content: space-between;
   margin-bottom: 1rem;
+}
+
+.results-header p {
+  color: #65705f;
+  margin: 0.35rem 0 0;
+}
+
+.live-card {
+  margin-bottom: 1rem;
+}
+
+.live-search {
+  margin-bottom: 1rem;
+}
+
+.live-message {
+  color: #65705f;
+  font-weight: 800;
+  margin: 0;
 }
 
 .secondary-button {

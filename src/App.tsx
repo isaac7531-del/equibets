@@ -1,4 +1,11 @@
-import { FormEvent, useMemo, useState } from 'react';
+import { FormEvent, useEffect, useMemo, useState } from 'react';
+import {
+  formatLiveStatus,
+  loadCurrentEventResults,
+  searchLiveResults,
+  toStoredResult,
+  type LiveScoredResult,
+} from './liveEvents';
 import {
   calculateScore,
   formatSeconds,
@@ -49,13 +56,40 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
   actualTimeSeconds: parseTimeToSeconds(numberValue(form.actualMinutes), numberValue(form.actualSeconds)),
 });
 
+const resultEventMeta = (result: StoredResult) =>
+  [result.date, result.level, result.sourceName].filter(Boolean).join(' - ');
+
 export default function App() {
   const [form, setForm] = useState<FormState>(defaultFormState);
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [liveResults, setLiveResults] = useState<LiveScoredResult[]>([]);
+  const [liveQuery, setLiveQuery] = useState('');
+  const [isLiveLoading, setIsLiveLoading] = useState(true);
+  const [liveError, setLiveError] = useState<string | null>(null);
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
   const bestResult = sortedResults[0];
+  const liveMatches = useMemo(() => searchLiveResults(liveResults, liveQuery).slice(0, 8), [liveResults, liveQuery]);
+  const latestLiveResult = liveResults[0];
+
+  const refreshLiveResults = async () => {
+    setIsLiveLoading(true);
+    setLiveError(null);
+
+    try {
+      setLiveResults(await loadCurrentEventResults());
+    } catch (error) {
+      setLiveResults([]);
+      setLiveError(error instanceof Error ? error.message : 'Unable to load current-event results.');
+    } finally {
+      setIsLiveLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    void refreshLiveResults();
+  }, []);
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -92,6 +126,23 @@ export default function App() {
     setResults([]);
     saveResults([]);
   };
+
+  const pullLiveResult = (liveResult: LiveScoredResult) => {
+    const storedResult = toStoredResult(liveResult);
+    const nextResults = [
+      storedResult,
+      ...results.filter(
+        (result) =>
+          result.sourceId !== storedResult.sourceId || result.sourceRecordId !== storedResult.sourceRecordId,
+      ),
+    ];
+
+    setResults(nextResults);
+    saveResults(nextResults);
+  };
+
+  const isLiveResultSaved = (liveResult: LiveScoredResult) =>
+    results.some((result) => result.sourceId === liveResult.sourceId && result.sourceRecordId === liveResult.id);
 
   return (
     <main className="app-shell">
@@ -134,6 +185,105 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+      </section>
+
+      <section className="live-card" aria-labelledby="live-scoring-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-scoring-heading">Live scoring search</h2>
+            <p>
+              {latestLiveResult
+                ? `Latest pull ${new Date(latestLiveResult.collectedAt).toLocaleString()}`
+                : 'Search current event feeds for new public results.'}
+            </p>
+          </div>
+          <button className="secondary-button" type="button" onClick={refreshLiveResults} disabled={isLiveLoading}>
+            {isLiveLoading ? 'Refreshing...' : 'Refresh live scores'}
+          </button>
+        </div>
+
+        <label className="live-search">
+          Search current events
+          <input
+            value={liveQuery}
+            onChange={(event) => setLiveQuery(event.target.value)}
+            placeholder="Horse, rider, event, level, or country"
+          />
+        </label>
+
+        {isLiveLoading ? (
+          <p className="live-message" role="status">
+            Searching current event results...
+          </p>
+        ) : liveError ? (
+          <div className="empty-state" role="alert">
+            <strong>Live scores unavailable.</strong>
+            <p>{liveError}</p>
+          </div>
+        ) : liveMatches.length === 0 ? (
+          <div className="empty-state">
+            <strong>No current results found.</strong>
+            <p>Try another horse, rider, event, level, or country.</p>
+          </div>
+        ) : (
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Combination</th>
+                  <th>Event</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                  <th>Breakdown</th>
+                  <th aria-label="Actions" />
+                </tr>
+              </thead>
+              <tbody>
+                {liveMatches.map((result, index) => {
+                  const saved = isLiveResultSaved(result);
+
+                  return (
+                    <tr key={result.id}>
+                      <td>#{index + 1}</td>
+                      <td>
+                        <strong>{result.horse}</strong>
+                        <span>{result.rider}</span>
+                      </td>
+                      <td>
+                        <strong>{result.eventName}</strong>
+                        <span>
+                          {result.level} - {result.country}
+                        </span>
+                      </td>
+                      <td>
+                        <strong>{formatLiveStatus(result.status)}</strong>
+                        <span>{result.phase.replaceAll('_', ' ')}</span>
+                      </td>
+                      <td className="total-cell">{result.score.totalPenalties.toFixed(1)}</td>
+                      <td className="breakdown-cell">
+                        D {result.score.dressagePenalties.toFixed(1)} / SJ{' '}
+                        {result.score.showJumpingPenalties.toFixed(1)} / XC{' '}
+                        {(result.score.crossCountryJumpPenalties + result.score.crossCountryTimePenalties).toFixed(1)}
+                      </td>
+                      <td>
+                        <button
+                          className="link-button"
+                          type="button"
+                          onClick={() => pullLiveResult(result)}
+                          aria-label={`${saved ? 'Update' : 'Pull'} score for ${result.horse}`}
+                        >
+                          {saved ? 'Update saved' : 'Pull score'}
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">
@@ -312,7 +462,7 @@ export default function App() {
                       </td>
                       <td>
                         <strong>{result.eventName}</strong>
-                        <span>{result.date}</span>
+                        <span>{resultEventMeta(result)}</span>
                       </td>
                       <td className="total-cell">{result.score.totalPenalties.toFixed(1)}</td>
                       <td className="breakdown-cell">

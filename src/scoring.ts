@@ -20,6 +20,14 @@ export type StoredResult = EventingScoreInput & {
   horse: string;
   eventName: string;
   date: string;
+  level?: string;
+  country?: string;
+  sourceId?: string;
+  sourceRecordId?: string;
+  sourceName?: string;
+  sourceUrl?: string;
+  status?: string;
+  collectedAt?: string;
   notes: string;
   createdAt: string;
   score: EventingScore;

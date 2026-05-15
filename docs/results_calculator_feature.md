@@ -35,6 +35,15 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Live current-events scoring
+
+The website loads `public/current-events.json` as a runtime feed for current
+event scoreboards. Each record uses the same scoring inputs as saved user
+results, so the browser can calculate live totals, search by horse/rider/event,
+and pull a source-backed score into local saved results. Updating that JSON file
+from the hourly or weekly source jobs gives users fresher public scores without
+changing the application bundle.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a
