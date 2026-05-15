@@ -90,7 +90,7 @@ for saved/simple FEI pages that do not require the browser challenge path.
 `equibets.live_scoring` is the cron-friendly entry point for current-event
 scoreboards. It can search FEI for new eventing results, merge them into
 `data/fei_results.json`, and write ranked live scores to
-`data/live_scores.json`.
+`public/live_scores.json` for the website to display.
 
 ```bash
 python3 -m equibets.live_scoring \
@@ -100,7 +100,7 @@ python3 -m equibets.live_scoring \
   --lookahead-days 1 \
   --storage-state data/fei_state.json \
   --raw-dir data/raw/fei \
-  --output data/live_scores.json
+  --output public/live_scores.json
 ```
 
 The output report includes the refresh window, latest source `collected_at`
