@@ -19,10 +19,19 @@ export type StoredResult = EventingScoreInput & {
   rider: string;
   horse: string;
   eventName: string;
+  level: string;
   date: string;
   notes: string;
   createdAt: string;
   score: EventingScore;
+};
+
+export type RiderLevelDirectory = {
+  rider: string;
+  levels: {
+    level: string;
+    horses: string[];
+  }[];
 };
 
 export const roundToTenths = (value: number) => Math.round(value * 10) / 10;
@@ -69,3 +78,34 @@ export const sortByBestScore = (results: StoredResult[]) =>
 
     return a.createdAt.localeCompare(b.createdAt);
   });
+
+export const resultLevel = (result: Pick<StoredResult, 'level'>) => result.level || 'Unspecified';
+
+export const buildRiderLevelDirectory = (results: StoredResult[], selectedRider = 'all'): RiderLevelDirectory[] => {
+  const directory = new Map<string, Map<string, Set<string>>>();
+
+  results.forEach((result) => {
+    if (selectedRider !== 'all' && result.rider !== selectedRider) {
+      return;
+    }
+
+    const riderLevels = directory.get(result.rider) ?? new Map<string, Set<string>>();
+    const level = resultLevel(result);
+    const horses = riderLevels.get(level) ?? new Set<string>();
+    horses.add(result.horse);
+    riderLevels.set(level, horses);
+    directory.set(result.rider, riderLevels);
+  });
+
+  return [...directory.entries()]
+    .sort(([riderA], [riderB]) => riderA.localeCompare(riderB))
+    .map(([rider, levels]) => ({
+      rider,
+      levels: [...levels.entries()]
+        .sort(([levelA], [levelB]) => levelA.localeCompare(levelB))
+        .map(([level, horses]) => ({
+          level,
+          horses: [...horses].sort((horseA, horseB) => horseA.localeCompare(horseB)),
+        })),
+    }));
+};
