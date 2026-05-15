@@ -94,5 +94,7 @@ describe('App', () => {
     expect(browser).toHaveTextContent('Novice');
     expect(browser).toHaveTextContent('Oakley');
     expect(browser).not.toHaveTextContent('Copperfield');
+    expect(screen.getAllByText('Oakley')).not.toHaveLength(0);
+    expect(screen.queryByText('Copperfield')).not.toBeInTheDocument();
   });
 });

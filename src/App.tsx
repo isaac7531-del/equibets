@@ -79,6 +79,13 @@ export default function App() {
     () => buildRiderLevelDirectory(results, selectedRider),
     [results, selectedRider],
   );
+  const visibleResults = useMemo(
+    () =>
+      selectedRider === 'all'
+        ? sortedResults
+        : sortedResults.filter((result) => result.rider === selectedRider),
+    [selectedRider, sortedResults],
+  );
 
   useEffect(() => {
     if (selectedRider !== 'all' && !riderOptions.includes(selectedRider)) {
@@ -380,7 +387,7 @@ export default function App() {
                     </tr>
                   </thead>
                   <tbody>
-                    {sortedResults.map((result, index) => (
+                    {visibleResults.map((result, index) => (
                       <tr key={result.id}>
                         <td>#{index + 1}</td>
                         <td>
