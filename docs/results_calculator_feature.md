@@ -35,6 +35,24 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Hourly current-event live scoring
+
+The hourly refresh path searches the active live-scoring sources in
+`data/event_sources.json`, starting with StartBox/EventingScores for USA and
+Canada schooling, regional, and national events.
+
+1. Pull the current-year StartBox archive.
+2. Keep nearby `Results`, `Scores`, and `Times` event links around the refresh
+   date.
+3. Fetch each current event page and parse the division leader table.
+4. Write `data/current_event_live_scores.json` with event freshness, source
+   URLs, and current leaders.
+5. The website reads that file directly for the public live-scoring panel.
+
+This hourly snapshot is intentionally separate from the consolidated historical
+`EventingResult` table: the live feed often exposes current leaders before full
+phase-by-phase official records are available.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a
