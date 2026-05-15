@@ -341,7 +341,7 @@ legend {
 
 table {
   border-collapse: collapse;
-  min-width: 680px;
+  min-width: 860px;
   width: 100%;
 }
 
@@ -373,7 +373,16 @@ td span {
   font-weight: 900;
 }
 
+.event-cell {
+  min-width: 210px;
+}
+
+.event-cell span {
+  white-space: nowrap;
+}
+
 .breakdown-cell {
+  min-width: 190px;
   white-space: nowrap;
 }
 

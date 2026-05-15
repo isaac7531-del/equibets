@@ -27,7 +27,7 @@ type FormState = {
   notes: string;
 };
 
-const defaultFormState: FormState = {
+const createDefaultFormState = (): FormState => ({
   rider: '',
   horse: '',
   eventName: '',
@@ -41,7 +41,7 @@ const defaultFormState: FormState = {
   actualMinutes: '5',
   actualSeconds: '30',
   notes: '',
-};
+});
 
 const numberValue = (value: string) => Number.parseFloat(value || '0');
 const levelOptions = [
@@ -64,7 +64,7 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 });
 
 export default function App() {
-  const [form, setForm] = useState<FormState>(defaultFormState);
+  const [form, setForm] = useState<FormState>(() => createDefaultFormState());
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
   const [selectedRider, setSelectedRider] = useState('all');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
@@ -116,7 +116,7 @@ export default function App() {
     const nextResults = [newResult, ...results];
     setResults(nextResults);
     saveResults(nextResults);
-    setForm(defaultFormState);
+    setForm(createDefaultFormState());
   };
 
   const removeResult = (id: string) => {
@@ -394,7 +394,7 @@ export default function App() {
                           <strong>{result.horse}</strong>
                           <span>{result.rider}</span>
                         </td>
-                        <td>
+                        <td className="event-cell">
                           <strong>{result.eventName}</strong>
                           <span>
                             {resultLevel(result)} · {result.date}
