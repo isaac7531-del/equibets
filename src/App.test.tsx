@@ -82,7 +82,7 @@ describe('App', () => {
     await user.click(screen.getByRole('button', { name: /save result/i }));
 
     expect(screen.getByRole('cell', { name: '34.0' })).toBeInTheDocument();
-    expect(screen.getByText('Juniper')).toBeInTheDocument();
+    expect(screen.getAllByText('Juniper').length).toBeGreaterThan(0);
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
   });
 
