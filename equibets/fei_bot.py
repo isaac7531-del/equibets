@@ -130,6 +130,11 @@ class FeiHttpClient:
                 return response.read().decode(charset, "replace")
         except HTTPError as exc:
             message = exc.read().decode("utf-8", "replace")[:500]
+            if exc.code in {401, 403} and _is_js_challenge(message):
+                raise RuntimeError(
+                    "FEI request hit a JavaScript challenge. Install requirements "
+                    "and rerun with `--driver browser` so Playwright can complete it."
+                ) from exc
             raise RuntimeError(f"FEI request failed: {exc.code} {exc.reason}: {url}\n{message}") from exc
 
 
@@ -1207,6 +1212,11 @@ def _cookie_header_to_playwright(cookie_header: str, domain: str) -> list[dict[s
 
 def _truthy(value: str) -> bool:
     return value.lower() not in {"", "0", "false", "no", "off"}
+
+
+def _is_js_challenge(value: str) -> bool:
+    normalized = value.lower()
+    return "please enable js" in normalized or "disable any ad blocker" in normalized
 
 
 def _fei_date(value: date) -> str:

@@ -13,6 +13,7 @@ from equibets.fei_bot import (
     FeiEvent,
     FeiResultStore,
     FeiVerifier,
+    _is_js_challenge,
     extract_form_fields,
     parse_calendar_events,
     parse_eventing_results,
@@ -184,6 +185,10 @@ class FeiBotTests(unittest.TestCase):
         self.assertEqual(len(payload["results"]), 1)
         self.assertEqual(payload["results"][0]["rider_name"], "Alex Rider")
         self.assertEqual(payload["results"][0]["dressage_score"], 30.2)
+
+    def test_js_challenge_detection_matches_fei_block_page(self):
+        self.assertTrue(_is_js_challenge("Please enable JS and disable any ad blocker"))
+        self.assertFalse(_is_js_challenge("<table><tr><td>Event results</td></tr></table>"))
 
 
 def calendar_search_form_html():
