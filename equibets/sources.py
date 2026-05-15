@@ -13,6 +13,16 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_MARKERS = {
+    "ALL_COUNTRIES",
+    "ALL_FEI_MEMBER_NATIONS",
+}
+FEI_LEVEL_MARKERS = {
+    "all_fei_eventing_levels",
+}
+NATIONAL_LEVEL_MARKERS = {
+    "all_national_event_levels",
+}
 
 
 @dataclass(frozen=True)
@@ -71,7 +81,7 @@ def sources_for_region(
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
+    normalized_region = _normalize_slug(region)
     statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
@@ -80,6 +90,94 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country while preserving global priorities."""
+
+    normalized_country = _normalize_country(country)
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and _source_covers_country(source, normalized_country)
+    ]
+
+
+def sources_for_level(
+    level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an event level while preserving global priorities."""
+
+    normalized_level = _normalize_slug(level)
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and _source_covers_level(source, normalized_level)
+    ]
+
+
+def sources_for_event(
+    country: str,
+    level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and event level."""
+
+    normalized_country = _normalize_country(country)
+    normalized_level = _normalize_slug(level)
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _source_covers_country(source, normalized_country)
+        and _source_covers_level(source, normalized_level)
+    ]
+
+
+def _source_covers_country(source: EventSource, normalized_country: str) -> bool:
+    countries = {_normalize_country(country) for country in source.countries}
+    return bool(countries & ALL_COUNTRY_MARKERS) or normalized_country in countries
+
+
+def _source_covers_level(source: EventSource, normalized_level: str) -> bool:
+    levels = {_normalize_slug(level) for level in source.event_levels}
+    if normalized_level in levels or "all_event_levels" in levels:
+        return True
+    if levels & FEI_LEVEL_MARKERS:
+        return _is_fei_level(normalized_level)
+    if levels & NATIONAL_LEVEL_MARKERS:
+        return not _is_fei_level(normalized_level)
+    return False
+
+
+def _normalize_country(country: str) -> str:
+    return country.strip().upper().replace(" ", "_").replace("-", "_")
+
+
+def _normalize_slug(value: str) -> str:
+    return value.strip().lower().replace(" ", "_").replace("-", "_")
+
+
+def _is_fei_level(normalized_level: str) -> bool:
+    return normalized_level.startswith(("fei", "cci", "cic", "cio")) or (
+        "international" in normalized_level
+    )
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
