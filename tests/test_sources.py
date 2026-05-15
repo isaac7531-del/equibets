@@ -3,6 +3,9 @@ import unittest
 from equibets.sources import load_event_sources, sources_for_region
 
 
+NATIONAL_EVENT_LEVELS = {"national", "regional", "local"}
+
+
 class EventSourceTests(unittest.TestCase):
     def test_data_fei_is_primary_source(self):
         sources = load_event_sources()
@@ -18,6 +21,12 @@ class EventSourceTests(unittest.TestCase):
             "australia": "equestrian_australia",
             "new_zealand": "equestrian_sports_new_zealand",
             "usa": "usea",
+            "north_america": "north_america_national_federations",
+            "central_america": "central_america_national_federations",
+            "south_america": "south_america_national_federations",
+            "middle_east": "middle_east_national_federations",
+            "asia_oceania": "asia_oceania_national_federations",
+            "africa": "africa_national_federations",
         }
 
         for region, national_source_id in expected_national_sources.items():
@@ -31,6 +40,31 @@ class EventSourceTests(unittest.TestCase):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
 
         self.assertEqual(source_ids, ["data_fei"])
+
+    def test_global_national_source_has_explicit_country_coverage(self):
+        sources = load_event_sources()
+        global_source = next(
+            source for source in sources if source.id == "global_national_federations"
+        )
+
+        self.assertEqual(len(global_source.countries), 134)
+        self.assertEqual(len(global_source.countries), len(set(global_source.countries)))
+        self.assertFalse(any(country.startswith("all_") for country in global_source.countries))
+        self.assertTrue(
+            {"GBR", "AUS", "NZL", "USA", "BRA", "JPN", "RSA", "CIV"}.issubset(
+                global_source.countries
+            )
+        )
+
+    def test_national_sources_cover_all_national_event_levels(self):
+        national_sources = [
+            source for source in load_event_sources() if source.scope == "national"
+        ]
+
+        self.assertTrue(national_sources)
+        for source in national_sources:
+            with self.subTest(source=source.id):
+                self.assertTrue(NATIONAL_EVENT_LEVELS.issubset(source.event_levels))
 
 
 if __name__ == "__main__":
