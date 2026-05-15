@@ -49,7 +49,7 @@ limit the search to a small current-event window:
    country.
 4. Each group is ranked by lowest finishing score, with dressage and XC time as
    deterministic tie-breakers.
-5. The command writes `data/live_scores.json` with `generated_at`,
+5. The command writes `public/live_scores.json` with `generated_at`,
    `latest_collected_at`, source IDs, phase penalties, total penalties, and
    rank for display in the application.
 
