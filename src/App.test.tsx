@@ -12,9 +12,9 @@ describe('App', () => {
     const user = userEvent.setup();
     render(<App />);
 
-    await user.type(screen.getByLabelText(/rider/i), 'Avery Stone');
-    await user.type(screen.getByLabelText(/horse/i), 'Juniper');
-    await user.type(screen.getByLabelText(/event/i), 'Spring Horse Trials');
+    await user.type(screen.getByLabelText('Rider'), 'Avery Stone');
+    await user.type(screen.getByLabelText('Horse'), 'Juniper');
+    await user.type(screen.getByLabelText('Event'), 'Spring Horse Trials');
     await user.clear(screen.getByLabelText(/dressage/i));
     await user.type(screen.getByLabelText(/dressage/i), '70');
     await user.clear(screen.getByLabelText(/show jumping/i));
