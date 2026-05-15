@@ -30,7 +30,7 @@ class EventSourceTests(unittest.TestCase):
     def test_active_only_filter_keeps_current_primary_source(self):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
 
-        self.assertEqual(source_ids, ["data_fei"])
+        self.assertEqual(source_ids, ["data_fei", "startbox_eventing"])
 
 
 if __name__ == "__main__":

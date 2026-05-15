@@ -1,4 +1,13 @@
 import { FormEvent, useMemo, useState } from 'react';
+import currentEventFeedJson from '../data/current_event_scores.json';
+import {
+  formatEventDateRange,
+  formatFeedDate,
+  getCurrentLiveEvents,
+  isLiveScoringReady,
+  liveStatusLabel,
+  type CurrentEventScore,
+} from './liveScoring';
 import {
   calculateScore,
   formatSeconds,
@@ -8,6 +17,14 @@ import {
   type StoredResult,
 } from './scoring';
 import { loadResults, saveResults } from './storage';
+
+const currentEventFeed = currentEventFeedJson as {
+  collected_at: string;
+  lookback_days: number;
+  lookahead_days: number;
+  source_url: string;
+  events: CurrentEventScore[];
+};
 
 type FormState = {
   rider: string;
@@ -55,6 +72,17 @@ export default function App() {
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const currentLiveEvents = useMemo(
+    () =>
+      getCurrentLiveEvents(
+        currentEventFeed.events,
+        new Date(currentEventFeed.collected_at),
+        currentEventFeed.lookback_days,
+        currentEventFeed.lookahead_days,
+      ),
+    [],
+  );
+  const liveReadyCount = currentLiveEvents.filter(isLiveScoringReady).length;
   const bestResult = sortedResults[0];
 
   const updateField = (field: keyof FormState, value: string) => {
@@ -100,8 +128,8 @@ export default function App() {
           <p className="eyebrow">Equibets</p>
           <h1>Eventing score calculator and results tracker</h1>
           <p className="hero-copy">
-            Capture dressage, show jumping, and cross-country penalties in one place, then keep a local record of
-            horse-and-rider results.
+            Capture dressage, show jumping, and cross-country penalties in one place, keep a local record of
+            horse-and-rider results, and follow current event scoring links as public feeds update.
           </p>
         </div>
         <div className="hero-card" aria-live="polite">
@@ -134,6 +162,65 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Live events</span>
+          <strong>{liveReadyCount}</strong>
+          <p>{currentLiveEvents.length} current links pulled</p>
+        </article>
+      </section>
+
+      <section className="results-card live-card" aria-labelledby="live-scoring-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-scoring-heading">Live scoring feed</h2>
+            <p className="feed-meta">Last pulled {formatFeedDate(currentEventFeed.collected_at)}</p>
+          </div>
+          <a className="score-link secondary-button" href={currentEventFeed.source_url} target="_blank" rel="noreferrer">
+            Source calendar
+          </a>
+        </div>
+
+        {currentLiveEvents.length === 0 ? (
+          <div className="empty-state">
+            <strong>No current live-scoring events found.</strong>
+            <p>Run the current-events pull to refresh entries, ride times, and result links.</p>
+          </div>
+        ) : (
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Status</th>
+                  <th>Event</th>
+                  <th>Date</th>
+                  <th>Country</th>
+                  <th>Scores</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentLiveEvents.map((event) => (
+                  <tr key={event.source_event_id}>
+                    <td>
+                      <span className={`status-pill status-${event.status}`}>{liveStatusLabel(event.status)}</span>
+                    </td>
+                    <td>
+                      <strong>{event.event_name}</strong>
+                      <span>{event.source_id}</span>
+                    </td>
+                    <td>{formatEventDateRange(event)}</td>
+                    <td>{event.country}</td>
+                    <td>
+                      <a className="score-link" href={event.scoring_url} target="_blank" rel="noreferrer">
+                        Open scores
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">

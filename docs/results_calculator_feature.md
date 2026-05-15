@@ -35,6 +35,18 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Current event live-scoring flow
+
+The hourly automation can refresh `data/current_event_scores.json` with:
+
+```bash
+python3 -m equibets.current_events
+```
+
+This pull focuses on events near the current date, normalizes calendar rows into
+`CurrentEventScore` records, and keeps entries, ride times, and results links
+sorted for the website's live-scoring panel.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a
