@@ -8,6 +8,7 @@ import {
   type StoredResult,
 } from './scoring';
 import { loadResults, saveResults } from './storage';
+import currentEventLiveScores from '../data/current_event_live_scores.json';
 
 type FormState = {
   rider: string;
@@ -24,6 +25,34 @@ type FormState = {
   notes: string;
 };
 
+type LiveLeader = {
+  division: string;
+  phase: string;
+  rider_name: string;
+  horse_name: string;
+  score: number;
+  collected_at: string;
+};
+
+type LiveEvent = {
+  event_name: string;
+  event_date: string;
+  location: string;
+  source_url: string;
+  leaders: LiveLeader[];
+};
+
+type LiveScoreSnapshot = {
+  generated_at: string;
+  source: string;
+  source_url: string;
+  summary: {
+    event_count: number;
+    leader_count: number;
+  };
+  events: LiveEvent[];
+};
+
 const defaultFormState: FormState = {
   rider: '',
   horse: '',
@@ -38,6 +67,10 @@ const defaultFormState: FormState = {
   actualSeconds: '30',
   notes: '',
 };
+
+const liveScoreSnapshot = currentEventLiveScores as LiveScoreSnapshot;
+const liveEvents = liveScoreSnapshot.events;
+const latestLiveEvent = liveEvents[0];
 
 const numberValue = (value: string) => Number.parseFloat(value || '0');
 
@@ -134,6 +167,61 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+      </section>
+
+      <section className="live-results-card" aria-labelledby="live-results-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Public live scoring</p>
+            <h2 id="live-results-heading">Current event leaders</h2>
+          </div>
+          <a href={liveScoreSnapshot.source_url} target="_blank" rel="noreferrer">
+            Source archive
+          </a>
+        </div>
+
+        {latestLiveEvent ? (
+          <>
+            <p className="freshness-note">
+              Latest pull: {new Date(liveScoreSnapshot.generated_at).toLocaleString()} from {liveScoreSnapshot.source}.
+              Showing {liveScoreSnapshot.summary.leader_count} leaders across {liveScoreSnapshot.summary.event_count} event
+              {liveScoreSnapshot.summary.event_count === 1 ? '' : 's'}.
+            </p>
+            <div className="live-event-grid">
+              {liveEvents.map((event) => (
+                <article key={`${event.event_name}-${event.event_date}`} className="live-event">
+                  <div className="live-event-heading">
+                    <div>
+                      <h3>{event.event_name}</h3>
+                      <p>
+                        {event.event_date} · {event.location}
+                      </p>
+                    </div>
+                    <a href={event.source_url} target="_blank" rel="noreferrer">
+                      Results
+                    </a>
+                  </div>
+                  <div className="leader-list">
+                    {event.leaders.map((leader) => (
+                      <div key={`${leader.division}-${leader.rider_name}-${leader.horse_name}`} className="leader-row">
+                        <span>{leader.division}</span>
+                        <strong>{leader.score.toFixed(1)}</strong>
+                        <p>
+                          {leader.horse_name} with {leader.rider_name} · {leader.phase}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="empty-state">
+            <strong>No public leaders in the latest pull.</strong>
+            <p>Run the live-scoring refresh after event pages publish scores.</p>
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">
