@@ -175,7 +175,14 @@ def fetch_calendar_payload(source_url: str = STARTBOX_EVENTING_URL) -> str:
 
     request = Request(
         source_url,
-        headers={"User-Agent": "EquibetsCurrentEvents/1.0 (+https://github.com/isaac7531-del/equibets)"},
+        headers={
+            "User-Agent": (
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/125.0 Safari/537.36"
+            ),
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+        },
     )
     with urlopen(request, timeout=20) as response:
         return response.read().decode("utf-8", errors="replace")
