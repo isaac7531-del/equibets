@@ -17,7 +17,7 @@ beforeEach(() => {
 describe("App", () => {
   it("renders the heading", async () => {
     render(<App />);
-    expect(screen.getByText("Equibets")).toBeInTheDocument();
+    expect(screen.getByText("EventIQ")).toBeInTheDocument();
   });
 
   it("shows empty state message", async () => {

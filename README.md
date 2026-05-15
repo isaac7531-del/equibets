@@ -1,4 +1,4 @@
-# equibets
+# eventiq
 
 Personal eventing results calculator and data storage.
 

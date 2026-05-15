@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export function createDb(dbPath?: string): Database.Database {
-  const resolvedPath = dbPath ?? path.join(__dirname, "..", "equibets.db");
+  const resolvedPath = dbPath ?? path.join(__dirname, "..", "eventiq.db");
   const db = new Database(resolvedPath);
   db.pragma("journal_mode = WAL");
   db.pragma("foreign_keys = ON");

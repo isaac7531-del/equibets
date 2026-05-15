@@ -45,7 +45,7 @@ export default function App() {
           WebkitTextFillColor: "transparent",
         }}
       >
-        Equibets
+        EventIQ
       </h1>
       <p style={{ color: "#94a3b8", marginBottom: 24, fontSize: "0.9rem" }}>
         Track your event bets and results

@@ -2,7 +2,7 @@
 
 ## Cursor Cloud specific instructions
 
-**Equibets** is a full-stack TypeScript app for tracking event bets and results.
+**EventIQ** is a full-stack TypeScript app for tracking event bets and results.
 
 ### Architecture
 
@@ -24,7 +24,7 @@
 
 ### Non-obvious notes
 
-- The SQLite database file (`equibets.db`) is created automatically in `server/` on first run; it is git-ignored.
+- The SQLite database file (`eventiq.db`) is created automatically in `server/` on first run; it is git-ignored.
 - Start the server **before** the client when running them separately — Vite proxies `/api` requests to `localhost:3001`.
 - Server tests use in-memory SQLite (`:memory:`) and ephemeral ports, so they are fully isolated.
 - Client tests use jsdom + `@testing-library/react` with a mocked `fetch`.
