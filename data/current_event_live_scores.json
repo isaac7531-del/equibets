@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-15T20:01:00Z",
+  "source": "StartBox/EventingScores",
+  "source_url": "https://eventing.startboxscoring.com/archives.php?Year=2026",
+  "summary": {
+    "event_count": 1,
+    "leader_count": 7
+  },
+  "events": [
+    {
+      "event_name": "Hunters Run Derby",
+      "event_date": "2026-05-10",
+      "location": "Metamora, MI",
+      "source_url": "http://eventingscores.com/eventsu/huntersrun/db0526",
+      "leaders": [
+        {
+          "division": "Starter B",
+          "phase": "Final",
+          "rider_name": "Bianca Maresca",
+          "horse_name": "Just Because",
+          "score": 27.7,
+          "collected_at": "2026-05-15T20:01:00Z"
+        },
+        {
+          "division": "Training",
+          "phase": "Stadium",
+          "rider_name": "Reagan Richards",
+          "horse_name": "FE Sparkling Diamond",
+          "score": 28.5,
+          "collected_at": "2026-05-15T20:01:00Z"
+        },
+        {
+          "division": "Novice",
+          "phase": "Stadium",
+          "rider_name": "Karen Goetz",
+          "horse_name": "Hawkeye",
+          "score": 33.9,
+          "collected_at": "2026-05-15T20:01:00Z"
+        },
+        {
+          "division": "BNovice B",
+          "phase": "Final",
+          "rider_name": "Kathryn Caponi",
+          "horse_name": "Foxy Jewel",
+          "score": 34.1,
+          "collected_at": "2026-05-15T20:01:00Z"
+        },
+        {
+          "division": "Starter A",
+          "phase": "Final",
+          "rider_name": "Taylor Rohrer",
+          "horse_name": "Hazel",
+          "score": 36.8,
+          "collected_at": "2026-05-15T20:01:00Z"
+        },
+        {
+          "division": "BNovice A",
+          "phase": "Final",
+          "rider_name": "Katie Atkinson",
+          "horse_name": "Vortex Rising",
+          "score": 37.7,
+          "collected_at": "2026-05-15T20:01:00Z"
+        },
+        {
+          "division": "Tadpole",
+          "phase": "Stadium",
+          "rider_name": "Abby Coppins",
+          "horse_name": "Boreas",
+          "score": 42.1,
+          "collected_at": "2026-05-15T20:01:00Z"
+        }
+      ]
+    }
+  ]
+}
