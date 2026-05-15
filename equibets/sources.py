@@ -13,6 +13,7 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+GLOBAL_COUNTRY_TOKENS = frozenset({"all_countries", "all_fei_member_nations"})
 
 
 @dataclass(frozen=True)
@@ -72,13 +73,50 @@ def sources_for_region(
     """Return sources covering a region while preserving global priorities."""
 
     normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
+        if _status_is_included(source, include_planned)
         and ("global" in source.regions or normalized_region in source.regions)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    event_level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and, optionally, an event level."""
+
+    normalized_country = country.strip().upper()
+    normalized_level = _normalize_token(event_level) if event_level is not None else None
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if _status_is_included(source, include_planned)
+        and _covers_country(source, normalized_country)
+        and (normalized_level is None or normalized_level in source.event_levels)
+    ]
+
+
+def sources_for_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an event level while preserving global priorities."""
+
+    normalized_level = _normalize_token(event_level)
+    return [
+        source
+        for source in load_event_sources(path)
+        if _status_is_included(source, include_planned)
+        and normalized_level in source.event_levels
     ]
 
 
@@ -114,3 +152,18 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _status_is_included(source: EventSource, include_planned: bool) -> bool:
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return source.status in statuses
+
+
+def _covers_country(source: EventSource, country: str) -> bool:
+    return country in source.countries or any(
+        token in source.countries for token in GLOBAL_COUNTRY_TOKENS
+    )
+
+
+def _normalize_token(value: str) -> str:
+    return value.strip().lower().replace(" ", "_").replace("-", "_")
