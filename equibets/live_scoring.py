@@ -1,460 +1,318 @@
-"""Refresh current-event result feeds into a live-scoring snapshot."""
+"""Build live current-event scoreboards from refreshed eventing results."""
 
 from __future__ import annotations
 
 import argparse
 import json
-import sys
-from collections.abc import Iterable, Mapping, Sequence
+import os
+from collections import defaultdict
+from collections.abc import Iterable, Sequence
 from dataclasses import dataclass
-from datetime import UTC, date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any
-from urllib.parse import urljoin, urlparse
-from urllib.request import Request, urlopen
 
-from .results import EventingResult, consolidate_results, predict_finishing_score
-from .sources import DATA_FILE, EventSource, load_event_sources
+from equibets.results import EventingResult, consolidate_results, load_results
 
 
-DEFAULT_OUTPUT_FILE = Path("public/live_scores.json")
-DEFAULT_HTTP_TIMEOUT_SECONDS = 20
+DEFAULT_FEI_RESULTS_FILE = Path(__file__).resolve().parents[1] / "data" / "fei_results.json"
+DEFAULT_LIVE_SCORE_FILE = Path(__file__).resolve().parents[1] / "public" / "live_scores.json"
 
 
 @dataclass(frozen=True)
-class PullSummary:
-    """Counters describing one live-scoring refresh."""
+class LiveScoreWindow:
+    """Inclusive event-date window used for a live scoring refresh."""
 
-    discovered_payload_count: int
-    pulled_result_count: int
-    skipped_result_count: int
-    source_ids: tuple[str, ...]
+    start_date: date
+    end_date: date
 
 
-def refresh_live_scoring(
-    resources: Sequence[str | Path],
+@dataclass(frozen=True)
+class LiveScoreRow:
+    """A ranked current-event result row."""
+
+    rank: int
+    rider_name: str
+    horse_name: str
+    event_name: str
+    event_date: date
+    level: str
+    country: str
+    dressage_score: float
+    show_jumping_penalties: float
+    cross_country_jump_penalties: float
+    cross_country_time_penalties: float
+    total_penalties: float
+    source_id: str
+    collected_at: datetime
+
+
+def current_event_window(
+    on_date: date,
     *,
-    source_path: str | Path = DATA_FILE,
-    collected_at: datetime | None = None,
-    since: datetime | None = None,
-    event_date_from: date | None = None,
-    event_date_to: date | None = None,
-) -> dict[str, Any]:
-    """Pull result payloads and return a consolidated live-scoring snapshot.
+    lookback_days: int = 3,
+    lookahead_days: int = 1,
+) -> LiveScoreWindow:
+    """Return the current-event window for a scheduled refresh."""
 
-    Resources can be local JSON files, directories containing JSON payloads, URLs,
-    or manifest JSON files with ``result_urls``/``search_results`` entries. This
-    keeps the search step provider-agnostic: a cron job can write search hits to a
-    manifest, and this refresh turns those hits into normalized scoring data.
-    """
+    if lookback_days < 0 or lookahead_days < 0:
+        raise ValueError("lookback_days and lookahead_days must be non-negative")
 
-    if not resources:
-        raise ValueError("at least one result resource is required")
+    return LiveScoreWindow(
+        start_date=on_date - timedelta(days=lookback_days),
+        end_date=on_date + timedelta(days=lookahead_days),
+    )
 
-    collected_at = _normalize_datetime(collected_at or datetime.now(UTC))
-    sources = load_event_sources(source_path)
-    source_index = {source.id: source for source in sources}
-    discovered_payloads = discover_payloads(resources)
 
-    pulled_results: list[EventingResult] = []
-    skipped_result_count = 0
-    for payload_resource in discovered_payloads:
-        payload = _read_json_resource(payload_resource)
-        normalized_results, skipped = _normalize_payload_results(
-            payload,
-            source_index=source_index,
-            collected_at=collected_at,
+def build_live_score_rows(
+    results: Iterable[EventingResult],
+    window: LiveScoreWindow,
+) -> list[LiveScoreRow]:
+    """Filter consolidated results to current events and rank each competition."""
+
+    current_results = [
+        result
+        for result in consolidate_results(list(results))
+        if window.start_date <= result.event_date <= window.end_date
+    ]
+
+    grouped_results: dict[tuple[date, str, str, str], list[EventingResult]] = defaultdict(list)
+    for result in current_results:
+        grouped_results[(result.event_date, result.event_name, result.level, result.country)].append(result)
+
+    rows: list[LiveScoreRow] = []
+    for event_results in grouped_results.values():
+        ranked_results = sorted(
+            event_results,
+            key=lambda result: (
+                result.finishing_score,
+                result.dressage_score,
+                result.cross_country_time_penalties,
+                result.rider_name,
+                result.horse_name,
+            ),
         )
-        skipped_result_count += skipped
-        for result in normalized_results:
-            if since is not None and result.collected_at < _normalize_datetime(since):
-                continue
-            if event_date_from is not None and result.event_date < event_date_from:
-                continue
-            if event_date_to is not None and result.event_date > event_date_to:
-                continue
-            pulled_results.append(result)
+        for rank, result in enumerate(ranked_results, start=1):
+            rows.append(
+                LiveScoreRow(
+                    rank=rank,
+                    rider_name=result.rider_name,
+                    horse_name=result.horse_name,
+                    event_name=result.event_name,
+                    event_date=result.event_date,
+                    level=result.level,
+                    country=result.country,
+                    dressage_score=result.dressage_score,
+                    show_jumping_penalties=result.show_jumping_penalties,
+                    cross_country_jump_penalties=result.cross_country_jump_penalties,
+                    cross_country_time_penalties=result.cross_country_time_penalties,
+                    total_penalties=result.finishing_score,
+                    source_id=result.source_id,
+                    collected_at=result.collected_at,
+                )
+            )
 
-    summary = PullSummary(
-        discovered_payload_count=len(discovered_payloads),
-        pulled_result_count=len(pulled_results),
-        skipped_result_count=skipped_result_count,
-        source_ids=tuple(sorted({result.source_id for result in pulled_results})),
-    )
-    return build_live_scoring_snapshot(pulled_results, summary=summary, collected_at=collected_at)
-
-
-def discover_payloads(resources: Sequence[str | Path]) -> list[str]:
-    """Search local paths and manifests for JSON result payloads."""
-
-    discovered: list[str] = []
-    visited: set[str] = set()
-
-    def add_resource(resource: str | Path, base_resource: str | None = None) -> None:
-        resource_text = _resolve_resource(str(resource), base_resource)
-        if resource_text in visited:
-            return
-        visited.add(resource_text)
-
-        if _is_url(resource_text):
-            payload = _read_json_resource(resource_text)
-            links = _extract_manifest_links(payload)
-            if links:
-                for link in links:
-                    add_resource(link, resource_text)
-                return
-            discovered.append(resource_text)
-            return
-
-        path = Path(resource_text)
-        if path.is_dir():
-            for child in sorted(path.rglob("*.json")):
-                add_resource(child)
-            return
-        if not path.exists():
-            raise FileNotFoundError(f"result resource not found: {path}")
-
-        payload = _read_json_resource(path)
-        links = _extract_manifest_links(payload)
-        if links:
-            for link in links:
-                add_resource(link, str(path))
-            return
-        discovered.append(str(path))
-
-    for resource in resources:
-        add_resource(resource)
-
-    return discovered
+    return sorted(rows, key=lambda row: (row.event_date, row.event_name, row.level, row.rank))
 
 
-def build_live_scoring_snapshot(
-    results: Sequence[EventingResult],
+def build_live_score_report(
+    results: Iterable[EventingResult],
     *,
-    summary: PullSummary | None = None,
-    collected_at: datetime | None = None,
-) -> dict[str, Any]:
-    """Create the JSON-serializable live-scoring artifact."""
+    generated_at: datetime,
+    on_date: date,
+    lookback_days: int = 3,
+    lookahead_days: int = 1,
+) -> dict[str, object]:
+    """Create a JSON-serializable live scoring report."""
 
-    collected_at = _normalize_datetime(collected_at or datetime.now(UTC))
-    consolidated = consolidate_results(list(results))
-    predictions = _build_predictions(consolidated)
-    source_ids = tuple(sorted({result.source_id for result in results}))
-    summary = summary or PullSummary(
-        discovered_payload_count=0,
-        pulled_result_count=len(results),
-        skipped_result_count=0,
-        source_ids=source_ids,
+    window = current_event_window(
+        on_date,
+        lookback_days=lookback_days,
+        lookahead_days=lookahead_days,
     )
+    rows = build_live_score_rows(results, window)
+    grouped_rows: dict[tuple[date, str, str, str], list[LiveScoreRow]] = defaultdict(list)
+    for row in rows:
+        grouped_rows[(row.event_date, row.event_name, row.level, row.country)].append(row)
+
+    latest_collected_at = max((row.collected_at for row in rows), default=None)
+    events = [
+        {
+            "event_name": event_name,
+            "event_date": event_date.isoformat(),
+            "level": level,
+            "country": country,
+            "result_count": len(event_rows),
+            "results": [_row_to_mapping(row) for row in event_rows],
+        }
+        for (event_date, event_name, level, country), event_rows in sorted(grouped_rows.items())
+    ]
 
     return {
         "version": 1,
-        "collected_at": _format_datetime(collected_at),
-        "summary": {
-            "discovered_payload_count": summary.discovered_payload_count,
-            "pulled_result_count": summary.pulled_result_count,
-            "consolidated_result_count": len(consolidated),
-            "skipped_result_count": summary.skipped_result_count,
-            "source_ids": list(summary.source_ids),
+        "generated_at": generated_at.replace(microsecond=0).isoformat(),
+        "on_date": on_date.isoformat(),
+        "window": {
+            "start_date": window.start_date.isoformat(),
+            "end_date": window.end_date.isoformat(),
+            "lookback_days": lookback_days,
+            "lookahead_days": lookahead_days,
         },
-        "results": [_result_to_mapping(result) for result in consolidated],
-        "predictions": [_prediction_to_mapping(prediction) for prediction in predictions],
+        "latest_collected_at": latest_collected_at.isoformat() if latest_collected_at else None,
+        "event_count": len(events),
+        "result_count": len(rows),
+        "events": events,
     }
 
 
-def write_live_scoring_snapshot(snapshot: Mapping[str, Any], output_path: str | Path) -> None:
-    """Write a live-scoring snapshot as pretty JSON."""
+def load_result_files(paths: Sequence[Path]) -> list[EventingResult]:
+    """Load all existing JSON result files in project result format."""
 
-    path = Path(output_path)
+    results: list[EventingResult] = []
+    for path in paths:
+        if path.exists():
+            results.extend(load_results(path))
+    return results
+
+
+def save_live_score_report(report: dict[str, object], path: Path) -> None:
+    """Write a live scoring report to disk."""
+
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(snapshot, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    with path.open("w", encoding="utf-8") as live_score_file:
+        json.dump(report, live_score_file, indent=2, sort_keys=True)
+        live_score_file.write("\n")
+
+
+def refresh_fei_results(args: argparse.Namespace, window: LiveScoreWindow) -> tuple[int, int]:
+    """Pull current FEI results for the scoreboard window."""
+
+    from equibets.fei_bot import (
+        FeiBrowserClient,
+        FeiDataBot,
+        FeiHttpClient,
+        FeiResultStore,
+        FeiVerifier,
+    )
+
+    cookie = args.cookie or os.environ.get(args.cookie_env)
+    if args.refresh_driver == "http":
+        client = FeiHttpClient(cookie=cookie, rate_limit_seconds=args.rate_limit)
+    else:
+        client = FeiBrowserClient(
+            cookie=cookie,
+            headless=not args.headful,
+            executable_path=args.browser_executable,
+            storage_state=args.storage_state,
+            challenge_wait_seconds=args.challenge_wait,
+        )
+
+    verifier = FeiVerifier(client) if args.verify != "none" else None
+    bot = FeiDataBot(client, verifier=verifier, raw_dir=args.raw_dir)
+    try:
+        results, summary = bot.collect(
+            start_date=window.start_date,
+            end_date=window.end_date,
+            max_events=args.max_events,
+            verify=args.verify,
+        )
+    finally:
+        if hasattr(client, "close"):
+            client.close()
+
+    store = FeiResultStore(args.fei_output)
+    merged = store.merge(results)
+    store.save(merged)
+    return summary.results_collected, len(merged)
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description="Refresh current-event results and write live scores")
+    parser.add_argument("--on-date", type=_date_arg, default=date.today(), help="Scoring date, YYYY-MM-DD")
+    parser.add_argument("--lookback-days", type=int, default=3, help="Days before on-date to include")
+    parser.add_argument("--lookahead-days", type=int, default=1, help="Days after on-date to include")
     parser.add_argument(
-        "resources",
-        nargs="+",
-        help="JSON files, directories, URLs, or search manifests to pull current-event results from.",
+        "--results-file",
+        action="append",
+        type=Path,
+        default=[],
+        help="Existing result JSON file to include; can be repeated",
     )
-    parser.add_argument(
-        "--sources",
-        default=str(DATA_FILE),
-        help="Path to the event source registry JSON.",
-    )
-    parser.add_argument(
-        "--output",
-        default=str(DEFAULT_OUTPUT_FILE),
-        help="Where to write the live scoring snapshot JSON.",
-    )
-    parser.add_argument(
-        "--since",
-        help="Only include results collected at or after this ISO timestamp.",
-    )
-    parser.add_argument(
-        "--current-window-days",
-        type=int,
-        default=14,
-        help="Include events from this many days before today.",
-    )
-    parser.add_argument(
-        "--upcoming-window-days",
-        type=int,
-        default=7,
-        help="Include events through this many days after today.",
-    )
+    parser.add_argument("--output", type=Path, default=DEFAULT_LIVE_SCORE_FILE, help="Live score JSON output")
+    parser.add_argument("--refresh-fei", action="store_true", help="Search FEI current events before scoring")
+    parser.add_argument("--fei-output", type=Path, default=DEFAULT_FEI_RESULTS_FILE, help="Merged FEI result store")
+    parser.add_argument("--raw-dir", type=Path, help="Optional directory for raw FEI HTML responses")
+    parser.add_argument("--max-events", type=int, help="Maximum FEI events to open")
+    parser.add_argument("--refresh-driver", choices=("browser", "http"), default="browser", help="FEI page driver")
+    parser.add_argument("--headful", action="store_true", help="Show the browser window for manual login/debugging")
+    parser.add_argument("--browser-executable", help="Chrome/Chromium executable for the browser driver")
+    parser.add_argument("--storage-state", type=Path, help="Persist Playwright cookies/session state")
+    parser.add_argument("--challenge-wait", type=float, default=10.0, help="Seconds to wait for FEI JS challenges")
+    parser.add_argument("--rate-limit", type=float, default=1.0, help="Delay between FEI HTTP requests in seconds")
+    parser.add_argument("--cookie", help="FEI session cookie header")
+    parser.add_argument("--cookie-env", default="FEI_COOKIE", help="Environment variable containing FEI cookie")
+    parser.add_argument("--verify", choices=("none", "warn", "require"), default="none")
     args = parser.parse_args(argv)
 
-    today = datetime.now(UTC).date()
-    snapshot = refresh_live_scoring(
-        args.resources,
-        source_path=args.sources,
-        since=_parse_datetime(args.since) if args.since else None,
-        event_date_from=today - timedelta(days=args.current_window_days),
-        event_date_to=today + timedelta(days=args.upcoming_window_days),
+    window = current_event_window(
+        args.on_date,
+        lookback_days=args.lookback_days,
+        lookahead_days=args.lookahead_days,
     )
-    write_live_scoring_snapshot(snapshot, args.output)
+    collected = None
+    merged_count = None
+    result_paths = [*args.results_file]
+
+    if args.refresh_fei:
+        collected, merged_count = refresh_fei_results(args, window)
+        result_paths.append(args.fei_output)
+    elif not result_paths:
+        result_paths.append(args.fei_output)
+
+    report = build_live_score_report(
+        load_result_files(result_paths),
+        generated_at=datetime.now(timezone.utc),
+        on_date=args.on_date,
+        lookback_days=args.lookback_days,
+        lookahead_days=args.lookahead_days,
+    )
+    save_live_score_report(report, args.output)
+
+    refresh_summary = ""
+    if collected is not None:
+        refresh_summary = f", fei_results_collected={collected}, fei_results_in_store={merged_count}"
     print(
-        "Wrote live scoring snapshot with "
-        f"{snapshot['summary']['consolidated_result_count']} consolidated results to {args.output}",
-        file=sys.stderr,
+        "Live scoring complete: "
+        f"events={report['event_count']}, "
+        f"results={report['result_count']}, "
+        f"output={args.output}{refresh_summary}"
     )
     return 0
 
 
-def _normalize_payload_results(
-    payload: Mapping[str, Any],
-    *,
-    source_index: Mapping[str, EventSource],
-    collected_at: datetime,
-) -> tuple[list[EventingResult], int]:
-    results: list[EventingResult] = []
-    skipped = 0
-
-    source_defaults = {
-        "source_id": payload.get("source_id"),
-        "source_priority": payload.get("source_priority"),
-        "collected_at": payload.get("collected_at"),
-    }
-    for record in _iter_result_records(payload):
-        try:
-            normalized = _normalize_result_record(
-                record,
-                source_defaults=source_defaults,
-                source_index=source_index,
-                collected_at=collected_at,
-            )
-            results.append(EventingResult.from_mapping(normalized))
-        except (TypeError, ValueError):
-            skipped += 1
-
-    return results, skipped
-
-
-def _iter_result_records(payload: Mapping[str, Any]) -> Iterable[Mapping[str, Any]]:
-    for record in payload.get("results", []):
-        if isinstance(record, Mapping):
-            yield record
-
-    for event in payload.get("events", []):
-        if not isinstance(event, Mapping):
-            continue
-        event_defaults = {
-            "source_id": event.get("source_id", payload.get("source_id")),
-            "source_priority": event.get("source_priority", payload.get("source_priority")),
-            "event_name": event.get("event_name", event.get("name")),
-            "event_date": event.get("event_date", event.get("date")),
-            "level": event.get("level"),
-            "country": event.get("country"),
-            "collected_at": event.get("collected_at", payload.get("collected_at")),
-        }
-        for record in event.get("results", []):
-            if isinstance(record, Mapping):
-                yield {**event_defaults, **record}
-
-
-def _normalize_result_record(
-    record: Mapping[str, Any],
-    *,
-    source_defaults: Mapping[str, Any],
-    source_index: Mapping[str, EventSource],
-    collected_at: datetime,
-) -> dict[str, Any]:
-    source_id = _first_value(record, source_defaults, "source_id")
-    if not isinstance(source_id, str) or not source_id:
-        raise ValueError("source_id is required")
-
-    source = source_index.get(source_id)
-    source_priority = _first_value(record, source_defaults, "source_priority")
-    if source_priority is None and source is not None:
-        source_priority = source.priority
-
-    normalized: dict[str, Any] = {
-        "source_id": source_id,
-        "source_record_id": _string_or_none(record.get("source_record_id"))
-        or _stable_record_id(record, source_id),
-        "source_priority": source_priority,
-        "rider_name": record.get("rider_name", record.get("rider")),
-        "horse_name": record.get("horse_name", record.get("horse")),
-        "event_name": record.get("event_name", record.get("event")),
-        "event_date": record.get("event_date", record.get("date")),
-        "level": record.get("level"),
-        "country": record.get("country"),
-        "dressage_score": record.get("dressage_score", record.get("dressage_penalties")),
-        "show_jumping_penalties": record.get("show_jumping_penalties", record.get("sj_penalties", 0)),
-        "cross_country_jump_penalties": record.get(
-            "cross_country_jump_penalties",
-            record.get("xc_jump_penalties", 0),
-        ),
-        "cross_country_time_penalties": record.get(
-            "cross_country_time_penalties",
-            record.get("xc_time_penalties", 0),
-        ),
-        "collected_at": record.get("collected_at")
-        or source_defaults.get("collected_at")
-        or _format_datetime(collected_at),
-        "is_user_entered": record.get("is_user_entered", False),
-    }
-
-    if normalized["country"] is None and source is not None:
-        normalized["country"] = _default_country(source)
-
-    return normalized
-
-
-def _extract_manifest_links(payload: Mapping[str, Any]) -> list[str]:
-    links: list[str] = []
-    for key in ("result_urls", "urls", "documents", "search_results"):
-        value = payload.get(key)
-        if not isinstance(value, list):
-            continue
-        for item in value:
-            if isinstance(item, str):
-                links.append(item)
-            elif isinstance(item, Mapping) and isinstance(item.get("url"), str):
-                links.append(item["url"])
-    return links
-
-
-def _read_json_resource(resource: str | Path) -> Mapping[str, Any]:
-    if _is_url(str(resource)):
-        request = Request(str(resource), headers={"User-Agent": "equibets-live-scoring/1.0"})
-        with urlopen(request, timeout=DEFAULT_HTTP_TIMEOUT_SECONDS) as response:
-            payload = json.loads(response.read().decode("utf-8"))
-    else:
-        with Path(resource).open(encoding="utf-8") as resource_file:
-            payload = json.load(resource_file)
-
-    if not isinstance(payload, Mapping):
-        raise ValueError(f"JSON payload must be an object: {resource}")
-    return payload
-
-
-def _build_predictions(consolidated_results: Sequence[EventingResult]) -> list[Any]:
-    predictions = []
-    seen_keys: set[str] = set()
-    for result in sorted(consolidated_results, key=lambda item: (item.rider_name, item.horse_name)):
-        if result.combination_key in seen_keys:
-            continue
-        seen_keys.add(result.combination_key)
-        predictions.append(
-            predict_finishing_score(
-                list(consolidated_results),
-                result.rider_name,
-                result.horse_name,
-            )
-        )
-
-    return sorted(predictions, key=lambda prediction: prediction.likely_finishing_score)
-
-
-def _result_to_mapping(result: EventingResult) -> dict[str, Any]:
+def _row_to_mapping(row: LiveScoreRow) -> dict[str, object]:
     return {
-        "source_id": result.source_id,
-        "source_record_id": result.source_record_id,
-        "source_priority": result.source_priority,
-        "rider_name": result.rider_name,
-        "horse_name": result.horse_name,
-        "event_name": result.event_name,
-        "event_date": result.event_date.isoformat(),
-        "level": result.level,
-        "country": result.country,
-        "dressage_score": result.dressage_score,
-        "show_jumping_penalties": result.show_jumping_penalties,
-        "cross_country_jump_penalties": result.cross_country_jump_penalties,
-        "cross_country_time_penalties": result.cross_country_time_penalties,
-        "finishing_score": result.finishing_score,
-        "collected_at": _format_datetime(result.collected_at),
-        "is_user_entered": result.is_user_entered,
+        "rank": row.rank,
+        "rider_name": row.rider_name,
+        "horse_name": row.horse_name,
+        "event_name": row.event_name,
+        "event_date": row.event_date.isoformat(),
+        "level": row.level,
+        "country": row.country,
+        "dressage_score": row.dressage_score,
+        "show_jumping_penalties": row.show_jumping_penalties,
+        "cross_country_jump_penalties": row.cross_country_jump_penalties,
+        "cross_country_time_penalties": row.cross_country_time_penalties,
+        "total_penalties": row.total_penalties,
+        "source_id": row.source_id,
+        "collected_at": row.collected_at.isoformat(),
     }
 
 
-def _prediction_to_mapping(prediction: Any) -> dict[str, Any]:
-    return {
-        "rider_name": prediction.rider_name,
-        "horse_name": prediction.horse_name,
-        "likely_finishing_score": prediction.likely_finishing_score,
-        "recent_result_count": prediction.recent_result_count,
-        "best_recent_score": prediction.best_recent_score,
-        "worst_recent_score": prediction.worst_recent_score,
-        "source_ids": list(prediction.source_ids),
-        "confidence": prediction.confidence,
-    }
-
-
-def _resolve_resource(resource: str, base_resource: str | None) -> str:
-    if base_resource is None or _is_url(resource) or Path(resource).is_absolute():
-        return resource
-    if _is_url(base_resource):
-        return urljoin(base_resource, resource)
-    return str((Path(base_resource).parent / resource).resolve())
-
-
-def _is_url(resource: str) -> bool:
-    return urlparse(resource).scheme in {"http", "https"}
-
-
-def _first_value(record: Mapping[str, Any], defaults: Mapping[str, Any], key: str) -> Any:
-    return record.get(key) if record.get(key) is not None else defaults.get(key)
-
-
-def _string_or_none(value: Any) -> str | None:
-    return value if isinstance(value, str) and value else None
-
-
-def _stable_record_id(record: Mapping[str, Any], source_id: str) -> str:
-    parts = [
-        source_id,
-        str(record.get("event_date", record.get("date", ""))),
-        str(record.get("event_name", record.get("event", ""))),
-        str(record.get("level", "")),
-        str(record.get("rider_name", record.get("rider", ""))),
-        str(record.get("horse_name", record.get("horse", ""))),
-    ]
-    return "::".join(_slug(part) for part in parts if part)
-
-
-def _default_country(source: EventSource) -> str | None:
-    countries = [country for country in source.countries if not country.startswith("all_")]
-    return countries[0] if len(countries) == 1 else None
-
-
-def _parse_datetime(value: str) -> datetime:
-    return datetime.fromisoformat(value.replace("Z", "+00:00"))
-
-
-def _normalize_datetime(value: datetime) -> datetime:
-    if value.tzinfo is None:
-        return value.replace(tzinfo=UTC)
-    return value.astimezone(UTC)
-
-
-def _format_datetime(value: datetime) -> str:
-    return _normalize_datetime(value).isoformat().replace("+00:00", "Z")
-
-
-def _slug(value: str) -> str:
-    return "".join(character.lower() if character.isalnum() else "-" for character in value).strip("-")
+def _date_arg(value: str) -> date:
+    try:
+        return date.fromisoformat(value)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError("expected date as YYYY-MM-DD") from exc
 
 
 if __name__ == "__main__":

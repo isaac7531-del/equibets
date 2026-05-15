@@ -35,48 +35,23 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
-The implemented refresh path is `python3 -m equibets.live_scoring`. It accepts a
-search manifest, result JSON files, directories, or URLs; follows discovered
-`result_urls`/`search_results`; normalizes results into `EventingResult`; and
-writes a live-scoring snapshot with consolidated results and predictions. A
-search manifest can be as small as:
+## Current-event live scoring flow
 
-```json
-{
-  "search_results": [
-    { "url": "fei-results-2026-05-15.json" },
-    { "url": "national-results-2026-05-15.json" }
-  ]
-}
-```
+Hourly or manual live scoring refreshes use the same source priority rules but
+limit the search to a small current-event window:
 
-Result payloads can use either a flat `results` list or an event-grouped
-`events` list. Event-grouped payloads inherit event metadata:
-
-```json
-{
-  "source_id": "data_fei",
-  "events": [
-    {
-      "event_name": "Kentucky Spring Horse Trials",
-      "event_date": "2026-05-14",
-      "level": "CCI3-S",
-      "country": "USA",
-      "results": [
-        {
-          "source_record_id": "fei-100",
-          "rider_name": "Alex Rider",
-          "horse_name": "Pocket Rocket",
-          "dressage_score": 29.8,
-          "show_jumping_penalties": 0,
-          "cross_country_jump_penalties": 0,
-          "cross_country_time_penalties": 2.4
-        }
-      ]
-    }
-  ]
-}
-```
+1. Run `python3 -m equibets.live_scoring --refresh-fei` with the desired
+   `--on-date`, `--lookback-days`, and `--lookahead-days`.
+2. The command searches FEI calendar results for eventing competitions in that
+   window, follows event/result links, and merges normalized rows into
+   `data/fei_results.json`.
+3. Consolidated rows inside the window are grouped by event, date, level, and
+   country.
+4. Each group is ranked by lowest finishing score, with dressage and XC time as
+   deterministic tie-breakers.
+5. The command writes `public/live_scores.json` with `generated_at`,
+   `latest_collected_at`, source IDs, phase penalties, total penalties, and
+   rank for display in the application.
 
 ## Prediction logic
 
