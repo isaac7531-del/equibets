@@ -13,6 +13,18 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_MARKERS = frozenset({"all_countries", "all_fei_member_nations"})
+NATIONAL_EVENT_LEVELS = (
+    "national_championship",
+    "national",
+    "regional",
+    "local",
+    "grassroots",
+    "training",
+    "schooling",
+    "youth",
+    "pony_club",
+)
 
 
 @dataclass(frozen=True)
@@ -79,6 +91,46 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country code while preserving global priorities."""
+
+    normalized_country = country.upper().replace(" ", "_")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and (
+            normalized_country in source.countries
+            or bool(ALL_COUNTRY_MARKERS.intersection(source.countries))
+        )
+    ]
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an event level while preserving global priorities."""
+
+    normalized_level = event_level.lower().replace(" ", "_")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and normalized_level in source.event_levels
     ]
 
 
