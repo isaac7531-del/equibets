@@ -53,14 +53,18 @@ class EventSource:
 def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
     """Load sources sorted by priority, with FEI first on ties."""
 
-    with Path(path).open(encoding="utf-8") as source_file:
-        payload = json.load(source_file)
-
+    payload = _load_registry(path)
     sources = [EventSource.from_mapping(item) for item in payload["sources"]]
     return sorted(
         sources,
         key=lambda source: (source.priority, source.id != "data_fei", source.id),
     )
+
+
+def load_national_event_levels(path: Path | str = DATA_FILE) -> tuple[str, ...]:
+    """Load the declared national-event level coverage from the registry."""
+
+    return _string_tuple(_load_registry(path), "national_event_levels")
 
 
 def sources_for_region(
@@ -80,6 +84,15 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def _load_registry(path: Path | str) -> dict[str, object]:
+    with Path(path).open(encoding="utf-8") as source_file:
+        payload = json.load(source_file)
+
+    if not isinstance(payload, dict):
+        raise ValueError("source registry must be a JSON object")
+    return payload
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
