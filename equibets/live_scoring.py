@@ -15,7 +15,7 @@ from equibets.results import EventingResult, consolidate_results, load_results
 
 
 DEFAULT_FEI_RESULTS_FILE = Path(__file__).resolve().parents[1] / "data" / "fei_results.json"
-DEFAULT_LIVE_SCORE_FILE = Path(__file__).resolve().parents[1] / "data" / "live_scores.json"
+DEFAULT_LIVE_SCORE_FILE = Path(__file__).resolve().parents[1] / "public" / "live_scores.json"
 
 
 @dataclass(frozen=True)
