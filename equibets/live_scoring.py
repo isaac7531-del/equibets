@@ -177,6 +177,15 @@ def refresh_startbox_live_scores(
         lookback_days=lookback_days,
         lookahead_days=lookahead_days,
     )
+    current_events = sorted(
+        current_events,
+        key=lambda event: (
+            event.event_date < refresh_date,
+            abs((event.event_date - refresh_date).days),
+            event.event_date,
+            event.event_name,
+        ),
+    )
 
     leaders: list[LiveLeader] = []
     for event in current_events[:max_events]:
