@@ -62,13 +62,12 @@ python3 -m unittest discover -s tests
 ## Current-event live scoring refresh
 
 The website reads `data/current_event_live_scores.json` for the public live
-leaders panel. To refresh it from captured StartBox/EventingScores pages, save
-the fetched event page text/markdown and run:
+leaders panel. To search the current-year StartBox archive, pull nearby current
+event pages, and rewrite the snapshot, run:
 
 ```bash
-python3 -m equibets.live_scoring data/current_event_live_scores.json path/to/event-page.md --collected-at 2026-05-15T20:01:00Z
+python3 -m equibets.live_scoring data/current_event_live_scores.json
 ```
 
-Use `parse_startbox_archive` from `equibets.live_scoring` to turn the current
-StartBox archive into nearby `Results`, `Scores`, or `Times` event URLs before
-pulling event pages.
+You can still pass one or more captured event page text/markdown files after the
+output path to rebuild the snapshot offline.
