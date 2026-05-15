@@ -50,16 +50,46 @@ class EventSource:
         )
 
 
+@dataclass(frozen=True)
+class EventSourceRegistry:
+    """Configured event-results source registry and coverage metadata."""
+
+    version: int
+    primary_source_id: str
+    coverage_goal: str
+    priority_regions: tuple[str, ...]
+    country_codes_source: str
+    country_codes: tuple[str, ...]
+    national_event_levels: tuple[str, ...]
+    sources: tuple[EventSource, ...]
+
+
 def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
     """Load sources sorted by priority, with FEI first on ties."""
+
+    return list(load_event_source_registry(path).sources)
+
+
+def load_event_source_registry(path: Path | str = DATA_FILE) -> EventSourceRegistry:
+    """Load the source registry with all-country and all-level coverage metadata."""
 
     with Path(path).open(encoding="utf-8") as source_file:
         payload = json.load(source_file)
 
     sources = [EventSource.from_mapping(item) for item in payload["sources"]]
-    return sorted(
+    sorted_sources = sorted(
         sources,
         key=lambda source: (source.priority, source.id != "data_fei", source.id),
+    )
+    return EventSourceRegistry(
+        version=_required_int(payload, "version"),
+        primary_source_id=_required_str(payload, "primary_source_id"),
+        coverage_goal=_required_str(payload, "coverage_goal"),
+        priority_regions=_string_tuple(payload, "priority_regions"),
+        country_codes_source=_required_str(payload, "country_codes_source"),
+        country_codes=_string_tuple(payload, "country_codes"),
+        national_event_levels=_string_tuple(payload, "national_event_levels"),
+        sources=tuple(sorted_sources),
     )
 
 
@@ -73,12 +103,37 @@ def sources_for_region(
 
     normalized_region = region.lower().replace(" ", "_")
     statuses = {"active", "planned"} if include_planned else {"active"}
+    registry = load_event_source_registry(path)
 
     return [
         source
-        for source in load_event_sources(path)
+        for source in registry.sources
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+    ]
+
+
+def sources_for_country(
+    country_code: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country code while preserving global priorities."""
+
+    normalized_country_code = country_code.upper()
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    registry = load_event_source_registry(path)
+
+    if normalized_country_code not in registry.country_codes:
+        raise ValueError(f"unknown country code: {country_code}")
+
+    return [
+        source
+        for source in registry.sources
+        if source.status in statuses
+        and normalized_country_code
+        in _resolved_source_country_codes(source, registry)
     ]
 
 
@@ -114,3 +169,11 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _resolved_source_country_codes(
+    source: EventSource, registry: EventSourceRegistry
+) -> tuple[str, ...]:
+    if "all_configured_country_codes" in source.countries:
+        return registry.country_codes
+    return source.countries
