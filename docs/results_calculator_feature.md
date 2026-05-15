@@ -35,6 +35,49 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+The implemented refresh path is `python3 -m equibets.live_scoring`. It accepts a
+search manifest, result JSON files, directories, or URLs; follows discovered
+`result_urls`/`search_results`; normalizes results into `EventingResult`; and
+writes a live-scoring snapshot with consolidated results and predictions. A
+search manifest can be as small as:
+
+```json
+{
+  "search_results": [
+    { "url": "fei-results-2026-05-15.json" },
+    { "url": "national-results-2026-05-15.json" }
+  ]
+}
+```
+
+Result payloads can use either a flat `results` list or an event-grouped
+`events` list. Event-grouped payloads inherit event metadata:
+
+```json
+{
+  "source_id": "data_fei",
+  "events": [
+    {
+      "event_name": "Kentucky Spring Horse Trials",
+      "event_date": "2026-05-14",
+      "level": "CCI3-S",
+      "country": "USA",
+      "results": [
+        {
+          "source_record_id": "fei-100",
+          "rider_name": "Alex Rider",
+          "horse_name": "Pocket Rocket",
+          "dressage_score": 29.8,
+          "show_jumping_penalties": 0,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 2.4
+        }
+      ]
+    }
+  ]
+}
+```
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a

@@ -57,3 +57,17 @@ Run the source registry checks with:
 ```bash
 python3 -m unittest discover -s tests
 ```
+
+## Live scoring refresh
+
+Current-event result payloads can be pulled into a consolidated live-scoring
+artifact with:
+
+```bash
+python3 -m equibets.live_scoring path/to/search_manifest_or_results_dir --output public/live_scores.json
+```
+
+The refresh command accepts JSON files, directories of JSON result payloads, URLs,
+or search manifests containing `result_urls`/`search_results` entries. Each
+payload is normalized into `EventingResult`, deduplicated by source priority, and
+published with per-combination predictions for live scoring.
