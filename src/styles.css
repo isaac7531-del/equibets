@@ -89,7 +89,8 @@ button:disabled {
 .hero-card,
 .dashboard article,
 .calculator-card,
-.results-card {
+.results-card,
+.live-card {
   background: rgba(255, 252, 245, 0.88);
   border: 1px solid rgba(35, 67, 45, 0.12);
   box-shadow: 0 24px 80px rgba(67, 55, 37, 0.11);
@@ -154,13 +155,15 @@ button:disabled {
 }
 
 .calculator-card,
-.results-card {
+.results-card,
+.live-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
 }
 
 .section-heading h2,
-.results-header h2 {
+.results-header h2,
+.live-card-header h2 {
   font-size: 1.55rem;
   margin: 0;
 }
@@ -255,6 +258,82 @@ legend {
   background: #e3d2ad;
 }
 
+.live-card {
+  margin-bottom: 1rem;
+}
+
+.live-card-header {
+  align-items: start;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px);
+  margin-bottom: 1rem;
+}
+
+.live-card-header p {
+  color: #65705f;
+  line-height: 1.6;
+  margin: 0.45rem 0 0;
+}
+
+.freshness-badge {
+  background: #eef4e9;
+  border: 1px solid rgba(35, 67, 45, 0.12);
+  border-radius: 1.25rem;
+  padding: 1rem;
+}
+
+.freshness-badge span {
+  color: #65705f;
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.freshness-badge strong {
+  color: #23432d;
+  display: block;
+  margin-top: 0.25rem;
+}
+
+.live-search {
+  margin-bottom: 1rem;
+}
+
+.status-pill {
+  border-radius: 999px;
+  color: #23432d;
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.65rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-not_started {
+  background: #eee1c7;
+}
+
+.status-dressage {
+  background: #e6edf8;
+}
+
+.status-show_jumping {
+  background: #f4ecd9;
+}
+
+.status-cross_country {
+  background: #dfeede;
+}
+
+.status-final {
+  background: #d5ead4;
+}
+
 .empty-state {
   background: #f8f2e4;
   border: 1px dashed rgba(35, 67, 45, 0.25);
@@ -323,7 +402,8 @@ td span {
 
 @media (max-width: 900px) {
   .hero,
-  .workspace-grid {
+  .workspace-grid,
+  .live-card-header {
     grid-template-columns: 1fr;
   }
 

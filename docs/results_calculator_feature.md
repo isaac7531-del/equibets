@@ -35,6 +35,26 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Current-event live scoring flow
+
+The live scoring feature consumes `data/current_event_results.json`, which is a
+normalized snapshot produced by the refresh job after it searches official and
+public current-event feeds. Automation should:
+
+1. Track the last successful `collected_at` timestamp.
+2. Search active and planned sources for new current-event result records.
+3. Normalize every found start into the `EventingResult` fields.
+4. Add the live-only fields: `status`, optional `division`, and optional
+   `source_url`.
+5. Write the new snapshot to `data/current_event_results.json`.
+6. Use `new_results_since` when only fresh records should be scored.
+7. Use `pull_live_scoring_snapshot` to return the searched, deduplicated, ranked
+   leaderboard shown by the app.
+
+The app ranks current-event starts by lowest known penalties and uses phase
+status as a tiebreaker so more complete results appear ahead of earlier-phase
+scores with the same total.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a

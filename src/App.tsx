@@ -7,6 +7,14 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import {
+  formatFeedTimestamp,
+  formatLiveStatus,
+  liveFeedUpdatedAt,
+  liveScoredResults,
+  searchLiveResults,
+  sortLiveLeaderboard,
+} from './liveScoring';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -52,9 +60,14 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 export default function App() {
   const [form, setForm] = useState<FormState>(defaultFormState);
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [liveQuery, setLiveQuery] = useState('');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const liveLeaderboard = useMemo(
+    () => sortLiveLeaderboard(searchLiveResults(liveScoredResults, liveQuery)),
+    [liveQuery],
+  );
   const bestResult = sortedResults[0];
 
   const updateField = (field: keyof FormState, value: string) => {
@@ -134,6 +147,82 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+      </section>
+
+      <section className="live-card" aria-labelledby="live-results-heading">
+        <div className="live-card-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-results-heading">Live scoring</h2>
+            <p>
+              Search the latest pulled event feed for horse, rider, event, level, or country and rank starts by current
+              penalties.
+            </p>
+          </div>
+          <div className="freshness-badge" aria-live="polite">
+            <span>Feed refreshed</span>
+            <strong>{formatFeedTimestamp(liveFeedUpdatedAt)}</strong>
+          </div>
+        </div>
+
+        <label className="live-search">
+          Search live leaderboard
+          <input
+            value={liveQuery}
+            onChange={(event) => setLiveQuery(event.target.value)}
+            placeholder="Horse, rider, event, level, or country"
+          />
+        </label>
+
+        {liveLeaderboard.length === 0 ? (
+          <div className="empty-state">
+            <strong>No live results match this search yet.</strong>
+            <p>
+              Pull current-event records into <code>data/current_event_results.json</code> to populate this leaderboard.
+            </p>
+          </div>
+        ) : (
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Combination</th>
+                  <th>Event</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                  <th>Breakdown</th>
+                </tr>
+              </thead>
+              <tbody>
+                {liveLeaderboard.map((result, index) => (
+                  <tr key={result.id}>
+                    <td>#{index + 1}</td>
+                    <td>
+                      <strong>{result.horse}</strong>
+                      <span>{result.rider}</span>
+                    </td>
+                    <td>
+                      <strong>{result.eventName}</strong>
+                      <span>
+                        {result.date} / {result.division} / {result.country}
+                      </span>
+                    </td>
+                    <td>
+                      <span className={`status-pill status-${result.status}`}>{formatLiveStatus(result.status)}</span>
+                    </td>
+                    <td className="total-cell">{result.score.totalPenalties.toFixed(1)}</td>
+                    <td className="breakdown-cell">
+                      D {result.score.dressagePenalties.toFixed(1)} / SJ{' '}
+                      {result.score.showJumpingPenalties.toFixed(1)} / XC{' '}
+                      {(result.score.crossCountryJumpPenalties + result.score.crossCountryTimePenalties).toFixed(1)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">
