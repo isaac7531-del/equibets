@@ -35,6 +35,24 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Current-event live scoring flow
+
+Hourly or manual live scoring refreshes use the same source priority rules but
+limit the search to a small current-event window:
+
+1. Run `python3 -m equibets.live_scoring --refresh-fei` with the desired
+   `--on-date`, `--lookback-days`, and `--lookahead-days`.
+2. The command searches FEI calendar results for eventing competitions in that
+   window, follows event/result links, and merges normalized rows into
+   `data/fei_results.json`.
+3. Consolidated rows inside the window are grouped by event, date, level, and
+   country.
+4. Each group is ranked by lowest finishing score, with dressage and XC time as
+   deterministic tie-breakers.
+5. The command writes `data/live_scores.json` with `generated_at`,
+   `latest_collected_at`, source IDs, phase penalties, total penalties, and
+   rank for display in the application.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a
