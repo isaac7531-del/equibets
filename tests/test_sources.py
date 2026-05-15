@@ -32,6 +32,13 @@ class EventSourceTests(unittest.TestCase):
 
         self.assertEqual(source_ids, ["data_fei"])
 
+    def test_live_scoring_sources_are_active_for_current_regions(self):
+        europe_source_ids = [source.id for source in sources_for_region("europe", include_planned=False)]
+        uk_source_ids = [source.id for source in sources_for_region("uk", include_planned=False)]
+
+        self.assertIn("rechenstelle", europe_source_ids)
+        self.assertIn("eventingscores", uk_source_ids)
+
 
 if __name__ == "__main__":
     unittest.main()

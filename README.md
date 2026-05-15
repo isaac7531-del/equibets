@@ -5,6 +5,7 @@ Personal eventing results calculator, browser-based results tracker, and data so
 ## What it does
 
 - Calculates dressage, show jumping, cross-country jumping, and cross-country time penalties.
+- Shows a pulled current-events live scoring snapshot from public scoring sources.
 - Saves horse-and-rider results to local browser storage.
 - Ranks saved results from lowest total penalties to highest.
 - Tracks public event-results sources for FEI and national-event coverage.
@@ -17,6 +18,10 @@ likely finishing score at upcoming events.
 
 See `docs/results_calculator_feature.md` for the weekly update flow, user-score
 handling, and prediction surface.
+
+The current-events snapshot lives in `data/current_events.json`. It is searched
+and displayed in the website as a live scoring panel, with Python helpers in
+`equibets.current_events` for scheduled refresh and validation work.
 
 ## Website development
 

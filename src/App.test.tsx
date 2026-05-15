@@ -28,4 +28,19 @@ describe('App', () => {
     expect(screen.getByText('Juniper')).toBeInTheDocument();
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
   });
+
+  it('shows and filters pulled live scoring data', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /live scoring snapshot/i })).toBeInTheDocument();
+    expect(screen.getByText('Marbach Eventing International')).toBeInTheDocument();
+    expect(screen.getByText('Michael JUNG / fischerChipmunk FRH')).toBeInTheDocument();
+
+    await user.type(screen.getByLabelText(/search current scoring/i), 'gypsie');
+
+    expect(screen.getByText('Belsay International')).toBeInTheDocument();
+    expect(screen.getByText('Yasmin INGHAM / GYPSIE DU LOIR')).toBeInTheDocument();
+    expect(screen.queryByText('Marbach Eventing International')).not.toBeInTheDocument();
+  });
 });

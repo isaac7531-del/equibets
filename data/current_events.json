@@ -1,0 +1,148 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-15T10:02:00Z",
+  "summary": "Cron snapshot of public eventing scoring pages found for current May 2026 competitions.",
+  "events": [
+    {
+      "id": "belsay-international-cci4s-2026",
+      "name": "Belsay International",
+      "country": "GBR",
+      "region": "uk",
+      "level": "CCI4*-S",
+      "start_date": "2026-05-15",
+      "end_date": "2026-05-17",
+      "status": "live",
+      "source_id": "eventingscores",
+      "source_name": "EventingScores",
+      "source_url": "https://www.eventingscores.co.uk/uploads/events/2917/results_2917_66754.html?eventid=2917",
+      "last_checked_at": "2026-05-15T10:02:00Z",
+      "notes": "Source page reports auto-updating every 20 seconds. Snapshot includes leading CCI4*-S rows available during the cron run.",
+      "results": [
+        {
+          "place": "1st",
+          "start_number": 393,
+          "rider_name": "Yasmin INGHAM",
+          "horse_name": "GYPSIE DU LOIR",
+          "country": "GBR",
+          "dressage_score": 28.8,
+          "show_jumping_penalties": null,
+          "cross_country_jump_penalties": null,
+          "cross_country_time_penalties": null,
+          "total_penalties": 28.8,
+          "phase": "dressage"
+        },
+        {
+          "place": "1st",
+          "start_number": 380,
+          "rider_name": "Gemma STEVENS",
+          "horse_name": "CHILLI MORNING IV",
+          "country": "GBR",
+          "dressage_score": 28.8,
+          "show_jumping_penalties": null,
+          "cross_country_jump_penalties": null,
+          "cross_country_time_penalties": null,
+          "total_penalties": 28.8,
+          "phase": "dressage"
+        },
+        {
+          "place": "3rd",
+          "start_number": 361,
+          "rider_name": "Yasmin INGHAM",
+          "horse_name": "GOLIATH DU LOIR",
+          "country": "GBR",
+          "dressage_score": 29.9,
+          "show_jumping_penalties": null,
+          "cross_country_jump_penalties": null,
+          "cross_country_time_penalties": null,
+          "total_penalties": 29.9,
+          "phase": "dressage"
+        },
+        {
+          "place": "4th",
+          "start_number": 414,
+          "rider_name": "Laura COLLETT",
+          "horse_name": "HESTER",
+          "country": "GBR",
+          "dressage_score": 30.5,
+          "show_jumping_penalties": null,
+          "cross_country_jump_penalties": null,
+          "cross_country_time_penalties": null,
+          "total_penalties": 30.5,
+          "phase": "dressage"
+        },
+        {
+          "place": "5th",
+          "start_number": 377,
+          "rider_name": "Yasmin INGHAM",
+          "horse_name": "KINDA CORVETTE",
+          "country": "GBR",
+          "dressage_score": 31.8,
+          "show_jumping_penalties": null,
+          "cross_country_jump_penalties": null,
+          "cross_country_time_penalties": null,
+          "total_penalties": 31.8,
+          "phase": "dressage"
+        }
+      ]
+    },
+    {
+      "id": "marbach-ccio4-nc-s-2026",
+      "name": "Marbach Eventing International",
+      "country": "GER",
+      "region": "europe",
+      "level": "CCIO4*-NC-S",
+      "start_date": "2026-05-14",
+      "end_date": "2026-05-17",
+      "status": "live",
+      "source_id": "rechenstelle",
+      "source_name": "Rechenstelle",
+      "source_url": "https://www.rechenstelle.de/en/agenda/2026/marbach/",
+      "last_checked_at": "2026-05-15T10:02:00Z",
+      "notes": "FEI Nations Cup qualifier. Snapshot seeded from the official scoring hub plus public event coverage during the dressage phase.",
+      "results": [
+        {
+          "place": "1st",
+          "start_number": null,
+          "rider_name": "Michael JUNG",
+          "horse_name": "fischerChipmunk FRH",
+          "country": "GER",
+          "dressage_score": 21.2,
+          "show_jumping_penalties": null,
+          "cross_country_jump_penalties": null,
+          "cross_country_time_penalties": null,
+          "total_penalties": 21.2,
+          "phase": "dressage"
+        },
+        {
+          "place": "2nd",
+          "start_number": null,
+          "rider_name": "Felix VOGG",
+          "horse_name": "Colero",
+          "country": "SUI",
+          "dressage_score": 26.4,
+          "show_jumping_penalties": null,
+          "cross_country_jump_penalties": null,
+          "cross_country_time_penalties": null,
+          "total_penalties": 26.4,
+          "phase": "dressage"
+        }
+      ]
+    },
+    {
+      "id": "millstreet-international-2026",
+      "name": "Millstreet International",
+      "country": "IRL",
+      "region": "europe",
+      "level": "CCI4*-S, CCI3*-S, CCI2*-S, CCIYH2*-S, CCI1*-Intro, CCIP2-S",
+      "start_date": "2026-05-19",
+      "end_date": "2026-05-24",
+      "status": "upcoming",
+      "source_id": "rechenstelle",
+      "source_name": "Rechenstelle",
+      "source_url": "https://rechenstelle.de/en/agenda/2026/millstreet/",
+      "last_checked_at": "2026-05-15T10:02:00Z",
+      "notes": "Upcoming international event found while searching current eventing scoring hubs; live rows are not published yet.",
+      "results": []
+    }
+  ]
+}

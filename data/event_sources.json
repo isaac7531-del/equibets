@@ -33,6 +33,53 @@
       "notes": "Primary eventing source. Use before national sources whenever a result appears in the FEI database."
     },
     {
+      "id": "rechenstelle",
+      "name": "Rechenstelle live scoring",
+      "priority": 5,
+      "scope": "international",
+      "regions": [
+        "europe"
+      ],
+      "countries": [
+        "GER",
+        "IRL"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "fei_international"
+      ],
+      "source_type": "live_scoring_provider",
+      "base_url": "https://www.rechenstelle.de/",
+      "status": "active",
+      "notes": "Current-event scoring hub used for FEI international event snapshots where FEI standings are not yet published."
+    },
+    {
+      "id": "eventingscores",
+      "name": "EventingScores live results",
+      "priority": 15,
+      "scope": "national",
+      "regions": [
+        "uk"
+      ],
+      "countries": [
+        "GBR"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national",
+        "regional",
+        "fei_international"
+      ],
+      "source_type": "live_scoring_provider",
+      "base_url": "https://www.eventingscores.co.uk/",
+      "status": "active",
+      "notes": "Auto-updating live scoring source for UK events and international sections hosted on EventingScores."
+    },
+    {
       "id": "europe_national_federations",
       "name": "European national federation results",
       "priority": 10,

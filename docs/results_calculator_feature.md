@@ -35,6 +35,16 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Current-events live scoring
+
+Hourly automation can also update `data/current_events.json` with public scoring
+links found for competitions that are currently running or about to start. The
+website displays this snapshot separately from saved personal results so users
+can search live rows by competition, rider, horse, level, region, or scoring
+provider. Partial live rows should keep unknown phase penalties as `null` and
+surface the provider's total as the best available live score until final
+official results can be consolidated.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a

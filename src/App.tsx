@@ -7,6 +7,14 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import {
+  currentEventsSnapshot,
+  filterCurrentEvents,
+  formatEventDateRange,
+  formatScore,
+  liveEventsWithScores,
+  topLiveResults,
+} from './liveEvents';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -52,9 +60,12 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 export default function App() {
   const [form, setForm] = useState<FormState>(defaultFormState);
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [liveSearch, setLiveSearch] = useState('');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const filteredCurrentEvents = useMemo(() => filterCurrentEvents(liveSearch), [liveSearch]);
+  const liveScoreEventCount = liveEventsWithScores().length;
   const bestResult = sortedResults[0];
 
   const updateField = (field: keyof FormState, value: string) => {
@@ -100,8 +111,8 @@ export default function App() {
           <p className="eyebrow">Equibets</p>
           <h1>Eventing score calculator and results tracker</h1>
           <p className="hero-copy">
-            Capture dressage, show jumping, and cross-country penalties in one place, then keep a local record of
-            horse-and-rider results.
+            Capture dressage, show jumping, and cross-country penalties in one place, follow current public scoring,
+            then keep a local record of horse-and-rider results.
           </p>
         </div>
         <div className="hero-card" aria-live="polite">
@@ -134,6 +145,80 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Live pulled</span>
+          <strong>{liveScoreEventCount}</strong>
+          <p>current events with scores</p>
+        </article>
+      </section>
+
+      <section className="live-events-card" aria-labelledby="current-events-heading">
+        <div className="live-events-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="current-events-heading">Live scoring snapshot</h2>
+            <p>
+              Pulled {new Date(currentEventsSnapshot.generated_at).toLocaleString()} from public scoring sources.
+            </p>
+          </div>
+          <label>
+            Search current scoring
+            <input
+              value={liveSearch}
+              onChange={(event) => setLiveSearch(event.target.value)}
+              placeholder="Filter by rider, horse, or competition"
+            />
+          </label>
+        </div>
+
+        {filteredCurrentEvents.length === 0 ? (
+          <div className="empty-state">
+            <strong>No current scoring matches.</strong>
+            <p>Try a rider, horse, competition, level, or source name.</p>
+          </div>
+        ) : (
+          <div className="live-event-grid">
+            {filteredCurrentEvents.map((event) => {
+              const topResults = topLiveResults(event);
+
+              return (
+                <article className="live-event" key={event.id}>
+                  <div className="live-event-title">
+                    <div>
+                      <span className={`status-badge status-${event.status}`}>{event.status}</span>
+                      <h3>{event.name}</h3>
+                      <p>
+                        {event.level} / {event.country} / {formatEventDateRange(event)}
+                      </p>
+                    </div>
+                    <a href={event.source_url} target="_blank" rel="noreferrer">
+                      {event.source_name}
+                    </a>
+                  </div>
+
+                  {topResults.length === 0 ? (
+                    <p className="pending-results">Live rows are not published yet.</p>
+                  ) : (
+                    <ol className="live-results-list">
+                      {topResults.map((result) => (
+                        <li key={`${event.id}-${result.start_number ?? result.rider_name}-${result.horse_name}`}>
+                          <span>{result.place}</span>
+                          <strong>{formatScore(result.total_penalties)}</strong>
+                          <p>
+                            {result.rider_name} / {result.horse_name}
+                          </p>
+                          <small>
+                            {result.phase} {result.country}
+                          </small>
+                        </li>
+                      ))}
+                    </ol>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">
