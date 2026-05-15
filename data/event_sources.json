@@ -148,6 +148,32 @@
       "notes": "High-priority national-event source for USA coverage."
     },
     {
+      "id": "startbox_eventing_scores",
+      "name": "StartBox/EventingScores live scoring",
+      "priority": 55,
+      "scope": "national",
+      "regions": [
+        "usa",
+        "canada"
+      ],
+      "countries": [
+        "USA",
+        "CAN"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national",
+        "regional",
+        "schooling"
+      ],
+      "source_type": "live_scoring_platform",
+      "base_url": "https://eventing.startboxscoring.com/",
+      "status": "active",
+      "notes": "Hourly current-event discovery source for StartBox and EventingScores leader tables."
+    },
+    {
       "id": "global_national_federations",
       "name": "All national federation results",
       "priority": 90,
