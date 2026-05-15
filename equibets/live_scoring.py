@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import html
 from html.parser import HTMLParser
 import json
 import re
@@ -465,6 +466,11 @@ def _first_match(text: str, pattern: str) -> str | tuple[str, ...] | None:
 
 def _clean_text(value: str) -> str:
     value = re.sub(r"\[[^\]]+\]\([^)]+\)", "", value)
+    for _ in range(3):
+        unescaped = html.unescape(value)
+        if unescaped == value:
+            break
+        value = unescaped
     return re.sub(r"\s+", " ", value).strip()
 
 
