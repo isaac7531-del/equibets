@@ -15,8 +15,8 @@ The calculator is designed as a website/application feature where users can add
 their own scores, view consolidated public results, and estimate a combination's
 likely finishing score at upcoming events.
 
-See `docs/results_calculator_feature.md` for the weekly update flow, user-score
-handling, and prediction surface.
+See `docs/results_calculator_feature.md` for the public-data update flow,
+user-score handling, and prediction surface.
 
 ## Website development
 
@@ -40,6 +40,14 @@ Install the package metadata and declared dependencies with:
 python3 -m pip install -e .
 ```
 
+The FEI browser collector can use Playwright when `data.fei.org` requires its
+JavaScript challenge:
+
+```bash
+python3 -m pip install -r requirements.txt
+python3 -m playwright install chromium
+```
+
 ## Event results source priority
 
 The initial source registry lives in `data/event_sources.json` and is loaded with
@@ -57,3 +65,32 @@ Run the source registry checks with:
 ```bash
 python3 -m unittest discover -s tests
 ```
+
+## Live public scoring update
+
+Use the FEI collector to search current FEI eventing calendar results, pull
+result pages, and merge normalized scores into `data/fei_results.json`:
+
+```bash
+python3 -m equibets.fei_bot \
+  --start-date 2026-05-08 \
+  --end-date 2026-05-17 \
+  --output data/fei_results.json \
+  --raw-dir data/raw/fei \
+  --storage-state data/fei_state.json
+```
+
+Then generate the live scoring feed that ranks each current event by lowest
+penalty score:
+
+```bash
+python3 -m equibets.live_scoring \
+  --results data/fei_results.json \
+  --output data/live_scoring.json \
+  --lookback-days 7 \
+  --lookahead-days 2
+```
+
+The hourly automation can run both commands with a rolling date window. The
+collector stores raw FEI HTML for auditability and keeps official `data_fei`
+results ahead of duplicate user-entered scores during consolidation.

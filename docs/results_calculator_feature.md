@@ -14,7 +14,8 @@ shows how horse/rider combinations are performing before upcoming events.
 
 ## Data consolidation
 
-1. Refresh public data weekly from `data/event_sources.json`.
+1. Refresh public data from `data/event_sources.json`; current-event scoring can
+   run hourly while slower national backfills can remain weekly.
 2. Normalize each result into `EventingResult`.
 3. Deduplicate by combination, event, date, and level.
 4. Keep the lowest `source_priority` when duplicates exist, so `data_fei`
@@ -25,15 +26,21 @@ shows how horse/rider combinations are performing before upcoming events.
 This gives users a complete working view without letting unverified manual data
 override official results.
 
-## Weekly update flow
+## Public update flow
 
-1. Pull new FEI results from `data.fei.org`.
-2. Pull national-event updates from the priority regions.
-3. Pull global national-federation results as a backfill.
-4. Store raw source payloads for auditability.
-5. Normalize records into the common result table.
-6. Re-run consolidation and prediction calculations.
-7. Show the latest `collected_at` timestamp in the website UI.
+1. Search FEI's eventing calendar on `data.fei.org` for a rolling current-event
+   window.
+2. Pull result pages for discovered events and normalize live phase scores into
+   `EventingResult`.
+3. Pull national-event updates from the priority regions when FEI data does not
+   cover the start.
+4. Pull global national-federation results as a backfill.
+5. Store raw source payloads for auditability.
+6. Merge records into the common result table and re-run consolidation.
+7. Generate `data/live_scoring.json` from current events, ranked by lowest
+   penalty score.
+8. Re-run prediction calculations and show the latest `collected_at` timestamp
+   in the website UI.
 
 ## Prediction logic
 
