@@ -56,6 +56,29 @@
       "notes": "Discover and connect national federation calendars and result portals for European FEI member nations."
     },
     {
+      "id": "eventing_scores",
+      "name": "EventingScores live results",
+      "priority": 15,
+      "scope": "national",
+      "regions": [
+        "uk"
+      ],
+      "countries": [
+        "GBR"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "source_type": "live_results_portal",
+      "base_url": "https://www.eventingscores.co.uk/",
+      "status": "active",
+      "notes": "Public EventingScores calendar and live results portal for current-event scoring refreshes."
+    },
+    {
       "id": "british_eventing",
       "name": "British Eventing results",
       "priority": 20,
