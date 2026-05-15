@@ -1,6 +1,10 @@
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import (
+    load_event_sources,
+    sources_for_country,
+    sources_for_region,
+)
 
 
 class EventSourceTests(unittest.TestCase):
@@ -27,8 +31,43 @@ class EventSourceTests(unittest.TestCase):
                 self.assertIn(national_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
 
+    def test_global_national_source_covers_all_countries_and_levels(self):
+        global_source = next(
+            source
+            for source in load_event_sources()
+            if source.id == "global_national_federations"
+        )
+
+        self.assertIn("all_countries", global_source.countries)
+        self.assertIn("all_eventing_levels", global_source.event_levels)
+
+    def test_sources_for_country_includes_all_country_national_backfill(self):
+        source_ids = [
+            source.id for source in sources_for_country("can", level="grassroots")
+        ]
+
+        self.assertEqual(source_ids, ["global_national_federations"])
+
+    def test_sources_for_country_prefers_country_source_before_global_backfill(self):
+        source_ids = [
+            source.id for source in sources_for_country("GBR", level="regional")
+        ]
+
+        self.assertEqual(
+            source_ids, ["british_eventing", "global_national_federations"]
+        )
+
+    def test_region_level_filter_excludes_sources_without_level_coverage(self):
+        source_ids = [
+            source.id for source in sources_for_region("usa", level="starter")
+        ]
+
+        self.assertEqual(source_ids, ["usea", "global_national_federations"])
+
     def test_active_only_filter_keeps_current_primary_source(self):
-        source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
+        source_ids = [
+            source.id for source in sources_for_region("usa", include_planned=False)
+        ]
 
         self.assertEqual(source_ids, ["data_fei"])
 
