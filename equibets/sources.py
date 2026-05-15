@@ -13,6 +13,57 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+COUNTRY_WILDCARDS = {"all_countries", "all_fei_member_nations"}
+LEVEL_WILDCARDS = {"all_eventing_levels"}
+COUNTRY_GROUPS = {
+    "all_fei_europe_member_nations": {
+        "ALB",
+        "AND",
+        "ARM",
+        "AUT",
+        "AZE",
+        "BEL",
+        "BIH",
+        "BUL",
+        "CRO",
+        "CYP",
+        "CZE",
+        "DEN",
+        "ESP",
+        "EST",
+        "FIN",
+        "FRA",
+        "GBR",
+        "GEO",
+        "GER",
+        "GRE",
+        "HUN",
+        "IRL",
+        "ISL",
+        "ISR",
+        "ITA",
+        "LAT",
+        "LIE",
+        "LTU",
+        "LUX",
+        "MDA",
+        "MKD",
+        "MLT",
+        "MON",
+        "NED",
+        "NOR",
+        "POL",
+        "POR",
+        "ROU",
+        "SMR",
+        "SRB",
+        "SUI",
+        "SVK",
+        "SWE",
+        "TUR",
+        "UKR",
+    },
+}
 
 
 @dataclass(frozen=True)
@@ -66,12 +117,13 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
+    normalized_region = _normalize_slug(region)
     statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
@@ -79,7 +131,58 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+        and _covers_level(source, level)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = _normalize_country(country)
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _covers_country(source, normalized_country)
+        and _covers_level(source, level)
+    ]
+
+
+def _covers_country(source: EventSource, normalized_country: str) -> bool:
+    countries = {_normalize_country(country) for country in source.countries}
+    wildcards = {_normalize_country(country) for country in COUNTRY_WILDCARDS}
+    return (
+        bool(countries & wildcards)
+        or normalized_country in countries
+        or any(
+            normalized_country in COUNTRY_GROUPS.get(country.lower(), set())
+            for country in countries
+        )
+    )
+
+
+def _covers_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    levels = {_normalize_slug(source_level) for source_level in source.event_levels}
+    return bool(levels & LEVEL_WILDCARDS) or _normalize_slug(level) in levels
+
+
+def _normalize_country(country: str) -> str:
+    return _normalize_slug(country).upper()
+
+
+def _normalize_slug(value: str) -> str:
+    return value.strip().lower().replace("-", "_").replace(" ", "_")
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
