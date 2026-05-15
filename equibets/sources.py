@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+COUNTRY_WILDCARDS = frozenset({"ALL_COUNTRIES", "ALL_FEI_MEMBER_NATIONS"})
+EVENT_LEVEL_WILDCARDS = frozenset({"all_eventing_levels"})
 
 
 @dataclass(frozen=True)
@@ -66,6 +68,7 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
@@ -78,7 +81,29 @@ def sources_for_region(
         source
         for source in load_event_sources(path)
         if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        and _covers_region(source, normalized_region)
+        and _covers_level(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional event level."""
+
+    normalized_country = country.upper().replace(" ", "_")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _covers_country(source, normalized_country)
+        and _covers_level(source, level)
     ]
 
 
@@ -114,3 +139,28 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _covers_region(source: EventSource, normalized_region: str) -> bool:
+    return "global" in source.regions or normalized_region in source.regions
+
+
+def _covers_country(source: EventSource, normalized_country: str) -> bool:
+    countries = {_normalize_country(country) for country in source.countries}
+    return bool(COUNTRY_WILDCARDS & countries) or normalized_country in countries
+
+
+def _covers_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    levels = {_normalize_level(item) for item in source.event_levels}
+    return bool(EVENT_LEVEL_WILDCARDS & levels) or _normalize_level(level) in levels
+
+
+def _normalize_country(country: str) -> str:
+    return country.upper().replace(" ", "_")
+
+
+def _normalize_level(level: str) -> str:
+    return level.lower().replace(" ", "_").replace("-", "_")
