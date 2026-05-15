@@ -1,4 +1,4 @@
-import { FormEvent, useMemo, useState } from 'react';
+import { FormEvent, useEffect, useMemo, useState } from 'react';
 import {
   calculateScore,
   formatSeconds,
@@ -24,6 +24,36 @@ type FormState = {
   notes: string;
 };
 
+type LiveScoreResult = {
+  rank: number;
+  rider_name: string;
+  horse_name: string;
+  total_penalties: number;
+  dressage_score: number;
+  show_jumping_penalties: number;
+  cross_country_jump_penalties: number;
+  cross_country_time_penalties: number;
+};
+
+type LiveScoreEvent = {
+  event_name: string;
+  event_date: string;
+  level: string;
+  country: string;
+  result_count: number;
+  results: LiveScoreResult[];
+};
+
+type LiveScoreReport = {
+  generated_at: string;
+  latest_collected_at: string | null;
+  event_count: number;
+  result_count: number;
+  events: LiveScoreEvent[];
+};
+
+type LiveScoreStatus = 'loading' | 'ready' | 'empty' | 'error';
+
 const defaultFormState: FormState = {
   rider: '',
   horse: '',
@@ -41,6 +71,20 @@ const defaultFormState: FormState = {
 
 const numberValue = (value: string) => Number.parseFloat(value || '0');
 
+const isLiveScoreReport = (value: unknown): value is LiveScoreReport => {
+  if (!value || typeof value !== 'object') {
+    return false;
+  }
+
+  const candidate = value as Partial<LiveScoreReport>;
+  return (
+    typeof candidate.generated_at === 'string' &&
+    typeof candidate.event_count === 'number' &&
+    typeof candidate.result_count === 'number' &&
+    Array.isArray(candidate.events)
+  );
+};
+
 const createScoreInput = (form: FormState): EventingScoreInput => ({
   dressagePercentage: numberValue(form.dressagePercentage),
   showJumpingPenalties: numberValue(form.showJumpingPenalties),
@@ -52,10 +96,55 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 export default function App() {
   const [form, setForm] = useState<FormState>(defaultFormState);
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [liveScoreReport, setLiveScoreReport] = useState<LiveScoreReport | null>(null);
+  const [liveScoreStatus, setLiveScoreStatus] = useState<LiveScoreStatus>('loading');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
   const bestResult = sortedResults[0];
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadLiveScores = async () => {
+      if (typeof fetch === 'undefined') {
+        setLiveScoreStatus('empty');
+        return;
+      }
+
+      try {
+        const response = await fetch('/live_scores.json', { cache: 'no-store' });
+        if (cancelled) {
+          return;
+        }
+        if (response.status === 404) {
+          setLiveScoreStatus('empty');
+          return;
+        }
+        if (!response.ok) {
+          throw new Error(`Live score feed returned ${response.status}`);
+        }
+
+        const payload = (await response.json()) as unknown;
+        if (!isLiveScoreReport(payload)) {
+          throw new Error('Live score feed is not in the expected format');
+        }
+
+        setLiveScoreReport(payload);
+        setLiveScoreStatus('ready');
+      } catch {
+        if (!cancelled) {
+          setLiveScoreStatus('error');
+        }
+      }
+    };
+
+    void loadLiveScores();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -134,6 +223,81 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+      </section>
+
+      <section className="live-card" aria-labelledby="live-scores-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-scores-heading">Live scoring</h2>
+          </div>
+          {liveScoreReport ? (
+            <span className="freshness-badge">
+              Updated {new Date(liveScoreReport.generated_at).toLocaleString()}
+            </span>
+          ) : null}
+        </div>
+
+        {liveScoreStatus === 'loading' ? (
+          <p className="feed-state">Checking for published live scores...</p>
+        ) : null}
+        {liveScoreStatus === 'empty' ? (
+          <p className="feed-state">No live score feed has been published yet.</p>
+        ) : null}
+        {liveScoreStatus === 'error' ? (
+          <p className="feed-state">Live scores are temporarily unavailable.</p>
+        ) : null}
+        {liveScoreStatus === 'ready' && liveScoreReport?.result_count === 0 ? (
+          <p className="feed-state">No current-event results were found in the latest refresh window.</p>
+        ) : null}
+
+        {liveScoreStatus === 'ready' && liveScoreReport && liveScoreReport.result_count > 0 ? (
+          <div className="live-events">
+            {liveScoreReport.events.map((event) => (
+              <article key={`${event.event_date}-${event.event_name}-${event.level}`}>
+                <div>
+                  <span>{event.event_date}</span>
+                  <h3>{event.event_name}</h3>
+                  <p>
+                    {event.level} / {event.country} / {event.result_count} result
+                    {event.result_count === 1 ? '' : 's'}
+                  </p>
+                </div>
+                <div className="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Rank</th>
+                        <th>Combination</th>
+                        <th>Total</th>
+                        <th>Breakdown</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {event.results.map((result) => (
+                        <tr key={`${event.event_name}-${result.rank}-${result.rider_name}-${result.horse_name}`}>
+                          <td>#{result.rank}</td>
+                          <td>
+                            <strong>{result.horse_name}</strong>
+                            <span>{result.rider_name}</span>
+                          </td>
+                          <td className="total-cell">{result.total_penalties.toFixed(1)}</td>
+                          <td className="breakdown-cell">
+                            D {result.dressage_score.toFixed(1)} / SJ {result.show_jumping_penalties.toFixed(1)} /
+                            XC{' '}
+                            {(
+                              result.cross_country_jump_penalties + result.cross_country_time_penalties
+                            ).toFixed(1)}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+            ))}
+          </div>
+        ) : null}
       </section>
 
       <section className="workspace-grid">
