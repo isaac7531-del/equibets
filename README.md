@@ -8,6 +8,8 @@ Personal eventing results calculator, browser-based results tracker, and data so
 - Saves horse-and-rider results to local browser storage.
 - Ranks saved results from lowest total penalties to highest.
 - Tracks public event-results sources for FEI and national-event coverage.
+- Pulls a structured current-events feed into the website for live/recent
+  scoring and upcoming event links.
 
 ## Results calculator feature
 
@@ -44,6 +46,11 @@ python3 -m pip install -e .
 
 The initial source registry lives in `data/event_sources.json` and is loaded with
 `equibets.sources`.
+
+The current-events scoring feed lives in `data/current_events.json`. It is
+designed to be refreshed by the hourly automation from public live scoring and
+official results pages, then rendered in the website as the live current-events
+leaderboard.
 
 1. `data_fei` (`https://data.fei.org/`) is the primary source for eventing
    results across all FEI member nations.

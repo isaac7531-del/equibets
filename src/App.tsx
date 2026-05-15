@@ -7,6 +7,14 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import {
+  currentEventFeed,
+  getLiveScoringSummary,
+  searchLiveScores,
+  sortLiveScoresByBest,
+  sourceById,
+  upcomingCurrentEvents,
+} from './liveScoring';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -52,9 +60,16 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 export default function App() {
   const [form, setForm] = useState<FormState>(defaultFormState);
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [liveQuery, setLiveQuery] = useState('');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const liveSummary = useMemo(() => getLiveScoringSummary(currentEventFeed), []);
+  const liveScores = useMemo(
+    () => sortLiveScoresByBest(searchLiveScores(currentEventFeed.events, liveQuery)).slice(0, 10),
+    [liveQuery],
+  );
+  const upcomingEvents = useMemo(() => upcomingCurrentEvents(currentEventFeed.events).slice(0, 6), []);
   const bestResult = sortedResults[0];
 
   const updateField = (field: keyof FormState, value: string) => {
@@ -134,6 +149,132 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+      </section>
+
+      <section className="live-card" aria-labelledby="live-scoring-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-scoring-heading">Live current-events scoring</h2>
+            <p className="section-copy">
+              Pulled from public current-event feeds and official results. Last refreshed{' '}
+              {liveSummary.collectedAt.replace('T', ' ').replace('Z', ' UTC')}.
+            </p>
+          </div>
+          <a className="source-link" href={currentEventFeed.sources[0].url} target="_blank" rel="noreferrer">
+            Open source feed
+          </a>
+        </div>
+
+        <div className="live-summary" aria-label="Current event summary">
+          <article>
+            <span>Result rows</span>
+            <strong>{liveSummary.resultCount}</strong>
+            <p>{liveSummary.eventsWithResults} events scored</p>
+          </article>
+          <article>
+            <span>Upcoming</span>
+            <strong>{liveSummary.upcomingEventCount}</strong>
+            <p>{liveSummary.windowLabel}</p>
+          </article>
+          <article>
+            <span>Best pulled score</span>
+            <strong>{liveSummary.bestScore ? liveSummary.bestScore.totalPenalties.toFixed(1) : '--'}</strong>
+            <p>
+              {liveSummary.bestScore
+                ? `${liveSummary.bestScore.horse} / ${liveSummary.bestScore.rider}`
+                : 'Waiting for live results'}
+            </p>
+          </article>
+        </div>
+
+        <div className="live-layout">
+          <section aria-labelledby="live-results-heading">
+            <div className="live-toolbar">
+              <h3 id="live-results-heading">Pulled result leaderboard</h3>
+              <label>
+                Filter live scores
+                <input
+                  value={liveQuery}
+                  onChange={(event) => setLiveQuery(event.target.value)}
+                  placeholder="Try Paloma, Badminton, or Training"
+                />
+              </label>
+            </div>
+
+            {liveScores.length === 0 ? (
+              <div className="empty-state">
+                <strong>No current-event scores match that filter.</strong>
+                <p>Clear the filter to see the latest pulled results.</p>
+              </div>
+            ) : (
+              <div className="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Total</th>
+                      <th>Combination</th>
+                      <th>Event</th>
+                      <th>Phase penalties</th>
+                      <th>Source</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {liveScores.map((result) => {
+                      const source = sourceById(currentEventFeed, result.sourceId);
+
+                      return (
+                        <tr key={result.id}>
+                          <td className="total-cell">{result.totalPenalties.toFixed(1)}</td>
+                          <td>
+                            <strong>{result.horse}</strong>
+                            <span>{result.rider}</span>
+                          </td>
+                          <td>
+                            <strong>{result.eventName}</strong>
+                            <span>
+                              {result.division} / {result.eventDateLabel}
+                            </span>
+                          </td>
+                          <td className="breakdown-cell">
+                            D {result.dressage_penalties.toFixed(1)} / XC{' '}
+                            {(
+                              result.cross_country_jump_penalties + result.cross_country_time_penalties
+                            ).toFixed(1)}{' '}
+                            / SJ{' '}
+                            {(
+                              result.show_jumping_jump_penalties + result.show_jumping_time_penalties
+                            ).toFixed(1)}
+                          </td>
+                          <td>
+                            <a className="inline-source-link" href={result.scoringUrl} target="_blank" rel="noreferrer">
+                              {source?.name ?? 'Result source'}
+                            </a>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </section>
+
+          <aside className="upcoming-card" aria-labelledby="upcoming-events-heading">
+            <h3 id="upcoming-events-heading">Next watched events</h3>
+            <div className="upcoming-list">
+              {upcomingEvents.map((event) => (
+                <a key={event.id} href={event.scoring_url} target="_blank" rel="noreferrer">
+                  <strong>{event.name}</strong>
+                  <span>
+                    {event.date_label} / {event.location}
+                  </span>
+                  <em>{event.status}</em>
+                </a>
+              ))}
+            </div>
+          </aside>
+        </div>
       </section>
 
       <section className="workspace-grid">

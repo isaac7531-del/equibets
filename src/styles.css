@@ -77,6 +77,13 @@ button:disabled {
   max-width: 680px;
 }
 
+.section-copy {
+  color: #65705f;
+  line-height: 1.6;
+  margin: 0.5rem 0 0;
+  max-width: 720px;
+}
+
 .eyebrow {
   color: #956d26;
   font-size: 0.76rem;
@@ -88,6 +95,9 @@ button:disabled {
 
 .hero-card,
 .dashboard article,
+.live-card,
+.live-summary article,
+.upcoming-card,
 .calculator-card,
 .results-card {
   background: rgba(255, 252, 245, 0.88);
@@ -144,6 +154,114 @@ button:disabled {
   font-size: 2rem;
   letter-spacing: -0.04em;
   margin-top: 0.2rem;
+}
+
+.live-card {
+  border-radius: 1.8rem;
+  margin-bottom: 1rem;
+  padding: 1.35rem;
+}
+
+.source-link,
+.inline-source-link {
+  color: #23432d;
+  font-weight: 900;
+}
+
+.source-link {
+  background: #eee1c7;
+  border-radius: 999px;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.live-summary {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 1rem 0;
+}
+
+.live-summary article,
+.upcoming-card {
+  border-radius: 1.25rem;
+  padding: 1rem;
+}
+
+.live-summary span {
+  color: #65705f;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.live-summary strong {
+  color: #23432d;
+  display: block;
+  font-size: 2.15rem;
+  letter-spacing: -0.05em;
+  margin-top: 0.15rem;
+}
+
+.live-summary p {
+  color: #65705f;
+  margin: 0.2rem 0 0;
+}
+
+.live-layout {
+  align-items: start;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.34fr);
+}
+
+.live-toolbar {
+  align-items: end;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+
+.live-toolbar h3,
+.upcoming-card h3 {
+  margin: 0;
+}
+
+.live-toolbar label {
+  min-width: 260px;
+}
+
+.upcoming-list {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.upcoming-list a {
+  background: #f8f2e4;
+  border: 1px solid rgba(35, 67, 45, 0.1);
+  border-radius: 1rem;
+  color: #23432d;
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.8rem;
+  text-decoration: none;
+}
+
+.upcoming-list span {
+  color: #65705f;
+  font-size: 0.84rem;
+}
+
+.upcoming-list em {
+  color: #956d26;
+  font-size: 0.74rem;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .workspace-grid {
@@ -323,12 +441,19 @@ td span {
 
 @media (max-width: 900px) {
   .hero,
+  .live-layout,
   .workspace-grid {
     grid-template-columns: 1fr;
   }
 
-  .dashboard {
+  .dashboard,
+  .live-summary {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .live-toolbar {
+    align-items: stretch;
+    display: grid;
   }
 }
 
@@ -338,8 +463,18 @@ td span {
   }
 
   .dashboard,
+  .live-summary,
   .form-grid,
   .time-grid {
     grid-template-columns: 1fr;
+  }
+
+  .results-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .source-link {
+    text-align: center;
   }
 }

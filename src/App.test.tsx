@@ -28,4 +28,13 @@ describe('App', () => {
     expect(screen.getByText('Juniper')).toBeInTheDocument();
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
   });
+
+  it('shows pulled current-event live scores', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /live current-events scoring/i })).toBeInTheDocument();
+    expect(screen.getByRole('cell', { name: '20.9' })).toBeInTheDocument();
+    expect(screen.getByText('Paloma')).toBeInTheDocument();
+    expect(screen.getByText(/Lynnleigh Farm May 16, 2026 Schooling 2-Phase/)).toBeInTheDocument();
+  });
 });

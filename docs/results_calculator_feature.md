@@ -35,6 +35,17 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Hourly current-events scoring flow
+
+The hourly automation can refresh `data/current_events.json` independently of
+the deeper weekly result consolidation. This feed is intentionally narrow:
+
+1. Search public live scoring/result pages for events inside the current window.
+2. Record source metadata and official scoring URLs for auditability.
+3. Normalize available phase penalties into live result rows.
+4. Keep upcoming events even when only entries or times are available.
+5. Render the latest pulled scores and upcoming watched events in the website UI.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a

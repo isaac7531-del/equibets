@@ -1,0 +1,332 @@
+{
+  "version": 1,
+  "collected_at": "2026-05-15T03:03:00Z",
+  "query_window": {
+    "starts_on": "2026-05-09",
+    "ends_on": "2026-05-31",
+    "description": "Current public eventing results and upcoming events discovered from live scoring/result sources."
+  },
+  "sources": [
+    {
+      "id": "startbox_2026_archive",
+      "name": "StartBox Scoring 2026 current events archive",
+      "url": "https://eventing.startboxscoring.com/archives.php?Year=2026",
+      "source_type": "live_scoring_archive"
+    },
+    {
+      "id": "usea_waredaca_may_2026",
+      "name": "USEA Waredaca H.T. (May 2026) results",
+      "url": "https://useventing.com/events-competitions/resources/results/item?event=18973",
+      "source_type": "official_results"
+    },
+    {
+      "id": "badminton_final_2026",
+      "name": "Badminton Horse Trials 2026 final results",
+      "url": "https://www.badminton-horse.co.uk/final-results-2026/",
+      "source_type": "official_results"
+    }
+  ],
+  "events": [
+    {
+      "id": "waredaca-ht-may-2026",
+      "name": "Waredaca H.T. (May 2026)",
+      "date_label": "May 2026",
+      "start_date": "2026-05-09",
+      "end_date": "2026-05-10",
+      "location": "Laytonsville, MD, US",
+      "country": "USA",
+      "status": "completed",
+      "source_id": "usea_waredaca_may_2026",
+      "scoring_url": "https://useventing.com/events-competitions/resources/results/item?event=18973",
+      "results": [
+        {
+          "id": "usea-18973-starta-sweet-frijole",
+          "division": "Starter START:A",
+          "place": "1",
+          "rider": "Sydney Santos",
+          "horse": "Sweet Frijole",
+          "dressage_penalties": 29.7,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 0,
+          "show_jumping_jump_penalties": 0,
+          "show_jumping_time_penalties": 0,
+          "status": "placed"
+        },
+        {
+          "id": "usea-18973-startb-paloma",
+          "division": "Starter START:B",
+          "place": "1",
+          "rider": "Abigail McEwen",
+          "horse": "Paloma",
+          "dressage_penalties": 20.9,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 0,
+          "show_jumping_jump_penalties": 0,
+          "show_jumping_time_penalties": 0,
+          "status": "placed"
+        },
+        {
+          "id": "usea-18973-op-royal-scandic",
+          "division": "Preliminary OP",
+          "place": "1",
+          "rider": "Jennifer Brannigan",
+          "horse": "Royal Scandic",
+          "dressage_penalties": 26.6,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 3.6,
+          "show_jumping_jump_penalties": 0,
+          "show_jumping_time_penalties": 1.2,
+          "status": "placed"
+        },
+        {
+          "id": "usea-18973-om-sing-to-me-cooley",
+          "division": "Modified OM",
+          "place": "1",
+          "rider": "Emma Whitaker",
+          "horse": "Sing To Me Cooley",
+          "dressage_penalties": 34,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 2,
+          "show_jumping_jump_penalties": 0,
+          "show_jumping_time_penalties": 0,
+          "status": "placed"
+        },
+        {
+          "id": "usea-18973-ot-vintage-chanel",
+          "division": "Training OT",
+          "place": "1",
+          "rider": "Melissa Baumann",
+          "horse": "Vintage Chanel",
+          "dressage_penalties": 31.8,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 0,
+          "show_jumping_jump_penalties": 0,
+          "show_jumping_time_penalties": 0,
+          "status": "placed"
+        },
+        {
+          "id": "usea-18973-tr-zempat",
+          "division": "Training TR",
+          "place": "1",
+          "rider": "Bekah Bartley",
+          "horse": "Zempat",
+          "dressage_penalties": 28,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 0,
+          "show_jumping_jump_penalties": 0,
+          "show_jumping_time_penalties": 0,
+          "status": "placed"
+        },
+        {
+          "id": "usea-18973-nr-ricochet",
+          "division": "Novice NR",
+          "place": "1",
+          "rider": "Taylor G. Kosin",
+          "horse": "Ricochet",
+          "dressage_penalties": 30.8,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 0,
+          "show_jumping_jump_penalties": 4,
+          "show_jumping_time_penalties": 0,
+          "status": "placed"
+        },
+        {
+          "id": "usea-18973-on-blue-suede-shoes",
+          "division": "Novice ON",
+          "place": "1",
+          "rider": "Kerri Long",
+          "horse": "Blue Suede Shoes (Memphis)",
+          "dressage_penalties": 31.9,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 0,
+          "show_jumping_jump_penalties": 0,
+          "show_jumping_time_penalties": 0,
+          "status": "placed"
+        },
+        {
+          "id": "usea-18973-bnra-rhetorical-question-g",
+          "division": "Beginner Novice BNR:A",
+          "place": "1",
+          "rider": "Arabelle Armstrong",
+          "horse": "Rhetorical Question G",
+          "dressage_penalties": 27.1,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 0,
+          "show_jumping_jump_penalties": 0,
+          "show_jumping_time_penalties": 0,
+          "status": "placed"
+        },
+        {
+          "id": "usea-18973-bnrb-avant-garde",
+          "division": "Beginner Novice BNR:B",
+          "place": "1",
+          "rider": "Alexandra M. Whitehead",
+          "horse": "Avant Garde",
+          "dressage_penalties": 29.1,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 0,
+          "show_jumping_jump_penalties": 0,
+          "show_jumping_time_penalties": 0,
+          "status": "placed"
+        }
+      ]
+    },
+    {
+      "id": "badminton-horse-trials-2026",
+      "name": "Badminton Horse Trials 2026",
+      "date_label": "May 6-10, 2026",
+      "start_date": "2026-05-06",
+      "end_date": "2026-05-10",
+      "location": "Badminton, Gloucestershire, UK",
+      "country": "GBR",
+      "status": "completed",
+      "source_id": "badminton_final_2026",
+      "scoring_url": "https://www.badminton-horse.co.uk/final-results-2026/",
+      "results": [
+        {
+          "id": "badminton-2026-rosalind-canter-lordships-graffalo",
+          "division": "CCI5*-L",
+          "place": "1",
+          "rider": "Rosalind Canter",
+          "horse": "Lordships Graffalo",
+          "dressage_penalties": 23.7,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 0,
+          "show_jumping_jump_penalties": 0,
+          "show_jumping_time_penalties": 2,
+          "status": "placed"
+        },
+        {
+          "id": "badminton-2026-tim-price-falco",
+          "division": "CCI5*-L",
+          "place": "2",
+          "rider": "Tim Price",
+          "horse": "Falco",
+          "dressage_penalties": 29.9,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 4,
+          "show_jumping_jump_penalties": 0,
+          "show_jumping_time_penalties": 0,
+          "status": "placed"
+        },
+        {
+          "id": "badminton-2026-harry-meade-annaghmore-valoner",
+          "division": "CCI5*-L",
+          "place": "3",
+          "rider": "Harry Meade",
+          "horse": "Annaghmore Valoner",
+          "dressage_penalties": 30.3,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 0,
+          "show_jumping_jump_penalties": 4,
+          "show_jumping_time_penalties": 0.8,
+          "status": "placed"
+        },
+        {
+          "id": "badminton-2026-tom-jackson-united-36",
+          "division": "CCI5*-L",
+          "place": "4",
+          "rider": "Tom Jackson",
+          "horse": "United 36",
+          "dressage_penalties": 32.2,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 3.2,
+          "show_jumping_jump_penalties": 0,
+          "show_jumping_time_penalties": 0.4,
+          "status": "placed"
+        },
+        {
+          "id": "badminton-2026-katie-magee-treworra",
+          "division": "CCI5*-L",
+          "place": "5",
+          "rider": "Katie Magee",
+          "horse": "Treworra",
+          "dressage_penalties": 33.3,
+          "cross_country_jump_penalties": 0,
+          "cross_country_time_penalties": 0,
+          "show_jumping_jump_penalties": 4,
+          "show_jumping_time_penalties": 0,
+          "status": "placed"
+        }
+      ]
+    },
+    {
+      "id": "lynnleigh-farm-schooling-2-phase-may-2026",
+      "name": "Lynnleigh Farm May 16, 2026 Schooling 2-Phase",
+      "date_label": "May 16, 2026",
+      "start_date": "2026-05-16",
+      "end_date": "2026-05-16",
+      "location": "Sandy, UT, US",
+      "country": "USA",
+      "status": "entries",
+      "source_id": "startbox_2026_archive",
+      "scoring_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526",
+      "results": []
+    },
+    {
+      "id": "ram-tap-may-sht-2026",
+      "name": "Ram Tap May SHT",
+      "date_label": "May 16-17, 2026",
+      "start_date": "2026-05-16",
+      "end_date": "2026-05-17",
+      "location": "Fresno, CA, US",
+      "country": "USA",
+      "status": "times",
+      "source_id": "startbox_2026_archive",
+      "scoring_url": "http://eventingscores.com/eventsu/ramtap/sht0526",
+      "results": []
+    },
+    {
+      "id": "bucks-county-horse-park-schooling-ht-may-2026",
+      "name": "Bucks County Horse Park May Schooling Horse Trial",
+      "date_label": "May 17, 2026",
+      "start_date": "2026-05-17",
+      "end_date": "2026-05-17",
+      "location": "Revere, PA, US",
+      "country": "USA",
+      "status": "times",
+      "source_id": "startbox_2026_archive",
+      "scoring_url": "http://eventingscores.com/eventsu/bucks/sht0526",
+      "results": []
+    },
+    {
+      "id": "tuscany-hollow-combined-test-may-2026",
+      "name": "Tuscany Hollow Stables Combined Test",
+      "date_label": "May 23, 2026",
+      "start_date": "2026-05-23",
+      "end_date": "2026-05-23",
+      "location": "Simpsonville, KY, US",
+      "country": "USA",
+      "status": "entries",
+      "source_id": "startbox_2026_archive",
+      "scoring_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526",
+      "results": []
+    },
+    {
+      "id": "sol-events-willow-draw-may-2026",
+      "name": "Sol Events at Willow Draw",
+      "date_label": "May 23, 2026",
+      "start_date": "2026-05-23",
+      "end_date": "2026-05-23",
+      "location": "Weatherford, TX, US",
+      "country": "USA",
+      "status": "entries",
+      "source_id": "startbox_2026_archive",
+      "scoring_url": "http://eventingscores.com/eventsr/willowdraw/ht0526",
+      "results": []
+    },
+    {
+      "id": "iea-horse-trial-may-2026",
+      "name": "IEA Horse Trial",
+      "date_label": "May 29-31, 2026",
+      "start_date": "2026-05-29",
+      "end_date": "2026-05-31",
+      "location": "Edinburgh, IN, US",
+      "country": "USA",
+      "status": "entries",
+      "source_id": "startbox_2026_archive",
+      "scoring_url": "http://eventingscores.com/eventsr/iea/ht0526",
+      "results": []
+    }
+  ]
+}
