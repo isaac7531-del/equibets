@@ -29,11 +29,15 @@ override official results.
 
 1. Pull new FEI results from `data.fei.org`.
 2. Pull national-event updates from the priority regions.
-3. Pull global national-federation results as a backfill.
-4. Store raw source payloads for auditability.
-5. Normalize records into the common result table.
-6. Re-run consolidation and prediction calculations.
-7. Show the latest `collected_at` timestamp in the website UI.
+3. Pull FEI regional-group national-federation updates so every member country
+   is represented.
+4. Pull global national-federation results as a backfill for every declared
+   national level, from championship through local, schooling, youth, amateur,
+   and professional classifications.
+5. Store raw source payloads for auditability.
+6. Normalize records into the common result table.
+7. Re-run consolidation and prediction calculations.
+8. Show the latest `collected_at` timestamp in the website UI.
 
 ## Prediction logic
 

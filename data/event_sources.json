@@ -1,14 +1,395 @@
 {
-  "version": 1,
+  "version": 2,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "last_reviewed_utc": "2026-05-15T13:03:00Z",
+  "coverage_goal": "Collect eventing results from FEI plus national-event sources for every FEI member nation and every declared eventing level.",
   "priority_regions": [
     "europe",
     "uk",
     "australia",
     "new_zealand",
-    "usa"
+    "usa",
+    "north_america_caribbean",
+    "central_america_caribbean",
+    "south_america",
+    "middle_east_north_africa",
+    "asia_pacific",
+    "africa"
   ],
+  "country_groups": {
+    "all_fei_member_nations": [
+      "ALB",
+      "ALG",
+      "AND",
+      "ANG",
+      "ANT",
+      "ARG",
+      "ARM",
+      "AUS",
+      "AUT",
+      "AZE",
+      "BAH",
+      "BAR",
+      "BEL",
+      "BER",
+      "BIH",
+      "BLR",
+      "BOL",
+      "BOT",
+      "BRA",
+      "BRN",
+      "BUL",
+      "CAM",
+      "CAN",
+      "CAY",
+      "CHI",
+      "CHN",
+      "CIV",
+      "COD",
+      "COL",
+      "CRC",
+      "CRO",
+      "CUB",
+      "CYP",
+      "CZE",
+      "DEN",
+      "DOM",
+      "ECU",
+      "EGY",
+      "ESA",
+      "ESP",
+      "EST",
+      "ETH",
+      "FIN",
+      "FRA",
+      "GBR",
+      "GEO",
+      "GER",
+      "GRE",
+      "GUA",
+      "HAI",
+      "HKG",
+      "HON",
+      "HUN",
+      "INA",
+      "IND",
+      "IRI",
+      "IRL",
+      "IRQ",
+      "ISL",
+      "ISR",
+      "ISV",
+      "ITA",
+      "JAM",
+      "JOR",
+      "JPN",
+      "KAZ",
+      "KEN",
+      "KGZ",
+      "KOR",
+      "KSA",
+      "KUW",
+      "LAT",
+      "LBA",
+      "LBN",
+      "LIE",
+      "LTU",
+      "LUX",
+      "MAD",
+      "MAR",
+      "MAS",
+      "MDA",
+      "MEX",
+      "MGL",
+      "MKD",
+      "MLT",
+      "MON",
+      "MRI",
+      "MYA",
+      "NAM",
+      "NED",
+      "NEP",
+      "NOR",
+      "NZL",
+      "OMA",
+      "PAK",
+      "PAN",
+      "PAR",
+      "PER",
+      "PHI",
+      "PLE",
+      "POL",
+      "POR",
+      "PRK",
+      "PUR",
+      "QAT",
+      "ROU",
+      "RSA",
+      "RUS",
+      "SEN",
+      "SGP",
+      "SLO",
+      "SMR",
+      "SRB",
+      "SRI",
+      "SUD",
+      "SUI",
+      "SVK",
+      "SWE",
+      "SWZ",
+      "SYR",
+      "THA",
+      "TKM",
+      "TPE",
+      "TTO",
+      "TUN",
+      "TUR",
+      "UAE",
+      "UKR",
+      "URU",
+      "USA",
+      "UZB",
+      "VEN",
+      "YEM",
+      "ZAM",
+      "ZIM"
+    ],
+    "all_fei_europe_member_nations": [
+      "ALB",
+      "AND",
+      "ARM",
+      "AUT",
+      "AZE",
+      "BEL",
+      "BIH",
+      "BLR",
+      "BUL",
+      "CRO",
+      "CYP",
+      "CZE",
+      "DEN",
+      "ESP",
+      "EST",
+      "FIN",
+      "FRA",
+      "GBR",
+      "GEO",
+      "GER",
+      "GRE",
+      "HUN",
+      "IRI",
+      "IRL",
+      "ISL",
+      "ISR",
+      "ITA",
+      "KAZ",
+      "KGZ",
+      "LAT",
+      "LIE",
+      "LTU",
+      "LUX",
+      "MDA",
+      "MKD",
+      "MLT",
+      "MON",
+      "NED",
+      "NOR",
+      "POL",
+      "POR",
+      "ROU",
+      "RUS",
+      "SLO",
+      "SMR",
+      "SRB",
+      "SUI",
+      "SVK",
+      "SWE",
+      "TKM",
+      "TUR",
+      "UKR",
+      "UZB"
+    ],
+    "fei_group_eef": [
+      "ALB",
+      "AND",
+      "AUT",
+      "BEL",
+      "BIH",
+      "BUL",
+      "CRO",
+      "CYP",
+      "CZE",
+      "DEN",
+      "ESP",
+      "EST",
+      "FIN",
+      "FRA",
+      "GBR",
+      "GER",
+      "GRE",
+      "HUN",
+      "IRL",
+      "ISL",
+      "ISR",
+      "ITA",
+      "LAT",
+      "LIE",
+      "LTU",
+      "LUX",
+      "MKD",
+      "MLT",
+      "MON",
+      "NED",
+      "NOR",
+      "POL",
+      "POR",
+      "ROU",
+      "SLO",
+      "SMR",
+      "SRB",
+      "SUI",
+      "SVK",
+      "SWE",
+      "TUR",
+      "UKR"
+    ],
+    "fei_group_eea": [
+      "ARM",
+      "AZE",
+      "BLR",
+      "GEO",
+      "IRI",
+      "KAZ",
+      "KGZ",
+      "MDA",
+      "RUS",
+      "TKM",
+      "UZB"
+    ],
+    "fei_group_iv": [
+      "ANT",
+      "BAH",
+      "BAR",
+      "BER",
+      "CAN",
+      "CAY",
+      "HAI",
+      "ISV",
+      "JAM",
+      "TTO",
+      "USA"
+    ],
+    "fei_group_v": [
+      "COL",
+      "CRC",
+      "CUB",
+      "DOM",
+      "ESA",
+      "GUA",
+      "HON",
+      "MEX",
+      "PAN",
+      "PUR",
+      "VEN"
+    ],
+    "fei_group_vi": [
+      "ARG",
+      "BOL",
+      "BRA",
+      "CHI",
+      "ECU",
+      "PAR",
+      "PER",
+      "URU"
+    ],
+    "fei_group_vii": [
+      "ALG",
+      "BRN",
+      "EGY",
+      "IRQ",
+      "JOR",
+      "KSA",
+      "KUW",
+      "LBA",
+      "LBN",
+      "MAR",
+      "OMA",
+      "PLE",
+      "QAT",
+      "SUD",
+      "SYR",
+      "TUN",
+      "UAE",
+      "YEM"
+    ],
+    "fei_group_viii": [
+      "AUS",
+      "CAM",
+      "CHN",
+      "HKG",
+      "INA",
+      "IND",
+      "JPN",
+      "KOR",
+      "MAS",
+      "MGL",
+      "MYA",
+      "NEP",
+      "NZL",
+      "PAK",
+      "PHI",
+      "PRK",
+      "SGP",
+      "SRI",
+      "THA",
+      "TPE"
+    ],
+    "fei_group_ix": [
+      "ANG",
+      "BOT",
+      "CIV",
+      "COD",
+      "ETH",
+      "KEN",
+      "MAD",
+      "MRI",
+      "NAM",
+      "RSA",
+      "SEN",
+      "SWZ",
+      "ZAM",
+      "ZIM"
+    ]
+  },
+  "event_level_groups": {
+    "all_eventing_levels": [
+      "fei_international",
+      "national_championship",
+      "national",
+      "regional",
+      "state_provincial",
+      "county",
+      "local_club",
+      "training_schooling",
+      "youth",
+      "pony",
+      "amateur",
+      "professional"
+    ],
+    "all_national_eventing_levels": [
+      "national_championship",
+      "national",
+      "regional",
+      "state_provincial",
+      "county",
+      "local_club",
+      "training_schooling",
+      "youth",
+      "pony",
+      "amateur",
+      "professional"
+    ]
+  },
   "sources": [
     {
       "id": "data_fei",
@@ -47,13 +428,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_eventing_levels"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations."
+      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations across national, regional, and local event levels."
     },
     {
       "id": "british_eventing",
@@ -70,13 +450,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
       "status": "planned",
-      "notes": "High-priority national-event source for UK coverage."
+      "notes": "High-priority national-event source for UK coverage across every declared national eventing level."
     },
     {
       "id": "equestrian_australia",
@@ -93,13 +472,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.equestrian.org.au/",
       "status": "planned",
-      "notes": "High-priority national-event source for Australian coverage."
+      "notes": "High-priority national-event source for Australian coverage across every declared national eventing level."
     },
     {
       "id": "equestrian_sports_new_zealand",
@@ -116,13 +494,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.nzequestrian.org.nz/",
       "status": "planned",
-      "notes": "High-priority national-event source for New Zealand coverage."
+      "notes": "High-priority national-event source for New Zealand coverage across every declared national eventing level."
     },
     {
       "id": "usea",
@@ -139,13 +516,196 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
       "status": "planned",
-      "notes": "High-priority national-event source for USA coverage."
+      "notes": "High-priority national-event source for USA coverage across every declared national eventing level."
+    },
+    {
+      "id": "fei_group_eef_national_federations",
+      "name": "FEI Group EEF national federation results",
+      "priority": 60,
+      "scope": "national",
+      "regions": [
+        "europe",
+        "fei_group_eef"
+      ],
+      "countries": [
+        "fei_group_eef"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_eventing_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": "https://data.fei.org/NFPages/Group/Details/1010/GroupEEF",
+      "status": "planned",
+      "notes": "Registry backfill for FEI Group EEF national federations and all declared national eventing levels."
+    },
+    {
+      "id": "fei_group_eea_national_federations",
+      "name": "FEI Group EEA national federation results",
+      "priority": 61,
+      "scope": "national",
+      "regions": [
+        "europe_asia",
+        "fei_group_eea"
+      ],
+      "countries": [
+        "fei_group_eea"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_eventing_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": "https://data.fei.org/NFPages/Group/Details/1003/GroupEEA",
+      "status": "planned",
+      "notes": "Registry backfill for FEI Group EEA national federations and all declared national eventing levels."
+    },
+    {
+      "id": "fei_group_iv_national_federations",
+      "name": "FEI Group IV national federation results",
+      "priority": 62,
+      "scope": "national",
+      "regions": [
+        "north_america_caribbean",
+        "fei_group_iv"
+      ],
+      "countries": [
+        "fei_group_iv"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_eventing_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": "https://data.fei.org/NFPages/Group/Details/1004/GroupIV",
+      "status": "planned",
+      "notes": "Registry backfill for FEI Group IV national federations and all declared national eventing levels."
+    },
+    {
+      "id": "fei_group_v_national_federations",
+      "name": "FEI Group V national federation results",
+      "priority": 63,
+      "scope": "national",
+      "regions": [
+        "central_america_caribbean",
+        "fei_group_v"
+      ],
+      "countries": [
+        "fei_group_v"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_eventing_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": "https://data.fei.org/NFPages/Group/Details/1005/GroupV",
+      "status": "planned",
+      "notes": "Registry backfill for FEI Group V national federations and all declared national eventing levels."
+    },
+    {
+      "id": "fei_group_vi_national_federations",
+      "name": "FEI Group VI national federation results",
+      "priority": 64,
+      "scope": "national",
+      "regions": [
+        "south_america",
+        "fei_group_vi"
+      ],
+      "countries": [
+        "fei_group_vi"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_eventing_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": "https://data.fei.org/NFPages/Group/Details/1006/GroupVI",
+      "status": "planned",
+      "notes": "Registry backfill for FEI Group VI national federations and all declared national eventing levels."
+    },
+    {
+      "id": "fei_group_vii_national_federations",
+      "name": "FEI Group VII national federation results",
+      "priority": 65,
+      "scope": "national",
+      "regions": [
+        "middle_east_north_africa",
+        "fei_group_vii"
+      ],
+      "countries": [
+        "fei_group_vii"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_eventing_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": "https://data.fei.org/NFPages/Group/Details/1007/GroupVII",
+      "status": "planned",
+      "notes": "Registry backfill for FEI Group VII national federations and all declared national eventing levels."
+    },
+    {
+      "id": "fei_group_viii_national_federations",
+      "name": "FEI Group VIII national federation results",
+      "priority": 66,
+      "scope": "national",
+      "regions": [
+        "asia_pacific",
+        "fei_group_viii"
+      ],
+      "countries": [
+        "fei_group_viii"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_eventing_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": "https://data.fei.org/NFPages/Group/Details/1008/GroupVIII",
+      "status": "planned",
+      "notes": "Registry backfill for FEI Group VIII national federations and all declared national eventing levels."
+    },
+    {
+      "id": "fei_group_ix_national_federations",
+      "name": "FEI Group IX national federation results",
+      "priority": 67,
+      "scope": "national",
+      "regions": [
+        "africa",
+        "fei_group_ix"
+      ],
+      "countries": [
+        "fei_group_ix"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_eventing_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": "https://data.fei.org/NFPages/Group/Details/1009/GroupIX",
+      "status": "planned",
+      "notes": "Registry backfill for FEI Group IX national federations and all declared national eventing levels."
     },
     {
       "id": "global_national_federations",
@@ -162,13 +722,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_eventing_levels"
       ],
       "source_type": "federation_registry",
-      "base_url": null,
+      "base_url": "https://data.fei.org/NFPages/NF/Search",
       "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "notes": "Backfill national events for every FEI member nation and every declared national eventing level after higher-priority regions are covered."
     }
   ]
 }
