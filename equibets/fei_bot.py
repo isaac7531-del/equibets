@@ -13,6 +13,7 @@ import hashlib
 import json
 import re
 import shutil
+import sys
 import time
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
@@ -827,14 +828,18 @@ def main(argv: Sequence[str] | None = None) -> int:
     form_fields = _key_values(args.form_field)
 
     try:
-        results, summary = bot.collect(
-            start_date=args.start_date,
-            end_date=args.end_date,
-            event_urls=args.event_url,
-            form_fields=form_fields,
-            max_events=args.max_events,
-            verify=args.verify,
-        )
+        try:
+            results, summary = bot.collect(
+                start_date=args.start_date,
+                end_date=args.end_date,
+                event_urls=args.event_url,
+                form_fields=form_fields,
+                max_events=args.max_events,
+                verify=args.verify,
+            )
+        except RuntimeError as exc:
+            print(f"FEI crawl failed: {exc}", file=sys.stderr)
+            return 1
     finally:
         if hasattr(client, "close"):
             client.close()
