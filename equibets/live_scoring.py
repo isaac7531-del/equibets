@@ -41,6 +41,8 @@ _ROW_PATTERN = re.compile(
 _LOCATION_PATTERN = re.compile(
     r"^(?P<event>.+)\s+(?P<city>[^,]+),\s*(?P<region>[A-Z]{2})\s+(?P<country>US|Canada)$"
 )
+_LOCATION_ONLY_PATTERN = re.compile(r"^(?P<city>.+),\s*(?P<region>[A-Z]{2})\s+(?P<country>US|Canada)$")
+_HTML_DESCRIPTION_SEPARATOR = "||STARTBOX_LOCATION||"
 
 
 @dataclass(frozen=True)
@@ -188,8 +190,13 @@ def _fetch_text(url: str) -> str:
     request = Request(
         url,
         headers={
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-            "User-Agent": "Equibets live scoring feed (+https://github.com/isaac7531-del/equibets)",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Referer": "https://eventing.startboxscoring.com/",
+            "User-Agent": (
+                "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
+                "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+            ),
         },
     )
     with urlopen(request, timeout=30) as response:
@@ -224,7 +231,9 @@ class _StartBoxCalendarHTMLParser(HTMLParser):
         self._current_cell: dict[str, str] | None = None
         self._cell_text: list[str] = []
         self._link_text: list[str] = []
+        self._span_text: list[str] = []
         self._active_link_href = ""
+        self._active_span_key = ""
         self._capturing_link = False
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
@@ -232,9 +241,26 @@ class _StartBoxCalendarHTMLParser(HTMLParser):
             self._current_row = []
             return
         if tag == "td" and self._current_row is not None:
-            self._current_cell = {"text": "", "link_label": "", "link_url": ""}
+            self._current_cell = {
+                "text": "",
+                "link_label": "",
+                "link_url": "",
+                "show_name": "",
+                "location": "",
+            }
             self._cell_text = []
             return
+        if tag == "span" and self._current_cell is not None:
+            attrs_map = dict(attrs)
+            classes = (attrs_map.get("class") or "").split()
+            if "calshowname" in classes:
+                self._active_span_key = "show_name"
+                self._span_text = []
+                return
+            if "callocation" in classes:
+                self._active_span_key = "location"
+                self._span_text = []
+                return
         if tag == "a" and self._current_cell is not None:
             attrs_map = dict(attrs)
             self._active_link_href = attrs_map.get("href") or ""
@@ -246,8 +272,14 @@ class _StartBoxCalendarHTMLParser(HTMLParser):
             self._cell_text.append(data)
         if self._capturing_link:
             self._link_text.append(data)
+        if self._active_span_key:
+            self._span_text.append(data)
 
     def handle_endtag(self, tag: str) -> None:
+        if tag == "span" and self._current_cell is not None and self._active_span_key:
+            self._current_cell[self._active_span_key] = _clean_text("".join(self._span_text))
+            self._active_span_key = ""
+            return
         if tag == "a" and self._current_cell is not None:
             self._current_cell["link_label"] = _clean_text("".join(self._link_text))
             self._current_cell["link_url"] = urljoin(
@@ -273,12 +305,20 @@ class _StartBoxCalendarHTMLParser(HTMLParser):
         if not link_cell["link_label"] or not link_cell["link_url"]:
             return
 
+        description_cell = row[2]
+        description = description_cell["text"]
+        if description_cell["show_name"] and description_cell["location"]:
+            description = (
+                f"{description_cell['show_name']}{_HTML_DESCRIPTION_SEPARATOR}"
+                f"{description_cell['location']}"
+            )
+
         self.rows.append(
             (
                 row[0]["text"],
                 link_cell["link_label"],
                 link_cell["link_url"],
-                row[2]["text"],
+                description,
             )
         )
 
@@ -300,6 +340,16 @@ def _parse_date_range(value: str) -> tuple[date, date]:
 
 
 def _split_description(description: str) -> tuple[str, str, str]:
+    if _HTML_DESCRIPTION_SEPARATOR in description:
+        event_name, location_text = (
+            part.strip() for part in description.split(_HTML_DESCRIPTION_SEPARATOR, maxsplit=1)
+        )
+        match = _LOCATION_ONLY_PATTERN.match(location_text)
+        if match is None:
+            return event_name, location_text or "Unknown", "Unknown"
+        country = "USA" if match.group("country") == "US" else "Canada"
+        return event_name, f"{match.group('city').strip()}, {match.group('region')}", country
+
     match = _LOCATION_PATTERN.match(description)
     if match is None:
         return description, "Unknown", "Unknown"
