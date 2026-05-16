@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T14:12:03.897491Z",
+  "generated_at": "2026-05-16T15:02:48.111145Z",
   "sources": [
     {
       "id": "startbox_scoring",
@@ -22,44 +22,7 @@
       "status": "live",
       "score_status": "results",
       "result_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526",
-      "divisions": [
-        {
-          "name": "Modified",
-          "phase_status": "Dressage: 8:00 AM Sat. Ring 1",
-          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=8",
-          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=8"
-        },
-        {
-          "name": "Training",
-          "phase_status": "Dressage: 8:18 AM Sat. Ring 1",
-          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=3",
-          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=3"
-        },
-        {
-          "name": "Novice",
-          "phase_status": "Dressage: 9:36 AM Sat. Ring 1",
-          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=4",
-          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=4"
-        },
-        {
-          "name": "Beginner Novice",
-          "phase_status": "Dressage: 11:06 AM Sat. Ring 1",
-          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=5",
-          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=5"
-        },
-        {
-          "name": "Grasshopper",
-          "phase_status": "Dressage: 2:50 PM Sat. Ring 1",
-          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=7",
-          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=7"
-        },
-        {
-          "name": "Starter",
-          "phase_status": "Dressage: 12:46 PM Sat. Ring 1",
-          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=6",
-          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=6"
-        }
-      ],
+      "divisions": [],
       "entries": []
     },
     {
