@@ -35,6 +35,17 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Current-event live scoring
+
+The first live feed uses StartBox's public current-event calendar. The refresh
+utility searches the current calendar, keeps events whose date range is active
+for the requested `--as-of` date, pulls each event leaderboard, and writes
+`data/live_event_scores.json`.
+
+The website imports that feed and ranks current division leaders by live score,
+so users can compare saved or projected results with public leaders while an
+event is running.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a
