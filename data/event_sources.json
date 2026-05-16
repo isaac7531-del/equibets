@@ -1,7 +1,7 @@
 {
   "version": 1,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results for all FEI member nations, prioritizing data.fei and supplementing with national-event sources for every country and national level.",
   "priority_regions": [
     "europe",
     "uk",
@@ -48,12 +48,16 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "local",
+        "club",
+        "grassroots",
+        "all_national_levels"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations."
+      "notes": "Discover and connect national federation calendars and result portals for every European FEI member nation and national level."
     },
     {
       "id": "british_eventing",
@@ -71,12 +75,16 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "local",
+        "club",
+        "grassroots",
+        "all_national_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
       "status": "planned",
-      "notes": "High-priority national-event source for UK coverage."
+      "notes": "High-priority national-event source for UK coverage across all national levels."
     },
     {
       "id": "equestrian_australia",
@@ -94,12 +102,16 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "local",
+        "club",
+        "grassroots",
+        "all_national_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.equestrian.org.au/",
       "status": "planned",
-      "notes": "High-priority national-event source for Australian coverage."
+      "notes": "High-priority national-event source for Australian coverage across all national levels."
     },
     {
       "id": "equestrian_sports_new_zealand",
@@ -117,12 +129,16 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "local",
+        "club",
+        "grassroots",
+        "all_national_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.nzequestrian.org.nz/",
       "status": "planned",
-      "notes": "High-priority national-event source for New Zealand coverage."
+      "notes": "High-priority national-event source for New Zealand coverage across all national levels."
     },
     {
       "id": "usea",
@@ -140,16 +156,20 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "local",
+        "club",
+        "grassroots",
+        "all_national_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
       "status": "planned",
-      "notes": "High-priority national-event source for USA coverage."
+      "notes": "High-priority national-event source for USA coverage across all national levels."
     },
     {
       "id": "global_national_federations",
-      "name": "All national federation results",
+      "name": "All-country national federation results",
       "priority": 90,
       "scope": "national",
       "regions": [
@@ -163,12 +183,16 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "local",
+        "club",
+        "grassroots",
+        "all_national_levels"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "notes": "Backfill national events for every FEI member nation and every national level after higher-priority regions are covered."
     }
   ]
 }
