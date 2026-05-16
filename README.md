@@ -8,6 +8,7 @@ Personal eventing results calculator, browser-based results tracker, and data so
 - Saves horse-and-rider results to local browser storage.
 - Ranks saved results from lowest total penalties to highest.
 - Tracks public event-results sources for FEI and national-event coverage.
+- Pulls normalized current-event feeds into a searchable live scoring board.
 
 ## Results calculator feature
 
@@ -31,6 +32,20 @@ npm run dev
 npm test
 npm run build
 ```
+
+## Live current-event scoring
+
+The website reads live scoring data from `/current-events.json` and, when set,
+`VITE_LIVE_RESULTS_URL`. The Python helper can pull one or more normalized JSON
+feeds and write the frontend payload:
+
+```bash
+python3 -m equibets.live_scoring --feed-url https://example.com/current-event.json --output public/current-events.json --pretty
+```
+
+The live scoring feed is source-priority aware, searchable by rider, horse,
+event, level, country, and source, and completed rows can be merged into the
+durable result model for prediction.
 
 ## Python package setup
 
