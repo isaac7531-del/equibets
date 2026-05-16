@@ -28,4 +28,12 @@ describe('App', () => {
     expect(screen.getByText('Juniper')).toBeInTheDocument();
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
   });
+
+  it('renders pulled current-event live scoring sources', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /live scoring pull/i })).toBeInTheDocument();
+    expect(screen.getByText('Ram Tap May SHT')).toBeInTheDocument();
+    expect(screen.getByText(/no scored starts in this pull yet/i)).toBeInTheDocument();
+  });
 });
