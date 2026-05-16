@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-16T11:00:53.246Z",
+  "coverage_window": {
+    "from": "2026-05-09",
+    "through": "2026-05-31"
+  },
+  "sources": [
+    {
+      "id": "startbox_scoring",
+      "name": "StartBox/EventingScores calendar",
+      "url": "https://eventing.startboxscoring.com/archives.php?Year=2026",
+      "observed": "The public calendar listed May 16, 2026 Lynnleigh Farm and May 16-17, 2026 Ram Tap as Results, May 17, 2026 Bucks County Horse Park as Times, and later May events as Entries."
+    },
+    {
+      "id": "maryland_horse_trials",
+      "name": "Maryland Horse Trials times and results",
+      "url": "https://themarylandhorsetrials.com/mdht-times-entry-stats-results/",
+      "observed": "The public results page listed May 13, 2026 Twilight Eventing results, ride times, and entry status."
+    }
+  ],
+  "events": [
+    {
+      "id": "startbox-lynnleigh-sht0526",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox/EventingScores",
+      "source_priority": 45,
+      "event_name": "Lynnleigh Farm May 16, 2026 Schooling 2-Phase",
+      "start_date": "2026-05-16",
+      "end_date": "2026-05-16",
+      "location": "Sandy, UT",
+      "country": "USA",
+      "status": "live_results",
+      "status_label": "Results",
+      "scoring_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526",
+      "last_observed_at": "2026-05-16T11:00:53.246Z",
+      "notes": "StartBox marks the event as Results and publishes division schedules for the current competition day.",
+      "divisions": [
+        {
+          "name": "Modified",
+          "phase": "Dressage: 8:00 AM Sat. Ring 1"
+        },
+        {
+          "name": "Training",
+          "phase": "Dressage: 8:18 AM Sat. Ring 1"
+        },
+        {
+          "name": "Novice",
+          "phase": "Dressage: 9:36 AM Sat. Ring 1"
+        },
+        {
+          "name": "Beginner Novice",
+          "phase": "Dressage: 11:06 AM Sat. Ring 1"
+        },
+        {
+          "name": "Starter",
+          "phase": "Dressage: 12:46 PM Sat. Ring 1"
+        },
+        {
+          "name": "Grasshopper",
+          "phase": "Dressage: 2:50 PM Sat. Ring 1"
+        }
+      ]
+    },
+    {
+      "id": "startbox-ramtap-sht0526",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox/EventingScores",
+      "source_priority": 45,
+      "event_name": "Ram Tap May SHT",
+      "start_date": "2026-05-16",
+      "end_date": "2026-05-17",
+      "location": "Fresno, CA",
+      "country": "USA",
+      "status": "live_results",
+      "status_label": "Results",
+      "scoring_url": "http://eventingscores.com/eventsu/ramtap/sht0526",
+      "last_observed_at": "2026-05-16T11:00:53.246Z",
+      "notes": "StartBox lists this May 16-17 event as Results, so it is surfaced as an active live scoring link.",
+      "divisions": []
+    },
+    {
+      "id": "startbox-bucks-sht0526",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox/EventingScores",
+      "source_priority": 45,
+      "event_name": "Bucks County Horse Park May Schooling Horse Trial",
+      "start_date": "2026-05-17",
+      "end_date": "2026-05-17",
+      "location": "Revere, PA",
+      "country": "USA",
+      "status": "ride_times",
+      "status_label": "Times",
+      "scoring_url": "http://eventingscores.com/eventsu/bucks/sht0526",
+      "last_observed_at": "2026-05-16T11:00:53.246Z",
+      "notes": "Ride times are posted for tomorrow's event; promote this card as soon as results are published.",
+      "divisions": []
+    },
+    {
+      "id": "mdht-twilight-2026-05-13",
+      "source_id": "maryland_horse_trials",
+      "source_name": "Maryland Horse Trials",
+      "source_priority": 55,
+      "event_name": "May 13, 2026 Twilight Eventing",
+      "start_date": "2026-05-13",
+      "end_date": "2026-05-13",
+      "location": "Adamstown, MD",
+      "country": "USA",
+      "status": "recent_results",
+      "status_label": "Results",
+      "scoring_url": "https://themarylandhorsetrials.com/mdht-times-entry-stats-results/",
+      "last_observed_at": "2026-05-16T11:00:53.246Z",
+      "notes": "Recent current-events result source with entry status, ride times, and results links on the organizer page.",
+      "divisions": []
+    },
+    {
+      "id": "startbox-willowdraw-ht0526",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox/EventingScores",
+      "source_priority": 45,
+      "event_name": "Sol Events at Willow Draw",
+      "start_date": "2026-05-23",
+      "end_date": "2026-05-23",
+      "location": "Weatherford, TX",
+      "country": "USA",
+      "status": "entries",
+      "status_label": "Entries",
+      "scoring_url": "http://eventingscores.com/eventsr/willowdraw/ht0526",
+      "last_observed_at": "2026-05-16T11:00:53.246Z",
+      "notes": "Upcoming event with entries available in the current scoring window.",
+      "divisions": []
+    },
+    {
+      "id": "startbox-iea-ht0526",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox/EventingScores",
+      "source_priority": 45,
+      "event_name": "IEA Horse Trial",
+      "start_date": "2026-05-29",
+      "end_date": "2026-05-31",
+      "location": "Edinburgh, IN",
+      "country": "USA",
+      "status": "entries",
+      "status_label": "Entries",
+      "scoring_url": "http://eventingscores.com/eventsr/iea/ht0526",
+      "last_observed_at": "2026-05-16T11:00:53.246Z",
+      "notes": "Upcoming end-of-month horse trial with entries in the active calendar window.",
+      "divisions": []
+    }
+  ]
+}

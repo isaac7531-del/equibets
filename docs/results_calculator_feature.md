@@ -35,6 +35,21 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Current-event live scoring
+
+The first live scoring surface uses `data/current_event_feed.json`, refreshed by
+`equibets.live_scoring`, to present public scoring links for active and upcoming
+events. The feed currently records:
+
+- events marked as live/current results
+- ride-time pages that should become results as the event starts
+- recent results still inside the current-event window
+- upcoming entries for the next public scoring window
+
+These links are displayed separately from user-entered scores. A future importer
+can normalize confirmed public scores into `EventingResult` records and then use
+the existing consolidation flow.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a
