@@ -14,7 +14,8 @@ shows how horse/rider combinations are performing before upcoming events.
 
 ## Data consolidation
 
-1. Refresh public data weekly from `data/event_sources.json`.
+1. Refresh public data weekly from `data/event_sources.json`, with active
+   current-event pulls written to `data/current_event_live_scores.json`.
 2. Normalize each result into `EventingResult`.
 3. Deduplicate by combination, event, date, and level.
 4. Keep the lowest `source_priority` when duplicates exist, so `data_fei`
@@ -34,6 +35,18 @@ override official results.
 5. Normalize records into the common result table.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
+
+## Current-event live scoring flow
+
+1. Search active live scoring calendars for events happening now or in the near
+   future.
+2. Pull each event page to collect result links and division phase status.
+3. Normalize discovered events into `CurrentEvent` records and write the
+   website snapshot.
+4. Rank score rows by total penalties as soon as a source exposes competitor
+   result rows.
+5. Keep source URLs on each event so users can open the official live scoring
+   page when a snapshot has not yet exposed scored starts.
 
 ## Prediction logic
 
