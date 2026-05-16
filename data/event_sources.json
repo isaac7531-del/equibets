@@ -33,6 +33,32 @@
       "notes": "Primary eventing source. Use before national sources whenever a result appears in the FEI database."
     },
     {
+      "id": "startbox_scoring",
+      "name": "StartBox Scoring live eventing results",
+      "priority": 45,
+      "scope": "national",
+      "regions": [
+        "usa",
+        "canada"
+      ],
+      "countries": [
+        "USA",
+        "CAN"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national",
+        "regional",
+        "schooling"
+      ],
+      "source_type": "live_scoring_platform",
+      "base_url": "https://eventing.startboxscoring.com/",
+      "status": "active",
+      "notes": "Current-event calendar and live scoring links for North American eventing results."
+    },
+    {
       "id": "europe_national_federations",
       "name": "European national federation results",
       "priority": 10,
