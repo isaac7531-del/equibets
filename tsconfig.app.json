@@ -17,6 +17,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": ["src", "data/current_event_feed.json"],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx"]
 }

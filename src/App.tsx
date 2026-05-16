@@ -1,5 +1,13 @@
 import { FormEvent, useMemo, useState } from 'react';
 import {
+  currentEventFeed,
+  formatEventDateRange,
+  formatObservedAt,
+  sortLiveEvents,
+  statusLabel,
+  summarizeLiveEvents,
+} from './liveScoring';
+import {
   calculateScore,
   formatSeconds,
   parseTimeToSeconds,
@@ -55,7 +63,10 @@ export default function App() {
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const liveEvents = useMemo(() => sortLiveEvents(currentEventFeed.events), []);
+  const liveSummary = useMemo(() => summarizeLiveEvents(liveEvents), [liveEvents]);
   const bestResult = sortedResults[0];
+  const latestLiveRefresh = liveSummary.latestObservedAt || currentEventFeed.generated_at;
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -101,7 +112,7 @@ export default function App() {
           <h1>Eventing score calculator and results tracker</h1>
           <p className="hero-copy">
             Capture dressage, show jumping, and cross-country penalties in one place, then keep a local record of
-            horse-and-rider results.
+            horse-and-rider results alongside current public event scoring links.
           </p>
         </div>
         <div className="hero-card" aria-live="polite">
@@ -134,6 +145,60 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Public feed</span>
+          <strong>{liveSummary.activeResultCount}</strong>
+          <p>
+            {liveSummary.upcomingCount} upcoming / refreshed {formatObservedAt(latestLiveRefresh)}
+          </p>
+        </article>
+      </section>
+
+      <section className="live-results-card" aria-labelledby="live-results-heading">
+        <div className="results-header live-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-results-heading">Live scoring links</h2>
+            <p className="freshness-copy">
+              Pulled from public scoring sources. Recent results remain separate from your saved scores until they are
+              confirmed and imported.
+            </p>
+          </div>
+          <span className="coverage-pill">
+            {currentEventFeed.coverage_window.from} to {currentEventFeed.coverage_window.through}
+          </span>
+        </div>
+
+        <div className="live-events-grid">
+          {liveEvents.map((event) => (
+            <article className={`live-event-card status-${event.status}`} key={event.id}>
+              <div className="live-event-meta">
+                <span>{statusLabel(event.status)}</span>
+                <strong>{event.source_name}</strong>
+              </div>
+              <h3>{event.event_name}</h3>
+              <p className="event-place">
+                {formatEventDateRange(event)} / {event.location}, {event.country}
+              </p>
+              <p>{event.notes}</p>
+
+              {event.divisions.length > 0 && (
+                <ul className="division-list" aria-label={`${event.event_name} phase schedule`}>
+                  {event.divisions.slice(0, 3).map((division) => (
+                    <li key={`${event.id}-${division.name}`}>
+                      <strong>{division.name}</strong>
+                      <span>{division.phase}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <a className="score-link" href={event.scoring_url} target="_blank" rel="noreferrer">
+                Open {event.status_label.toLowerCase()}
+              </a>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="workspace-grid">
