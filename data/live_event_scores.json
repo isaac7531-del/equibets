@@ -1,0 +1,539 @@
+{
+  "as_of_date": "2026-05-16",
+  "events": [
+    {
+      "country": "US",
+      "date_label": "May 16, 2026",
+      "divisions": [
+        {
+          "division": "Modified",
+          "leader": {
+            "horse": "Jaxi",
+            "rider": "Jennifer Haglin",
+            "score": 36.8
+          },
+          "phase": "Final Scores",
+          "phase_links": [
+            {
+              "label": "Final Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=8&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Training",
+          "leader": {
+            "horse": "Kindle",
+            "rider": "Alex Griffiths",
+            "score": 30.7
+          },
+          "phase": "Final Scores",
+          "phase_links": [
+            {
+              "label": "Final Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=3&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Novice",
+          "leader": {
+            "horse": "Lothario II",
+            "rider": "Tatiana Asay",
+            "score": 22.5
+          },
+          "phase": "Final Scores",
+          "phase_links": [
+            {
+              "label": "Final Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=4&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Beginner Novice",
+          "leader": {
+            "horse": "Hold on Loosely",
+            "rider": "Megan Comer",
+            "score": 28.8
+          },
+          "phase": "Times Provisional Scores Stadium: 8:00 AM Sat.",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=5"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=5&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Beginner Novice",
+          "leader": {
+            "horse": "Baron",
+            "rider": "Tani Smihula",
+            "score": 28.8
+          },
+          "phase": "Times Provisional Scores Stadium: 8:00 AM Sat.",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=5"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=5&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Grasshopper",
+          "leader": {
+            "horse": "Dolly",
+            "rider": "Brody Balk",
+            "score": 0.0
+          },
+          "phase": "Times Provisional Scores Dressage: 2:50 PM Sat. Ring 1",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=7&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Grasshopper",
+          "leader": {
+            "horse": "Allstar Hollywood",
+            "rider": "Campbell Dickey",
+            "score": 0.0
+          },
+          "phase": "Times Provisional Scores Dressage: 2:50 PM Sat. Ring 1",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=7&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Grasshopper",
+          "leader": {
+            "horse": "Tango's Kamikaze",
+            "rider": "Mariah Gera",
+            "score": 0.0
+          },
+          "phase": "Times Provisional Scores Dressage: 2:50 PM Sat. Ring 1",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=7&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Grasshopper",
+          "leader": {
+            "horse": "TCR Bucky Wood",
+            "rider": "Johanna Horting",
+            "score": 0.0
+          },
+          "phase": "Times Provisional Scores Dressage: 2:50 PM Sat. Ring 1",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=7&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Grasshopper",
+          "leader": {
+            "horse": "Meet The New Boss",
+            "rider": "Krista Horting",
+            "score": 0.0
+          },
+          "phase": "Times Provisional Scores Dressage: 2:50 PM Sat. Ring 1",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=7&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Grasshopper",
+          "leader": {
+            "horse": "Rhett Butler",
+            "rider": "Kimberly Johnson",
+            "score": 0.0
+          },
+          "phase": "Times Provisional Scores Dressage: 2:50 PM Sat. Ring 1",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=7&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Grasshopper",
+          "leader": {
+            "horse": "Juniper",
+            "rider": "Jessie King",
+            "score": 0.0
+          },
+          "phase": "Times Provisional Scores Dressage: 2:50 PM Sat. Ring 1",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=7&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Grasshopper",
+          "leader": {
+            "horse": "PacMan",
+            "rider": "Elin Lake",
+            "score": 0.0
+          },
+          "phase": "Times Provisional Scores Dressage: 2:50 PM Sat. Ring 1",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=7&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Grasshopper",
+          "leader": {
+            "horse": "She'sLittleMischief",
+            "rider": "Jessie Martindale",
+            "score": 0.0
+          },
+          "phase": "Times Provisional Scores Dressage: 2:50 PM Sat. Ring 1",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=7&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Grasshopper",
+          "leader": {
+            "horse": "Vibrant Force",
+            "rider": "Caroline Mayer",
+            "score": 0.0
+          },
+          "phase": "Times Provisional Scores Dressage: 2:50 PM Sat. Ring 1",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=7&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Grasshopper",
+          "leader": {
+            "horse": "Vibrant Force Extra Dressage",
+            "rider": "Caroline Mayer",
+            "score": 0.0
+          },
+          "phase": "Times Provisional Scores Dressage: 2:50 PM Sat. Ring 1",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=7&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Grasshopper",
+          "leader": {
+            "horse": "I'm A Sudden Silhouette",
+            "rider": "Krista Santum",
+            "score": 0.0
+          },
+          "phase": "Times Provisional Scores Dressage: 2:50 PM Sat. Ring 1",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=7&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Grasshopper",
+          "leader": {
+            "horse": "1DrJanet Extra Dressage",
+            "rider": "Kim Wolf",
+            "score": 38.5
+          },
+          "phase": "Times Provisional Scores Dressage: 2:50 PM Sat. Ring 1",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=7&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Starter",
+          "leader": {
+            "horse": "Johno Fire Fianna",
+            "rider": "Michelle Cameron-Donaldson",
+            "score": 29.7
+          },
+          "phase": "Provisional Scores",
+          "phase_links": [
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=6&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Modified",
+          "leader": null,
+          "phase": "Scores",
+          "phase_links": [
+            {
+              "label": "Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/tipresults.php?level=Modified"
+            }
+          ]
+        },
+        {
+          "division": "Training",
+          "leader": null,
+          "phase": "Scores",
+          "phase_links": [
+            {
+              "label": "Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/tipresults.php?level=Training"
+            }
+          ]
+        },
+        {
+          "division": "BNovice",
+          "leader": null,
+          "phase": "Scores",
+          "phase_links": [
+            {
+              "label": "Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/tipresults.php?level=BNovice"
+            }
+          ]
+        },
+        {
+          "division": "Starter",
+          "leader": null,
+          "phase": "Scores",
+          "phase_links": [
+            {
+              "label": "Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/tipresults.php?level=Starter"
+            }
+          ]
+        }
+      ],
+      "end_date": "2026-05-16",
+      "id": "startbox-eventsu-lynnleigh-sht0526",
+      "location": "Sandy, UT",
+      "name": "Lynnleigh Farm May 16, 2026 Schooling 2-Phase",
+      "source_url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/",
+      "start_date": "2026-05-16",
+      "status": "Results"
+    },
+    {
+      "country": "US",
+      "date_label": "May 16-17, 2026",
+      "divisions": [
+        {
+          "division": "Open Training",
+          "leader": {
+            "horse": "Leo D",
+            "rider": "Alexis Concolino",
+            "score": 30.3
+          },
+          "phase": "Times Provisional Scores Stadium: 11:45 AM Sun.",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=5"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/phase2_select.php?division=5&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Open Novice",
+          "leader": {
+            "horse": "Cybele",
+            "rider": "Georgia Myers",
+            "score": 81.7
+          },
+          "phase": "Times Provisional Scores XC: 2:40 PM Sat.",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=4"
+            },
+            {
+              "label": "Provisional Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/phase2_select.php?division=4&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Beg Novice Classic 3-Day",
+          "leader": {
+            "horse": "Glory Call",
+            "rider": "Gracie Diaz",
+            "score": 37.2
+          },
+          "phase": "Times Scores XC: 3:54 PM Sat.",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=7"
+            },
+            {
+              "label": "Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/dressResultsEventing.php?division=7&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Open Beginner Novice",
+          "leader": {
+            "horse": "Fly With Me",
+            "rider": "Tristen Hooks Dvm",
+            "score": 24.4
+          },
+          "phase": "Times Scores XC: 3:20 PM Sat.",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=3"
+            },
+            {
+              "label": "Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/dressResultsEventing.php?division=3&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Grasshopper",
+          "leader": {
+            "horse": "Auggie",
+            "rider": "Sofia Kang",
+            "score": 30.0
+          },
+          "phase": "Times Scores XC: 5:10 PM Sat.",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=1"
+            },
+            {
+              "label": "Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/dressResultsEventing.php?division=1&order=place"
+            }
+          ]
+        },
+        {
+          "division": "Open Introductory",
+          "leader": {
+            "horse": "Salty",
+            "rider": "Mariah deNijs",
+            "score": 24.4
+          },
+          "phase": "Times Scores XC: 4:20 PM Sat.",
+          "phase_links": [
+            {
+              "label": "Times",
+              "url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=2"
+            },
+            {
+              "label": "Scores",
+              "url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/dressResultsEventing.php?division=2&order=place"
+            }
+          ]
+        }
+      ],
+      "end_date": "2026-05-17",
+      "id": "startbox-eventsu-ramtap-sht0526",
+      "location": "Fresno, CA",
+      "name": "Ram Tap May SHT",
+      "source_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/",
+      "start_date": "2026-05-16",
+      "status": "Results"
+    }
+  ],
+  "generated_at": "2026-05-16T22:08:07.908563+00:00",
+  "source_id": "startbox_current_events",
+  "source_name": "StartBox current eventing scores",
+  "source_url": "http://eventing.startboxscoring.com/",
+  "version": 1
+}
