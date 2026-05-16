@@ -35,6 +35,53 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Live current-event scoring feed
+
+Hourly or event-day jobs can now publish a normalized current-event JSON feed
+for the website to read from `/current-events.json` or from
+`VITE_LIVE_RESULTS_URL`.
+
+The feed supports either a flat `results` list or an `events` list with
+event-level defaults:
+
+```json
+{
+  "generated_at": "2026-05-16T19:00:00+00:00",
+  "source_ids": ["data_fei"],
+  "results": [
+    {
+      "source_id": "data_fei",
+      "source_record_id": "fei-live-1",
+      "source_priority": 0,
+      "rider_name": "Avery Stone",
+      "horse_name": "Juniper",
+      "event_name": "Current Spring International",
+      "event_date": "2026-05-16",
+      "level": "CCI3",
+      "country": "GBR",
+      "status": "live",
+      "dressage_score": 29.4,
+      "show_jumping_penalties": 4,
+      "cross_country_jump_penalties": null,
+      "cross_country_time_penalties": null,
+      "phase_statuses": {
+        "dressage": "complete",
+        "show_jumping": "complete",
+        "cross_country": "not_started"
+      },
+      "collected_at": "2026-05-16T19:00:00+00:00",
+      "source_url": "https://data.fei.org/"
+    }
+  ]
+}
+```
+
+Use `python3 -m equibets.live_scoring --feed-url <url> --output
+public/current-events.json --pretty` to pull configured JSON feeds, dedupe
+duplicate starts by source priority, and emit the frontend feed. Add `--query`
+to search a horse, rider, event, level, country, or source before writing the
+payload.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a

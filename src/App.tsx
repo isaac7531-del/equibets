@@ -1,4 +1,12 @@
-import { FormEvent, useMemo, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  completedPhaseCount,
+  formatLiveStatus,
+  liveTotal,
+  loadLiveScoreFeed,
+  searchLiveScores,
+  type LiveScoreFeed,
+} from './liveScoring';
 import {
   calculateScore,
   formatSeconds,
@@ -39,6 +47,17 @@ const defaultFormState: FormState = {
   notes: '',
 };
 
+const emptyLiveFeed: LiveScoreFeed = {
+  generatedAt: null,
+  sourceIds: [],
+  scores: [],
+};
+
+const liveFeedUrls = ['/current-events.json', import.meta.env.VITE_LIVE_RESULTS_URL].filter(
+  (url): url is string => typeof url === 'string' && url.length > 0,
+);
+const liveRefreshIntervalMs = 60_000;
+
 const numberValue = (value: string) => Number.parseFloat(value || '0');
 
 const createScoreInput = (form: FormState): EventingScoreInput => ({
@@ -49,13 +68,74 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
   actualTimeSeconds: parseTimeToSeconds(numberValue(form.actualMinutes), numberValue(form.actualSeconds)),
 });
 
+const formatFeedTime = (value: string | null) => {
+  if (!value) {
+    return 'No live refresh yet';
+  }
+
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) {
+    return value;
+  }
+
+  return parsed.toLocaleString(undefined, {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  });
+};
+
+const formatFeedStatus = (status: 'loading' | 'ready' | 'error') => {
+  if (status === 'loading') {
+    return 'Refreshing';
+  }
+  if (status === 'error') {
+    return 'Feed error';
+  }
+  return 'Feed ready';
+};
+
 export default function App() {
   const [form, setForm] = useState<FormState>(defaultFormState);
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [liveFeed, setLiveFeed] = useState<LiveScoreFeed>(emptyLiveFeed);
+  const [liveSearch, setLiveSearch] = useState('');
+  const [liveFeedStatus, setLiveFeedStatus] = useState<'loading' | 'ready' | 'error'>('loading');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
   const bestResult = sortedResults[0];
+  const searchedLiveScores = useMemo(() => searchLiveScores(liveFeed.scores, liveSearch, 8), [liveFeed.scores, liveSearch]);
+  const bestLiveScore = searchedLiveScores[0];
+
+  const refreshLiveScores = useCallback(async () => {
+    setLiveFeedStatus('loading');
+    try {
+      const nextFeed = await loadLiveScoreFeed(liveFeedUrls);
+      setLiveFeed(nextFeed);
+      setLiveFeedStatus('ready');
+    } catch {
+      setLiveFeedStatus('error');
+    }
+  }, []);
+
+  useEffect(() => {
+    let isActive = true;
+
+    const refresh = async () => {
+      if (!isActive) {
+        return;
+      }
+      await refreshLiveScores();
+    };
+
+    refresh();
+    const intervalId = window.setInterval(refresh, liveRefreshIntervalMs);
+
+    return () => {
+      isActive = false;
+      window.clearInterval(intervalId);
+    };
+  }, [refreshLiveScores]);
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -134,6 +214,100 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Live leader</span>
+          <strong>{bestLiveScore ? liveTotal(bestLiveScore).toFixed(1) : '--'}</strong>
+          <p>{bestLiveScore ? `${bestLiveScore.horseName} at ${bestLiveScore.eventName}` : 'Awaiting current-event feed'}</p>
+        </article>
+      </section>
+
+      <section className="live-card" aria-labelledby="live-scoring-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-scoring-heading">Live scoring</h2>
+          </div>
+          <button className="secondary-button" type="button" onClick={refreshLiveScores} disabled={liveFeedStatus === 'loading'}>
+            {liveFeedStatus === 'loading' ? 'Refreshing...' : 'Refresh feed'}
+          </button>
+        </div>
+
+        <div className="live-toolbar">
+          <label>
+            Search live leaderboard
+            <input
+              value={liveSearch}
+              onChange={(event) => setLiveSearch(event.target.value)}
+              placeholder="Horse, rider, event, level, country, or source"
+            />
+          </label>
+          <div className="feed-meta" aria-live="polite">
+            <span className={`status-pill status-pill--${liveFeedStatus}`}>{formatFeedStatus(liveFeedStatus)}</span>
+            <span>{formatFeedTime(liveFeed.generatedAt)}</span>
+            <span>{liveFeed.sourceIds.length} source{liveFeed.sourceIds.length === 1 ? '' : 's'}</span>
+          </div>
+        </div>
+
+        {searchedLiveScores.length === 0 ? (
+          <div className="empty-state">
+            <strong>No live scores loaded.</strong>
+            <p>Publish a normalized current-event feed at /current-events.json or set VITE_LIVE_RESULTS_URL to pull live scoring data.</p>
+          </div>
+        ) : (
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Combination</th>
+                  <th>Event</th>
+                  <th>Status</th>
+                  <th>Total</th>
+                  <th>Phases</th>
+                  <th>Source</th>
+                </tr>
+              </thead>
+              <tbody>
+                {searchedLiveScores.map((score, index) => (
+                  <tr key={`${score.sourceId}-${score.sourceRecordId}`}>
+                    <td>#{index + 1}</td>
+                    <td>
+                      <strong>{score.horseName}</strong>
+                      <span>{score.riderName}</span>
+                    </td>
+                    <td>
+                      <strong>{score.eventName}</strong>
+                      <span>
+                        {score.eventDate} / {score.level} / {score.country}
+                      </span>
+                    </td>
+                    <td>
+                      <span className={`status-pill status-pill--${score.status}`}>{formatLiveStatus(score.status)}</span>
+                    </td>
+                    <td className="total-cell">{liveTotal(score).toFixed(1)}</td>
+                    <td className="breakdown-cell">
+                      {completedPhaseCount(score)}/3 complete
+                      <span>
+                        D {formatLiveStatus(score.phaseStatuses.dressage)} / SJ{' '}
+                        {formatLiveStatus(score.phaseStatuses.showJumping)} / XC{' '}
+                        {formatLiveStatus(score.phaseStatuses.crossCountry)}
+                      </span>
+                    </td>
+                    <td>
+                      {score.sourceUrl ? (
+                        <a href={score.sourceUrl} target="_blank" rel="noreferrer">
+                          {score.sourceId}
+                        </a>
+                      ) : (
+                        score.sourceId
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">

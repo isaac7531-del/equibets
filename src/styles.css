@@ -89,6 +89,7 @@ button:disabled {
 .hero-card,
 .dashboard article,
 .calculator-card,
+.live-card,
 .results-card {
   background: rgba(255, 252, 245, 0.88);
   border: 1px solid rgba(35, 67, 45, 0.12);
@@ -129,7 +130,7 @@ button:disabled {
 .dashboard {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   margin-bottom: 1rem;
 }
 
@@ -154,9 +155,14 @@ button:disabled {
 }
 
 .calculator-card,
+.live-card,
 .results-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
+}
+
+.live-card {
+  margin-bottom: 1rem;
 }
 
 .section-heading h2,
@@ -255,6 +261,60 @@ legend {
   background: #e3d2ad;
 }
 
+.live-toolbar {
+  align-items: end;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(260px, 1fr) auto;
+  margin-bottom: 1rem;
+}
+
+.feed-meta {
+  align-items: center;
+  color: #65705f;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.86rem;
+  font-weight: 800;
+  gap: 0.5rem 0.75rem;
+  justify-content: flex-end;
+}
+
+.status-pill {
+  background: #f4ecd9;
+  border: 1px solid rgba(35, 67, 45, 0.12);
+  border-radius: 999px;
+  color: #23432d;
+  display: inline-flex;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.65rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.status-pill--loading,
+.status-pill--in_progress,
+.status-pill--live {
+  background: #efe1c2;
+  color: #7a571d;
+}
+
+.status-pill--ready,
+.status-pill--complete {
+  background: #dcebd8;
+  color: #23432d;
+}
+
+.status-pill--error,
+.status-pill--withdrawn,
+.status-pill--eliminated,
+.status-pill--retired {
+  background: #f1ddd7;
+  color: #9a4a2e;
+}
+
 .empty-state {
   background: #f8f2e4;
   border: 1px dashed rgba(35, 67, 45, 0.25);
@@ -339,7 +399,12 @@ td span {
 
   .dashboard,
   .form-grid,
+  .live-toolbar,
   .time-grid {
     grid-template-columns: 1fr;
+  }
+
+  .feed-meta {
+    justify-content: flex-start;
   }
 }
