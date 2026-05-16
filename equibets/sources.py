@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRIES = "all_fei_member_nations"
+ALL_NATIONAL_EVENT_LEVELS = "all_national_event_levels"
 
 
 @dataclass(frozen=True)
@@ -50,6 +52,23 @@ class EventSource:
         )
 
 
+def load_event_level_groups(path: Path | str = DATA_FILE) -> dict[str, tuple[str, ...]]:
+    """Load reusable event-level groups from the source registry."""
+
+    with Path(path).open(encoding="utf-8") as source_file:
+        payload = json.load(source_file)
+
+    groups = payload.get("event_level_groups", {})
+    if not isinstance(groups, dict):
+        raise ValueError("event_level_groups must be an object")
+
+    return {
+        group_id: _strings_from_iterable(levels, f"event_level_groups.{group_id}")
+        for group_id, levels in groups.items()
+        if isinstance(group_id, str) and group_id
+    }
+
+
 def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
     """Load sources sorted by priority, with FEI first on ties."""
 
@@ -82,6 +101,32 @@ def sources_for_region(
     ]
 
 
+def sources_for_country(
+    country_code: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country, optionally narrowed to an event level."""
+
+    normalized_country = country_code.upper().strip()
+    if not normalized_country:
+        raise ValueError("country_code must be a non-empty string")
+
+    normalized_level = _normalize_level(level) if level is not None else None
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    level_groups = load_event_level_groups(path)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _source_covers_country(source, normalized_country)
+        and _source_covers_level(source, normalized_level, level_groups)
+    ]
+
+
 def _required_str(values: dict[str, object], key: str) -> str:
     value = values.get(key)
     if not isinstance(value, str) or not value:
@@ -107,6 +152,10 @@ def _required_int(values: dict[str, object], key: str) -> int:
 
 def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     value = values.get(key)
+    return _strings_from_iterable(value, key)
+
+
+def _strings_from_iterable(value: object, key: str) -> tuple[str, ...]:
     if not isinstance(value, Iterable) or isinstance(value, (str, bytes)):
         raise ValueError(f"{key} must be a list of strings")
 
@@ -114,3 +163,32 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _source_covers_country(source: EventSource, country_code: str) -> bool:
+    return ALL_COUNTRIES in source.countries or country_code in source.countries
+
+
+def _source_covers_level(
+    source: EventSource,
+    level: str | None,
+    level_groups: dict[str, tuple[str, ...]],
+) -> bool:
+    if level is None:
+        return True
+
+    for configured_level in source.event_levels:
+        if _normalize_level(configured_level) == level:
+            return True
+        grouped_levels = level_groups.get(configured_level, ())
+        if level in {_normalize_level(grouped_level) for grouped_level in grouped_levels}:
+            return True
+
+    return False
+
+
+def _normalize_level(level: str) -> str:
+    normalized = level.lower().strip().replace(" ", "_").replace("-", "_")
+    if not normalized:
+        raise ValueError("level must be a non-empty string")
+    return normalized
