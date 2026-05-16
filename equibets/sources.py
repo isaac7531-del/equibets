@@ -7,12 +7,22 @@ that are important for broader coverage.
 from __future__ import annotations
 
 import json
+import re
 from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+COUNTRY_WILDCARDS = {
+    "all_countries",
+    "all_fei_member_nations",
+    "all_national_federation_countries",
+}
+EVENT_LEVEL_WILDCARDS = {
+    "all_event_levels",
+    "all_national_event_levels",
+}
 
 
 @dataclass(frozen=True)
@@ -31,6 +41,37 @@ class EventSource:
     base_url: str | None
     status: str
     notes: str
+
+    def covers_region(self, region: str) -> bool:
+        """Return whether this source covers a region token."""
+
+        normalized_region = _token(region)
+        return "global" in self.regions or normalized_region in self.regions
+
+    def covers_country(self, country: str) -> bool:
+        """Return whether this source covers an ISO-3 country code or wildcard."""
+
+        normalized_country = _country_token(country)
+        return any(
+            country_value in COUNTRY_WILDCARDS
+            or _country_token(country_value) == normalized_country
+            for country_value in self.countries
+        )
+
+    def covers_event_level(self, event_level: str) -> bool:
+        """Return whether this source covers a normalized event level bucket."""
+
+        normalized_level = _token(event_level)
+        normalized_source_levels = {_token(level) for level in self.event_levels}
+        has_wildcard = any(
+            level in EVENT_LEVEL_WILDCARDS for level in normalized_source_levels
+        )
+        has_matching_bucket = any(
+            source_level == normalized_level
+            or source_level.endswith(f"_{normalized_level}")
+            for source_level in normalized_source_levels
+        )
+        return has_wildcard or has_matching_bucket
 
     @classmethod
     def from_mapping(cls, values: dict[str, object]) -> "EventSource":
@@ -71,14 +112,46 @@ def sources_for_region(
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
     statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        if source.status in statuses and source.covers_region(region)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country while preserving global priorities."""
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and source.covers_country(country)
+    ]
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an event level while preserving global priorities."""
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and source.covers_event_level(event_level)
     ]
 
 
@@ -114,3 +187,11 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _token(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", value.lower()).strip("_")
+
+
+def _country_token(value: str) -> str:
+    return _token(value).upper()

@@ -1,7 +1,30 @@
 {
   "version": 1,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results for every FEI member nation, prioritizing data.fei for international starts and supplementing every national, regional, local, club, grassroots, schooling, and training level through national-event sources.",
+  "national_event_scope": {
+    "countries": [
+      "all_fei_member_nations"
+    ],
+    "event_levels": [
+      "national_championship",
+      "national_elite",
+      "national_advanced",
+      "national_intermediate",
+      "national_preliminary",
+      "national_training",
+      "national_novice",
+      "national_beginner_novice",
+      "national_introductory",
+      "regional",
+      "local",
+      "club",
+      "grassroots",
+      "schooling",
+      "starter",
+      "pony_youth"
+    ]
+  },
   "priority_regions": [
     "europe",
     "uk",
@@ -25,7 +48,17 @@
         "eventing"
       ],
       "event_levels": [
-        "fei_international"
+        "fei_international",
+        "fei_cci5_l",
+        "fei_cci4_l",
+        "fei_cci4_s",
+        "fei_cci3_l",
+        "fei_cci3_s",
+        "fei_cci2_l",
+        "fei_cci2_s",
+        "fei_cci1_intro",
+        "fei_young_horse",
+        "fei_championship"
       ],
       "source_type": "primary_database",
       "base_url": "https://data.fei.org/",
@@ -47,13 +80,27 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "national_championship",
+        "national_elite",
+        "national_advanced",
+        "national_intermediate",
+        "national_preliminary",
+        "national_training",
+        "national_novice",
+        "national_beginner_novice",
+        "national_introductory",
+        "regional",
+        "local",
+        "club",
+        "grassroots",
+        "schooling",
+        "starter",
+        "pony_youth"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations."
+      "notes": "Discover and connect national federation calendars and result portals for every European FEI member nation and map country-specific grades into the shared all-level buckets."
     },
     {
       "id": "british_eventing",
@@ -70,13 +117,27 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "national_championship",
+        "national_elite",
+        "national_advanced",
+        "national_intermediate",
+        "national_preliminary",
+        "national_training",
+        "national_novice",
+        "national_beginner_novice",
+        "national_introductory",
+        "regional",
+        "local",
+        "club",
+        "grassroots",
+        "schooling",
+        "starter",
+        "pony_youth"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
       "status": "planned",
-      "notes": "High-priority national-event source for UK coverage."
+      "notes": "High-priority national-event source for UK coverage across national, regional, local, club, grassroots, schooling, and training levels."
     },
     {
       "id": "equestrian_australia",
@@ -93,13 +154,27 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "national_championship",
+        "national_elite",
+        "national_advanced",
+        "national_intermediate",
+        "national_preliminary",
+        "national_training",
+        "national_novice",
+        "national_beginner_novice",
+        "national_introductory",
+        "regional",
+        "local",
+        "club",
+        "grassroots",
+        "schooling",
+        "starter",
+        "pony_youth"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.equestrian.org.au/",
       "status": "planned",
-      "notes": "High-priority national-event source for Australian coverage."
+      "notes": "High-priority national-event source for Australian coverage across national, regional, local, club, grassroots, schooling, and training levels."
     },
     {
       "id": "equestrian_sports_new_zealand",
@@ -116,13 +191,27 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "national_championship",
+        "national_elite",
+        "national_advanced",
+        "national_intermediate",
+        "national_preliminary",
+        "national_training",
+        "national_novice",
+        "national_beginner_novice",
+        "national_introductory",
+        "regional",
+        "local",
+        "club",
+        "grassroots",
+        "schooling",
+        "starter",
+        "pony_youth"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.nzequestrian.org.nz/",
       "status": "planned",
-      "notes": "High-priority national-event source for New Zealand coverage."
+      "notes": "High-priority national-event source for New Zealand coverage across national, regional, local, club, grassroots, schooling, and training levels."
     },
     {
       "id": "usea",
@@ -139,13 +228,27 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "national_championship",
+        "national_elite",
+        "national_advanced",
+        "national_intermediate",
+        "national_preliminary",
+        "national_training",
+        "national_novice",
+        "national_beginner_novice",
+        "national_introductory",
+        "regional",
+        "local",
+        "club",
+        "grassroots",
+        "schooling",
+        "starter",
+        "pony_youth"
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
       "status": "planned",
-      "notes": "High-priority national-event source for USA coverage."
+      "notes": "High-priority national-event source for USA coverage across national, regional, local, club, grassroots, schooling, and training levels."
     },
     {
       "id": "global_national_federations",
@@ -162,13 +265,27 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "national_championship",
+        "national_elite",
+        "national_advanced",
+        "national_intermediate",
+        "national_preliminary",
+        "national_training",
+        "national_novice",
+        "national_beginner_novice",
+        "national_introductory",
+        "regional",
+        "local",
+        "club",
+        "grassroots",
+        "schooling",
+        "starter",
+        "pony_youth"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "notes": "Backfill national events for every FEI member nation and every national-to-local level after higher-priority country or regional sources are covered."
     }
   ]
 }
