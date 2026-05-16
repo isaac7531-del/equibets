@@ -18,6 +18,7 @@ body {
 
 button,
 input,
+select,
 textarea {
   font: inherit;
 }
@@ -154,9 +155,91 @@ button:disabled {
 }
 
 .calculator-card,
-.results-card {
+.results-card,
+.live-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
+}
+
+.live-card {
+  background: #203627;
+  border: 1px solid rgba(255, 249, 236, 0.12);
+  box-shadow: 0 24px 80px rgba(67, 55, 37, 0.14);
+  color: #fff9ec;
+  margin-bottom: 1rem;
+}
+
+.live-card .eyebrow {
+  color: #dfbe73;
+}
+
+.live-card h2 {
+  margin: 0;
+}
+
+.status-pill {
+  background: rgba(255, 249, 236, 0.12);
+  border: 1px solid rgba(255, 249, 236, 0.18);
+  border-radius: 999px;
+  color: #f8e7c3;
+  font-size: 0.82rem;
+  font-weight: 900;
+  padding: 0.45rem 0.75rem;
+}
+
+.live-controls {
+  align-items: end;
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: minmax(140px, 0.45fr) minmax(260px, 1fr) auto;
+  margin: 1rem 0;
+}
+
+.live-controls label {
+  color: #f6ebd1;
+}
+
+.live-status {
+  color: #d3ddcf;
+  margin: 0 0 1rem;
+}
+
+.source-search-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.source-search-grid a {
+  background: rgba(255, 249, 236, 0.08);
+  border: 1px solid rgba(255, 249, 236, 0.14);
+  border-radius: 1rem;
+  color: #fff9ec;
+  min-height: 120px;
+  padding: 0.9rem;
+  text-decoration: none;
+}
+
+.source-search-grid a:hover {
+  background: rgba(255, 249, 236, 0.14);
+}
+
+.source-search-grid span {
+  color: #d3ddcf;
+  display: block;
+  font-size: 0.78rem;
+  line-height: 1.35;
+  margin-top: 0.45rem;
+}
+
+.live-table {
+  margin-top: 1rem;
+}
+
+.live-table table {
+  background: #fffdf7;
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
 .section-heading h2,
@@ -181,6 +264,7 @@ fieldset {
 }
 
 input,
+select,
 textarea {
   background: #fffdf7;
   border: 1px solid rgba(35, 67, 45, 0.16);
@@ -191,6 +275,7 @@ textarea {
 }
 
 input:focus,
+select:focus,
 textarea:focus {
   border-color: #956d26;
   box-shadow: 0 0 0 4px rgba(149, 109, 38, 0.14);
@@ -329,6 +414,11 @@ td span {
 
   .dashboard {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .live-controls,
+  .source-search-grid {
+    grid-template-columns: 1fr;
   }
 }
 

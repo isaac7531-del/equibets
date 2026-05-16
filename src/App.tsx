@@ -7,6 +7,7 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import { buildCurrentEventSearches, pullLiveResultsFromUrl, type LiveResult } from './liveResults';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -52,9 +53,24 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 export default function App() {
   const [form, setForm] = useState<FormState>(defaultFormState);
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [liveRegion, setLiveRegion] = useState('global');
+  const [liveFeedUrl, setLiveFeedUrl] = useState('');
+  const [liveResults, setLiveResults] = useState<LiveResult[]>([]);
+  const [liveStatus, setLiveStatus] = useState('Search official sources, then pull a JSON results feed to score live standings.');
+  const [isPullingLiveResults, setIsPullingLiveResults] = useState(false);
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const currentEventSearches = useMemo(
+    () =>
+      buildCurrentEventSearches({
+        eventName: form.eventName,
+        rider: form.rider,
+        horse: form.horse,
+        region: liveRegion,
+      }),
+    [form.eventName, form.horse, form.rider, liveRegion],
+  );
   const bestResult = sortedResults[0];
 
   const updateField = (field: keyof FormState, value: string) => {
@@ -91,6 +107,43 @@ export default function App() {
   const clearResults = () => {
     setResults([]);
     saveResults([]);
+  };
+
+  const handlePullLiveResults = async () => {
+    const trimmedUrl = liveFeedUrl.trim();
+    if (!trimmedUrl) {
+      setLiveStatus('Add a JSON feed URL before pulling live results.');
+      return;
+    }
+
+    setIsPullingLiveResults(true);
+    setLiveStatus('Pulling latest public result records...');
+
+    try {
+      const pulledResults = await pullLiveResultsFromUrl(trimmedUrl);
+      setLiveResults(pulledResults);
+      setLiveStatus(
+        pulledResults.length === 0
+          ? 'The feed loaded, but it did not include any result records.'
+          : `Pulled ${pulledResults.length} live score${pulledResults.length === 1 ? '' : 's'}.`,
+      );
+    } catch (error) {
+      setLiveStatus(error instanceof Error ? error.message : 'Unable to pull live results.');
+    } finally {
+      setIsPullingLiveResults(false);
+    }
+  };
+
+  const saveLiveResult = (liveResult: LiveResult) => {
+    const savedResult: StoredResult = {
+      ...liveResult,
+      id: crypto.randomUUID(),
+      createdAt: new Date().toISOString(),
+      notes: `${liveResult.notes}${liveResult.sourceUrl ? ` (${liveResult.sourceUrl})` : ''}`,
+    };
+    const nextResults = [savedResult, ...results];
+    setResults(nextResults);
+    saveResults(nextResults);
   };
 
   return (
@@ -134,6 +187,99 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+      </section>
+
+      <section className="live-card" aria-labelledby="live-results-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-results-heading">Live result search and scoring</h2>
+          </div>
+          <span className="status-pill">{liveResults.length} pulled</span>
+        </div>
+
+        <div className="live-controls">
+          <label>
+            Region
+            <select value={liveRegion} onChange={(event) => setLiveRegion(event.target.value)}>
+              <option value="global">Global</option>
+              <option value="europe">Europe</option>
+              <option value="uk">UK</option>
+              <option value="australia">Australia</option>
+              <option value="new_zealand">New Zealand</option>
+              <option value="usa">USA</option>
+            </select>
+          </label>
+          <label>
+            Results feed URL
+            <input
+              type="url"
+              value={liveFeedUrl}
+              onChange={(event) => setLiveFeedUrl(event.target.value)}
+              placeholder="https://example.com/current-event-results.json"
+            />
+          </label>
+          <button type="button" onClick={handlePullLiveResults} disabled={isPullingLiveResults}>
+            {isPullingLiveResults ? 'Pulling...' : 'Pull latest scores'}
+          </button>
+        </div>
+
+        <p className="live-status" role="status">
+          {liveStatus}
+        </p>
+
+        <div className="source-search-grid" aria-label="Official result searches">
+          {currentEventSearches.map((search) => (
+            <a key={search.sourceId} href={search.searchUrl} target="_blank" rel="noreferrer">
+              <strong>{search.sourceName}</strong>
+              <span>{search.query}</span>
+            </a>
+          ))}
+        </div>
+
+        {liveResults.length > 0 && (
+          <div className="table-wrap live-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Combination</th>
+                  <th>Event</th>
+                  <th>Source</th>
+                  <th>Total</th>
+                  <th aria-label="Actions" />
+                </tr>
+              </thead>
+              <tbody>
+                {liveResults.map((result, index) => (
+                  <tr key={result.id}>
+                    <td>#{index + 1}</td>
+                    <td>
+                      <strong>{result.horse}</strong>
+                      <span>{result.rider}</span>
+                    </td>
+                    <td>
+                      <strong>{result.eventName}</strong>
+                      <span>
+                        {[result.date, result.level, result.country].filter(Boolean).join(' / ')}
+                      </span>
+                    </td>
+                    <td>
+                      <strong>{result.sourceName}</strong>
+                      <span>Collected {new Date(result.collectedAt).toLocaleDateString()}</span>
+                    </td>
+                    <td className="total-cell">{result.score.totalPenalties.toFixed(1)}</td>
+                    <td>
+                      <button className="link-button" type="button" onClick={() => saveLiveResult(result)}>
+                        Save
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">

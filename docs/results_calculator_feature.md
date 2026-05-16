@@ -35,6 +35,11 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+The first live-scoring surface supports this flow by generating current-event
+searches from the source registry and importing JSON feeds that already match
+the `EventingResult` shape. Imported records are scored immediately in the
+browser and can be saved to the local results table.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a
@@ -56,3 +61,5 @@ The first prediction output includes:
 - Add my score form: rider, horse, event, date, level, country, phase scores.
 - Data freshness badge: last weekly public-data refresh and source coverage.
 - Source badges: FEI, national federation, global backfill, or user-entered.
+- Current-event panel: source-prioritized searches, public feed pull, live
+  standings, and one-click save into local history.
