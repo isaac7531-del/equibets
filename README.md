@@ -8,6 +8,7 @@ Personal eventing results calculator, browser-based results tracker, and data so
 - Saves horse-and-rider results to local browser storage.
 - Ranks saved results from lowest total penalties to highest.
 - Tracks public event-results sources for FEI and national-event coverage.
+- Pulls current-event live scoring snapshots from active source calendars.
 
 ## Results calculator feature
 
@@ -57,3 +58,16 @@ Run the source registry checks with:
 ```bash
 python3 -m unittest discover -s tests
 ```
+
+## Current-event live scoring
+
+The website reads `data/current_event_live_scores.json` to show the latest
+current-event pull. Refresh that snapshot from the StartBox calendar with:
+
+```bash
+python3 -m equibets.live_scoring --output data/current_event_live_scores.json
+```
+
+The puller records current/recent events, result links, division phase status,
+and normalized placeholders for score rows so live leaderboards can populate as
+source result rows become available.
