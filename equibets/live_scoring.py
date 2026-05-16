@@ -84,7 +84,7 @@ def parse_startbox_calendar(
     effective_date = as_of or date.today()
     rows = _markdown_calendar_rows(content)
     if not rows:
-        rows = _html_table_rows(content)
+        rows = _html_calendar_rows(content)
 
     events: list[CurrentEvent] = []
     for date_label, link_label, link_url, description in rows:
@@ -118,17 +118,14 @@ def parse_startbox_calendar(
 def parse_startbox_event_page(content: str, *, base_url: str = STARTBOX_CALENDAR_URL) -> tuple[LiveDivision, ...]:
     """Parse division phase/timing rows from a StartBox event page."""
 
-    rows = _markdown_division_rows(content)
-    if not rows:
-        rows = _html_table_rows(content)
-
+    normalized_base_url = _directory_base_url(base_url)
     divisions: list[LiveDivision] = []
-    for name, phase_cell, *_ in rows:
+    for name, phase_cell in _markdown_division_rows(content):
         if name.lower() in {"division", "phase"} or not name.strip("- "):
             continue
 
         links = {
-            label.lower(): urljoin(base_url, url)
+            label.lower(): urljoin(normalized_base_url, url)
             for label, url in _markdown_links(phase_cell)
         }
         phase_status = _strip_markdown_links(phase_cell).strip(" -")
@@ -138,6 +135,22 @@ def parse_startbox_event_page(content: str, *, base_url: str = STARTBOX_CALENDAR
                 phase_status=phase_status,
                 entry_status_url=links.get("entry status"),
                 times_url=links.get("times"),
+            )
+        )
+
+    if divisions:
+        return tuple(divisions)
+
+    for name, phase_status, entry_status_url, times_url in _html_division_rows(content, base_url=normalized_base_url):
+        if name.lower() in {"division", "phase"} or not name.strip("- "):
+            continue
+
+        divisions.append(
+            LiveDivision(
+                name=name.strip(),
+                phase_status=phase_status,
+                entry_status_url=entry_status_url,
+                times_url=times_url,
             )
         )
 
@@ -290,20 +303,48 @@ def _markdown_division_rows(content: str) -> list[tuple[str, str]]:
     return rows
 
 
-def _html_table_rows(content: str) -> list[tuple[str, str, str, str]]:
+def _html_calendar_rows(content: str) -> list[tuple[str, str, str, str]]:
     rows: list[tuple[str, str, str, str]] = []
     for row_match in re.finditer(r"<tr[^>]*>(?P<row>.*?)</tr>", content, flags=re.IGNORECASE | re.DOTALL):
         cells = re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", row_match.group("row"), flags=re.IGNORECASE | re.DOTALL)
-        if len(cells) < 2:
+        if len(cells) < 3:
             continue
 
         first = _strip_tags(cells[0])
         second_label, second_url = _first_html_link(cells[1])
-        if len(cells) >= 3:
-            third = _strip_tags(cells[2])
-            rows.append((first, second_label, second_url, third))
-        else:
-            rows.append((first, _strip_tags(cells[1]), second_url, ""))
+        show_name = _html_class_text(cells[2], "calshowname")
+        location = _html_class_text(cells[2], "callocation")
+        third = f"{show_name} {location}".strip() if show_name else _strip_tags(cells[2])
+        rows.append((first, second_label, second_url, third))
+    return rows
+
+
+def _html_division_rows(content: str, *, base_url: str) -> list[tuple[str, str, str | None, str | None]]:
+    rows: list[tuple[str, str, str | None, str | None]] = []
+    for row_match in re.finditer(r"<tr[^>]*>(?P<row>.*?)</tr>", content, flags=re.IGNORECASE | re.DOTALL):
+        cells = re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", row_match.group("row"), flags=re.IGNORECASE | re.DOTALL)
+        if len(cells) != 2:
+            continue
+
+        name = _strip_tags(cells[0])
+        links = {
+            label.lower(): urljoin(base_url, url)
+            for label, url in _html_links(cells[1])
+        }
+        phase_without_links = re.sub(
+            r"<a\b[^>]*>.*?</a>",
+            " ",
+            cells[1],
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+        rows.append(
+            (
+                name,
+                _strip_tags(phase_without_links),
+                links.get("entry status"),
+                links.get("times"),
+            )
+        )
     return rows
 
 
@@ -346,7 +387,7 @@ def _month_number(month_name: str) -> int | None:
 def _split_event_description(description: str) -> tuple[str, str, str]:
     normalized = " ".join(description.split())
     match = re.fullmatch(
-        r"(?P<name>.+?)\s+(?P<location>[A-Z][A-Za-z .'-]+,\s*[A-Z]{2}\s+(?P<country>US|Canada))",
+        r"(?P<name>.+)\s+(?P<location>[A-Z][A-Za-z .'-]+,\s*[A-Z]{2}\s+(?P<country>US|Canada))",
         normalized,
     )
     if match:
@@ -378,6 +419,14 @@ def _event_id(source_id: str, result_url: str, name: str) -> str:
     return f"{source_id}-{_slug(name)}"
 
 
+def _directory_base_url(url: str) -> str:
+    parsed = urlparse(url)
+    last_path_part = parsed.path.rsplit("/", 1)[-1]
+    if parsed.path.endswith("/") or "." in last_path_part:
+        return url
+    return f"{url.rstrip('/')}/"
+
+
 def _markdown_links(content: str) -> list[tuple[str, str]]:
     return re.findall(r"\[([^\]]+)\]\(([^)]+)\)", content)
 
@@ -388,14 +437,30 @@ def _first_markdown_link(content: str) -> tuple[str, str]:
 
 
 def _first_html_link(content: str) -> tuple[str, str]:
+    links = _html_links(content)
+    if not links:
+        return _strip_tags(content), ""
+    return links[0]
+
+
+def _html_links(content: str) -> list[tuple[str, str]]:
+    return [
+        (_strip_tags(match.group("label")), match.group("href"))
+        for match in re.finditer(
+            r"<a[^>]+href=[\"'](?P<href>[^\"']+)[\"'][^>]*>(?P<label>.*?)</a>",
+            content,
+            flags=re.IGNORECASE | re.DOTALL,
+        )
+    ]
+
+
+def _html_class_text(content: str, class_name: str) -> str:
     match = re.search(
-        r"<a[^>]+href=[\"'](?P<href>[^\"']+)[\"'][^>]*>(?P<label>.*?)</a>",
+        rf"<span[^>]+class=[\"'][^\"']*\b{re.escape(class_name)}\b[^\"']*[\"'][^>]*>(?P<value>.*?)</span>",
         content,
         flags=re.IGNORECASE | re.DOTALL,
     )
-    if not match:
-        return _strip_tags(content), ""
-    return _strip_tags(match.group("label")), match.group("href")
+    return _strip_tags(match.group("value")) if match else ""
 
 
 def _strip_markdown_links(content: str) -> str:

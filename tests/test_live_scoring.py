@@ -25,6 +25,28 @@ RAM_TAP_EVENT_PAGE = """
 """
 
 
+STARTBOX_HTML_CALENDAR = """
+<table>
+<tr class="drawdata1">
+<td class="caldate">May 16-17, 2026</td>
+<td class="calresults"><a class="img bold" href='http://eventingscores.com/eventsu/ramtap/sht0526'>Results</a></td>
+<td><span class="calshowname">Ram Tap May SHT</span><br /><span class="callocation">Fresno, CA US</span></td>
+</tr>
+</table>
+"""
+
+
+STARTBOX_HTML_EVENT_PAGE = """
+<table id="leaderboard1">
+<tr><td class="divisionldr">Division</td><td class="phase">Phase</td></tr>
+<tr class="drawdata1">
+<td class="bold">Open Training</td>
+<td><a href="draw.php?division=5">Entry Status</a> &nbsp;<a href="times.php?division=5">Times</a> &nbsp;<br /><span class="smaller padding-t">Dressage: 7:30 AM Sat. Ring 1</span></td>
+</tr>
+</table>
+"""
+
+
 class LiveScoringTests(unittest.TestCase):
     def test_parse_startbox_calendar_marks_current_events(self):
         events = parse_startbox_calendar(STARTBOX_CALENDAR, as_of=date(2026, 5, 16))
@@ -46,6 +68,21 @@ class LiveScoringTests(unittest.TestCase):
         self.assertEqual(divisions[0].phase_status, "Dressage: 7:30 AM Sat. Ring 1")
         self.assertIn("draw.php?division=5", divisions[0].entry_status_url)
         self.assertIn("times.php?division=5", divisions[0].times_url)
+
+    def test_parse_startbox_html_preserves_show_names_and_links(self):
+        events = parse_startbox_calendar(STARTBOX_HTML_CALENDAR, as_of=date(2026, 5, 16))
+        divisions = parse_startbox_event_page(
+            STARTBOX_HTML_EVENT_PAGE,
+            base_url="https://eventing.startboxscoring.com/eventsu/ramtap/sht0526",
+        )
+
+        self.assertEqual(events[0].name, "Ram Tap May SHT")
+        self.assertEqual(events[0].location, "Fresno, CA US")
+        self.assertEqual(divisions[0].phase_status, "Dressage: 7:30 AM Sat. Ring 1")
+        self.assertEqual(
+            divisions[0].entry_status_url,
+            "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/draw.php?division=5",
+        )
 
     def test_build_live_snapshot_serializes_events(self):
         events = parse_startbox_calendar(STARTBOX_CALENDAR, as_of=date(2026, 5, 16))[:1]

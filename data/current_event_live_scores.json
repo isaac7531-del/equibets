@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T14:01:00Z",
+  "generated_at": "2026-05-16T14:12:03.897491Z",
   "sources": [
     {
       "id": "startbox_scoring",
@@ -22,7 +22,44 @@
       "status": "live",
       "score_status": "results",
       "result_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526",
-      "divisions": [],
+      "divisions": [
+        {
+          "name": "Modified",
+          "phase_status": "Dressage: 8:00 AM Sat. Ring 1",
+          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=8",
+          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=8"
+        },
+        {
+          "name": "Training",
+          "phase_status": "Dressage: 8:18 AM Sat. Ring 1",
+          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=3",
+          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=3"
+        },
+        {
+          "name": "Novice",
+          "phase_status": "Dressage: 9:36 AM Sat. Ring 1",
+          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=4",
+          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=4"
+        },
+        {
+          "name": "Beginner Novice",
+          "phase_status": "Dressage: 11:06 AM Sat. Ring 1",
+          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=5",
+          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=5"
+        },
+        {
+          "name": "Grasshopper",
+          "phase_status": "Dressage: 2:50 PM Sat. Ring 1",
+          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=7",
+          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+        },
+        {
+          "name": "Starter",
+          "phase_status": "Dressage: 12:46 PM Sat. Ring 1",
+          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=6",
+          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=6"
+        }
+      ],
       "entries": []
     },
     {
@@ -42,38 +79,38 @@
         {
           "name": "Open Training",
           "phase_status": "Dressage: 7:30 AM Sat. Ring 1",
-          "entry_status_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/draw.php?division=5",
-          "times_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=5"
+          "entry_status_url": "http://eventingscores.com/eventsu/ramtap/sht0526/draw.php?division=5",
+          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=5"
         },
         {
           "name": "Open Novice",
           "phase_status": "Dressage: 8:18 AM Sat. Ring 1",
-          "entry_status_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/draw.php?division=4",
-          "times_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=4"
+          "entry_status_url": "http://eventingscores.com/eventsu/ramtap/sht0526/draw.php?division=4",
+          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=4"
         },
         {
           "name": "Beg Novice Classic 3-Day",
           "phase_status": "Dressage: 9:00 AM Sat. Ring 1",
-          "entry_status_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/draw.php?division=7",
-          "times_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=7"
+          "entry_status_url": "http://eventingscores.com/eventsu/ramtap/sht0526/draw.php?division=7",
+          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=7"
         },
         {
           "name": "Open Beginner Novice",
           "phase_status": "Dressage: 9:12 AM Sat. Ring 1",
-          "entry_status_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/draw.php?division=3",
-          "times_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=3"
+          "entry_status_url": "http://eventingscores.com/eventsu/ramtap/sht0526/draw.php?division=3",
+          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=3"
         },
         {
           "name": "Grasshopper",
           "phase_status": "Dressage: 12:24 PM Sat. Ring 1",
-          "entry_status_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/draw.php?division=1",
-          "times_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=1"
+          "entry_status_url": "http://eventingscores.com/eventsu/ramtap/sht0526/draw.php?division=1",
+          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=1"
         },
         {
           "name": "Open Introductory",
           "phase_status": "Dressage: 11:12 AM Sat. Ring 1",
-          "entry_status_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/draw.php?division=2",
-          "times_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=2"
+          "entry_status_url": "http://eventingscores.com/eventsu/ramtap/sht0526/draw.php?division=2",
+          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=2"
         }
       ],
       "entries": []
@@ -91,7 +128,234 @@
       "status": "upcoming",
       "score_status": "times",
       "result_url": "http://eventingscores.com/eventsu/bucks/sht0526",
-      "divisions": [],
+      "divisions": [
+        {
+          "name": "Training Horse Trials",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=12",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=12"
+        },
+        {
+          "name": "Novice Horse Trials",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=7",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=7"
+        },
+        {
+          "name": "Beginner Novice Combined Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=8",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=8"
+        },
+        {
+          "name": "Beginner Novice Horse Trials",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=9",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=9"
+        },
+        {
+          "name": "Pre-Starter Horse Trials",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=5",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=5"
+        },
+        {
+          "name": "Starter Horse Trials",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=1",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=1"
+        },
+        {
+          "name": "Clear Round Stadium",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=2",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=2"
+        },
+        {
+          "name": "DR",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=4",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=4"
+        },
+        {
+          "name": "Dressage Only - 2nd Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=3",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=3"
+        },
+        {
+          "name": "Introductory Combined Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=11",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=11"
+        },
+        {
+          "name": "Pre-Starter Combined Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=6",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=6"
+        }
+      ],
+      "entries": []
+    },
+    {
+      "id": "startbox_scoring-eventsr-willowdraw-ht0526",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox Scoring current event calendar",
+      "name": "Sol Events at Willow Draw",
+      "date_label": "May 23, 2026",
+      "starts_on": "2026-05-23",
+      "ends_on": "2026-05-23",
+      "location": "Weatherford, TX US",
+      "country": "US",
+      "status": "upcoming",
+      "score_status": "entries",
+      "result_url": "http://eventingscores.com/eventsr/willowdraw/ht0526",
+      "divisions": [
+        {
+          "name": "Open Training",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=1",
+          "times_url": null
+        },
+        {
+          "name": "Novice-JR/YR",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=4",
+          "times_url": null
+        },
+        {
+          "name": "Open Novice",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=3",
+          "times_url": null
+        },
+        {
+          "name": "BNovice-JR/YR",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=6",
+          "times_url": null
+        },
+        {
+          "name": "Open BNovice",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=5",
+          "times_url": null
+        },
+        {
+          "name": "Open Starter",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=7",
+          "times_url": null
+        },
+        {
+          "name": "Starter -JR",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=15",
+          "times_url": null
+        },
+        {
+          "name": "Intro",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=8",
+          "times_url": null
+        }
+      ],
+      "entries": []
+    },
+    {
+      "id": "startbox_scoring-eventsu-tuscanyhollow-ct0526",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox Scoring current event calendar",
+      "name": "Tuscany Hollow Stables Combined Test",
+      "date_label": "May 23, 2026",
+      "starts_on": "2026-05-23",
+      "ends_on": "2026-05-23",
+      "location": "Simpsonville, KY US",
+      "country": "US",
+      "status": "upcoming",
+      "score_status": "entries",
+      "result_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526",
+      "divisions": [
+        {
+          "name": "Training Combined Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=11",
+          "times_url": null
+        },
+        {
+          "name": "Novice Combined Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=7",
+          "times_url": null
+        },
+        {
+          "name": "Beginner Novice Combined Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=2",
+          "times_url": null
+        },
+        {
+          "name": "Starter Combined Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=1",
+          "times_url": null
+        },
+        {
+          "name": "Cross Rails Combined Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=6",
+          "times_url": null
+        },
+        {
+          "name": "Greenie Combined Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=3",
+          "times_url": null
+        },
+        {
+          "name": "USEA Test of Choice",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=10",
+          "times_url": null
+        },
+        {
+          "name": "2023 USDF Introductory Level Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=9",
+          "times_url": null
+        },
+        {
+          "name": "2023 USEF First Level Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=4",
+          "times_url": null
+        },
+        {
+          "name": "2023 USEF Second Level Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=12",
+          "times_url": null
+        },
+        {
+          "name": "2023 USEF Training Level Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=5",
+          "times_url": null
+        },
+        {
+          "name": "Poles Combined Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=13",
+          "times_url": null
+        },
+        {
+          "name": "Western Dressage Test of Choice",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=8",
+          "times_url": null
+        }
+      ],
       "entries": []
     }
   ]
