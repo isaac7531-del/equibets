@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T11:00:53.246Z",
+  "generated_at": "2026-05-16T12:04:55.904773Z",
   "coverage_window": {
     "from": "2026-05-09",
     "through": "2026-05-31"
@@ -10,18 +10,131 @@
       "id": "startbox_scoring",
       "name": "StartBox/EventingScores calendar",
       "url": "https://eventing.startboxscoring.com/archives.php?Year=2026",
-      "observed": "The public calendar listed May 16, 2026 Lynnleigh Farm and May 16-17, 2026 Ram Tap as Results, May 17, 2026 Bucks County Horse Park as Times, and later May events as Entries."
-    },
-    {
-      "id": "maryland_horse_trials",
-      "name": "Maryland Horse Trials times and results",
-      "url": "https://themarylandhorsetrials.com/mdht-times-entry-stats-results/",
-      "observed": "The public results page listed May 13, 2026 Twilight Eventing results, ride times, and entry status."
+      "observed": "Current calendar rows parsed from public StartBox eventing scoring listings."
     }
   ],
   "events": [
     {
-      "id": "startbox-lynnleigh-sht0526",
+      "id": "startbox-flying-cross-farm-mayr-mini-trials-i-and-ii-2026-05-09",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox/EventingScores",
+      "source_priority": 45,
+      "event_name": "Flying Cross Farm Mayr Mini Trials I and II",
+      "start_date": "2026-05-09",
+      "end_date": "2026-05-10",
+      "location": "Skylight, KY",
+      "country": "USA",
+      "status": "recent_results",
+      "status_label": "Results",
+      "scoring_url": "http://eventingscores.com/eventsu/flyingcross/ht0526",
+      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "notes": "Recent results remain inside the current-event scoring window.",
+      "divisions": []
+    },
+    {
+      "id": "startbox-hitching-post-farm-horse-trials-2026-05-09",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox/EventingScores",
+      "source_priority": 45,
+      "event_name": "Hitching Post Farm Horse Trials",
+      "start_date": "2026-05-09",
+      "end_date": "2026-05-09",
+      "location": "South Royalton, VT",
+      "country": "USA",
+      "status": "recent_results",
+      "status_label": "Results",
+      "scoring_url": "http://eventingscores.com/eventsr/hitching/ht0526",
+      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "notes": "Recent results remain inside the current-event scoring window.",
+      "divisions": []
+    },
+    {
+      "id": "startbox-hitching-post-farm-schooling-horse-trial-2026-05-09",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox/EventingScores",
+      "source_priority": 45,
+      "event_name": "Hitching Post Farm Schooling Horse Trial",
+      "start_date": "2026-05-09",
+      "end_date": "2026-05-09",
+      "location": "South Royalton, VT",
+      "country": "USA",
+      "status": "recent_results",
+      "status_label": "Results",
+      "scoring_url": "http://eventingscores.com/eventsu/hitchingpost/sht0526",
+      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "notes": "Recent results remain inside the current-event scoring window.",
+      "divisions": []
+    },
+    {
+      "id": "startbox-queeny-park-horse-trials-2026-05-09",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox/EventingScores",
+      "source_priority": 45,
+      "event_name": "Queeny Park Horse Trials",
+      "start_date": "2026-05-09",
+      "end_date": "2026-05-10",
+      "location": "St. Louis, MO",
+      "country": "USA",
+      "status": "recent_results",
+      "status_label": "Results",
+      "scoring_url": "http://eventingscores.com/eventsr/queeny/ht0526",
+      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "notes": "Recent results remain inside the current-event scoring window.",
+      "divisions": []
+    },
+    {
+      "id": "startbox-sayre-school-ct-and-dressage-show-2026-05-09",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox/EventingScores",
+      "source_priority": 45,
+      "event_name": "Sayre School CT and Dressage Show",
+      "start_date": "2026-05-09",
+      "end_date": "2026-05-09",
+      "location": "Lexington, KY",
+      "country": "USA",
+      "status": "recent_results",
+      "status_label": "Results",
+      "scoring_url": "http://eventingscores.com/eventsu/sayre/ctds0526",
+      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "notes": "Recent results remain inside the current-event scoring window.",
+      "divisions": []
+    },
+    {
+      "id": "startbox-hunters-run-derby-2026-05-10",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox/EventingScores",
+      "source_priority": 45,
+      "event_name": "Hunters Run Derby",
+      "start_date": "2026-05-10",
+      "end_date": "2026-05-10",
+      "location": "Metamora, MI",
+      "country": "USA",
+      "status": "recent_results",
+      "status_label": "Results",
+      "scoring_url": "http://eventingscores.com/eventsu/huntersrun/db0526",
+      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "notes": "Recent results remain inside the current-event scoring window.",
+      "divisions": []
+    },
+    {
+      "id": "startbox-red-fox-equestrian-mini-trial-and-jumper-2026-05-10",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox/EventingScores",
+      "source_priority": 45,
+      "event_name": "Red Fox Equestrian Mini Trial and Jumper",
+      "start_date": "2026-05-10",
+      "end_date": "2026-05-10",
+      "location": "Fairborn, OH",
+      "country": "USA",
+      "status": "recent_results",
+      "status_label": "Results",
+      "scoring_url": "http://eventingscores.com/eventsu/redfox/ht0526",
+      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "notes": "Recent results remain inside the current-event scoring window.",
+      "divisions": []
+    },
+    {
+      "id": "startbox-lynnleigh-farm-may-16-2026-schooling-2-phase-2026-05-16",
       "source_id": "startbox_scoring",
       "source_name": "StartBox/EventingScores",
       "source_priority": 45,
@@ -33,37 +146,12 @@
       "status": "live_results",
       "status_label": "Results",
       "scoring_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526",
-      "last_observed_at": "2026-05-16T11:00:53.246Z",
-      "notes": "StartBox marks the event as Results and publishes division schedules for the current competition day.",
-      "divisions": [
-        {
-          "name": "Modified",
-          "phase": "Dressage: 8:00 AM Sat. Ring 1"
-        },
-        {
-          "name": "Training",
-          "phase": "Dressage: 8:18 AM Sat. Ring 1"
-        },
-        {
-          "name": "Novice",
-          "phase": "Dressage: 9:36 AM Sat. Ring 1"
-        },
-        {
-          "name": "Beginner Novice",
-          "phase": "Dressage: 11:06 AM Sat. Ring 1"
-        },
-        {
-          "name": "Starter",
-          "phase": "Dressage: 12:46 PM Sat. Ring 1"
-        },
-        {
-          "name": "Grasshopper",
-          "phase": "Dressage: 2:50 PM Sat. Ring 1"
-        }
-      ]
+      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "notes": "Results are marked available for an event that is currently running.",
+      "divisions": []
     },
     {
-      "id": "startbox-ramtap-sht0526",
+      "id": "startbox-ram-tap-may-sht-2026-05-16",
       "source_id": "startbox_scoring",
       "source_name": "StartBox/EventingScores",
       "source_priority": 45,
@@ -75,12 +163,12 @@
       "status": "live_results",
       "status_label": "Results",
       "scoring_url": "http://eventingscores.com/eventsu/ramtap/sht0526",
-      "last_observed_at": "2026-05-16T11:00:53.246Z",
-      "notes": "StartBox lists this May 16-17 event as Results, so it is surfaced as an active live scoring link.",
+      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "notes": "Results are marked available for an event that is currently running.",
       "divisions": []
     },
     {
-      "id": "startbox-bucks-sht0526",
+      "id": "startbox-bucks-county-horse-park-may-schooling-horse-trial-2026-05-17",
       "source_id": "startbox_scoring",
       "source_name": "StartBox/EventingScores",
       "source_priority": 45,
@@ -92,29 +180,12 @@
       "status": "ride_times",
       "status_label": "Times",
       "scoring_url": "http://eventingscores.com/eventsu/bucks/sht0526",
-      "last_observed_at": "2026-05-16T11:00:53.246Z",
-      "notes": "Ride times are posted for tomorrow's event; promote this card as soon as results are published.",
+      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "notes": "Ride times are posted and should be checked for results as the event starts.",
       "divisions": []
     },
     {
-      "id": "mdht-twilight-2026-05-13",
-      "source_id": "maryland_horse_trials",
-      "source_name": "Maryland Horse Trials",
-      "source_priority": 55,
-      "event_name": "May 13, 2026 Twilight Eventing",
-      "start_date": "2026-05-13",
-      "end_date": "2026-05-13",
-      "location": "Adamstown, MD",
-      "country": "USA",
-      "status": "recent_results",
-      "status_label": "Results",
-      "scoring_url": "https://themarylandhorsetrials.com/mdht-times-entry-stats-results/",
-      "last_observed_at": "2026-05-16T11:00:53.246Z",
-      "notes": "Recent current-events result source with entry status, ride times, and results links on the organizer page.",
-      "divisions": []
-    },
-    {
-      "id": "startbox-willowdraw-ht0526",
+      "id": "startbox-sol-events-at-willow-draw-2026-05-23",
       "source_id": "startbox_scoring",
       "source_name": "StartBox/EventingScores",
       "source_priority": 45,
@@ -126,12 +197,29 @@
       "status": "entries",
       "status_label": "Entries",
       "scoring_url": "http://eventingscores.com/eventsr/willowdraw/ht0526",
-      "last_observed_at": "2026-05-16T11:00:53.246Z",
-      "notes": "Upcoming event with entries available in the current scoring window.",
+      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "notes": "Entries are posted for an upcoming event in the current scoring window.",
       "divisions": []
     },
     {
-      "id": "startbox-iea-ht0526",
+      "id": "startbox-tuscany-hollow-stables-combined-test-2026-05-23",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox/EventingScores",
+      "source_priority": 45,
+      "event_name": "Tuscany Hollow Stables Combined Test",
+      "start_date": "2026-05-23",
+      "end_date": "2026-05-23",
+      "location": "Simpsonville, KY",
+      "country": "USA",
+      "status": "entries",
+      "status_label": "Entries",
+      "scoring_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526",
+      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "notes": "Entries are posted for an upcoming event in the current scoring window.",
+      "divisions": []
+    },
+    {
+      "id": "startbox-iea-horse-trial-2026-05-29",
       "source_id": "startbox_scoring",
       "source_name": "StartBox/EventingScores",
       "source_priority": 45,
@@ -143,8 +231,8 @@
       "status": "entries",
       "status_label": "Entries",
       "scoring_url": "http://eventingscores.com/eventsr/iea/ht0526",
-      "last_observed_at": "2026-05-16T11:00:53.246Z",
-      "notes": "Upcoming end-of-month horse trial with entries in the active calendar window.",
+      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "notes": "Entries are posted for an upcoming event in the current scoring window.",
       "divisions": []
     }
   ]
