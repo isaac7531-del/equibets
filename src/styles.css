@@ -129,7 +129,7 @@ button:disabled {
 .dashboard {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   margin-bottom: 1rem;
 }
 
@@ -255,6 +255,47 @@ legend {
   background: #e3d2ad;
 }
 
+.live-results-card {
+  margin-bottom: 1rem;
+}
+
+.live-feed-copy {
+  color: #526050;
+  line-height: 1.6;
+  margin: -0.35rem 0 1rem;
+  max-width: 780px;
+}
+
+.live-controls {
+  align-items: end;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+  margin-bottom: 1rem;
+}
+
+.live-status {
+  background: #f8f2e4;
+  border-radius: 1rem;
+  color: #526050;
+  font-weight: 800;
+  margin: 0;
+  padding: 0.85rem 1rem;
+}
+
+.live-status-error {
+  background: #f7ded5;
+  color: #8c3926;
+}
+
+.empty-state code {
+  background: #eee1c7;
+  border-radius: 0.35rem;
+  color: #23432d;
+  font-size: 0.9em;
+  padding: 0.1rem 0.28rem;
+}
+
 .empty-state {
   background: #f8f2e4;
   border: 1px dashed rgba(35, 67, 45, 0.25);
@@ -273,7 +314,7 @@ legend {
 
 table {
   border-collapse: collapse;
-  min-width: 680px;
+  min-width: 760px;
   width: 100%;
 }
 
@@ -329,6 +370,11 @@ td span {
 
   .dashboard {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .live-controls {
+    align-items: stretch;
+    grid-template-columns: 1fr;
   }
 }
 

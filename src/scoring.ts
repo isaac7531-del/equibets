@@ -6,6 +6,13 @@ export type EventingScoreInput = {
   actualTimeSeconds: number;
 };
 
+export type EventingPenaltyScoreInput = {
+  dressagePenalties: number;
+  showJumpingPenalties: number;
+  crossCountryJumpPenalties: number;
+  crossCountryTimePenalties: number;
+};
+
 export type EventingScore = {
   dressagePenalties: number;
   showJumpingPenalties: number;
@@ -27,24 +34,35 @@ export type StoredResult = EventingScoreInput & {
 
 export const roundToTenths = (value: number) => Math.round(value * 10) / 10;
 
-export const calculateScore = (input: EventingScoreInput): EventingScore => {
-  const dressagePenalties = roundToTenths(100 - input.dressagePercentage);
-  const secondsOverOptimum = Math.max(0, input.actualTimeSeconds - input.optimumTimeSeconds);
-  const crossCountryTimePenalties = roundToTenths(secondsOverOptimum * 0.4);
+export const calculatePenaltyScore = (input: EventingPenaltyScoreInput): EventingScore => {
+  const dressagePenalties = roundToTenths(input.dressagePenalties);
+  const showJumpingPenalties = roundToTenths(input.showJumpingPenalties);
+  const crossCountryJumpPenalties = roundToTenths(input.crossCountryJumpPenalties);
+  const crossCountryTimePenalties = roundToTenths(input.crossCountryTimePenalties);
   const totalPenalties = roundToTenths(
-    dressagePenalties +
-      input.showJumpingPenalties +
-      input.crossCountryJumpPenalties +
-      crossCountryTimePenalties,
+    dressagePenalties + showJumpingPenalties + crossCountryJumpPenalties + crossCountryTimePenalties,
   );
 
   return {
     dressagePenalties,
-    showJumpingPenalties: input.showJumpingPenalties,
-    crossCountryJumpPenalties: input.crossCountryJumpPenalties,
+    showJumpingPenalties,
+    crossCountryJumpPenalties,
     crossCountryTimePenalties,
     totalPenalties,
   };
+};
+
+export const calculateScore = (input: EventingScoreInput): EventingScore => {
+  const dressagePenalties = roundToTenths(100 - input.dressagePercentage);
+  const secondsOverOptimum = Math.max(0, input.actualTimeSeconds - input.optimumTimeSeconds);
+  const crossCountryTimePenalties = roundToTenths(secondsOverOptimum * 0.4);
+
+  return calculatePenaltyScore({
+    dressagePenalties,
+    showJumpingPenalties: input.showJumpingPenalties,
+    crossCountryJumpPenalties: input.crossCountryJumpPenalties,
+    crossCountryTimePenalties,
+  });
 };
 
 export const parseTimeToSeconds = (minutes: number, seconds: number) => {

@@ -8,6 +8,7 @@ Personal eventing results calculator, browser-based results tracker, and data so
 - Saves horse-and-rider results to local browser storage.
 - Ranks saved results from lowest total penalties to highest.
 - Tracks public event-results sources for FEI and national-event coverage.
+- Pulls a configurable current-event JSON feed for live leaderboard scoring.
 
 ## Results calculator feature
 
@@ -17,6 +18,10 @@ likely finishing score at upcoming events.
 
 See `docs/results_calculator_feature.md` for the weekly update flow, user-score
 handling, and prediction surface.
+
+Live current-event scoring expects a JSON feed at `/live-results.json` by
+default, or at `VITE_LIVE_RESULTS_URL` when configured during the Vite build.
+See `docs/live_results_feed.md` for the supported feed shape.
 
 ## Website development
 

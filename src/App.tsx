@@ -1,4 +1,5 @@
 import { FormEvent, useMemo, useState } from 'react';
+import { fetchLiveEventResults, filterLiveResults, type LiveEventResultsSnapshot } from './liveResults';
 import {
   calculateScore,
   formatSeconds,
@@ -40,6 +41,18 @@ const defaultFormState: FormState = {
 };
 
 const numberValue = (value: string) => Number.parseFloat(value || '0');
+const formatCollectedAt = (value: string | null | undefined) => {
+  if (!value) {
+    return 'Not refreshed yet';
+  }
+
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return value;
+  }
+
+  return date.toLocaleString();
+};
 
 const createScoreInput = (form: FormState): EventingScoreInput => ({
   dressagePercentage: numberValue(form.dressagePercentage),
@@ -52,13 +65,36 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 export default function App() {
   const [form, setForm] = useState<FormState>(defaultFormState);
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [liveSnapshot, setLiveSnapshot] = useState<LiveEventResultsSnapshot | null>(null);
+  const [liveQuery, setLiveQuery] = useState('');
+  const [liveStatus, setLiveStatus] = useState<'idle' | 'loading' | 'ready' | 'error'>('idle');
+  const [liveError, setLiveError] = useState('');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
   const bestResult = sortedResults[0];
+  const filteredLiveResults = useMemo(
+    () => filterLiveResults(liveSnapshot?.results ?? [], liveQuery),
+    [liveQuery, liveSnapshot],
+  );
+  const liveResultCount = liveSnapshot?.results.length ?? 0;
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
+  };
+
+  const refreshLiveResults = async () => {
+    setLiveStatus('loading');
+    setLiveError('');
+
+    try {
+      const snapshot = await fetchLiveEventResults();
+      setLiveSnapshot(snapshot);
+      setLiveStatus('ready');
+    } catch (error) {
+      setLiveStatus('error');
+      setLiveError(error instanceof Error ? error.message : 'Unable to refresh live results');
+    }
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -134,6 +170,100 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Current events</span>
+          <strong>{liveResultCount}</strong>
+          <p>{formatCollectedAt(liveSnapshot?.collectedAt)}</p>
+        </article>
+      </section>
+
+      <section className="results-card live-results-card" aria-labelledby="live-results-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Live scoring</p>
+            <h2 id="live-results-heading">Current-event results</h2>
+          </div>
+          <button className="secondary-button" type="button" onClick={refreshLiveResults} disabled={liveStatus === 'loading'}>
+            {liveStatus === 'loading' ? 'Refreshing...' : 'Refresh live results'}
+          </button>
+        </div>
+
+        <p className="live-feed-copy">
+          Pulls the configured current-event JSON feed, normalizes public result records, and ranks combinations by
+          live penalty score.
+        </p>
+
+        <div className="live-controls">
+          <label>
+            Filter live results
+            <input
+              value={liveQuery}
+              onChange={(event) => setLiveQuery(event.target.value)}
+              placeholder="Horse, rider, country, or level"
+              disabled={!liveSnapshot}
+            />
+          </label>
+          <p className={`live-status live-status-${liveStatus}`} role={liveStatus === 'error' ? 'alert' : 'status'}>
+            {liveError ||
+              (liveSnapshot
+                ? `${filteredLiveResults.length} of ${liveResultCount} results from ${liveSnapshot.sourceName}`
+                : 'Refresh to search for current-event scores.')}
+          </p>
+        </div>
+
+        {liveSnapshot && filteredLiveResults.length > 0 ? (
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Combination</th>
+                  <th>Event / Level</th>
+                  <th>Total</th>
+                  <th>Breakdown</th>
+                  <th>Status</th>
+                  <th>Source</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredLiveResults.map((result, index) => (
+                  <tr key={result.id}>
+                    <td>#{index + 1}</td>
+                    <td>
+                      <strong>{result.horse}</strong>
+                      <span>{result.rider}</span>
+                    </td>
+                    <td>
+                      <strong>{result.eventName}</strong>
+                      <span>
+                        {result.level} - {result.eventDate}
+                      </span>
+                    </td>
+                    <td className="total-cell">{result.score.totalPenalties.toFixed(1)}</td>
+                    <td className="breakdown-cell">
+                      D {result.score.dressagePenalties.toFixed(1)} / SJ{' '}
+                      {result.score.showJumpingPenalties.toFixed(1)} / XC{' '}
+                      {(result.score.crossCountryJumpPenalties + result.score.crossCountryTimePenalties).toFixed(1)}
+                    </td>
+                    <td>{result.status.replace('_', ' ')}</td>
+                    <td>
+                      <strong>{result.sourceName}</strong>
+                      <span>{result.country}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
+          <div className="empty-state">
+            <strong>{liveSnapshot ? 'No live results match that filter.' : 'No current-event results loaded.'}</strong>
+            <p>
+              Publish a feed at <code>/live-results.json</code> or set <code>VITE_LIVE_RESULTS_URL</code>, then refresh
+              to calculate live leaderboard scores.
+            </p>
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">
