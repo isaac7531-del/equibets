@@ -3,6 +3,19 @@ import unittest
 from equibets.sources import load_event_sources, sources_for_region
 
 
+EXPECTED_NATIONAL_EVENT_LEVELS = {
+    "national_championship",
+    "national",
+    "regional",
+    "state_provincial",
+    "local",
+    "club",
+    "grassroots",
+    "youth_pony",
+    "schooling_training",
+}
+
+
 class EventSourceTests(unittest.TestCase):
     def test_data_fei_is_primary_source(self):
         sources = load_event_sources()
@@ -31,6 +44,29 @@ class EventSourceTests(unittest.TestCase):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
 
         self.assertEqual(source_ids, ["data_fei"])
+
+    def test_primary_and_global_sources_cover_all_fei_member_nations(self):
+        sources = {source.id: source for source in load_event_sources()}
+
+        for source_id in ("data_fei", "global_national_federations"):
+            with self.subTest(source_id=source_id):
+                countries = sources[source_id].countries
+                self.assertEqual(len(countries), 135)
+                self.assertEqual(len(set(countries)), 135)
+                self.assertNotIn("all_fei_member_nations", countries)
+                self.assertTrue(all(code.isupper() and len(code) == 3 for code in countries))
+
+        global_countries = sources["global_national_federations"].countries
+        for priority_country in ("GBR", "AUS", "NZL", "USA"):
+            self.assertIn(priority_country, global_countries)
+
+    def test_national_sources_cover_all_domestic_levels(self):
+        for source in load_event_sources():
+            if source.scope != "national":
+                continue
+
+            with self.subTest(source_id=source.id):
+                self.assertEqual(set(source.event_levels), EXPECTED_NATIONAL_EVENT_LEVELS)
 
 
 if __name__ == "__main__":
