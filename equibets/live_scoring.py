@@ -7,7 +7,9 @@ import json
 import re
 from dataclasses import dataclass, field
 from datetime import UTC, date, datetime, timedelta
+from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import urljoin
 from urllib.request import Request, urlopen
 
 
@@ -97,13 +99,13 @@ def parse_startbox_calendar(
     window_end = observed_date + timedelta(days=days_forward)
     events: list[CurrentEvent] = []
 
-    for match in _ROW_PATTERN.finditer(calendar_text):
-        start_date, end_date = _parse_date_range(match.group("date"))
+    for date_text, label, url, description in _calendar_rows(calendar_text):
+        start_date, end_date = _parse_date_range(date_text)
         if end_date < window_start or start_date > window_end:
             continue
 
-        label = match.group("label").strip()
-        description = _clean_text(match.group("description"))
+        label = label.strip()
+        description = _clean_text(description)
         event_name, location, country = _split_description(description)
         status = _status_from_label(label, start_date, end_date, observed_date)
         event = CurrentEvent(
@@ -118,7 +120,7 @@ def parse_startbox_calendar(
             country=country,
             status=status,
             status_label=label,
-            scoring_url=match.group("url").strip(),
+            scoring_url=url.strip(),
             last_observed_at=observed_at,
             notes=_notes_for_status(status),
         )
@@ -192,6 +194,93 @@ def _fetch_text(url: str) -> str:
     )
     with urlopen(request, timeout=30) as response:
         return response.read().decode("utf-8", errors="replace")
+
+
+def _calendar_rows(calendar_text: str) -> list[tuple[str, str, str, str]]:
+    rows = [
+        (
+            match.group("date"),
+            match.group("label"),
+            match.group("url"),
+            match.group("description"),
+        )
+        for match in _ROW_PATTERN.finditer(calendar_text)
+    ]
+
+    if "<tr" not in calendar_text.lower():
+        return rows
+
+    parser = _StartBoxCalendarHTMLParser()
+    parser.feed(calendar_text)
+    rows.extend(parser.rows)
+    return rows
+
+
+class _StartBoxCalendarHTMLParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.rows: list[tuple[str, str, str, str]] = []
+        self._current_row: list[dict[str, str]] | None = None
+        self._current_cell: dict[str, str] | None = None
+        self._cell_text: list[str] = []
+        self._link_text: list[str] = []
+        self._active_link_href = ""
+        self._capturing_link = False
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag == "tr":
+            self._current_row = []
+            return
+        if tag == "td" and self._current_row is not None:
+            self._current_cell = {"text": "", "link_label": "", "link_url": ""}
+            self._cell_text = []
+            return
+        if tag == "a" and self._current_cell is not None:
+            attrs_map = dict(attrs)
+            self._active_link_href = attrs_map.get("href") or ""
+            self._link_text = []
+            self._capturing_link = True
+
+    def handle_data(self, data: str) -> None:
+        if self._current_cell is not None:
+            self._cell_text.append(data)
+        if self._capturing_link:
+            self._link_text.append(data)
+
+    def handle_endtag(self, tag: str) -> None:
+        if tag == "a" and self._current_cell is not None:
+            self._current_cell["link_label"] = _clean_text("".join(self._link_text))
+            self._current_cell["link_url"] = urljoin(
+                "https://eventing.startboxscoring.com/",
+                self._active_link_href,
+            )
+            self._capturing_link = False
+            return
+        if tag == "td" and self._current_row is not None and self._current_cell is not None:
+            self._current_cell["text"] = _clean_text("".join(self._cell_text))
+            self._current_row.append(self._current_cell)
+            self._current_cell = None
+            return
+        if tag == "tr" and self._current_row is not None:
+            self._append_row(self._current_row)
+            self._current_row = None
+
+    def _append_row(self, row: list[dict[str, str]]) -> None:
+        if len(row) < 3:
+            return
+
+        link_cell = row[1]
+        if not link_cell["link_label"] or not link_cell["link_url"]:
+            return
+
+        self.rows.append(
+            (
+                row[0]["text"],
+                link_cell["link_label"],
+                link_cell["link_url"],
+                row[2]["text"],
+            )
+        )
 
 
 def _parse_date_range(value: str) -> tuple[date, date]:
