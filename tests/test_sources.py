@@ -1,6 +1,12 @@
+import json
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import (
+    DATA_FILE,
+    load_event_sources,
+    sources_for_country,
+    sources_for_region,
+)
 
 
 class EventSourceTests(unittest.TestCase):
@@ -26,6 +32,31 @@ class EventSourceTests(unittest.TestCase):
                 self.assertEqual(source_ids[0], "data_fei")
                 self.assertIn(national_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
+
+    def test_registry_declares_all_country_and_all_level_coverage(self):
+        with DATA_FILE.open(encoding="utf-8") as source_file:
+            payload = json.load(source_file)
+
+        self.assertEqual(payload["version"], 2)
+        self.assertEqual(payload["coverage_scope"]["countries"], ["all_countries"])
+        self.assertEqual(payload["coverage_scope"]["event_levels"], ["all_eventing_levels"])
+
+    def test_country_lookup_includes_specific_and_global_national_sources(self):
+        source_ids = [source.id for source in sources_for_country("usa", level="grassroots")]
+
+        self.assertEqual(source_ids, ["usea", "global_national_federations"])
+
+    def test_country_lookup_backfills_unlisted_countries(self):
+        source_ids = [source.id for source in sources_for_country("bra", level="grassroots")]
+
+        self.assertEqual(source_ids, ["global_national_federations"])
+
+    def test_level_filter_excludes_sources_that_do_not_cover_requested_level(self):
+        source_ids = [source.id for source in sources_for_region("usa", level="grassroots")]
+
+        self.assertNotIn("data_fei", source_ids)
+        self.assertIn("usea", source_ids)
+        self.assertIn("global_national_federations", source_ids)
 
     def test_active_only_filter_keeps_current_primary_source(self):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
