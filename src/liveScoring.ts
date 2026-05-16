@@ -47,7 +47,7 @@ export const liveTotal = (score: LiveEventScore) =>
       score.showJumpingPenalties,
       score.crossCountryJumpPenalties,
       score.crossCountryTimePenalties,
-    ].reduce((total, value) => total + (typeof value === 'number' ? value : 0), 0),
+    ].reduce<number>((total, value) => total + (typeof value === 'number' ? value : 0), 0),
   );
 
 export const completedPhaseCount = (score: LiveEventScore) =>
