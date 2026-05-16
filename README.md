@@ -40,7 +40,7 @@ The website reads live scoring data from `/current-events.json` and, when set,
 feeds and write the frontend payload:
 
 ```bash
-python3 -m equibets.live_scoring --feed-url https://example.com/current-event.json --output public/current-events.json --pretty
+python3 -m equibets.live_scoring --startbox --output public/current-events.json --pretty
 ```
 
 The live scoring feed is source-priority aware, searchable by rider, horse,

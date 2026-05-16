@@ -5,6 +5,7 @@ from .live_scoring import (
     consolidate_live_scores,
     merge_completed_live_results,
     pull_current_event_scores,
+    pull_startbox_current_event_scores,
     rank_live_scores,
     search_live_scores,
 )
@@ -21,6 +22,7 @@ __all__ = [
     "merge_completed_live_results",
     "predict_finishing_score",
     "pull_current_event_scores",
+    "pull_startbox_current_event_scores",
     "rank_live_scores",
     "search_live_scores",
     "sources_for_region",

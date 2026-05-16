@@ -1,9 +1,14 @@
 import unittest
+from datetime import date
 
 from equibets.live_scoring import (
     LiveEventScore,
     live_scores_from_payload,
     merge_completed_live_results,
+    parse_startbox_calendar,
+    parse_startbox_event_page,
+    parse_startbox_scores_page,
+    pull_startbox_current_event_scores,
     rank_live_scores,
     search_live_scores,
 )
@@ -147,6 +152,88 @@ class LiveScoringTests(unittest.TestCase):
 
         self.assertEqual(len(merged), 2)
         self.assertEqual(merged[-1].finishing_score, 31.4)
+
+    def test_startbox_calendar_and_scores_parse_to_live_scores(self):
+        calendar_html = """
+        <table>
+          <tr>
+            <td>May 16-17, 2026</td>
+            <td><a href="spring/index.php">Results</a></td>
+            <td><span class="calshowname">Current Spring Horse Trials</span>
+                <span class="callocation">Aiken, SC US</span></td>
+          </tr>
+        </table>
+        """
+        event_html = """
+        <table>
+          <tr>
+            <th>Division</th><th>Phase</th>
+          </tr>
+          <tr>
+            <td>Training Rider</td>
+            <td>Dressage <a href="division.php?division=TR&phase=2">Provisional Scores</a></td>
+          </tr>
+        </table>
+        """
+        scores_html = """
+        <table>
+          <tr><th>No.</th><th>Rider</th><th>Horse</th><th>Dressage</th><th>SJ</th><th>Total</th><th>Status</th></tr>
+          <tr><td>12</td><td>Avery Stone</td><td>Juniper<br />Mare</td><td>29.4</td><td>0</td><td>29.4</td><td></td></tr>
+        </table>
+        """
+
+        events = parse_startbox_calendar(calendar_html, as_of=date(2026, 5, 16))
+        divisions = parse_startbox_event_page(event_html, base_url=events[0].result_url)
+        entries = parse_startbox_scores_page(
+            scores_html,
+            division=divisions[0].name,
+            source_url=divisions[0].scores_url or "",
+        )
+
+        self.assertEqual(events[0].name, "Current Spring Horse Trials")
+        self.assertEqual(events[0].country, "USA")
+        self.assertEqual(divisions[0].scores_url, "https://eventing.startboxscoring.com/spring/division.php?division=TR&phase=2")
+        self.assertEqual(entries[0].horse_name, "Juniper")
+        self.assertEqual(entries[0].total_penalties, 29.4)
+
+    def test_startbox_pull_fetches_current_scores(self):
+        pages = {
+            "https://eventing.startboxscoring.com/": """
+              <table>
+                <tr><td>May 16, 2026</td><td><a href="spring">Live Scores</a></td>
+                    <td><span class="calshowname">Spring Horse Trials</span><span class="callocation">Ocala, FL US</span></td></tr>
+              </table>
+            """,
+            "https://eventing.startboxscoring.com/spring": """
+              <table>
+                <tr><td>Training</td><td><a href="scores.php?division=T">Scores</a></td></tr>
+              </table>
+            """,
+            "https://eventing.startboxscoring.com/spring/scores.php?division=T": """
+              <table>
+                <tr><td>No.</td><td>Rider</td><td>Horse</td><td>Dr</td><td>SJ</td><td>Total</td><td>Status</td></tr>
+                <tr><td>4</td><td>Jordan Lee</td><td>River Fox<br>Gelding</td><td>31.2</td><td>4</td><td>35.2</td><td></td></tr>
+              </table>
+            """,
+        }
+
+        def fake_fetch(url, *, timeout_seconds):
+            return pages[url]
+
+        import equibets.live_scoring as live_scoring
+
+        original_fetch = live_scoring._fetch_startbox_url
+        live_scoring._fetch_startbox_url = fake_fetch
+        try:
+            scores = pull_startbox_current_event_scores(as_of=date(2026, 5, 16))
+        finally:
+            live_scoring._fetch_startbox_url = original_fetch
+
+        self.assertEqual(len(scores), 1)
+        self.assertEqual(scores[0].source_id, "startbox_scoring")
+        self.assertEqual(scores[0].event_name, "Spring Horse Trials")
+        self.assertEqual(scores[0].horse_name, "River Fox")
+        self.assertEqual(scores[0].live_total, 35.2)
 
 
 if __name__ == "__main__":
