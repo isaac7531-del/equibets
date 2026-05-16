@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T12:04:55.904773Z",
+  "generated_at": "2026-05-16T13:03:53.249183Z",
   "coverage_window": {
     "from": "2026-05-09",
     "through": "2026-05-31"
@@ -27,7 +27,7 @@
       "status": "recent_results",
       "status_label": "Results",
       "scoring_url": "http://eventingscores.com/eventsu/flyingcross/ht0526",
-      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "last_observed_at": "2026-05-16T13:03:53.249183Z",
       "notes": "Recent results remain inside the current-event scoring window.",
       "divisions": []
     },
@@ -44,7 +44,7 @@
       "status": "recent_results",
       "status_label": "Results",
       "scoring_url": "http://eventingscores.com/eventsr/hitching/ht0526",
-      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "last_observed_at": "2026-05-16T13:03:53.249183Z",
       "notes": "Recent results remain inside the current-event scoring window.",
       "divisions": []
     },
@@ -61,7 +61,7 @@
       "status": "recent_results",
       "status_label": "Results",
       "scoring_url": "http://eventingscores.com/eventsu/hitchingpost/sht0526",
-      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "last_observed_at": "2026-05-16T13:03:53.249183Z",
       "notes": "Recent results remain inside the current-event scoring window.",
       "divisions": []
     },
@@ -78,7 +78,7 @@
       "status": "recent_results",
       "status_label": "Results",
       "scoring_url": "http://eventingscores.com/eventsr/queeny/ht0526",
-      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "last_observed_at": "2026-05-16T13:03:53.249183Z",
       "notes": "Recent results remain inside the current-event scoring window.",
       "divisions": []
     },
@@ -95,7 +95,7 @@
       "status": "recent_results",
       "status_label": "Results",
       "scoring_url": "http://eventingscores.com/eventsu/sayre/ctds0526",
-      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "last_observed_at": "2026-05-16T13:03:53.249183Z",
       "notes": "Recent results remain inside the current-event scoring window.",
       "divisions": []
     },
@@ -112,7 +112,7 @@
       "status": "recent_results",
       "status_label": "Results",
       "scoring_url": "http://eventingscores.com/eventsu/huntersrun/db0526",
-      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "last_observed_at": "2026-05-16T13:03:53.249183Z",
       "notes": "Recent results remain inside the current-event scoring window.",
       "divisions": []
     },
@@ -129,7 +129,7 @@
       "status": "recent_results",
       "status_label": "Results",
       "scoring_url": "http://eventingscores.com/eventsu/redfox/ht0526",
-      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "last_observed_at": "2026-05-16T13:03:53.249183Z",
       "notes": "Recent results remain inside the current-event scoring window.",
       "divisions": []
     },
@@ -146,7 +146,7 @@
       "status": "live_results",
       "status_label": "Results",
       "scoring_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526",
-      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "last_observed_at": "2026-05-16T13:03:53.249183Z",
       "notes": "Results are marked available for an event that is currently running.",
       "divisions": []
     },
@@ -163,7 +163,7 @@
       "status": "live_results",
       "status_label": "Results",
       "scoring_url": "http://eventingscores.com/eventsu/ramtap/sht0526",
-      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "last_observed_at": "2026-05-16T13:03:53.249183Z",
       "notes": "Results are marked available for an event that is currently running.",
       "divisions": []
     },
@@ -180,7 +180,7 @@
       "status": "ride_times",
       "status_label": "Times",
       "scoring_url": "http://eventingscores.com/eventsu/bucks/sht0526",
-      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "last_observed_at": "2026-05-16T13:03:53.249183Z",
       "notes": "Ride times are posted and should be checked for results as the event starts.",
       "divisions": []
     },
@@ -197,7 +197,7 @@
       "status": "entries",
       "status_label": "Entries",
       "scoring_url": "http://eventingscores.com/eventsr/willowdraw/ht0526",
-      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "last_observed_at": "2026-05-16T13:03:53.249183Z",
       "notes": "Entries are posted for an upcoming event in the current scoring window.",
       "divisions": []
     },
@@ -214,7 +214,7 @@
       "status": "entries",
       "status_label": "Entries",
       "scoring_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526",
-      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "last_observed_at": "2026-05-16T13:03:53.249183Z",
       "notes": "Entries are posted for an upcoming event in the current scoring window.",
       "divisions": []
     },
@@ -231,7 +231,7 @@
       "status": "entries",
       "status_label": "Entries",
       "scoring_url": "http://eventingscores.com/eventsr/iea/ht0526",
-      "last_observed_at": "2026-05-16T12:04:55.904773Z",
+      "last_observed_at": "2026-05-16T13:03:53.249183Z",
       "notes": "Entries are posted for an upcoming event in the current scoring window.",
       "divisions": []
     }
