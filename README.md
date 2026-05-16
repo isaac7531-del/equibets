@@ -45,12 +45,18 @@ python3 -m pip install -e .
 The initial source registry lives in `data/event_sources.json` and is loaded with
 `equibets.sources`.
 
-1. `data_fei` (`https://data.fei.org/`) is the primary source for eventing
-   results across all FEI member nations.
-2. National-event sources fill gaps after FEI data, with priority coverage for
-   Europe, the UK, Australia, New Zealand, and the USA.
-3. `global_national_federations` is the backfill path for national events from
-   every FEI member nation after the priority regions are covered.
+1. `data_fei` (`https://data.fei.org/`) is the primary source for FEI eventing
+   results across FEI member nations.
+2. National-event sources fill gaps after FEI data and are marked with
+   `all_eventing_levels` when they cover every local, regional, national, and
+   international eventing level available from that source.
+3. `global_national_federations` is the `all_countries` backfill path for
+   national events from every country after higher-priority country or regional
+   sources are covered.
+
+Use `sources_for_country(country, level=...)` or
+`sources_for_region(region, level=...)` to select sources for a specific data
+refresh scope.
 
 Run the source registry checks with:
 

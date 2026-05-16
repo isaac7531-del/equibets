@@ -1,6 +1,6 @@
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import load_event_sources, sources_for_country, sources_for_region
 
 
 class EventSourceTests(unittest.TestCase):
@@ -27,8 +27,41 @@ class EventSourceTests(unittest.TestCase):
                 self.assertIn(national_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
 
+    def test_national_sources_cover_all_eventing_levels(self):
+        national_sources = [
+            source for source in load_event_sources() if source.scope == "national"
+        ]
+
+        self.assertTrue(national_sources)
+        for source in national_sources:
+            with self.subTest(source_id=source.id):
+                self.assertIn("all_eventing_levels", source.event_levels)
+
+    def test_country_specific_national_source_precedes_global_backfill(self):
+        source_ids = [
+            source.id for source in sources_for_country("USA", level="national")
+        ]
+
+        self.assertEqual(source_ids, ["usea", "global_national_federations"])
+
+    def test_all_country_backfill_covers_any_country_and_level(self):
+        source_ids = [
+            source.id for source in sources_for_country("BRA", level="grassroots")
+        ]
+
+        self.assertEqual(source_ids, ["global_national_federations"])
+
+    def test_country_lookup_keeps_fei_primary_when_level_is_unspecified(self):
+        source_ids = [source.id for source in sources_for_country("AUS")]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("equestrian_australia", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+
     def test_active_only_filter_keeps_current_primary_source(self):
-        source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
+        source_ids = [
+            source.id for source in sources_for_region("usa", include_planned=False)
+        ]
 
         self.assertEqual(source_ids, ["data_fei"])
 
