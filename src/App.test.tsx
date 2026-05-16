@@ -35,6 +35,6 @@ describe('App', () => {
     expect(screen.getByRole('heading', { name: /live scoring links/i })).toBeInTheDocument();
     expect(screen.getByText('Lynnleigh Farm May 16, 2026 Schooling 2-Phase')).toBeInTheDocument();
     expect(screen.getByText('Ram Tap May SHT')).toBeInTheDocument();
-    expect(screen.getByText(/2 upcoming/i)).toBeInTheDocument();
+    expect(screen.getByText(/3 upcoming/i)).toBeInTheDocument();
   });
 });
