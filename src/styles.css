@@ -89,7 +89,8 @@ button:disabled {
 .hero-card,
 .dashboard article,
 .calculator-card,
-.results-card {
+.results-card,
+.live-card {
   background: rgba(255, 252, 245, 0.88);
   border: 1px solid rgba(35, 67, 45, 0.12);
   box-shadow: 0 24px 80px rgba(67, 55, 37, 0.11);
@@ -129,7 +130,7 @@ button:disabled {
 .dashboard {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   margin-bottom: 1rem;
 }
 
@@ -154,9 +155,14 @@ button:disabled {
 }
 
 .calculator-card,
-.results-card {
+.results-card,
+.live-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
+}
+
+.live-card {
+  margin-bottom: 1rem;
 }
 
 .section-heading h2,
@@ -255,6 +261,30 @@ legend {
   background: #e3d2ad;
 }
 
+.source-link {
+  background: #eee1c7;
+  border-radius: 999px;
+  color: #23432d;
+  font-weight: 800;
+  padding: 0.8rem 1rem;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.source-link:hover {
+  background: #e3d2ad;
+}
+
+.feed-meta,
+.phase-text {
+  color: #65705f;
+}
+
+.feed-meta {
+  line-height: 1.5;
+  margin: 0.45rem 0 0;
+}
+
 .empty-state {
   background: #f8f2e4;
   border: 1px dashed rgba(35, 67, 45, 0.25);
@@ -309,6 +339,14 @@ td span {
   white-space: nowrap;
 }
 
+.live-score-table a {
+  color: #956d26;
+  display: inline-block;
+  font-size: 0.84rem;
+  font-weight: 800;
+  margin-top: 0.25rem;
+}
+
 .link-button {
   background: transparent;
   color: #9a4a2e;
@@ -329,6 +367,11 @@ td span {
 
   .dashboard {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .results-header {
+    align-items: flex-start;
+    flex-direction: column;
   }
 }
 
