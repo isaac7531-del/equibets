@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "generated_at": "2026-05-16T14:01:00Z",
+  "sources": [
+    {
+      "id": "startbox_scoring",
+      "name": "StartBox Scoring current event calendar",
+      "url": "https://eventing.startboxscoring.com/"
+    }
+  ],
+  "events": [
+    {
+      "id": "startbox_scoring-eventsu-lynnleigh-sht0526",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox Scoring current event calendar",
+      "name": "Lynnleigh Farm May 16, 2026 Schooling 2-Phase",
+      "date_label": "May 16, 2026",
+      "starts_on": "2026-05-16",
+      "ends_on": "2026-05-16",
+      "location": "Sandy, UT US",
+      "country": "US",
+      "status": "live",
+      "score_status": "results",
+      "result_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526",
+      "divisions": [],
+      "entries": []
+    },
+    {
+      "id": "startbox_scoring-eventsu-ramtap-sht0526",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox Scoring current event calendar",
+      "name": "Ram Tap May SHT",
+      "date_label": "May 16-17, 2026",
+      "starts_on": "2026-05-16",
+      "ends_on": "2026-05-17",
+      "location": "Fresno, CA US",
+      "country": "US",
+      "status": "live",
+      "score_status": "results",
+      "result_url": "http://eventingscores.com/eventsu/ramtap/sht0526",
+      "divisions": [
+        {
+          "name": "Open Training",
+          "phase_status": "Dressage: 7:30 AM Sat. Ring 1",
+          "entry_status_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/draw.php?division=5",
+          "times_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=5"
+        },
+        {
+          "name": "Open Novice",
+          "phase_status": "Dressage: 8:18 AM Sat. Ring 1",
+          "entry_status_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/draw.php?division=4",
+          "times_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=4"
+        },
+        {
+          "name": "Beg Novice Classic 3-Day",
+          "phase_status": "Dressage: 9:00 AM Sat. Ring 1",
+          "entry_status_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/draw.php?division=7",
+          "times_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=7"
+        },
+        {
+          "name": "Open Beginner Novice",
+          "phase_status": "Dressage: 9:12 AM Sat. Ring 1",
+          "entry_status_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/draw.php?division=3",
+          "times_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=3"
+        },
+        {
+          "name": "Grasshopper",
+          "phase_status": "Dressage: 12:24 PM Sat. Ring 1",
+          "entry_status_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/draw.php?division=1",
+          "times_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=1"
+        },
+        {
+          "name": "Open Introductory",
+          "phase_status": "Dressage: 11:12 AM Sat. Ring 1",
+          "entry_status_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/draw.php?division=2",
+          "times_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=2"
+        }
+      ],
+      "entries": []
+    },
+    {
+      "id": "startbox_scoring-eventsu-bucks-sht0526",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox Scoring current event calendar",
+      "name": "Bucks County Horse Park May Schooling Horse Trial",
+      "date_label": "May 17, 2026",
+      "starts_on": "2026-05-17",
+      "ends_on": "2026-05-17",
+      "location": "Revere, PA US",
+      "country": "US",
+      "status": "upcoming",
+      "score_status": "times",
+      "result_url": "http://eventingscores.com/eventsu/bucks/sht0526",
+      "divisions": [],
+      "entries": []
+    }
+  ]
+}
