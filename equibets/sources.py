@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+COUNTRY_WILDCARDS = frozenset({"all_countries", "all_fei_member_nations"})
+LEVEL_WILDCARD = "all_eventing_levels"
 
 
 @dataclass(frozen=True)
@@ -49,6 +51,23 @@ class EventSource:
             notes=_required_str(values, "notes"),
         )
 
+    def covers_country(self, country: str) -> bool:
+        """Return whether this source can supply results for a country code."""
+
+        normalized_country = country.strip().upper()
+        return (
+            bool(COUNTRY_WILDCARDS.intersection(self.countries))
+            or normalized_country in self.countries
+        )
+
+    def covers_level(self, level: str) -> bool:
+        """Return whether this source can supply results for an eventing level."""
+
+        normalized_level = _normalize_level(level)
+        return LEVEL_WILDCARD in self.event_levels or normalized_level in {
+            _normalize_level(source_level) for source_level in self.event_levels
+        }
+
 
 def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
     """Load sources sorted by priority, with FEI first on ties."""
@@ -79,6 +98,26 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and, optionally, an eventing level."""
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and source.covers_country(country)
+        and (level is None or source.covers_level(level))
     ]
 
 
@@ -114,3 +153,7 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _normalize_level(level: str) -> str:
+    return level.strip().lower().replace(" ", "_").replace("-", "_")
