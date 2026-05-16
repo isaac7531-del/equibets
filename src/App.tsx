@@ -216,7 +216,7 @@ export default function App() {
           </div>
         )}
 
-        <div className="event-grid" aria-label="Current event sources">
+        <div className="event-grid" aria-label="Live source cards">
           {liveSnapshot.events.map((event) => (
             <article key={event.id}>
               <div>
