@@ -1,4 +1,11 @@
 import { FormEvent, useMemo, useState } from 'react';
+import liveScoreFeedJson from '../data/live_event_scores.json';
+import {
+  formatFeedTimestamp,
+  getLiveLeaderRows,
+  sortLiveLeaderRows,
+  type LiveScoreFeed,
+} from './liveScoring';
 import {
   calculateScore,
   formatSeconds,
@@ -8,6 +15,8 @@ import {
   type StoredResult,
 } from './scoring';
 import { loadResults, saveResults } from './storage';
+
+const liveScoreFeed = liveScoreFeedJson as LiveScoreFeed;
 
 type FormState = {
   rider: string;
@@ -55,7 +64,9 @@ export default function App() {
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const liveLeaderRows = useMemo(() => sortLiveLeaderRows(getLiveLeaderRows(liveScoreFeed)), []);
   const bestResult = sortedResults[0];
+  const bestLiveLeader = liveLeaderRows[0];
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -100,8 +111,8 @@ export default function App() {
           <p className="eyebrow">Equibets</p>
           <h1>Eventing score calculator and results tracker</h1>
           <p className="hero-copy">
-            Capture dressage, show jumping, and cross-country penalties in one place, then keep a local record of
-            horse-and-rider results.
+            Capture dressage, show jumping, and cross-country penalties in one place, then compare your saved record with
+            current public event leaders.
           </p>
         </div>
         <div className="hero-card" aria-live="polite">
@@ -134,6 +145,74 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Live leader</span>
+          <strong>{bestLiveLeader ? bestLiveLeader.leader.score.toFixed(1) : '--'}</strong>
+          <p>{bestLiveLeader ? `${bestLiveLeader.leader.horse} at ${bestLiveLeader.event.name}` : 'No current feed data'}</p>
+        </article>
+      </section>
+
+      <section className="live-card" aria-labelledby="live-scoring-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-scoring-heading">Live scoring</h2>
+            <p className="feed-meta">
+              Pulled from {liveScoreFeed.source_name} for {liveScoreFeed.as_of_date}. Last refreshed{' '}
+              {formatFeedTimestamp(liveScoreFeed.generated_at)}.
+            </p>
+          </div>
+          <a className="source-link" href={liveScoreFeed.source_url} target="_blank" rel="noreferrer">
+            Search source
+          </a>
+        </div>
+
+        {liveLeaderRows.length === 0 ? (
+          <div className="empty-state">
+            <strong>No live leaders found.</strong>
+            <p>Run the current-event refresh to pull new StartBox results into the live scoring feed.</p>
+          </div>
+        ) : (
+          <div className="table-wrap">
+            <table className="live-score-table">
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Division</th>
+                  <th>Leader</th>
+                  <th>Score</th>
+                  <th>Phase</th>
+                </tr>
+              </thead>
+              <tbody>
+                {liveLeaderRows.map((row) => (
+                  <tr key={`${row.event.id}-${row.division.division}-${row.leader.rider}-${row.leader.horse}`}>
+                    <td>
+                      <strong>{row.event.name}</strong>
+                      <span>
+                        {row.event.date_label} / {row.event.location}
+                      </span>
+                    </td>
+                    <td>{row.division.division}</td>
+                    <td>
+                      <strong>{row.leader.horse}</strong>
+                      <span>{row.leader.rider}</span>
+                    </td>
+                    <td className="total-cell">{row.leader.score.toFixed(1)}</td>
+                    <td>
+                      <span className="phase-text">{row.division.phase}</span>
+                      {row.division.phase_links[0] ? (
+                        <a href={row.division.phase_links[0].url} target="_blank" rel="noreferrer">
+                          View {row.division.phase_links[0].label.toLowerCase()}
+                        </a>
+                      ) : null}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">
