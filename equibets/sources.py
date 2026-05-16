@@ -13,6 +13,9 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRIES = "all_countries"
+ALL_EVENTING_LEVELS = "all_eventing_levels"
+ALL_FEI_MEMBER_NATIONS = "all_fei_member_nations"
 
 
 @dataclass(frozen=True)
@@ -66,10 +69,11 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
-    """Return sources covering a region while preserving global priorities."""
+    """Return sources covering a region and optional level."""
 
     normalized_region = region.lower().replace(" ", "_")
     statuses = {"active", "planned"} if include_planned else {"active"}
@@ -79,6 +83,27 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+        and (level is None or _covers_event_level(source, level))
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _covers_country(source, country)
+        and (level is None or _covers_event_level(source, level))
     ]
 
 
@@ -114,3 +139,40 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _covers_country(source: EventSource, country: str) -> bool:
+    normalized_country = country.upper().replace(" ", "_")
+    countries = set(source.countries)
+
+    return (
+        ALL_COUNTRIES in countries
+        or ALL_FEI_MEMBER_NATIONS in countries
+        or normalized_country in countries
+    )
+
+
+def _covers_event_level(source: EventSource, level: str) -> bool:
+    normalized_level = _normalize_token(level)
+    levels = set(source.event_levels)
+
+    return (
+        ALL_EVENTING_LEVELS in levels
+        or normalized_level in levels
+        or (
+            "fei_international" in levels
+            and _is_fei_international_level(normalized_level)
+        )
+    )
+
+
+def _normalize_token(value: str) -> str:
+    return value.lower().replace("-", "_").replace(" ", "_")
+
+
+def _is_fei_international_level(level: str) -> bool:
+    return level.startswith(("cci", "cio", "ch_")) or level in {
+        "fei",
+        "fei_international",
+        "international",
+    }
