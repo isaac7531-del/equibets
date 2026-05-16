@@ -1,13 +1,23 @@
 """Utilities for eventing results data sources."""
 
 from .results import EventingResult, consolidate_results, predict_finishing_score
-from .sources import EventSource, load_event_sources, sources_for_region
+from .sources import (
+    ALL_COUNTRIES,
+    ALL_EVENTING_LEVELS,
+    EventSource,
+    load_event_sources,
+    sources_for_country,
+    sources_for_region,
+)
 
 __all__ = [
+    "ALL_COUNTRIES",
+    "ALL_EVENTING_LEVELS",
     "EventSource",
     "EventingResult",
     "consolidate_results",
     "load_event_sources",
     "predict_finishing_score",
+    "sources_for_country",
     "sources_for_region",
 ]
