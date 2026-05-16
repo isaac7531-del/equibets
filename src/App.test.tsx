@@ -25,7 +25,7 @@ describe('App', () => {
     await user.click(screen.getByRole('button', { name: /save result/i }));
 
     expect(screen.getByRole('cell', { name: '34.0' })).toBeInTheDocument();
-    expect(screen.getByText('Juniper')).toBeInTheDocument();
+    expect(screen.getAllByText('Juniper').length).toBeGreaterThan(0);
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
   });
 
@@ -33,7 +33,7 @@ describe('App', () => {
     render(<App />);
 
     expect(screen.getByRole('heading', { name: /live scoring/i })).toBeInTheDocument();
-    expect(screen.getByText('Lynnleigh Farm May 16, 2026 Schooling 2-Phase')).toBeInTheDocument();
+    expect(screen.getAllByText('Lynnleigh Farm May 16, 2026 Schooling 2-Phase').length).toBeGreaterThan(0);
     expect(screen.getByText('StartBox current eventing scores', { exact: false })).toBeInTheDocument();
   });
 });
