@@ -1,6 +1,7 @@
+import json
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import DATA_FILE, load_event_sources, sources_for_country, sources_for_region
 
 
 class EventSourceTests(unittest.TestCase):
@@ -26,6 +27,39 @@ class EventSourceTests(unittest.TestCase):
                 self.assertEqual(source_ids[0], "data_fei")
                 self.assertIn(national_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
+
+    def test_registry_declares_all_country_and_level_wildcards(self):
+        with DATA_FILE.open(encoding="utf-8") as source_file:
+            payload = json.load(source_file)
+
+        self.assertEqual(payload["version"], 2)
+        self.assertIn("all_countries", payload["coverage_wildcards"]["countries"])
+        self.assertIn("all_eventing_levels", payload["coverage_wildcards"]["event_levels"])
+
+        global_source = next(
+            source for source in load_event_sources() if source.id == "global_national_federations"
+        )
+        self.assertEqual(global_source.countries, ("all_countries",))
+        self.assertEqual(global_source.event_levels, ("all_eventing_levels",))
+
+    def test_country_level_filter_uses_specific_and_global_national_sources(self):
+        source_ids = [source.id for source in sources_for_country("USA", level="national")]
+
+        self.assertIn("usea", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+        self.assertNotIn("data_fei", source_ids)
+
+    def test_country_level_filter_backfills_any_country_and_level(self):
+        source_ids = [source.id for source in sources_for_country("CAN", level="beginner_novice")]
+
+        self.assertEqual(source_ids, ["global_national_federations"])
+
+    def test_country_filter_keeps_primary_source_without_level_scope(self):
+        source_ids = [source.id for source in sources_for_country("AUS")]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("equestrian_australia", source_ids)
+        self.assertIn("global_national_federations", source_ids)
 
     def test_active_only_filter_keeps_current_primary_source(self):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
