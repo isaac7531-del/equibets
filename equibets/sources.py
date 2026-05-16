@@ -7,12 +7,15 @@ that are important for broader coverage.
 from __future__ import annotations
 
 import json
+import re
 from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_TOKENS = {"all_countries", "all_fei_member_nations"}
+ALL_EVENT_LEVEL_TOKENS = {"all_eventing_levels"}
 
 
 @dataclass(frozen=True)
@@ -67,11 +70,12 @@ def sources_for_region(
     region: str,
     *,
     path: Path | str = DATA_FILE,
+    level: str | None = None,
     include_planned: bool = True,
 ) -> list[EventSource]:
-    """Return sources covering a region while preserving global priorities."""
+    """Return sources covering a region and optional level by priority."""
 
-    normalized_region = region.lower().replace(" ", "_")
+    normalized_region = _normalize_token(region)
     statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
@@ -79,6 +83,28 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+        and _matches_level(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    level: str | None = None,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = _normalize_token(country)
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _matches_country(source, normalized_country)
+        and _matches_level(source, level)
     ]
 
 
@@ -114,3 +140,30 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _matches_country(source: EventSource, normalized_country: str) -> bool:
+    return any(
+        _normalize_token(country) in ALL_COUNTRY_TOKENS
+        or _normalize_token(country) == normalized_country
+        for country in source.countries
+    )
+
+
+def _matches_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_level = _normalize_token(level)
+    return any(
+        _normalize_token(event_level) in ALL_EVENT_LEVEL_TOKENS
+        or _normalize_token(event_level) == normalized_level
+        for event_level in source.event_levels
+    )
+
+
+def _normalize_token(value: str) -> str:
+    normalized = re.sub(r"[^a-z0-9]+", "_", value.strip().lower()).strip("_")
+    if not normalized:
+        raise ValueError("value must contain at least one letter or number")
+    return normalized
