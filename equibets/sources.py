@@ -13,6 +13,10 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+GLOBAL_REGION = "global"
+ALL_COUNTRIES = "all_countries"
+COUNTRY_WILDCARDS = {ALL_COUNTRIES, "all_fei_member_nations"}
+ALL_EVENTING_LEVELS = "all_eventing_levels"
 
 
 @dataclass(frozen=True)
@@ -66,19 +70,44 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
-    """Return sources covering a region while preserving global priorities."""
+    """Return sources covering a region and optional level."""
 
-    normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    normalized_region = _normalized_lookup_token(region)
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        if _status_matches(source, include_planned)
+        and (GLOBAL_REGION in source.regions or normalized_region in source.regions)
+        and _level_matches(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional level."""
+
+    normalized_country = _normalized_country_code(country)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if _status_matches(source, include_planned)
+        and (
+            COUNTRY_WILDCARDS.intersection(source.countries)
+            or normalized_country
+            in {_normalized_country_code(item) for item in source.countries}
+        )
+        and _level_matches(source, level)
     ]
 
 
@@ -114,3 +143,26 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _status_matches(source: EventSource, include_planned: bool) -> bool:
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return source.status in statuses
+
+
+def _level_matches(source: EventSource, level: str | None) -> bool:
+    if level is None or ALL_EVENTING_LEVELS in source.event_levels:
+        return True
+
+    normalized_level = _normalized_lookup_token(level)
+    return normalized_level in {
+        _normalized_lookup_token(source_level) for source_level in source.event_levels
+    }
+
+
+def _normalized_country_code(country: str) -> str:
+    return country.strip().upper().replace(" ", "_").replace("-", "_")
+
+
+def _normalized_lookup_token(value: str) -> str:
+    return value.strip().lower().replace(" ", "_").replace("-", "_")
