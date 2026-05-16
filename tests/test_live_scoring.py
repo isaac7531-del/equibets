@@ -4,7 +4,9 @@ from datetime import date, datetime, timezone
 from equibets.live_scoring import (
     build_live_snapshot,
     parse_startbox_calendar,
+    parse_startbox_event_leaders,
     parse_startbox_event_page,
+    parse_startbox_scores_page,
 )
 
 
@@ -38,10 +40,35 @@ STARTBOX_HTML_CALENDAR = """
 
 STARTBOX_HTML_EVENT_PAGE = """
 <table id="leaderboard1">
-<tr><td class="divisionldr">Division</td><td class="phase">Phase</td></tr>
+<tr><td class="divisionldr" rowspan="2">Division</td><td class="phase" rowspan="2">Phase</td><td colspan="3">Current Leader</td></tr>
+<tr class="toprow"><td>Rider</td><td>Horse</td><td>Score</td></tr>
 <tr class="drawdata1">
 <td class="bold">Open Training</td>
-<td><a href="draw.php?division=5">Entry Status</a> &nbsp;<a href="times.php?division=5">Times</a> &nbsp;<br /><span class="smaller padding-t">Dressage: 7:30 AM Sat. Ring 1</span></td>
+<td><a href="times.php?division=5">Times</a> &nbsp;<a href="dressResultsEventing.php?division=5&order=place">Scores</a> &nbsp;<br /><span class="smaller padding-t">XC: 2:00 PM Sat.</span></td>
+<td>Alexis Concolino</td>
+<td>Leo D</td>
+<td class="center place">30.3</td>
+</tr>
+</table>
+"""
+
+STARTBOX_SCORE_PAGE = """
+<table id="draw">
+<tr><td colspan="13" class="division"><h1>Modified 2026</h1></td></tr>
+<tr class="toprow">
+<td rowspan="2">No.</td><td rowspan="2">Rider</td><td rowspan="2">Horse & Owner</td>
+<td colspan="2">Dressage</td><td colspan="4">Show Jumping</td><td rowspan="2">DR</td>
+</tr>
+<tr class="toprow"><td>Score</td><td>Place</td><td>Jump</td><td>Time Pen.</td><td>Total</td><td>Place</td></tr>
+<tr class="drawdata1">
+<td>867</td><td>Jennifer Haglin</td><td>Jaxi<br /><span class="owner">Jennifer Haglin</span></td>
+<td class="center">36.8</td><td class="center place">2</td><td class="center">0</td><td class="center">0</td>
+<td class="center">36.8</td><td class="center place">1</td><td class="center dress">&nbsp;</td>
+</tr>
+<tr class="drawdata2">
+<td>895</td><td>Emmalee Tanner</td><td>Brazen Bugatti<br /><span class="owner">Emmalee Tanner</span></td>
+<td class="center">36.5</td><td class="center place">1</td><td class="center">0</td><td class="center">---</td>
+<td class="center">---</td><td class="center place">E</td><td class="center dress">&nbsp;</td>
 </tr>
 </table>
 """
@@ -78,11 +105,33 @@ class LiveScoringTests(unittest.TestCase):
 
         self.assertEqual(events[0].name, "Ram Tap May SHT")
         self.assertEqual(events[0].location, "Fresno, CA US")
-        self.assertEqual(divisions[0].phase_status, "Dressage: 7:30 AM Sat. Ring 1")
+        self.assertEqual(divisions[0].phase_status, "XC: 2:00 PM Sat.")
+        self.assertEqual(divisions[0].times_url, "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/times.php?division=5")
         self.assertEqual(
-            divisions[0].entry_status_url,
-            "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/draw.php?division=5",
+            divisions[0].scores_url,
+            "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/dressResultsEventing.php?division=5&order=place",
         )
+
+    def test_parse_startbox_event_leaders_extracts_current_scores(self):
+        entries = parse_startbox_event_leaders(
+            STARTBOX_HTML_EVENT_PAGE,
+            base_url="https://eventing.startboxscoring.com/eventsu/ramtap/sht0526",
+        )
+
+        self.assertEqual(len(entries), 1)
+        self.assertEqual(entries[0].rider_name, "Alexis Concolino")
+        self.assertEqual(entries[0].horse_name, "Leo D")
+        self.assertEqual(entries[0].score["totalPenalties"], 30.3)
+
+    def test_parse_startbox_scores_page_extracts_scored_rows(self):
+        entries = parse_startbox_scores_page(STARTBOX_SCORE_PAGE, division="Modified", status="final")
+
+        self.assertEqual(len(entries), 2)
+        self.assertEqual(entries[0].horse_name, "Jaxi")
+        self.assertEqual(entries[0].score["dressagePenalties"], 36.8)
+        self.assertEqual(entries[0].score["totalPenalties"], 36.8)
+        self.assertEqual(entries[1].horse_name, "Brazen Bugatti")
+        self.assertIsNone(entries[1].score["totalPenalties"])
 
     def test_build_live_snapshot_serializes_events(self):
         events = parse_startbox_calendar(STARTBOX_CALENDAR, as_of=date(2026, 5, 16))[:1]

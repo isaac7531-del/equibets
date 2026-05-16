@@ -3,6 +3,7 @@ export type LiveDivision = {
   phase_status: string;
   entry_status_url: string | null;
   times_url: string | null;
+  scores_url?: string | null;
 };
 
 export type LiveScoreBreakdown = {

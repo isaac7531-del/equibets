@@ -33,7 +33,8 @@ describe('App', () => {
     render(<App />);
 
     expect(screen.getByRole('heading', { name: /live scoring pull/i })).toBeInTheDocument();
-    expect(screen.getByText('Ram Tap May SHT')).toBeInTheDocument();
-    expect(screen.getByText(/no scored starts in this pull yet/i)).toBeInTheDocument();
+    expect(screen.getAllByText('Ram Tap May SHT').length).toBeGreaterThan(0);
+    expect(screen.getByText(/starts tracked/i)).toBeInTheDocument();
+    expect(screen.getByText('Jaxi')).toBeInTheDocument();
   });
 });

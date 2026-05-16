@@ -26,6 +26,7 @@ class LiveDivision:
     phase_status: str
     entry_status_url: str | None = None
     times_url: str | None = None
+    scores_url: str | None = None
 
     def to_mapping(self) -> dict[str, object]:
         return {
@@ -33,6 +34,29 @@ class LiveDivision:
             "phase_status": self.phase_status,
             "entry_status_url": self.entry_status_url,
             "times_url": self.times_url,
+            "scores_url": self.scores_url,
+        }
+
+
+@dataclass(frozen=True)
+class LiveScoreEntry:
+    """One scored live leaderboard row from a current event."""
+
+    id: str
+    rider_name: str
+    horse_name: str
+    division: str
+    status: str
+    score: dict[str, float | None] | None
+
+    def to_mapping(self) -> dict[str, object]:
+        return {
+            "id": self.id,
+            "riderName": self.rider_name,
+            "horseName": self.horse_name,
+            "division": self.division,
+            "status": self.status,
+            "score": self.score,
         }
 
 
@@ -53,6 +77,7 @@ class CurrentEvent:
     score_status: str
     result_url: str
     divisions: tuple[LiveDivision, ...] = ()
+    entries: tuple[LiveScoreEntry, ...] = ()
 
     def to_mapping(self) -> dict[str, object]:
         return {
@@ -69,7 +94,7 @@ class CurrentEvent:
             "score_status": self.score_status,
             "result_url": self.result_url,
             "divisions": [division.to_mapping() for division in self.divisions],
-            "entries": [],
+            "entries": [entry.to_mapping() for entry in self.entries],
         }
 
 
@@ -121,7 +146,7 @@ def parse_startbox_event_page(content: str, *, base_url: str = STARTBOX_CALENDAR
     normalized_base_url = _directory_base_url(base_url)
     divisions: list[LiveDivision] = []
     for name, phase_cell in _markdown_division_rows(content):
-        if name.lower() in {"division", "phase"} or not name.strip("- "):
+        if name.lower() in {"division", "phase", "rider"} or not name.strip("- "):
             continue
 
         links = {
@@ -135,14 +160,18 @@ def parse_startbox_event_page(content: str, *, base_url: str = STARTBOX_CALENDAR
                 phase_status=phase_status,
                 entry_status_url=links.get("entry status"),
                 times_url=links.get("times"),
+                scores_url=_score_url_from_links(links),
             )
         )
 
     if divisions:
         return tuple(divisions)
 
-    for name, phase_status, entry_status_url, times_url in _html_division_rows(content, base_url=normalized_base_url):
-        if name.lower() in {"division", "phase"} or not name.strip("- "):
+    for name, phase_status, entry_status_url, times_url, scores_url in _html_division_rows(
+        content,
+        base_url=normalized_base_url,
+    ):
+        if name.lower() in {"division", "phase", "rider"} or not name.strip("- "):
             continue
 
         divisions.append(
@@ -151,10 +180,102 @@ def parse_startbox_event_page(content: str, *, base_url: str = STARTBOX_CALENDAR
                 phase_status=phase_status,
                 entry_status_url=entry_status_url,
                 times_url=times_url,
+                scores_url=scores_url,
             )
         )
 
     return tuple(divisions)
+
+
+def parse_startbox_event_leaders(
+    content: str,
+    *,
+    base_url: str = STARTBOX_CALENDAR_URL,
+) -> tuple[LiveScoreEntry, ...]:
+    """Parse current leader rows from a StartBox event division listing."""
+
+    normalized_base_url = _directory_base_url(base_url)
+    entries: list[LiveScoreEntry] = []
+    for row in _html_table_rows(content):
+        if len(row) < 5:
+            continue
+
+        division = _strip_tags(row[0])
+        rider_name = _strip_tags(row[2])
+        horse_name = _strip_tags(row[3])
+        total_penalties = _parse_score_number(_strip_tags(row[4]))
+        if not division or division.lower() in {"division", "rider"} or not rider_name or not horse_name:
+            continue
+        if total_penalties is None:
+            continue
+
+        links = {
+            label.lower(): urljoin(normalized_base_url, url)
+            for label, url in _html_links(row[1])
+        }
+        entries.append(
+            LiveScoreEntry(
+                id=_entry_id(division, rider_name, horse_name),
+                rider_name=rider_name,
+                horse_name=horse_name,
+                division=division,
+                status=_score_status_from_links(links),
+                score={
+                    "dressagePenalties": None,
+                    "showJumpingPenalties": None,
+                    "crossCountryJumpPenalties": None,
+                    "crossCountryTimePenalties": None,
+                    "totalPenalties": total_penalties,
+                },
+            )
+        )
+
+    return tuple(entries)
+
+
+def parse_startbox_scores_page(content: str, *, division: str, status: str = "scores") -> tuple[LiveScoreEntry, ...]:
+    """Parse all scored rows from a StartBox division score page."""
+
+    entries: list[LiveScoreEntry] = []
+    for row in _html_table_rows(content):
+        if len(row) < 5:
+            continue
+
+        start_number = _strip_tags(row[0])
+        rider_name = _strip_tags(row[1])
+        horse_name = _horse_name_from_cell(row[2])
+        if not start_number or not rider_name or not horse_name:
+            continue
+        if start_number.lower() in {"no.", "no", "score"}:
+            continue
+        if rider_name.lower() == "rider" or horse_name.lower().startswith("horse"):
+            continue
+
+        dressage_penalties = _parse_score_number(_strip_tags(row[3]))
+        total_penalties = _parse_score_number(_strip_tags(_total_score_cell(row)))
+        row_status = _row_status(row, status)
+        score: dict[str, float | None] | None = None
+        if dressage_penalties is not None or total_penalties is not None:
+            score = {
+                "dressagePenalties": dressage_penalties,
+                "showJumpingPenalties": _difference_or_none(total_penalties, dressage_penalties),
+                "crossCountryJumpPenalties": None,
+                "crossCountryTimePenalties": None,
+                "totalPenalties": total_penalties,
+            }
+
+        entries.append(
+            LiveScoreEntry(
+                id=_entry_id(division, rider_name, horse_name, start_number),
+                rider_name=rider_name,
+                horse_name=horse_name,
+                division=division,
+                status=row_status,
+                score=score,
+            )
+        )
+
+    return tuple(entries)
 
 
 def build_live_snapshot(
@@ -219,10 +340,42 @@ def refresh_startbox_live_snapshot(
             enriched_events.append(event)
             continue
 
+        divisions = parse_startbox_event_page(page_content, base_url=event.result_url)
+        leader_entries = parse_startbox_event_leaders(page_content, base_url=event.result_url)
+        leader_statuses = {entry.division: entry.status for entry in leader_entries}
+        score_entries: list[LiveScoreEntry] = []
+        scored_divisions: set[str] = set()
+        for division in divisions:
+            if not division.scores_url:
+                continue
+
+            try:
+                scores_content = _fetch_url(division.scores_url, timeout_seconds=timeout_seconds)
+            except Exception as exc:  # pragma: no cover - exercised by real source behavior
+                source_errors.append(
+                    {
+                        "event_id": event.id,
+                        "url": division.scores_url,
+                        "message": str(exc),
+                    }
+                )
+                continue
+
+            entries = parse_startbox_scores_page(
+                scores_content,
+                division=division.name,
+                status=leader_statuses.get(division.name, _score_status_from_url(division.scores_url)),
+            )
+            if entries:
+                scored_divisions.add(division.name)
+                score_entries.extend(entries)
+
+        score_entries.extend(entry for entry in leader_entries if entry.division not in scored_divisions)
         enriched_events.append(
             replace(
                 event,
-                divisions=parse_startbox_event_page(page_content, base_url=event.result_url),
+                divisions=divisions,
+                entries=tuple(_deduplicate_entries(score_entries)),
             )
         )
 
@@ -319,11 +472,14 @@ def _html_calendar_rows(content: str) -> list[tuple[str, str, str, str]]:
     return rows
 
 
-def _html_division_rows(content: str, *, base_url: str) -> list[tuple[str, str, str | None, str | None]]:
-    rows: list[tuple[str, str, str | None, str | None]] = []
-    for row_match in re.finditer(r"<tr[^>]*>(?P<row>.*?)</tr>", content, flags=re.IGNORECASE | re.DOTALL):
-        cells = re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", row_match.group("row"), flags=re.IGNORECASE | re.DOTALL)
-        if len(cells) != 2:
+def _html_division_rows(
+    content: str,
+    *,
+    base_url: str,
+) -> list[tuple[str, str, str | None, str | None, str | None]]:
+    rows: list[tuple[str, str, str | None, str | None, str | None]] = []
+    for cells in _html_table_rows(content):
+        if len(cells) < 2:
             continue
 
         name = _strip_tags(cells[0])
@@ -343,8 +499,18 @@ def _html_division_rows(content: str, *, base_url: str) -> list[tuple[str, str, 
                 _strip_tags(phase_without_links),
                 links.get("entry status"),
                 links.get("times"),
+                _score_url_from_links(links),
             )
         )
+    return rows
+
+
+def _html_table_rows(content: str) -> list[list[str]]:
+    rows: list[list[str]] = []
+    for row_match in re.finditer(r"<tr[^>]*>(?P<row>.*?)</tr>", content, flags=re.IGNORECASE | re.DOTALL):
+        cells = re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", row_match.group("row"), flags=re.IGNORECASE | re.DOTALL)
+        if cells:
+            rows.append(cells)
     return rows
 
 
@@ -452,6 +618,76 @@ def _html_links(content: str) -> list[tuple[str, str]]:
             flags=re.IGNORECASE | re.DOTALL,
         )
     ]
+
+
+def _score_url_from_links(links: dict[str, str]) -> str | None:
+    for label, url in links.items():
+        if "score" in label:
+            return url
+    return None
+
+
+def _score_status_from_links(links: dict[str, str]) -> str:
+    for label in links:
+        if "final" in label and "score" in label:
+            return "final"
+        if "provisional" in label and "score" in label:
+            return "provisional"
+        if "score" in label:
+            return "in_progress"
+    return "unknown"
+
+
+def _score_status_from_url(url: str) -> str:
+    if "phase2" in url.lower():
+        return "in_progress"
+    return "in_progress"
+
+
+def _horse_name_from_cell(content: str) -> str:
+    horse_part = re.split(r"<br\b|<br\s*\\", content, maxsplit=1, flags=re.IGNORECASE)[0]
+    return _strip_tags(horse_part)
+
+
+def _parse_score_number(value: str) -> float | None:
+    normalized = value.replace("\xa0", " ").strip()
+    if not normalized or normalized in {"---", "--"}:
+        return None
+    match = re.search(r"\d+(?:\.\d+)?", normalized)
+    if not match:
+        return None
+    return float(match.group(0))
+
+
+def _total_score_cell(row: list[str]) -> str:
+    if len(row) >= 9:
+        return row[-3]
+    return row[-2]
+
+
+def _row_status(row: list[str], default: str) -> str:
+    final_cell = _strip_tags(row[-1]).strip()
+    if final_cell and _parse_score_number(final_cell) is None and final_cell not in {"---", "--"}:
+        return final_cell.lower()
+    return default
+
+
+def _difference_or_none(total: float | None, base: float | None) -> float | None:
+    if total is None or base is None:
+        return None
+    return round(max(0.0, total - base), 1)
+
+
+def _deduplicate_entries(entries: list[LiveScoreEntry]) -> list[LiveScoreEntry]:
+    deduplicated: dict[str, LiveScoreEntry] = {}
+    for entry in entries:
+        deduplicated.setdefault(entry.id, entry)
+    return list(deduplicated.values())
+
+
+def _entry_id(division: str, rider_name: str, horse_name: str, start_number: str | None = None) -> str:
+    parts = [division, start_number or "", rider_name, horse_name]
+    return _slug("-".join(part for part in parts if part))
 
 
 def _html_class_text(content: str, class_name: str) -> str:

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generated_at": "2026-05-16T14:12:03.897491Z",
+  "generated_at": "2026-05-16T18:08:22.207681Z",
   "sources": [
     {
       "id": "startbox_scoring",
@@ -25,42 +25,421 @@
       "divisions": [
         {
           "name": "Modified",
-          "phase_status": "Dressage: 8:00 AM Sat. Ring 1",
-          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=8",
-          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=8"
+          "phase_status": "",
+          "entry_status_url": null,
+          "times_url": null,
+          "scores_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=8&order=place"
         },
         {
           "name": "Training",
-          "phase_status": "Dressage: 8:18 AM Sat. Ring 1",
-          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=3",
-          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=3"
+          "phase_status": "",
+          "entry_status_url": null,
+          "times_url": null,
+          "scores_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=3&order=place"
         },
         {
           "name": "Novice",
-          "phase_status": "Dressage: 9:36 AM Sat. Ring 1",
-          "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=4",
-          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=4"
+          "phase_status": "",
+          "entry_status_url": null,
+          "times_url": null,
+          "scores_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=4&order=place"
         },
         {
           "name": "Beginner Novice",
           "phase_status": "Dressage: 11:06 AM Sat. Ring 1",
           "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=5",
-          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=5"
+          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=5",
+          "scores_url": null
         },
         {
           "name": "Grasshopper",
           "phase_status": "Dressage: 2:50 PM Sat. Ring 1",
           "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=7",
-          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=7"
+          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=7",
+          "scores_url": null
         },
         {
           "name": "Starter",
           "phase_status": "Dressage: 12:46 PM Sat. Ring 1",
           "entry_status_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/draw.php?division=6",
-          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=6"
+          "times_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/times.php?division=6",
+          "scores_url": null
+        },
+        {
+          "name": "Modified",
+          "phase_status": "",
+          "entry_status_url": null,
+          "times_url": null,
+          "scores_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/tipresults.php?level=Modified"
+        },
+        {
+          "name": "Training",
+          "phase_status": "",
+          "entry_status_url": null,
+          "times_url": null,
+          "scores_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/tipresults.php?level=Training"
+        },
+        {
+          "name": "BNovice",
+          "phase_status": "",
+          "entry_status_url": null,
+          "times_url": null,
+          "scores_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/tipresults.php?level=BNovice"
+        },
+        {
+          "name": "Starter",
+          "phase_status": "",
+          "entry_status_url": null,
+          "times_url": null,
+          "scores_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526/tipresults.php?level=Starter"
         }
       ],
-      "entries": []
+      "entries": [
+        {
+          "id": "modified-867-jennifer-haglin-jaxi",
+          "riderName": "Jennifer Haglin",
+          "horseName": "Jaxi",
+          "division": "Modified",
+          "status": "final",
+          "score": {
+            "dressagePenalties": 36.8,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 36.8
+          }
+        },
+        {
+          "id": "modified-598-kate-swain-rathcairn-henry",
+          "riderName": "Kate Swain",
+          "horseName": "Rathcairn Henry",
+          "division": "Modified",
+          "status": "final",
+          "score": {
+            "dressagePenalties": 38.8,
+            "showJumpingPenalties": 1.6,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 40.4
+          }
+        },
+        {
+          "id": "modified-895-emmalee-tanner-brazen-bugatti",
+          "riderName": "Emmalee Tanner",
+          "horseName": "Brazen Bugatti",
+          "division": "Modified",
+          "status": "final",
+          "score": {
+            "dressagePenalties": 36.5,
+            "showJumpingPenalties": null,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": null
+          }
+        },
+        {
+          "id": "training-4-alex-griffiths-kindle",
+          "riderName": "Alex Griffiths",
+          "horseName": "Kindle",
+          "division": "Training",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 29.5,
+            "showJumpingPenalties": 1.2,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 30.7
+          }
+        },
+        {
+          "id": "training-7-holly-haglin-sv-infinite",
+          "riderName": "Holly Haglin",
+          "horseName": "SV Infinite",
+          "division": "Training",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 30.8,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 30.8
+          }
+        },
+        {
+          "id": "training-2-morgan-dickerman-thayamira",
+          "riderName": "Morgan Dickerman",
+          "horseName": "Thayamira",
+          "division": "Training",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 36.0,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 36.0
+          }
+        },
+        {
+          "id": "training-3-grace-lebrecht-wembly",
+          "riderName": "Grace Lebrecht",
+          "horseName": "Wembly",
+          "division": "Training",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 39.8,
+            "showJumpingPenalties": 0.8,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 40.6
+          }
+        },
+        {
+          "id": "training-8-kimberley-castro-soup-du-jour",
+          "riderName": "Kimberley Castro",
+          "horseName": "Soup Du Jour",
+          "division": "Training",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 38.0,
+            "showJumpingPenalties": 4.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 42.0
+          }
+        },
+        {
+          "id": "training-5-emma-johnson-down-under",
+          "riderName": "Emma Johnson",
+          "horseName": "Down Under",
+          "division": "Training",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 41.8,
+            "showJumpingPenalties": 5.6,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 47.4
+          }
+        },
+        {
+          "id": "training-6-courtney-cummings-moonlight-mist",
+          "riderName": "Courtney Cummings",
+          "horseName": "Moonlight Mist",
+          "division": "Training",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 32.0,
+            "showJumpingPenalties": null,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": null
+          }
+        },
+        {
+          "id": "training-1-taylor-timmerman-windanu",
+          "riderName": "Taylor Timmerman",
+          "horseName": "Windanu",
+          "division": "Training",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 33.0,
+            "showJumpingPenalties": null,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": null
+          }
+        },
+        {
+          "id": "novice-606-tatiana-asay-lothario-ii",
+          "riderName": "Tatiana Asay",
+          "horseName": "Lothario II",
+          "division": "Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 22.5,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 22.5
+          }
+        },
+        {
+          "id": "novice-609-heidi-haglin-ardeo-patch",
+          "riderName": "Heidi Haglin",
+          "horseName": "Ardeo Patch",
+          "division": "Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 23.6,
+            "showJumpingPenalties": 0.4,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 24.0
+          }
+        },
+        {
+          "id": "novice-605-alexis-adams-crown-prince-carillon",
+          "riderName": "Alexis Adams",
+          "horseName": "Crown Prince Carillon",
+          "division": "Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 34.7,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 34.7
+          }
+        },
+        {
+          "id": "novice-603-maizie-bechthold-frank",
+          "riderName": "Maizie Bechthold",
+          "horseName": "Frank",
+          "division": "Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 31.7,
+            "showJumpingPenalties": 8.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 39.7
+          }
+        },
+        {
+          "id": "novice-608-taylor-timmerman-doctor-good-horse",
+          "riderName": "Taylor Timmerman",
+          "horseName": "Doctor Good Horse",
+          "division": "Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 40.3,
+            "showJumpingPenalties": 0.8,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 41.1
+          }
+        },
+        {
+          "id": "novice-604-sarah-andersen-nyah",
+          "riderName": "Sarah Andersen",
+          "horseName": "Nyah",
+          "division": "Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 39.7,
+            "showJumpingPenalties": 2.4,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 42.1
+          }
+        },
+        {
+          "id": "novice-602-emma-james-fantocchio",
+          "riderName": "Emma James",
+          "horseName": "Fantocchio",
+          "division": "Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 30.0,
+            "showJumpingPenalties": 16.8,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 46.8
+          }
+        },
+        {
+          "id": "novice-607-taylor-hockersmith-ardeo-mighty-business",
+          "riderName": "Taylor Hockersmith",
+          "horseName": "Ardeo Mighty Business",
+          "division": "Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 31.9,
+            "showJumpingPenalties": 26.4,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 58.3
+          }
+        },
+        {
+          "id": "novice-601-margo-crookston-all-black-n-fancy-dressage-only",
+          "riderName": "Margo Crookston",
+          "horseName": "All Black N Fancy Dressage Only",
+          "division": "Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 39.2,
+            "showJumpingPenalties": null,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": null
+          }
+        },
+        {
+          "id": "bnovice-612-faith-redmond-a-woman-scorned",
+          "riderName": "Faith Redmond",
+          "horseName": "A Woman Scorned",
+          "division": "BNovice",
+          "status": "in_progress",
+          "score": null
+        },
+        {
+          "id": "bnovice-615-lillian-scavone-out-of-the-blue",
+          "riderName": "Lillian Scavone",
+          "horseName": "Out of the Blue",
+          "division": "BNovice",
+          "status": "in_progress",
+          "score": null
+        },
+        {
+          "id": "starter-646-krista-horting-meet-the-new-boss",
+          "riderName": "Krista Horting",
+          "horseName": "Meet The New Boss",
+          "division": "Starter",
+          "status": "in_progress",
+          "score": null
+        },
+        {
+          "id": "starter-640-caroline-mayer-vibrant-force",
+          "riderName": "Caroline Mayer",
+          "horseName": "Vibrant Force",
+          "division": "Starter",
+          "status": "in_progress",
+          "score": null
+        },
+        {
+          "id": "starter-627-evelyn-johnson-bruiser-woods",
+          "riderName": "Evelyn Johnson",
+          "horseName": "Bruiser Woods",
+          "division": "Starter",
+          "status": "in_progress",
+          "score": null
+        },
+        {
+          "id": "starter-620-michelle-kleihege-wolf-pond-jack",
+          "riderName": "Michelle Kleihege",
+          "horseName": "Wolf Pond Jack",
+          "division": "Starter",
+          "status": "in_progress",
+          "score": null
+        },
+        {
+          "id": "starter-625-emily-fresh-fgf-my-judith-marie",
+          "riderName": "Emily Fresh",
+          "horseName": "FGF My Judith Marie",
+          "division": "Starter",
+          "status": "in_progress",
+          "score": null
+        },
+        {
+          "id": "starter-643-jessie-martindale-she-slittlemischief",
+          "riderName": "Jessie Martindale",
+          "horseName": "She'sLittleMischief",
+          "division": "Starter",
+          "status": "in_progress",
+          "score": null
+        }
+      ]
     },
     {
       "id": "startbox_scoring-eventsu-ramtap-sht0526",
@@ -78,42 +457,441 @@
       "divisions": [
         {
           "name": "Open Training",
-          "phase_status": "Dressage: 7:30 AM Sat. Ring 1",
-          "entry_status_url": "http://eventingscores.com/eventsu/ramtap/sht0526/draw.php?division=5",
-          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=5"
+          "phase_status": "XC: 2:00 PM Sat.",
+          "entry_status_url": null,
+          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=5",
+          "scores_url": "http://eventingscores.com/eventsu/ramtap/sht0526/dressResultsEventing.php?division=5&order=place"
         },
         {
           "name": "Open Novice",
-          "phase_status": "Dressage: 8:18 AM Sat. Ring 1",
-          "entry_status_url": "http://eventingscores.com/eventsu/ramtap/sht0526/draw.php?division=4",
-          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=4"
+          "phase_status": "XC: 2:40 PM Sat.",
+          "entry_status_url": null,
+          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=4",
+          "scores_url": "http://eventingscores.com/eventsu/ramtap/sht0526/dressResultsEventing.php?division=4&order=place"
         },
         {
           "name": "Beg Novice Classic 3-Day",
-          "phase_status": "Dressage: 9:00 AM Sat. Ring 1",
-          "entry_status_url": "http://eventingscores.com/eventsu/ramtap/sht0526/draw.php?division=7",
-          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=7"
+          "phase_status": "XC: 3:54 PM Sat.",
+          "entry_status_url": null,
+          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=7",
+          "scores_url": "http://eventingscores.com/eventsu/ramtap/sht0526/dressResultsEventing.php?division=7&order=place"
         },
         {
           "name": "Open Beginner Novice",
           "phase_status": "Dressage: 9:12 AM Sat. Ring 1",
-          "entry_status_url": "http://eventingscores.com/eventsu/ramtap/sht0526/draw.php?division=3",
-          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=3"
+          "entry_status_url": null,
+          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=3",
+          "scores_url": "http://eventingscores.com/eventsu/ramtap/sht0526/dressResultsEventing.php?division=3&order=place"
         },
         {
           "name": "Grasshopper",
           "phase_status": "Dressage: 12:24 PM Sat. Ring 1",
           "entry_status_url": "http://eventingscores.com/eventsu/ramtap/sht0526/draw.php?division=1",
-          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=1"
+          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=1",
+          "scores_url": null
         },
         {
           "name": "Open Introductory",
           "phase_status": "Dressage: 11:12 AM Sat. Ring 1",
           "entry_status_url": "http://eventingscores.com/eventsu/ramtap/sht0526/draw.php?division=2",
-          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=2"
+          "times_url": "http://eventingscores.com/eventsu/ramtap/sht0526/times.php?division=2",
+          "scores_url": null
         }
       ],
-      "entries": []
+      "entries": [
+        {
+          "id": "open-training-284-alexis-concolino-leo-d",
+          "riderName": "Alexis Concolino",
+          "horseName": "Leo D",
+          "division": "Open Training",
+          "status": "in_progress",
+          "score": {
+            "dressagePenalties": 30.3,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 1.0
+          }
+        },
+        {
+          "id": "open-training-282-bridget-sibley-venus",
+          "riderName": "Bridget Sibley",
+          "horseName": "Venus",
+          "division": "Open Training",
+          "status": "in_progress",
+          "score": {
+            "dressagePenalties": 30.6,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 2.0
+          }
+        },
+        {
+          "id": "open-training-283-gracelyn-denijs-stormy",
+          "riderName": "Gracelyn deNijs",
+          "horseName": "Stormy",
+          "division": "Open Training",
+          "status": "in_progress",
+          "score": {
+            "dressagePenalties": 33.5,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 3.0
+          }
+        },
+        {
+          "id": "open-training-287-georgia-myers-maudlin-miss-america",
+          "riderName": "Georgia Myers",
+          "horseName": "Maudlin Miss America",
+          "division": "Open Training",
+          "status": "in_progress",
+          "score": {
+            "dressagePenalties": 33.8,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 4.0
+          }
+        },
+        {
+          "id": "open-training-286-sarah-cullum-flint",
+          "riderName": "Sarah Cullum",
+          "horseName": "Flint",
+          "division": "Open Training",
+          "status": "in_progress",
+          "score": {
+            "dressagePenalties": 35.0,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 5.0
+          }
+        },
+        {
+          "id": "open-training-285-sarah-bonfield-special-mission",
+          "riderName": "Sarah Bonfield",
+          "horseName": "Special Mission",
+          "division": "Open Training",
+          "status": "in_progress",
+          "score": {
+            "dressagePenalties": 36.5,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 6.0
+          }
+        },
+        {
+          "id": "open-training-288-molly-myers-highly-likely",
+          "riderName": "Molly Myers",
+          "horseName": "Highly Likely",
+          "division": "Open Training",
+          "status": "in_progress",
+          "score": {
+            "dressagePenalties": 40.0,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 7.0
+          }
+        },
+        {
+          "id": "open-novice-197-georgia-myers-cybele",
+          "riderName": "Georgia Myers",
+          "horseName": "Cybele",
+          "division": "Open Novice",
+          "status": "in_progress",
+          "score": {
+            "dressagePenalties": 29.7,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 1.0
+          }
+        },
+        {
+          "id": "open-novice-198-molly-myers-contessa-asp",
+          "riderName": "Molly Myers",
+          "horseName": "Contessa ASP",
+          "division": "Open Novice",
+          "status": "in_progress",
+          "score": {
+            "dressagePenalties": 34.7,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 2.0
+          }
+        },
+        {
+          "id": "open-novice-234-lindsay-connors-hc-never-alone",
+          "riderName": "Lindsay Connors HC",
+          "horseName": "Never Alone",
+          "division": "Open Novice",
+          "status": "in_progress",
+          "score": {
+            "dressagePenalties": 100.0,
+            "showJumpingPenalties": null,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": null
+          }
+        },
+        {
+          "id": "open-novice-200-nicole-kuenzi-hc-arrow-fitz",
+          "riderName": "Nicole Kuenzi HC",
+          "horseName": "Arrow Fitz",
+          "division": "Open Novice",
+          "status": "in_progress",
+          "score": {
+            "dressagePenalties": 29.4,
+            "showJumpingPenalties": null,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": null
+          }
+        },
+        {
+          "id": "beg-novice-classic-3-day-196-gracie-diaz-glory-call",
+          "riderName": "Gracie Diaz",
+          "horseName": "Glory Call",
+          "division": "Beg Novice Classic 3-Day",
+          "status": "in_progress",
+          "score": {
+            "dressagePenalties": 37.2,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 1.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-168-tristen-hooks-dvm-fly-with-me",
+          "riderName": "Tristen Hooks Dvm",
+          "horseName": "Fly With Me",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 24.4,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 1.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-195-ryann-bodman-picante",
+          "riderName": "Ryann Bodman",
+          "horseName": "Picante",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 24.7,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 2.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-166-sarena-parekh-gs-gemstone",
+          "riderName": "Sarena Parekh",
+          "horseName": "GS Gemstone",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 29.4,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 3.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-194-ashley-ross-sterling-dana",
+          "riderName": "Ashley Ross",
+          "horseName": "Sterling Dana",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 32.5,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 4.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-164-olivia-willes-renegade-bob",
+          "riderName": "Olivia Willes",
+          "horseName": "Renegade Bob",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 32.5,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 4.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-165-marina-tmamian-my-hero",
+          "riderName": "Marina Tmamian",
+          "horseName": "My Hero",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 33.4,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 6.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-160-charlisse-weintraub-tango-kitten",
+          "riderName": "Charlisse Weintraub",
+          "horseName": "Tango Kitten",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 33.8,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 7.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-161-patricia-cameron-liberty-song",
+          "riderName": "Patricia Cameron",
+          "horseName": "Liberty Song",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 34.1,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 8.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-169-gale-de-rosa-tchaikovsky",
+          "riderName": "Gale De Rosa",
+          "horseName": "Tchaikovsky",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 34.1,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 8.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-162-susie-skellenger-regardless-smh",
+          "riderName": "Susie Skellenger",
+          "horseName": "Regardless SMH",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 35.6,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 10.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-159-audrey-fisher-opal",
+          "riderName": "Audrey Fisher",
+          "horseName": "Opal",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 37.8,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 11.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-170-kaitlyn-bradley-quintessential-pr",
+          "riderName": "Kaitlyn Bradley",
+          "horseName": "Quintessential PR",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 41.3,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 12.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-167-natasha-kaplan-fumeo",
+          "riderName": "Natasha Kaplan",
+          "horseName": "Fumeo",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 43.1,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 13.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-163-adalia-lyman-ace-of-hearts",
+          "riderName": "Adalia Lyman",
+          "horseName": "Ace of Hearts",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": 43.4,
+            "showJumpingPenalties": 0.0,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 14.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-157-sarah-cullum-cape-fear",
+          "riderName": "Sarah Cullum",
+          "horseName": "Cape Fear",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": null,
+            "showJumpingPenalties": null,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 0.0
+          }
+        },
+        {
+          "id": "open-beginner-novice-158-finn-bott-shark-bait",
+          "riderName": "Finn Bott",
+          "horseName": "Shark Bait",
+          "division": "Open Beginner Novice",
+          "status": "provisional",
+          "score": {
+            "dressagePenalties": null,
+            "showJumpingPenalties": null,
+            "crossCountryJumpPenalties": null,
+            "crossCountryTimePenalties": null,
+            "totalPenalties": 0.0
+          }
+        }
+      ]
     },
     {
       "id": "startbox_scoring-eventsu-bucks-sht0526",
@@ -133,67 +911,78 @@
           "name": "Training Horse Trials",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=12",
-          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=12"
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=12",
+          "scores_url": null
         },
         {
           "name": "Novice Horse Trials",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=7",
-          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=7"
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=7",
+          "scores_url": null
         },
         {
           "name": "Beginner Novice Combined Test",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=8",
-          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=8"
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=8",
+          "scores_url": null
         },
         {
           "name": "Beginner Novice Horse Trials",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=9",
-          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=9"
-        },
-        {
-          "name": "Pre-Starter Horse Trials",
-          "phase_status": "",
-          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=5",
-          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=5"
-        },
-        {
-          "name": "Starter Horse Trials",
-          "phase_status": "",
-          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=1",
-          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=1"
-        },
-        {
-          "name": "Clear Round Stadium",
-          "phase_status": "",
-          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=2",
-          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=2"
-        },
-        {
-          "name": "DR",
-          "phase_status": "",
-          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=4",
-          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=4"
-        },
-        {
-          "name": "Dressage Only - 2nd Test",
-          "phase_status": "",
-          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=3",
-          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=3"
-        },
-        {
-          "name": "Introductory Combined Test",
-          "phase_status": "",
-          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=11",
-          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=11"
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=9",
+          "scores_url": null
         },
         {
           "name": "Pre-Starter Combined Test",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=6",
-          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=6"
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=6",
+          "scores_url": null
+        },
+        {
+          "name": "Pre-Starter Horse Trials",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=5",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=5",
+          "scores_url": null
+        },
+        {
+          "name": "Starter Horse Trials",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=1",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=1",
+          "scores_url": null
+        },
+        {
+          "name": "Introductory Combined Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=11",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=11",
+          "scores_url": null
+        },
+        {
+          "name": "Clear Round Stadium",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=2",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=2",
+          "scores_url": null
+        },
+        {
+          "name": "DR",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=4",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=4",
+          "scores_url": null
+        },
+        {
+          "name": "Dressage Only - 2nd Test",
+          "phase_status": "",
+          "entry_status_url": "http://eventingscores.com/eventsu/bucks/sht0526/draw.php?division=3",
+          "times_url": "http://eventingscores.com/eventsu/bucks/sht0526/times.php?division=3",
+          "scores_url": null
         }
       ],
       "entries": []
@@ -216,49 +1005,57 @@
           "name": "Open Training",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=1",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "Novice-JR/YR",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=4",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "Open Novice",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=3",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "BNovice-JR/YR",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=6",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "Open BNovice",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=5",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "Open Starter",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=7",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "Starter -JR",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=15",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "Intro",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsr/willowdraw/ht0526/draw.php?division=8",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         }
       ],
       "entries": []
@@ -281,79 +1078,92 @@
           "name": "Training Combined Test",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=11",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "Novice Combined Test",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=7",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "Beginner Novice Combined Test",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=2",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "Starter Combined Test",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=1",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "Cross Rails Combined Test",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=6",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "Greenie Combined Test",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=3",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "USEA Test of Choice",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=10",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "2023 USDF Introductory Level Test",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=9",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "2023 USEF First Level Test",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=4",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "2023 USEF Second Level Test",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=12",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "2023 USEF Training Level Test",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=5",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "Poles Combined Test",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=13",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         },
         {
           "name": "Western Dressage Test of Choice",
           "phase_status": "",
           "entry_status_url": "http://eventingscores.com/eventsu/tuscanyhollow/ct0526/draw.php?division=8",
-          "times_url": null
+          "times_url": null,
+          "scores_url": null
         }
       ],
       "entries": []
