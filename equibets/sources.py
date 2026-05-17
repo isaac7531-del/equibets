@@ -13,6 +13,14 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_FEI_MEMBER_NATIONS = "all_fei_member_nations"
+_EVENT_LEVEL_ALIASES = {
+    "fei": "fei_international",
+    "international": "fei_international",
+    "state": "state_provincial",
+    "provincial": "state_provincial",
+    "state/provincial": "state_provincial",
+}
 
 
 @dataclass(frozen=True)
@@ -71,8 +79,8 @@ def sources_for_region(
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    normalized_region = _normalize_token(region)
+    statuses = _allowed_statuses(include_planned)
 
     return [
         source
@@ -80,6 +88,57 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an FEI country code while preserving priorities."""
+
+    normalized_country = country.strip().upper()
+    statuses = _allowed_statuses(include_planned)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and (
+            ALL_FEI_MEMBER_NATIONS in source.countries
+            or normalized_country in source.countries
+        )
+    ]
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a competition level while preserving priorities."""
+
+    normalized_level = _EVENT_LEVEL_ALIASES.get(
+        event_level.strip().lower(),
+        _normalize_token(event_level),
+    )
+    statuses = _allowed_statuses(include_planned)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and normalized_level in source.event_levels
+    ]
+
+
+def _allowed_statuses(include_planned: bool) -> set[str]:
+    return {"active", "planned"} if include_planned else {"active"}
+
+
+def _normalize_token(value: str) -> str:
+    return value.strip().lower().replace("-", "_").replace(" ", "_")
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
