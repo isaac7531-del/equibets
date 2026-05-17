@@ -1,7 +1,16 @@
 {
-  "version": 1,
+  "version": 2,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results for all countries and all event levels, prioritizing data.fei and supplementing with national-event sources.",
+  "national_event_scope": {
+    "countries": [
+      "all_countries"
+    ],
+    "event_levels": [
+      "all_national_levels"
+    ],
+    "notes": "National-event refreshes should include every country with eventing results and every national, regional, area, local, grassroots, training, youth, pony, schooling, and championship level exposed by each federation."
+  },
   "priority_regions": [
     "europe",
     "uk",
@@ -47,13 +56,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_levels"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations."
+      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations across every national-event level."
     },
     {
       "id": "british_eventing",
@@ -70,13 +78,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
       "status": "planned",
-      "notes": "High-priority national-event source for UK coverage."
+      "notes": "High-priority national-event source for UK coverage across every British Eventing level and class."
     },
     {
       "id": "equestrian_australia",
@@ -93,13 +100,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.equestrian.org.au/",
       "status": "planned",
-      "notes": "High-priority national-event source for Australian coverage."
+      "notes": "High-priority national-event source for Australian coverage across every EA eventing level and class."
     },
     {
       "id": "equestrian_sports_new_zealand",
@@ -116,13 +122,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.nzequestrian.org.nz/",
       "status": "planned",
-      "notes": "High-priority national-event source for New Zealand coverage."
+      "notes": "High-priority national-event source for New Zealand coverage across every ESNZ eventing level and class."
     },
     {
       "id": "usea",
@@ -139,13 +144,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
       "status": "planned",
-      "notes": "High-priority national-event source for USA coverage."
+      "notes": "High-priority national-event source for USA coverage across every USEA level and division."
     },
     {
       "id": "global_national_federations",
@@ -156,19 +160,18 @@
         "global"
       ],
       "countries": [
-        "all_fei_member_nations"
+        "all_countries"
       ],
       "disciplines": [
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_levels"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "notes": "Backfill national events for every country and every national-event level after higher-priority regions are covered."
     }
   ]
 }

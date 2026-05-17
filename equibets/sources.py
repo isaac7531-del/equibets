@@ -1,7 +1,7 @@
 """Event-result source registry helpers.
 
 The project prioritizes FEI data while still tracking national-event sources
-that are important for broader coverage.
+for all countries and levels.
 """
 
 from __future__ import annotations
@@ -13,6 +13,10 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+_ALL_COUNTRY_MARKERS = frozenset({"ALL_COUNTRIES", "ALL_FEI_MEMBER_NATIONS"})
+_ALL_EVENT_LEVEL_MARKERS = frozenset({"all_event_levels"})
+_ALL_NATIONAL_EVENT_LEVEL_MARKERS = frozenset({"all_national_levels"})
+_INTERNATIONAL_EVENT_LEVEL_PREFIXES = ("cci", "cio", "chn", "fei_")
 
 
 @dataclass(frozen=True)
@@ -82,6 +86,42 @@ def sources_for_region(
     ]
 
 
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country while preserving global priorities."""
+
+    normalized_country = _normalize_country(country)
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and _source_covers_country(source, normalized_country)
+    ]
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an event level while preserving global priorities."""
+
+    normalized_level = _normalize_event_level(event_level)
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and _source_covers_event_level(source, normalized_level)
+    ]
+
+
 def _required_str(values: dict[str, object], key: str) -> str:
     value = values.get(key)
     if not isinstance(value, str) or not value:
@@ -114,3 +154,25 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _source_covers_country(source: EventSource, normalized_country: str) -> bool:
+    source_countries = {_normalize_country(country) for country in source.countries}
+    return bool(source_countries & _ALL_COUNTRY_MARKERS) or normalized_country in source_countries
+
+
+def _source_covers_event_level(source: EventSource, normalized_level: str) -> bool:
+    source_levels = {_normalize_event_level(level) for level in source.event_levels}
+    if source_levels & _ALL_EVENT_LEVEL_MARKERS or normalized_level in source_levels:
+        return True
+    if source_levels & _ALL_NATIONAL_EVENT_LEVEL_MARKERS:
+        return not normalized_level.startswith(_INTERNATIONAL_EVENT_LEVEL_PREFIXES)
+    return False
+
+
+def _normalize_country(country: str) -> str:
+    return country.strip().upper().replace(" ", "_").replace("-", "_")
+
+
+def _normalize_event_level(event_level: str) -> str:
+    return event_level.strip().lower().replace(" ", "_").replace("-", "_")
