@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRIES = "all_countries"
+ALL_EVENTING_LEVELS = "all_eventing_levels"
 
 
 @dataclass(frozen=True)
@@ -31,6 +33,39 @@ class EventSource:
     base_url: str | None
     status: str
     notes: str
+
+    def covers_country(self, country: str) -> bool:
+        """Return whether the source is configured to cover a country."""
+
+        normalized_country = _normalize_country(country)
+        return any(
+            _normalize_token(item) == ALL_COUNTRIES
+            or _normalize_country(item) == normalized_country
+            for item in self.countries
+        )
+
+    def covers_level(self, level: str | None) -> bool:
+        """Return whether the source is configured to cover an eventing level."""
+
+        if level is None:
+            return True
+
+        normalized_level = _normalize_token(level)
+        return any(
+            _normalize_token(item) == ALL_EVENTING_LEVELS
+            or _normalize_token(item) == normalized_level
+            for item in self.event_levels
+        )
+
+    def covers_region(self, region: str) -> bool:
+        """Return whether the source is configured to cover a region."""
+
+        normalized_region = _normalize_token(region)
+        return any(
+            _normalize_token(item) == "global"
+            or _normalize_token(item) == normalized_region
+            for item in self.regions
+        )
 
     @classmethod
     def from_mapping(cls, values: dict[str, object]) -> "EventSource":
@@ -66,19 +101,40 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
-    """Return sources covering a region while preserving global priorities."""
+    """Return sources covering a region and optional level by priority."""
 
-    normalized_region = region.lower().replace(" ", "_")
     statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
         source
         for source in load_event_sources(path)
         if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        and source.covers_region(region)
+        and source.covers_level(level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional level by priority."""
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and source.covers_country(country)
+        and source.covers_level(level)
     ]
 
 
@@ -114,3 +170,11 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _normalize_country(value: str) -> str:
+    return value.strip().upper()
+
+
+def _normalize_token(value: str) -> str:
+    return value.strip().lower().replace("-", "_").replace(" ", "_")
