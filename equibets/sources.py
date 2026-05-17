@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+COUNTRY_WILDCARDS = {"all_countries", "all_fei_member_nations"}
+LEVEL_WILDCARDS = {"all_eventing_levels"}
 
 
 @dataclass(frozen=True)
@@ -66,20 +68,62 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
     normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
+        if _source_status_matches(source, include_planned)
         and ("global" in source.regions or normalized_region in source.regions)
+        and _source_level_matches(source, level)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = country.upper()
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if _source_status_matches(source, include_planned)
+        and _source_country_matches(source, normalized_country)
+        and _source_level_matches(source, level)
+    ]
+
+
+def _source_status_matches(source: EventSource, include_planned: bool) -> bool:
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return source.status in statuses
+
+
+def _source_country_matches(source: EventSource, country: str) -> bool:
+    return country in source.countries or bool(
+        COUNTRY_WILDCARDS.intersection(source.countries)
+    )
+
+
+def _source_level_matches(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_level = level.lower().replace(" ", "_")
+    return normalized_level in source.event_levels or bool(
+        LEVEL_WILDCARDS.intersection(source.event_levels)
+    )
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
