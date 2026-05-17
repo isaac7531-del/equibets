@@ -1,7 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it } from 'vitest';
+import liveScoreFeedJson from '../data/live_event_scores.json';
 import App from './App';
+import { getLiveLeaderRows, sortLiveLeaderRows, type LiveScoreFeed } from './liveScoring';
+
+const liveScoreFeed = liveScoreFeedJson as LiveScoreFeed;
 
 describe('App', () => {
   beforeEach(() => {
@@ -32,8 +36,16 @@ describe('App', () => {
   it('shows current event live scoring leaders', () => {
     render(<App />);
 
+    const liveLeaderRows = sortLiveLeaderRows(getLiveLeaderRows(liveScoreFeed));
+
     expect(screen.getByRole('heading', { name: /live scoring/i })).toBeInTheDocument();
-    expect(screen.getAllByText('Lynnleigh Farm May 16, 2026 Schooling 2-Phase').length).toBeGreaterThan(0);
+    expect(screen.getByText(liveScoreFeed.as_of_date, { exact: false })).toBeInTheDocument();
     expect(screen.getByText('StartBox current eventing scores', { exact: false })).toBeInTheDocument();
+    if (liveLeaderRows.length === 0) {
+      expect(screen.getByText(/no live leaders found/i)).toBeInTheDocument();
+    } else {
+      expect(screen.getAllByText(liveLeaderRows[0].event.name).length).toBeGreaterThan(0);
+      expect(screen.getByText(liveLeaderRows[0].leader.horse)).toBeInTheDocument();
+    }
   });
 });
