@@ -1,0 +1,614 @@
+{
+  "archive_url": "http://eventing.startboxscoring.com/archives.php?Year=2026",
+  "as_of_date": "2026-05-17",
+  "collected_at": "2026-05-17T08:00:29Z",
+  "events": [
+    {
+      "date_label": "May 16-17, 2026",
+      "end_date": "2026-05-17",
+      "event_name": "Ram Tap May Schooling HT",
+      "fetch_error": null,
+      "leaders": [
+        {
+          "division": "Open Training",
+          "horse_name": null,
+          "leader_name": "Alexis Concolino Leo D",
+          "phase": "Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/phase2_select.php?division=5&order=place",
+          "rider_name": null,
+          "score": 30.3,
+          "score_text": "30.3"
+        },
+        {
+          "division": "Open Novice",
+          "horse_name": null,
+          "leader_name": "Georgia Myers Cybele",
+          "phase": "Provisional Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/phase2_select.php?division=4&order=place",
+          "rider_name": null,
+          "score": 81.7,
+          "score_text": "81.7"
+        },
+        {
+          "division": "Open Beginner Novice",
+          "horse_name": null,
+          "leader_name": "Tristen Hooks Dvm Fly With Me",
+          "phase": "Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/phase2_select.php?division=3&order=place",
+          "rider_name": null,
+          "score": 24.4,
+          "score_text": "24.4"
+        },
+        {
+          "division": "Grasshopper",
+          "horse_name": null,
+          "leader_name": "Sofia Kang Auggie",
+          "phase": "Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/phase2_select.php?division=1&order=place",
+          "rider_name": null,
+          "score": 30.0,
+          "score_text": "30.0"
+        },
+        {
+          "division": "Open Introductory",
+          "horse_name": null,
+          "leader_name": "Deena McCarthy Roubinette",
+          "phase": "Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/ramtap/sht0526/phase2_select.php?division=2&order=place",
+          "rider_name": null,
+          "score": 25.0,
+          "score_text": "25.0"
+        }
+      ],
+      "location": "Fresno, CA",
+      "source_id": "startbox_eventing",
+      "source_url": "http://eventingscores.com/eventsu/ramtap/sht0526",
+      "start_date": "2026-05-16",
+      "status": "current"
+    },
+    {
+      "date_label": "May 17, 2026",
+      "end_date": "2026-05-17",
+      "event_name": "Bucks County Horse Park May Schooling Horse Trial",
+      "fetch_error": null,
+      "leaders": [],
+      "location": "Revere, PA",
+      "source_id": "startbox_eventing",
+      "source_url": "http://eventingscores.com/eventsu/bucks/sht0526",
+      "start_date": "2026-05-17",
+      "status": "current"
+    },
+    {
+      "date_label": "May 16, 2026",
+      "end_date": "2026-05-16",
+      "event_name": "Lynnleigh Farm May 16, 2026 Schooling 2-Phase",
+      "fetch_error": null,
+      "leaders": [
+        {
+          "division": "Modified",
+          "horse_name": null,
+          "leader_name": "Jennifer Haglin Jaxi",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=8&order=place",
+          "rider_name": null,
+          "score": 36.8,
+          "score_text": "36.8"
+        },
+        {
+          "division": "Training",
+          "horse_name": null,
+          "leader_name": "Alex Griffiths Kindle",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=3&order=place",
+          "rider_name": null,
+          "score": 30.7,
+          "score_text": "30.7"
+        },
+        {
+          "division": "Novice",
+          "horse_name": null,
+          "leader_name": "Tatiana Asay Lothario II",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=4&order=place",
+          "rider_name": null,
+          "score": 22.5,
+          "score_text": "22.5"
+        },
+        {
+          "division": "Beginner Novice",
+          "horse_name": null,
+          "leader_name": "Megan Comer Hold on Loosely",
+          "phase": "Provisional Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=5&order=place",
+          "rider_name": null,
+          "score": 28.8,
+          "score_text": "28.8"
+        },
+        {
+          "division": "Beginner Novice",
+          "horse_name": null,
+          "leader_name": "Tani Smihula Baron",
+          "phase": "Provisional Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=5&order=place",
+          "rider_name": null,
+          "score": 28.8,
+          "score_text": "28.8"
+        },
+        {
+          "division": "Grasshopper",
+          "horse_name": null,
+          "leader_name": "Krista Santum I'm A Sudden Silhouette",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=7&order=place",
+          "rider_name": null,
+          "score": 27.7,
+          "score_text": "27.7"
+        },
+        {
+          "division": "Starter",
+          "horse_name": null,
+          "leader_name": "Michelle Cameron-Donaldson Johno Fire Fianna",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/lynnleigh/sht0526/phase2_select.php?division=6&order=place",
+          "rider_name": null,
+          "score": 29.7,
+          "score_text": "29.7"
+        }
+      ],
+      "location": "Sandy, UT",
+      "source_id": "startbox_eventing",
+      "source_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526",
+      "start_date": "2026-05-16",
+      "status": "completed"
+    },
+    {
+      "date_label": "May 10, 2026",
+      "end_date": "2026-05-10",
+      "event_name": "Red Fox Equestrian Mini Trial and Jumper",
+      "fetch_error": null,
+      "leaders": [
+        {
+          "division": "Novice Mini",
+          "horse_name": null,
+          "leader_name": "Skylar Ragsdale Finnigans Irish dream",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/redfox/ht0526/final_select.php?division=19&order=place",
+          "rider_name": null,
+          "score": 24.1,
+          "score_text": "24.1"
+        },
+        {
+          "division": "Beginner Novice Mini",
+          "horse_name": null,
+          "leader_name": "Brianna Joo Atticus Finch",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/redfox/ht0526/final_select.php?division=15&order=place",
+          "rider_name": null,
+          "score": 27.5,
+          "score_text": "27.5"
+        },
+        {
+          "division": "Starter CT",
+          "horse_name": null,
+          "leader_name": "Emma Vail Lucero",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/redfox/ht0526/phase2_select.php?division=11&order=place",
+          "rider_name": null,
+          "score": 26.9,
+          "score_text": "26.9"
+        },
+        {
+          "division": "Starter J",
+          "horse_name": null,
+          "leader_name": "Kendra Schide Soul Man",
+          "phase": "Provisional Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/redfox/ht0526/jumpingResults.php?division=12&round=1&jump_off=0&order=place",
+          "rider_name": null,
+          "score": 0.0,
+          "score_text": "0.0"
+        },
+        {
+          "division": "Starter Mini A",
+          "horse_name": null,
+          "leader_name": "Paige Thompson Top Hat Voyager",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/redfox/ht0526/final_select.php?division=13&order=place",
+          "rider_name": null,
+          "score": 26.6,
+          "score_text": "26.6"
+        },
+        {
+          "division": "Starter Mini B",
+          "horse_name": null,
+          "leader_name": "Penelope Bobic Shamrock",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/redfox/ht0526/final_select.php?division=32&order=place",
+          "rider_name": null,
+          "score": 25.3,
+          "score_text": "25.3"
+        },
+        {
+          "division": "Adventurer 3 phase",
+          "horse_name": null,
+          "leader_name": "Holly Gossett Misty Picture (Tully)",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/redfox/ht0526/final_select.php?division=3&order=place",
+          "rider_name": null,
+          "score": 25.3,
+          "score_text": "25.3"
+        },
+        {
+          "division": "Green As Grass CT",
+          "horse_name": null,
+          "leader_name": "Kaleigh Tent Tuxedo",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/redfox/ht0526/phase2_select.php?division=7&order=place",
+          "rider_name": null,
+          "score": 32.8,
+          "score_text": "32.8"
+        }
+      ],
+      "location": "Fairborn, OH",
+      "source_id": "startbox_eventing",
+      "source_url": "http://eventingscores.com/eventsu/redfox/ht0526",
+      "start_date": "2026-05-10",
+      "status": "completed"
+    },
+    {
+      "date_label": "May 10, 2026",
+      "end_date": "2026-05-10",
+      "event_name": "Hunters Run Derby",
+      "fetch_error": null,
+      "leaders": [
+        {
+          "division": "Training",
+          "horse_name": null,
+          "leader_name": "Reagan Richards FE Sparkling Diamond",
+          "phase": "Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/huntersrun/db0526/phase2_select.php?division=1&order=place",
+          "rider_name": null,
+          "score": 28.5,
+          "score_text": "28.5"
+        },
+        {
+          "division": "Novice",
+          "horse_name": null,
+          "leader_name": "Karen Goetz Hawkeye",
+          "phase": "Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/huntersrun/db0526/phase2_select.php?division=2&order=place",
+          "rider_name": null,
+          "score": 33.9,
+          "score_text": "33.9"
+        },
+        {
+          "division": "BNovice A",
+          "horse_name": null,
+          "leader_name": "Katie Atkinson Vortex Rising",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/huntersrun/db0526/final_select.php?division=3&order=place",
+          "rider_name": null,
+          "score": 37.7,
+          "score_text": "37.7"
+        },
+        {
+          "division": "BNovice B",
+          "horse_name": null,
+          "leader_name": "Kathryn Caponi Foxy Jewel",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/huntersrun/db0526/final_select.php?division=4&order=place",
+          "rider_name": null,
+          "score": 34.1,
+          "score_text": "34.1"
+        },
+        {
+          "division": "Starter A",
+          "horse_name": null,
+          "leader_name": "Taylor Rohrer Hazel",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/huntersrun/db0526/final_select.php?division=5&order=place",
+          "rider_name": null,
+          "score": 36.8,
+          "score_text": "36.8"
+        },
+        {
+          "division": "Starter B",
+          "horse_name": null,
+          "leader_name": "Bianca Maresca Just Because",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/huntersrun/db0526/final_select.php?division=6&order=place",
+          "rider_name": null,
+          "score": 27.7,
+          "score_text": "27.7"
+        },
+        {
+          "division": "Tadpole",
+          "horse_name": null,
+          "leader_name": "Abby Coppins Boreas",
+          "phase": "Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/huntersrun/db0526/phase2_select.php?division=7&order=place",
+          "rider_name": null,
+          "score": 42.1,
+          "score_text": "42.1"
+        }
+      ],
+      "location": "Metamora, MI",
+      "source_id": "startbox_eventing",
+      "source_url": "http://eventingscores.com/eventsu/huntersrun/db0526",
+      "start_date": "2026-05-10",
+      "status": "completed"
+    },
+    {
+      "date_label": "May 9, 2026",
+      "end_date": "2026-05-09",
+      "event_name": "Sayre School CT and Dressage Show",
+      "fetch_error": null,
+      "leaders": [
+        {
+          "division": "Training Combined Test",
+          "horse_name": null,
+          "leader_name": "Zou00eb Rizzuto The Wellerman",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/sayre/ctds0526/phase2_select.php?division=16&order=place",
+          "rider_name": null,
+          "score": 29.5,
+          "score_text": "29.5"
+        },
+        {
+          "division": "USEA Test of Choice",
+          "horse_name": null,
+          "leader_name": "Madison Thompson Dynamic One",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/sayre/ctds0526/dressResultsEventing.php?division=4&order=place",
+          "rider_name": null,
+          "score": 28.3,
+          "score_text": "28.3"
+        },
+        {
+          "division": "Novice Combined Test",
+          "horse_name": null,
+          "leader_name": "Zou00eb Rizzuto Fitz",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/sayre/ctds0526/phase2_select.php?division=7&order=place",
+          "rider_name": null,
+          "score": 27.5,
+          "score_text": "27.5"
+        },
+        {
+          "division": "Beginner Novice Combined Test",
+          "horse_name": null,
+          "leader_name": "Claire Vestrand I'm A Cool Dude",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/sayre/ctds0526/phase2_select.php?division=19&order=place",
+          "rider_name": null,
+          "score": 27.1,
+          "score_text": "27.1"
+        },
+        {
+          "division": "Starter Combined Test",
+          "horse_name": null,
+          "leader_name": "Nicole Dlugosz Silver Spur",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/sayre/ctds0526/phase2_select.php?division=13&order=place",
+          "rider_name": null,
+          "score": 29.1,
+          "score_text": "29.1"
+        },
+        {
+          "division": "Greenie Combined Test",
+          "horse_name": null,
+          "leader_name": "Lisa Thomas Loot the Moon",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/sayre/ctds0526/phase2_select.php?division=2&order=place",
+          "rider_name": null,
+          "score": 22.5,
+          "score_text": "22.5"
+        },
+        {
+          "division": "First Level Test of Choice",
+          "horse_name": null,
+          "leader_name": "Natalie Nevills Underscore",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/sayre/ctds0526/dressResultsDressage.php?division=5&order=place",
+          "rider_name": null,
+          "score": null,
+          "score_text": "67.593%"
+        },
+        {
+          "division": "USDF Training Level 1",
+          "horse_name": null,
+          "leader_name": "Kristen Brennan Silver Lining",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/sayre/ctds0526/dressResultsDressage.php?division=9&order=place",
+          "rider_name": null,
+          "score": null,
+          "score_text": "71.538%"
+        }
+      ],
+      "location": "Lexington, KY",
+      "source_id": "startbox_eventing",
+      "source_url": "http://eventingscores.com/eventsu/sayre/ctds0526",
+      "start_date": "2026-05-09",
+      "status": "completed"
+    },
+    {
+      "date_label": "May 9-10, 2026",
+      "end_date": "2026-05-10",
+      "event_name": "Queeny Park Horse Trials",
+      "fetch_error": null,
+      "leaders": [
+        {
+          "division": "Modified by SSPC",
+          "horse_name": null,
+          "leader_name": "Sarah Berkowitz Decision Time",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsr/queeny/ht0526/final_select.php?division=7&order=place",
+          "rider_name": null,
+          "score": 38.5,
+          "score_text": "38.5"
+        },
+        {
+          "division": "Training by Academy Air",
+          "horse_name": null,
+          "leader_name": "Sophia Lieberman Tazmanian Pegasus",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsr/queeny/ht0526/final_select.php?division=3&order=place",
+          "rider_name": null,
+          "score": 30.3,
+          "score_text": "30.3"
+        },
+        {
+          "division": "Training CT",
+          "horse_name": null,
+          "leader_name": "Jessica Milam Lieutenant Dan",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsr/queeny/ht0526/phase2_select.php?division=8&order=place",
+          "rider_name": null,
+          "score": 34.5,
+          "score_text": "34.5"
+        },
+        {
+          "division": "Novice A by Straatman",
+          "horse_name": null,
+          "leader_name": "Isabell Pezold Hard Pass",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsr/queeny/ht0526/final_select.php?division=2&order=place",
+          "rider_name": null,
+          "score": 23.9,
+          "score_text": "23.9"
+        },
+        {
+          "division": "Novice B by Midwest Golf Car",
+          "horse_name": null,
+          "leader_name": "Grace Barger Dowdstown Tarina",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsr/queeny/ht0526/final_select.php?division=15&order=place",
+          "rider_name": null,
+          "score": 26.1,
+          "score_text": "26.1"
+        },
+        {
+          "division": "Beginner Novice A by Firehouse Subs",
+          "horse_name": null,
+          "leader_name": "Cristina Kirk Regarding Faith",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsr/queeny/ht0526/final_select.php?division=1&order=place",
+          "rider_name": null,
+          "score": 25.9,
+          "score_text": "25.9"
+        },
+        {
+          "division": "Beginner Novice B by Morrison",
+          "horse_name": null,
+          "leader_name": "Anna Gaffney Claire",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsr/queeny/ht0526/final_select.php?division=12&order=place",
+          "rider_name": null,
+          "score": 27.4,
+          "score_text": "27.4"
+        },
+        {
+          "division": "Beginner Novice CT",
+          "horse_name": null,
+          "leader_name": "Magin Day Despite the Rumors",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsr/queeny/ht0526/phase2_select.php?division=10&order=place",
+          "rider_name": null,
+          "score": 35.3,
+          "score_text": "35.3"
+        }
+      ],
+      "location": "St. Louis, MO",
+      "source_id": "startbox_eventing",
+      "source_url": "http://eventingscores.com/eventsr/queeny/ht0526",
+      "start_date": "2026-05-09",
+      "status": "completed"
+    },
+    {
+      "date_label": "May 9, 2026",
+      "end_date": "2026-05-09",
+      "event_name": "Hitching Post Schooling Horse Trial",
+      "fetch_error": null,
+      "leaders": [
+        {
+          "division": "Training ST",
+          "horse_name": null,
+          "leader_name": "Alexandra Kavouksorian C'est La Vie WE",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/hitchingpost/sht0526/final_select.php?division=13&order=place",
+          "rider_name": null,
+          "score": 30.5,
+          "score_text": "30.5"
+        },
+        {
+          "division": "Novice ST",
+          "horse_name": null,
+          "leader_name": "Blythe Darby Fernhill Has it All",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/hitchingpost/sht0526/final_select.php?division=11&order=place",
+          "rider_name": null,
+          "score": 24.7,
+          "score_text": "24.7"
+        },
+        {
+          "division": "Beginner Novice ST",
+          "horse_name": null,
+          "leader_name": "Thayer Mudge William the Conqueror",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/hitchingpost/sht0526/final_select.php?division=10&order=place",
+          "rider_name": null,
+          "score": 28.2,
+          "score_text": "28.2"
+        },
+        {
+          "division": "Jr Starter",
+          "horse_name": null,
+          "leader_name": "June Kling Maximus",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/hitchingpost/sht0526/final_select.php?division=5&order=place",
+          "rider_name": null,
+          "score": 23.8,
+          "score_text": "23.8"
+        },
+        {
+          "division": "Starter ST",
+          "horse_name": null,
+          "leader_name": "Quinton Mudge Star",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/hitchingpost/sht0526/final_select.php?division=8&order=place",
+          "rider_name": null,
+          "score": 28.8,
+          "score_text": "28.8"
+        },
+        {
+          "division": "18in CT",
+          "horse_name": null,
+          "leader_name": "Olivia Knott Dune",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/hitchingpost/sht0526/phase2_select.php?division=12&order=place",
+          "rider_name": null,
+          "score": 30.9,
+          "score_text": "30.9"
+        },
+        {
+          "division": "2&amp;amp;#039;0in CT",
+          "horse_name": null,
+          "leader_name": "Nora Kantatan Clear Meadows Sweet Adeline",
+          "phase": "Final Scores",
+          "results_url": "https://eventing.startboxscoring.com/eventsu/hitchingpost/sht0526/phase2_select.php?division=9&order=place",
+          "rider_name": null,
+          "score": 33.5,
+          "score_text": "33.5"
+        }
+      ],
+      "location": "South Royalton, VT",
+      "source_id": "startbox_eventing",
+      "source_url": "http://eventingscores.com/eventsu/hitchingpost/sht0526",
+      "start_date": "2026-05-09",
+      "status": "completed"
+    }
+  ],
+  "fetched_archive_url": "http://eventing.startboxscoring.com/archives.php?Year=2026",
+  "source_id": "startbox_eventing",
+  "source_name": "StartBox Eventing live scores",
+  "version": 1
+}

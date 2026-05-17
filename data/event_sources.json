@@ -148,6 +148,32 @@
       "notes": "High-priority national-event source for USA coverage."
     },
     {
+      "id": "startbox_eventing",
+      "name": "StartBox Eventing live scores",
+      "priority": 55,
+      "scope": "national",
+      "regions": [
+        "usa",
+        "canada"
+      ],
+      "countries": [
+        "USA",
+        "CAN"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national",
+        "regional",
+        "schooling"
+      ],
+      "source_type": "live_scoring_provider",
+      "base_url": "https://eventing.startboxscoring.com/",
+      "status": "active",
+      "notes": "Public eventing archive and live-score pages for current North American event leaderboards."
+    },
+    {
       "id": "global_national_federations",
       "name": "All national federation results",
       "priority": 90,

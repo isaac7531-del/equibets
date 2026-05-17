@@ -7,6 +7,7 @@ Personal eventing results calculator, browser-based results tracker, and data so
 - Calculates dressage, show jumping, cross-country jumping, and cross-country time penalties.
 - Saves horse-and-rider results to local browser storage.
 - Ranks saved results from lowest total penalties to highest.
+- Pulls a current-event live-scoring snapshot for public StartBox eventing leaderboards.
 - Tracks public event-results sources for FEI and national-event coverage.
 
 ## Results calculator feature
@@ -57,3 +58,15 @@ Run the source registry checks with:
 ```bash
 python3 -m unittest discover -s tests
 ```
+
+## Current-event live scoring
+
+Refresh the bundled live-score snapshot with:
+
+```bash
+python3 -m equibets.live_scores --as-of 2026-05-17 --output data/current_event_live_scores.json
+```
+
+The collector scans the public StartBox eventing archive, pulls current and
+recent result pages, and writes the normalized division leaders that the website
+renders in the "Live scoring pull" panel.

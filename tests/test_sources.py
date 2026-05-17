@@ -27,10 +27,10 @@ class EventSourceTests(unittest.TestCase):
                 self.assertIn(national_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
 
-    def test_active_only_filter_keeps_current_primary_source(self):
+    def test_active_only_filter_keeps_current_primary_and_live_scoring_sources(self):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
 
-        self.assertEqual(source_ids, ["data_fei"])
+        self.assertEqual(source_ids, ["data_fei", "startbox_eventing"])
 
 
 if __name__ == "__main__":

@@ -7,6 +7,7 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import { formatCollectedAt, formatLeaderName, liveScoreSnapshot, liveScoreSummary } from './liveScores';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -55,6 +56,7 @@ export default function App() {
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const liveSummary = useMemo(() => liveScoreSummary(liveScoreSnapshot), []);
   const bestResult = sortedResults[0];
 
   const updateField = (field: keyof FormState, value: string) => {
@@ -134,6 +136,76 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Live leaders</span>
+          <strong>{liveSummary.leaderCount}</strong>
+          <p>{liveSummary.eventCount} current-event pages scanned</p>
+        </article>
+      </section>
+
+      <section className="live-score-card" aria-labelledby="live-scoring-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-scoring-heading">Live scoring pull</h2>
+          </div>
+          <span className="freshness-badge">Updated {formatCollectedAt(liveScoreSnapshot.collected_at)} UTC</span>
+        </div>
+
+        {liveSummary.lowestLeader ? (
+          <div className="live-highlight">
+            <span>Lowest pulled score</span>
+            <strong>{liveSummary.lowestLeader.leader.score_text}</strong>
+            <p>
+              {formatLeaderName(liveSummary.lowestLeader.leader)} in {liveSummary.lowestLeader.leader.division} at{' '}
+              {liveSummary.lowestLeader.event.event_name}
+            </p>
+          </div>
+        ) : (
+          <div className="empty-state">
+            <strong>No leaderboards pulled yet.</strong>
+            <p>Entries are visible, but score rows have not been posted by the source.</p>
+          </div>
+        )}
+
+        <div className="live-event-grid">
+          {liveScoreSnapshot.events.slice(0, 4).map((event) => (
+            <article key={`${event.event_name}-${event.start_date}`}>
+              <div className="live-event-heading">
+                <div>
+                  <span>{event.status}</span>
+                  <h3>{event.event_name}</h3>
+                </div>
+                <p>
+                  {event.date_label}
+                  {event.location ? ` - ${event.location}` : ''}
+                </p>
+              </div>
+
+              {event.leaders.length > 0 ? (
+                <ul className="leader-list">
+                  {event.leaders.slice(0, 3).map((leader) => (
+                    <li key={`${leader.division}-${leader.leader_name}-${leader.score_text}`}>
+                      <div>
+                        <strong>{leader.division}</strong>
+                        <span>{formatLeaderName(leader)}</span>
+                      </div>
+                      <b>{leader.score_text}</b>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="muted-copy">No posted scores found yet for this event page.</p>
+              )}
+
+              {event.source_url ? (
+                <a href={event.source_url} target="_blank" rel="noreferrer">
+                  View source
+                </a>
+              ) : null}
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="workspace-grid">

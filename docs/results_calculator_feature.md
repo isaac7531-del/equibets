@@ -29,6 +29,8 @@ override official results.
 
 1. Pull new FEI results from `data.fei.org`.
 2. Pull national-event updates from the priority regions.
+   - The first implemented current-event pull reads StartBox Eventing archive
+     pages for active and recently completed North American leaderboards.
 3. Pull global national-federation results as a backfill.
 4. Store raw source payloads for auditability.
 5. Normalize records into the common result table.
