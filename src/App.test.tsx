@@ -12,6 +12,9 @@ describe('App', () => {
     const user = userEvent.setup();
     render(<App />);
 
+    expect(screen.getByRole('heading', { name: /live public leaders/i })).toBeInTheDocument();
+    expect(screen.getByText('Ram Tap May SHT')).toBeInTheDocument();
+
     await user.type(screen.getByLabelText(/rider/i), 'Avery Stone');
     await user.type(screen.getByLabelText(/horse/i), 'Juniper');
     await user.type(screen.getByLabelText(/event/i), 'Spring Horse Trials');

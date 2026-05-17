@@ -8,6 +8,7 @@ Personal eventing results calculator, browser-based results tracker, and data so
 - Saves horse-and-rider results to local browser storage.
 - Ranks saved results from lowest total penalties to highest.
 - Tracks public event-results sources for FEI and national-event coverage.
+- Shows current public event leaders from the latest pulled scoring snapshot.
 
 ## Results calculator feature
 
@@ -57,3 +58,11 @@ Run the source registry checks with:
 ```bash
 python3 -m unittest discover -s tests
 ```
+
+## Current-event score feed
+
+The live-scoring panel reads `data/current_event_scores.json`, an auditable
+snapshot of current public event leaders and source URLs. The frontend imports
+that snapshot through `src/currentEvents.ts`, sorts the newest events first, and
+shows the `collected_at` timestamp so users can see when the data was last
+pulled.

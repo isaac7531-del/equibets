@@ -89,6 +89,7 @@ button:disabled {
 .hero-card,
 .dashboard article,
 .calculator-card,
+.live-scoring-card,
 .results-card {
   background: rgba(255, 252, 245, 0.88);
   border: 1px solid rgba(35, 67, 45, 0.12);
@@ -154,9 +155,119 @@ button:disabled {
 }
 
 .calculator-card,
+.live-scoring-card,
 .results-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
+}
+
+.live-scoring-card {
+  margin-bottom: 1rem;
+}
+
+.freshness-badge,
+.status-pill {
+  border-radius: 999px;
+  color: #23432d;
+  display: inline-flex;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 0.45rem 0.65rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.freshness-badge {
+  background: #e8f1df;
+}
+
+.live-event-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.live-event {
+  background: #fffdf7;
+  border: 1px solid rgba(35, 67, 45, 0.12);
+  border-radius: 1.35rem;
+  padding: 1rem;
+}
+
+.live-event-header {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
+.live-event-header h3 {
+  color: #132015;
+  line-height: 1.15;
+  margin: 0.5rem 0 0.35rem;
+}
+
+.live-event-header p,
+.subtle-copy {
+  color: #65705f;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.live-event-header a {
+  color: #956d26;
+  font-size: 0.82rem;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.status-live {
+  background: #dbeed0;
+}
+
+.status-final {
+  background: #eee1c7;
+}
+
+.leader-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.leader-row {
+  align-items: center;
+  background: #f8f2e4;
+  border-radius: 1rem;
+  display: flex;
+  gap: 0.8rem;
+  justify-content: space-between;
+  padding: 0.75rem;
+}
+
+.leader-row strong,
+.leader-row span,
+.leader-row small {
+  display: block;
+}
+
+.leader-row span {
+  color: #42503e;
+  font-size: 0.88rem;
+  margin-top: 0.2rem;
+}
+
+.leader-row small {
+  color: #65705f;
+  font-weight: 700;
+  margin-top: 0.2rem;
+}
+
+.leader-row b {
+  color: #23432d;
+  font-size: 1.6rem;
+  letter-spacing: -0.04em;
 }
 
 .section-heading h2,
@@ -323,7 +434,8 @@ td span {
 
 @media (max-width: 900px) {
   .hero,
-  .workspace-grid {
+  .workspace-grid,
+  .live-event-grid {
     grid-template-columns: 1fr;
   }
 

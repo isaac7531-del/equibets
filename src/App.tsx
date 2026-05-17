@@ -1,5 +1,12 @@
 import { FormEvent, useMemo, useState } from 'react';
 import {
+  currentEventLeaderCount,
+  currentEventScoreFeed,
+  formatCollectedAt,
+  liveCurrentEvents,
+  sortCurrentEvents,
+} from './currentEvents';
+import {
   calculateScore,
   formatSeconds,
   parseTimeToSeconds,
@@ -56,6 +63,10 @@ export default function App() {
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
   const bestResult = sortedResults[0];
+  const currentEvents = useMemo(() => sortCurrentEvents(currentEventScoreFeed.events), []);
+  const liveEvents = useMemo(() => liveCurrentEvents(currentEventScoreFeed.events), []);
+  const leaderCount = useMemo(() => currentEventLeaderCount(currentEventScoreFeed.events), []);
+  const lastPulledAt = useMemo(() => formatCollectedAt(currentEventScoreFeed.collected_at), []);
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -130,10 +141,54 @@ export default function App() {
           </p>
         </article>
         <article>
-          <span>Best saved</span>
-          <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
-          <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
+          <span>Current events</span>
+          <strong>{liveEvents.length}</strong>
+          <p>{leaderCount} pulled division leaders</p>
         </article>
+      </section>
+
+      <section className="live-scoring-card" aria-labelledby="live-scoring-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current-event scoring</p>
+            <h2 id="live-scoring-heading">Live public leaders</h2>
+          </div>
+          <span className="freshness-badge">Pulled {lastPulledAt}</span>
+        </div>
+
+        <div className="live-event-grid">
+          {currentEvents.map((event) => (
+            <article className="live-event" key={event.id}>
+              <div className="live-event-header">
+                <div>
+                  <span className={`status-pill status-${event.status}`}>{event.status}</span>
+                  <h3>{event.name}</h3>
+                  <p>
+                    {event.date_range.replace('/', ' to ')} - {event.location}
+                  </p>
+                </div>
+                <a href={event.source_url} target="_blank" rel="noreferrer">
+                  {event.source_name}
+                </a>
+              </div>
+
+              <div className="leader-list">
+                {event.leaders.slice(0, 5).map((leader) => (
+                  <div className="leader-row" key={`${event.id}-${leader.division}-${leader.rider}-${leader.horse}`}>
+                    <div>
+                      <strong>{leader.division}</strong>
+                      <span>
+                        {leader.rider} / {leader.horse}
+                      </span>
+                      <small>{leader.phase}</small>
+                    </div>
+                    <b>{leader.score.toFixed(1)}</b>
+                  </div>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="workspace-grid">
@@ -278,6 +333,11 @@ export default function App() {
             <div>
               <p className="eyebrow">Data storage</p>
               <h2 id="saved-results-heading">Saved results</h2>
+              <p className="subtle-copy">
+                {bestResult
+                  ? `Best saved: ${bestResult.horse} at ${bestResult.eventName} (${bestResult.score.totalPenalties.toFixed(1)})`
+                  : 'Save your own rounds alongside the public live-score feed.'}
+              </p>
             </div>
             <button className="secondary-button" type="button" onClick={clearResults} disabled={results.length === 0}>
               Clear all

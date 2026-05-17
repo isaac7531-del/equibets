@@ -35,6 +35,14 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Current-event live scoring
+
+The hourly current-event refresh stores public leader data in
+`data/current_event_scores.json`. Each snapshot includes the collection time,
+source URL, event status, and division leaders so the website can surface live or
+provisional scores next to the user's saved calculator results. Final results
+remain in the feed briefly as comparison data for events that just completed.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a

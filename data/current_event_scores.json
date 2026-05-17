@@ -1,0 +1,199 @@
+{
+  "version": 1,
+  "collected_at": "2026-05-17T01:02:23.610Z",
+  "summary": "Current public eventing scores pulled from StartBox Scoring for live-score display.",
+  "source_runs": [
+    {
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox Scoring",
+      "source_url": "https://eventing.startboxscoring.com/archives.php?Year=2026",
+      "searched_at": "2026-05-17T01:02:23.610Z",
+      "notes": "Archive search showed currently running and recently completed May 2026 events with result, score, time, and entry links."
+    }
+  ],
+  "events": [
+    {
+      "id": "startbox-ramtap-sht0526",
+      "name": "Ram Tap May SHT",
+      "date_range": "2026-05-16/2026-05-17",
+      "location": "Fresno, CA, US",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox Scoring",
+      "source_url": "http://eventingscores.com/eventsu/ramtap/sht0526",
+      "status": "live",
+      "notes": "Current leaders include a mix of score and provisional-score divisions from the event listing.",
+      "leaders": [
+        {
+          "division": "Open Training",
+          "phase": "Scores - Stadium 11:45 AM Sun.",
+          "rider": "Alexis Concolino",
+          "horse": "Leo D",
+          "score": 30.3,
+          "status": "scores"
+        },
+        {
+          "division": "Open Novice",
+          "phase": "Provisional Scores - XC 2:40 PM Sat.",
+          "rider": "Georgia Myers",
+          "horse": "Cybele",
+          "score": 81.7,
+          "status": "provisional"
+        },
+        {
+          "division": "Open Beginner Novice",
+          "phase": "Scores - Stadium 10:00 AM Sun.",
+          "rider": "Tristen Hooks Dvm",
+          "horse": "Fly With Me",
+          "score": 24.4,
+          "status": "scores"
+        },
+        {
+          "division": "Grasshopper",
+          "phase": "Provisional Scores - Stadium 8:00 AM Sun.",
+          "rider": "Sofia Kang",
+          "horse": "Auggie",
+          "score": 30.0,
+          "status": "provisional"
+        },
+        {
+          "division": "Open Introductory",
+          "phase": "Scores - Stadium 9:00 AM Sun.",
+          "rider": "Deena McCarthy",
+          "horse": "Roubinette",
+          "score": 25.0,
+          "status": "scores"
+        }
+      ]
+    },
+    {
+      "id": "startbox-lynnleigh-sht0526",
+      "name": "Lynnleigh Farm May 16, 2026 Schooling 2-Phase",
+      "date_range": "2026-05-16",
+      "location": "Sandy, UT, US",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox Scoring",
+      "source_url": "http://eventingscores.com/eventsu/lynnleigh/sht0526",
+      "status": "live",
+      "notes": "Current leaders include final and provisional two-phase scores from the event listing.",
+      "leaders": [
+        {
+          "division": "Modified",
+          "phase": "Final Scores",
+          "rider": "Jennifer Haglin",
+          "horse": "Jaxi",
+          "score": 36.8,
+          "status": "final"
+        },
+        {
+          "division": "Training",
+          "phase": "Final Scores",
+          "rider": "Alex Griffiths",
+          "horse": "Kindle",
+          "score": 30.7,
+          "status": "final"
+        },
+        {
+          "division": "Novice",
+          "phase": "Final Scores",
+          "rider": "Tatiana Asay",
+          "horse": "Lothario II",
+          "score": 22.5,
+          "status": "final"
+        },
+        {
+          "division": "Beginner Novice",
+          "phase": "Provisional Scores - Stadium 8:00 AM Sat.",
+          "rider": "Megan Comer",
+          "horse": "Hold on Loosely",
+          "score": 28.8,
+          "status": "provisional"
+        },
+        {
+          "division": "Beginner Novice",
+          "phase": "Provisional Scores - Stadium 8:00 AM Sat.",
+          "rider": "Tani Smihula",
+          "horse": "Baron",
+          "score": 28.8,
+          "status": "provisional"
+        },
+        {
+          "division": "Grasshopper",
+          "phase": "Provisional Scores",
+          "rider": "Krista Santum",
+          "horse": "I'm A Sudden Silhouette",
+          "score": 27.7,
+          "status": "provisional"
+        },
+        {
+          "division": "Starter",
+          "phase": "Final Scores",
+          "rider": "Michelle Cameron-Donaldson",
+          "horse": "Johno Fire Fianna",
+          "score": 29.7,
+          "status": "final"
+        }
+      ]
+    },
+    {
+      "id": "startbox-hitching-ht0526",
+      "name": "Hitching Post Farm Horse Trials",
+      "date_range": "2026-05-09",
+      "location": "South Royalton, VT, US",
+      "source_id": "startbox_scoring",
+      "source_name": "StartBox Scoring",
+      "source_url": "https://eventing.startboxscoring.com/eventsr/hitching/ht0526/",
+      "status": "final",
+      "notes": "Recent final results retained as comparison data for the current-event scoring feed.",
+      "leaders": [
+        {
+          "division": "Open Modified",
+          "phase": "Final Scores",
+          "rider": "Taryn Pearce",
+          "horse": "Ninja Turtle",
+          "score": 37.2,
+          "status": "final"
+        },
+        {
+          "division": "Open Training",
+          "phase": "Final Scores",
+          "rider": "Alana Pollard",
+          "horse": "Give Me A Chance",
+          "score": 31.5,
+          "status": "final"
+        },
+        {
+          "division": "Open Novice",
+          "phase": "Final Scores",
+          "rider": "Cora Phelps",
+          "horse": "GTB Carnabay Johnny",
+          "score": 27.8,
+          "status": "final"
+        },
+        {
+          "division": "Beginner Novice Open",
+          "phase": "Final Scores",
+          "rider": "David Wilson",
+          "horse": "Eugene",
+          "score": 34.1,
+          "status": "final"
+        },
+        {
+          "division": "Beginner Novice-Jr",
+          "phase": "Final Scores",
+          "rider": "Miriam Evans",
+          "horse": "Union Commander",
+          "score": 30.0,
+          "status": "final"
+        },
+        {
+          "division": "Starter",
+          "phase": "Final Scores",
+          "rider": "Elena Ahlschwede",
+          "horse": "He's My Romeo",
+          "score": 33.2,
+          "status": "final"
+        }
+      ]
+    }
+  ]
+}
