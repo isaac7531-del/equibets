@@ -1,6 +1,13 @@
 import unittest
+from datetime import date
 
-from equibets.results import EventingResult, consolidate_results, predict_finishing_score
+from equibets.results import (
+    EventingResult,
+    consolidate_results,
+    live_score_to_mapping,
+    predict_finishing_score,
+    rank_live_scores,
+)
 
 
 def result(**overrides):
@@ -71,6 +78,53 @@ class ResultConsolidationTests(unittest.TestCase):
         self.assertEqual(prediction.confidence, "medium")
         self.assertEqual(prediction.source_ids, ("data_fei", "user_submission"))
         self.assertEqual(prediction.likely_finishing_score, 33.4)
+
+    def test_live_scores_rank_current_event_results(self):
+        scores = rank_live_scores(
+            [
+                result(
+                    source_record_id="fei-1",
+                    rider_name="Taylor Hill",
+                    horse_name="Copper",
+                    event_name="Current Horse Trials",
+                    event_date="2026-05-18",
+                    dressage_score=30.0,
+                    show_jumping_penalties=4.0,
+                    cross_country_time_penalties=0.0,
+                ),
+                result(
+                    source_record_id="fei-2",
+                    rider_name="Sam Creek",
+                    horse_name="Fern",
+                    event_name="Current Horse Trials",
+                    event_date="2026-05-18",
+                    dressage_score=29.0,
+                    show_jumping_penalties=4.0,
+                    cross_country_time_penalties=1.0,
+                ),
+                result(
+                    source_record_id="fei-3",
+                    rider_name="Jordan Vale",
+                    horse_name="Mica",
+                    event_name="Current Horse Trials",
+                    event_date="2026-05-18",
+                    dressage_score=35.0,
+                    show_jumping_penalties=0.0,
+                    cross_country_time_penalties=0.0,
+                ),
+                result(
+                    source_record_id="fei-4",
+                    event_name="Older Horse Trials",
+                    event_date="2026-04-01",
+                ),
+            ],
+            start_date=date(2026, 5, 18),
+            end_date=date(2026, 5, 19),
+        )
+
+        self.assertEqual([score.competition_rank for score in scores], [1, 1, 3])
+        self.assertEqual([score.horse_name for score in scores], ["Copper", "Fern", "Mica"])
+        self.assertEqual(live_score_to_mapping(scores[0])["finishing_score"], 34.0)
 
 
 if __name__ == "__main__":

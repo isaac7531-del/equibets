@@ -103,6 +103,27 @@ class CombinationPrediction:
     confidence: str
 
 
+@dataclass(frozen=True)
+class LiveScoreEntry:
+    """Ranked score for one combination inside an event competition."""
+
+    competition_rank: int
+    rider_name: str
+    horse_name: str
+    event_name: str
+    event_date: date
+    level: str
+    country: str
+    finishing_score: float
+    dressage_score: float
+    show_jumping_penalties: float
+    cross_country_jump_penalties: float
+    cross_country_time_penalties: float
+    source_id: str
+    source_record_id: str
+    collected_at: datetime
+
+
 def load_results(path: Path | str) -> list[EventingResult]:
     """Load eventing results from JSON."""
 
@@ -170,12 +191,108 @@ def predict_finishing_score(
     )
 
 
+def rank_live_scores(
+    results: list[EventingResult],
+    *,
+    start_date: date | None = None,
+    end_date: date | None = None,
+) -> list[LiveScoreEntry]:
+    """Return ranked, consolidated scores for active/current event windows."""
+
+    competitions: dict[tuple[str, date, str, str], list[EventingResult]] = {}
+    for result in consolidate_results(results):
+        if start_date is not None and result.event_date < start_date:
+            continue
+        if end_date is not None and result.event_date > end_date:
+            continue
+        competition_key = (
+            result.event_name,
+            result.event_date,
+            result.level,
+            result.country,
+        )
+        competitions.setdefault(competition_key, []).append(result)
+
+    entries: list[LiveScoreEntry] = []
+    for competition_results in competitions.values():
+        ranked_results = sorted(competition_results, key=_live_score_sort_key)
+        previous_score: float | None = None
+        previous_rank = 0
+        for index, result in enumerate(ranked_results, start=1):
+            if previous_score is None or result.finishing_score != previous_score:
+                previous_rank = index
+                previous_score = result.finishing_score
+            entries.append(
+                LiveScoreEntry(
+                    competition_rank=previous_rank,
+                    rider_name=result.rider_name,
+                    horse_name=result.horse_name,
+                    event_name=result.event_name,
+                    event_date=result.event_date,
+                    level=result.level,
+                    country=result.country,
+                    finishing_score=result.finishing_score,
+                    dressage_score=result.dressage_score,
+                    show_jumping_penalties=result.show_jumping_penalties,
+                    cross_country_jump_penalties=result.cross_country_jump_penalties,
+                    cross_country_time_penalties=result.cross_country_time_penalties,
+                    source_id=result.source_id,
+                    source_record_id=result.source_record_id,
+                    collected_at=result.collected_at,
+                )
+            )
+
+    return sorted(
+        entries,
+        key=lambda entry: (
+            -entry.event_date.toordinal(),
+            entry.event_name,
+            entry.level,
+            entry.competition_rank,
+            entry.rider_name,
+            entry.horse_name,
+        ),
+    )
+
+
+def live_score_to_mapping(score: LiveScoreEntry) -> dict[str, object]:
+    """Convert a ranked live score entry to JSON-serializable values."""
+
+    return {
+        "competition_rank": score.competition_rank,
+        "rider_name": score.rider_name,
+        "horse_name": score.horse_name,
+        "event_name": score.event_name,
+        "event_date": score.event_date.isoformat(),
+        "level": score.level,
+        "country": score.country,
+        "finishing_score": score.finishing_score,
+        "dressage_score": score.dressage_score,
+        "show_jumping_penalties": score.show_jumping_penalties,
+        "cross_country_jump_penalties": score.cross_country_jump_penalties,
+        "cross_country_time_penalties": score.cross_country_time_penalties,
+        "source_id": score.source_id,
+        "source_record_id": score.source_record_id,
+        "collected_at": score.collected_at.isoformat(),
+    }
+
+
 def _is_better_result(candidate: EventingResult, existing: EventingResult) -> bool:
     if candidate.source_priority != existing.source_priority:
         return candidate.source_priority < existing.source_priority
     if candidate.is_user_entered != existing.is_user_entered:
         return not candidate.is_user_entered
     return candidate.collected_at > existing.collected_at
+
+
+def _live_score_sort_key(result: EventingResult) -> tuple[float, float, float, str, str]:
+    return (
+        result.finishing_score,
+        result.cross_country_jump_penalties + result.cross_country_time_penalties,
+        result.dressage_score,
+        result.rider_name,
+        result.horse_name,
+    )
 
 
 def _confidence(result_count: int) -> str:

@@ -9,14 +9,17 @@ from equibets.fei_bot import (
     CALENDAR_SEARCH_URL,
     HORSE_SEARCH_URL,
     PERSON_SEARCH_URL,
+    FeiCrawlSummary,
     FeiDataBot,
     FeiEvent,
     FeiResultStore,
     FeiVerifier,
+    current_event_window,
     extract_form_fields,
     parse_calendar_events,
     parse_eventing_results,
     parse_result_links,
+    save_live_scores,
 )
 
 
@@ -184,6 +187,57 @@ class FeiBotTests(unittest.TestCase):
         self.assertEqual(len(payload["results"]), 1)
         self.assertEqual(payload["results"][0]["rider_name"], "Alex Rider")
         self.assertEqual(payload["results"][0]["dressage_score"], 30.2)
+
+    def test_current_event_window_uses_recent_and_near_future_dates(self):
+        start_date, end_date = current_event_window(
+            datetime(2026, 5, 18, tzinfo=timezone.utc),
+            lookback_days=2,
+            lookahead_days=1,
+        )
+
+        self.assertEqual(start_date.isoformat(), "2026-05-16")
+        self.assertEqual(end_date.isoformat(), "2026-05-19")
+
+    def test_save_live_scores_writes_ranked_snapshot(self):
+        event = FeiEvent(
+            source_event_id="abc",
+            name="Badminton Horse Trials",
+            url=EVENT_URL,
+            start_date=datetime(2026, 5, 1).date(),
+            country="GBR",
+            level="CCI5*-L",
+        )
+        result = parse_eventing_results(
+            result_page_html(),
+            event,
+            RESULT_URL,
+            datetime(2026, 5, 2, tzinfo=timezone.utc),
+        )[0]
+        summary = FeiCrawlSummary(
+            events_found=1,
+            events_opened=1,
+            result_pages_opened=2,
+            results_collected=1,
+            results_verified=0,
+            results_rejected=0,
+        )
+
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "live_scores.json"
+            count = save_live_scores(
+                path,
+                [result],
+                window_start=datetime(2026, 5, 1).date(),
+                window_end=datetime(2026, 5, 2).date(),
+                crawl_summary=summary,
+                results_in_store=1,
+            )
+            payload = json.loads(path.read_text(encoding="utf-8"))
+
+        self.assertEqual(count, 1)
+        self.assertEqual(payload["window"]["start_date"], "2026-05-01")
+        self.assertEqual(payload["scores"][0]["competition_rank"], 1)
+        self.assertEqual(payload["scores"][0]["finishing_score"], 35.8)
 
 
 def calendar_search_form_html():

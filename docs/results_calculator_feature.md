@@ -35,6 +35,14 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Current-event live scoring flow
+
+Hourly refreshes should run `python3 -m equibets.fei_bot --current-events`.
+That mode searches the rolling current-event window, merges new official FEI
+rows into the normal result store, and writes `data/live_scores.json` with
+ranked scores per event/date/level so the application can publish live scoring
+without reprocessing the full historical table.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a

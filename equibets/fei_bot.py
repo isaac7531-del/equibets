@@ -16,14 +16,19 @@ import shutil
 import time
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import urlencode, urljoin, urlsplit
 from urllib.request import Request, build_opener
 
-from equibets.results import EventingResult, consolidate_results
+from equibets.results import (
+    EventingResult,
+    consolidate_results,
+    live_score_to_mapping,
+    rank_live_scores,
+)
 
 
 BASE_URL = "https://data.fei.org/"
@@ -31,6 +36,9 @@ CALENDAR_SEARCH_URL = urljoin(BASE_URL, "Calendar/Search.aspx")
 PERSON_SEARCH_URL = urljoin(BASE_URL, "Person/Search.aspx")
 HORSE_SEARCH_URL = urljoin(BASE_URL, "Horse/Search.aspx")
 DEFAULT_RESULTS_FILE = Path(__file__).resolve().parents[1] / "data" / "fei_results.json"
+DEFAULT_LIVE_SCORES_FILE = Path(__file__).resolve().parents[1] / "data" / "live_scores.json"
+DEFAULT_CURRENT_EVENT_LOOKBACK_DAYS = 7
+DEFAULT_CURRENT_EVENT_LOOKAHEAD_DAYS = 2
 
 
 @dataclass(frozen=True)
@@ -647,6 +655,72 @@ def result_to_mapping(result: EventingResult) -> dict[str, object]:
     }
 
 
+def current_event_window(
+    as_of: date | datetime | None = None,
+    *,
+    lookback_days: int = DEFAULT_CURRENT_EVENT_LOOKBACK_DAYS,
+    lookahead_days: int = DEFAULT_CURRENT_EVENT_LOOKAHEAD_DAYS,
+) -> tuple[date, date]:
+    """Return the rolling FEI search window used for live current-event scoring."""
+
+    if lookback_days < 0:
+        raise ValueError("lookback_days must be non-negative")
+    if lookahead_days < 0:
+        raise ValueError("lookahead_days must be non-negative")
+
+    if as_of is None:
+        current_day = datetime.now(timezone.utc).date()
+    elif isinstance(as_of, datetime):
+        current_day = as_of.date()
+    else:
+        current_day = as_of
+
+    return (
+        current_day - timedelta(days=lookback_days),
+        current_day + timedelta(days=lookahead_days),
+    )
+
+
+def save_live_scores(
+    path: Path | str,
+    results: Sequence[EventingResult],
+    *,
+    window_start: date | None,
+    window_end: date | None,
+    crawl_summary: FeiCrawlSummary,
+    results_in_store: int,
+) -> int:
+    """Write a ranked live-score snapshot and return the number of scores."""
+
+    scores = rank_live_scores(results, start_date=window_start, end_date=window_end)
+    payload = {
+        "version": 1,
+        "source_id": "data_fei",
+        "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        "window": {
+            "start_date": window_start.isoformat() if window_start else None,
+            "end_date": window_end.isoformat() if window_end else None,
+        },
+        "crawl_summary": {
+            "events_found": crawl_summary.events_found,
+            "events_opened": crawl_summary.events_opened,
+            "result_pages_opened": crawl_summary.result_pages_opened,
+            "results_collected": crawl_summary.results_collected,
+            "results_verified": crawl_summary.results_verified,
+            "results_rejected": crawl_summary.results_rejected,
+        },
+        "results_in_store": results_in_store,
+        "scores": [live_score_to_mapping(score) for score in scores],
+    }
+
+    output_path = Path(path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with output_path.open("w", encoding="utf-8") as live_scores_file:
+        json.dump(payload, live_scores_file, indent=2, sort_keys=True)
+        live_scores_file.write("\n")
+    return len(scores)
+
+
 def extract_form_fields(html: str) -> dict[str, str]:
     """Return named input fields and current values from an HTML form."""
 
@@ -801,6 +875,21 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--event-url", action="append", default=[], help="Specific FEI event/result URL to open")
     parser.add_argument("--form-field", action="append", default=[], help="Extra FEI search form value as name=value")
     parser.add_argument("--output", type=Path, default=DEFAULT_RESULTS_FILE, help="JSON result store path")
+    parser.add_argument("--live-output", type=Path, help="Optional ranked live-score snapshot JSON path")
+    parser.add_argument("--current-events", action="store_true", help="Search the rolling current-event window")
+    parser.add_argument("--as-of-date", type=_date_arg, help="Anchor date for --current-events, YYYY-MM-DD")
+    parser.add_argument(
+        "--lookback-days",
+        type=int,
+        default=DEFAULT_CURRENT_EVENT_LOOKBACK_DAYS,
+        help="Days before --as-of-date to include with --current-events",
+    )
+    parser.add_argument(
+        "--lookahead-days",
+        type=int,
+        default=DEFAULT_CURRENT_EVENT_LOOKAHEAD_DAYS,
+        help="Days after --as-of-date to include with --current-events",
+    )
     parser.add_argument("--raw-dir", type=Path, help="Optional directory for raw FEI HTML responses")
     parser.add_argument("--max-events", type=int, help="Maximum events to open")
     parser.add_argument("--rate-limit", type=float, default=1.0, help="Delay between FEI requests in seconds")
@@ -814,6 +903,19 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--verify", choices=("none", "warn", "require"), default="none")
     parser.add_argument("--dry-run", action="store_true", help="Collect and summarize without writing output")
     args = parser.parse_args(argv)
+
+    if args.current_events:
+        window_start, window_end = current_event_window(
+            args.as_of_date,
+            lookback_days=args.lookback_days,
+            lookahead_days=args.lookahead_days,
+        )
+        if args.start_date is None:
+            args.start_date = window_start
+        if args.end_date is None:
+            args.end_date = window_end
+        if args.live_output is None:
+            args.live_output = DEFAULT_LIVE_SCORES_FILE
 
     cookie = args.cookie or _env_value(args.cookie_env)
     client = _build_client(args, cookie)
@@ -834,13 +936,34 @@ def main(argv: Sequence[str] | None = None) -> int:
         if hasattr(client, "close"):
             client.close()
 
+    store = FeiResultStore(args.output)
+    merged = store.merge(results)
     if not args.dry_run:
-        store = FeiResultStore(args.output)
-        merged = store.merge(results)
         store.save(merged)
         written = len(merged)
     else:
-        written = 0
+        written = len(merged)
+
+    live_scores_written = 0
+    if args.live_output is not None:
+        live_window_start = args.start_date if args.current_events or args.start_date else None
+        live_window_end = args.end_date if args.current_events or args.end_date else None
+        live_scores_written = len(
+            rank_live_scores(
+                merged,
+                start_date=live_window_start,
+                end_date=live_window_end,
+            )
+        )
+        if not args.dry_run:
+            live_scores_written = save_live_scores(
+                args.live_output,
+                merged,
+                window_start=live_window_start,
+                window_end=live_window_end,
+                crawl_summary=summary,
+                results_in_store=written,
+            )
 
     print(
         "FEI crawl complete: "
@@ -850,7 +973,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"results_collected={summary.results_collected}, "
         f"results_verified={summary.results_verified}, "
         f"results_rejected={summary.results_rejected}, "
-        f"results_in_store={written}"
+        f"results_in_store={written}, "
+        f"live_scores={live_scores_written}"
     )
     return 0
 
