@@ -28,4 +28,11 @@ describe('App', () => {
     expect(screen.getByText('Juniper')).toBeInTheDocument();
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
   });
+
+  it('shows the live public scoring empty state before public data is refreshed', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /live public scoring/i })).toBeInTheDocument();
+    expect(screen.getByText(/no live public results in the current window/i)).toBeInTheDocument();
+  });
 });
