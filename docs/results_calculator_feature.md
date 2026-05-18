@@ -35,6 +35,14 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Current-event live scoring
+
+Hourly refresh jobs can run the FEI bot with `--current-events` to search the
+rolling current-event window, merge newly discovered results into the canonical
+store, and publish `public/data/live_scores.json`. The website fetches that
+file without caching and shows the live leaderboard separately from manually
+saved local results.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a

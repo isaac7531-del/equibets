@@ -94,3 +94,20 @@ Use `--storage-state data/fei_state.json` to reuse browser cookies,
 `--form-field name=value` for FEI form controls that need explicit values in a
 particular session, `--event-url` to crawl a known event page directly, and
 `FEI_COOKIE` or `--cookie` when the FEI Data session requires login.
+
+For hourly current-event refreshes, use the rolling live-scoring mode:
+
+```bash
+FEI_COOKIE="your-data-fei-session-cookie" \
+python3 -m equibets.fei_bot \
+  --current-events \
+  --output data/fei_results.json \
+  --live-output public/data/live_scores.json \
+  --raw-dir data/raw/fei \
+  --verify warn
+```
+
+`--current-events` searches from seven days before today through tomorrow by
+default, merges new results into `data/fei_results.json`, and publishes
+`public/data/live_scores.json` for the website's "Live public scoring" panel.
+Use `--current-days-back` and `--current-days-forward` to adjust that window.
