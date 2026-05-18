@@ -1,0 +1,15 @@
+{
+  "date_window": {
+    "end_date": "",
+    "start_date": ""
+  },
+  "events": [],
+  "feed_type": "current_event_live_scoring",
+  "source_ids": [],
+  "summary": {
+    "leaderboard_count": 0,
+    "result_count": 0
+  },
+  "updated_at": "",
+  "version": 1
+}

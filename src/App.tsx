@@ -1,4 +1,4 @@
-import { FormEvent, useMemo, useState } from 'react';
+import { FormEvent, useEffect, useMemo, useState } from 'react';
 import {
   calculateScore,
   formatSeconds,
@@ -7,6 +7,12 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import {
+  EMPTY_LIVE_SCORING_FEED,
+  fetchLiveScoringFeed,
+  formatFeedUpdatedAt,
+  type LiveScoringFeed,
+} from './liveScoring';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -52,10 +58,42 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 export default function App() {
   const [form, setForm] = useState<FormState>(defaultFormState);
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [liveFeed, setLiveFeed] = useState<LiveScoringFeed>(EMPTY_LIVE_SCORING_FEED);
+  const [liveFeedStatus, setLiveFeedStatus] = useState<'loading' | 'ready' | 'error'>('loading');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
   const bestResult = sortedResults[0];
+  const liveEvents = liveFeed.events.slice(0, 3);
+  const feedStatusLabel =
+    liveFeedStatus === 'loading'
+      ? 'Searching'
+      : liveFeedStatus === 'error'
+        ? 'Unavailable'
+        : `Updated ${formatFeedUpdatedAt(liveFeed.updated_at)}`;
+
+  useEffect(() => {
+    let isMounted = true;
+
+    fetchLiveScoringFeed()
+      .then((feed) => {
+        if (!isMounted) {
+          return;
+        }
+        setLiveFeed(feed);
+        setLiveFeedStatus('ready');
+      })
+      .catch(() => {
+        if (!isMounted) {
+          return;
+        }
+        setLiveFeedStatus('error');
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -134,6 +172,63 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Live events</span>
+          <strong>{liveFeed.summary.leaderboard_count}</strong>
+          <p>{liveFeed.summary.result_count} current scores found</p>
+        </article>
+      </section>
+
+      <section className="live-results-card" aria-labelledby="live-results-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Public data</p>
+            <h2 id="live-results-heading">Current event live scoring</h2>
+          </div>
+          <span className={`feed-status feed-status-${liveFeedStatus}`}>{feedStatusLabel}</span>
+        </div>
+
+        {liveFeedStatus === 'loading' ? (
+          <div className="empty-state">
+            <strong>Searching current events.</strong>
+            <p>Checking the latest published FEI result updates for in-progress and recent competitions.</p>
+          </div>
+        ) : liveEvents.length === 0 ? (
+          <div className="empty-state">
+            <strong>{liveFeedStatus === 'error' ? 'Live feed unavailable.' : 'No current event scores yet.'}</strong>
+            <p>
+              {liveFeedStatus === 'error'
+                ? 'The app will retry on the next page load after the refresh job publishes a feed.'
+                : 'The hourly refresh has not found published scores in the current event window.'}
+            </p>
+          </div>
+        ) : (
+          <div className="live-event-list">
+            {liveEvents.map((event) => (
+              <article key={event.event_key} className="live-event">
+                <div className="live-event-heading">
+                  <div>
+                    <h3>{event.event_name}</h3>
+                    <p>
+                      {event.event_date} / {event.level} / {event.country}
+                    </p>
+                  </div>
+                  <span>{event.leader_count} starters</span>
+                </div>
+                <ol>
+                  {event.leaders.slice(0, 5).map((leader) => (
+                    <li key={leader.source_record_id}>
+                      <span>#{leader.rank}</span>
+                      <strong>{leader.horse_name}</strong>
+                      <span>{leader.rider_name}</span>
+                      <b>{leader.finishing_score.toFixed(1)}</b>
+                    </li>
+                  ))}
+                </ol>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">
