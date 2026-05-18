@@ -1,0 +1,13 @@
+{
+  "event_count": 0,
+  "events": [],
+  "generated_at": null,
+  "latest_collected_at": null,
+  "result_count": 0,
+  "source_ids": [],
+  "version": 1,
+  "window": {
+    "end_date": null,
+    "start_date": null
+  }
+}
