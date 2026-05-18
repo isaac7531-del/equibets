@@ -43,6 +43,8 @@ describe('eventing scoring', () => {
       horse: 'Horse',
       eventName: 'Event',
       date: '2026-05-13',
+      level: 'CCI2-S',
+      country: 'GBR',
       notes: '',
       dressagePercentage: 70,
       showJumpingPenalties: 0,

@@ -1,22 +1,29 @@
 # Equibets
 
-Personal eventing results calculator, browser-based results tracker, and data source registry.
+Eventing form guide, results calculator, browser-based score tracker, and data
+source registry.
 
 ## What it does
 
-- Calculates dressage, show jumping, cross-country jumping, and cross-country time penalties.
-- Saves horse-and-rider results to local browser storage.
-- Ranks saved results from lowest total penalties to highest.
+- Calculates dressage, show jumping, cross-country jumping, and cross-country
+  time penalties.
+- Saves horse-and-rider results to local browser storage with level and country
+  metadata.
+- Combines saved user scores with public sample results into one consolidated
+  form guide.
+- Uses source priority to keep official/public results ahead of duplicate
+  user-entered scores.
+- Estimates a likely finishing score from the most recent consolidated starts.
 - Tracks public event-results sources for FEI and national-event coverage.
 
-## Results calculator feature
+## Website application
 
-The calculator is designed as a website/application feature where users can add
-their own scores, view consolidated public results, and estimate a combination's
-likely finishing score at upcoming events.
+The website is a finished static application: it works with no backend, ships
+with curated public result examples, and folds any locally saved scores into the
+same consolidation and prediction workflow.
 
-See `docs/results_calculator_feature.md` for the weekly update flow, user-score
-handling, and prediction surface.
+See `docs/results_calculator_feature.md` for the consolidation rules, prediction
+logic, and future weekly public-data update flow.
 
 ## Website development
 

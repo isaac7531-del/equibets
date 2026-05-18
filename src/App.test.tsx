@@ -24,8 +24,18 @@ describe('App', () => {
 
     await user.click(screen.getByRole('button', { name: /save result/i }));
 
-    expect(screen.getByRole('cell', { name: '34.0' })).toBeInTheDocument();
-    expect(screen.getByText('Juniper')).toBeInTheDocument();
+    expect(screen.getAllByRole('cell', { name: '34.0' }).length).toBeGreaterThanOrEqual(2);
+    expect(screen.getAllByText('Juniper')).toHaveLength(2);
+    expect(screen.getByText('My score')).toBeInTheDocument();
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
+  });
+
+  it('shows public results and prediction from consolidated data', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /likely finishing score/i })).toBeInTheDocument();
+    expect(screen.getAllByText('Atlas Bay').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('FEI').length).toBeGreaterThan(0);
+    expect(screen.getByText(/medium confidence/i)).toBeInTheDocument();
   });
 });
