@@ -89,6 +89,7 @@ button:disabled {
 .hero-card,
 .dashboard article,
 .calculator-card,
+.live-results-card,
 .results-card {
   background: rgba(255, 252, 245, 0.88);
   border: 1px solid rgba(35, 67, 45, 0.12);
@@ -154,9 +155,14 @@ button:disabled {
 }
 
 .calculator-card,
+.live-results-card,
 .results-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
+}
+
+.live-results-card {
+  margin-bottom: 1rem;
 }
 
 .section-heading h2,
@@ -244,6 +250,26 @@ legend {
   gap: 1rem;
   justify-content: space-between;
   margin-bottom: 1rem;
+}
+
+.freshness-badge,
+.scoreboard-window {
+  color: #65705f;
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+.freshness-badge {
+  background: #f4ecd9;
+  border-radius: 999px;
+  color: #23432d;
+  font-weight: 800;
+  padding: 0.55rem 0.8rem;
+  white-space: nowrap;
+}
+
+.scoreboard-window {
+  margin-bottom: 0.85rem;
 }
 
 .secondary-button {

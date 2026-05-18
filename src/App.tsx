@@ -1,4 +1,4 @@
-import { FormEvent, useMemo, useState } from 'react';
+import { FormEvent, useEffect, useMemo, useState } from 'react';
 import {
   calculateScore,
   formatSeconds,
@@ -7,6 +7,7 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import { loadLiveScoreboard, type LiveScoreboard } from './liveScores';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -52,10 +53,30 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 export default function App() {
   const [form, setForm] = useState<FormState>(defaultFormState);
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [liveScoreboard, setLiveScoreboard] = useState<LiveScoreboard | null>(null);
+  const [isLoadingLiveScores, setIsLoadingLiveScores] = useState(true);
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
-  const bestResult = sortedResults[0];
+  const liveScores = liveScoreboard?.scores ?? [];
+  const topLiveScore = liveScores[0];
+
+  useEffect(() => {
+    let isMounted = true;
+
+    loadLiveScoreboard().then((scoreboard) => {
+      if (!isMounted) {
+        return;
+      }
+
+      setLiveScoreboard(scoreboard);
+      setIsLoadingLiveScores(false);
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -101,7 +122,7 @@ export default function App() {
           <h1>Eventing score calculator and results tracker</h1>
           <p className="hero-copy">
             Capture dressage, show jumping, and cross-country penalties in one place, then keep a local record of
-            horse-and-rider results.
+            horse-and-rider results alongside the latest public current-event scores.
           </p>
         </div>
         <div className="hero-card" aria-live="polite">
@@ -130,10 +151,80 @@ export default function App() {
           </p>
         </article>
         <article>
-          <span>Best saved</span>
-          <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
-          <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
+          <span>Live public</span>
+          <strong>{topLiveScore ? topLiveScore.finishingScore.toFixed(1) : '--'}</strong>
+          <p>{topLiveScore ? `${topLiveScore.horseName} at ${topLiveScore.eventName}` : 'Awaiting current-event data'}</p>
         </article>
+      </section>
+
+      <section className="live-results-card" aria-labelledby="live-results-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-results-heading">Live public scoring</h2>
+          </div>
+          <p className="freshness-badge">
+            {liveScoreboard?.latestCollectedAt
+              ? `Updated ${new Date(liveScoreboard.latestCollectedAt).toLocaleString()}`
+              : 'No public refresh yet'}
+          </p>
+        </div>
+
+        {isLoadingLiveScores ? (
+          <div className="empty-state">
+            <strong>Checking current-event results.</strong>
+            <p>Looking for the generated live scoreboard from the latest FEI crawl.</p>
+          </div>
+        ) : liveScores.length === 0 ? (
+          <div className="empty-state">
+            <strong>No live public scores available.</strong>
+            <p>Run the FEI bot with --current-events to pull new results and publish live_scores.json.</p>
+          </div>
+        ) : (
+          <>
+            <p className="scoreboard-window">
+              Showing {liveScoreboard?.resultCount ?? liveScores.length} scores from {liveScoreboard?.window.startDate} to{' '}
+              {liveScoreboard?.window.endDate}.
+            </p>
+            <div className="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Combination</th>
+                    <th>Event</th>
+                    <th>Total</th>
+                    <th>Breakdown</th>
+                    <th>Source</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {liveScores.map((score, index) => (
+                    <tr key={score.sourceRecordId || `${score.eventName}-${score.riderName}-${score.horseName}`}>
+                      <td>#{index + 1}</td>
+                      <td>
+                        <strong>{score.horseName}</strong>
+                        <span>{score.riderName}</span>
+                      </td>
+                      <td>
+                        <strong>{score.eventName}</strong>
+                        <span>
+                          {score.eventDate} · {score.level} · {score.country}
+                        </span>
+                      </td>
+                      <td className="total-cell">{score.finishingScore.toFixed(1)}</td>
+                      <td className="breakdown-cell">
+                        D {score.dressageScore.toFixed(1)} / SJ {score.showJumpingPenalties.toFixed(1)} / XC{' '}
+                        {(score.crossCountryJumpPenalties + score.crossCountryTimePenalties).toFixed(1)}
+                      </td>
+                      <td>{score.sourceId}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </>
+        )}
       </section>
 
       <section className="workspace-grid">

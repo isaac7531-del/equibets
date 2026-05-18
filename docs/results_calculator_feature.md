@@ -35,6 +35,11 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+Use `python3 -m equibets.fei_bot --current-events` for hourly or ad-hoc live
+refreshes. The command fills a rolling current-event window when dates are not
+provided, merges new `data_fei` results into the main store, and publishes a
+frontend-ready `public/live_scores.json` scoreboard.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a
@@ -56,3 +61,5 @@ The first prediction output includes:
 - Add my score form: rider, horse, event, date, level, country, phase scores.
 - Data freshness badge: last weekly public-data refresh and source coverage.
 - Source badges: FEI, national federation, global backfill, or user-entered.
+- Live public scoring panel: reads `/live_scores.json` from the latest
+  current-event pull and shows ranked public totals for the active window.
