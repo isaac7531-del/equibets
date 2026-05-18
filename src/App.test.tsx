@@ -97,4 +97,11 @@ describe('App', () => {
     expect(screen.getAllByText('Oakley')).not.toHaveLength(0);
     expect(screen.queryByText('Copperfield')).not.toBeInTheDocument();
   });
+
+  it('shows the live public scoring empty state before public data is refreshed', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /live public scoring/i })).toBeInTheDocument();
+    expect(screen.getByText(/no live public results in the current window/i)).toBeInTheDocument();
+  });
 });
