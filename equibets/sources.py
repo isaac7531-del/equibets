@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_FEI_MEMBER_NATIONS = "all_fei_member_nations"
+ALL_NATIONAL_EVENT_LEVELS = "all_national_event_levels"
 
 
 @dataclass(frozen=True)
@@ -72,7 +74,7 @@ def sources_for_region(
     """Return sources covering a region while preserving global priorities."""
 
     normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    statuses = _included_statuses(include_planned)
 
     return [
         source
@@ -80,6 +82,63 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def national_event_sources(
+    *,
+    country: str | None = None,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return national-event sources, optionally narrowed by country and level.
+
+    The registry uses ``all_fei_member_nations`` and
+    ``all_national_event_levels`` as wildcard coverage tokens so national
+    result collectors can request any country/level pair before a
+    country-specific adapter exists.
+    """
+
+    statuses = _included_statuses(include_planned)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and source.scope == "national"
+        and (country is None or _source_covers_country(source, country))
+        and (level is None or _source_covers_level(source, level))
+    ]
+
+
+def _included_statuses(include_planned: bool) -> set[str]:
+    return {"active", "planned"} if include_planned else {"active"}
+
+
+def _source_covers_country(source: EventSource, country: str) -> bool:
+    normalized_country = _normalize_country(country)
+    return (
+        ALL_FEI_MEMBER_NATIONS in source.countries
+        or normalized_country
+        in {_normalize_country(source_country) for source_country in source.countries}
+    )
+
+
+def _source_covers_level(source: EventSource, level: str) -> bool:
+    normalized_level = _normalize_token(level)
+    return (
+        ALL_NATIONAL_EVENT_LEVELS in source.event_levels
+        or normalized_level
+        in {_normalize_token(source_level) for source_level in source.event_levels}
+    )
+
+
+def _normalize_country(country: str) -> str:
+    return country.upper().replace(" ", "_").replace("-", "_")
+
+
+def _normalize_token(value: str) -> str:
+    return value.lower().replace(" ", "_").replace("-", "_")
 
 
 def _required_str(values: dict[str, object], key: str) -> str:

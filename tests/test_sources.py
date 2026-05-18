@@ -1,6 +1,12 @@
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import (
+    ALL_FEI_MEMBER_NATIONS,
+    ALL_NATIONAL_EVENT_LEVELS,
+    load_event_sources,
+    national_event_sources,
+    sources_for_region,
+)
 
 
 class EventSourceTests(unittest.TestCase):
@@ -31,6 +37,42 @@ class EventSourceTests(unittest.TestCase):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
 
         self.assertEqual(source_ids, ["data_fei"])
+
+    def test_national_event_scope_covers_all_countries_and_levels(self):
+        sources_by_id = {source.id: source for source in load_event_sources()}
+        global_source = sources_by_id["global_national_federations"]
+
+        self.assertEqual(global_source.countries, (ALL_FEI_MEMBER_NATIONS,))
+        self.assertEqual(global_source.event_levels, (ALL_NATIONAL_EVENT_LEVELS,))
+
+        national_sources = [
+            source for source in sources_by_id.values() if source.scope == "national"
+        ]
+        self.assertTrue(national_sources)
+        for source in national_sources:
+            with self.subTest(source_id=source.id):
+                self.assertIn(ALL_NATIONAL_EVENT_LEVELS, source.event_levels)
+
+    def test_national_event_sources_can_filter_any_country_level_pair(self):
+        source_ids = [
+            source.id
+            for source in national_event_sources(country="FRA", level="club")
+        ]
+
+        self.assertEqual(source_ids, ["global_national_federations"])
+
+    def test_national_event_sources_prefers_specific_country_source(self):
+        source_ids = [
+            source.id
+            for source in national_event_sources(country="GBR", level="grassroots")
+        ]
+
+        self.assertIn("british_eventing", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+        self.assertLess(
+            source_ids.index("british_eventing"),
+            source_ids.index("global_national_federations"),
+        )
 
 
 if __name__ == "__main__":
