@@ -1,6 +1,13 @@
+import json
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import (
+    DATA_FILE,
+    load_event_sources,
+    sources_for_country,
+    sources_for_event_level,
+    sources_for_region,
+)
 
 
 class EventSourceTests(unittest.TestCase):
@@ -31,6 +38,42 @@ class EventSourceTests(unittest.TestCase):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
 
         self.assertEqual(source_ids, ["data_fei"])
+
+    def test_global_national_source_covers_all_countries(self):
+        source_ids = [source.id for source in sources_for_country("BRA")]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("global_national_federations", source_ids)
+
+    def test_country_filter_keeps_specific_priority_sources(self):
+        source_ids = [source.id for source in sources_for_country("gbr")]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("british_eventing", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+
+    def test_national_sources_cover_all_national_eventing_levels(self):
+        expected_marker = "all_national_eventing_levels"
+
+        for source in load_event_sources():
+            if source.scope == "national":
+                with self.subTest(source_id=source.id):
+                    self.assertIn(expected_marker, source.event_levels)
+
+    def test_level_filter_includes_national_sources_for_any_national_level(self):
+        source_ids = [source.id for source in sources_for_event_level("grassroots")]
+
+        self.assertNotIn("data_fei", source_ids)
+        self.assertIn("british_eventing", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+
+    def test_declared_level_group_documents_all_national_levels(self):
+        payload = json.loads(DATA_FILE.read_text(encoding="utf-8"))
+
+        levels = payload["event_level_groups"]["all_national_eventing_levels"]
+        self.assertIn("advanced", levels)
+        self.assertIn("grassroots", levels)
+        self.assertIn("amateur", levels)
 
 
 if __name__ == "__main__":

@@ -13,6 +13,10 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_MARKERS = frozenset({"all_fei_member_nations"})
+ALL_EVENT_LEVEL_MARKERS = frozenset(
+    {"all_eventing_levels", "all_national_eventing_levels"}
+)
 
 
 @dataclass(frozen=True)
@@ -80,6 +84,56 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country while preserving global priorities."""
+
+    normalized_country = country.upper().replace(" ", "_")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and _covers_country(source, normalized_country)
+    ]
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an event level while preserving global priorities."""
+
+    normalized_level = event_level.lower().replace(" ", "_")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and _covers_event_level(source, normalized_level)
+    ]
+
+
+def _covers_country(source: EventSource, country: str) -> bool:
+    return (
+        bool(ALL_COUNTRY_MARKERS.intersection(source.countries))
+        or country in source.countries
+    )
+
+
+def _covers_event_level(source: EventSource, event_level: str) -> bool:
+    return (
+        bool(ALL_EVENT_LEVEL_MARKERS.intersection(source.event_levels))
+        or event_level in source.event_levels
+    )
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
