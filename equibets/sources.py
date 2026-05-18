@@ -13,6 +13,7 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+GLOBAL_COUNTRY_MARKER = "all_fei_member_nations"
 
 
 @dataclass(frozen=True)
@@ -79,6 +80,79 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country while preserving global priorities."""
+
+    normalized_country = country.upper().replace(" ", "_")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and (
+            GLOBAL_COUNTRY_MARKER in source.countries
+            or normalized_country in source.countries
+        )
+    ]
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an event level while preserving global priorities."""
+
+    normalized_level = event_level.lower().replace("-", "_").replace(" ", "_")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and normalized_level in source.event_levels
+    ]
+
+
+def sources_for_country_and_level(
+    country: str,
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering both a country and an event level."""
+
+    country_sources = {
+        source.id: source
+        for source in sources_for_country(
+            country,
+            path=path,
+            include_planned=include_planned,
+        )
+    }
+    level_source_ids = {
+        source.id
+        for source in sources_for_event_level(
+            event_level,
+            path=path,
+            include_planned=include_planned,
+        )
+    }
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.id in country_sources and source.id in level_source_ids
     ]
 
 
