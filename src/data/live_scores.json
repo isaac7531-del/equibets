@@ -1,13 +1,579 @@
 {
-  "event_count": 0,
-  "events": [],
-  "generated_at": null,
-  "latest_collected_at": null,
-  "result_count": 0,
-  "source_ids": [],
+  "event_count": 1,
+  "events": [
+    {
+      "country": "GBR",
+      "event_date": "2026-05-14",
+      "event_name": "Belsay (M,D)",
+      "latest_collected_at": "2026-05-18T23:07:44+00:00",
+      "level": "CCI4*-S (M) , CCI1*-Intro (M)",
+      "result_count": 50,
+      "source_ids": [
+        "data_fei"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 4.4,
+          "dressage_score": 24.1,
+          "finishing_score": 28.5,
+          "horse_name": "LONDON 52",
+          "rank": 1,
+          "rider_name": "Laura COLLETT (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 3.6,
+          "dressage_score": 30.5,
+          "finishing_score": 34.1,
+          "horse_name": "D. DAY",
+          "rank": 2,
+          "rider_name": "Caroline HARRIS (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 10.8,
+          "dressage_score": 23.7,
+          "finishing_score": 34.9,
+          "horse_name": "IZILOT DHI",
+          "rank": 3,
+          "rider_name": "Rosalind CANTER (GBR)",
+          "show_jumping_penalties": 0.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 8.8,
+          "dressage_score": 31.7,
+          "finishing_score": 40.5,
+          "horse_name": "D'ARTAGNAN",
+          "rank": 4,
+          "rider_name": "Tiana COUDRAY (USA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 8.8,
+          "dressage_score": 27.8,
+          "finishing_score": 40.6,
+          "horse_name": "COUNT ONYX",
+          "rank": 5,
+          "rider_name": "Laura COLLETT (GBR)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 11.6,
+          "dressage_score": 31.7,
+          "finishing_score": 43.3,
+          "horse_name": "MHS SEVENTEEN",
+          "rank": 6,
+          "rider_name": "Rosalind CANTER (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 8.8,
+          "dressage_score": 35.4,
+          "finishing_score": 44.2,
+          "horse_name": "TOPSPIN",
+          "rank": 7,
+          "rider_name": "Alice CASBURN (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 10.8,
+          "dressage_score": 30.2,
+          "finishing_score": 45.4,
+          "horse_name": "FEVER PITCH",
+          "rank": 8,
+          "rider_name": "Storm STRAKER (GBR)",
+          "show_jumping_penalties": 4.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 6.8,
+          "dressage_score": 36.5,
+          "finishing_score": 47.7,
+          "horse_name": "LACOSTE",
+          "rank": 9,
+          "rider_name": "Elspeth BRYCE (GBR)",
+          "show_jumping_penalties": 4.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 8.8,
+          "dressage_score": 33.2,
+          "finishing_score": 50.8,
+          "horse_name": "FULL MONTY DE LACENSE",
+          "rank": 10,
+          "rider_name": "Aoife CLARK (IRL)",
+          "show_jumping_penalties": 8.8,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 16.4,
+          "dressage_score": 30.5,
+          "finishing_score": 51.3,
+          "horse_name": "HESTER",
+          "rank": 11,
+          "rider_name": "Laura COLLETT (GBR)",
+          "show_jumping_penalties": 4.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 24.0,
+          "dressage_score": 27.9,
+          "finishing_score": 51.9,
+          "horse_name": "ITS COOLEY TIME",
+          "rank": 12,
+          "rider_name": "Bubby UPTON (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 21.2,
+          "dressage_score": 29.9,
+          "finishing_score": 51.9,
+          "horse_name": "GOLIATH DU LOIR",
+          "rank": 12,
+          "rider_name": "Yasmin INGHAM (GBR)",
+          "show_jumping_penalties": 0.8,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 18.0,
+          "dressage_score": 33.4,
+          "finishing_score": 52.6,
+          "horse_name": "WITHINGTON",
+          "rank": 14,
+          "rider_name": "Rafael MAMPRIN LOSANO (BRA)",
+          "show_jumping_penalties": 1.2,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 15.6,
+          "dressage_score": 32.6,
+          "finishing_score": 52.6,
+          "horse_name": "FEROZA NIEUWMOED",
+          "rank": 14,
+          "rider_name": "Ryuzo KITAJIMA (JPN)",
+          "show_jumping_penalties": 4.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 20.8,
+          "dressage_score": 31.8,
+          "finishing_score": 52.6,
+          "horse_name": "KINDA CORVETTE",
+          "rank": 14,
+          "rider_name": "Yasmin INGHAM (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 15.2,
+          "dressage_score": 37.5,
+          "finishing_score": 52.7,
+          "horse_name": "GLYNNDALE PROMETHEUS",
+          "rank": 17,
+          "rider_name": "Jago JACKSON (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 23.6,
+          "dressage_score": 28.8,
+          "finishing_score": 54.0,
+          "horse_name": "GYPSIE DU LOIR",
+          "rank": 18,
+          "rider_name": "Yasmin INGHAM (GBR)",
+          "show_jumping_penalties": 1.6,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 19.2,
+          "dressage_score": 34.3,
+          "finishing_score": 55.1,
+          "horse_name": "JEFFERSON JRA",
+          "rank": 19,
+          "rider_name": "Toshiyuki TANAKA (JPN)",
+          "show_jumping_penalties": 1.6,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 20.8,
+          "dressage_score": 32.7,
+          "finishing_score": 55.5,
+          "horse_name": "SHANNONDALE ARNOLD",
+          "rank": 20,
+          "rider_name": "Tom MCEWEN (GBR)",
+          "show_jumping_penalties": 2.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 12.0,
+          "dressage_score": 36.2,
+          "finishing_score": 56.2,
+          "horse_name": "MONBEG STONE TOWN",
+          "rank": 21,
+          "rider_name": "Jack PINKNEY (GBR)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 14.0,
+          "dressage_score": 33.4,
+          "finishing_score": 57.4,
+          "horse_name": "RATHCOSGROVE TIMMY",
+          "rank": 22,
+          "rider_name": "Sophie VAN DER MERWE (GBR)",
+          "show_jumping_penalties": 10.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 16.0,
+          "dressage_score": 37.9,
+          "finishing_score": 57.9,
+          "horse_name": "COOLEY ON ICE",
+          "rank": 23,
+          "rider_name": "Alex HUA TIAN (CHN)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 14.0,
+          "dressage_score": 40.2,
+          "finishing_score": 60.2,
+          "horse_name": "THE RIDGE CARDENTO",
+          "rank": 24,
+          "rider_name": "Sarah FARNSWORTH (GBR)",
+          "show_jumping_penalties": 6.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 18.4,
+          "dressage_score": 37.1,
+          "finishing_score": 61.5,
+          "horse_name": "CHARLIE FOXTROT",
+          "rank": 25,
+          "rider_name": "David DOEL (GBR)",
+          "show_jumping_penalties": 6.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 18.8,
+          "dressage_score": 34.3,
+          "finishing_score": 62.7,
+          "horse_name": "LINKIN PARK K",
+          "rank": 26,
+          "rider_name": "Marcio CARVALHO JORGE (BRA)",
+          "show_jumping_penalties": 9.6,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 24.8,
+          "dressage_score": 37.9,
+          "finishing_score": 63.1,
+          "horse_name": "NIGHT PROWLER",
+          "rank": 27,
+          "rider_name": "Jack MANTEL (GBR)",
+          "show_jumping_penalties": 0.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 24.4,
+          "dressage_score": 39.5,
+          "finishing_score": 65.9,
+          "horse_name": "COBALT DE DUGNY",
+          "rank": 28,
+          "rider_name": "David DOEL (GBR)",
+          "show_jumping_penalties": 2.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 32.4,
+          "dressage_score": 28.8,
+          "finishing_score": 66.0,
+          "horse_name": "CHILLI MORNING IV",
+          "rank": 29,
+          "rider_name": "Gemma STEVENS (GBR)",
+          "show_jumping_penalties": 4.8,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 21.6,
+          "dressage_score": 34.9,
+          "finishing_score": 66.5,
+          "horse_name": "COOLEY CARNIVAL LADY",
+          "rank": 30,
+          "rider_name": "Charlotte AGNEW (GBR)",
+          "show_jumping_penalties": 10.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 22.0,
+          "dressage_score": 42.8,
+          "finishing_score": 66.8,
+          "horse_name": "LANDORADO",
+          "rank": 31,
+          "rider_name": "Andrew JAMES (GBR)",
+          "show_jumping_penalties": 2.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 25.2,
+          "dressage_score": 33.3,
+          "finishing_score": 67.7,
+          "horse_name": "SAFIRA",
+          "rank": 32,
+          "rider_name": "Carlos PARRO (BRA)",
+          "show_jumping_penalties": 9.2,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 22.8,
+          "dressage_score": 40.8,
+          "finishing_score": 68.4,
+          "horse_name": "MR GREY",
+          "rank": 33,
+          "rider_name": "Charlotte DONALD (GBR)",
+          "show_jumping_penalties": 4.8,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 15.2,
+          "dressage_score": 42.5,
+          "finishing_score": 70.1,
+          "horse_name": "LIQUID LUCK",
+          "rank": 34,
+          "rider_name": "Musa HUSSAIN (GBR)",
+          "show_jumping_penalties": 12.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 24.4,
+          "dressage_score": 42.2,
+          "finishing_score": 70.6,
+          "horse_name": "FAERLIE FLIGHTY",
+          "rank": 35,
+          "rider_name": "Emma CARMICHAEL (GBR)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 22.8,
+          "dressage_score": 44.8,
+          "finishing_score": 71.6,
+          "horse_name": "MJM BOBBY DAZZLER",
+          "rank": 36,
+          "rider_name": "Rosie RINGER (GBR)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 20.0,
+          "dressage_score": 37.4,
+          "finishing_score": 73.8,
+          "horse_name": "THE SPICE MERCHANT",
+          "rank": 37,
+          "rider_name": "Jess RIMMER (GBR)",
+          "show_jumping_penalties": 16.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 26.8,
+          "dressage_score": 39.0,
+          "finishing_score": 74.2,
+          "horse_name": "DHERMES DU NIRO",
+          "rank": 38,
+          "rider_name": "Gemma ATKIN (GBR)",
+          "show_jumping_penalties": 8.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 29.6,
+          "dressage_score": 36.6,
+          "finishing_score": 74.2,
+          "horse_name": "MISTER BIG EARS",
+          "rank": 38,
+          "rider_name": "Sam ECROYD (GBR)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 26.8,
+          "dressage_score": 34.2,
+          "finishing_score": 74.2,
+          "horse_name": "RNH TOM TOM R",
+          "rank": 38,
+          "rider_name": "William LEVETT (AUS)",
+          "show_jumping_penalties": 13.2,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 32.0,
+          "dressage_score": 33.3,
+          "finishing_score": 74.5,
+          "horse_name": "BROOKFIELD WILLIAM",
+          "rank": 41,
+          "rider_name": "Tom JACKSON (GBR)",
+          "show_jumping_penalties": 9.2,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 32.8,
+          "dressage_score": 41.3,
+          "finishing_score": 75.3,
+          "horse_name": "TAILOR MADE Z",
+          "rank": 42,
+          "rider_name": "Caroline HARRIS (GBR)",
+          "show_jumping_penalties": 1.2,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 44.4,
+          "dressage_score": 31.9,
+          "finishing_score": 76.3,
+          "horse_name": "MY STAR TURN",
+          "rank": 43,
+          "rider_name": "Tom JACKSON (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 25.2,
+          "dressage_score": 41.5,
+          "finishing_score": 76.7,
+          "horse_name": "QADIRA",
+          "rank": 44,
+          "rider_name": "Andrew JAMES (GBR)",
+          "show_jumping_penalties": 10.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 30.8,
+          "dressage_score": 41.9,
+          "finishing_score": 76.7,
+          "horse_name": "COOLEY TOPGEAR",
+          "rank": 44,
+          "rider_name": "Mark DAVIDSON (GBR)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 26.0,
+          "dressage_score": 42.8,
+          "finishing_score": 76.8,
+          "horse_name": "HISCO",
+          "rank": 46,
+          "rider_name": "Stephen HEAL (GBR)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 26.8,
+          "dressage_score": 42.4,
+          "finishing_score": 78.8,
+          "horse_name": "COOLEY LUCKY PENNY",
+          "rank": 47,
+          "rider_name": "Angus SMALES (GBR)",
+          "show_jumping_penalties": 9.6,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 38.8,
+          "dressage_score": 40.3,
+          "finishing_score": 79.9,
+          "horse_name": "KILL BILL JX",
+          "rank": 48,
+          "rider_name": "Rachel WILLIAMSON (GBR)",
+          "show_jumping_penalties": 0.8,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 28.4,
+          "dressage_score": 46.5,
+          "finishing_score": 80.9,
+          "horse_name": "STORM BLUE CURTIS",
+          "rank": 49,
+          "rider_name": "Phoebe BUCKLEY (GBR)",
+          "show_jumping_penalties": 6.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-05-18T23:07:44+00:00",
+          "cross_country_penalties": 39.2,
+          "dressage_score": 40.1,
+          "finishing_score": 82.1,
+          "horse_name": "LUSUELA",
+          "rank": 50,
+          "rider_name": "Kaitlyn FREEMAN (NZL)",
+          "show_jumping_penalties": 2.8,
+          "source_id": "data_fei"
+        }
+      ]
+    }
+  ],
+  "generated_at": "2026-05-18T23:08:21+00:00",
+  "latest_collected_at": "2026-05-18T23:07:44+00:00",
+  "result_count": 50,
+  "source_ids": [
+    "data_fei"
+  ],
   "version": 1,
   "window": {
-    "end_date": null,
-    "start_date": null
+    "end_date": "2026-05-20",
+    "start_date": "2026-05-11"
   }
 }
