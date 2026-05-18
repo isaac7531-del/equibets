@@ -1,4 +1,4 @@
-import { FormEvent, useMemo, useState } from 'react';
+import { FormEvent, useEffect, useMemo, useState } from 'react';
 import {
   calculateScore,
   formatSeconds,
@@ -7,6 +7,7 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import { fetchLiveScores, type LiveScorePayload } from './liveResults';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -49,13 +50,67 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
   actualTimeSeconds: parseTimeToSeconds(numberValue(form.actualMinutes), numberValue(form.actualSeconds)),
 });
 
+const formatDateLabel = (value: string) => {
+  const date = new Date(`${value}T00:00:00`);
+
+  return Number.isNaN(date.getTime())
+    ? value
+    : new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric', year: 'numeric' }).format(date);
+};
+
+const formatDateTimeLabel = (value: string) => {
+  const date = new Date(value);
+
+  return Number.isNaN(date.getTime())
+    ? value
+    : new Intl.DateTimeFormat(undefined, {
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit',
+      }).format(date);
+};
+
 export default function App() {
   const [form, setForm] = useState<FormState>(defaultFormState);
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [liveScores, setLiveScores] = useState<LiveScorePayload | null>(null);
+  const [liveScoresLoaded, setLiveScoresLoaded] = useState(false);
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
   const bestResult = sortedResults[0];
+  const liveResults = liveScores?.results ?? [];
+  const leadingLiveResult = liveResults[0];
+
+  useEffect(() => {
+    if (typeof fetch === 'undefined') {
+      setLiveScoresLoaded(true);
+      return;
+    }
+
+    let isMounted = true;
+    fetchLiveScores()
+      .then((payload) => {
+        if (isMounted) {
+          setLiveScores(payload);
+        }
+      })
+      .catch(() => {
+        if (isMounted) {
+          setLiveScores(null);
+        }
+      })
+      .finally(() => {
+        if (isMounted) {
+          setLiveScoresLoaded(true);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -134,6 +189,84 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Live feed</span>
+          <strong>{liveResults.length ? liveResults.length : liveScoresLoaded ? '--' : '...'}</strong>
+          <p>
+            {leadingLiveResult
+              ? `${leadingLiveResult.event_name} leader ${leadingLiveResult.finishing_score.toFixed(1)}`
+              : 'Current-event scores refresh from FEI data'}
+          </p>
+        </article>
+      </section>
+
+      <section className="live-results-card" aria-labelledby="live-results-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-results-heading">Live public scoring</h2>
+          </div>
+          <span className="freshness-pill">
+            {liveScores?.generated_at ? `Updated ${formatDateTimeLabel(liveScores.generated_at)}` : 'Awaiting feed'}
+          </span>
+        </div>
+
+        {liveScores ? (
+          <p className="live-window">
+            Showing FEI results from {formatDateLabel(liveScores.window.start_date)} to{' '}
+            {formatDateLabel(liveScores.window.end_date)}.
+          </p>
+        ) : null}
+
+        {liveResults.length === 0 ? (
+          <div className="empty-state">
+            <strong>{liveScoresLoaded ? 'No live public scores available.' : 'Loading live scores...'}</strong>
+            <p>
+              Publish the current-event feed with <code>python3 -m equibets.fei_bot --current-events</code> to display
+              fresh FEI scores here.
+            </p>
+          </div>
+        ) : (
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Combination</th>
+                  <th>Event</th>
+                  <th>Score</th>
+                  <th>Phase penalties</th>
+                  <th>Source</th>
+                </tr>
+              </thead>
+              <tbody>
+                {liveResults.map((result, index) => (
+                  <tr key={result.source_record_id}>
+                    <td>#{index + 1}</td>
+                    <td>
+                      <strong>{result.horse_name}</strong>
+                      <span>{result.rider_name}</span>
+                    </td>
+                    <td>
+                      <strong>{result.event_name}</strong>
+                      <span>
+                        {result.level} / {result.country} / {formatDateLabel(result.event_date)}
+                      </span>
+                    </td>
+                    <td className="total-cell">{result.finishing_score.toFixed(1)}</td>
+                    <td className="breakdown-cell">
+                      D {result.dressage_score.toFixed(1)} / SJ {result.show_jumping_penalties.toFixed(1)} / XC{' '}
+                      {(result.cross_country_jump_penalties + result.cross_country_time_penalties).toFixed(1)}
+                    </td>
+                    <td>
+                      <span className="source-badge">{result.source_id}</span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">

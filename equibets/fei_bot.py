@@ -23,6 +23,7 @@ from urllib.error import HTTPError
 from urllib.parse import urlencode, urljoin, urlsplit
 from urllib.request import Request, build_opener
 
+from equibets.live_scoring import DEFAULT_LIVE_SCORES_FILE, current_event_window, save_live_score_payload
 from equibets.results import EventingResult, consolidate_results
 
 
@@ -798,9 +799,31 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Collect FEI eventing results from data.fei.org")
     parser.add_argument("--start-date", type=_date_arg, help="Calendar start date, YYYY-MM-DD")
     parser.add_argument("--end-date", type=_date_arg, help="Calendar end date, YYYY-MM-DD")
+    parser.add_argument(
+        "--current-events",
+        action="store_true",
+        help="Search the rolling current-event window and publish live scoring output",
+    )
+    parser.add_argument(
+        "--current-days-back",
+        type=int,
+        default=7,
+        help="Days before today to include with --current-events",
+    )
+    parser.add_argument(
+        "--current-days-forward",
+        type=int,
+        default=1,
+        help="Days after today to include with --current-events",
+    )
     parser.add_argument("--event-url", action="append", default=[], help="Specific FEI event/result URL to open")
     parser.add_argument("--form-field", action="append", default=[], help="Extra FEI search form value as name=value")
     parser.add_argument("--output", type=Path, default=DEFAULT_RESULTS_FILE, help="JSON result store path")
+    parser.add_argument(
+        "--live-output",
+        type=Path,
+        help="JSON file to publish current-event live scoring results",
+    )
     parser.add_argument("--raw-dir", type=Path, help="Optional directory for raw FEI HTML responses")
     parser.add_argument("--max-events", type=int, help="Maximum events to open")
     parser.add_argument("--rate-limit", type=float, default=1.0, help="Delay between FEI requests in seconds")
@@ -815,6 +838,18 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--dry-run", action="store_true", help="Collect and summarize without writing output")
     args = parser.parse_args(argv)
 
+    window_start = args.start_date
+    window_end = args.end_date
+    live_output = args.live_output
+    if args.current_events:
+        current_start, current_end = current_event_window(
+            days_back=args.current_days_back,
+            days_forward=args.current_days_forward,
+        )
+        window_start = window_start or current_start
+        window_end = window_end or current_end
+        live_output = live_output or DEFAULT_LIVE_SCORES_FILE
+
     cookie = args.cookie or _env_value(args.cookie_env)
     client = _build_client(args, cookie)
     verifier = FeiVerifier(client) if args.verify != "none" else None
@@ -823,8 +858,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     try:
         results, summary = bot.collect(
-            start_date=args.start_date,
-            end_date=args.end_date,
+            start_date=window_start,
+            end_date=window_end,
             event_urls=args.event_url,
             form_fields=form_fields,
             max_events=args.max_events,
@@ -838,9 +873,20 @@ def main(argv: Sequence[str] | None = None) -> int:
         store = FeiResultStore(args.output)
         merged = store.merge(results)
         store.save(merged)
+        if live_output and window_start and window_end:
+            live_payload = save_live_score_payload(
+                merged,
+                path=live_output,
+                window_start=window_start,
+                window_end=window_end,
+            )
+            live_written = live_payload["result_count"]
+        else:
+            live_written = None
         written = len(merged)
     else:
         written = 0
+        live_written = None
 
     print(
         "FEI crawl complete: "
@@ -850,7 +896,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"results_collected={summary.results_collected}, "
         f"results_verified={summary.results_verified}, "
         f"results_rejected={summary.results_rejected}, "
-        f"results_in_store={written}"
+        f"results_in_store={written}, "
+        f"live_results={live_written if live_written is not None else 'not_written'}"
     )
     return 0
 
