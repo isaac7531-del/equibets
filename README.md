@@ -18,10 +18,18 @@ likely finishing score at upcoming events.
 See `docs/results_calculator_feature.md` for the weekly update flow, user-score
 handling, and prediction surface.
 
+## Dependency setup
+
+This repository has frontend dependencies declared in `package.json` and pinned
+in `package-lock.json`. Install them before running website commands:
+
+```bash
+npm ci
+```
+
 ## Website development
 
 ```bash
-npm install
 npm run dev
 ```
 
@@ -30,6 +38,7 @@ npm run dev
 ```bash
 npm test
 npm run build
+python3 -m unittest discover -s tests
 ```
 
 ## Python package setup
