@@ -7,7 +7,8 @@ Personal eventing results calculator, browser-based results tracker, and data so
 - Calculates dressage, show jumping, cross-country jumping, and cross-country time penalties.
 - Saves horse-and-rider results to local browser storage.
 - Ranks saved results from lowest total penalties to highest.
-- Tracks public event-results sources for FEI and national-event coverage.
+- Tracks public event-results sources for FEI and all-country national-event
+  coverage across every national eventing level.
 
 ## Results calculator feature
 
@@ -59,7 +60,11 @@ The initial source registry lives in `data/event_sources.json` and is loaded wit
 2. National-event sources fill gaps after FEI data, with priority coverage for
    Europe, the UK, Australia, New Zealand, and the USA.
 3. `global_national_federations` is the backfill path for national events from
-   every FEI member nation after the priority regions are covered.
+   every FEI member nation and every national eventing level after the priority
+   regions are covered.
+4. Use `sources_for_country(country_code)` and
+   `sources_for_event(country_code, event_level)` when planning refreshes for a
+   specific country or level.
 
 Run the source registry checks with:
 

@@ -1,7 +1,30 @@
 {
   "version": 1,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results for all FEI member nations, prioritizing data.fei for international starts and supplementing every country and national eventing level with national-event sources.",
+  "national_event_scope": {
+    "country_coverage": "all_fei_member_nations",
+    "level_coverage": "all_national_eventing_levels",
+    "levels": [
+      "grassroots",
+      "starter",
+      "introductory",
+      "beginner_novice",
+      "novice",
+      "training",
+      "modified",
+      "preliminary",
+      "intermediate",
+      "advanced",
+      "ccn1",
+      "ccn2",
+      "ccn3",
+      "ccn4",
+      "ccn5",
+      "regional_championship",
+      "national_championship"
+    ]
+  },
   "priority_regions": [
     "europe",
     "uk",
@@ -25,7 +48,7 @@
         "eventing"
       ],
       "event_levels": [
-        "fei_international"
+        "all_fei_eventing_levels"
       ],
       "source_type": "primary_database",
       "base_url": "https://data.fei.org/",
@@ -47,8 +70,7 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_eventing_levels"
       ],
       "source_type": "federation_registry",
       "base_url": null,
@@ -70,8 +92,7 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
@@ -93,8 +114,7 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.equestrian.org.au/",
@@ -116,8 +136,7 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.nzequestrian.org.nz/",
@@ -139,8 +158,7 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
@@ -149,7 +167,7 @@
     },
     {
       "id": "global_national_federations",
-      "name": "All national federation results",
+      "name": "All-country national federation results",
       "priority": 90,
       "scope": "national",
       "regions": [
@@ -162,13 +180,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_eventing_levels"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "notes": "Backfill national events for every FEI member nation and every national eventing level after higher-priority regional and country feeds are covered."
     }
   ]
 }

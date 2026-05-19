@@ -7,12 +7,17 @@ that are important for broader coverage.
 from __future__ import annotations
 
 import json
+import re
 from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_MARKERS = {"all_countries", "all_fei_member_nations"}
+ALL_EVENT_LEVEL_MARKER = "all_eventing_levels"
+ALL_FEI_EVENT_LEVEL_MARKER = "all_fei_eventing_levels"
+ALL_NATIONAL_EVENT_LEVEL_MARKER = "all_national_eventing_levels"
 
 
 @dataclass(frozen=True)
@@ -72,7 +77,7 @@ def sources_for_region(
     """Return sources covering a region while preserving global priorities."""
 
     normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    statuses = _included_statuses(include_planned)
 
     return [
         source
@@ -80,6 +85,88 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def sources_for_country(
+    country_code: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country while preserving global priorities."""
+
+    normalized_country = _normalize_country_code(country_code)
+    statuses = _included_statuses(include_planned)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and _source_covers_country(source, normalized_country)
+    ]
+
+
+def sources_for_event(
+    country_code: str,
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and event level."""
+
+    normalized_country = _normalize_country_code(country_code)
+    normalized_level = _normalize_event_level(event_level)
+    statuses = _included_statuses(include_planned)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _source_covers_country(source, normalized_country)
+        and _source_covers_event_level(source, normalized_level)
+    ]
+
+
+def _included_statuses(include_planned: bool) -> set[str]:
+    return {"active", "planned"} if include_planned else {"active"}
+
+
+def _source_covers_country(source: EventSource, country_code: str) -> bool:
+    country_tokens = {_normalize_country_token(country) for country in source.countries}
+    return bool(country_tokens & ALL_COUNTRY_MARKERS) or country_code in country_tokens
+
+
+def _source_covers_event_level(source: EventSource, event_level: str) -> bool:
+    level_tokens = {_normalize_event_level(level) for level in source.event_levels}
+    if ALL_EVENT_LEVEL_MARKER in level_tokens or event_level in level_tokens:
+        return True
+    if event_level.startswith("cci"):
+        return ALL_FEI_EVENT_LEVEL_MARKER in level_tokens
+    return ALL_NATIONAL_EVENT_LEVEL_MARKER in level_tokens
+
+
+def _normalize_country_code(country_code: str) -> str:
+    normalized = country_code.strip().upper()
+    if not normalized:
+        raise ValueError("country_code must be a non-empty string")
+    return normalized
+
+
+def _normalize_country_token(country: str) -> str:
+    if country.isupper() and len(country) == 3:
+        return country
+    return country.strip().lower()
+
+
+def _normalize_event_level(event_level: str) -> str:
+    normalized = re.sub(r"[^a-z0-9]+", "_", event_level.lower()).strip("_")
+    if not normalized:
+        raise ValueError("event_level must be a non-empty string")
+
+    star_match = re.match(r"^(cc[ni])_?([1-5])", normalized)
+    if star_match:
+        return "".join(star_match.groups())
+    return normalized
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
