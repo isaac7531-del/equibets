@@ -1,6 +1,6 @@
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import load_event_sources, sources_for_country, sources_for_region
 
 
 class EventSourceTests(unittest.TestCase):
@@ -31,6 +31,29 @@ class EventSourceTests(unittest.TestCase):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
 
         self.assertEqual(source_ids, ["data_fei"])
+
+    def test_country_lookup_covers_non_priority_countries_at_all_levels(self):
+        source_ids = [
+            source.id
+            for source in sources_for_country("BRA", event_level="starter")
+        ]
+
+        self.assertEqual(source_ids, ["global_national_federations"])
+
+    def test_country_lookup_keeps_priority_national_source_for_all_levels(self):
+        source_ids = [
+            source.id
+            for source in sources_for_country("gbr", event_level="training")
+        ]
+
+        self.assertEqual(source_ids, ["british_eventing", "global_national_federations"])
+
+    def test_country_lookup_without_level_keeps_fei_primary(self):
+        source_ids = [source.id for source in sources_for_country("usa")]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("usea", source_ids)
+        self.assertIn("global_national_federations", source_ids)
 
 
 if __name__ == "__main__":

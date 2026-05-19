@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_TOKENS = {"all_countries", "all_fei_member_nations"}
+ALL_LEVEL_TOKENS = {"all_eventing_levels", "all_levels"}
 
 
 @dataclass(frozen=True)
@@ -68,6 +70,7 @@ def sources_for_region(
     *,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
+    event_level: str | None = None,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
@@ -79,7 +82,59 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+        and _covers_level(source, event_level)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+    event_level: str | None = None,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = _country_token(country)
+    if not normalized_country:
+        raise ValueError("country must be a non-empty string")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _covers_country(source, normalized_country)
+        and _covers_level(source, event_level)
+    ]
+
+
+def _covers_country(source: EventSource, normalized_country: str) -> bool:
+    for country in source.countries:
+        token = _scope_token(country)
+        if token in ALL_COUNTRY_TOKENS or _country_token(country) == normalized_country:
+            return True
+    return False
+
+
+def _covers_level(source: EventSource, event_level: str | None) -> bool:
+    if event_level is None:
+        return True
+    normalized_level = _scope_token(event_level)
+    if not normalized_level:
+        raise ValueError("event_level must be a non-empty string when provided")
+    return any(
+        _scope_token(level) in ALL_LEVEL_TOKENS or _scope_token(level) == normalized_level
+        for level in source.event_levels
+    )
+
+
+def _country_token(value: str) -> str:
+    return value.strip().upper().replace(" ", "_")
+
+
+def _scope_token(value: str) -> str:
+    return value.strip().lower().replace(" ", "_").replace("-", "_")
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
