@@ -1,7 +1,7 @@
 {
-  "version": 1,
+  "version": 2,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results from international and national-event sources for every country and every eventing level, prioritizing data.fei and supplementing with national sources.",
   "priority_regions": [
     "europe",
     "uk",
@@ -19,13 +19,13 @@
         "global"
       ],
       "countries": [
-        "all_fei_member_nations"
+        "all_countries"
       ],
       "disciplines": [
         "eventing"
       ],
       "event_levels": [
-        "fei_international"
+        "all_eventing_levels"
       ],
       "source_type": "primary_database",
       "base_url": "https://data.fei.org/",
@@ -47,8 +47,7 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_eventing_levels"
       ],
       "source_type": "federation_registry",
       "base_url": null,
@@ -70,8 +69,7 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
@@ -93,8 +91,7 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.equestrian.org.au/",
@@ -116,8 +113,7 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.nzequestrian.org.nz/",
@@ -139,8 +135,7 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
@@ -149,26 +144,25 @@
     },
     {
       "id": "global_national_federations",
-      "name": "All national federation results",
+      "name": "Global national federation results",
       "priority": 90,
       "scope": "national",
       "regions": [
         "global"
       ],
       "countries": [
-        "all_fei_member_nations"
+        "all_countries"
       ],
       "disciplines": [
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_eventing_levels"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "notes": "Backfill national events from every country at every eventing level after higher-priority national sources are covered."
     }
   ]
 }
