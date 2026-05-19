@@ -13,6 +13,7 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_MARKERS = frozenset({"all_countries", "all_fei_member_nations"})
 
 
 @dataclass(frozen=True)
@@ -80,6 +81,31 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country while preserving global priorities."""
+
+    normalized_country = country.upper()
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and _source_covers_country(source, normalized_country)
+    ]
+
+
+def _source_covers_country(source: EventSource, normalized_country: str) -> bool:
+    return any(
+        country in ALL_COUNTRY_MARKERS or country.upper() == normalized_country
+        for country in source.countries
+    )
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
