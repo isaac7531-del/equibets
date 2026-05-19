@@ -16,7 +16,7 @@ import shutil
 import time
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.error import HTTPError
@@ -31,6 +31,8 @@ CALENDAR_SEARCH_URL = urljoin(BASE_URL, "Calendar/Search.aspx")
 PERSON_SEARCH_URL = urljoin(BASE_URL, "Person/Search.aspx")
 HORSE_SEARCH_URL = urljoin(BASE_URL, "Horse/Search.aspx")
 DEFAULT_RESULTS_FILE = Path(__file__).resolve().parents[1] / "data" / "fei_results.json"
+DEFAULT_CURRENT_EVENT_LOOKBACK_DAYS = 3
+DEFAULT_CURRENT_EVENT_LOOKAHEAD_DAYS = 10
 
 
 @dataclass(frozen=True)
@@ -625,6 +627,26 @@ class FeiResultStore:
             results_file.write("\n")
 
 
+def current_event_window(
+    today: date | None = None,
+    *,
+    lookback_days: int = DEFAULT_CURRENT_EVENT_LOOKBACK_DAYS,
+    lookahead_days: int = DEFAULT_CURRENT_EVENT_LOOKAHEAD_DAYS,
+) -> tuple[date, date]:
+    """Return the FEI calendar window used for current-event refreshes."""
+
+    if lookback_days < 0:
+        raise ValueError("lookback_days must be zero or greater")
+    if lookahead_days < 0:
+        raise ValueError("lookahead_days must be zero or greater")
+
+    anchor = today or date.today()
+    return (
+        anchor - timedelta(days=lookback_days),
+        anchor + timedelta(days=lookahead_days),
+    )
+
+
 def result_to_mapping(result: EventingResult) -> dict[str, object]:
     """Convert an EventingResult to JSON-serializable values."""
 
@@ -798,6 +820,23 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Collect FEI eventing results from data.fei.org")
     parser.add_argument("--start-date", type=_date_arg, help="Calendar start date, YYYY-MM-DD")
     parser.add_argument("--end-date", type=_date_arg, help="Calendar end date, YYYY-MM-DD")
+    parser.add_argument(
+        "--current-events",
+        action="store_true",
+        help="Search the current-event window when explicit dates are not supplied",
+    )
+    parser.add_argument(
+        "--lookback-days",
+        type=int,
+        default=DEFAULT_CURRENT_EVENT_LOOKBACK_DAYS,
+        help="Days before today to include with --current-events",
+    )
+    parser.add_argument(
+        "--lookahead-days",
+        type=int,
+        default=DEFAULT_CURRENT_EVENT_LOOKAHEAD_DAYS,
+        help="Days after today to include with --current-events",
+    )
     parser.add_argument("--event-url", action="append", default=[], help="Specific FEI event/result URL to open")
     parser.add_argument("--form-field", action="append", default=[], help="Extra FEI search form value as name=value")
     parser.add_argument("--output", type=Path, default=DEFAULT_RESULTS_FILE, help="JSON result store path")
@@ -814,6 +853,19 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--verify", choices=("none", "warn", "require"), default="none")
     parser.add_argument("--dry-run", action="store_true", help="Collect and summarize without writing output")
     args = parser.parse_args(argv)
+
+    if args.current_events:
+        try:
+            window_start, window_end = current_event_window(
+                lookback_days=args.lookback_days,
+                lookahead_days=args.lookahead_days,
+            )
+        except ValueError as exc:
+            parser.error(str(exc))
+        if args.start_date is None:
+            args.start_date = window_start
+        if args.end_date is None:
+            args.end_date = window_end
 
     cookie = args.cookie or _env_value(args.cookie_env)
     client = _build_client(args, cookie)
@@ -844,6 +896,7 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     print(
         "FEI crawl complete: "
+        f"date_window={args.start_date or 'unspecified'}..{args.end_date or 'unspecified'}, "
         f"events_found={summary.events_found}, "
         f"events_opened={summary.events_opened}, "
         f"result_pages_opened={summary.result_pages_opened}, "

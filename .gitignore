@@ -1,5 +1,7 @@
 dist
 node_modules
+*.egg-info/
+data/raw/
 *.local
 .DS_Store
 __pycache__/

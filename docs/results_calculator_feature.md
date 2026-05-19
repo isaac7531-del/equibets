@@ -35,6 +35,14 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Current-event live scoring
+
+Hourly or manual refresh jobs can use `python3 -m equibets.fei_bot
+--current-events` to search events around today's date. That command defaults to
+three days of lookback and ten days of lookahead, writes normalized FEI scores to
+`data/fei_results.json`, and lets the website rank scores from the current
+window without requiring users to enter each result manually.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a

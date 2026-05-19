@@ -7,6 +7,7 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import { formatPublicUpdatedAt, loadPublicResults, selectCurrentEventResults } from './publicResults';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -56,6 +57,11 @@ export default function App() {
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
   const bestResult = sortedResults[0];
+  const publicSnapshot = useMemo(() => loadPublicResults(), []);
+  const currentPublicResults = useMemo(() => selectCurrentEventResults(publicSnapshot.results), [publicSnapshot.results]);
+  const livePublicResults = currentPublicResults.length > 0 ? currentPublicResults : publicSnapshot.results.slice(0, 8);
+  const publicResultsLabel =
+    currentPublicResults.length > 0 ? 'Current FEI window' : publicSnapshot.results.length > 0 ? 'Latest FEI results' : 'Waiting for FEI refresh';
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -134,6 +140,62 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+      </section>
+
+      <section className="results-card live-results-card" aria-labelledby="live-results-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Public results</p>
+            <h2 id="live-results-heading">Current event live scoring</h2>
+          </div>
+          <div className="freshness-badge">
+            <span>{publicResultsLabel}</span>
+            <time>{formatPublicUpdatedAt(publicSnapshot.updatedAt)}</time>
+          </div>
+        </div>
+
+        {livePublicResults.length === 0 ? (
+          <div className="empty-state">
+            <strong>No public FEI scores loaded yet.</strong>
+            <p>Run the current-event FEI refresh to populate live public scoring for events around today.</p>
+          </div>
+        ) : (
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Combination</th>
+                  <th>Event</th>
+                  <th>Total</th>
+                  <th>Breakdown</th>
+                </tr>
+              </thead>
+              <tbody>
+                {livePublicResults.map((result, index) => (
+                  <tr key={result.id}>
+                    <td>#{index + 1}</td>
+                    <td>
+                      <strong>{result.horseName}</strong>
+                      <span>{result.riderName}</span>
+                    </td>
+                    <td>
+                      <strong>{result.eventName}</strong>
+                      <span>
+                        {result.eventDate} / {result.level} / {result.country}
+                      </span>
+                    </td>
+                    <td className="total-cell">{result.totalPenalties.toFixed(1)}</td>
+                    <td className="breakdown-cell">
+                      D {result.dressageScore.toFixed(1)} / SJ {result.showJumpingPenalties.toFixed(1)} / XC{' '}
+                      {(result.crossCountryJumpPenalties + result.crossCountryTimePenalties).toFixed(1)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">

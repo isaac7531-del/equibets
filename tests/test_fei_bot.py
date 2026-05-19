@@ -1,7 +1,7 @@
 import json
 import tempfile
 import unittest
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin
 
@@ -13,6 +13,7 @@ from equibets.fei_bot import (
     FeiEvent,
     FeiResultStore,
     FeiVerifier,
+    current_event_window,
     extract_form_fields,
     parse_calendar_events,
     parse_eventing_results,
@@ -39,6 +40,16 @@ class FakeClient:
 
 
 class FeiBotTests(unittest.TestCase):
+    def test_current_event_window_includes_recent_and_upcoming_events(self):
+        start_date, end_date = current_event_window(
+            date(2026, 5, 19),
+            lookback_days=3,
+            lookahead_days=10,
+        )
+
+        self.assertEqual(start_date, date(2026, 5, 16))
+        self.assertEqual(end_date, date(2026, 5, 29))
+
     def test_extract_form_fields_preserves_aspnet_state(self):
         html = """
         <form>
