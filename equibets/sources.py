@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_MARKERS = frozenset({"all_countries", "all_fei_member_nations"})
+ALL_EVENT_LEVEL_MARKERS = frozenset({"all_levels"})
 
 
 @dataclass(frozen=True)
@@ -82,6 +84,56 @@ def sources_for_region(
     ]
 
 
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an ISO country code or country token."""
+
+    normalized_country = _normalized_token(country)
+    if not normalized_country:
+        raise ValueError("country must be a non-empty string")
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and any(
+            country_token in ALL_COUNTRY_MARKERS or country_token == normalized_country
+            for country_token in (_normalized_token(item) for item in source.countries)
+        )
+    ]
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an event level or all national levels."""
+
+    normalized_level = _normalized_token(event_level)
+    if not normalized_level:
+        raise ValueError("event_level must be a non-empty string")
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and any(
+            level_token in ALL_EVENT_LEVEL_MARKERS or level_token == normalized_level
+            for level_token in (_normalized_token(item) for item in source.event_levels)
+        )
+    ]
+
+
 def _required_str(values: dict[str, object], key: str) -> str:
     value = values.get(key)
     if not isinstance(value, str) or not value:
@@ -114,3 +166,7 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _normalized_token(value: str) -> str:
+    return value.strip().lower().replace("-", "_").replace(" ", "_")
