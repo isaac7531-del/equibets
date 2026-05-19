@@ -13,6 +13,65 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRIES = "all_countries"
+ALL_EVENTING_LEVELS = "all_eventing_levels"
+GLOBAL_REGION = "global"
+
+COUNTRY_REGION_OVERRIDES = {
+    "AUS": ("australia",),
+    "GBR": ("uk",),
+    "NZL": ("new_zealand",),
+    "USA": ("usa",),
+}
+
+EUROPE_COUNTRIES = {
+    "ALB",
+    "AND",
+    "ARM",
+    "AUT",
+    "AZE",
+    "BEL",
+    "BIH",
+    "BUL",
+    "CRO",
+    "CYP",
+    "CZE",
+    "DEN",
+    "ESP",
+    "EST",
+    "FIN",
+    "FRA",
+    "GBR",
+    "GEO",
+    "GER",
+    "GRE",
+    "HUN",
+    "IRL",
+    "ISL",
+    "ISR",
+    "ITA",
+    "LAT",
+    "LIE",
+    "LTU",
+    "LUX",
+    "MDA",
+    "MKD",
+    "MLT",
+    "MON",
+    "NED",
+    "NOR",
+    "POL",
+    "POR",
+    "ROU",
+    "SMR",
+    "SRB",
+    "SUI",
+    "SVK",
+    "SLO",
+    "SWE",
+    "TUR",
+    "UKR",
+}
 
 
 @dataclass(frozen=True)
@@ -68,18 +127,91 @@ def sources_for_region(
     *,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
+    level: str | None = None,
 ) -> list[EventSource]:
-    """Return sources covering a region while preserving global priorities."""
+    """Return sources covering a region and optional level."""
 
-    normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    normalized_region = _normalize_key(region)
+    statuses = _included_statuses(include_planned)
+    normalized_level = _normalize_level(level)
 
     return [
         source
         for source in load_event_sources(path)
         if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        and _source_matches_region(source, normalized_region)
+        and _source_matches_level(source, normalized_level)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+    level: str | None = None,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = country.strip().upper()
+    if not normalized_country:
+        raise ValueError("country must be a non-empty string")
+
+    regions = _regions_for_country(normalized_country)
+    statuses = _included_statuses(include_planned)
+    normalized_level = _normalize_level(level)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _source_matches_country(source, normalized_country, regions)
+        and _source_matches_level(source, normalized_level)
+    ]
+
+
+def _included_statuses(include_planned: bool) -> set[str]:
+    return {"active", "planned"} if include_planned else {"active"}
+
+
+def _normalize_key(value: str) -> str:
+    normalized = value.strip().lower().replace(" ", "_")
+    if not normalized:
+        raise ValueError("value must be a non-empty string")
+    return normalized
+
+
+def _normalize_level(level: str | None) -> str | None:
+    if level is None:
+        return None
+    normalized = _normalize_key(level).replace("-", "_")
+    return normalized
+
+
+def _regions_for_country(country: str) -> set[str]:
+    regions = {GLOBAL_REGION}
+    regions.update(COUNTRY_REGION_OVERRIDES.get(country, ()))
+
+    if country in EUROPE_COUNTRIES:
+        regions.add("europe")
+
+    return regions
+
+
+def _source_matches_region(source: EventSource, region: str) -> bool:
+    return GLOBAL_REGION in source.regions or region in source.regions
+
+
+def _source_matches_country(source: EventSource, country: str, regions: set[str]) -> bool:
+    country_matches = ALL_COUNTRIES in source.countries or country in source.countries
+    region_matches = GLOBAL_REGION in source.regions or any(region in source.regions for region in regions)
+    return country_matches and region_matches
+
+
+def _source_matches_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+    return ALL_EVENTING_LEVELS in source.event_levels or level in source.event_levels
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
