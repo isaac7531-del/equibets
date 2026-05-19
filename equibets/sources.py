@@ -13,6 +13,7 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_MARKERS = {"all_countries", "all_fei_member_nations"}
 
 
 @dataclass(frozen=True)
@@ -82,6 +83,29 @@ def sources_for_region(
     ]
 
 
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional national-event level."""
+
+    normalized_country = country.strip().upper()
+    if not normalized_country:
+        raise ValueError("country must be a non-empty string")
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _covers_country(source, normalized_country)
+        and (level is None or _covers_level(source, level))
+    ]
+
+
 def _required_str(values: dict[str, object], key: str) -> str:
     value = values.get(key)
     if not isinstance(value, str) or not value:
@@ -114,3 +138,22 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _covers_country(source: EventSource, normalized_country: str) -> bool:
+    countries = {country.upper() for country in source.countries}
+    country_markers = {country.lower() for country in source.countries}
+    return bool(country_markers & ALL_COUNTRY_MARKERS) or normalized_country in countries
+
+
+def _covers_level(source: EventSource, level: str) -> bool:
+    normalized_level = _normalize_level(level)
+    if not normalized_level:
+        raise ValueError("level must be a non-empty string")
+
+    levels = {_normalize_level(item) for item in source.event_levels}
+    return normalized_level in levels
+
+
+def _normalize_level(level: str) -> str:
+    return level.strip().lower().replace("-", "_").replace(" ", "_")
