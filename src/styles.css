@@ -246,6 +246,33 @@ legend {
   margin-bottom: 1rem;
 }
 
+.live-results-card {
+  margin-bottom: 1rem;
+}
+
+.freshness-badge {
+  background: #f4ecd9;
+  border: 1px solid rgba(35, 67, 45, 0.12);
+  border-radius: 999px;
+  color: #23432d;
+  display: grid;
+  font-size: 0.78rem;
+  font-weight: 800;
+  gap: 0.15rem;
+  justify-items: end;
+  padding: 0.7rem 1rem;
+}
+
+.freshness-badge span {
+  color: #956d26;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.freshness-badge time {
+  color: #526050;
+}
+
 .secondary-button {
   background: #eee1c7;
   color: #23432d;
@@ -335,6 +362,15 @@ td span {
 @media (max-width: 620px) {
   .app-shell {
     padding-top: 1.75rem;
+  }
+
+  .results-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .freshness-badge {
+    justify-items: start;
   }
 
   .dashboard,
