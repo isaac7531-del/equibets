@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_TOKENS = {"all_countries", "all_fei_member_nations"}
+ALL_LEVEL_TOKENS = {"all_eventing_levels"}
 
 
 @dataclass(frozen=True)
@@ -66,6 +68,7 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
@@ -79,7 +82,43 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+        and _covers_level(source, level)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = country.upper().replace(" ", "_")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _covers_country(source, normalized_country)
+        and _covers_level(source, level)
+    ]
+
+
+def _covers_country(source: EventSource, normalized_country: str) -> bool:
+    countries = set(source.countries)
+    return bool(countries & ALL_COUNTRY_TOKENS) or normalized_country in countries
+
+
+def _covers_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_level = level.lower().replace(" ", "_").replace("-", "_")
+    levels = set(source.event_levels)
+    return bool(levels & ALL_LEVEL_TOKENS) or normalized_level in levels
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
