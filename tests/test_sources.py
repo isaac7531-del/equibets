@@ -1,6 +1,6 @@
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import load_event_sources, sources_for_country, sources_for_region
 
 
 class EventSourceTests(unittest.TestCase):
@@ -31,6 +31,51 @@ class EventSourceTests(unittest.TestCase):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
 
         self.assertEqual(source_ids, ["data_fei"])
+
+    def test_national_sources_cover_all_eventing_levels(self):
+        national_sources = [
+            source for source in load_event_sources() if source.scope == "national"
+        ]
+
+        self.assertTrue(national_sources)
+        for source in national_sources:
+            with self.subTest(source=source.id):
+                self.assertIn("all_eventing_levels", source.event_levels)
+
+    def test_global_national_source_covers_all_countries(self):
+        global_source = next(
+            source
+            for source in load_event_sources()
+            if source.id == "global_national_federations"
+        )
+
+        self.assertEqual(global_source.countries, ("all_countries",))
+
+    def test_country_lookup_includes_global_national_backfill(self):
+        source_ids = [
+            source.id
+            for source in sources_for_country("CAN", level="starter")
+        ]
+
+        self.assertEqual(source_ids, ["global_national_federations"])
+
+    def test_country_lookup_keeps_priority_country_sources(self):
+        source_ids = [
+            source.id
+            for source in sources_for_country("GBR", level="training")
+        ]
+
+        self.assertIn("british_eventing", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+
+    def test_country_lookup_keeps_fei_for_international_level(self):
+        source_ids = [
+            source.id
+            for source in sources_for_country("USA", level="fei_international")
+        ]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("usea", source_ids)
 
 
 if __name__ == "__main__":
