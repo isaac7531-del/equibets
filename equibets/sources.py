@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+COUNTRY_WILDCARDS = frozenset({"all_countries", "all_fei_member_nations"})
+LEVEL_WILDCARDS = frozenset({"all_eventing_levels"})
 
 
 @dataclass(frozen=True)
@@ -68,6 +70,7 @@ def sources_for_region(
     *,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
+    level: str | None = None,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
@@ -79,6 +82,31 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+        and _covers_level(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+    level: str | None = None,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = country.strip().upper()
+    if not normalized_country:
+        raise ValueError("country must be a non-empty string")
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _covers_country(source, normalized_country)
+        and _covers_level(source, level)
     ]
 
 
@@ -114,3 +142,23 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _covers_country(source: EventSource, normalized_country: str) -> bool:
+    countries = {country.upper() for country in source.countries}
+    return normalized_country in countries or any(
+        wildcard in source.countries for wildcard in COUNTRY_WILDCARDS
+    )
+
+
+def _covers_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_level = level.strip().lower().replace(" ", "_")
+    if not normalized_level:
+        raise ValueError("level must be a non-empty string when provided")
+
+    return normalized_level in source.event_levels or any(
+        wildcard in source.event_levels for wildcard in LEVEL_WILDCARDS
+    )
