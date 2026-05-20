@@ -19,7 +19,7 @@
         "global"
       ],
       "countries": [
-        "all_fei_member_nations"
+        "all_countries"
       ],
       "disciplines": [
         "eventing"
@@ -41,7 +41,7 @@
         "europe"
       ],
       "countries": [
-        "all_fei_europe_member_nations"
+        "all_european_countries"
       ],
       "disciplines": [
         "eventing"
@@ -52,7 +52,7 @@
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations."
+      "notes": "Discover and connect national federation calendars and result portals for European countries."
     },
     {
       "id": "british_eventing",

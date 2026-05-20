@@ -252,10 +252,7 @@
       "ZMB",
       "ZWE"
     ],
-    "all_fei_member_nations": [
-      "all_countries"
-    ],
-    "all_fei_europe_member_nations": [
+    "all_european_countries": [
       "ALB",
       "AND",
       "ARM",
