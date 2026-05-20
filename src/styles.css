@@ -272,22 +272,88 @@ legend {
   color: #23432d;
 }
 
+.rider-browser {
+  background: #f7efe0;
+  border: 1px solid rgba(35, 67, 45, 0.12);
+  border-radius: 1.25rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.browser-heading {
+  align-items: end;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(180px, 240px);
+}
+
+.browser-heading h3 {
+  margin: 0;
+}
+
+.browser-heading p {
+  color: #65705f;
+  margin: 0.25rem 0 0;
+}
+
+.rider-directory {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.rider-directory article {
+  background: #fffdf7;
+  border: 1px solid rgba(35, 67, 45, 0.1);
+  border-radius: 1rem;
+  padding: 0.9rem;
+}
+
+.rider-directory h4 {
+  margin: 0 0 0.7rem;
+}
+
+.level-list {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.level-list div {
+  align-items: start;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: minmax(130px, 0.35fr) minmax(0, 1fr);
+}
+
+.level-list span {
+  color: #956d26;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.level-list p {
+  margin: 0;
+}
+
 .table-wrap {
   overflow-x: auto;
 }
 
 table {
   border-collapse: collapse;
-  min-width: 680px;
+  table-layout: fixed;
   width: 100%;
 }
 
 th,
 td {
   border-bottom: 1px solid rgba(35, 67, 45, 0.1);
-  padding: 0.85rem 0.7rem;
+  padding: 0.8rem 0.45rem;
   text-align: left;
   vertical-align: middle;
+  word-break: normal;
 }
 
 th {
@@ -306,12 +372,36 @@ td span {
 
 .total-cell {
   color: #23432d;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 900;
 }
 
-.breakdown-cell {
+.event-cell {
+  width: 26%;
+}
+
+.event-cell span {
   white-space: nowrap;
+}
+
+.breakdown-cell {
+  font-size: 0.86rem;
+  line-height: 1.35;
+}
+
+.saved-results-table th:nth-child(1),
+.saved-results-table td:nth-child(1) {
+  width: 48px;
+}
+
+.saved-results-table th:nth-child(4),
+.saved-results-table td:nth-child(4) {
+  width: 68px;
+}
+
+.saved-results-table th:nth-child(6),
+.saved-results-table td:nth-child(6) {
+  width: 72px;
 }
 
 .link-button {
@@ -450,6 +540,8 @@ td span {
 
   .dashboard,
   .form-grid,
+  .browser-heading,
+  .level-list div,
   .time-grid {
     grid-template-columns: 1fr;
   }

@@ -1,8 +1,10 @@
-import { FormEvent, useMemo, useState } from 'react';
+import { FormEvent, useEffect, useMemo, useState } from 'react';
 import {
+  buildRiderLevelDirectory,
   calculateScore,
   formatSeconds,
   parseTimeToSeconds,
+  resultLevel,
   sortByBestScore,
   type EventingScoreInput,
   type StoredResult,
@@ -37,7 +39,7 @@ type FormState = {
   notes: string;
 };
 
-const defaultFormState: FormState = {
+const createDefaultFormState = (): FormState => ({
   rider: '',
   horse: '',
   eventName: '',
@@ -52,7 +54,7 @@ const defaultFormState: FormState = {
   actualMinutes: '5',
   actualSeconds: '30',
   notes: '',
-};
+});
 
 const numberValue = (value: string) => Number.parseFloat(value || '0');
 const sourceLabel = (sourceId: string) => SOURCE_LABELS[sourceId] ?? sourceId;
@@ -61,6 +63,21 @@ const formatDateTime = (value: string | null) =>
   value
     ? new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(value))
     : 'No public data yet';
+const levelOptions = [
+  'Starter',
+  'Beginner Novice',
+  'Novice',
+  'Training',
+  'Modified',
+  'Preliminary',
+  'Intermediate',
+  'Advanced',
+  'CCI1-S',
+  'CCI2-S',
+  'CCI3-S',
+  'CCI4-S',
+  'CCI5-L',
+];
 
 const createScoreInput = (form: FormState): EventingScoreInput => ({
   dressagePercentage: numberValue(form.dressagePercentage),
@@ -71,10 +88,11 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 });
 
 export default function App() {
-  const [form, setForm] = useState<FormState>(defaultFormState);
+  const [form, setForm] = useState<FormState>(() => createDefaultFormState());
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCombination, setSelectedCombination] = useState('');
+  const [selectedRider, setSelectedRider] = useState('all');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
@@ -94,6 +112,27 @@ export default function App() {
     () => predictFinishingScore(consolidatedResults, activeCombination),
     [consolidatedResults, activeCombination],
   );
+  const riderOptions = useMemo(
+    () => [...new Set(results.map((result) => result.rider))].sort((a, b) => a.localeCompare(b)),
+    [results],
+  );
+  const riderDirectory = useMemo(
+    () => buildRiderLevelDirectory(results, selectedRider),
+    [results, selectedRider],
+  );
+  const visibleResults = useMemo(
+    () =>
+      selectedRider === 'all'
+        ? sortedResults
+        : sortedResults.filter((result) => result.rider === selectedRider),
+    [selectedRider, sortedResults],
+  );
+
+  useEffect(() => {
+    if (selectedRider !== 'all' && !riderOptions.includes(selectedRider)) {
+      setSelectedRider('all');
+    }
+  }, [riderOptions, selectedRider]);
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -119,7 +158,7 @@ export default function App() {
     const nextResults = [newResult, ...results];
     setResults(nextResults);
     saveResults(nextResults);
-    setForm(defaultFormState);
+    setForm(createDefaultFormState());
   };
 
   const removeResult = (id: string) => {
@@ -217,12 +256,18 @@ export default function App() {
               />
             </label>
             <label>
-              Date
-              <input type="date" required value={form.date} onChange={(event) => updateField('date', event.target.value)} />
+              Level
+              <select required value={form.level} onChange={(event) => updateField('level', event.target.value)}>
+                {levelOptions.map((level) => (
+                  <option key={level} value={level}>
+                    {level}
+                  </option>
+                ))}
+              </select>
             </label>
             <label>
-              Level
-              <input required value={form.level} onChange={(event) => updateField('level', event.target.value)} placeholder="CCI2-S" />
+              Date
+              <input type="date" required value={form.date} onChange={(event) => updateField('date', event.target.value)} />
             </label>
             <label>
               Country
@@ -349,48 +394,86 @@ export default function App() {
               <p>Complete the calculator to build a local score history for each horse and rider.</p>
             </div>
           ) : (
-            <div className="table-wrap">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Rank</th>
-                    <th>Combination</th>
-                    <th>Event</th>
-                    <th>Total</th>
-                    <th>Breakdown</th>
-                    <th aria-label="Actions" />
-                  </tr>
-                </thead>
-                <tbody>
-                  {sortedResults.map((result, index) => (
-                    <tr key={result.id}>
-                      <td>#{index + 1}</td>
-                      <td>
-                        <strong>{result.horse}</strong>
-                        <span>{result.rider}</span>
-                      </td>
-                      <td>
-                        <strong>{result.eventName}</strong>
-                        <span>
-                          {result.date} - {result.level || 'Unspecified'} {result.country || ''}
-                        </span>
-                      </td>
-                      <td className="total-cell">{result.score.totalPenalties.toFixed(1)}</td>
-                      <td className="breakdown-cell">
-                        D {result.score.dressagePenalties.toFixed(1)} / SJ{' '}
-                        {result.score.showJumpingPenalties.toFixed(1)} / XC{' '}
-                        {(result.score.crossCountryJumpPenalties + result.score.crossCountryTimePenalties).toFixed(1)}
-                      </td>
-                      <td>
-                        <button className="link-button" type="button" onClick={() => removeResult(result.id)}>
-                          Remove
-                        </button>
-                      </td>
-                    </tr>
+            <>
+              <section className="rider-browser" aria-labelledby="rider-browser-heading">
+                <div className="browser-heading">
+                  <div>
+                    <h3 id="rider-browser-heading">Browse horses by rider</h3>
+                    <p>Pick a rider to see every saved horse grouped by level.</p>
+                  </div>
+                  <label>
+                    Rider menu
+                    <select value={selectedRider} onChange={(event) => setSelectedRider(event.target.value)}>
+                      <option value="all">All riders</option>
+                      {riderOptions.map((rider) => (
+                        <option key={rider} value={rider}>
+                          {rider}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+
+                <div className="rider-directory">
+                  {riderDirectory.map((riderGroup) => (
+                    <article key={riderGroup.rider}>
+                      <h4>{riderGroup.rider}</h4>
+                      <div className="level-list">
+                        {riderGroup.levels.map((levelGroup) => (
+                          <div key={levelGroup.level}>
+                            <span>{levelGroup.level}</span>
+                            <p>{levelGroup.horses.join(', ')}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </article>
                   ))}
-                </tbody>
-              </table>
-            </div>
+                </div>
+              </section>
+
+              <div className="table-wrap">
+                <table className="saved-results-table">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Combination</th>
+                      <th>Event</th>
+                      <th>Total</th>
+                      <th>Breakdown</th>
+                      <th aria-label="Actions" />
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {visibleResults.map((result, index) => (
+                      <tr key={result.id}>
+                        <td>#{index + 1}</td>
+                        <td>
+                          <strong>{result.horse}</strong>
+                          <span>{result.rider}</span>
+                        </td>
+                        <td className="event-cell">
+                          <strong>{result.eventName}</strong>
+                          <span>
+                            {resultLevel(result)} - {result.country || 'N/A'} - {result.date}
+                          </span>
+                        </td>
+                        <td className="total-cell">{result.score.totalPenalties.toFixed(1)}</td>
+                        <td className="breakdown-cell">
+                          D {result.score.dressagePenalties.toFixed(1)} / SJ{' '}
+                          {result.score.showJumpingPenalties.toFixed(1)} / XC{' '}
+                          {(result.score.crossCountryJumpPenalties + result.score.crossCountryTimePenalties).toFixed(1)}
+                        </td>
+                        <td>
+                          <button className="link-button" type="button" onClick={() => removeResult(result.id)}>
+                            Remove
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </>
           )}
         </section>
       </section>

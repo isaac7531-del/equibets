@@ -25,10 +25,18 @@ same consolidation and prediction workflow.
 See `docs/results_calculator_feature.md` for the consolidation rules, prediction
 logic, and future weekly public-data update flow.
 
+## Dependency setup
+
+This repository has frontend dependencies declared in `package.json` and pinned
+in `package-lock.json`. Install them before running website commands:
+
+```bash
+npm ci
+```
+
 ## Website development
 
 ```bash
-npm install
 npm run dev
 ```
 
@@ -37,6 +45,7 @@ npm run dev
 ```bash
 npm test
 npm run build
+python3 -m unittest discover -s tests
 ```
 
 ## Python package setup
@@ -64,3 +73,31 @@ Run the source registry checks with:
 ```bash
 python3 -m unittest discover -s tests
 ```
+
+## FEI Data bot
+
+The FEI crawler lives in `equibets.fei_bot` and stores normalized eventing
+results in the same shape used by the results calculator.
+
+Example:
+
+```bash
+python3 -m pip install -r requirements.txt
+FEI_COOKIE="your-data-fei-session-cookie" \
+python3 -m equibets.fei_bot \
+  --start-date 2026-05-01 \
+  --end-date 2026-05-31 \
+  --output data/fei_results.json \
+  --raw-dir data/raw/fei \
+  --verify warn
+```
+
+The bot defaults to a Playwright browser driver so FEI's JavaScript challenge
+can run before search pages are submitted. It opens
+`https://data.fei.org/Calendar/Search.aspx`, fills FEI dates as `dd/MM/yyyy`,
+keeps ASP.NET hidden form fields such as `__VIEWSTATE`, opens each discovered
+event, follows its result links, and writes deduplicated `data_fei` records.
+Use `--storage-state data/fei_state.json` to reuse browser cookies,
+`--form-field name=value` for FEI form controls that need explicit values in a
+particular session, `--event-url` to crawl a known event page directly, and
+`FEI_COOKIE` or `--cookie` when the FEI Data session requires login.
