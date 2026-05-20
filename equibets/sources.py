@@ -13,6 +13,10 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+GLOBAL_REGION = "global"
+ALL_COUNTRIES = "all_countries"
+ALL_EVENTING_LEVELS = "all_eventing_levels"
+LEGACY_ALL_FEI_NATIONS = "all_fei_member_nations"
 
 
 @dataclass(frozen=True)
@@ -66,19 +70,47 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
-    """Return sources covering a region while preserving global priorities."""
+    """Return sources covering a region and optional level by priority."""
 
-    normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    normalized_region = _token_key(region)
+    statuses = _allowed_statuses(include_planned)
 
     return [
         source
         for source in load_event_sources(path)
         if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        and _covers_region(source, normalized_region)
+        and _covers_level(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional level by priority.
+
+    ``country`` should be an ISO 3166-1 alpha-3 code such as ``GBR`` or ``USA``.
+    Registry-wide country wildcards are used for sources that cover every
+    country.
+    """
+
+    normalized_country = _country_key(country)
+    statuses = _allowed_statuses(include_planned)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _covers_country(source, normalized_country)
+        and _covers_level(source, level)
     ]
 
 
@@ -114,3 +146,40 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _allowed_statuses(include_planned: bool) -> set[str]:
+    return {"active", "planned"} if include_planned else {"active"}
+
+
+def _covers_region(source: EventSource, normalized_region: str) -> bool:
+    regions = {_token_key(region) for region in source.regions}
+    return GLOBAL_REGION in regions or normalized_region in regions
+
+
+def _covers_country(source: EventSource, normalized_country: str) -> bool:
+    countries = {_country_key(country) for country in source.countries}
+    return (
+        ALL_COUNTRIES in countries
+        or LEGACY_ALL_FEI_NATIONS in countries
+        or normalized_country in countries
+    )
+
+
+def _covers_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    levels = {_token_key(event_level) for event_level in source.event_levels}
+    return ALL_EVENTING_LEVELS in levels or _token_key(level) in levels
+
+
+def _country_key(country: str) -> str:
+    token = _token_key(country)
+    if token.startswith("all_"):
+        return token
+    return country.strip().upper()
+
+
+def _token_key(value: str) -> str:
+    return value.strip().lower().replace("-", "_").replace(" ", "_")
