@@ -61,6 +61,11 @@ The initial source registry lives in `data/event_sources.json` and is loaded wit
 3. `global_national_federations` is the backfill path for national events from
    every FEI member nation after the priority regions are covered.
 
+Country scopes used by those sources live in `data/country_scopes.json`. The
+source helpers can select coverage by region, by FEI/NOC country code, by
+registry event level (`fei_international`, `national`, or `regional`), or by
+country plus national-event level.
+
 Run the source registry checks with:
 
 ```bash

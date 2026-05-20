@@ -14,7 +14,8 @@ shows how horse/rider combinations are performing before upcoming events.
 
 ## Data consolidation
 
-1. Refresh public data weekly from `data/event_sources.json`.
+1. Refresh public data weekly from `data/event_sources.json`, resolving symbolic
+   country groups from `data/country_scopes.json`.
 2. Normalize each result into `EventingResult`.
 3. Deduplicate by combination, event, date, and level.
 4. Keep the lowest `source_priority` when duplicates exist, so `data_fei`
@@ -28,8 +29,10 @@ override official results.
 ## Weekly update flow
 
 1. Pull new FEI results from `data.fei.org`.
-2. Pull national-event updates from the priority regions.
-3. Pull global national-federation results as a backfill.
+2. Pull national-event updates from the priority regions at national and
+   regional levels.
+3. Pull global national-federation results as a backfill for every FEI/NOC
+   country code.
 4. Store raw source payloads for auditability.
 5. Normalize records into the common result table.
 6. Re-run consolidation and prediction calculations.

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results for all FEI member nations and national-event levels, prioritizing data.fei and supplementing with national-event sources.",
   "priority_regions": [
     "europe",
     "uk",

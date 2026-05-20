@@ -13,6 +13,7 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+COUNTRY_SCOPE_FILE = Path(__file__).resolve().parents[1] / "data" / "country_scopes.json"
 
 
 @dataclass(frozen=True)
@@ -50,6 +51,43 @@ class EventSource:
         )
 
 
+@dataclass(frozen=True)
+class CountryScope:
+    """A reusable group of FEI/NOC country codes used by source coverage."""
+
+    id: str
+    name: str
+    match: str
+    countries: tuple[str, ...]
+    notes: str
+
+    @classmethod
+    def from_mapping(cls, values: dict[str, object]) -> "CountryScope":
+        match = _required_str(values, "match")
+        if match not in {"explicit", "wildcard"}:
+            raise ValueError("match must be explicit or wildcard")
+
+        return cls(
+            id=_required_str(values, "id"),
+            name=_required_str(values, "name"),
+            match=match,
+            countries=tuple(
+                sorted(
+                    _normalize_country_code(item)
+                    for item in _string_tuple(values, "countries")
+                )
+            ),
+            notes=_required_str(values, "notes"),
+        )
+
+    def covers(self, country: str) -> bool:
+        """Return whether this scope covers a normalized FEI/NOC country code."""
+
+        if self.match == "wildcard":
+            return True
+        return _normalize_country_code(country) in self.countries
+
+
 def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
     """Load sources sorted by priority, with FEI first on ties."""
 
@@ -63,6 +101,16 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
     )
 
 
+def load_country_scopes(path: Path | str = COUNTRY_SCOPE_FILE) -> dict[str, CountryScope]:
+    """Load named country scopes used by event source coverage."""
+
+    with Path(path).open(encoding="utf-8") as scope_file:
+        payload = json.load(scope_file)
+
+    scopes = [CountryScope.from_mapping(item) for item in payload["scopes"]]
+    return {scope.id: scope for scope in scopes}
+
+
 def sources_for_region(
     region: str,
     *,
@@ -71,8 +119,8 @@ def sources_for_region(
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    normalized_region = _normalize_token(region)
+    statuses = _included_statuses(include_planned)
 
     return [
         source
@@ -80,6 +128,95 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    country_scope_path: Path | str = COUNTRY_SCOPE_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources that can cover a FEI/NOC country code."""
+
+    scopes = load_country_scopes(country_scope_path)
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in _included_statuses(include_planned)
+        and _source_covers_country(source, country, scopes)
+    ]
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources that publish a registry event-level scope."""
+
+    normalized_level = _normalize_token(event_level)
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in _included_statuses(include_planned)
+        and normalized_level in source.event_levels
+    ]
+
+
+def sources_for_national_events(
+    *,
+    country: str | None = None,
+    event_level: str | None = None,
+    path: Path | str = DATA_FILE,
+    country_scope_path: Path | str = COUNTRY_SCOPE_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return national-event sources, optionally narrowed by country and level."""
+
+    scopes = load_country_scopes(country_scope_path)
+    normalized_level = _normalize_token(event_level) if event_level else None
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in _included_statuses(include_planned)
+        and source.scope == "national"
+        and (country is None or _source_covers_country(source, country, scopes))
+        and (normalized_level is None or normalized_level in source.event_levels)
+    ]
+
+
+def _source_covers_country(
+    source: EventSource,
+    country: str,
+    scopes: dict[str, CountryScope],
+) -> bool:
+    normalized_country = _normalize_country_code(country)
+    for country_or_scope in source.countries:
+        if _normalize_country_code(country_or_scope) == normalized_country:
+            return True
+
+        scope = scopes.get(country_or_scope)
+        if scope is not None and scope.covers(normalized_country):
+            return True
+
+    return False
+
+
+def _included_statuses(include_planned: bool) -> set[str]:
+    return {"active", "planned"} if include_planned else {"active"}
+
+
+def _normalize_country_code(country: str) -> str:
+    normalized_country = country.strip().upper().replace(" ", "_")
+    if not normalized_country:
+        raise ValueError("country must be a non-empty FEI/NOC code")
+    return normalized_country
+
+
+def _normalize_token(value: str) -> str:
+    return value.strip().lower().replace(" ", "_")
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
