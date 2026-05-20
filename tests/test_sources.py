@@ -27,6 +27,24 @@ class EventSourceTests(unittest.TestCase):
                 self.assertIn(national_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
 
+    def test_non_priority_regions_still_include_global_national_events(self):
+        sources = sources_for_region("canada")
+        source_ids = [source.id for source in sources]
+
+        self.assertEqual(source_ids, ["data_fei", "global_national_federations"])
+
+        global_source = sources[1]
+        self.assertEqual(global_source.countries, ("all_fei_member_nations",))
+        self.assertEqual(global_source.event_levels, ("all_national_event_levels",))
+
+    def test_national_sources_cover_all_event_levels(self):
+        for source in load_event_sources():
+            if source.scope != "national":
+                continue
+
+            with self.subTest(source=source.id):
+                self.assertIn("all_national_event_levels", source.event_levels)
+
     def test_active_only_filter_keeps_current_primary_source(self):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
 
