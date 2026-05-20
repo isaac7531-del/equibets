@@ -1,6 +1,13 @@
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import (
+    NATIONAL_EVENT_LEVELS,
+    load_event_sources,
+    load_national_event_levels,
+    sources_for_country,
+    sources_for_event_level,
+    sources_for_region,
+)
 
 
 class EventSourceTests(unittest.TestCase):
@@ -31,6 +38,39 @@ class EventSourceTests(unittest.TestCase):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
 
         self.assertEqual(source_ids, ["data_fei"])
+
+    def test_global_national_source_covers_all_countries(self):
+        source_ids = [source.id for source in sources_for_country("CAN")]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("global_national_federations", source_ids)
+
+    def test_country_sources_include_exact_national_match(self):
+        source_ids = [source.id for source in sources_for_country("GBR")]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("british_eventing", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+
+    def test_national_sources_cover_all_configured_levels(self):
+        national_sources = [
+            source for source in load_event_sources() if source.scope == "national"
+        ]
+
+        self.assertGreater(len(national_sources), 0)
+        for source in national_sources:
+            with self.subTest(source_id=source.id):
+                self.assertEqual(source.event_levels, NATIONAL_EVENT_LEVELS)
+
+    def test_national_level_taxonomy_is_loaded_from_registry(self):
+        self.assertEqual(load_national_event_levels(), NATIONAL_EVENT_LEVELS)
+
+    def test_sources_for_event_level_matches_canonical_level_names(self):
+        source_ids = [source.id for source in sources_for_event_level("state-provincial")]
+
+        self.assertNotIn("data_fei", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+        self.assertIn("usea", source_ids)
 
 
 if __name__ == "__main__":

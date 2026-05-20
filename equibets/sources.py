@@ -14,6 +14,29 @@ from pathlib import Path
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
 
+NATIONAL_EVENT_LEVELS = (
+    "national_championship",
+    "national",
+    "regional",
+    "state_provincial",
+    "area",
+    "local",
+    "grassroots",
+    "schooling",
+    "training",
+    "introductory",
+    "youth",
+    "pony",
+    "amateur",
+)
+
+GLOBAL_COUNTRY_TOKENS = frozenset(
+    {
+        "all_countries",
+        "all_fei_member_nations",
+    }
+)
+
 
 @dataclass(frozen=True)
 class EventSource:
@@ -63,6 +86,15 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
     )
 
 
+def load_national_event_levels(path: Path | str = DATA_FILE) -> tuple[str, ...]:
+    """Load canonical domestic event levels from the source registry."""
+
+    with Path(path).open(encoding="utf-8") as source_file:
+        payload = json.load(source_file)
+
+    return _string_tuple(payload, "national_event_levels")
+
+
 def sources_for_region(
     region: str,
     *,
@@ -79,6 +111,46 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources that cover an ISO 3166-1 alpha-3 country code."""
+
+    normalized_country = country.upper().replace(" ", "_")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and (
+            normalized_country in source.countries
+            or any(token in source.countries for token in GLOBAL_COUNTRY_TOKENS)
+        )
+    ]
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources that explicitly cover a canonical event level."""
+
+    normalized_level = _normalize_key(event_level)
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and normalized_level in source.event_levels
     ]
 
 
@@ -114,3 +186,7 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _normalize_key(value: str) -> str:
+    return value.strip().lower().replace("-", "_").replace(" ", "_")
