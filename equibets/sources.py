@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRIES = "all_countries"
+ALL_EVENTING_LEVELS = "all_eventing_levels"
 
 
 @dataclass(frozen=True)
@@ -66,12 +68,13 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
+    normalized_region = _normalized_token(region)
     statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
@@ -79,7 +82,50 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+        and _covers_level(source, level)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional level by priority."""
+
+    normalized_country = country.strip().upper()
+    if not normalized_country:
+        raise ValueError("country must be a non-empty string")
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _covers_country(source, normalized_country)
+        and _covers_level(source, level)
+    ]
+
+
+def _covers_country(source: EventSource, normalized_country: str) -> bool:
+    country_tokens = {_normalized_token(country) for country in source.countries}
+    country_codes = {country.upper() for country in source.countries}
+    return ALL_COUNTRIES in country_tokens or normalized_country in country_codes
+
+
+def _covers_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_level = _normalized_token(level)
+    source_levels = {_normalized_token(source_level) for source_level in source.event_levels}
+    return ALL_EVENTING_LEVELS in source_levels or normalized_level in source_levels
+
+
+def _normalized_token(value: str) -> str:
+    return value.strip().lower().replace(" ", "_")
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
