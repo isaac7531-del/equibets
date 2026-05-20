@@ -1,6 +1,10 @@
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import (
+    load_event_sources,
+    sources_for_country,
+    sources_for_region,
+)
 
 
 class EventSourceTests(unittest.TestCase):
@@ -28,9 +32,48 @@ class EventSourceTests(unittest.TestCase):
                 self.assertIn("global_national_federations", source_ids)
 
     def test_active_only_filter_keeps_current_primary_source(self):
-        source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
+        source_ids = [
+            source.id for source in sources_for_region("usa", include_planned=False)
+        ]
 
         self.assertEqual(source_ids, ["data_fei"])
+
+    def test_country_lookup_includes_priority_national_and_global_sources(self):
+        source_ids = [
+            source.id
+            for source in sources_for_country("GBR", level="Intermediate")
+        ]
+
+        self.assertEqual(
+            source_ids,
+            [
+                "europe_national_federations",
+                "british_eventing",
+                "global_national_federations",
+            ],
+        )
+
+    def test_country_lookup_keeps_fei_for_international_levels(self):
+        source_ids = [
+            source.id for source in sources_for_country("fra", level="CCI2*-S")
+        ]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("europe_national_federations", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+
+    def test_country_lookup_backfills_non_priority_countries_at_all_levels(self):
+        source_ids = [source.id for source in sources_for_country("BRA", level="Novice")]
+
+        self.assertEqual(source_ids, ["global_national_federations"])
+
+    def test_region_lookup_can_filter_by_event_level(self):
+        source_ids = [
+            source.id
+            for source in sources_for_region("usa", level="Beginner Novice")
+        ]
+
+        self.assertEqual(source_ids, ["usea", "global_national_federations"])
 
 
 if __name__ == "__main__":

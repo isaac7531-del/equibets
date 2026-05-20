@@ -9,8 +9,9 @@ shows how horse/rider combinations are performing before upcoming events.
 - Search a horse/rider combination and see recent finishing scores.
 - Compare official/public results with scores the user has added manually.
 - See a likely finishing score for upcoming events.
-- Track all nations over time, while prioritizing richer national-event data
-  from Europe, the UK, Australia, New Zealand, and the USA.
+- Track all countries and all eventing levels over time, while prioritizing
+  richer national-event data from Europe, the UK, Australia, New Zealand, and
+  the USA.
 
 ## Data consolidation
 
@@ -34,6 +35,10 @@ override official results.
 5. Normalize records into the common result table.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
+
+Country-specific national-event refreshes should use
+`sources_for_country(country, level=...)` so priority national sources and the
+global all-country/all-level backfill are selected consistently.
 
 ## Prediction logic
 

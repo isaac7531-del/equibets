@@ -7,12 +7,70 @@ that are important for broader coverage.
 from __future__ import annotations
 
 import json
+import re
 from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRIES = "all_countries"
+ALL_EVENTING_LEVELS = "all_eventing_levels"
+ALL_FEI_MEMBER_NATIONS = "all_fei_member_nations"
+ALL_FEI_EUROPE_MEMBER_NATIONS = "all_fei_europe_member_nations"
+FEI_INTERNATIONAL_LEVEL = "fei_international"
+
+EUROPEAN_FEI_COUNTRIES = frozenset(
+    {
+        "ALB",
+        "AND",
+        "ARM",
+        "AUT",
+        "AZE",
+        "BEL",
+        "BIH",
+        "BLR",
+        "BUL",
+        "CRO",
+        "CYP",
+        "CZE",
+        "DEN",
+        "ESP",
+        "EST",
+        "FIN",
+        "FRA",
+        "GBR",
+        "GEO",
+        "GER",
+        "GRE",
+        "HUN",
+        "IRL",
+        "ISL",
+        "ISR",
+        "ITA",
+        "LAT",
+        "LIE",
+        "LTU",
+        "LUX",
+        "MDA",
+        "MKD",
+        "MLT",
+        "MON",
+        "NED",
+        "NOR",
+        "POL",
+        "POR",
+        "ROU",
+        "RUS",
+        "SLO",
+        "SRB",
+        "SUI",
+        "SVK",
+        "SWE",
+        "TUR",
+        "UKR",
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -66,6 +124,7 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
@@ -79,6 +138,28 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+        and _source_covers_level(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = country.upper().replace(" ", "_")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _source_covers_country(source, normalized_country)
+        and _source_covers_level(source, level)
     ]
 
 
@@ -114,3 +195,42 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _source_covers_country(source: EventSource, country: str) -> bool:
+    countries = {_normalize_country(item) for item in source.countries}
+    if ALL_COUNTRIES in countries or ALL_FEI_MEMBER_NATIONS in countries:
+        return True
+    if country in countries:
+        return True
+    return (
+        ALL_FEI_EUROPE_MEMBER_NATIONS in countries
+        and country in EUROPEAN_FEI_COUNTRIES
+    )
+
+
+def _source_covers_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_level = _normalize_level(level)
+    source_levels = {_normalize_level(item) for item in source.event_levels}
+    if ALL_EVENTING_LEVELS in source_levels or normalized_level in source_levels:
+        return True
+    return FEI_INTERNATIONAL_LEVEL in source_levels and _is_fei_international_level(
+        normalized_level
+    )
+
+
+def _normalize_country(country: str) -> str:
+    if country.startswith("all_"):
+        return country.lower()
+    return country.upper().replace(" ", "_")
+
+
+def _normalize_level(level: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", level.lower()).strip("_")
+
+
+def _is_fei_international_level(level: str) -> bool:
+    return level == FEI_INTERNATIONAL_LEVEL or level.startswith("cci")
