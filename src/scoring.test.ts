@@ -1,5 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { calculateScore, formatSeconds, parseTimeToSeconds, sortByBestScore, type StoredResult } from './scoring';
+import {
+  buildRiderLevelDirectory,
+  calculateScore,
+  formatSeconds,
+  parseTimeToSeconds,
+  sortByBestScore,
+  type StoredResult,
+} from './scoring';
 
 describe('eventing scoring', () => {
   it('calculates dressage and time penalties in tenths', () => {
@@ -42,6 +49,7 @@ describe('eventing scoring', () => {
       rider: 'Rider',
       horse: 'Horse',
       eventName: 'Event',
+      level: 'Training',
       date: '2026-05-13',
       notes: '',
       dressagePercentage: 70,
@@ -66,5 +74,42 @@ describe('eventing scoring', () => {
     ] satisfies StoredResult[];
 
     expect(sortByBestScore(results).map((result) => result.id)).toEqual(['1', '2']);
+  });
+
+  it('groups each rider horses by level', () => {
+    const baseResult = {
+      eventName: 'Event',
+      date: '2026-05-13',
+      notes: '',
+      dressagePercentage: 70,
+      showJumpingPenalties: 0,
+      crossCountryJumpPenalties: 0,
+      optimumTimeSeconds: 300,
+      actualTimeSeconds: 300,
+      createdAt: '2026-05-13T10:00:00.000Z',
+      score: calculateScore({
+        dressagePercentage: 70,
+        showJumpingPenalties: 0,
+        crossCountryJumpPenalties: 0,
+        optimumTimeSeconds: 300,
+        actualTimeSeconds: 300,
+      }),
+    };
+    const results = [
+      { ...baseResult, id: '1', rider: 'Avery Stone', horse: 'Juniper', level: 'Training' },
+      { ...baseResult, id: '2', rider: 'Avery Stone', horse: 'Oakley', level: 'Novice' },
+      { ...baseResult, id: '3', rider: 'Avery Stone', horse: 'Juniper', level: 'Training' },
+      { ...baseResult, id: '4', rider: 'Morgan Lee', horse: 'Copperfield', level: 'Preliminary' },
+    ] satisfies StoredResult[];
+
+    expect(buildRiderLevelDirectory(results, 'Avery Stone')).toEqual([
+      {
+        rider: 'Avery Stone',
+        levels: [
+          { level: 'Novice', horses: ['Oakley'] },
+          { level: 'Training', horses: ['Juniper'] },
+        ],
+      },
+    ]);
   });
 });
