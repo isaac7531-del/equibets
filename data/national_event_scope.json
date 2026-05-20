@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "updated_at": "2026-05-20",
+  "coverage_goal": "Collect national and regional eventing results for every FEI-affiliated National Federation, across every domestic class or level each federation publishes.",
+  "official_reference": {
+    "name": "FEI National Federations",
+    "summary_url": "https://inside.fei.org/fei/about-fei/structure/national-federations",
+    "database_url": "http://data.fei.org/NFPages/NF/Search",
+    "affiliated_national_federation_count": 135,
+    "notes": "The FEI National Federation database is the authoritative country list and supports lookup by country name or NOC code."
+  },
+  "country_groups": [
+    {
+      "id": "all_fei_member_nations",
+      "name": "All FEI member nations",
+      "coverage": "global",
+      "member_count": 135,
+      "country_codes": [
+        "*"
+      ],
+      "source_url": "http://data.fei.org/NFPages/NF/Search",
+      "notes": "Resolve the current country list dynamically from the FEI National Federation database when collecting data."
+    },
+    {
+      "id": "all_fei_europe_member_nations",
+      "name": "All European FEI member nations",
+      "coverage": "regional_dynamic",
+      "regions": [
+        "europe"
+      ],
+      "country_codes": [],
+      "source_url": "http://data.fei.org/NFPages/NF/Search",
+      "notes": "European country membership is intentionally resolved from FEI federation metadata instead of hard-coded in this repository."
+    }
+  ],
+  "event_level_groups": [
+    {
+      "id": "all_national_event_levels",
+      "source_event_levels": [
+        "national",
+        "regional"
+      ],
+      "class_policy": "Do not filter out domestic class names. Collect every published national, regional, grassroots, training, novice, intermediate, advanced, CCN, CNC, and federation-specific class code from each source."
+    }
+  ],
+  "update_order": [
+    "data_fei",
+    "europe_national_federations",
+    "british_eventing",
+    "equestrian_australia",
+    "equestrian_sports_new_zealand",
+    "usea",
+    "global_national_federations"
+  ],
+  "national_results_output": {
+    "path": "data/national_results.json",
+    "format": "EventingResult JSON payload",
+    "notes": "National crawlers should write normalized results here before consolidation with FEI and user-entered results."
+  }
+}

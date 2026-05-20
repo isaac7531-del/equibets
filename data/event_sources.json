@@ -1,7 +1,7 @@
 {
   "version": 1,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results for all FEI-affiliated nations, prioritizing data.fei and supplementing with national-event sources across every domestic class those sources publish.",
   "priority_regions": [
     "europe",
     "uk",
@@ -53,7 +53,7 @@
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations."
+      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations. Scope is defined in data/national_event_scope.json."
     },
     {
       "id": "british_eventing",
@@ -76,7 +76,7 @@
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
       "status": "planned",
-      "notes": "High-priority national-event source for UK coverage."
+      "notes": "High-priority national-event source for UK coverage. Collect every published national and regional eventing class."
     },
     {
       "id": "equestrian_australia",
@@ -99,7 +99,7 @@
       "source_type": "national_federation",
       "base_url": "https://www.equestrian.org.au/",
       "status": "planned",
-      "notes": "High-priority national-event source for Australian coverage."
+      "notes": "High-priority national-event source for Australian coverage. Collect every published national and regional eventing class."
     },
     {
       "id": "equestrian_sports_new_zealand",
@@ -122,7 +122,7 @@
       "source_type": "national_federation",
       "base_url": "https://www.nzequestrian.org.nz/",
       "status": "planned",
-      "notes": "High-priority national-event source for New Zealand coverage."
+      "notes": "High-priority national-event source for New Zealand coverage. Collect every published national and regional eventing class."
     },
     {
       "id": "usea",
@@ -145,7 +145,7 @@
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
       "status": "planned",
-      "notes": "High-priority national-event source for USA coverage."
+      "notes": "High-priority national-event source for USA coverage. Collect every published national and regional eventing class."
     },
     {
       "id": "global_national_federations",
@@ -168,7 +168,7 @@
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered. Scope is defined in data/national_event_scope.json."
     }
   ]
 }

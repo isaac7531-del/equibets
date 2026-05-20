@@ -28,12 +28,20 @@ override official results.
 ## Weekly update flow
 
 1. Pull new FEI results from `data.fei.org`.
-2. Pull national-event updates from the priority regions.
-3. Pull global national-federation results as a backfill.
-4. Store raw source payloads for auditability.
-5. Normalize records into the common result table.
-6. Re-run consolidation and prediction calculations.
-7. Show the latest `collected_at` timestamp in the website UI.
+2. Load `data/national_event_scope.json` to target every FEI-affiliated National
+   Federation and every domestic class published under national or regional
+   eventing results.
+3. Pull national-event updates from the priority regions.
+4. Pull global national-federation results as a backfill.
+5. Store raw source payloads for auditability.
+6. Normalize records into the common result table.
+7. Re-run consolidation and prediction calculations.
+8. Show the latest `collected_at` timestamp in the website UI.
+
+`equibets.national_scope` builds the national source plan for either the full
+all-country/all-level refresh or a narrower country and event-level refresh.
+National crawlers should normalize their output to `data/national_results.json`
+before consolidation with FEI and user-entered results.
 
 ## Prediction logic
 

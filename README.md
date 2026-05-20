@@ -67,6 +67,24 @@ Run the source registry checks with:
 python3 -m unittest discover -s tests
 ```
 
+## National-event data scope
+
+National-event collection scope lives in `data/national_event_scope.json` and is
+loaded with `equibets.national_scope`. It defines the all-country target as every
+FEI-affiliated National Federation and the all-level target as every domestic
+class published under national or regional eventing results.
+
+Print the current national update plan with:
+
+```bash
+python3 -m equibets.national_scope
+```
+
+Use `--country USA --event-level regional` to inspect the national sources that
+can contribute to a narrower country/level refresh. National crawlers should
+write normalized results to `data/national_results.json` before consolidation
+with FEI and user-entered results.
+
 ## FEI Data bot
 
 The FEI crawler lives in `equibets.fei_bot` and stores normalized eventing
