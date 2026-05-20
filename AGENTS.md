@@ -34,3 +34,9 @@ with a Python package for FEI data collection and event source management.
 - Client tests use jsdom + `@testing-library/react` with a mocked `fetch`.
 - The Python package currently uses only the standard library at runtime. Use
   `python3 -m pip install -e .` when editable package metadata is needed.
+
+## Checks
+
+- Run frontend tests with `npm test`.
+- Run the production frontend build with `npm run build`.
+- Run Python tests with `python3 -m unittest discover -s tests`.
