@@ -12,7 +12,9 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+DATA_DIR = Path(__file__).resolve().parents[1] / "data"
+DATA_FILE = DATA_DIR / "event_sources.json"
+SCOPE_FILE = DATA_DIR / "national_event_scope.json"
 
 
 @dataclass(frozen=True)
@@ -82,6 +84,72 @@ def sources_for_region(
     ]
 
 
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    scope_path: Path | str = SCOPE_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country code while preserving priorities."""
+
+    normalized_country = _normalize_country(country)
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and normalized_country in expand_country_codes(source.countries, scope_path=scope_path)
+    ]
+
+
+def sources_for_level(
+    level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    scope_path: Path | str = SCOPE_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an event level while preserving priorities."""
+
+    normalized_level = _normalize_level(level)
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and normalized_level
+        in {
+            _normalize_level(source_level)
+            for source_level in expand_event_levels(source.event_levels, scope_path=scope_path)
+        }
+    ]
+
+
+def expand_country_codes(
+    countries: Iterable[str],
+    *,
+    scope_path: Path | str = SCOPE_FILE,
+) -> tuple[str, ...]:
+    """Resolve country group aliases such as ``all_countries`` to ISO codes."""
+
+    groups = _load_scope_groups("country_groups", scope_path)
+    return tuple(_normalize_country(country) for country in _expand_values(countries, groups))
+
+
+def expand_event_levels(
+    event_levels: Iterable[str],
+    *,
+    scope_path: Path | str = SCOPE_FILE,
+) -> tuple[str, ...]:
+    """Resolve event-level group aliases such as ``all_national_event_levels``."""
+
+    groups = _load_scope_groups("event_level_groups", scope_path)
+    return tuple(_expand_values(event_levels, groups))
+
+
 def _required_str(values: dict[str, object], key: str) -> str:
     value = values.get(key)
     if not isinstance(value, str) or not value:
@@ -114,3 +182,60 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _load_scope_groups(
+    group_name: str,
+    scope_path: Path | str,
+) -> dict[str, tuple[str, ...]]:
+    with Path(scope_path).open(encoding="utf-8") as scope_file:
+        payload = json.load(scope_file)
+
+    raw_groups = payload.get(group_name)
+    if not isinstance(raw_groups, dict):
+        raise ValueError(f"{group_name} must be an object")
+
+    groups: dict[str, tuple[str, ...]] = {}
+    for key, values in raw_groups.items():
+        if not isinstance(key, str) or not key:
+            raise ValueError(f"{group_name} keys must be non-empty strings")
+        if not isinstance(values, Iterable) or isinstance(values, (str, bytes)):
+            raise ValueError(f"{group_name}.{key} must be a list of strings")
+        items = tuple(values)
+        if not all(isinstance(item, str) and item for item in items):
+            raise ValueError(f"{group_name}.{key} must contain only non-empty strings")
+        groups[key] = items
+    return groups
+
+
+def _expand_values(
+    values: Iterable[str],
+    groups: dict[str, tuple[str, ...]],
+) -> tuple[str, ...]:
+    expanded: list[str] = []
+    seen: set[str] = set()
+
+    def add(value: str, stack: tuple[str, ...]) -> None:
+        if value in groups:
+            if value in stack:
+                cycle = " -> ".join((*stack, value))
+                raise ValueError(f"Scope group cycle detected: {cycle}")
+            for item in groups[value]:
+                add(item, (*stack, value))
+            return
+
+        if value not in seen:
+            seen.add(value)
+            expanded.append(value)
+
+    for value in values:
+        add(value, ())
+    return tuple(expanded)
+
+
+def _normalize_country(country: str) -> str:
+    return country.strip().upper()
+
+
+def _normalize_level(level: str) -> str:
+    return level.strip().lower().replace(" ", "_")
