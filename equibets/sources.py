@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_MARKERS = frozenset({"all_fei_member_nations", "all_countries"})
+ALL_LEVEL_MARKERS = frozenset({"all_eventing_levels", "all_levels"})
 
 
 @dataclass(frozen=True)
@@ -31,6 +33,32 @@ class EventSource:
     base_url: str | None
     status: str
     notes: str
+
+    def covers_region(self, region: str) -> bool:
+        """Return whether the source covers a region name."""
+
+        normalized_region = _normalize_token(region)
+        return "global" in self.regions or normalized_region in self.regions
+
+    def covers_country(self, country: str) -> bool:
+        """Return whether the source covers a country code or country marker."""
+
+        normalized_country = country.strip().upper()
+        return any(
+            source_country in ALL_COUNTRY_MARKERS
+            or source_country.upper() == normalized_country
+            for source_country in self.countries
+        )
+
+    def covers_level(self, event_level: str) -> bool:
+        """Return whether the source covers a requested eventing level."""
+
+        normalized_level = _normalize_token(event_level)
+        return any(
+            source_level in ALL_LEVEL_MARKERS
+            or _normalize_token(source_level) == normalized_level
+            for source_level in self.event_levels
+        )
 
     @classmethod
     def from_mapping(cls, values: dict[str, object]) -> "EventSource":
@@ -71,15 +99,54 @@ def sources_for_region(
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in _allowed_statuses(include_planned)
+        and source.covers_region(region)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+    event_level: str | None = None,
+) -> list[EventSource]:
+    """Return sources covering a country, optionally narrowed to one level."""
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        if source.status in _allowed_statuses(include_planned)
+        and source.covers_country(country)
+        and (event_level is None or source.covers_level(event_level))
     ]
+
+
+def sources_for_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an eventing level across all countries."""
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in _allowed_statuses(include_planned)
+        and source.covers_level(event_level)
+    ]
+
+
+def _allowed_statuses(include_planned: bool) -> set[str]:
+    return {"active", "planned"} if include_planned else {"active"}
+
+
+def _normalize_token(value: str) -> str:
+    return value.strip().lower().replace(" ", "_").replace("-", "_")
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
