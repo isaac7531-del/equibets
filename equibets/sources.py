@@ -13,6 +13,10 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_SCOPES = frozenset({"all_countries", "all_fei_member_nations"})
+FEI_LEVEL_SCOPE = "all_fei_eventing_levels"
+NATIONAL_LEVEL_SCOPE = "all_national_eventing_levels"
+FEI_LEVEL_PREFIXES = ("cci", "ch_", "fei_")
 
 
 @dataclass(frozen=True)
@@ -80,6 +84,76 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country while preserving global priorities."""
+
+    normalized_country = country.strip().upper()
+    if not normalized_country:
+        raise ValueError("country must be a non-empty string")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and any(
+            _normalized_scope(country_code) in ALL_COUNTRY_SCOPES
+            or country_code.upper() == normalized_country
+            for country_code in source.countries
+        )
+    ]
+
+
+def sources_for_level(
+    level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an eventing level while preserving priorities."""
+
+    normalized_level = _normalized_scope(level)
+    if not normalized_level:
+        raise ValueError("level must be a non-empty string")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and any(
+            _source_covers_level(event_level, normalized_level)
+            for event_level in source.event_levels
+        )
+    ]
+
+
+def _normalized_scope(value: str) -> str:
+    return (
+        value.strip()
+        .lower()
+        .replace(" ", "_")
+        .replace("-", "_")
+        .replace("*", "star")
+    )
+
+
+def _source_covers_level(source_level: str, requested_level: str) -> bool:
+    normalized_source_level = _normalized_scope(source_level)
+    if normalized_source_level == "all_eventing_levels":
+        return True
+    if normalized_source_level == FEI_LEVEL_SCOPE:
+        return requested_level.startswith(FEI_LEVEL_PREFIXES)
+    if normalized_source_level == NATIONAL_LEVEL_SCOPE:
+        return not requested_level.startswith(FEI_LEVEL_PREFIXES)
+    return normalized_source_level == requested_level
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
