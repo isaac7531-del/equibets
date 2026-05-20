@@ -13,6 +13,69 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+GLOBAL_COUNTRY_TOKENS = frozenset({"ALL_FEI_MEMBER_NATIONS"})
+EUROPE_COUNTRY_TOKENS = frozenset({"ALL_FEI_EUROPE_MEMBER_NATIONS"})
+ALL_EVENT_LEVEL_TOKENS = frozenset({"all_eventing_levels"})
+ALL_NATIONAL_EVENT_LEVEL_TOKENS = frozenset({"all_national_event_levels"})
+NATIONAL_EVENT_LEVELS = frozenset({"national", "regional", "local", "grassroots"})
+
+# FEI's European Group I/II nations plus European microstates represented by
+# national federations. These codes are used only to resolve the registry's
+# European aggregate token; global FEI-member tokens still cover every country.
+EUROPE_FEI_MEMBER_COUNTRIES = frozenset(
+    {
+        "ALB",
+        "AND",
+        "ARM",
+        "AUT",
+        "AZE",
+        "BEL",
+        "BIH",
+        "BLR",
+        "BUL",
+        "CRO",
+        "CYP",
+        "CZE",
+        "DEN",
+        "ESP",
+        "EST",
+        "FIN",
+        "FRA",
+        "GBR",
+        "GEO",
+        "GER",
+        "GRE",
+        "HUN",
+        "IRL",
+        "ISL",
+        "ISR",
+        "ITA",
+        "KOS",
+        "LAT",
+        "LIE",
+        "LTU",
+        "LUX",
+        "MDA",
+        "MKD",
+        "MLT",
+        "MNE",
+        "MON",
+        "NED",
+        "NOR",
+        "POL",
+        "POR",
+        "ROU",
+        "RUS",
+        "SMR",
+        "SRB",
+        "SLO",
+        "SUI",
+        "SVK",
+        "SWE",
+        "TUR",
+        "UKR",
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -68,6 +131,7 @@ def sources_for_region(
     *,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
+    event_levels: Iterable[str] | None = None,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
@@ -79,7 +143,62 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+        and source_covers_event_levels(source, event_levels)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+    event_levels: Iterable[str] | None = None,
+) -> list[EventSource]:
+    """Return sources covering a country and optional event tiers.
+
+    Country coverage supports explicit FEI/NOC country codes such as ``GBR``
+    and registry aggregate tokens such as ``all_fei_member_nations``.
+    """
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and source_covers_country(source, country)
+        and source_covers_event_levels(source, event_levels)
+    ]
+
+
+def source_covers_country(source: EventSource, country: str) -> bool:
+    """Return whether a source covers a FEI/NOC country code."""
+
+    normalized_country = _normalize_country(country)
+    if not normalized_country:
+        raise ValueError("country must be a non-empty string")
+
+    countries = frozenset(_normalize_country(item) for item in source.countries)
+    if GLOBAL_COUNTRY_TOKENS & countries:
+        return True
+    if EUROPE_COUNTRY_TOKENS & countries and normalized_country in EUROPE_FEI_MEMBER_COUNTRIES:
+        return True
+    return normalized_country in countries
+
+
+def source_covers_event_levels(
+    source: EventSource,
+    event_levels: Iterable[str] | None,
+) -> bool:
+    """Return whether a source covers at least one requested event tier."""
+
+    requested_levels = _normalize_event_levels(event_levels)
+    if not requested_levels:
+        return True
+
+    source_levels = _expand_event_levels(source.event_levels)
+    if ALL_EVENT_LEVEL_TOKENS & source_levels:
+        return True
+    return bool(source_levels & requested_levels)
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
@@ -114,3 +233,28 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _normalize_country(value: str) -> str:
+    return value.strip().upper().replace("-", "_").replace(" ", "_")
+
+
+def _normalize_event_levels(values: Iterable[str] | None) -> frozenset[str]:
+    if values is None:
+        return frozenset()
+    if isinstance(values, (str, bytes)):
+        values = (str(values),)
+    return _expand_event_levels(values)
+
+
+def _expand_event_levels(values: Iterable[str]) -> frozenset[str]:
+    levels = {_normalize_level(value) for value in values}
+    if ALL_EVENT_LEVEL_TOKENS & levels:
+        return levels | NATIONAL_EVENT_LEVELS | {"fei_international"}
+    if ALL_NATIONAL_EVENT_LEVEL_TOKENS & levels:
+        return levels | NATIONAL_EVENT_LEVELS
+    return frozenset(levels)
+
+
+def _normalize_level(value: str) -> str:
+    return value.strip().lower().replace("-", "_").replace(" ", "_")
