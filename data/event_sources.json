@@ -1,7 +1,18 @@
 {
   "version": 1,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results for every FEI member nation across international, national, regional, local, grassroots, and schooling levels.",
+  "coverage_countries": [
+    "all_fei_member_nations"
+  ],
+  "coverage_event_levels": [
+    "fei_international",
+    "national",
+    "regional",
+    "local",
+    "grassroots",
+    "schooling"
+  ],
   "priority_regions": [
     "europe",
     "uk",
@@ -48,12 +59,15 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "local",
+        "grassroots",
+        "schooling"
       ],
       "source_type": "federation_registry",
       "base_url": null,
-      "status": "planned",
-      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations."
+      "status": "active",
+      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations across all national-event levels."
     },
     {
       "id": "british_eventing",
@@ -71,12 +85,15 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "local",
+        "grassroots",
+        "schooling"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
-      "status": "planned",
-      "notes": "High-priority national-event source for UK coverage."
+      "status": "active",
+      "notes": "High-priority national-event source for UK coverage across all national-event levels."
     },
     {
       "id": "equestrian_australia",
@@ -94,12 +111,15 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "local",
+        "grassroots",
+        "schooling"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.equestrian.org.au/",
-      "status": "planned",
-      "notes": "High-priority national-event source for Australian coverage."
+      "status": "active",
+      "notes": "High-priority national-event source for Australian coverage across all national-event levels."
     },
     {
       "id": "equestrian_sports_new_zealand",
@@ -117,12 +137,15 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "local",
+        "grassroots",
+        "schooling"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.nzequestrian.org.nz/",
-      "status": "planned",
-      "notes": "High-priority national-event source for New Zealand coverage."
+      "status": "active",
+      "notes": "High-priority national-event source for New Zealand coverage across all national-event levels."
     },
     {
       "id": "usea",
@@ -140,12 +163,15 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "local",
+        "grassroots",
+        "schooling"
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
-      "status": "planned",
-      "notes": "High-priority national-event source for USA coverage."
+      "status": "active",
+      "notes": "High-priority national-event source for USA coverage across all national-event levels."
     },
     {
       "id": "global_national_federations",
@@ -163,12 +189,15 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "local",
+        "grassroots",
+        "schooling"
       ],
       "source_type": "federation_registry",
       "base_url": null,
-      "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "status": "active",
+      "notes": "Backfill national events for every FEI member nation and every national-event level after higher-priority regions are covered."
     }
   ]
 }

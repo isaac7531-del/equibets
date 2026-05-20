@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+GLOBAL_COUNTRY_TOKENS = frozenset({"all_fei_member_nations"})
+GLOBAL_LEVEL_TOKENS = frozenset({"all_event_levels", "all_national_event_levels"})
 
 
 @dataclass(frozen=True)
@@ -49,6 +51,32 @@ class EventSource:
             notes=_required_str(values, "notes"),
         )
 
+    def covers_region(self, region: str) -> bool:
+        """Return whether this source covers a configured region."""
+
+        normalized_region = _normalize_region(region)
+        return "global" in self.regions or normalized_region in self.regions
+
+    def covers_country(self, country: str) -> bool:
+        """Return whether this source covers an ISO-3 country code or aggregate."""
+
+        normalized_country = country.strip().upper().replace(" ", "_")
+        source_countries = {item.upper() for item in self.countries}
+        return (
+            bool(GLOBAL_COUNTRY_TOKENS.intersection(self.countries))
+            or normalized_country in source_countries
+        )
+
+    def covers_event_level(self, event_level: str) -> bool:
+        """Return whether this source covers a normalized event level."""
+
+        normalized_level = _normalize_level(event_level)
+        source_levels = {_normalize_level(level) for level in self.event_levels}
+        return (
+            bool(GLOBAL_LEVEL_TOKENS.intersection(source_levels))
+            or normalized_level in source_levels
+        )
+
 
 def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
     """Load sources sorted by priority, with FEI first on ties."""
@@ -71,14 +99,46 @@ def sources_for_region(
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
     statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        if source.status in statuses and source.covers_region(region)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an ISO-3 country code or country aggregate."""
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and source.covers_country(country)
+    ]
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an event level while preserving priority order."""
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and source.covers_event_level(event_level)
     ]
 
 
@@ -114,3 +174,11 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _normalize_region(region: str) -> str:
+    return region.strip().lower().replace(" ", "_")
+
+
+def _normalize_level(event_level: str) -> str:
+    return event_level.strip().lower().replace(" ", "_").replace("-", "_")
