@@ -19,13 +19,15 @@
         "global"
       ],
       "countries": [
-        "all_countries"
+        "all_countries",
+        "all_fei_member_nations"
       ],
       "disciplines": [
         "eventing"
       ],
       "event_levels": [
-        "all_fei_eventing_levels"
+        "all_fei_eventing_levels",
+        "fei_international"
       ],
       "source_type": "primary_database",
       "base_url": "https://data.fei.org/",
@@ -47,7 +49,9 @@
         "eventing"
       ],
       "event_levels": [
-        "all_national_eventing_levels"
+        "all_national_eventing_levels",
+        "national",
+        "regional"
       ],
       "source_type": "federation_registry",
       "base_url": null,
@@ -69,7 +73,9 @@
         "eventing"
       ],
       "event_levels": [
-        "all_national_eventing_levels"
+        "all_national_eventing_levels",
+        "national",
+        "regional"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
@@ -91,7 +97,9 @@
         "eventing"
       ],
       "event_levels": [
-        "all_national_eventing_levels"
+        "all_national_eventing_levels",
+        "national",
+        "regional"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.equestrian.org.au/",
@@ -113,7 +121,9 @@
         "eventing"
       ],
       "event_levels": [
-        "all_national_eventing_levels"
+        "all_national_eventing_levels",
+        "national",
+        "regional"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.nzequestrian.org.nz/",
@@ -135,7 +145,9 @@
         "eventing"
       ],
       "event_levels": [
-        "all_national_eventing_levels"
+        "all_national_eventing_levels",
+        "national",
+        "regional"
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
@@ -151,13 +163,16 @@
         "global"
       ],
       "countries": [
-        "all_countries"
+        "all_countries",
+        "all_fei_member_nations"
       ],
       "disciplines": [
         "eventing"
       ],
       "event_levels": [
-        "all_national_eventing_levels"
+        "all_national_eventing_levels",
+        "national",
+        "regional"
       ],
       "source_type": "federation_registry",
       "base_url": null,
