@@ -3,5 +3,9 @@ dist/
 *.db
 *.db-wal
 *.db-shm
+*.local
 .env
 .DS_Store
+__pycache__/
+*.py[cod]
+*.egg-info/
