@@ -1,7 +1,7 @@
 """Event-result source registry helpers.
 
-The project prioritizes FEI data while still tracking national-event sources
-that are important for broader coverage.
+The project prioritizes FEI data while tracking national-event sources for
+all-country, all-level coverage.
 """
 
 from __future__ import annotations
@@ -13,6 +13,18 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+
+NATIONAL_EVENT_LEVELS = (
+    "national_championship",
+    "national",
+    "regional",
+    "state_provincial",
+    "local",
+    "grassroots",
+    "training",
+    "club",
+    "schooling",
+)
 
 
 @dataclass(frozen=True)
@@ -71,14 +83,52 @@ def sources_for_region(
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    normalized_region = _normalized_token(region)
+    statuses = _included_statuses(include_planned)
 
     return [
         source
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country while preserving global priorities."""
+
+    normalized_country = _normalized_country(country)
+    statuses = _included_statuses(include_planned)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _source_covers_country(source, normalized_country)
+    ]
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an event level while preserving global priorities."""
+
+    normalized_event_level = _normalized_token(event_level)
+    statuses = _included_statuses(include_planned)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _source_covers_event_level(source, normalized_event_level)
     ]
 
 
@@ -114,3 +164,27 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _included_statuses(include_planned: bool) -> set[str]:
+    return {"active", "planned"} if include_planned else {"active"}
+
+
+def _normalized_country(country: str) -> str:
+    return country.strip().upper().replace(" ", "_")
+
+
+def _normalized_token(value: str) -> str:
+    return value.strip().lower().replace("-", "_").replace("/", "_").replace(" ", "_")
+
+
+def _source_covers_country(source: EventSource, country: str) -> bool:
+    countries = {_normalized_country(value) for value in source.countries}
+    return country in countries or bool(
+        {"ALL_COUNTRIES", "ALL_FEI_MEMBER_NATIONS"} & countries
+    )
+
+
+def _source_covers_event_level(source: EventSource, event_level: str) -> bool:
+    levels = {_normalized_token(value) for value in source.event_levels}
+    return event_level in levels or "all_levels" in levels

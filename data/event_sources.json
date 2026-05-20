@@ -1,13 +1,23 @@
 {
-  "version": 1,
+  "version": 2,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
-  "priority_regions": [
-    "europe",
-    "uk",
-    "australia",
-    "new_zealand",
-    "usa"
+  "coverage_goal": "Collect eventing results for every country and every level, using data.fei for international FEI starts and national-event sources for federation, regional, local, grassroots, training, and schooling starts.",
+  "coverage_regions": [
+    "global"
+  ],
+  "country_scope": [
+    "all_countries"
+  ],
+  "national_event_level_scope": [
+    "national_championship",
+    "national",
+    "regional",
+    "state_provincial",
+    "local",
+    "grassroots",
+    "training",
+    "club",
+    "schooling"
   ],
   "sources": [
     {
@@ -30,7 +40,7 @@
       "source_type": "primary_database",
       "base_url": "https://data.fei.org/",
       "status": "active",
-      "notes": "Primary eventing source. Use before national sources whenever a result appears in the FEI database."
+      "notes": "Primary eventing source for FEI international starts. Use before national sources whenever a result appears in the FEI database."
     },
     {
       "id": "europe_national_federations",
@@ -47,13 +57,20 @@
         "eventing"
       ],
       "event_levels": [
+        "national_championship",
         "national",
-        "regional"
+        "regional",
+        "state_provincial",
+        "local",
+        "grassroots",
+        "training",
+        "club",
+        "schooling"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations."
+      "notes": "Discover and connect national federation calendars and result portals for European countries across all national-event levels."
     },
     {
       "id": "british_eventing",
@@ -70,13 +87,20 @@
         "eventing"
       ],
       "event_levels": [
+        "national_championship",
         "national",
-        "regional"
+        "regional",
+        "state_provincial",
+        "local",
+        "grassroots",
+        "training",
+        "club",
+        "schooling"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
       "status": "planned",
-      "notes": "High-priority national-event source for UK coverage."
+      "notes": "National-event source for UK coverage across all available eventing levels."
     },
     {
       "id": "equestrian_australia",
@@ -93,13 +117,20 @@
         "eventing"
       ],
       "event_levels": [
+        "national_championship",
         "national",
-        "regional"
+        "regional",
+        "state_provincial",
+        "local",
+        "grassroots",
+        "training",
+        "club",
+        "schooling"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.equestrian.org.au/",
       "status": "planned",
-      "notes": "High-priority national-event source for Australian coverage."
+      "notes": "National-event source for Australian coverage across all available eventing levels."
     },
     {
       "id": "equestrian_sports_new_zealand",
@@ -116,13 +147,20 @@
         "eventing"
       ],
       "event_levels": [
+        "national_championship",
         "national",
-        "regional"
+        "regional",
+        "state_provincial",
+        "local",
+        "grassroots",
+        "training",
+        "club",
+        "schooling"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.nzequestrian.org.nz/",
       "status": "planned",
-      "notes": "High-priority national-event source for New Zealand coverage."
+      "notes": "National-event source for New Zealand coverage across all available eventing levels."
     },
     {
       "id": "usea",
@@ -139,36 +177,80 @@
         "eventing"
       ],
       "event_levels": [
+        "national_championship",
         "national",
-        "regional"
+        "regional",
+        "state_provincial",
+        "local",
+        "grassroots",
+        "training",
+        "club",
+        "schooling"
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
       "status": "planned",
-      "notes": "High-priority national-event source for USA coverage."
+      "notes": "National-event source for USA coverage across all available eventing levels."
     },
     {
       "id": "global_national_federations",
-      "name": "All national federation results",
-      "priority": 90,
+      "name": "Global national federation and eventing results",
+      "priority": 60,
       "scope": "national",
       "regions": [
         "global"
       ],
       "countries": [
-        "all_fei_member_nations"
+        "all_countries"
       ],
       "disciplines": [
         "eventing"
       ],
       "event_levels": [
+        "national_championship",
         "national",
-        "regional"
+        "regional",
+        "state_provincial",
+        "local",
+        "grassroots",
+        "training",
+        "club",
+        "schooling"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "notes": "Backfill national events for every country and every non-FEI eventing level after country-specific sources are connected."
+    },
+    {
+      "id": "global_national_event_aggregators",
+      "name": "Global national event result aggregators",
+      "priority": 70,
+      "scope": "national",
+      "regions": [
+        "global"
+      ],
+      "countries": [
+        "all_countries"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national_championship",
+        "national",
+        "regional",
+        "state_provincial",
+        "local",
+        "grassroots",
+        "training",
+        "club",
+        "schooling"
+      ],
+      "source_type": "aggregator_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Supplement federation portals with country-level event-result aggregators when federation data is incomplete or unavailable."
     }
   ]
 }
