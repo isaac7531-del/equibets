@@ -1,6 +1,7 @@
+import json
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import DATA_FILE, load_event_sources, sources_for_country, sources_for_region
 
 
 class EventSourceTests(unittest.TestCase):
@@ -26,6 +27,46 @@ class EventSourceTests(unittest.TestCase):
                 self.assertEqual(source_ids[0], "data_fei")
                 self.assertIn(national_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
+
+    def test_national_registry_covers_all_countries_and_levels(self):
+        with DATA_FILE.open(encoding="utf-8") as source_file:
+            payload = json.load(source_file)
+
+        self.assertEqual(payload["version"], 2)
+        self.assertIn("all_countries", payload["coverage_wildcards"])
+        self.assertIn("all_eventing_levels", payload["coverage_wildcards"])
+
+        sources = load_event_sources()
+        global_backfill = next(
+            source for source in sources if source.id == "global_national_federations"
+        )
+        national_sources = [source for source in sources if source.scope == "national"]
+
+        self.assertEqual(global_backfill.countries, ("all_countries",))
+        self.assertTrue(national_sources)
+        for source in national_sources:
+            with self.subTest(source=source.id):
+                self.assertEqual(source.event_levels, ("all_eventing_levels",))
+
+    def test_region_level_filter_returns_national_all_level_sources(self):
+        source_ids = [
+            source.id for source in sources_for_region("usa", level="introductory")
+        ]
+
+        self.assertEqual(source_ids, ["usea", "global_national_federations"])
+
+    def test_country_filter_includes_exact_and_all_country_sources(self):
+        source_ids = [source.id for source in sources_for_country("GBR")]
+
+        self.assertEqual(
+            source_ids,
+            ["data_fei", "british_eventing", "global_national_federations"],
+        )
+
+    def test_country_level_filter_keeps_all_level_national_sources(self):
+        source_ids = [source.id for source in sources_for_country("GBR", level="grassroots")]
+
+        self.assertEqual(source_ids, ["british_eventing", "global_national_federations"])
 
     def test_active_only_filter_keeps_current_primary_source(self):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
