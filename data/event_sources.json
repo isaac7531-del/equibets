@@ -1,13 +1,15 @@
 {
   "version": 1,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results for every FEI member nation from FEI international and national-event sources across all eventing levels.",
   "priority_regions": [
-    "europe",
-    "uk",
-    "australia",
-    "new_zealand",
-    "usa"
+    "global"
+  ],
+  "country_scope": [
+    "all_fei_member_nations"
+  ],
+  "event_level_scope": [
+    "all_eventing_levels"
   ],
   "sources": [
     {
@@ -25,7 +27,16 @@
         "eventing"
       ],
       "event_levels": [
-        "fei_international"
+        "fei_international",
+        "cci5_star_l",
+        "cci4_star_l",
+        "cci4_star_s",
+        "cci3_star_l",
+        "cci3_star_s",
+        "cci2_star_l",
+        "cci2_star_s",
+        "cci1_star_intro",
+        "ccn"
       ],
       "source_type": "primary_database",
       "base_url": "https://data.fei.org/",
@@ -47,13 +58,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_eventing_levels"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations."
+      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations at every eventing level."
     },
     {
       "id": "british_eventing",
@@ -70,13 +80,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
       "status": "planned",
-      "notes": "High-priority national-event source for UK coverage."
+      "notes": "High-priority national-event source for UK coverage across every eventing level."
     },
     {
       "id": "equestrian_australia",
@@ -93,13 +102,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.equestrian.org.au/",
       "status": "planned",
-      "notes": "High-priority national-event source for Australian coverage."
+      "notes": "High-priority national-event source for Australian coverage across every eventing level."
     },
     {
       "id": "equestrian_sports_new_zealand",
@@ -116,13 +124,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.nzequestrian.org.nz/",
       "status": "planned",
-      "notes": "High-priority national-event source for New Zealand coverage."
+      "notes": "High-priority national-event source for New Zealand coverage across every eventing level."
     },
     {
       "id": "usea",
@@ -139,13 +146,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_eventing_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
       "status": "planned",
-      "notes": "High-priority national-event source for USA coverage."
+      "notes": "High-priority national-event source for USA coverage across every eventing level."
     },
     {
       "id": "global_national_federations",
@@ -162,13 +168,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_eventing_levels"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "notes": "Backfill national events for every FEI member nation and every eventing level after higher-priority country or regional sources are covered."
     }
   ]
 }
