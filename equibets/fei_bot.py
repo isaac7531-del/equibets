@@ -23,7 +23,7 @@ from urllib.error import HTTPError
 from urllib.parse import urlencode, urljoin, urlsplit
 from urllib.request import Request, build_opener
 
-from equibets.results import EventingResult, consolidate_results
+from equibets.results import EventingResult, ResultStore
 
 
 BASE_URL = "https://data.fei.org/"
@@ -596,55 +596,11 @@ class FeiVerifier:
         return cache[key]
 
 
-class FeiResultStore:
+class FeiResultStore(ResultStore):
     """Persist FEI results in the project's JSON result format."""
 
     def __init__(self, path: Path | str = DEFAULT_RESULTS_FILE) -> None:
-        self.path = Path(path)
-
-    def load(self) -> list[EventingResult]:
-        if not self.path.exists():
-            return []
-        with self.path.open(encoding="utf-8") as results_file:
-            payload = json.load(results_file)
-        return [EventingResult.from_mapping(item) for item in payload.get("results", [])]
-
-    def merge(self, new_results: Iterable[EventingResult]) -> list[EventingResult]:
-        return consolidate_results([*self.load(), *new_results])
-
-    def save(self, results: Sequence[EventingResult]) -> None:
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-        payload = {
-            "version": 1,
-            "source_id": "data_fei",
-            "updated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
-            "results": [result_to_mapping(result) for result in results],
-        }
-        with self.path.open("w", encoding="utf-8") as results_file:
-            json.dump(payload, results_file, indent=2, sort_keys=True)
-            results_file.write("\n")
-
-
-def result_to_mapping(result: EventingResult) -> dict[str, object]:
-    """Convert an EventingResult to JSON-serializable values."""
-
-    return {
-        "source_id": result.source_id,
-        "source_record_id": result.source_record_id,
-        "source_priority": result.source_priority,
-        "rider_name": result.rider_name,
-        "horse_name": result.horse_name,
-        "event_name": result.event_name,
-        "event_date": result.event_date.isoformat(),
-        "level": result.level,
-        "country": result.country,
-        "dressage_score": result.dressage_score,
-        "show_jumping_penalties": result.show_jumping_penalties,
-        "cross_country_jump_penalties": result.cross_country_jump_penalties,
-        "cross_country_time_penalties": result.cross_country_time_penalties,
-        "collected_at": result.collected_at.isoformat(),
-        "is_user_entered": result.is_user_entered,
-    }
+        super().__init__(path, source_id="data_fei")
 
 
 def extract_form_fields(html: str) -> dict[str, str]:

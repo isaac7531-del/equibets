@@ -11,6 +11,8 @@ from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
 
+from equibets.national_events import expand_country_scope
+
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
 
@@ -80,6 +82,14 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def country_codes_for_source(source: EventSource, *, national_path: Path | str | None = None) -> tuple[str, ...]:
+    """Expand a source's symbolic country coverage into FEI/NOC country codes."""
+
+    if national_path is None:
+        return expand_country_scope(source.countries)
+    return expand_country_scope(source.countries, path=national_path)
 
 
 def _required_str(values: dict[str, object], key: str) -> str:

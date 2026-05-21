@@ -1,0 +1,2234 @@
+{
+  "coverage_goal": "Track national and regional eventing result coverage for every FEI national federation.",
+  "default_event_levels": [
+    "national",
+    "regional"
+  ],
+  "federations": [
+    {
+      "country_name": "Albania",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "ALBANIAN EQUESTRIAN SPORTS FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "ALB",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Algeria",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION EQUESTRE ALGERIENNE",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "ALG",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Andorra",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3 ANDORRANA D'H\u00cdPICA",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "AND",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Angola",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERA\u00c7\u00c3O EQUESTRE DE ANGOLA",
+      "fei_group": "Group IX",
+      "national_results_url": null,
+      "noc_code": "ANG",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Antigua and Barbuda",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "ANTIGUA & BARBUDA HORSE SOCIETY",
+      "fei_group": "Group IV",
+      "national_results_url": null,
+      "noc_code": "ANT",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Argentina",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N ECUESTRE ARGENTINA",
+      "fei_group": "Group VI",
+      "national_results_url": null,
+      "noc_code": "ARG",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Armenia",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN FEDERATION OF ARMENIA",
+      "fei_group": "Group EEA",
+      "national_results_url": null,
+      "noc_code": "ARM",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Australia",
+      "coverage_sources": [
+        "equestrian_australia",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN AUSTRALIA",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "AUS",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Austria",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "\u00d6ESTERREICHISCHER PFERDESPORTVERBAND",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "AUT",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Azerbaijan",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN FEDERATION OF AZERBAIJAN",
+      "fei_group": "Group EEA",
+      "national_results_url": null,
+      "noc_code": "AZE",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Bahamas",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN BAHAMAS",
+      "fei_group": "Group IV",
+      "national_results_url": null,
+      "noc_code": "BAH",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Barbados",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "BARBADOS EQUESTRIAN ASSOCIATION",
+      "fei_group": "Group IV",
+      "national_results_url": null,
+      "noc_code": "BAR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Belgium",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION ROYALE BELGE DES SPORTS EQUESTRES",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "BEL",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Bermuda",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "BERMUDA EQUESTRIAN FEDERATION",
+      "fei_group": "Group IV",
+      "national_results_url": null,
+      "noc_code": "BER",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Bosnia and Herzegovina",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "ASSOCIATION OF EQUESTRIAN ORGANISATIONS OF BOSNIA AND HERZEGOVINA",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "BIH",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Belarus",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN FEDERATION OF BELARUS",
+      "fei_group": "Group EEA",
+      "national_results_url": null,
+      "noc_code": "BLR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Bolivia",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N BOLIVIANA DE DEPORTES ECUESTRES",
+      "fei_group": "Group VI",
+      "national_results_url": null,
+      "noc_code": "BOL",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Botswana",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "THE HORSE SOCIETY OF BOTSWANA",
+      "fei_group": "Group IX",
+      "national_results_url": null,
+      "noc_code": "BOT",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Brazil",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "CONFEDERA\u00c7\u00c3O BRASILEIRA DE HIPISMO",
+      "fei_group": "Group VI",
+      "national_results_url": null,
+      "noc_code": "BRA",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Bahrain",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "BAHRAIN ROYAL EQUESTRIAN & ENDURANCE FEDERATION",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "BRN",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Bulgaria",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "BULGARIAN EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "BUL",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Cambodia",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "CAMBODIAN EQUESTRIAN FEDERATION",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "CAM",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Canada",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN CANADA EQUESTRE",
+      "fei_group": "Group IV",
+      "national_results_url": null,
+      "noc_code": "CAN",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Cayman Islands",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "CAYMAN ISLANDS EQUESTRIAN FEDERATION",
+      "fei_group": "Group IV",
+      "national_results_url": null,
+      "noc_code": "CAY",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Chile",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N DEPORTIVA NACIONAL ECUESTRE DE CHILE",
+      "fei_group": "Group VI",
+      "national_results_url": null,
+      "noc_code": "CHI",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "China (People's Republic of)",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "CHINESE EQUESTRIAN ASSOCIATION",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "CHN",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "C\u00f4te d\u2019Ivoire",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION IVOIRIENNE D'EQUITATION",
+      "fei_group": "Group IX",
+      "national_results_url": null,
+      "noc_code": "CIV",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Congo (Dem. Rep. of the)",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION CONGOLAISE DES SPORTS EQUESTRES (F.C.S.E.)",
+      "fei_group": "Group IX",
+      "national_results_url": null,
+      "noc_code": "COD",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Colombia",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N ECUESTRE DE COLOMBIA",
+      "fei_group": "Group V",
+      "national_results_url": null,
+      "noc_code": "COL",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Costa Rica",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N ECUESTRE DE COSTA RICA",
+      "fei_group": "Group V",
+      "national_results_url": null,
+      "noc_code": "CRC",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Croatia",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "CROATIAN EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "CRO",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Cuba",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N ECUESTRE CUBANA",
+      "fei_group": "Group V",
+      "national_results_url": null,
+      "noc_code": "CUB",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Cyprus",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "CYPRUS EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "CYP",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Czech Republic",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "CZECH EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "CZE",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Denmark",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "DANSK RIDE FORBUND",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "DEN",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Dominican Republic",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N DOMINICANA DE DEPORTES ECUESTRES INC.",
+      "fei_group": "Group V",
+      "national_results_url": null,
+      "noc_code": "DOM",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Ecuador",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N ECUATORIANA DE DEPORTES ECUESTRES",
+      "fei_group": "Group VI",
+      "national_results_url": null,
+      "noc_code": "ECU",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Egypt",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EGYPTIAN EQUESTRIAN FEDERATION (EEF)",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "EGY",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "El Salvador",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N SALVADORE\u00d1A DE ECUESTRES",
+      "fei_group": "Group V",
+      "national_results_url": null,
+      "noc_code": "ESA",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Spain",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "REAL FEDERACI\u00d3N H\u00cdPICA ESPA\u00d1OLA",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "ESP",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Estonia",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN FEDERATION OF ESTONIA",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "EST",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Ethiopia",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "ETHIOPIAN EQUESTRIAN ASSOCIATION",
+      "fei_group": "Group IX",
+      "national_results_url": null,
+      "noc_code": "ETH",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Finland",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "THE EQUESTRIAN FEDERATION OF FINLAND",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "FIN",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "France",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION FRAN\u00c7AISE D'EQUITATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "FRA",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Great Britain",
+      "coverage_sources": [
+        "europe_national_federations",
+        "british_eventing",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "BRITISH EQUESTRIAN",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "GBR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Georgia",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "NATIONAL EQUESTRIAN FEDERATION OF GEORGIA",
+      "fei_group": "Group EEA",
+      "national_results_url": null,
+      "noc_code": "GEO",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Germany",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "DEUTSCHE REITERLICHE VEREINIGUNG",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "GER",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Greece",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "HELLENIC EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "GRE",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Guatemala",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "ASOCIACI\u00d3N NACIONAL DE ECUESTRES DE GUATEMALA",
+      "fei_group": "Group V",
+      "national_results_url": null,
+      "noc_code": "GUA",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Haiti",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION EQUESTRE HAITIENNE",
+      "fei_group": "Group IV",
+      "national_results_url": null,
+      "noc_code": "HAI",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Hong Kong, China",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "THE EQUESTRIAN FEDERATION OF HONG KONG - CHINA",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "HKG",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Honduras",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N ECUESTRE DE HONDURAS",
+      "fei_group": "Group V",
+      "national_results_url": null,
+      "noc_code": "HON",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Hungary",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "HUNGARIAN EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "HUN",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Indonesia",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "PP. PORDASI - THE INDONESIAN SPORTHORSE SOCIETY",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "INA",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "India",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN FEDERATION OF INDIA",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "IND",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Iran (Islamic Republic of)",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN FEDERATION OF THE ISLAMIC REPUBLIC OF IRAN",
+      "fei_group": "Group EEA",
+      "national_results_url": null,
+      "noc_code": "IRI",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Ireland",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "HORSE SPORT IRELAND",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "IRL",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Iraq",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN FEDERATION OF IRAQ",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "IRQ",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Iceland",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "THE EQUESTRIAN ASSOCIATION OF ICELAND",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "ISL",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Israel",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "ISRAEL EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "ISR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Virgin Islands, U.S.",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "VIRGIN ISLANDS EQUESTRIAN ASSOCIATION",
+      "fei_group": "Group IV",
+      "national_results_url": null,
+      "noc_code": "ISV",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Italy",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "ITALIAN EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "ITA",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Jamaica",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN FEDERATION OF JAMAICA",
+      "fei_group": "Group IV",
+      "national_results_url": null,
+      "noc_code": "JAM",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Jordan",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "ROYAL JORDANIAN EQUESTRIAN FEDERATION",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "JOR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Japan",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "JAPAN EQUESTRIAN FEDERATION",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "JPN",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Kazakhstan",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN FEDERATION OF REPUBLIC OF KAZAKHSTAN",
+      "fei_group": "Group EEA",
+      "national_results_url": null,
+      "noc_code": "KAZ",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Kenya",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "HORSE ASSOCIATION OF KENYA",
+      "fei_group": "Group IX",
+      "national_results_url": null,
+      "noc_code": "KEN",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Kyrgyzstan",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "THE EQUESTRIAN FEDERATION OF THE KYRGYZSTAN REPUBLIC",
+      "fei_group": "Group EEA",
+      "national_results_url": null,
+      "noc_code": "KGZ",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Korea (Republic of)",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "KOREA EQUESTRIAN FEDERATION",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "KOR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Saudi Arabia (Kingdom of)",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "SAUDI EQUESTRIAN & POLO FEDERATION",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "KSA",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Kuwait",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "KUWAIT EQUESTRIAN FEDERATION",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "KUW",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Latvia",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "LATVIAN EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "LAT",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Libya",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "LIBYAN ARAB EQUESTRIAN FEDERATION",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "LBA",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Lebanon",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION EQUESTRE LIBANAISE",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "LBN",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Liechtenstein",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "LIECHTENSTEINER PFERDESPORT- VERBAND",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "LIE",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Lithuania",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "LITHUANIAN EQUESTRIAN ASSOCIATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "LTU",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Luxembourg",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION LUXEMBOURGEOISE DES SPORTS EQUESTRES",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "LUX",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Madagascar",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION MALAGASY DES SPORTS EQUESTRES",
+      "fei_group": "Group IX",
+      "national_results_url": null,
+      "noc_code": "MAD",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Morocco",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION ROYALE MAROCAINE DES SPORTS EQUESTRES",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "MAR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Malaysia",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN ASSOCIATION OF MALAYSIA",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "MAS",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Moldova (Republic of)",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATIA ECVESTRA A REPUBLICII MOLDOVA",
+      "fei_group": "Group EEA",
+      "national_results_url": null,
+      "noc_code": "MDA",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Mexico",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACION ECUESTRE MEXICANA",
+      "fei_group": "Group V",
+      "national_results_url": null,
+      "noc_code": "MEX",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Mongolia",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "MONGOLIA FEDERATION FOR TRADITIONAL AND SELECTIVE EQUESTRIAN SPORTS",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "MGL",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Republic of North Macedonia",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN FEDERATION OF THE REPUBLIC OF NORTH MACEDONIA",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "MKD",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Malta",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "NATIONAL EQUESTRIAN FEDERATION OF MALTA",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "MLT",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Monaco",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION EQUESTRE DE LA PRINCIPAUTE DE MONACO",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "MON",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Mauritius",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "MAURITIAN EQUESTRIAN SPORTS FEDERATION",
+      "fei_group": "Group IX",
+      "national_results_url": null,
+      "noc_code": "MRI",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Myanmar",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "MYANMAR EQUESTRIAN FEDERATION",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "MYA",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Namibia",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "NAMIBIAN EQUESTRIAN FEDERATION",
+      "fei_group": "Group IX",
+      "national_results_url": null,
+      "noc_code": "NAM",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Netherlands",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "ROYAL DUTCH EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "NED",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Nepal",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "NEPAL EQUESTRIAN ASSOCIATION",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "NEP",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Norway",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "NORGES RYTTERFORBUND NORWEGIAN EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "NOR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "New Zealand",
+      "coverage_sources": [
+        "equestrian_sports_new_zealand",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN SPORTS NEW ZEALAND",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "NZL",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Oman",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "OMAN EQUESTRIAN FEDERATION",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "OMA",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Pakistan",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN FEDERATION OF PAKISTAN",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "PAK",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Panama",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "ORGANIZACI\u00d3N ECUESTRE DE PANAM\u00c1",
+      "fei_group": "Group V",
+      "national_results_url": null,
+      "noc_code": "PAN",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Paraguay",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N DE DEPORTES ECUESTRES DEL PARAGUAY",
+      "fei_group": "Group VI",
+      "national_results_url": null,
+      "noc_code": "PAR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Peru",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N DEPORTIVA NACIONAL ECUESTRE",
+      "fei_group": "Group VI",
+      "national_results_url": null,
+      "noc_code": "PER",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Philippines",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN ASSOCIATION OF THE PHILIPPINES",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "PHI",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Palestine",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "PALESTINE EQUESTRIAN FEDERATION",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "PLE",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Poland",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION EQUESTRE POLONAISE",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "POL",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Portugal",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERA\u00c7\u00c3O EQUESTRE PORTUGUESA",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "POR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Korea (Democratic People's Republic of)",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "DPR KOREA EQUESTRIAN ASSOCIATION",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "PRK",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Puerto Rico",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N PUERTORRIQUE\u00d1A DE DEPORTES ECUESTRES",
+      "fei_group": "Group V",
+      "national_results_url": null,
+      "noc_code": "PUR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Qatar",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "QATAR EQUESTRIAN FEDERATION",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "QAT",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Romania",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION EQUESTRE ROUMAINE",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "ROU",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "South Africa",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "SOUTH AFRICAN EQUESTRIAN FEDERATION",
+      "fei_group": "Group IX",
+      "national_results_url": null,
+      "noc_code": "RSA",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Russian Federation",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION OF EQUESTRIAN SPORTS OF RUSSIA",
+      "fei_group": "Group EEA",
+      "national_results_url": null,
+      "noc_code": "RUS",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Senegal",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION SENEGALAISE DES SPORTS EQUESTRES",
+      "fei_group": "Group IX",
+      "national_results_url": null,
+      "noc_code": "SEN",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Singapore",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN FEDERATION OF SINGAPORE",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "SGP",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Slovenia",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN FEDERATION OF SLOVENIA",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "SLO",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "San Marino",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERAZIONE IPPICA SAMMARINESE",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "SMR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Serbia",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION FOR EQUESTRIAN SPORT OF SERBIA FOR OLYMPIC AND FEI DISCIPLINES OF EQUESTRIAN SPORT",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "SRB",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Sri Lanka",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "SRI LANKA EQUESTRIAN ASSOCIATION",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "SRI",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Sudan",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "SUDAN EQUESTRIAN FEDERATION",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "SUD",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Switzerland",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "SWISS EQUESTRIAN",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "SUI",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Slovakia",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "SLOVAK EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "SVK",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Sweden",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "SVENSKA RIDSPORTF\u00d6RBUNDET",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "SWE",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Eswatini",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "EQUESTRIAN FEDERATION OF ESWATINI",
+      "fei_group": "Group IX",
+      "national_results_url": null,
+      "noc_code": "SWZ",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Syrian Arab Republic",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION ARABE SYRIENNE DES SPORTS EQUESTRES",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "SYR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Thailand",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "THAILAND EQUESTRIAN FEDERATION (TEF)",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "THA",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Turkmenistan",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "TURKMEN EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEA",
+      "national_results_url": null,
+      "noc_code": "TKM",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Chinese Taipei",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "CHINESE TAIPEI EQUESTRIAN ASSOCIATION",
+      "fei_group": "Group VIII",
+      "national_results_url": null,
+      "noc_code": "TPE",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Trinidad and Tobago",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "THE TRINIDAD AND TOBAGO EQUESTRIAN ASSOCIATION",
+      "fei_group": "Group IV",
+      "national_results_url": null,
+      "noc_code": "TTO",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Tunisia",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERATION TUNISIENNE DES SPORTS EQUESTRES",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "TUN",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "T\u00fcrkiye",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "TURKISH EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "TUR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "United Arab Emirates",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "UAE EQUESTRIAN & RACING FEDERATION",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "UAE",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Ukraine",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "UKRAINIAN EQUESTRIAN FEDERATION",
+      "fei_group": "Group EEF",
+      "national_results_url": null,
+      "noc_code": "UKR",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Uruguay",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N URUGUAYA DE DEPORTES ECUESTRES",
+      "fei_group": "Group VI",
+      "national_results_url": null,
+      "noc_code": "URU",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "United States of America",
+      "coverage_sources": [
+        "usea",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "US EQUESTRIAN",
+      "fei_group": "Group IV",
+      "national_results_url": null,
+      "noc_code": "USA",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Uzbekistan",
+      "coverage_sources": [
+        "europe_national_federations",
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "HORSE BREEDING AND EQUESTRIAN FEDERATION OF UZBEKISTAN",
+      "fei_group": "Group EEA",
+      "national_results_url": null,
+      "noc_code": "UZB",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Venezuela",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "FEDERACI\u00d3N VENEZOLANA DE DEPORTES ECUESTRES",
+      "fei_group": "Group V",
+      "national_results_url": null,
+      "noc_code": "VEN",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Yemen",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "YEMEN EQUESTRIAN FEDERATION",
+      "fei_group": "Group VII",
+      "national_results_url": null,
+      "noc_code": "YEM",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Zambia",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "ZAMBIA NATIONAL EQUESTRIAN FEDERATION",
+      "fei_group": "Group IX",
+      "national_results_url": null,
+      "noc_code": "ZAM",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    },
+    {
+      "country_name": "Zimbabwe",
+      "coverage_sources": [
+        "global_national_federations"
+      ],
+      "event_levels": [
+        "national",
+        "regional"
+      ],
+      "federation_name": "ZIMBABWE EQUESTRIAN FEDERATION",
+      "fei_group": "Group IX",
+      "national_results_url": null,
+      "noc_code": "ZIM",
+      "notes": "Public national-event result endpoint to be connected; collect all national and regional eventing levels when available.",
+      "status": "planned"
+    }
+  ],
+  "source_note": "FEI public National Federation search lists 135 National Federations for 2026.",
+  "source_urls": [
+    "https://data.fei.org/NFPages/NF/Search",
+    "https://data.fei.org/NFPages/NF/Search?CurrentPage=2&ItemsPerPage=50&SortedBy=NOC%20Code&Type=NF#NFSearchTable",
+    "https://data.fei.org/NFPages/NF/Search?CurrentPage=3&ItemsPerPage=50&SortedBy=NOC%20Code&Type=NF#NFSearchTable"
+  ],
+  "updated_at": "2026-05-21",
+  "version": 1
+}
