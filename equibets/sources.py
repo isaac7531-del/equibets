@@ -90,9 +90,10 @@ class EventSourceRegistry:
         if not isinstance(source_values, Iterable) or isinstance(source_values, (str, bytes)):
             raise ValueError("sources must be a list of source objects")
 
-        sources = tuple(EventSource.from_mapping(item) for item in source_values if isinstance(item, dict))
-        if len(sources) != len(tuple(source_values)):
+        raw_sources = tuple(source_values)
+        if not all(isinstance(item, dict) for item in raw_sources):
             raise ValueError("sources must contain only source objects")
+        sources = tuple(EventSource.from_mapping(item) for item in raw_sources)
 
         return cls(
             version=_required_int(values, "version"),
