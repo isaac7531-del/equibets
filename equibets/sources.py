@@ -13,6 +13,9 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRIES = "all_countries"
+ALL_EVENTING_LEVELS = "all_eventing_levels"
+LEGACY_ALL_COUNTRIES = frozenset({"all_fei_member_nations"})
 
 
 @dataclass(frozen=True)
@@ -68,6 +71,7 @@ def sources_for_region(
     *,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
+    level: str | None = None,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
@@ -79,6 +83,28 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+        and _source_covers_level(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+    level: str | None = None,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = country.upper()
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _source_covers_country(source, normalized_country)
+        and _source_covers_level(source, level)
     ]
 
 
@@ -114,3 +140,19 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _source_covers_country(source: EventSource, country: str) -> bool:
+    return (
+        ALL_COUNTRIES in source.countries
+        or any(token in source.countries for token in LEGACY_ALL_COUNTRIES)
+        or country in source.countries
+    )
+
+
+def _source_covers_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_level = level.lower().replace(" ", "_")
+    return ALL_EVENTING_LEVELS in source.event_levels or normalized_level in source.event_levels

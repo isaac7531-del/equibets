@@ -1,6 +1,6 @@
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import load_event_sources, sources_for_country, sources_for_region
 
 
 class EventSourceTests(unittest.TestCase):
@@ -26,6 +26,32 @@ class EventSourceTests(unittest.TestCase):
                 self.assertEqual(source_ids[0], "data_fei")
                 self.assertIn(national_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
+
+    def test_national_sources_cover_all_eventing_levels(self):
+        national_sources = [
+            source for source in load_event_sources() if source.scope == "national"
+        ]
+
+        self.assertTrue(national_sources)
+        for source in national_sources:
+            with self.subTest(source_id=source.id):
+                self.assertEqual(source.event_levels, ("all_eventing_levels",))
+
+    def test_country_lookup_uses_all_country_national_backfill(self):
+        source_ids = [
+            source.id for source in sources_for_country("BRA", level="national")
+        ]
+
+        self.assertEqual(source_ids, ["global_national_federations"])
+
+    def test_country_lookup_includes_priority_national_source_for_all_levels(self):
+        source_ids = [
+            source.id for source in sources_for_country("gbr", level="grassroots")
+        ]
+
+        self.assertIn("british_eventing", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+        self.assertNotIn("data_fei", source_ids)
 
     def test_active_only_filter_keeps_current_primary_source(self):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
