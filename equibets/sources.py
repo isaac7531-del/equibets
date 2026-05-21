@@ -13,6 +13,7 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+GLOBAL_COUNTRY_TOKENS = frozenset({"all_countries", "all_fei_member_nations"})
 
 
 @dataclass(frozen=True)
@@ -50,11 +51,17 @@ class EventSource:
         )
 
 
+def load_event_source_registry(path: Path | str = DATA_FILE) -> dict[str, object]:
+    """Load the raw event source registry payload."""
+
+    with Path(path).open(encoding="utf-8") as source_file:
+        return json.load(source_file)
+
+
 def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
     """Load sources sorted by priority, with FEI first on ties."""
 
-    with Path(path).open(encoding="utf-8") as source_file:
-        payload = json.load(source_file)
+    payload = load_event_source_registry(path)
 
     sources = [EventSource.from_mapping(item) for item in payload["sources"]]
     return sorted(
@@ -79,6 +86,31 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+    ]
+
+
+def sources_for_country(
+    country_code: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country while preserving global priorities."""
+
+    normalized_country = country_code.strip().upper().replace(" ", "_")
+    if not normalized_country:
+        raise ValueError("country_code must be a non-empty string")
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and (
+            GLOBAL_COUNTRY_TOKENS.intersection(source.countries)
+            or normalized_country in source.countries
+        )
     ]
 
 
