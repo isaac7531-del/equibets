@@ -13,6 +13,9 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+GLOBAL_COUNTRY_TOKENS = frozenset({"all_fei_member_nations"})
+ALL_LEVEL_TOKENS = frozenset({"all_eventing_levels"})
+FEI_LEVEL_PREFIXES = ("cci", "cic", "ccn")
 
 
 @dataclass(frozen=True)
@@ -71,14 +74,40 @@ def sources_for_region(
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
+    normalized_region = _normalize_token(region)
     statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
         source
         for source in load_event_sources(path)
         if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        and (
+            "global" in source.regions
+            or normalized_region in {_normalize_token(region) for region in source.regions}
+        )
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    level: str | None = None,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country, optionally narrowed to an event level."""
+
+    normalized_country = _normalize_token(country)
+    if not normalized_country:
+        raise ValueError("country must be a non-empty string")
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _covers_country(source, normalized_country)
+        and (level is None or _covers_level(source, level))
     ]
 
 
@@ -114,3 +143,25 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _covers_country(source: EventSource, normalized_country: str) -> bool:
+    country_tokens = {_normalize_token(country) for country in source.countries}
+    return bool(country_tokens & GLOBAL_COUNTRY_TOKENS) or normalized_country in country_tokens
+
+
+def _covers_level(source: EventSource, level: str) -> bool:
+    normalized_level = _normalize_token(level)
+    if not normalized_level:
+        raise ValueError("level must be a non-empty string")
+
+    level_tokens = {_normalize_token(event_level) for event_level in source.event_levels}
+    if level_tokens & ALL_LEVEL_TOKENS or normalized_level in level_tokens:
+        return True
+    if "fei_international" in level_tokens and normalized_level.startswith(FEI_LEVEL_PREFIXES):
+        return True
+    return False
+
+
+def _normalize_token(value: str) -> str:
+    return value.strip().lower().replace(" ", "_").replace("-", "_")
