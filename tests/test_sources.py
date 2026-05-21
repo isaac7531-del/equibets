@@ -1,6 +1,10 @@
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import (
+    load_event_sources,
+    sources_for_country,
+    sources_for_region,
+)
 
 
 class EventSourceTests(unittest.TestCase):
@@ -26,6 +30,37 @@ class EventSourceTests(unittest.TestCase):
                 self.assertEqual(source_ids[0], "data_fei")
                 self.assertIn(national_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
+
+    def test_global_national_backfill_covers_all_countries_and_levels(self):
+        sources_by_id = {source.id: source for source in load_event_sources()}
+
+        backfill = sources_by_id["global_national_federations"]
+
+        self.assertEqual(backfill.countries, ("all_fei_member_nations",))
+        self.assertEqual(backfill.event_levels, ("all_national_event_levels",))
+
+    def test_national_sources_cover_all_national_event_levels(self):
+        national_sources = [
+            source for source in load_event_sources() if source.scope == "national"
+        ]
+
+        self.assertTrue(national_sources)
+        for source in national_sources:
+            with self.subTest(source_id=source.id):
+                self.assertEqual(source.event_levels, ("all_national_event_levels",))
+
+    def test_sources_for_country_includes_specific_and_global_sources(self):
+        source_ids = [source.id for source in sources_for_country("USA")]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("usea", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+
+    def test_sources_for_country_backfills_non_priority_countries(self):
+        source_ids = [source.id for source in sources_for_country("CHI")]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("global_national_federations", source_ids)
 
     def test_active_only_filter_keeps_current_primary_source(self):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
