@@ -50,17 +50,89 @@ class EventSource:
         )
 
 
-def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
-    """Load sources sorted by priority, with FEI first on ties."""
+@dataclass(frozen=True)
+class CoverageScope:
+    """Declared country, region, and level scope for event-result collection."""
+
+    countries: tuple[str, ...]
+    regions: tuple[str, ...]
+    event_levels: tuple[str, ...]
+    notes: str
+
+    @classmethod
+    def from_mapping(cls, values: dict[str, object]) -> "CoverageScope":
+        return cls(
+            countries=_string_tuple(values, "countries"),
+            regions=_string_tuple(values, "regions"),
+            event_levels=_string_tuple(values, "event_levels"),
+            notes=_required_str(values, "notes"),
+        )
+
+
+@dataclass(frozen=True)
+class EventSourceRegistry:
+    """The full event-results source registry and its coverage policy."""
+
+    version: int
+    primary_source_id: str
+    coverage_goal: str
+    priority_regions: tuple[str, ...]
+    coverage: CoverageScope
+    sources: tuple[EventSource, ...]
+
+    @classmethod
+    def from_mapping(cls, values: dict[str, object]) -> "EventSourceRegistry":
+        coverage = values.get("coverage")
+        if not isinstance(coverage, dict):
+            raise ValueError("coverage must be an object")
+
+        source_values = values.get("sources")
+        if not isinstance(source_values, Iterable) or isinstance(source_values, (str, bytes)):
+            raise ValueError("sources must be a list of source objects")
+
+        sources = tuple(EventSource.from_mapping(item) for item in source_values if isinstance(item, dict))
+        if len(sources) != len(tuple(source_values)):
+            raise ValueError("sources must contain only source objects")
+
+        return cls(
+            version=_required_int(values, "version"),
+            primary_source_id=_required_str(values, "primary_source_id"),
+            coverage_goal=_required_str(values, "coverage_goal"),
+            priority_regions=_string_tuple(values, "priority_regions"),
+            coverage=CoverageScope.from_mapping(coverage),
+            sources=tuple(sorted(sources, key=_source_sort_key)),
+        )
+
+
+def load_event_source_registry(path: Path | str = DATA_FILE) -> EventSourceRegistry:
+    """Load the source registry and declared coverage policy."""
 
     with Path(path).open(encoding="utf-8") as source_file:
         payload = json.load(source_file)
 
-    sources = [EventSource.from_mapping(item) for item in payload["sources"]]
-    return sorted(
-        sources,
-        key=lambda source: (source.priority, source.id != "data_fei", source.id),
-    )
+    return EventSourceRegistry.from_mapping(payload)
+
+
+def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
+    """Load sources sorted by priority, with FEI first on ties."""
+
+    return list(load_event_source_registry(path).sources)
+
+
+def _source_sort_key(source: EventSource) -> tuple[int, bool, str]:
+    return (source.priority, source.id != "data_fei", source.id)
+
+
+def national_event_level_scope(path: Path | str = DATA_FILE) -> tuple[str, ...]:
+    """Return the declared all-level national-event coverage scope."""
+
+    return load_event_source_registry(path).coverage.event_levels
+
+
+def national_event_country_scope(path: Path | str = DATA_FILE) -> tuple[str, ...]:
+    """Return the declared all-country national-event coverage scope."""
+
+    return load_event_source_registry(path).coverage.countries
 
 
 def sources_for_region(
