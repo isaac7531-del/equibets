@@ -1,7 +1,7 @@
 """Event-result source registry helpers.
 
-The project prioritizes FEI data while still tracking national-event sources
-that are important for broader coverage.
+The project prioritizes FEI data while tracking national-event sources for
+country and level coverage beyond the international calendar.
 """
 
 from __future__ import annotations
@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_TOKENS = frozenset({"all_countries", "all_fei_member_nations"})
+ALL_LEVEL_TOKENS = frozenset({"all_levels"})
 
 
 @dataclass(frozen=True)
@@ -80,6 +82,47 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional level."""
+
+    normalized_country = country.upper().replace(" ", "_")
+    normalized_level = _normalize_level(level) if level is not None else None
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _source_covers_country(source, normalized_country)
+        and (
+            normalized_level is None
+            or _source_covers_level(source, normalized_level)
+        )
+    ]
+
+
+def _source_covers_country(source: EventSource, country: str) -> bool:
+    return country in {item.upper() for item in source.countries} or bool(
+        ALL_COUNTRY_TOKENS.intersection(source.countries)
+    )
+
+
+def _source_covers_level(source: EventSource, level: str) -> bool:
+    return level in {_normalize_level(item) for item in source.event_levels} or bool(
+        ALL_LEVEL_TOKENS.intersection(source.event_levels)
+    )
+
+
+def _normalize_level(level: str) -> str:
+    return level.lower().replace(" ", "_")
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
