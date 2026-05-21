@@ -1,7 +1,7 @@
 {
   "version": 1,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results for all countries and event levels, prioritizing data.fei and supplementing with national-event sources.",
   "priority_regions": [
     "europe",
     "uk",
@@ -9,6 +9,78 @@
     "new_zealand",
     "usa"
   ],
+  "country_groups": {
+    "all_fei_member_nations": {
+      "description": "Every FEI-affiliated national federation. The live FEI database remains the source of truth, so source matching accepts any normalized ISO/NOC-style three-letter country code.",
+      "match_type": "any_iso3"
+    },
+    "all_fei_europe_member_nations": {
+      "description": "European FEI member nations used for the priority European national-federation backfill.",
+      "match_type": "country_list",
+      "countries": [
+        "ALB",
+        "AND",
+        "ARM",
+        "AUT",
+        "AZE",
+        "BEL",
+        "BIH",
+        "BLR",
+        "BUL",
+        "CRO",
+        "CYP",
+        "CZE",
+        "DEN",
+        "ESP",
+        "EST",
+        "FIN",
+        "FRA",
+        "GBR",
+        "GEO",
+        "GER",
+        "GRE",
+        "HUN",
+        "IRL",
+        "ISL",
+        "ISR",
+        "ITA",
+        "KOS",
+        "LAT",
+        "LIE",
+        "LTU",
+        "LUX",
+        "MDA",
+        "MKD",
+        "MLT",
+        "MON",
+        "NED",
+        "NOR",
+        "POL",
+        "POR",
+        "ROU",
+        "RUS",
+        "SMR",
+        "SRB",
+        "SLO",
+        "SVK",
+        "SUI",
+        "SWE",
+        "TUR",
+        "UKR"
+      ]
+    }
+  },
+  "event_level_groups": {
+    "all_eventing_levels": [
+      "fei_international",
+      "national",
+      "regional"
+    ],
+    "national_event_levels": [
+      "national",
+      "regional"
+    ]
+  },
   "sources": [
     {
       "id": "data_fei",

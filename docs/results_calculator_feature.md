@@ -25,6 +25,12 @@ shows how horse/rider combinations are performing before upcoming events.
 This gives users a complete working view without letting unverified manual data
 override official results.
 
+`data/event_sources.json` keeps country and event-level scopes machine-readable.
+Global FEI coverage accepts any normalized three-letter FEI/NOC country code,
+while the European priority backfill uses the configured European country group.
+Callers can resolve coverage by country, by level, or by both before scheduling a
+source update.
+
 ## Weekly update flow
 
 1. Pull new FEI results from `data.fei.org`.
