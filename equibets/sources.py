@@ -13,6 +13,9 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRIES = "all_fei_member_nations"
+ALL_LEVELS = "all_levels"
+ALL_NATIONAL_LEVELS = "all_national_levels"
 
 
 @dataclass(frozen=True)
@@ -71,14 +74,54 @@ def sources_for_region(
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    normalized_region = _normalized_token(region)
+    statuses = _included_statuses(include_planned)
 
     return [
         source
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources that can contribute results for a country."""
+
+    normalized_country = country.strip().upper()
+    statuses = _included_statuses(include_planned)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and (ALL_COUNTRIES in source.countries or normalized_country in source.countries)
+    ]
+
+
+def sources_for_country_level(
+    country: str,
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return prioritized candidate sources for a country and event level.
+
+    FEI remains a candidate for every FEI country so official records win when
+    they exist; national sources fill domestic levels across every country.
+    """
+
+    normalized_level = _normalized_token(event_level)
+    return [
+        source
+        for source in sources_for_country(country, path=path, include_planned=include_planned)
+        if source.scope == "international" or _level_matches(source.event_levels, normalized_level)
     ]
 
 
@@ -114,3 +157,20 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _included_statuses(include_planned: bool) -> set[str]:
+    return {"active", "planned"} if include_planned else {"active"}
+
+
+def _level_matches(configured_levels: tuple[str, ...], normalized_level: str) -> bool:
+    normalized_configured = {_normalized_token(level) for level in configured_levels}
+    return (
+        ALL_LEVELS in normalized_configured
+        or ALL_NATIONAL_LEVELS in normalized_configured
+        or normalized_level in normalized_configured
+    )
+
+
+def _normalized_token(value: str) -> str:
+    return value.strip().lower().replace(" ", "_")
