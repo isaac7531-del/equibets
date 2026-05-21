@@ -1,0 +1,822 @@
+{
+  "version": 1,
+  "updated_at": "2026-05-21",
+  "source_url": "https://data.fei.org/NFPages/NF/Search",
+  "notes": "FEI national federation coverage registry. The FEI database reports 135 affiliated National Federations; national-event crawlers should retain source-specific class names in EventingResult.level while covering both national and regional event tiers.",
+  "national_event_levels": [
+    "national",
+    "regional"
+  ],
+  "federations": [
+    {
+      "noc": "ALB",
+      "country_name": "Albania",
+      "fei_group": "Group EEF",
+      "federation_name": "ALBANIAN EQUESTRIAN SPORTS FEDERATION"
+    },
+    {
+      "noc": "ALG",
+      "country_name": "Algeria",
+      "fei_group": "Group VII",
+      "federation_name": "FEDERATION EQUESTRE ALGERIENNE"
+    },
+    {
+      "noc": "AND",
+      "country_name": "Andorra",
+      "fei_group": "Group EEF",
+      "federation_name": "FEDERACIO ANDORRANA D'HIPICA"
+    },
+    {
+      "noc": "ANG",
+      "country_name": "Angola",
+      "fei_group": "Group IX",
+      "federation_name": "FEDERACAO EQUESTRE DE ANGOLA"
+    },
+    {
+      "noc": "ANT",
+      "country_name": "Antigua and Barbuda",
+      "fei_group": "Group IV",
+      "federation_name": "ANTIGUA & BARBUDA HORSE SOCIETY"
+    },
+    {
+      "noc": "ARG",
+      "country_name": "Argentina",
+      "fei_group": "Group VI",
+      "federation_name": "FEDERACION ECUESTRE ARGENTINA"
+    },
+    {
+      "noc": "ARM",
+      "country_name": "Armenia",
+      "fei_group": "Group EEA",
+      "federation_name": "EQUESTRIAN FEDERATION OF ARMENIA"
+    },
+    {
+      "noc": "AUS",
+      "country_name": "Australia",
+      "fei_group": "Group VIII",
+      "federation_name": "EQUESTRIAN AUSTRALIA"
+    },
+    {
+      "noc": "AUT",
+      "country_name": "Austria",
+      "fei_group": "Group EEF",
+      "federation_name": "OESTERREICHISCHER PFERDESPORTVERBAND"
+    },
+    {
+      "noc": "AZE",
+      "country_name": "Azerbaijan",
+      "fei_group": "Group EEA",
+      "federation_name": "EQUESTRIAN FEDERATION OF AZERBAIJAN"
+    },
+    {
+      "noc": "BAH",
+      "country_name": "Bahamas",
+      "fei_group": "Group IV",
+      "federation_name": "EQUESTRIAN BAHAMAS"
+    },
+    {
+      "noc": "BAR",
+      "country_name": "Barbados",
+      "fei_group": "Group IV",
+      "federation_name": "BARBADOS EQUESTRIAN ASSOCIATION"
+    },
+    {
+      "noc": "BEL",
+      "country_name": "Belgium",
+      "fei_group": "Group EEF",
+      "federation_name": "FEDERATION ROYALE BELGE DES SPORTS EQUESTRES"
+    },
+    {
+      "noc": "BER",
+      "country_name": "Bermuda",
+      "fei_group": "Group IV",
+      "federation_name": "BERMUDA EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "BIH",
+      "country_name": "Bosnia and Herzegovina",
+      "fei_group": "Group EEF",
+      "federation_name": "ASSOCIATION OF EQUESTRIAN ORGANISATIONS OF BOSNIA AND HERZEGOVINA"
+    },
+    {
+      "noc": "BLR",
+      "country_name": "Belarus",
+      "fei_group": "Group EEA",
+      "federation_name": "EQUESTRIAN FEDERATION OF BELARUS"
+    },
+    {
+      "noc": "BOL",
+      "country_name": "Bolivia",
+      "fei_group": "Group VI",
+      "federation_name": "FEDERACION BOLIVIANA DE DEPORTES ECUESTRES"
+    },
+    {
+      "noc": "BOT",
+      "country_name": "Botswana",
+      "fei_group": "Group IX",
+      "federation_name": "THE HORSE SOCIETY OF BOTSWANA"
+    },
+    {
+      "noc": "BRA",
+      "country_name": "Brazil",
+      "fei_group": "Group VI",
+      "federation_name": "CONFEDERACAO BRASILEIRA DE HIPISMO"
+    },
+    {
+      "noc": "BRN",
+      "country_name": "Bahrain",
+      "fei_group": "Group VII",
+      "federation_name": "BAHRAIN ROYAL EQUESTRIAN & ENDURANCE FEDERATION"
+    },
+    {
+      "noc": "BUL",
+      "country_name": "Bulgaria",
+      "fei_group": "Group EEF",
+      "federation_name": "BULGARIAN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "CAM",
+      "country_name": "Cambodia",
+      "fei_group": "Group VIII",
+      "federation_name": "CAMBODIAN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "CAN",
+      "country_name": "Canada",
+      "fei_group": "Group IV",
+      "federation_name": "EQUESTRIAN CANADA EQUESTRE"
+    },
+    {
+      "noc": "CAY",
+      "country_name": "Cayman Islands",
+      "fei_group": "Group IV",
+      "federation_name": "CAYMAN ISLANDS EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "CHI",
+      "country_name": "Chile",
+      "fei_group": "Group VI",
+      "federation_name": "FEDERACION DEPORTIVA NACIONAL ECUESTRE DE CHILE"
+    },
+    {
+      "noc": "CHN",
+      "country_name": "China (People's Republic of)",
+      "fei_group": "Group VIII",
+      "federation_name": "CHINESE EQUESTRIAN ASSOCIATION"
+    },
+    {
+      "noc": "CIV",
+      "country_name": "Cote d'Ivoire",
+      "fei_group": "Group IX",
+      "federation_name": "FEDERATION IVOIRIENNE D'EQUITATION"
+    },
+    {
+      "noc": "COD",
+      "country_name": "Congo (Dem. Rep. of the)",
+      "fei_group": "Group IX",
+      "federation_name": "FEDERATION CONGOLAISE DES SPORTS EQUESTRES (F.C.S.E.)"
+    },
+    {
+      "noc": "COL",
+      "country_name": "Colombia",
+      "fei_group": "Group V",
+      "federation_name": "FEDERACION ECUESTRE DE COLOMBIA"
+    },
+    {
+      "noc": "CRC",
+      "country_name": "Costa Rica",
+      "fei_group": "Group V",
+      "federation_name": "FEDERACION ECUESTRE DE COSTA RICA"
+    },
+    {
+      "noc": "CRO",
+      "country_name": "Croatia",
+      "fei_group": "Group EEF",
+      "federation_name": "CROATIAN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "CUB",
+      "country_name": "Cuba",
+      "fei_group": "Group V",
+      "federation_name": "FEDERACION ECUESTRE CUBANA"
+    },
+    {
+      "noc": "CYP",
+      "country_name": "Cyprus",
+      "fei_group": "Group EEF",
+      "federation_name": "CYPRUS EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "CZE",
+      "country_name": "Czech Republic",
+      "fei_group": "Group EEF",
+      "federation_name": "CZECH EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "DEN",
+      "country_name": "Denmark",
+      "fei_group": "Group EEF",
+      "federation_name": "DANSK RIDE FORBUND"
+    },
+    {
+      "noc": "DOM",
+      "country_name": "Dominican Republic",
+      "fei_group": "Group V",
+      "federation_name": "FEDERACION DOMINICANA DE DEPORTES ECUESTRES INC."
+    },
+    {
+      "noc": "ECU",
+      "country_name": "Ecuador",
+      "fei_group": "Group VI",
+      "federation_name": "FEDERACION ECUATORIANA DE DEPORTES ECUESTRES"
+    },
+    {
+      "noc": "EGY",
+      "country_name": "Egypt",
+      "fei_group": "Group VII",
+      "federation_name": "EGYPTIAN EQUESTRIAN FEDERATION (EEF)"
+    },
+    {
+      "noc": "ESA",
+      "country_name": "El Salvador",
+      "fei_group": "Group V",
+      "federation_name": "FEDERACION SALVADORENA DE ECUESTRES"
+    },
+    {
+      "noc": "ESP",
+      "country_name": "Spain",
+      "fei_group": "Group EEF",
+      "federation_name": "REAL FEDERACION HIPICA ESPANOLA"
+    },
+    {
+      "noc": "EST",
+      "country_name": "Estonia",
+      "fei_group": "Group EEF",
+      "federation_name": "EQUESTRIAN FEDERATION OF ESTONIA"
+    },
+    {
+      "noc": "ETH",
+      "country_name": "Ethiopia",
+      "fei_group": "Group IX",
+      "federation_name": "ETHIOPIAN EQUESTRIAN ASSOCIATION"
+    },
+    {
+      "noc": "FIN",
+      "country_name": "Finland",
+      "fei_group": "Group EEF",
+      "federation_name": "THE EQUESTRIAN FEDERATION OF FINLAND"
+    },
+    {
+      "noc": "FRA",
+      "country_name": "France",
+      "fei_group": "Group EEF",
+      "federation_name": "FEDERATION FRANCAISE D'EQUITATION"
+    },
+    {
+      "noc": "GBR",
+      "country_name": "Great Britain",
+      "fei_group": "Group EEF",
+      "federation_name": "BRITISH EQUESTRIAN"
+    },
+    {
+      "noc": "GEO",
+      "country_name": "Georgia",
+      "fei_group": "Group EEA",
+      "federation_name": "NATIONAL EQUESTRIAN FEDERATION OF GEORGIA"
+    },
+    {
+      "noc": "GER",
+      "country_name": "Germany",
+      "fei_group": "Group EEF",
+      "federation_name": "DEUTSCHE REITERLICHE VEREINIGUNG"
+    },
+    {
+      "noc": "GRE",
+      "country_name": "Greece",
+      "fei_group": "Group EEF",
+      "federation_name": "HELLENIC EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "GUA",
+      "country_name": "Guatemala",
+      "fei_group": "Group V",
+      "federation_name": "ASOCIACION NACIONAL DE ECUESTRES DE GUATEMALA"
+    },
+    {
+      "noc": "HAI",
+      "country_name": "Haiti",
+      "fei_group": "Group IV",
+      "federation_name": "FEDERATION EQUESTRE HAITIENNE"
+    },
+    {
+      "noc": "HKG",
+      "country_name": "Hong Kong, China",
+      "fei_group": "Group VIII",
+      "federation_name": "THE EQUESTRIAN FEDERATION OF HONG KONG - CHINA"
+    },
+    {
+      "noc": "HON",
+      "country_name": "Honduras",
+      "fei_group": "Group V",
+      "federation_name": "FEDERACION ECUESTRE DE HONDURAS"
+    },
+    {
+      "noc": "HUN",
+      "country_name": "Hungary",
+      "fei_group": "Group EEF",
+      "federation_name": "HUNGARIAN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "INA",
+      "country_name": "Indonesia",
+      "fei_group": "Group VIII",
+      "federation_name": "PP. PORDASI - THE INDONESIAN SPORTHORSE SOCIETY"
+    },
+    {
+      "noc": "IND",
+      "country_name": "India",
+      "fei_group": "Group VIII",
+      "federation_name": "EQUESTRIAN FEDERATION OF INDIA"
+    },
+    {
+      "noc": "IRI",
+      "country_name": "Iran (Islamic Republic of)",
+      "fei_group": "Group EEA",
+      "federation_name": "EQUESTRIAN FEDERATION OF THE ISLAMIC REPUBLIC OF IRAN"
+    },
+    {
+      "noc": "IRL",
+      "country_name": "Ireland",
+      "fei_group": "Group EEF",
+      "federation_name": "HORSE SPORT IRELAND"
+    },
+    {
+      "noc": "IRQ",
+      "country_name": "Iraq",
+      "fei_group": "Group VII",
+      "federation_name": "EQUESTRIAN FEDERATION OF IRAQ"
+    },
+    {
+      "noc": "ISL",
+      "country_name": "Iceland",
+      "fei_group": "Group EEF",
+      "federation_name": "THE EQUESTRIAN ASSOCIATION OF ICELAND"
+    },
+    {
+      "noc": "ISR",
+      "country_name": "Israel",
+      "fei_group": "Group EEF",
+      "federation_name": "ISRAEL EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "ISV",
+      "country_name": "Virgin Islands, U.S.",
+      "fei_group": "Group IV",
+      "federation_name": "VIRGIN ISLANDS EQUESTRIAN ASSOCIATION"
+    },
+    {
+      "noc": "ITA",
+      "country_name": "Italy",
+      "fei_group": "Group EEF",
+      "federation_name": "ITALIAN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "JAM",
+      "country_name": "Jamaica",
+      "fei_group": "Group IV",
+      "federation_name": "EQUESTRIAN FEDERATION OF JAMAICA"
+    },
+    {
+      "noc": "JOR",
+      "country_name": "Jordan",
+      "fei_group": "Group VII",
+      "federation_name": "ROYAL JORDANIAN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "JPN",
+      "country_name": "Japan",
+      "fei_group": "Group VIII",
+      "federation_name": "JAPAN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "KAZ",
+      "country_name": "Kazakhstan",
+      "fei_group": "Group EEA",
+      "federation_name": "EQUESTRIAN FEDERATION OF REPUBLIC OF KAZAKHSTAN"
+    },
+    {
+      "noc": "KEN",
+      "country_name": "Kenya",
+      "fei_group": "Group IX",
+      "federation_name": "HORSE ASSOCIATION OF KENYA"
+    },
+    {
+      "noc": "KGZ",
+      "country_name": "Kyrgyzstan",
+      "fei_group": "Group EEA",
+      "federation_name": "THE EQUESTRIAN FEDERATION OF THE KYRGYZSTAN REPUBLIC"
+    },
+    {
+      "noc": "KOR",
+      "country_name": "Korea (Republic of)",
+      "fei_group": "Group VIII",
+      "federation_name": "KOREA EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "KSA",
+      "country_name": "Saudi Arabia (Kingdom of)",
+      "fei_group": "Group VII",
+      "federation_name": "SAUDI EQUESTRIAN & POLO FEDERATION"
+    },
+    {
+      "noc": "KUW",
+      "country_name": "Kuwait",
+      "fei_group": "Group VII",
+      "federation_name": "KUWAIT EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "LAT",
+      "country_name": "Latvia",
+      "fei_group": "Group EEF",
+      "federation_name": "LATVIAN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "LBA",
+      "country_name": "Libya",
+      "fei_group": "Group VII",
+      "federation_name": "LIBYAN ARAB EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "LBN",
+      "country_name": "Lebanon",
+      "fei_group": "Group VII",
+      "federation_name": "FEDERATION EQUESTRE LIBANAISE"
+    },
+    {
+      "noc": "LIE",
+      "country_name": "Liechtenstein",
+      "fei_group": "Group EEF",
+      "federation_name": "LIECHTENSTEINER PFERDESPORT- VERBAND"
+    },
+    {
+      "noc": "LTU",
+      "country_name": "Lithuania",
+      "fei_group": "Group EEF",
+      "federation_name": "LITHUANIAN EQUESTRIAN ASSOCIATION"
+    },
+    {
+      "noc": "LUX",
+      "country_name": "Luxembourg",
+      "fei_group": "Group EEF",
+      "federation_name": "FEDERATION LUXEMBOURGEOISE DES SPORTS EQUESTRES"
+    },
+    {
+      "noc": "MAD",
+      "country_name": "Madagascar",
+      "fei_group": "Group IX",
+      "federation_name": "FEDERATION MALAGASY DES SPORTS EQUESTRES"
+    },
+    {
+      "noc": "MAR",
+      "country_name": "Morocco",
+      "fei_group": "Group VII",
+      "federation_name": "FEDERATION ROYALE MAROCAINE DES SPORTS EQUESTRES"
+    },
+    {
+      "noc": "MAS",
+      "country_name": "Malaysia",
+      "fei_group": "Group VIII",
+      "federation_name": "EQUESTRIAN ASSOCIATION OF MALAYSIA"
+    },
+    {
+      "noc": "MDA",
+      "country_name": "Moldova (Republic of)",
+      "fei_group": "Group EEA",
+      "federation_name": "FEDERATIA ECVESTRA A REPUBLICII MOLDOVA"
+    },
+    {
+      "noc": "MEX",
+      "country_name": "Mexico",
+      "fei_group": "Group V",
+      "federation_name": "FEDERACION ECUESTRE MEXICANA"
+    },
+    {
+      "noc": "MGL",
+      "country_name": "Mongolia",
+      "fei_group": "Group VIII",
+      "federation_name": "MONGOLIA FEDERATION FOR TRADITIONAL AND SELECTIVE EQUESTRIAN SPORTS"
+    },
+    {
+      "noc": "MKD",
+      "country_name": "Republic of North Macedonia",
+      "fei_group": "Group EEF",
+      "federation_name": "EQUESTRIAN FEDERATION OF THE REPUBLIC OF NORTH MACEDONIA"
+    },
+    {
+      "noc": "MLT",
+      "country_name": "Malta",
+      "fei_group": "Group EEF",
+      "federation_name": "NATIONAL EQUESTRIAN FEDERATION OF MALTA"
+    },
+    {
+      "noc": "MON",
+      "country_name": "Monaco",
+      "fei_group": "Group EEF",
+      "federation_name": "FEDERATION EQUESTRE DE LA PRINCIPAUTE DE MONACO"
+    },
+    {
+      "noc": "MRI",
+      "country_name": "Mauritius",
+      "fei_group": "Group IX",
+      "federation_name": "MAURITIAN EQUESTRIAN SPORTS FEDERATION"
+    },
+    {
+      "noc": "MYA",
+      "country_name": "Myanmar",
+      "fei_group": "Group VIII",
+      "federation_name": "MYANMAR EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "NAM",
+      "country_name": "Namibia",
+      "fei_group": "Group IX",
+      "federation_name": "NAMIBIAN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "NED",
+      "country_name": "Netherlands",
+      "fei_group": "Group EEF",
+      "federation_name": "ROYAL DUTCH EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "NEP",
+      "country_name": "Nepal",
+      "fei_group": "Group VIII",
+      "federation_name": "NEPAL EQUESTRIAN ASSOCIATION"
+    },
+    {
+      "noc": "NOR",
+      "country_name": "Norway",
+      "fei_group": "Group EEF",
+      "federation_name": "NORGES RYTTERFORBUND NORWEGIAN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "NZL",
+      "country_name": "New Zealand",
+      "fei_group": "Group VIII",
+      "federation_name": "EQUESTRIAN SPORTS NEW ZEALAND"
+    },
+    {
+      "noc": "OMA",
+      "country_name": "Oman",
+      "fei_group": "Group VII",
+      "federation_name": "OMAN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "PAK",
+      "country_name": "Pakistan",
+      "fei_group": "Group VIII",
+      "federation_name": "EQUESTRIAN FEDERATION OF PAKISTAN"
+    },
+    {
+      "noc": "PAN",
+      "country_name": "Panama",
+      "fei_group": "Group V",
+      "federation_name": "ORGANIZACION ECUESTRE DE PANAMA"
+    },
+    {
+      "noc": "PAR",
+      "country_name": "Paraguay",
+      "fei_group": "Group VI",
+      "federation_name": "FEDERACION DE DEPORTES ECUESTRES DEL PARAGUAY"
+    },
+    {
+      "noc": "PER",
+      "country_name": "Peru",
+      "fei_group": "Group VI",
+      "federation_name": "FEDERACION DEPORTIVA NACIONAL ECUESTRE"
+    },
+    {
+      "noc": "PHI",
+      "country_name": "Philippines",
+      "fei_group": "Group VIII",
+      "federation_name": "EQUESTRIAN ASSOCIATION OF THE PHILIPPINES"
+    },
+    {
+      "noc": "PLE",
+      "country_name": "Palestine",
+      "fei_group": "Group VII",
+      "federation_name": "PALESTINE EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "POL",
+      "country_name": "Poland",
+      "fei_group": "Group EEF",
+      "federation_name": "FEDERATION EQUESTRE POLONAISE"
+    },
+    {
+      "noc": "POR",
+      "country_name": "Portugal",
+      "fei_group": "Group EEF",
+      "federation_name": "FEDERACAO EQUESTRE PORTUGUESA"
+    },
+    {
+      "noc": "PRK",
+      "country_name": "Korea (Democratic People's Republic of)",
+      "fei_group": "Group VIII",
+      "federation_name": "DPR KOREA EQUESTRIAN ASSOCIATION"
+    },
+    {
+      "noc": "PUR",
+      "country_name": "Puerto Rico",
+      "fei_group": "Group V",
+      "federation_name": "FEDERACION PUERTORRIQUENA DE DEPORTES ECUESTRES"
+    },
+    {
+      "noc": "QAT",
+      "country_name": "Qatar",
+      "fei_group": "Group VII",
+      "federation_name": "QATAR EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "ROU",
+      "country_name": "Romania",
+      "fei_group": "Group EEF",
+      "federation_name": "FEDERATION EQUESTRE ROUMAINE"
+    },
+    {
+      "noc": "RSA",
+      "country_name": "South Africa",
+      "fei_group": "Group IX",
+      "federation_name": "SOUTH AFRICAN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "RUS",
+      "country_name": "Russian Federation",
+      "fei_group": "Group EEA",
+      "federation_name": "FEDERATION OF EQUESTRIAN SPORTS OF RUSSIA"
+    },
+    {
+      "noc": "SEN",
+      "country_name": "Senegal",
+      "fei_group": "Group IX",
+      "federation_name": "FEDERATION SENEGALAISE DES SPORTS EQUESTRES"
+    },
+    {
+      "noc": "SGP",
+      "country_name": "Singapore",
+      "fei_group": "Group VIII",
+      "federation_name": "EQUESTRIAN FEDERATION OF SINGAPORE"
+    },
+    {
+      "noc": "SLO",
+      "country_name": "Slovenia",
+      "fei_group": "Group EEF",
+      "federation_name": "EQUESTRIAN FEDERATION OF SLOVENIA"
+    },
+    {
+      "noc": "SMR",
+      "country_name": "San Marino",
+      "fei_group": "Group EEF",
+      "federation_name": "FEDERAZIONE IPPICA SAMMARINESE"
+    },
+    {
+      "noc": "SRB",
+      "country_name": "Serbia",
+      "fei_group": "Group EEF",
+      "federation_name": "FEDERATION FOR EQUESTRIAN SPORT OF SERBIA FOR OLYMPIC AND FEI DISCIPLINES OF EQUESTRIAN SPORT"
+    },
+    {
+      "noc": "SRI",
+      "country_name": "Sri Lanka",
+      "fei_group": "Group VIII",
+      "federation_name": "SRI LANKA EQUESTRIAN ASSOCIATION"
+    },
+    {
+      "noc": "SUD",
+      "country_name": "Sudan",
+      "fei_group": "Group VII",
+      "federation_name": "SUDAN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "SUI",
+      "country_name": "Switzerland",
+      "fei_group": "Group EEF",
+      "federation_name": "SWISS EQUESTRIAN"
+    },
+    {
+      "noc": "SVK",
+      "country_name": "Slovakia",
+      "fei_group": "Group EEF",
+      "federation_name": "SLOVAK EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "SWE",
+      "country_name": "Sweden",
+      "fei_group": "Group EEF",
+      "federation_name": "SVENSKA RIDSPORTFORBUNDET"
+    },
+    {
+      "noc": "SWZ",
+      "country_name": "Eswatini",
+      "fei_group": "Group IX",
+      "federation_name": "EQUESTRIAN FEDERATION OF ESWATINI"
+    },
+    {
+      "noc": "SYR",
+      "country_name": "Syrian Arab Republic",
+      "fei_group": "Group VII",
+      "federation_name": "FEDERATION ARABE SYRIENNE DES SPORTS EQUESTRES"
+    },
+    {
+      "noc": "THA",
+      "country_name": "Thailand",
+      "fei_group": "Group VIII",
+      "federation_name": "THAILAND EQUESTRIAN FEDERATION (TEF)"
+    },
+    {
+      "noc": "TKM",
+      "country_name": "Turkmenistan",
+      "fei_group": "Group EEA",
+      "federation_name": "TURKMEN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "TPE",
+      "country_name": "Chinese Taipei",
+      "fei_group": "Group VIII",
+      "federation_name": "CHINESE TAIPEI EQUESTRIAN ASSOCIATION"
+    },
+    {
+      "noc": "TTO",
+      "country_name": "Trinidad and Tobago",
+      "fei_group": "Group IV",
+      "federation_name": "THE TRINIDAD AND TOBAGO EQUESTRIAN ASSOCIATION"
+    },
+    {
+      "noc": "TUN",
+      "country_name": "Tunisia",
+      "fei_group": "Group VII",
+      "federation_name": "FEDERATION TUNISIENNE DES SPORTS EQUESTRES"
+    },
+    {
+      "noc": "TUR",
+      "country_name": "Turkiye",
+      "fei_group": "Group EEF",
+      "federation_name": "TURKISH EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "UAE",
+      "country_name": "United Arab Emirates",
+      "fei_group": "Group VII",
+      "federation_name": "UAE EQUESTRIAN & RACING FEDERATION"
+    },
+    {
+      "noc": "UKR",
+      "country_name": "Ukraine",
+      "fei_group": "Group EEF",
+      "federation_name": "UKRAINIAN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "URU",
+      "country_name": "Uruguay",
+      "fei_group": "Group VI",
+      "federation_name": "FEDERACION URUGUAYA DE DEPORTES ECUESTRES"
+    },
+    {
+      "noc": "USA",
+      "country_name": "United States of America",
+      "fei_group": "Group IV",
+      "federation_name": "US EQUESTRIAN"
+    },
+    {
+      "noc": "UZB",
+      "country_name": "Uzbekistan",
+      "fei_group": "Group EEA",
+      "federation_name": "HORSE BREEDING AND EQUESTRIAN FEDERATION OF UZBEKISTAN"
+    },
+    {
+      "noc": "VEN",
+      "country_name": "Venezuela",
+      "fei_group": "Group V",
+      "federation_name": "FEDERACION VENEZOLANA DE DEPORTES ECUESTRES"
+    },
+    {
+      "noc": "YEM",
+      "country_name": "Yemen",
+      "fei_group": "Group VII",
+      "federation_name": "YEMEN EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "ZAM",
+      "country_name": "Zambia",
+      "fei_group": "Group IX",
+      "federation_name": "ZAMBIA NATIONAL EQUESTRIAN FEDERATION"
+    },
+    {
+      "noc": "ZIM",
+      "country_name": "Zimbabwe",
+      "fei_group": "Group IX",
+      "federation_name": "ZIMBABWE EQUESTRIAN FEDERATION"
+    }
+  ]
+}

@@ -12,7 +12,12 @@ from dataclasses import dataclass
 from pathlib import Path
 
 
-DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+DATA_DIR = Path(__file__).resolve().parents[1] / "data"
+DATA_FILE = DATA_DIR / "event_sources.json"
+FEDERATION_DATA_FILE = DATA_DIR / "national_federations.json"
+ALL_FEI_MEMBER_NATIONS = "all_fei_member_nations"
+ALL_FEI_EUROPE_MEMBER_NATIONS = "all_fei_europe_member_nations"
+EUROPEAN_FEI_GROUPS = frozenset({"Group EEA", "Group EEF"})
 
 
 @dataclass(frozen=True)
@@ -50,6 +55,35 @@ class EventSource:
         )
 
 
+@dataclass(frozen=True)
+class NationalFederation:
+    """One FEI-affiliated national federation used for coverage planning."""
+
+    noc: str
+    country_name: str
+    fei_group: str
+    federation_name: str
+
+    @classmethod
+    def from_mapping(cls, values: dict[str, object]) -> "NationalFederation":
+        return cls(
+            noc=_required_str(values, "noc"),
+            country_name=_required_str(values, "country_name"),
+            fei_group=_required_str(values, "fei_group"),
+            federation_name=_required_str(values, "federation_name"),
+        )
+
+
+@dataclass(frozen=True)
+class NationalFederationRegistry:
+    """FEI national federation coverage registry."""
+
+    source_url: str
+    updated_at: str
+    national_event_levels: tuple[str, ...]
+    federations: tuple[NationalFederation, ...]
+
+
 def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
     """Load sources sorted by priority, with FEI first on ties."""
 
@@ -61,6 +95,70 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
         sources,
         key=lambda source: (source.priority, source.id != "data_fei", source.id),
     )
+
+
+def load_national_federation_registry(
+    path: Path | str = FEDERATION_DATA_FILE,
+) -> NationalFederationRegistry:
+    """Load FEI national federation coverage data."""
+
+    with Path(path).open(encoding="utf-8") as federation_file:
+        payload = json.load(federation_file)
+
+    federations = tuple(
+        sorted(
+            (NationalFederation.from_mapping(item) for item in payload["federations"]),
+            key=lambda federation: federation.noc,
+        )
+    )
+    return NationalFederationRegistry(
+        source_url=_required_str(payload, "source_url"),
+        updated_at=_required_str(payload, "updated_at"),
+        national_event_levels=_string_tuple(payload, "national_event_levels"),
+        federations=federations,
+    )
+
+
+def load_national_federations(path: Path | str = FEDERATION_DATA_FILE) -> list[NationalFederation]:
+    """Load FEI-affiliated national federations sorted by NOC code."""
+
+    return list(load_national_federation_registry(path).federations)
+
+
+def national_event_levels(path: Path | str = FEDERATION_DATA_FILE) -> tuple[str, ...]:
+    """Return the coarse national-event tiers tracked for every federation."""
+
+    return load_national_federation_registry(path).national_event_levels
+
+
+def expand_country_codes(
+    countries: Iterable[str],
+    *,
+    federation_path: Path | str = FEDERATION_DATA_FILE,
+) -> tuple[str, ...]:
+    """Expand source-registry coverage tokens into concrete FEI NOC codes."""
+
+    federations = load_national_federations(federation_path)
+    expanded: list[str] = []
+    seen: set[str] = set()
+
+    def append(code: str) -> None:
+        if code not in seen:
+            expanded.append(code)
+            seen.add(code)
+
+    for country in countries:
+        if country == ALL_FEI_MEMBER_NATIONS:
+            for federation in federations:
+                append(federation.noc)
+        elif country == ALL_FEI_EUROPE_MEMBER_NATIONS:
+            for federation in federations:
+                if federation.fei_group in EUROPEAN_FEI_GROUPS:
+                    append(federation.noc)
+        else:
+            append(country)
+
+    return tuple(expanded)
 
 
 def sources_for_region(

@@ -25,6 +25,18 @@ shows how horse/rider combinations are performing before upcoming events.
 This gives users a complete working view without letting unverified manual data
 override official results.
 
+`data/national_federations.json` expands the global national-federation backfill
+into concrete FEI member nations. It tracks all 135 affiliated National
+Federations from the FEI Database and applies the same two coarse national-event
+tiers to every country:
+
+- `national`
+- `regional`
+
+Adapters should still preserve the source-specific class name in
+`EventingResult.level` so each country can keep its own level taxonomy while the
+registry confirms the all-country/all-tier coverage target.
+
 ## Weekly update flow
 
 1. Pull new FEI results from `data.fei.org`.
