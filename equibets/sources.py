@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+COUNTRY_WILDCARDS = frozenset({"all_countries", "all_fei_member_nations"})
+EVENT_LEVEL_WILDCARDS = frozenset({"all_eventing_levels"})
 
 
 @dataclass(frozen=True)
@@ -66,20 +68,69 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    normalized_region = _normalized_token(region)
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
+        if _source_status_matches(source, include_planned)
         and ("global" in source.regions or normalized_region in source.regions)
+        and _source_level_matches(source, level)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = country.strip().upper()
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if _source_status_matches(source, include_planned)
+        and _source_country_matches(source, normalized_country)
+        and _source_level_matches(source, level)
+    ]
+
+
+def _source_status_matches(source: EventSource, include_planned: bool) -> bool:
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return source.status in statuses
+
+
+def _source_country_matches(source: EventSource, country: str) -> bool:
+    return any(
+        configured_country in COUNTRY_WILDCARDS or configured_country.upper() == country
+        for configured_country in source.countries
+    )
+
+
+def _source_level_matches(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_level = _normalized_token(level)
+    return any(
+        configured_level in EVENT_LEVEL_WILDCARDS
+        or _normalized_token(configured_level) == normalized_level
+        for configured_level in source.event_levels
+    )
+
+
+def _normalized_token(value: str) -> str:
+    return value.strip().lower().replace("-", "_").replace(" ", "_")
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
