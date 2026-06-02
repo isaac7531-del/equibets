@@ -14,7 +14,8 @@ shows how horse/rider combinations are performing before upcoming events.
 
 ## Data consolidation
 
-1. Refresh public data weekly from `data/event_sources.json`.
+1. Refresh public data weekly from `data/event_sources.json`, expanding country
+   and level coverage groups from `data/source_coverage.json`.
 2. Normalize each result into `EventingResult`.
 3. Deduplicate by combination, event, date, and level.
 4. Keep the lowest `source_priority` when duplicates exist, so `data_fei`
@@ -34,6 +35,11 @@ override official results.
 5. Normalize records into the common result table.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
+
+`equibets.sources.sources_for_country_and_event_level` resolves the configured
+source priority for a FEI country/NOC code and a source-level tag such as
+`national` or `regional`. This makes all-country national-event coverage
+explicit while individual federation crawlers are added incrementally.
 
 ## Prediction logic
 
