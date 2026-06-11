@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRIES = "all_countries"
+ALL_EVENTING_LEVELS = "all_eventing_levels"
 
 
 @dataclass(frozen=True)
@@ -66,12 +68,13 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
+    normalized_region = _normalize_token(region)
     statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
@@ -79,7 +82,58 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+        and _covers_level(source, level)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = country.strip().upper()
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _covers_country(source, normalized_country)
+        and _covers_level(source, level)
+    ]
+
+
+def _covers_country(source: EventSource, country: str) -> bool:
+    return ALL_COUNTRIES in source.countries or country in source.countries
+
+
+def _covers_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_levels = {
+        _normalize_token(source_level) for source_level in source.event_levels
+    }
+    normalized_level = _normalize_token(level)
+
+    if ALL_EVENTING_LEVELS in normalized_levels or normalized_level in normalized_levels:
+        return True
+
+    return "fei_international" in normalized_levels and _is_fei_international_level(
+        normalized_level
+    )
+
+
+def _is_fei_international_level(level: str) -> bool:
+    return level.startswith(("cci", "cic", "cio", "chio", "ch-"))
+
+
+def _normalize_token(value: str) -> str:
+    return value.strip().lower().replace(" ", "_")
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
