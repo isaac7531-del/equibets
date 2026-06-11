@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+COUNTRY_WILDCARD = "all_countries"
+EVENT_LEVEL_WILDCARD = "all_eventing_levels"
 
 
 @dataclass(frozen=True)
@@ -57,6 +59,7 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
         payload = json.load(source_file)
 
     sources = [EventSource.from_mapping(item) for item in payload["sources"]]
+    _validate_unique_source_ids(sources)
     return sorted(
         sources,
         key=lambda source: (source.priority, source.id != "data_fei", source.id),
@@ -68,17 +71,38 @@ def sources_for_region(
     *,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
+    level: str | None = None,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
     normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
+        if _source_status_is_included(source, include_planned)
         and ("global" in source.regions or normalized_region in source.regions)
+        and _source_matches_level(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+    level: str | None = None,
+) -> list[EventSource]:
+    """Return sources covering an ISO country code and optional event level."""
+
+    normalized_country = country.upper().replace(" ", "_").replace("-", "_")
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if _source_status_is_included(source, include_planned)
+        and _source_matches_country(source, normalized_country)
+        and _source_matches_level(source, level)
     ]
 
 
@@ -114,3 +138,33 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _source_status_is_included(source: EventSource, include_planned: bool) -> bool:
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return source.status in statuses
+
+
+def _source_matches_country(source: EventSource, normalized_country: str) -> bool:
+    return COUNTRY_WILDCARD in source.countries or normalized_country in source.countries
+
+
+def _source_matches_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_level = level.lower().replace(" ", "_").replace("-", "_")
+    return EVENT_LEVEL_WILDCARD in source.event_levels or normalized_level in source.event_levels
+
+
+def _validate_unique_source_ids(sources: list[EventSource]) -> None:
+    seen: set[str] = set()
+    duplicates: set[str] = set()
+    for source in sources:
+        if source.id in seen:
+            duplicates.add(source.id)
+        seen.add(source.id)
+
+    if duplicates:
+        duplicate_list = ", ".join(sorted(duplicates))
+        raise ValueError(f"source ids must be unique: {duplicate_list}")
