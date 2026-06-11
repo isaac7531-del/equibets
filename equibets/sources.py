@@ -13,6 +13,14 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_TOKENS = {"all_countries", "all_fei_member_nations"}
+ALL_LEVEL_TOKENS = {"all_eventing_levels"}
+COUNTRY_REGION_ALIASES = {
+    "AUS": ("australia",),
+    "GBR": ("uk", "europe"),
+    "NZL": ("new_zealand",),
+    "USA": ("usa",),
+}
 
 
 @dataclass(frozen=True)
@@ -68,17 +76,41 @@ def sources_for_region(
     *,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
+    level: str | None = None,
 ) -> list[EventSource]:
-    """Return sources covering a region while preserving global priorities."""
+    """Return sources covering a region and optional eventing level."""
 
-    normalized_region = region.lower().replace(" ", "_")
+    normalized_region = region.strip().lower().replace(" ", "_")
     statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
         source
         for source in load_event_sources(path)
         if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        and _source_covers_region(source, normalized_region)
+        and _source_covers_level(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+    level: str | None = None,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = country.strip().upper()
+    country_regions = COUNTRY_REGION_ALIASES.get(normalized_country, ())
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _source_covers_country(source, normalized_country, country_regions)
+        and _source_covers_level(source, level)
     ]
 
 
@@ -114,3 +146,40 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _source_covers_region(source: EventSource, normalized_region: str) -> bool:
+    return "global" in source.regions or normalized_region in source.regions
+
+
+def _source_covers_country(
+    source: EventSource,
+    normalized_country: str,
+    country_regions: tuple[str, ...],
+) -> bool:
+    countries = set(source.countries)
+    normalized_countries = {country.upper() for country in source.countries}
+
+    if (
+        countries.intersection(ALL_COUNTRY_TOKENS)
+        or normalized_country in normalized_countries
+    ):
+        return True
+
+    return any(region in source.regions for region in country_regions)
+
+
+def _source_covers_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    levels = set(source.event_levels)
+    if levels.intersection(ALL_LEVEL_TOKENS):
+        return True
+
+    normalized_level = level.strip().lower().replace(" ", "_")
+    normalized_source_levels = {
+        source_level.strip().lower().replace(" ", "_")
+        for source_level in source.event_levels
+    }
+    return normalized_level in normalized_source_levels
