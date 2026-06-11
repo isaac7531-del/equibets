@@ -1,6 +1,6 @@
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import load_event_sources, sources_for_country, sources_for_region
 
 
 class EventSourceTests(unittest.TestCase):
@@ -26,6 +26,42 @@ class EventSourceTests(unittest.TestCase):
                 self.assertEqual(source_ids[0], "data_fei")
                 self.assertIn(national_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
+
+    def test_priority_national_sources_cover_all_eventing_levels(self):
+        priority_national_source_ids = {
+            "europe_national_federations",
+            "british_eventing",
+            "equestrian_australia",
+            "equestrian_sports_new_zealand",
+            "usea",
+        }
+
+        sources_by_id = {source.id: source for source in load_event_sources()}
+
+        for source_id in priority_national_source_ids:
+            with self.subTest(source_id=source_id):
+                self.assertEqual(
+                    sources_by_id[source_id].event_levels,
+                    ("all_eventing_levels",),
+                )
+
+    def test_country_lookup_uses_priority_source_before_global_backfill(self):
+        source_ids = [source.id for source in sources_for_country("GBR", level="grassroots")]
+
+        self.assertEqual(source_ids, ["british_eventing", "global_national_federations"])
+
+    def test_country_lookup_backfills_any_country_and_level(self):
+        source_ids = [source.id for source in sources_for_country("BRA", level="intro")]
+
+        self.assertEqual(source_ids, ["global_national_federations"])
+
+    def test_global_national_source_covers_all_countries_and_levels(self):
+        global_source = next(
+            source for source in load_event_sources() if source.id == "global_national_federations"
+        )
+
+        self.assertEqual(global_source.countries, ("all_countries",))
+        self.assertEqual(global_source.event_levels, ("all_eventing_levels",))
 
     def test_active_only_filter_keeps_current_primary_source(self):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
