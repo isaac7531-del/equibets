@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_TOKENS = {"all_countries", "all_fei_member_nations"}
+ALL_EVENTING_LEVELS = "all_eventing_levels"
 
 
 @dataclass(frozen=True)
@@ -66,20 +68,69 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    normalized_region = _normalize_token(region)
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        if _source_is_enabled(source, include_planned)
+        and _source_matches_region(source, normalized_region)
+        and _source_matches_level(source, level)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = country.upper().replace(" ", "_")
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if _source_is_enabled(source, include_planned)
+        and _source_matches_country(source, normalized_country)
+        and _source_matches_level(source, level)
+    ]
+
+
+def _source_is_enabled(source: EventSource, include_planned: bool) -> bool:
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return source.status in statuses
+
+
+def _source_matches_region(source: EventSource, normalized_region: str) -> bool:
+    return "global" in source.regions or normalized_region in source.regions
+
+
+def _source_matches_country(source: EventSource, normalized_country: str) -> bool:
+    return (
+        bool(ALL_COUNTRY_TOKENS.intersection(source.countries))
+        or normalized_country in source.countries
+    )
+
+
+def _source_matches_level(source: EventSource, level: str | None) -> bool:
+    return (
+        level is None
+        or ALL_EVENTING_LEVELS in source.event_levels
+        or _normalize_token(level) in source.event_levels
+    )
+
+
+def _normalize_token(value: str) -> str:
+    return value.lower().replace(" ", "_")
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
