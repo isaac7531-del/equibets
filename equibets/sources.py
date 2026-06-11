@@ -13,6 +13,9 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRIES = "all_countries"
+ALL_EVENTING_LEVELS = "all_eventing_levels"
+ALL_FEI_MEMBER_NATIONS = "all_fei_member_nations"
 
 
 @dataclass(frozen=True)
@@ -66,20 +69,69 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
     normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        if _status_is_included(source, include_planned)
+        and _covers_region(source, normalized_region)
+        and _covers_level(source, level)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country while preserving global priorities."""
+
+    normalized_country = country.upper().replace(" ", "_")
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if _status_is_included(source, include_planned)
+        and _covers_country(source, normalized_country)
+        and _covers_level(source, level)
+    ]
+
+
+def _status_is_included(source: EventSource, include_planned: bool) -> bool:
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return source.status in statuses
+
+
+def _covers_region(source: EventSource, normalized_region: str) -> bool:
+    return "global" in source.regions or normalized_region in source.regions
+
+
+def _covers_country(source: EventSource, normalized_country: str) -> bool:
+    return (
+        ALL_COUNTRIES in source.countries
+        or ALL_FEI_MEMBER_NATIONS in source.countries
+        or normalized_country in source.countries
+    )
+
+
+def _covers_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_level = level.lower().replace(" ", "_")
+    return (
+        ALL_EVENTING_LEVELS in source.event_levels
+        or normalized_level in source.event_levels
+    )
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
