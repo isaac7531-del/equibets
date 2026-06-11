@@ -50,12 +50,39 @@ class EventSource:
         )
 
 
+@dataclass(frozen=True)
+class EventCoverageTargets:
+    """Global coverage goals shared by source registry entries."""
+
+    countries: tuple[str, ...]
+    national_event_levels: tuple[str, ...]
+    fei_international_event_levels: tuple[str, ...]
+    event_levels: tuple[str, ...]
+
+    @classmethod
+    def from_mapping(cls, values: dict[str, object]) -> "EventCoverageTargets":
+        return cls(
+            countries=_string_tuple(values, "countries"),
+            national_event_levels=_string_tuple(values, "national_event_levels"),
+            fei_international_event_levels=_string_tuple(
+                values,
+                "fei_international_event_levels",
+            ),
+            event_levels=_string_tuple(values, "event_levels"),
+        )
+
+
+def load_event_coverage_targets(path: Path | str = DATA_FILE) -> EventCoverageTargets:
+    """Load the country and level targets for national-event coverage."""
+
+    payload = _load_registry_payload(path)
+    return EventCoverageTargets.from_mapping(payload["coverage_targets"])
+
+
 def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
     """Load sources sorted by priority, with FEI first on ties."""
 
-    with Path(path).open(encoding="utf-8") as source_file:
-        payload = json.load(source_file)
-
+    payload = _load_registry_payload(path)
     sources = [EventSource.from_mapping(item) for item in payload["sources"]]
     return sorted(
         sources,
@@ -80,6 +107,15 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def _load_registry_payload(path: Path | str) -> dict[str, object]:
+    with Path(path).open(encoding="utf-8") as source_file:
+        payload = json.load(source_file)
+
+    if not isinstance(payload, dict):
+        raise ValueError("event source registry must be a JSON object")
+    return payload
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
