@@ -1,7 +1,7 @@
 {
   "version": 1,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results for every FEI country/NF code and every configured eventing level, prioritizing data.fei and supplementing with national-event sources.",
   "priority_regions": [
     "europe",
     "uk",
@@ -25,7 +25,25 @@
         "eventing"
       ],
       "event_levels": [
-        "fei_international"
+        "fei_international",
+        "cci1_intro",
+        "cci1_star",
+        "cci2_short",
+        "cci2_long",
+        "cci2_s",
+        "cci2_l",
+        "cci3_short",
+        "cci3_long",
+        "cci3_s",
+        "cci3_l",
+        "cci4_short",
+        "cci4_long",
+        "cci4_s",
+        "cci4_l",
+        "cci5_long",
+        "cci5_l",
+        "ccio",
+        "championship"
       ],
       "source_type": "primary_database",
       "base_url": "https://data.fei.org/",
@@ -48,7 +66,21 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "starter",
+        "introductory",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
       ],
       "source_type": "federation_registry",
       "base_url": null,
@@ -71,7 +103,21 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "starter",
+        "introductory",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
@@ -94,7 +140,21 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "starter",
+        "introductory",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.equestrian.org.au/",
@@ -117,7 +177,21 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "starter",
+        "introductory",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.nzequestrian.org.nz/",
@@ -140,7 +214,21 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "starter",
+        "introductory",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
@@ -163,12 +251,26 @@
       ],
       "event_levels": [
         "national",
-        "regional"
+        "regional",
+        "starter",
+        "introductory",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "notes": "Backfill national events for every FEI member nation and every configured national-event level after higher-priority regions are covered."
     }
   ]
 }
