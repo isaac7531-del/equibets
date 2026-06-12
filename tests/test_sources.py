@@ -47,7 +47,7 @@ class EventSourceTests(unittest.TestCase):
         countries = load_country_groups()["all_fei_member_nations"]
 
         self.assertEqual(metadata["updated_at"], "2026-06-12")
-        self.assertEqual(len(countries), 138)
+        self.assertEqual(len(countries), 144)
         self.assertEqual(len(countries), len(set(countries)))
         for country in ("GBR", "USA", "AUS", "NZL", "BRA", "JPN", "RSA", "UAE"):
             self.assertIn(country, countries)
