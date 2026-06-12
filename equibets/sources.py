@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_WILDCARDS = frozenset({"all_countries", "all_fei_member_nations"})
+ALL_EVENTING_LEVELS = "all_eventing_levels"
 
 
 @dataclass(frozen=True)
@@ -66,20 +68,70 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    return [
+        source
+        for source in load_event_sources(path)
+        if _status_matches(source, include_planned)
+        and _region_matches(source, region)
+        and _level_matches(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        if _status_matches(source, include_planned)
+        and _country_matches(source, country)
+        and _level_matches(source, level)
     ]
+
+
+def _status_matches(source: EventSource, include_planned: bool) -> bool:
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return source.status in statuses
+
+
+def _region_matches(source: EventSource, region: str) -> bool:
+    normalized_region = _normalized_token(region)
+    return "global" in source.regions or normalized_region in source.regions
+
+
+def _country_matches(source: EventSource, country: str) -> bool:
+    normalized_country = country.strip().upper()
+    return (
+        bool(ALL_COUNTRY_WILDCARDS.intersection(source.countries))
+        or normalized_country in source.countries
+    )
+
+
+def _level_matches(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_level = _normalized_token(level)
+    source_levels = {
+        _normalized_token(source_level) for source_level in source.event_levels
+    }
+    return ALL_EVENTING_LEVELS in source_levels or normalized_level in source_levels
+
+
+def _normalized_token(value: str) -> str:
+    return value.strip().lower().replace(" ", "_")
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
