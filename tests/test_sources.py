@@ -1,6 +1,6 @@
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import load_event_sources, sources_for_country, sources_for_region
 
 
 class EventSourceTests(unittest.TestCase):
@@ -10,6 +10,7 @@ class EventSourceTests(unittest.TestCase):
         self.assertEqual(sources[0].id, "data_fei")
         self.assertEqual(sources[0].priority, 0)
         self.assertEqual(sources[0].base_url, "https://data.fei.org/")
+        self.assertEqual(sources[0].countries, ("all_countries",))
 
     def test_priority_regions_include_fei_and_national_sources(self):
         expected_national_sources = {
@@ -27,8 +28,42 @@ class EventSourceTests(unittest.TestCase):
                 self.assertIn(national_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
 
+    def test_global_national_source_covers_all_countries_and_levels(self):
+        sources_by_id = {source.id: source for source in load_event_sources()}
+        global_national = sources_by_id["global_national_federations"]
+
+        self.assertEqual(global_national.countries, ("all_countries",))
+        self.assertEqual(global_national.event_levels, ("all_eventing_levels",))
+
+    def test_sources_for_country_includes_exact_and_global_sources(self):
+        source_ids = [source.id for source in sources_for_country("usa")]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("usea", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+
+    def test_sources_for_country_backfills_unlisted_countries(self):
+        source_ids = [source.id for source in sources_for_country("BRA")]
+
+        self.assertEqual(source_ids, ["data_fei", "global_national_federations"])
+
+    def test_sources_for_country_filters_by_level(self):
+        source_ids = [source.id for source in sources_for_country("USA", level="national")]
+
+        self.assertEqual(source_ids, ["usea", "global_national_federations"])
+
+    def test_sources_for_region_filters_by_level(self):
+        source_ids = [source.id for source in sources_for_region("uk", level="regional")]
+
+        self.assertEqual(source_ids, ["british_eventing", "global_national_federations"])
+
     def test_active_only_filter_keeps_current_primary_source(self):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
+
+        self.assertEqual(source_ids, ["data_fei"])
+
+    def test_country_active_only_filter_keeps_current_primary_source(self):
+        source_ids = [source.id for source in sources_for_country("USA", include_planned=False)]
 
         self.assertEqual(source_ids, ["data_fei"])
 
