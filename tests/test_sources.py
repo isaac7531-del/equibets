@@ -1,6 +1,12 @@
+import json
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import (
+    DATA_FILE,
+    load_event_sources,
+    sources_for_country,
+    sources_for_region,
+)
 
 
 class EventSourceTests(unittest.TestCase):
@@ -27,10 +33,76 @@ class EventSourceTests(unittest.TestCase):
                 self.assertIn(national_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
 
+    def test_registry_declares_all_country_all_level_national_coverage(self):
+        with DATA_FILE.open(encoding="utf-8") as source_file:
+            payload = json.load(source_file)
+
+        self.assertEqual(payload["version"], 2)
+        self.assertEqual(payload["coverage_wildcards"]["countries"], "all_countries")
+        self.assertEqual(
+            payload["coverage_wildcards"]["event_levels"], "all_eventing_levels"
+        )
+
+        national_sources = [
+            source for source in load_event_sources() if source.scope == "national"
+        ]
+        self.assertTrue(national_sources)
+        self.assertTrue(
+            all(
+                "all_eventing_levels" in source.event_levels
+                for source in national_sources
+            )
+        )
+        self.assertIn(
+            "all_countries",
+            next(
+                source
+                for source in national_sources
+                if source.id == "global_national_federations"
+            ).countries,
+        )
+
+    def test_country_lookup_uses_global_national_backfill_for_any_level(self):
+        source_ids = [
+            source.id for source in sources_for_country("JPN", level="grassroots")
+        ]
+
+        self.assertEqual(source_ids, ["global_national_federations"])
+
+    def test_country_lookup_prioritizes_specific_national_source_for_level(self):
+        source_ids = [source.id for source in sources_for_country("GBR", level="novice")]
+
+        self.assertEqual(source_ids, ["british_eventing", "global_national_federations"])
+
+    def test_country_lookup_keeps_fei_primary_without_level_filter(self):
+        source_ids = [source.id for source in sources_for_country("BRA")]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("global_national_federations", source_ids)
+
+    def test_region_level_filter_uses_national_sources_for_all_levels(self):
+        source_ids = [
+            source.id for source in sources_for_region("usa", level="beginner_novice")
+        ]
+
+        self.assertEqual(source_ids, ["usea", "global_national_federations"])
+
     def test_active_only_filter_keeps_current_primary_source(self):
-        source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
+        source_ids = [
+            source.id for source in sources_for_region("usa", include_planned=False)
+        ]
 
         self.assertEqual(source_ids, ["data_fei"])
+
+    def test_active_only_level_filter_excludes_planned_national_backfill(self):
+        source_ids = [
+            source.id
+            for source in sources_for_country(
+                "USA", level="beginner_novice", include_planned=False
+            )
+        ]
+
+        self.assertEqual(source_ids, [])
 
 
 if __name__ == "__main__":
