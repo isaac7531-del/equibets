@@ -13,6 +13,11 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRIES = "all_countries"
+ALL_EVENTING_LEVELS = "all_eventing_levels"
+ALL_FEI_MEMBER_NATIONS = "all_fei_member_nations"
+FEI_INTERNATIONAL = "fei_international"
+FEI_LEVEL_PREFIXES = ("CCI", "CIC", "CCIO")
 
 
 @dataclass(frozen=True)
@@ -68,17 +73,38 @@ def sources_for_region(
     *,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
+    level: str | None = None,
 ) -> list[EventSource]:
-    """Return sources covering a region while preserving global priorities."""
+    """Return sources covering a region and optional level."""
 
     normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
+        if _status_matches(source, include_planned)
         and ("global" in source.regions or normalized_region in source.regions)
+        and _level_matches(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+    level: str | None = None,
+) -> list[EventSource]:
+    """Return sources covering a country and optional level."""
+
+    normalized_country = country.strip().upper().replace(" ", "_")
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if _status_matches(source, include_planned)
+        and _country_matches(source, normalized_country)
+        and _level_matches(source, level)
     ]
 
 
@@ -114,3 +140,45 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _status_matches(source: EventSource, include_planned: bool) -> bool:
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return source.status in statuses
+
+
+def _country_matches(source: EventSource, normalized_country: str) -> bool:
+    countries = {country.upper() for country in source.countries}
+    return (
+        ALL_COUNTRIES.upper() in countries
+        or ALL_FEI_MEMBER_NATIONS.upper() in countries
+        or normalized_country in countries
+    )
+
+
+def _level_matches(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_level = _normalize_level(level)
+    levels = {_normalize_level(item) for item in source.event_levels}
+
+    return (
+        _normalize_level(ALL_EVENTING_LEVELS) in levels
+        or normalized_level in levels
+        or (
+            _normalize_level(FEI_INTERNATIONAL) in levels
+            and _is_fei_international_level(normalized_level)
+        )
+    )
+
+
+def _normalize_level(level: str) -> str:
+    return level.strip().upper().replace(" ", "_")
+
+
+def _is_fei_international_level(normalized_level: str) -> bool:
+    return (
+        normalized_level == _normalize_level(FEI_INTERNATIONAL)
+        or normalized_level.startswith(FEI_LEVEL_PREFIXES)
+    )
