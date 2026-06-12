@@ -13,6 +13,9 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+GLOBAL_REGION = "global"
+ALL_COUNTRY_MARKERS = {"all_countries", "all_fei_member_nations"}
+ALL_LEVEL_MARKER = "all_eventing_levels"
 
 
 @dataclass(frozen=True)
@@ -68,17 +71,41 @@ def sources_for_region(
     *,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
+    level: str | None = None,
 ) -> list[EventSource]:
-    """Return sources covering a region while preserving global priorities."""
+    """Return sources covering a region and optional level by priority."""
 
-    normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    normalized_region = _normalize_identifier(region)
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        if _matches_status(source, include_planned)
+        and (GLOBAL_REGION in source.regions or normalized_region in source.regions)
+        and _matches_level(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+    level: str | None = None,
+) -> list[EventSource]:
+    """Return sources covering a country and optional level by priority."""
+
+    normalized_country = country.strip().upper()
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if _matches_status(source, include_planned)
+        and (
+            normalized_country in source.countries
+            or any(marker in source.countries for marker in ALL_COUNTRY_MARKERS)
+        )
+        and _matches_level(source, level)
     ]
 
 
@@ -114,3 +141,22 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _matches_status(source: EventSource, include_planned: bool) -> bool:
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return source.status in statuses
+
+
+def _matches_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_levels = {
+        _normalize_identifier(source_level) for source_level in source.event_levels
+    }
+    return ALL_LEVEL_MARKER in normalized_levels or _normalize_identifier(level) in normalized_levels
+
+
+def _normalize_identifier(value: str) -> str:
+    return value.strip().lower().replace(" ", "_").replace("-", "_")

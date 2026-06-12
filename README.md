@@ -55,11 +55,18 @@ The initial source registry lives in `data/event_sources.json` and is loaded wit
 `equibets.sources`.
 
 1. `data_fei` (`https://data.fei.org/`) is the primary source for eventing
-   results across all FEI member nations.
+   results across FEI international levels.
 2. National-event sources fill gaps after FEI data, with priority coverage for
    Europe, the UK, Australia, New Zealand, and the USA.
-3. `global_national_federations` is the backfill path for national events from
-   every FEI member nation after the priority regions are covered.
+3. National sources use the `all_eventing_levels` marker so local, regional,
+   and national levels are covered consistently.
+4. `global_national_federations` uses the `all_countries` marker as the
+   backfill path for national events in every country after priority regions
+   are covered.
+
+Use `sources_for_region(...)` for regional coverage and `sources_for_country(...)`
+for country-specific source selection. Both helpers accept an optional `level=...`
+filter.
 
 Run the source registry checks with:
 
