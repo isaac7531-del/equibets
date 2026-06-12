@@ -50,17 +50,115 @@ class EventSource:
         )
 
 
-def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
-    """Load sources sorted by priority, with FEI first on ties."""
+@dataclass(frozen=True)
+class CoverageTargets:
+    """Countries and eventing levels the source registry is intended to cover."""
+
+    countries: tuple[str, ...]
+    national_event_levels: tuple[str, ...]
+    fei_international_event_levels: tuple[str, ...]
+    event_levels: tuple[str, ...]
+
+    @classmethod
+    def from_mapping(cls, values: dict[str, object]) -> "CoverageTargets":
+        return cls(
+            countries=_string_tuple(values, "countries"),
+            national_event_levels=_string_tuple(values, "national_event_levels"),
+            fei_international_event_levels=_string_tuple(
+                values,
+                "fei_international_event_levels",
+            ),
+            event_levels=_string_tuple(values, "event_levels"),
+        )
+
+
+@dataclass(frozen=True)
+class EventSourceRegistry:
+    """Configured event-results source registry."""
+
+    version: int
+    primary_source_id: str
+    coverage_goal: str
+    priority_regions: tuple[str, ...]
+    coverage_targets: CoverageTargets
+    sources: tuple[EventSource, ...]
+
+
+def load_event_source_registry(path: Path | str = DATA_FILE) -> EventSourceRegistry:
+    """Load the full source registry, including coverage targets."""
 
     with Path(path).open(encoding="utf-8") as source_file:
         payload = json.load(source_file)
 
-    sources = [EventSource.from_mapping(item) for item in payload["sources"]]
-    return sorted(
-        sources,
-        key=lambda source: (source.priority, source.id != "data_fei", source.id),
+    if not isinstance(payload, dict):
+        raise ValueError("event source registry must be a JSON object")
+
+    sources = tuple(
+        sorted(
+            (
+                EventSource.from_mapping(_mapping_value(item, "sources item"))
+                for item in _required_list(payload, "sources")
+            ),
+            key=lambda source: (source.priority, source.id != "data_fei", source.id),
+        )
     )
+    return EventSourceRegistry(
+        version=_required_int(payload, "version"),
+        primary_source_id=_required_str(payload, "primary_source_id"),
+        coverage_goal=_required_str(payload, "coverage_goal"),
+        priority_regions=_string_tuple(payload, "priority_regions"),
+        coverage_targets=CoverageTargets.from_mapping(
+            _required_mapping(payload, "coverage_targets")
+        ),
+        sources=sources,
+    )
+
+
+def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
+    """Load sources sorted by priority, with FEI first on ties."""
+
+    return list(load_event_source_registry(path).sources)
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an eventing level while preserving priorities."""
+
+    normalized_level = event_level.lower().replace(" ", "_").replace("-", "_")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and normalized_level in source.event_levels
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country code or all-country fallback."""
+
+    normalized_country = country.upper()
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and (
+            "all_countries" in source.countries
+            or "all_fei_member_nations" in source.countries
+            or normalized_country in source.countries
+        )
+    ]
 
 
 def sources_for_region(
@@ -102,6 +200,24 @@ def _required_int(values: dict[str, object], key: str) -> int:
     value = values.get(key)
     if not isinstance(value, int):
         raise ValueError(f"{key} must be an integer")
+    return value
+
+
+def _required_mapping(values: dict[str, object], key: str) -> dict[str, object]:
+    value = values.get(key)
+    return _mapping_value(value, key)
+
+
+def _mapping_value(value: object, name: str) -> dict[str, object]:
+    if not isinstance(value, dict):
+        raise ValueError(f"{name} must be an object")
+    return value
+
+
+def _required_list(values: dict[str, object], key: str) -> list[object]:
+    value = values.get(key)
+    if not isinstance(value, list):
+        raise ValueError(f"{key} must be a list")
     return value
 
 
