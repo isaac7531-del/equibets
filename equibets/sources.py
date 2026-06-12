@@ -13,6 +13,19 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRIES = "all_countries"
+ALL_EVENTING_LEVELS = "all_eventing_levels"
+_GLOBAL_COUNTRY_TOKENS = {ALL_COUNTRIES, "all_fei_member_nations"}
+_EUROPE_COUNTRY_TOKEN = "all_fei_europe_member_nations"
+_EUROPEAN_PRIORITY_COUNTRIES = {"GBR"}
+_COUNTRY_ALIASES = {
+    "GB": "GBR",
+    "UK": "GBR",
+    "UNITED_KINGDOM": "GBR",
+    "US": "USA",
+    "UNITED_STATES": "USA",
+    "UNITED_STATES_OF_AMERICA": "USA",
+}
 
 
 @dataclass(frozen=True)
@@ -68,6 +81,7 @@ def sources_for_region(
     *,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
+    level: str | None = None,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
@@ -79,7 +93,58 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+        and _source_covers_level(source, level)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+    level: str | None = None,
+) -> list[EventSource]:
+    """Return sources covering a country, optionally narrowed to an event level."""
+
+    normalized_country = _normalize_country(country)
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _source_covers_country(source, normalized_country)
+        and _source_covers_level(source, level)
+    ]
+
+
+def _source_covers_country(source: EventSource, country: str) -> bool:
+    country_tokens = set(source.countries)
+    if country_tokens & _GLOBAL_COUNTRY_TOKENS:
+        return True
+    if _EUROPE_COUNTRY_TOKEN in country_tokens and country in _EUROPEAN_PRIORITY_COUNTRIES:
+        return True
+    return country in country_tokens
+
+
+def _source_covers_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    levels = {_normalize_token(source_level) for source_level in source.event_levels}
+    normalized_level = _normalize_token(level)
+    if normalized_level == "fei_international":
+        return normalized_level in levels
+    return ALL_EVENTING_LEVELS in levels or normalized_level in levels
+
+
+def _normalize_country(country: str) -> str:
+    normalized = _normalize_token(country).upper()
+    return _COUNTRY_ALIASES.get(normalized, normalized)
+
+
+def _normalize_token(value: str) -> str:
+    return value.strip().replace("-", "_").replace(" ", "_").lower()
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
