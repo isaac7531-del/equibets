@@ -13,6 +13,9 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+COUNTRY_WILDCARDS = frozenset({"all_countries", "all_fei_member_nations"})
+LEVEL_WILDCARDS = frozenset({"all_eventing_levels"})
+FEI_LEVEL_PREFIXES = ("cci", "cio", "ch")
 
 
 @dataclass(frozen=True)
@@ -66,19 +69,43 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
-    """Return sources covering a region while preserving global priorities."""
+    """Return sources covering a region and optional level, preserving priorities."""
 
     normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
+        if _source_is_available(source, include_planned)
         and ("global" in source.regions or normalized_region in source.regions)
+        and _source_covers_level(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional level, preserving priorities."""
+
+    normalized_country = country.strip().upper()
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if _source_is_available(source, include_planned)
+        and (
+            normalized_country in source.countries
+            or any(country in COUNTRY_WILDCARDS for country in source.countries)
+        )
+        and _source_covers_level(source, level)
     ]
 
 
@@ -114,3 +141,29 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _source_is_available(source: EventSource, include_planned: bool) -> bool:
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return source.status in statuses
+
+
+def _source_covers_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_levels = {_normalize_level(source_level) for source_level in source.event_levels}
+    normalized_level = _normalize_level(level)
+
+    if normalized_levels & LEVEL_WILDCARDS:
+        return True
+    if normalized_level in normalized_levels:
+        return True
+    return (
+        normalized_level.startswith(FEI_LEVEL_PREFIXES)
+        and "fei_international" in normalized_levels
+    )
+
+
+def _normalize_level(level: str) -> str:
+    return level.strip().lower().replace(" ", "_").replace("-", "_")
