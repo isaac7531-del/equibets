@@ -117,6 +117,23 @@ class EventSourceTests(unittest.TestCase):
                 if event_level in FEI_INTERNATIONAL_EVENT_LEVELS:
                     self.assertEqual(source_ids[0], "data_fei")
 
+    def test_event_level_lookup_accepts_display_level_labels(self):
+        cci4_short_source_ids = [
+            source.id for source in sources_for_event_level("CCI4*-S")
+        ]
+        cci5_long_source_ids = [
+            source.id for source in sources_for_event_level("CCI5-L")
+        ]
+        beginner_novice_source_ids = [
+            source.id for source in sources_for_event_level("beginner novice")
+        ]
+
+        self.assertEqual(cci4_short_source_ids[0], "data_fei")
+        self.assertIn("global_national_federations", cci4_short_source_ids)
+        self.assertEqual(cci5_long_source_ids[0], "data_fei")
+        self.assertIn("global_national_federations", cci5_long_source_ids)
+        self.assertIn("global_national_federations", beginner_novice_source_ids)
+
     def test_country_lookup_uses_explicit_and_global_fallback_sources(self):
         source_ids = [source.id for source in sources_for_country("USA")]
 

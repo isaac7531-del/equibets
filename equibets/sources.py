@@ -128,7 +128,7 @@ def sources_for_event_level(
 ) -> list[EventSource]:
     """Return sources covering an eventing level while preserving priorities."""
 
-    normalized_level = event_level.lower().replace(" ", "_").replace("-", "_")
+    normalized_level = _normalized_event_level(event_level)
     statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
@@ -178,6 +178,40 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def _normalized_event_level(event_level: str) -> str:
+    normalized = (
+        event_level.strip()
+        .lower()
+        .replace("*", "")
+        .replace("/", "_")
+        .replace("-", "_")
+        .replace(" ", "_")
+    )
+    while "__" in normalized:
+        normalized = normalized.replace("__", "_")
+
+    aliases = {
+        "cci1intro": "cci1_intro",
+        "cci1_intro": "cci1_intro",
+        "cci2_l": "cci2_long",
+        "cci2_long": "cci2_long",
+        "cci2_s": "cci2_short",
+        "cci2_short": "cci2_short",
+        "cci3_l": "cci3_long",
+        "cci3_long": "cci3_long",
+        "cci3_s": "cci3_short",
+        "cci3_short": "cci3_short",
+        "cci4_l": "cci4_long",
+        "cci4_long": "cci4_long",
+        "cci4_s": "cci4_short",
+        "cci4_short": "cci4_short",
+        "cci5_l": "cci5_long",
+        "cci5_long": "cci5_long",
+        "championships": "championship",
+    }
+    return aliases.get(normalized, normalized)
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
