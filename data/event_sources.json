@@ -1,14 +1,78 @@
 {
-  "version": 1,
+  "version": 2,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results from national events in all countries and at every recognized eventing level, prioritizing data.fei where available and supplementing with national-event sources.",
   "priority_regions": [
+    "africa",
+    "asia",
     "europe",
+    "middle_east",
+    "north_america",
+    "central_america_caribbean",
+    "south_america",
+    "oceania",
     "uk",
     "australia",
     "new_zealand",
     "usa"
   ],
+  "coverage_targets": {
+    "countries": [
+      "all_countries"
+    ],
+    "national_event_levels": [
+      "starter",
+      "beginner_novice",
+      "novice",
+      "training",
+      "modified",
+      "preliminary",
+      "intermediate",
+      "advanced",
+      "national_one_star",
+      "national_two_star",
+      "national_three_star",
+      "national_four_star",
+      "national_five_star"
+    ],
+    "fei_international_event_levels": [
+      "cci1_intro",
+      "cci2_short",
+      "cci2_long",
+      "cci3_short",
+      "cci3_long",
+      "cci4_short",
+      "cci4_long",
+      "cci5_long",
+      "ccio",
+      "championship"
+    ],
+    "event_levels": [
+      "starter",
+      "beginner_novice",
+      "novice",
+      "training",
+      "modified",
+      "preliminary",
+      "intermediate",
+      "advanced",
+      "national_one_star",
+      "national_two_star",
+      "national_three_star",
+      "national_four_star",
+      "national_five_star",
+      "cci1_intro",
+      "cci2_short",
+      "cci2_long",
+      "cci3_short",
+      "cci3_long",
+      "cci4_short",
+      "cci4_long",
+      "cci5_long",
+      "ccio",
+      "championship"
+    ]
+  },
   "sources": [
     {
       "id": "data_fei",
@@ -25,12 +89,89 @@
         "eventing"
       ],
       "event_levels": [
-        "fei_international"
+        "cci1_intro",
+        "cci2_short",
+        "cci2_long",
+        "cci3_short",
+        "cci3_long",
+        "cci4_short",
+        "cci4_long",
+        "cci5_long",
+        "ccio",
+        "championship"
       ],
       "source_type": "primary_database",
       "base_url": "https://data.fei.org/",
       "status": "active",
-      "notes": "Primary eventing source. Use before national sources whenever a result appears in the FEI database."
+      "notes": "Primary eventing source for international results. Use before national sources whenever a result appears in the FEI database."
+    },
+    {
+      "id": "africa_national_federations",
+      "name": "African national federation results",
+      "priority": 10,
+      "scope": "national",
+      "regions": [
+        "africa"
+      ],
+      "countries": [
+        "all_africa_countries"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "starter",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Discover and connect national federation calendars and result portals for african countries."
+    },
+    {
+      "id": "asia_national_federations",
+      "name": "Asian national federation results",
+      "priority": 10,
+      "scope": "national",
+      "regions": [
+        "asia"
+      ],
+      "countries": [
+        "all_asia_countries"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "starter",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Discover and connect national federation calendars and result portals for asian countries."
     },
     {
       "id": "europe_national_federations",
@@ -41,19 +182,200 @@
         "europe"
       ],
       "countries": [
-        "all_fei_europe_member_nations"
+        "all_europe_countries"
       ],
       "disciplines": [
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "starter",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations."
+      "notes": "Discover and connect national federation calendars and result portals for european countries."
+    },
+    {
+      "id": "middle_east_national_federations",
+      "name": "Middle Eastern national federation results",
+      "priority": 10,
+      "scope": "national",
+      "regions": [
+        "middle_east"
+      ],
+      "countries": [
+        "all_middle_east_countries"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "starter",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Discover and connect national federation calendars and result portals for middle eastern countries."
+    },
+    {
+      "id": "north_america_national_federations",
+      "name": "North American national federation results",
+      "priority": 10,
+      "scope": "national",
+      "regions": [
+        "north_america"
+      ],
+      "countries": [
+        "all_north_america_countries"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "starter",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Discover and connect national federation calendars and result portals for north american countries."
+    },
+    {
+      "id": "central_america_caribbean_national_federations",
+      "name": "Central American and Caribbean national federation results",
+      "priority": 10,
+      "scope": "national",
+      "regions": [
+        "central_america_caribbean"
+      ],
+      "countries": [
+        "all_central_america_caribbean_countries"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "starter",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Discover and connect national federation calendars and result portals for central american and caribbean countries."
+    },
+    {
+      "id": "south_america_national_federations",
+      "name": "South American national federation results",
+      "priority": 10,
+      "scope": "national",
+      "regions": [
+        "south_america"
+      ],
+      "countries": [
+        "all_south_america_countries"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "starter",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Discover and connect national federation calendars and result portals for south american countries."
+    },
+    {
+      "id": "oceania_national_federations",
+      "name": "Oceanian national federation results",
+      "priority": 10,
+      "scope": "national",
+      "regions": [
+        "oceania"
+      ],
+      "countries": [
+        "all_oceania_countries"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "starter",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Discover and connect national federation calendars and result portals for oceanian countries."
     },
     {
       "id": "british_eventing",
@@ -70,8 +392,19 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "starter",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
@@ -93,8 +426,19 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "starter",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.equestrian.org.au/",
@@ -116,8 +460,19 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "starter",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.nzequestrian.org.nz/",
@@ -139,8 +494,19 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "starter",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
@@ -156,19 +522,40 @@
         "global"
       ],
       "countries": [
-        "all_fei_member_nations"
+        "all_countries"
       ],
       "disciplines": [
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "starter",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star",
+        "cci1_intro",
+        "cci2_short",
+        "cci2_long",
+        "cci3_short",
+        "cci3_long",
+        "cci4_short",
+        "cci4_long",
+        "cci5_long",
+        "ccio",
+        "championship"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "notes": "Backfill national events for every country and every recognized eventing level after higher-priority sources are covered."
     }
   ]
 }
