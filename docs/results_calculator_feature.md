@@ -28,12 +28,18 @@ override official results.
 ## Weekly update flow
 
 1. Pull new FEI results from `data.fei.org`.
-2. Pull national-event updates from the priority regions.
-3. Pull global national-federation results as a backfill.
+2. Pull national-event updates from the priority country and regional sources
+   declared in `data/event_sources.json`.
+3. Pull global national-federation results as a backfill for all FEI member
+   nations and all declared national-event levels.
 4. Store raw source payloads for auditability.
 5. Normalize records into the common result table.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
+
+The registry separates FEI international levels from national-event levels so
+refresh jobs can request a precise slice such as `sources_for_country("USA",
+level="training")` or `sources_for_event_level("CCI5*-L")`.
 
 ## Prediction logic
 
