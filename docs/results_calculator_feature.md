@@ -29,7 +29,7 @@ override official results.
 
 1. Pull new FEI results from `data.fei.org`.
 2. Pull national-event updates from the priority regions.
-3. Pull global national-federation results as a backfill.
+3. Pull global national-federation results as an all-country, all-level backfill.
 4. Store raw source payloads for auditability.
 5. Normalize records into the common result table.
 6. Re-run consolidation and prediction calculations.
