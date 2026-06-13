@@ -9,12 +9,14 @@ shows how horse/rider combinations are performing before upcoming events.
 - Search a horse/rider combination and see recent finishing scores.
 - Compare official/public results with scores the user has added manually.
 - See a likely finishing score for upcoming events.
-- Track all nations over time, while prioritizing richer national-event data
-  from Europe, the UK, Australia, New Zealand, and the USA.
+- Track all countries and all eventing levels over time, while prioritizing
+  richer national-event data from regional federation registries plus the UK,
+  Australia, New Zealand, and the USA.
 
 ## Data consolidation
 
-1. Refresh public data weekly from `data/event_sources.json`.
+1. Refresh public data weekly from `data/event_sources.json`, selecting sources
+   by country, region, and eventing level.
 2. Normalize each result into `EventingResult`.
 3. Deduplicate by combination, event, date, and level.
 4. Keep the lowest `source_priority` when duplicates exist, so `data_fei`
@@ -28,8 +30,10 @@ override official results.
 ## Weekly update flow
 
 1. Pull new FEI results from `data.fei.org`.
-2. Pull national-event updates from the priority regions.
-3. Pull global national-federation results as a backfill.
+2. Pull national-event updates from the priority regions across every eventing
+   level.
+3. Pull global national-federation results for every country and eventing level
+   as a backfill.
 4. Store raw source payloads for auditability.
 5. Normalize records into the common result table.
 6. Re-run consolidation and prediction calculations.
