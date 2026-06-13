@@ -13,6 +13,21 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+COUNTRY_WILDCARDS = frozenset({"all_countries", "all_fei_member_nations"})
+EVENT_LEVEL_WILDCARDS = frozenset({"all_eventing_levels", "all_national_levels"})
+FEI_INTERNATIONAL_EVENT_LEVELS = frozenset(
+    {
+        "cci1_intro",
+        "cci2_short",
+        "cci2_long",
+        "cci3_short",
+        "cci3_long",
+        "cci4_short",
+        "cci4_long",
+        "cci5_long",
+        "championship",
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -66,20 +81,123 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
-    """Return sources covering a region while preserving global priorities."""
+    """Return sources covering a region and optional eventing level."""
 
-    normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    normalized_region = _normalized_token(region)
 
     return [
         source
         for source in load_event_sources(path)
-        if source.status in statuses
+        if _source_status_matches(source, include_planned)
         and ("global" in source.regions or normalized_region in source.regions)
+        and _source_level_matches(source, level)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = _normalized_country(country)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if _source_status_matches(source, include_planned)
+        and _source_country_matches(source, normalized_country)
+        and _source_level_matches(source, level)
+    ]
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an eventing level while preserving priorities."""
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if _source_status_matches(source, include_planned)
+        and _source_level_matches(source, event_level)
+    ]
+
+
+def _source_status_matches(source: EventSource, include_planned: bool) -> bool:
+    statuses = {"active", "planned"} if include_planned else {"active"}
+    return source.status in statuses
+
+
+def _source_country_matches(source: EventSource, country: str) -> bool:
+    return any(
+        configured_country in COUNTRY_WILDCARDS
+        or _normalized_country(configured_country) == country
+        for configured_country in source.countries
+    )
+
+
+def _source_level_matches(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_level = _normalized_event_level(level)
+    configured_levels = {
+        _normalized_event_level(configured_level)
+        for configured_level in source.event_levels
+    }
+    if configured_levels & EVENT_LEVEL_WILDCARDS:
+        return True
+    if normalized_level in configured_levels:
+        return True
+    return (
+        "fei_international" in configured_levels
+        and normalized_level in FEI_INTERNATIONAL_EVENT_LEVELS
+    )
+
+
+def _normalized_country(country: str) -> str:
+    return country.strip().upper().replace("-", "_").replace(" ", "_")
+
+
+def _normalized_token(value: str) -> str:
+    return value.strip().lower().replace("-", "_").replace(" ", "_")
+
+
+def _normalized_event_level(event_level: str) -> str:
+    normalized = (
+        event_level.strip()
+        .lower()
+        .replace("*", "")
+        .replace("/", "_")
+        .replace("-", "_")
+        .replace(" ", "_")
+    )
+    while "__" in normalized:
+        normalized = normalized.replace("__", "_")
+
+    aliases = {
+        "cci1intro": "cci1_intro",
+        "cci2_l": "cci2_long",
+        "cci2_s": "cci2_short",
+        "cci3_l": "cci3_long",
+        "cci3_s": "cci3_short",
+        "cci4_l": "cci4_long",
+        "cci4_s": "cci4_short",
+        "cci5_l": "cci5_long",
+        "championships": "championship",
+    }
+    return aliases.get(normalized, normalized)
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
