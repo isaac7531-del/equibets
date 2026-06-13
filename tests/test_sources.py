@@ -1,34 +1,176 @@
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import (
+    load_event_source_registry,
+    load_event_sources,
+    sources_for_country,
+    sources_for_event_level,
+    sources_for_region,
+)
+
+
+NATIONAL_EVENT_LEVELS = (
+    "starter",
+    "beginner_novice",
+    "novice",
+    "training",
+    "modified",
+    "preliminary",
+    "intermediate",
+    "advanced",
+    "national_one_star",
+    "national_two_star",
+    "national_three_star",
+    "national_four_star",
+    "national_five_star",
+)
+
+FEI_INTERNATIONAL_EVENT_LEVELS = (
+    "cci1_intro",
+    "cci2_short",
+    "cci2_long",
+    "cci3_short",
+    "cci3_long",
+    "cci4_short",
+    "cci4_long",
+    "cci5_long",
+    "ccio",
+    "championship",
+)
+
+REGIONAL_NATIONAL_SOURCES = {
+    "africa": "africa_national_federations",
+    "asia": "asia_national_federations",
+    "europe": "europe_national_federations",
+    "middle_east": "middle_east_national_federations",
+    "north_america": "north_america_national_federations",
+    "central_america_caribbean": "central_america_caribbean_national_federations",
+    "south_america": "south_america_national_federations",
+    "oceania": "oceania_national_federations",
+    "uk": "british_eventing",
+    "australia": "equestrian_australia",
+    "new_zealand": "equestrian_sports_new_zealand",
+    "usa": "usea",
+}
 
 
 class EventSourceTests(unittest.TestCase):
+    def test_registry_declares_all_country_and_level_targets(self):
+        registry = load_event_source_registry()
+
+        self.assertEqual(registry.version, 2)
+        self.assertEqual(registry.coverage_targets.countries, ("all_countries",))
+        self.assertEqual(
+            registry.coverage_targets.national_event_levels,
+            NATIONAL_EVENT_LEVELS,
+        )
+        self.assertEqual(
+            registry.coverage_targets.fei_international_event_levels,
+            FEI_INTERNATIONAL_EVENT_LEVELS,
+        )
+        self.assertEqual(
+            registry.coverage_targets.event_levels,
+            NATIONAL_EVENT_LEVELS + FEI_INTERNATIONAL_EVENT_LEVELS,
+        )
+
     def test_data_fei_is_primary_source(self):
         sources = load_event_sources()
 
         self.assertEqual(sources[0].id, "data_fei")
         self.assertEqual(sources[0].priority, 0)
         self.assertEqual(sources[0].base_url, "https://data.fei.org/")
+        self.assertEqual(sources[0].event_levels, FEI_INTERNATIONAL_EVENT_LEVELS)
 
-    def test_priority_regions_include_fei_and_national_sources(self):
-        expected_national_sources = {
-            "europe": "europe_national_federations",
-            "uk": "british_eventing",
-            "australia": "equestrian_australia",
-            "new_zealand": "equestrian_sports_new_zealand",
-            "usa": "usea",
-        }
+    def test_all_priority_regions_include_fei_and_national_sources(self):
+        registry = load_event_source_registry()
 
-        for region, national_source_id in expected_national_sources.items():
+        self.assertEqual(registry.priority_regions, tuple(REGIONAL_NATIONAL_SOURCES))
+        for region, national_source_id in REGIONAL_NATIONAL_SOURCES.items():
             with self.subTest(region=region):
                 source_ids = [source.id for source in sources_for_region(region)]
                 self.assertEqual(source_ids[0], "data_fei")
                 self.assertIn(national_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
 
+    def test_global_national_source_covers_all_countries_and_national_levels(self):
+        global_source = next(
+            source
+            for source in load_event_sources()
+            if source.id == "global_national_federations"
+        )
+
+        self.assertEqual(global_source.countries, ("all_countries",))
+        self.assertEqual(global_source.event_levels, NATIONAL_EVENT_LEVELS)
+
+    def test_every_target_level_has_a_configured_source(self):
+        registry = load_event_source_registry()
+
+        for event_level in registry.coverage_targets.event_levels:
+            with self.subTest(event_level=event_level):
+                source_ids = [
+                    source.id for source in sources_for_event_level(event_level)
+                ]
+                if event_level in NATIONAL_EVENT_LEVELS:
+                    self.assertIn("global_national_federations", source_ids)
+                    self.assertNotIn("data_fei", source_ids)
+                else:
+                    self.assertEqual(source_ids, ["data_fei"])
+
+    def test_sources_for_country_includes_exact_and_global_sources(self):
+        source_ids = [source.id for source in sources_for_country("usa")]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("usea", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+
+    def test_sources_for_country_filters_by_national_level(self):
+        source_ids = [
+            source.id
+            for source in sources_for_country("USA", level="starter")
+        ]
+
+        self.assertEqual(source_ids, ["usea", "global_national_federations"])
+
+    def test_sources_for_country_backfills_unlisted_countries_by_level(self):
+        source_ids = [
+            source.id
+            for source in sources_for_country("BRA", level="novice")
+        ]
+
+        self.assertEqual(source_ids, ["global_national_federations"])
+
+    def test_sources_for_country_filters_by_fei_level(self):
+        source_ids = [
+            source.id
+            for source in sources_for_country("BRA", level="cci4-short")
+        ]
+
+        self.assertEqual(source_ids, ["data_fei"])
+
+    def test_sources_for_region_filters_by_national_level(self):
+        source_ids = [
+            source.id
+            for source in sources_for_region("middle east", level="national-three-star")
+        ]
+
+        self.assertEqual(
+            source_ids,
+            [
+                "middle_east_national_federations",
+                "global_national_federations",
+            ],
+        )
+
     def test_active_only_filter_keeps_current_primary_source(self):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
+
+        self.assertEqual(source_ids, ["data_fei"])
+
+    def test_country_active_only_filter_keeps_current_primary_source(self):
+        source_ids = [
+            source.id
+            for source in sources_for_country("USA", include_planned=False)
+        ]
 
         self.assertEqual(source_ids, ["data_fei"])
 
