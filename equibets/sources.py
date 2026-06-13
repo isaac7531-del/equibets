@@ -1,7 +1,7 @@
 """Event-result source registry helpers.
 
-The project prioritizes FEI data while still tracking national-event sources
-that are important for broader coverage.
+The project prioritizes FEI data while still tracking all-country national-event
+sources that are important for broader coverage.
 """
 
 from __future__ import annotations
@@ -13,6 +13,7 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_FEI_MEMBER_NATIONS = "all_fei_member_nations"
 
 
 @dataclass(frozen=True)
@@ -80,6 +81,40 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def sources_for_country(
+    country_code: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an FEI/NOC country code.
+
+    The registry uses ``all_fei_member_nations`` for sources that cover every
+    FEI-affiliated country, while higher-priority sources list explicit country
+    codes.
+    """
+
+    normalized_country = _normalize_country_code(country_code)
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and _source_covers_country(source, normalized_country)
+    ]
+
+
+def _source_covers_country(source: EventSource, country_code: str) -> bool:
+    return country_code in source.countries or ALL_FEI_MEMBER_NATIONS in source.countries
+
+
+def _normalize_country_code(country_code: str) -> str:
+    normalized = country_code.strip().upper()
+    if len(normalized) != 3 or not normalized.isalpha():
+        raise ValueError("country_code must be a three-letter FEI/NOC code")
+    return normalized
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
