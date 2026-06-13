@@ -1,6 +1,6 @@
 import unittest
 
-from equibets.sources import load_event_sources, sources_for_region
+from equibets.sources import load_event_sources, sources_for_country, sources_for_region
 
 
 class EventSourceTests(unittest.TestCase):
@@ -31,6 +31,47 @@ class EventSourceTests(unittest.TestCase):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
 
         self.assertEqual(source_ids, ["data_fei"])
+
+    def test_global_national_source_covers_every_country_and_level(self):
+        sources = {source.id: source for source in load_event_sources()}
+
+        global_source = sources["global_national_federations"]
+        self.assertEqual(global_source.countries, ("all_countries",))
+        self.assertEqual(global_source.event_levels, ("all_eventing_levels",))
+
+    def test_country_lookup_includes_priority_and_global_national_sources(self):
+        source_ids = [
+            source.id
+            for source in sources_for_country("USA", level="training")
+        ]
+
+        self.assertEqual(source_ids, ["usea", "global_national_federations"])
+
+    def test_country_lookup_uses_european_registry_for_european_countries(self):
+        source_ids = [
+            source.id
+            for source in sources_for_country("FRA", level="amateur")
+        ]
+
+        self.assertEqual(
+            source_ids,
+            ["europe_national_federations", "global_national_federations"],
+        )
+
+    def test_country_lookup_can_select_fei_international_sources(self):
+        source_ids = [
+            source.id
+            for source in sources_for_country("NZL", level="fei_international")
+        ]
+
+        self.assertEqual(
+            source_ids,
+            [
+                "data_fei",
+                "equestrian_sports_new_zealand",
+                "global_national_federations",
+            ],
+        )
 
 
 if __name__ == "__main__":

@@ -13,6 +13,62 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRIES = "all_countries"
+ALL_EVENTING_LEVELS = "all_eventing_levels"
+ALL_FEI_MEMBER_NATIONS = "all_fei_member_nations"
+ALL_FEI_EUROPE_MEMBER_NATIONS = "all_fei_europe_member_nations"
+
+_GLOBAL_COUNTRY_WILDCARDS = frozenset({ALL_COUNTRIES, ALL_FEI_MEMBER_NATIONS})
+_EUROPE_COUNTRY_CODES = frozenset(
+    {
+        "ALB",
+        "AND",
+        "ARM",
+        "AUT",
+        "AZE",
+        "BEL",
+        "BIH",
+        "BUL",
+        "CRO",
+        "CYP",
+        "CZE",
+        "DEN",
+        "ESP",
+        "EST",
+        "FIN",
+        "FRA",
+        "GBR",
+        "GEO",
+        "GER",
+        "GRE",
+        "HUN",
+        "IRL",
+        "ISL",
+        "ISR",
+        "ITA",
+        "LAT",
+        "LIE",
+        "LTU",
+        "LUX",
+        "MDA",
+        "MKD",
+        "MLT",
+        "MON",
+        "NED",
+        "NOR",
+        "POL",
+        "POR",
+        "ROU",
+        "SLO",
+        "SMR",
+        "SRB",
+        "SUI",
+        "SVK",
+        "SWE",
+        "TUR",
+        "UKR",
+    }
+)
 
 
 @dataclass(frozen=True)
@@ -68,6 +124,7 @@ def sources_for_region(
     *,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
+    level: str | None = None,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
@@ -79,6 +136,28 @@ def sources_for_region(
         for source in load_event_sources(path)
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
+        and _covers_level(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+    level: str | None = None,
+) -> list[EventSource]:
+    """Return sources covering a country and optional eventing level."""
+
+    normalized_country = country.upper().replace(" ", "_")
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _covers_country(source, normalized_country)
+        and _covers_level(source, level)
     ]
 
 
@@ -114,3 +193,27 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _covers_country(source: EventSource, country: str) -> bool:
+    source_countries = {_normalize_value(item) for item in source.countries}
+    if source_countries & _GLOBAL_COUNTRY_WILDCARDS:
+        return True
+    if (
+        ALL_FEI_EUROPE_MEMBER_NATIONS in source_countries
+        and country in _EUROPE_COUNTRY_CODES
+    ):
+        return True
+    return country in {item.upper().replace(" ", "_") for item in source.countries}
+
+
+def _covers_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    source_levels = {_normalize_value(item) for item in source.event_levels}
+    return ALL_EVENTING_LEVELS in source_levels or _normalize_value(level) in source_levels
+
+
+def _normalize_value(value: str) -> str:
+    return value.lower().replace(" ", "_")
