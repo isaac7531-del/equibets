@@ -13,6 +13,8 @@ from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+ALL_COUNTRY_MARKERS = frozenset({"all_countries", "all_fei_member_nations"})
+ALL_EVENTING_LEVEL_MARKERS = frozenset({"all_eventing_levels"})
 
 
 @dataclass(frozen=True)
@@ -66,19 +68,42 @@ def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
 def sources_for_region(
     region: str,
     *,
+    level: str | None = None,
     path: Path | str = DATA_FILE,
     include_planned: bool = True,
 ) -> list[EventSource]:
     """Return sources covering a region while preserving global priorities."""
 
-    normalized_region = region.lower().replace(" ", "_")
+    normalized_region = _normalize_token(region)
     statuses = {"active", "planned"} if include_planned else {"active"}
 
     return [
         source
         for source in load_event_sources(path)
         if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
+        and _covers_region(source, normalized_region)
+        and _covers_event_level(source, level)
+    ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country and optional event level."""
+
+    normalized_country = _normalize_token(country)
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and _covers_country(source, normalized_country)
+        and _covers_event_level(source, level)
     ]
 
 
@@ -114,3 +139,26 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _covers_region(source: EventSource, normalized_region: str) -> bool:
+    regions = {_normalize_token(region) for region in source.regions}
+    return "global" in regions or normalized_region in regions
+
+
+def _covers_country(source: EventSource, normalized_country: str) -> bool:
+    countries = {_normalize_token(country) for country in source.countries}
+    return bool(countries & ALL_COUNTRY_MARKERS) or normalized_country in countries
+
+
+def _covers_event_level(source: EventSource, level: str | None) -> bool:
+    if level is None:
+        return True
+
+    normalized_level = _normalize_token(level)
+    event_levels = {_normalize_token(event_level) for event_level in source.event_levels}
+    return bool(event_levels & ALL_EVENTING_LEVEL_MARKERS) or normalized_level in event_levels
+
+
+def _normalize_token(value: str) -> str:
+    return value.strip().lower().replace("-", "_").replace(" ", "_")
