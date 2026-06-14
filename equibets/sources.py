@@ -32,6 +32,26 @@ class EventSource:
     status: str
     notes: str
 
+    def covers_country(self, country: str) -> bool:
+        """Return whether this source can collect results for a country code."""
+
+        normalized_country = _normalize_country(country)
+        return any(
+            country_marker in {"ALL_COUNTRIES", "ALL_FEI_MEMBER_NATIONS"}
+            or country_marker == normalized_country
+            for country_marker in (_normalize_country(item) for item in self.countries)
+        )
+
+    def covers_level(self, level: str) -> bool:
+        """Return whether this source can collect results for an event level."""
+
+        normalized_level = _normalize_key(level)
+        return any(
+            level_marker in {"all_levels", "all_eventing_levels"}
+            or level_marker == normalized_level
+            for level_marker in (_normalize_key(item) for item in self.event_levels)
+        )
+
     @classmethod
     def from_mapping(cls, values: dict[str, object]) -> "EventSource":
         return cls(
@@ -80,6 +100,34 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    level: str | None = None,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country, optionally narrowed to an event level."""
+
+    statuses = {"active", "planned"} if include_planned else {"active"}
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and source.covers_country(country)
+        and (level is None or source.covers_level(level))
+    ]
+
+
+def _normalize_country(country: str) -> str:
+    return country.strip().upper().replace("-", "_")
+
+
+def _normalize_key(value: str) -> str:
+    return value.strip().lower().replace(" ", "_").replace("-", "_")
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
