@@ -1,14 +1,346 @@
 {
-  "version": 1,
+  "version": 2,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results for every configured FEI member nation across FEI international, national, and regional levels. Prioritize data.fei and supplement gaps with national-event sources.",
   "priority_regions": [
     "europe",
     "uk",
     "australia",
     "new_zealand",
-    "usa"
+    "usa",
+    "north_america",
+    "central_america_caribbean",
+    "south_america",
+    "middle_east",
+    "africa",
+    "asia",
+    "oceania"
   ],
+  "coverage_targets": {
+    "countries": {
+      "all_fei_member_nations": [
+        "AFG",
+        "ALB",
+        "ALG",
+        "AND",
+        "ANG",
+        "ANT",
+        "ARG",
+        "ARM",
+        "ARU",
+        "AUS",
+        "AUT",
+        "AZE",
+        "BAH",
+        "BAR",
+        "BEL",
+        "BER",
+        "BIH",
+        "BLR",
+        "BOL",
+        "BOT",
+        "BRA",
+        "BRN",
+        "BRU",
+        "BUL",
+        "BUR",
+        "CAM",
+        "CAN",
+        "CAY",
+        "CHI",
+        "CHN",
+        "CIV",
+        "CMR",
+        "COL",
+        "CRC",
+        "CRO",
+        "CUB",
+        "CYP",
+        "CZE",
+        "DEN",
+        "DOM",
+        "ECU",
+        "EGY",
+        "ESA",
+        "ESP",
+        "EST",
+        "FIN",
+        "FRA",
+        "GBR",
+        "GEO",
+        "GER",
+        "GHA",
+        "GRE",
+        "GUA",
+        "HKG",
+        "HON",
+        "HUN",
+        "INA",
+        "IND",
+        "IRI",
+        "IRL",
+        "IRQ",
+        "ISL",
+        "ISR",
+        "ITA",
+        "JAM",
+        "JOR",
+        "JPN",
+        "KAZ",
+        "KEN",
+        "KGZ",
+        "KOR",
+        "KSA",
+        "KUW",
+        "LAT",
+        "LBN",
+        "LBA",
+        "LIE",
+        "LTU",
+        "LUX",
+        "MAC",
+        "MAR",
+        "MAS",
+        "MDA",
+        "MEX",
+        "MKD",
+        "MLT",
+        "MGL",
+        "MON",
+        "MRI",
+        "NAM",
+        "NCA",
+        "NED",
+        "NGR",
+        "NOR",
+        "NZL",
+        "OMA",
+        "PAK",
+        "PAN",
+        "PAR",
+        "PER",
+        "PHI",
+        "PLE",
+        "POL",
+        "POR",
+        "PUR",
+        "QAT",
+        "ROU",
+        "RSA",
+        "RUS",
+        "SEN",
+        "SIN",
+        "SLO",
+        "SRB",
+        "SRI",
+        "SUD",
+        "SUI",
+        "SUR",
+        "SVK",
+        "SWE",
+        "SYR",
+        "THA",
+        "TPE",
+        "TTO",
+        "TUN",
+        "TUR",
+        "TKM",
+        "UAE",
+        "UKR",
+        "URU",
+        "USA",
+        "UZB",
+        "VEN",
+        "VIE",
+        "ZAM",
+        "ZIM"
+      ],
+      "europe_fei_member_nations": [
+        "ALB",
+        "AND",
+        "ARM",
+        "AUT",
+        "AZE",
+        "BEL",
+        "BIH",
+        "BLR",
+        "BUL",
+        "CRO",
+        "CYP",
+        "CZE",
+        "DEN",
+        "ESP",
+        "EST",
+        "FIN",
+        "FRA",
+        "GBR",
+        "GEO",
+        "GER",
+        "GRE",
+        "HUN",
+        "IRL",
+        "ISL",
+        "ITA",
+        "LAT",
+        "LIE",
+        "LTU",
+        "LUX",
+        "MDA",
+        "MKD",
+        "MLT",
+        "MON",
+        "NED",
+        "NOR",
+        "POL",
+        "POR",
+        "ROU",
+        "RUS",
+        "SLO",
+        "SRB",
+        "SUI",
+        "SVK",
+        "SWE",
+        "TUR",
+        "UKR"
+      ],
+      "north_america_fei_member_nations": [
+        "BER",
+        "CAN",
+        "MEX",
+        "USA"
+      ],
+      "central_america_caribbean_fei_member_nations": [
+        "ANT",
+        "ARU",
+        "BAH",
+        "BAR",
+        "CAY",
+        "CRC",
+        "CUB",
+        "DOM",
+        "ESA",
+        "GUA",
+        "HON",
+        "JAM",
+        "NCA",
+        "PAN",
+        "PUR",
+        "TTO"
+      ],
+      "south_america_fei_member_nations": [
+        "ARG",
+        "BOL",
+        "BRA",
+        "CHI",
+        "COL",
+        "ECU",
+        "PAR",
+        "PER",
+        "SUR",
+        "URU",
+        "VEN"
+      ],
+      "middle_east_north_africa_fei_member_nations": [
+        "ALG",
+        "BRN",
+        "EGY",
+        "IRI",
+        "IRQ",
+        "ISR",
+        "JOR",
+        "KSA",
+        "KUW",
+        "LBN",
+        "LBA",
+        "MAR",
+        "OMA",
+        "PLE",
+        "QAT",
+        "SUD",
+        "SYR",
+        "TUN",
+        "UAE"
+      ],
+      "sub_saharan_africa_fei_member_nations": [
+        "ANG",
+        "BOT",
+        "BUR",
+        "CIV",
+        "CMR",
+        "GHA",
+        "KEN",
+        "MRI",
+        "NAM",
+        "NGR",
+        "RSA",
+        "SEN",
+        "ZAM",
+        "ZIM"
+      ],
+      "asia_fei_member_nations": [
+        "AFG",
+        "BRU",
+        "CAM",
+        "CHN",
+        "HKG",
+        "INA",
+        "IND",
+        "JPN",
+        "KAZ",
+        "KGZ",
+        "KOR",
+        "MAC",
+        "MAS",
+        "MGL",
+        "PAK",
+        "PHI",
+        "SIN",
+        "SRI",
+        "THA",
+        "TKM",
+        "TPE",
+        "UZB",
+        "VIE"
+      ],
+      "oceania_fei_member_nations": [
+        "AUS",
+        "NZL"
+      ]
+    },
+    "event_levels": {
+      "all_fei_international_levels": [
+        "fei_international",
+        "cci1_intro",
+        "cci1",
+        "cci2_short",
+        "cci2_long",
+        "cci3_short",
+        "cci3_long",
+        "cci4_short",
+        "cci4_long",
+        "cci5_long",
+        "championship"
+      ],
+      "all_national_and_regional_levels": [
+        "regional",
+        "national",
+        "starter",
+        "intro",
+        "beginner_novice",
+        "novice",
+        "training",
+        "modified",
+        "preliminary",
+        "intermediate",
+        "advanced",
+        "national_one_star",
+        "national_two_star",
+        "national_three_star",
+        "national_four_star",
+        "national_five_star"
+      ]
+    }
+  },
   "sources": [
     {
       "id": "data_fei",
@@ -25,7 +357,7 @@
         "eventing"
       ],
       "event_levels": [
-        "fei_international"
+        "all_fei_international_levels"
       ],
       "source_type": "primary_database",
       "base_url": "https://data.fei.org/",
@@ -41,19 +373,18 @@
         "europe"
       ],
       "countries": [
-        "all_fei_europe_member_nations"
+        "europe_fei_member_nations"
       ],
       "disciplines": [
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_and_regional_levels"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Discover and connect national federation calendars and result portals for European FEI member nations."
+      "notes": "Discover and connect national federation calendars and result portals for every configured European FEI member nation."
     },
     {
       "id": "british_eventing",
@@ -70,8 +401,7 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_and_regional_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
@@ -84,7 +414,8 @@
       "priority": 30,
       "scope": "national",
       "regions": [
-        "australia"
+        "australia",
+        "oceania"
       ],
       "countries": [
         "AUS"
@@ -93,8 +424,7 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_and_regional_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.equestrian.org.au/",
@@ -107,7 +437,8 @@
       "priority": 40,
       "scope": "national",
       "regions": [
-        "new_zealand"
+        "new_zealand",
+        "oceania"
       ],
       "countries": [
         "NZL"
@@ -116,8 +447,7 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_and_regional_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.nzequestrian.org.nz/",
@@ -130,7 +460,8 @@
       "priority": 50,
       "scope": "national",
       "regions": [
-        "usa"
+        "usa",
+        "north_america"
       ],
       "countries": [
         "USA"
@@ -139,13 +470,168 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_and_regional_levels"
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
       "status": "planned",
       "notes": "High-priority national-event source for USA coverage."
+    },
+    {
+      "id": "north_america_national_federations",
+      "name": "North American national federation results",
+      "priority": 60,
+      "scope": "national",
+      "regions": [
+        "north_america"
+      ],
+      "countries": [
+        "north_america_fei_member_nations"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_and_regional_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Regional registry backfill for national-event sources across North America."
+    },
+    {
+      "id": "central_america_caribbean_national_federations",
+      "name": "Central America and Caribbean national federation results",
+      "priority": 65,
+      "scope": "national",
+      "regions": [
+        "central_america_caribbean"
+      ],
+      "countries": [
+        "central_america_caribbean_fei_member_nations"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_and_regional_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Regional registry backfill for national-event sources across Central America and the Caribbean."
+    },
+    {
+      "id": "south_america_national_federations",
+      "name": "South American national federation results",
+      "priority": 70,
+      "scope": "national",
+      "regions": [
+        "south_america"
+      ],
+      "countries": [
+        "south_america_fei_member_nations"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_and_regional_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Regional registry backfill for national-event sources across South America."
+    },
+    {
+      "id": "middle_east_north_africa_national_federations",
+      "name": "Middle East and North Africa national federation results",
+      "priority": 75,
+      "scope": "national",
+      "regions": [
+        "middle_east",
+        "north_africa"
+      ],
+      "countries": [
+        "middle_east_north_africa_fei_member_nations"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_and_regional_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Regional registry backfill for national-event sources across the Middle East and North Africa."
+    },
+    {
+      "id": "sub_saharan_africa_national_federations",
+      "name": "Sub-Saharan Africa national federation results",
+      "priority": 80,
+      "scope": "national",
+      "regions": [
+        "africa",
+        "sub_saharan_africa"
+      ],
+      "countries": [
+        "sub_saharan_africa_fei_member_nations"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_and_regional_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Regional registry backfill for national-event sources across Sub-Saharan Africa."
+    },
+    {
+      "id": "asia_national_federations",
+      "name": "Asian national federation results",
+      "priority": 85,
+      "scope": "national",
+      "regions": [
+        "asia"
+      ],
+      "countries": [
+        "asia_fei_member_nations"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_and_regional_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Regional registry backfill for national-event sources across Asia."
+    },
+    {
+      "id": "oceania_national_federations",
+      "name": "Oceania national federation results",
+      "priority": 88,
+      "scope": "national",
+      "regions": [
+        "oceania"
+      ],
+      "countries": [
+        "oceania_fei_member_nations"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "all_national_and_regional_levels"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Regional registry backfill for national-event sources across Oceania."
     },
     {
       "id": "global_national_federations",
@@ -162,13 +648,12 @@
         "eventing"
       ],
       "event_levels": [
-        "national",
-        "regional"
+        "all_national_and_regional_levels"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "notes": "Backfill national events for every configured FEI member nation and every national or regional level after higher-priority regions are covered."
     }
   ]
 }
