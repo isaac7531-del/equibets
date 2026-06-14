@@ -9,8 +9,10 @@ shows how horse/rider combinations are performing before upcoming events.
 - Search a horse/rider combination and see recent finishing scores.
 - Compare official/public results with scores the user has added manually.
 - See a likely finishing score for upcoming events.
-- Track all nations over time, while prioritizing richer national-event data
-  from Europe, the UK, Australia, New Zealand, and the USA.
+- Track all FEI member nations over time, while prioritizing richer
+  national-event data from Europe, the UK, Australia, New Zealand, and the USA.
+- Include every configured national and regional eventing level, from starter
+  and introductory classes through national five-star equivalents.
 
 ## Data consolidation
 
@@ -34,6 +36,12 @@ override official results.
 5. Normalize records into the common result table.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
+
+`data/event_sources.json` owns the coverage targets for this flow. The registry
+declares all-country coverage with `all_fei_member_nations`, concrete national
+event-level IDs, and concrete FEI international level IDs. Query helpers in
+`equibets.sources` can select sources by region, country, or event level while
+keeping FEI first and national federation backfills ordered by priority.
 
 ## Prediction logic
 
