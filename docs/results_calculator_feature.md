@@ -35,6 +35,11 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+The national-event coverage manifest in `data/national_event_coverage.json`
+defines the FEI national federations and national level tiers that steps 2 and 3
+must cover. Country lookups should use `sources_for_country()` so priority
+regions and the global backfill stay consistent with the source registry.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a

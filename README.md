@@ -61,6 +61,15 @@ The initial source registry lives in `data/event_sources.json` and is loaded wit
 3. `global_national_federations` is the backfill path for national events from
    every FEI member nation after the priority regions are covered.
 
+National-event coverage for country lookups is listed in
+`data/national_event_coverage.json`. It seeds 135 affiliated FEI national
+federations from the FEI National Federation Search directory, inherits the
+configured national level tiers for every federation, and applies priority source
+overrides for Europe, Great Britain, Australia, New Zealand, and the USA. Use
+`load_national_federations()`, `load_national_event_levels()`, and
+`sources_for_country()` from `equibets.sources` when adding national federation
+collectors.
+
 Run the source registry checks with:
 
 ```bash
