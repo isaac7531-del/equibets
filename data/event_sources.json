@@ -1,13 +1,39 @@
 {
-  "version": 1,
+  "version": 2,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results from FEI international events and national-event sources for every FEI member nation at championship, national, state/province, regional, local, grassroots, and training levels.",
+  "coverage_regions": [
+    "africa",
+    "asia",
+    "europe",
+    "middle_east",
+    "north_america",
+    "central_america_caribbean",
+    "south_america",
+    "oceania"
+  ],
   "priority_regions": [
     "europe",
     "uk",
+    "north_america",
+    "usa",
     "australia",
     "new_zealand",
-    "usa"
+    "oceania",
+    "south_america",
+    "central_america_caribbean",
+    "asia",
+    "middle_east",
+    "africa"
+  ],
+  "national_event_levels": [
+    "national_championship",
+    "national",
+    "state_or_province",
+    "regional",
+    "local",
+    "grassroots",
+    "training"
   ],
   "sources": [
     {
@@ -25,7 +51,8 @@
         "eventing"
       ],
       "event_levels": [
-        "fei_international"
+        "fei_international",
+        "fei_championship"
       ],
       "source_type": "primary_database",
       "base_url": "https://data.fei.org/",
@@ -47,8 +74,13 @@
         "eventing"
       ],
       "event_levels": [
+        "national_championship",
         "national",
-        "regional"
+        "state_or_province",
+        "regional",
+        "local",
+        "grassroots",
+        "training"
       ],
       "source_type": "federation_registry",
       "base_url": null,
@@ -58,9 +90,10 @@
     {
       "id": "british_eventing",
       "name": "British Eventing results",
-      "priority": 20,
+      "priority": 11,
       "scope": "national",
       "regions": [
+        "europe",
         "uk"
       ],
       "countries": [
@@ -70,8 +103,13 @@
         "eventing"
       ],
       "event_levels": [
+        "national_championship",
         "national",
-        "regional"
+        "state_or_province",
+        "regional",
+        "local",
+        "grassroots",
+        "training"
       ],
       "source_type": "national_federation",
       "base_url": "https://www.britisheventing.com/",
@@ -79,57 +117,12 @@
       "notes": "High-priority national-event source for UK coverage."
     },
     {
-      "id": "equestrian_australia",
-      "name": "Equestrian Australia eventing results",
-      "priority": 30,
-      "scope": "national",
-      "regions": [
-        "australia"
-      ],
-      "countries": [
-        "AUS"
-      ],
-      "disciplines": [
-        "eventing"
-      ],
-      "event_levels": [
-        "national",
-        "regional"
-      ],
-      "source_type": "national_federation",
-      "base_url": "https://www.equestrian.org.au/",
-      "status": "planned",
-      "notes": "High-priority national-event source for Australian coverage."
-    },
-    {
-      "id": "equestrian_sports_new_zealand",
-      "name": "Equestrian Sports New Zealand eventing results",
-      "priority": 40,
-      "scope": "national",
-      "regions": [
-        "new_zealand"
-      ],
-      "countries": [
-        "NZL"
-      ],
-      "disciplines": [
-        "eventing"
-      ],
-      "event_levels": [
-        "national",
-        "regional"
-      ],
-      "source_type": "national_federation",
-      "base_url": "https://www.nzequestrian.org.nz/",
-      "status": "planned",
-      "notes": "High-priority national-event source for New Zealand coverage."
-    },
-    {
       "id": "usea",
       "name": "United States Eventing Association results",
-      "priority": 50,
+      "priority": 12,
       "scope": "national",
       "regions": [
+        "north_america",
         "usa"
       ],
       "countries": [
@@ -139,13 +132,272 @@
         "eventing"
       ],
       "event_levels": [
+        "national_championship",
         "national",
-        "regional"
+        "state_or_province",
+        "regional",
+        "local",
+        "grassroots",
+        "training"
       ],
       "source_type": "national_federation",
       "base_url": "https://useventing.com/",
       "status": "planned",
       "notes": "High-priority national-event source for USA coverage."
+    },
+    {
+      "id": "equestrian_australia",
+      "name": "Equestrian Australia eventing results",
+      "priority": 13,
+      "scope": "national",
+      "regions": [
+        "oceania",
+        "australia"
+      ],
+      "countries": [
+        "AUS"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national_championship",
+        "national",
+        "state_or_province",
+        "regional",
+        "local",
+        "grassroots",
+        "training"
+      ],
+      "source_type": "national_federation",
+      "base_url": "https://www.equestrian.org.au/",
+      "status": "planned",
+      "notes": "High-priority national-event source for Australian coverage."
+    },
+    {
+      "id": "equestrian_sports_new_zealand",
+      "name": "Equestrian Sports New Zealand eventing results",
+      "priority": 14,
+      "scope": "national",
+      "regions": [
+        "oceania",
+        "new_zealand"
+      ],
+      "countries": [
+        "NZL"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national_championship",
+        "national",
+        "state_or_province",
+        "regional",
+        "local",
+        "grassroots",
+        "training"
+      ],
+      "source_type": "national_federation",
+      "base_url": "https://www.nzequestrian.org.nz/",
+      "status": "planned",
+      "notes": "High-priority national-event source for New Zealand coverage."
+    },
+    {
+      "id": "north_america_national_federations",
+      "name": "North American national federation results",
+      "priority": 20,
+      "scope": "national",
+      "regions": [
+        "north_america"
+      ],
+      "countries": [
+        "all_fei_north_america_member_nations"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national_championship",
+        "national",
+        "state_or_province",
+        "regional",
+        "local",
+        "grassroots",
+        "training"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Discover and connect national federation calendars and result portals for North American FEI member nations."
+    },
+    {
+      "id": "south_america_national_federations",
+      "name": "South American national federation results",
+      "priority": 30,
+      "scope": "national",
+      "regions": [
+        "south_america"
+      ],
+      "countries": [
+        "all_fei_south_america_member_nations"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national_championship",
+        "national",
+        "state_or_province",
+        "regional",
+        "local",
+        "grassroots",
+        "training"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Discover and connect national federation calendars and result portals for South American FEI member nations."
+    },
+    {
+      "id": "central_america_caribbean_national_federations",
+      "name": "Central American and Caribbean national federation results",
+      "priority": 40,
+      "scope": "national",
+      "regions": [
+        "central_america_caribbean"
+      ],
+      "countries": [
+        "all_fei_central_america_caribbean_member_nations"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national_championship",
+        "national",
+        "state_or_province",
+        "regional",
+        "local",
+        "grassroots",
+        "training"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Discover and connect national federation calendars and result portals for Central American and Caribbean FEI member nations."
+    },
+    {
+      "id": "oceania_national_federations",
+      "name": "Oceania national federation results",
+      "priority": 50,
+      "scope": "national",
+      "regions": [
+        "oceania"
+      ],
+      "countries": [
+        "all_fei_oceania_member_nations"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national_championship",
+        "national",
+        "state_or_province",
+        "regional",
+        "local",
+        "grassroots",
+        "training"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Discover and connect national federation calendars and result portals for Oceania FEI member nations."
+    },
+    {
+      "id": "asia_national_federations",
+      "name": "Asian national federation results",
+      "priority": 60,
+      "scope": "national",
+      "regions": [
+        "asia"
+      ],
+      "countries": [
+        "all_fei_asia_member_nations"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national_championship",
+        "national",
+        "state_or_province",
+        "regional",
+        "local",
+        "grassroots",
+        "training"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Discover and connect national federation calendars and result portals for Asian FEI member nations."
+    },
+    {
+      "id": "middle_east_national_federations",
+      "name": "Middle Eastern national federation results",
+      "priority": 70,
+      "scope": "national",
+      "regions": [
+        "middle_east"
+      ],
+      "countries": [
+        "all_fei_middle_east_member_nations"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national_championship",
+        "national",
+        "state_or_province",
+        "regional",
+        "local",
+        "grassroots",
+        "training"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Discover and connect national federation calendars and result portals for Middle Eastern FEI member nations."
+    },
+    {
+      "id": "africa_national_federations",
+      "name": "African national federation results",
+      "priority": 80,
+      "scope": "national",
+      "regions": [
+        "africa"
+      ],
+      "countries": [
+        "all_fei_africa_member_nations"
+      ],
+      "disciplines": [
+        "eventing"
+      ],
+      "event_levels": [
+        "national_championship",
+        "national",
+        "state_or_province",
+        "regional",
+        "local",
+        "grassroots",
+        "training"
+      ],
+      "source_type": "federation_registry",
+      "base_url": null,
+      "status": "planned",
+      "notes": "Discover and connect national federation calendars and result portals for African FEI member nations."
     },
     {
       "id": "global_national_federations",
@@ -162,13 +414,18 @@
         "eventing"
       ],
       "event_levels": [
+        "national_championship",
         "national",
-        "regional"
+        "state_or_province",
+        "regional",
+        "local",
+        "grassroots",
+        "training"
       ],
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "notes": "Backfill national events for every FEI member nation after regional and country-specific sources are covered."
     }
   ]
 }
