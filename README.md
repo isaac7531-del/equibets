@@ -51,15 +51,29 @@ python3 -m pip install -e .
 
 ## Event results source priority
 
-The initial source registry lives in `data/event_sources.json` and is loaded with
-`equibets.sources`.
+The source registry lives in `data/event_sources.json` and is loaded with
+`equibets.sources`. It declares all-country coverage targets for FEI member
+nations and explicit event-level coverage from starter through national five-star
+for national events, plus CCI and championship levels for international events.
 
 1. `data_fei` (`https://data.fei.org/`) is the primary source for eventing
-   results across all FEI member nations.
-2. National-event sources fill gaps after FEI data, with priority coverage for
-   Europe, the UK, Australia, New Zealand, and the USA.
-3. `global_national_federations` is the backfill path for national events from
-   every FEI member nation after the priority regions are covered.
+   results across all FEI member nations at international levels.
+2. Regional national-federation registries fill national-event gaps across
+   Africa, Asia, Central America and the Caribbean, Europe, the Middle East,
+   North America, Oceania, and South America.
+3. Country-priority national sources cover Great Britain, Australia, New
+   Zealand, and the USA at every national event level.
+4. `global_national_federations` is the backfill path for every national event
+   level from every FEI member nation after priority regions and countries are
+   covered.
+
+Useful source lookup helpers include:
+
+- `load_event_source_registry()` for registry metadata and coverage targets.
+- `sources_for_region("north_america", level="advanced")` for regional sources.
+- `sources_for_country("USA", level="advanced")` for country-specific and
+  all-country national sources.
+- `sources_for_event_level("cci4_star")` for level-specific sources.
 
 Run the source registry checks with:
 
