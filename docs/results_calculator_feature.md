@@ -9,8 +9,8 @@ shows how horse/rider combinations are performing before upcoming events.
 - Search a horse/rider combination and see recent finishing scores.
 - Compare official/public results with scores the user has added manually.
 - See a likely finishing score for upcoming events.
-- Track all nations over time, while prioritizing richer national-event data
-  from Europe, the UK, Australia, New Zealand, and the USA.
+- Track all FEI member nations over time, while prioritizing richer
+  national-event data from Europe, the UK, Australia, New Zealand, and the USA.
 
 ## Data consolidation
 
@@ -28,12 +28,20 @@ override official results.
 ## Weekly update flow
 
 1. Pull new FEI results from `data.fei.org`.
-2. Pull national-event updates from the priority regions.
-3. Pull global national-federation results as a backfill.
+2. Pull national-event updates from the priority regions once their planned
+   adapters are implemented.
+3. Pull regional and global national-federation results as an all-country,
+   all-domestic-level backfill.
 4. Store raw source payloads for auditability.
 5. Normalize records into the common result table.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
+
+`data/event_sources.json` declares the intended national-event coverage target:
+every FEI member nation, domestic eventing levels from regional and national
+through starter, novice, training, intermediate, advanced, and national
+one-star through five-star, plus FEI international CCI levels through CCI5-L and
+championship starts.
 
 ## Prediction logic
 
