@@ -16,6 +16,31 @@ DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
 
 
 @dataclass(frozen=True)
+class CoverageTargets:
+    """Country and event-level coverage goals for the source registry."""
+
+    countries: tuple[str, ...]
+    domestic_event_levels: tuple[str, ...]
+    international_event_levels: tuple[str, ...]
+
+    @property
+    def all_event_levels(self) -> tuple[str, ...]:
+        """Return every configured domestic and international event level."""
+
+        return self.domestic_event_levels + self.international_event_levels
+
+    @classmethod
+    def from_mapping(cls, values: dict[str, object]) -> "CoverageTargets":
+        return cls(
+            countries=_string_tuple(values, "countries"),
+            domestic_event_levels=_string_tuple(values, "domestic_event_levels"),
+            international_event_levels=_string_tuple(
+                values, "international_event_levels"
+            ),
+        )
+
+
+@dataclass(frozen=True)
 class EventSource:
     """A configured event-results source."""
 
@@ -50,17 +75,91 @@ class EventSource:
         )
 
 
-def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
-    """Load sources sorted by priority, with FEI first on ties."""
+@dataclass(frozen=True)
+class EventSourceRegistry:
+    """A source registry plus the coverage goals it is intended to satisfy."""
+
+    version: int
+    primary_source_id: str
+    coverage_goal: str
+    priority_regions: tuple[str, ...]
+    coverage_targets: CoverageTargets
+    sources: tuple[EventSource, ...]
+
+    @classmethod
+    def from_mapping(cls, values: dict[str, object]) -> "EventSourceRegistry":
+        coverage_targets = values.get("coverage_targets")
+        if not isinstance(coverage_targets, dict):
+            raise ValueError("coverage_targets must be an object")
+
+        sources = values.get("sources")
+        if not isinstance(sources, Iterable) or isinstance(sources, (str, bytes)):
+            raise ValueError("sources must be a list of source objects")
+
+        event_sources = []
+        for item in sources:
+            if not isinstance(item, dict):
+                raise ValueError("sources must contain only source objects")
+            event_sources.append(EventSource.from_mapping(item))
+
+        return cls(
+            version=_required_int(values, "version"),
+            primary_source_id=_required_str(values, "primary_source_id"),
+            coverage_goal=_required_str(values, "coverage_goal"),
+            priority_regions=_string_tuple(values, "priority_regions"),
+            coverage_targets=CoverageTargets.from_mapping(coverage_targets),
+            sources=tuple(_sort_sources(event_sources)),
+        )
+
+
+def load_event_source_registry(
+    path: Path | str = DATA_FILE,
+) -> EventSourceRegistry:
+    """Load the full event-source registry, including coverage targets."""
 
     with Path(path).open(encoding="utf-8") as source_file:
         payload = json.load(source_file)
 
-    sources = [EventSource.from_mapping(item) for item in payload["sources"]]
-    return sorted(
-        sources,
-        key=lambda source: (source.priority, source.id != "data_fei", source.id),
-    )
+    return EventSourceRegistry.from_mapping(payload)
+
+
+def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
+    """Load sources sorted by priority, with FEI first on ties."""
+
+    return list(load_event_source_registry(path).sources)
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a country code or configured country group."""
+
+    normalized_country = country.upper().replace(" ", "_")
+    return [
+        source
+        for source in _sources_with_status(path, include_planned)
+        if "all_fei_member_nations" in source.countries
+        or normalized_country in source.countries
+    ]
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering a configured event level."""
+
+    normalized_level = event_level.lower().replace(" ", "_")
+    return [
+        source
+        for source in _sources_with_status(path, include_planned)
+        if normalized_level in source.event_levels
+    ]
 
 
 def sources_for_region(
@@ -72,14 +171,31 @@ def sources_for_region(
     """Return sources covering a region while preserving global priorities."""
 
     normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
 
+    return [
+        source
+        for source in _sources_with_status(path, include_planned)
+        if "global" in source.regions or normalized_region in source.regions
+    ]
+
+
+def _sources_with_status(
+    path: Path | str,
+    include_planned: bool,
+) -> list[EventSource]:
+    statuses = {"active", "planned"} if include_planned else {"active"}
     return [
         source
         for source in load_event_sources(path)
         if source.status in statuses
-        and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def _sort_sources(sources: Iterable[EventSource]) -> list[EventSource]:
+    return sorted(
+        sources,
+        key=lambda source: (source.priority, source.id != "data_fei", source.id),
+    )
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
