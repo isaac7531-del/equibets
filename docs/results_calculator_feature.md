@@ -25,15 +25,22 @@ shows how horse/rider combinations are performing before upcoming events.
 This gives users a complete working view without letting unverified manual data
 override official results.
 
+`data/event_sources.json` defines the national-event coverage target as every
+FEI member nation and every published eventing level bucket. The source registry
+keeps FEI and championship levels in `data_fei`, then fills domestic coverage
+with country-specific sources, regional national-federation registries, and the
+`global_national_federations` backfill.
+
 ## Weekly update flow
 
 1. Pull new FEI results from `data.fei.org`.
 2. Pull national-event updates from the priority regions.
-3. Pull global national-federation results as a backfill.
-4. Store raw source payloads for auditability.
-5. Normalize records into the common result table.
-6. Re-run consolidation and prediction calculations.
-7. Show the latest `collected_at` timestamp in the website UI.
+3. Pull regional national-federation updates for all remaining FEI regions.
+4. Pull global national-federation results as an all-country/all-level backfill.
+5. Store raw source payloads for auditability.
+6. Normalize records into the common result table.
+7. Re-run consolidation and prediction calculations.
+8. Show the latest `collected_at` timestamp in the website UI.
 
 ## Prediction logic
 
