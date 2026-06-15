@@ -65,7 +65,9 @@ The source registry lives in `data/event_sources.json` and is loaded with
    every FEI member nation after regional and country sources are covered.
 
 The Python helpers can load the full registry or query matching sources by
-region, country, or event level:
+region, country, or event level. Country lookups include explicit
+country-specific sources, known regional federation registries, and the global
+all-FEI-member backfill source:
 
 ```python
 from equibets.sources import (
