@@ -31,6 +31,18 @@ class EventSourceTests(unittest.TestCase):
         self.assertEqual(sources[0].base_url, "https://data.fei.org/")
         self.assertIn("cci5_long", sources[0].event_levels)
 
+    def test_declared_level_targets_are_applied_to_sources(self):
+        registry = load_event_source_registry()
+        fei_levels = registry.coverage_targets.fei_levels
+        national_levels = registry.coverage_targets.national_and_regional_levels
+
+        for source in registry.sources:
+            with self.subTest(source=source.id):
+                if source.id == registry.primary_source_id:
+                    self.assertEqual(source.event_levels, fei_levels)
+                elif source.scope == "national":
+                    self.assertEqual(source.event_levels, national_levels)
+
     def test_every_priority_region_includes_fei_regional_and_global_sources(self):
         expected_national_sources = {
             "africa": "africa_national_federations",
