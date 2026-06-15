@@ -194,7 +194,6 @@ class EventSourceRegistry:
             and (
                 normalized_country in source.countries
                 or "all_fei_member_nations" in source.countries
-                or any(region in source.regions for region in country_regions)
                 or any(token in source.countries for token in regional_country_tokens)
             )
         ]
