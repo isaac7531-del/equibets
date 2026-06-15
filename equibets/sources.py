@@ -7,12 +7,36 @@ that are important for broader coverage.
 from __future__ import annotations
 
 import json
+import re
 from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
 
 
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
+
+
+@dataclass(frozen=True)
+class CoverageTargets:
+    """Coverage goals that every source registry should satisfy."""
+
+    countries: tuple[str, ...]
+    domestic_event_levels: tuple[str, ...]
+    fei_event_levels: tuple[str, ...]
+
+    @property
+    def event_levels(self) -> tuple[str, ...]:
+        """Return all event levels covered by the registry."""
+
+        return self.domestic_event_levels + self.fei_event_levels
+
+    @classmethod
+    def from_mapping(cls, values: dict[str, object]) -> "CoverageTargets":
+        return cls(
+            countries=_string_tuple(values, "countries"),
+            domestic_event_levels=_string_tuple(values, "domestic_event_levels"),
+            fei_event_levels=_string_tuple(values, "fei_event_levels"),
+        )
 
 
 @dataclass(frozen=True)
@@ -50,17 +74,62 @@ class EventSource:
         )
 
 
-def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
-    """Load sources sorted by priority, with FEI first on ties."""
+@dataclass(frozen=True)
+class EventSourceRegistry:
+    """The configured source registry and its stated coverage targets."""
+
+    version: int
+    primary_source_id: str
+    coverage_goal: str
+    priority_regions: tuple[str, ...]
+    coverage_targets: CoverageTargets
+    sources: tuple[EventSource, ...]
+
+    @classmethod
+    def from_mapping(cls, values: dict[str, object]) -> "EventSourceRegistry":
+        source_values = values.get("sources")
+        if not isinstance(source_values, Iterable) or isinstance(
+            source_values,
+            (str, bytes),
+        ):
+            raise ValueError("sources must be a list of source mappings")
+
+        sources = tuple(
+            sorted(
+                (EventSource.from_mapping(_required_mapping(item, "source")) for item in source_values),
+                key=lambda source: (
+                    source.priority,
+                    source.id != values.get("primary_source_id"),
+                    source.id,
+                ),
+            )
+        )
+
+        return cls(
+            version=_required_int(values, "version"),
+            primary_source_id=_required_str(values, "primary_source_id"),
+            coverage_goal=_required_str(values, "coverage_goal"),
+            priority_regions=_string_tuple(values, "priority_regions"),
+            coverage_targets=CoverageTargets.from_mapping(
+                _required_mapping(values.get("coverage_targets"), "coverage_targets")
+            ),
+            sources=sources,
+        )
+
+
+def load_event_source_registry(path: Path | str = DATA_FILE) -> EventSourceRegistry:
+    """Load the source registry and preserve global source priority ordering."""
 
     with Path(path).open(encoding="utf-8") as source_file:
         payload = json.load(source_file)
 
-    sources = [EventSource.from_mapping(item) for item in payload["sources"]]
-    return sorted(
-        sources,
-        key=lambda source: (source.priority, source.id != "data_fei", source.id),
-    )
+    return EventSourceRegistry.from_mapping(payload)
+
+
+def load_event_sources(path: Path | str = DATA_FILE) -> list[EventSource]:
+    """Load sources sorted by priority, with FEI first on ties."""
+
+    return list(load_event_source_registry(path).sources)
 
 
 def sources_for_region(
@@ -72,7 +141,7 @@ def sources_for_region(
     """Return sources covering a region while preserving global priorities."""
 
     normalized_region = region.lower().replace(" ", "_")
-    statuses = {"active", "planned"} if include_planned else {"active"}
+    statuses = _included_statuses(include_planned)
 
     return [
         source
@@ -80,6 +149,97 @@ def sources_for_region(
         if source.status in statuses
         and ("global" in source.regions or normalized_region in source.regions)
     ]
+
+
+def sources_for_country(
+    country: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return global and exact-country sources for a country or country group."""
+
+    normalized_country = _normalize_country(country)
+    statuses = _included_statuses(include_planned)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses
+        and (
+            "all_fei_member_nations" in source.countries
+            or normalized_country in {_normalize_country(item) for item in source.countries}
+        )
+    ]
+
+
+def sources_for_event_level(
+    event_level: str,
+    *,
+    path: Path | str = DATA_FILE,
+    include_planned: bool = True,
+) -> list[EventSource]:
+    """Return sources covering an event level while preserving source priority."""
+
+    normalized_level = _normalize_event_level(event_level)
+    statuses = _included_statuses(include_planned)
+
+    return [
+        source
+        for source in load_event_sources(path)
+        if source.status in statuses and normalized_level in source.event_levels
+    ]
+
+
+def _included_statuses(include_planned: bool) -> set[str]:
+    return {"active", "planned"} if include_planned else {"active"}
+
+
+def _normalize_country(country: str) -> str:
+    stripped = country.strip()
+    if stripped.lower().startswith("all_"):
+        return stripped.lower().replace(" ", "_").replace("-", "_")
+    return stripped.upper()
+
+
+def _normalize_event_level(event_level: str) -> str:
+    normalized = event_level.strip().lower()
+    normalized = normalized.replace("*", "")
+    normalized = re.sub(r"[^a-z0-9]+", "_", normalized).strip("_")
+
+    ordinal_levels = {
+        "national_1": "national_one_star",
+        "national_1_star": "national_one_star",
+        "national_2": "national_two_star",
+        "national_2_star": "national_two_star",
+        "national_3": "national_three_star",
+        "national_3_star": "national_three_star",
+        "national_4": "national_four_star",
+        "national_4_star": "national_four_star",
+        "national_5": "national_five_star",
+        "national_5_star": "national_five_star",
+    }
+    if normalized in ordinal_levels:
+        return ordinal_levels[normalized]
+
+    cci_match = re.fullmatch(r"cci([1-5])_(s|short|l|long)", normalized)
+    if cci_match:
+        level, length = cci_match.groups()
+        length_name = "short" if length in {"s", "short"} else "long"
+        return f"cci{level}_{length_name}"
+
+    intro_match = re.fullmatch(r"cci([1-5]?)(?:_)?(intro|introductory)", normalized)
+    if intro_match:
+        level = intro_match.group(1)
+        return f"cci{level}_introductory" if level else "cci_introductory"
+
+    return normalized
+
+
+def _required_mapping(value: object, key: str) -> dict[str, object]:
+    if not isinstance(value, dict):
+        raise ValueError(f"{key} must be a mapping")
+    return value
 
 
 def _required_str(values: dict[str, object], key: str) -> str:
