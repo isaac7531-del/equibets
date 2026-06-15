@@ -16,6 +16,46 @@ from pathlib import Path
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
 ACTIVE_STATUSES = frozenset({"active"})
 PLANNED_STATUSES = frozenset({"active", "planned"})
+COUNTRY_REGIONS = {
+    "ARE": ("middle_east", "asia"),
+    "ARG": ("south_america",),
+    "AUS": ("australia", "oceania"),
+    "AUT": ("europe",),
+    "BEL": ("europe",),
+    "BHR": ("middle_east", "asia"),
+    "BRA": ("south_america",),
+    "CAN": ("north_america",),
+    "CHE": ("europe",),
+    "CHL": ("south_america",),
+    "CHN": ("asia",),
+    "COL": ("south_america",),
+    "DEU": ("europe",),
+    "DNK": ("europe",),
+    "ECU": ("south_america",),
+    "ESP": ("europe",),
+    "FIN": ("europe",),
+    "FRA": ("europe",),
+    "GBR": ("uk", "europe"),
+    "HKG": ("asia",),
+    "IND": ("asia",),
+    "IRL": ("europe",),
+    "ITA": ("europe",),
+    "JPN": ("asia",),
+    "KOR": ("asia",),
+    "MEX": ("central_america_caribbean",),
+    "NLD": ("europe",),
+    "NOR": ("europe",),
+    "NZL": ("new_zealand", "oceania"),
+    "POL": ("europe",),
+    "PRT": ("europe",),
+    "QAT": ("middle_east", "asia"),
+    "SAU": ("middle_east", "asia"),
+    "SWE": ("europe",),
+    "THA": ("asia",),
+    "URY": ("south_america",),
+    "USA": ("usa", "north_america"),
+    "ZAF": ("africa",),
+}
 
 
 @dataclass(frozen=True)
@@ -138,9 +178,13 @@ class EventSourceRegistry:
         *,
         include_planned: bool = True,
     ) -> list[EventSource]:
-        """Return sources that directly cover a country code or all FEI nations."""
+        """Return sources that cover a country directly, regionally, or globally."""
 
         normalized_country = country.upper().replace(" ", "_")
+        country_regions = COUNTRY_REGIONS.get(normalized_country, ())
+        regional_country_tokens = {
+            f"all_fei_{region}_member_nations" for region in country_regions
+        }
         statuses = _allowed_statuses(include_planned)
 
         return [
@@ -150,6 +194,8 @@ class EventSourceRegistry:
             and (
                 normalized_country in source.countries
                 or "all_fei_member_nations" in source.countries
+                or any(region in source.regions for region in country_regions)
+                or any(token in source.countries for token in regional_country_tokens)
             )
         ]
 
