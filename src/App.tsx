@@ -251,10 +251,10 @@ export default function App() {
                             <span>{standing.rider_name}</span>
                           </td>
                           <td className="total-cell">{standing.finishing_score.toFixed(1)}</td>
-                          <td className="breakdown-cell">
-                            D {standing.dressage_score.toFixed(1)} / SJ{' '}
-                            {standing.show_jumping_penalties.toFixed(1)} / XC{' '}
-                            {standing.cross_country_penalties.toFixed(1)}
+                          <td className="breakdown-cell live-breakdown-cell">
+                            <span>D {standing.dressage_score.toFixed(1)}</span>
+                            <span>SJ {standing.show_jumping_penalties.toFixed(1)}</span>
+                            <span>XC {standing.cross_country_penalties.toFixed(1)}</span>
                           </td>
                         </tr>
                       ))}
