@@ -56,6 +56,13 @@ COUNTRY_REGIONS = {
     "USA": ("usa", "north_america"),
     "ZAF": ("africa",),
 }
+COUNTRY_ALIASES = {
+    "GB": "GBR",
+    "UK": "GBR",
+    "UNITED_KINGDOM": "GBR",
+    "RSA": "ZAF",
+    "SOUTH_AFRICA": "ZAF",
+}
 
 
 @dataclass(frozen=True)
@@ -180,7 +187,7 @@ class EventSourceRegistry:
     ) -> list[EventSource]:
         """Return sources that cover a country directly, regionally, or globally."""
 
-        normalized_country = country.upper().replace(" ", "_")
+        normalized_country = _normalize_country(country)
         country_regions = COUNTRY_REGIONS.get(normalized_country, ())
         regional_country_tokens = {
             f"all_fei_{region}_member_nations" for region in country_regions
@@ -279,6 +286,11 @@ def _allowed_statuses(include_planned: bool) -> frozenset[str]:
 
 def _normalize_lookup(value: str) -> str:
     return value.strip().lower().replace(" ", "_").replace("-", "_")
+
+
+def _normalize_country(country: str) -> str:
+    value = country.strip().upper().replace(" ", "_").replace("-", "_")
+    return COUNTRY_ALIASES.get(value, value)
 
 
 def _normalize_event_level(event_level: str) -> str:

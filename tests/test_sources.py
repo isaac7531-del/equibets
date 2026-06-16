@@ -102,6 +102,14 @@ class EventSourceTests(unittest.TestCase):
                 self.assertIn(regional_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
 
+    def test_country_lookup_normalizes_common_country_aliases(self):
+        uk_source_ids = [source.id for source in sources_for_country("UK")]
+        rsa_source_ids = [source.id for source in sources_for_country("RSA")]
+
+        self.assertIn("british_eventing", uk_source_ids)
+        self.assertIn("europe_national_federations", uk_source_ids)
+        self.assertIn("africa_national_federations", rsa_source_ids)
+
     def test_event_level_lookup_separates_fei_and_national_levels(self):
         fei_source_ids = [source.id for source in sources_for_event_level("CCI3*-S")]
         cci_intro_source_ids = [source.id for source in sources_for_event_level("CCI Intro")]
