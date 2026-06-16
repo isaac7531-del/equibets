@@ -1,5 +1,6 @@
 import unittest
 
+import equibets
 from equibets.sources import (
     load_event_source_registry,
     load_event_sources,
@@ -22,6 +23,11 @@ class EventSourceTests(unittest.TestCase):
         self.assertIn("cci1_intro", registry.coverage_targets.fei_levels)
         self.assertIn("cci5_long", registry.coverage_targets.fei_levels)
         self.assertIn("championship", registry.coverage_targets.fei_levels)
+
+    def test_package_exports_expanded_registry_api(self):
+        self.assertIs(equibets.load_event_source_registry, load_event_source_registry)
+        self.assertIs(equibets.sources_for_country, sources_for_country)
+        self.assertIs(equibets.sources_for_event_level, sources_for_event_level)
 
     def test_data_fei_is_primary_source(self):
         sources = load_event_sources()
