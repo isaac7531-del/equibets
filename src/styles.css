@@ -310,7 +310,14 @@ legend {
 }
 
 .live-event table {
-  min-width: 520px;
+  min-width: 720px;
+}
+
+.live-event thead th {
+  background: #fffdf7;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .secondary-button {
@@ -464,6 +471,34 @@ td:nth-child(4) {
 th:nth-child(6),
 td:nth-child(6) {
   width: 72px;
+}
+
+.live-event th:nth-child(1),
+.live-event td:nth-child(1) {
+  width: 58px;
+}
+
+.live-event th:nth-child(3),
+.live-event td:nth-child(3) {
+  width: 82px;
+}
+
+.live-event th:nth-child(4),
+.live-event td:nth-child(4) {
+  width: 190px;
+}
+
+.live-breakdown-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+}
+
+.live-breakdown-cell span {
+  color: #42503e;
+  display: inline;
+  margin-top: 0;
+  white-space: nowrap;
 }
 
 .link-button {
