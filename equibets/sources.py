@@ -95,6 +95,7 @@ REGION_COUNTRIES = {
         "TUN",
         "UGA",
         "ZAM",
+        "ZAF",
         "ZIM",
     ),
     "asia": (
