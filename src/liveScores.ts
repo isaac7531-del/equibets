@@ -46,7 +46,10 @@ export const formatDate = (value: string | null | undefined) => {
     return 'Not set';
   }
 
-  const date = new Date(`${value}T00:00:00Z`);
+  const dateParts = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  const date = dateParts
+    ? new Date(Date.UTC(Number(dateParts[1]), Number(dateParts[2]) - 1, Number(dateParts[3])))
+    : new Date(value);
   if (Number.isNaN(date.getTime())) {
     return value;
   }
@@ -77,6 +80,14 @@ export const formatDateTime = (value: string | null | undefined) => {
     timeZoneName: 'short',
   }).format(date);
 };
+
+const sourceLabels: Record<string, string> = {
+  data_fei: 'FEI Data',
+};
+
+export const formatSourceId = (sourceId: string) => sourceLabels[sourceId] ?? sourceId;
+
+export const formatSourceList = (sourceIds: string[]) => sourceIds.map(formatSourceId).join(', ');
 
 export const describeLiveFreshness = (payload: LiveScorePayload) => {
   if (payload.latest_collected_at) {

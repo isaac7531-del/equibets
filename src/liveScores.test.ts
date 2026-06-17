@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   describeLiveFreshness,
   formatLiveWindow,
+  formatSourceList,
   getLiveLeader,
   type LiveScorePayload,
 } from './liveScores';
@@ -53,6 +54,10 @@ describe('live score helpers', () => {
   });
 
   it('formats the current scoring window', () => {
-    expect(formatLiveWindow(payload)).toContain('2026');
+    expect(formatLiveWindow(payload)).toBe('May 17, 2026 - May 19, 2026');
+  });
+
+  it('formats public source IDs for display', () => {
+    expect(formatSourceList(['data_fei'])).toBe('FEI Data');
   });
 });
