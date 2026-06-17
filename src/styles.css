@@ -90,6 +90,7 @@ button:disabled {
 .hero-card,
 .dashboard article,
 .calculator-card,
+.live-score-card,
 .results-card {
   background: rgba(255, 252, 245, 0.88);
   border: 1px solid rgba(35, 67, 45, 0.12);
@@ -130,7 +131,7 @@ button:disabled {
 .dashboard {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   margin-bottom: 1rem;
 }
 
@@ -155,9 +156,14 @@ button:disabled {
 }
 
 .calculator-card,
+.live-score-card,
 .results-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
+}
+
+.live-score-card {
+  margin-bottom: 1rem;
 }
 
 .section-heading h2,
@@ -256,6 +262,107 @@ legend {
 
 .secondary-button:hover:not(:disabled) {
   background: #e3d2ad;
+}
+
+.freshness-pill {
+  background: #e8f0df;
+  border: 1px solid rgba(35, 67, 45, 0.12);
+  border-radius: 999px;
+  color: #23432d;
+  font-size: 0.78rem;
+  font-weight: 900;
+  padding: 0.45rem 0.7rem;
+  white-space: nowrap;
+}
+
+.live-feed-summary {
+  color: #65705f;
+  margin: -0.35rem 0 1rem;
+}
+
+.live-event-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.live-event {
+  background: #fffdf7;
+  border: 1px solid rgba(35, 67, 45, 0.1);
+  border-radius: 1.25rem;
+  padding: 1rem;
+}
+
+.live-event-heading {
+  align-items: start;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.live-event-heading h3 {
+  margin: 0;
+}
+
+.live-event-heading p,
+.leader-copy {
+  color: #65705f;
+  margin: 0.25rem 0 0;
+}
+
+.live-event-heading strong {
+  color: #23432d;
+  font-size: 2rem;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.leader-copy {
+  font-weight: 800;
+  margin-top: 0.8rem;
+}
+
+.live-entries {
+  display: grid;
+  gap: 0.55rem;
+  list-style: none;
+  margin: 0.9rem 0 0;
+  padding: 0;
+}
+
+.live-entries li {
+  align-items: center;
+  background: #f8f2e4;
+  border-radius: 0.9rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  padding: 0.65rem 0.75rem;
+}
+
+.live-entries span {
+  color: #17211a;
+  font-weight: 900;
+}
+
+.live-entries small {
+  color: #65705f;
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  margin-top: 0.15rem;
+}
+
+.live-entries strong {
+  color: #23432d;
+  font-size: 1.1rem;
+}
+
+code {
+  background: rgba(35, 67, 45, 0.08);
+  border-radius: 0.4rem;
+  color: #23432d;
+  padding: 0.1rem 0.25rem;
 }
 
 .empty-state {

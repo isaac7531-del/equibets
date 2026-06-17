@@ -94,3 +94,23 @@ Use `--storage-state data/fei_state.json` to reuse browser cookies,
 `--form-field name=value` for FEI form controls that need explicit values in a
 particular session, `--event-url` to crawl a known event page directly, and
 `FEI_COOKIE` or `--cookie` when the FEI Data session requires login.
+
+## Current-event live scoring
+
+Hourly or ad-hoc refreshes can search the near-current FEI event window and
+publish a frontend-readable live scoreboard:
+
+```bash
+python3 -m equibets.fei_bot \
+  --current-events \
+  --live-output public/live_scores.json \
+  --output data/fei_results.json \
+  --raw-dir data/raw/fei \
+  --verify warn
+```
+
+`--current-events` defaults to two days back through three days ahead, which
+captures events that may still be posting phase scores. The generated
+`public/live_scores.json` contains event leaderboards ranked by current
+finishing score, plus `updated_at`, `window_start`, and `window_end` freshness
+metadata that the website displays in the Live public scoring panel.

@@ -9,6 +9,7 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import { formatFeedDateRange, formatTimestamp, loadLiveScoreFeed, type LiveScoreFeed } from './liveScoring';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
@@ -67,10 +68,13 @@ export default function App() {
   const [form, setForm] = useState<FormState>(() => createDefaultFormState());
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
   const [selectedRider, setSelectedRider] = useState('all');
+  const [liveFeed, setLiveFeed] = useState<LiveScoreFeed | null>(null);
+  const [liveFeedLoaded, setLiveFeedLoaded] = useState(false);
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
   const bestResult = sortedResults[0];
+  const liveEvents = liveFeed?.events ?? [];
   const riderOptions = useMemo(
     () => [...new Set(results.map((result) => result.rider))].sort((a, b) => a.localeCompare(b)),
     [results],
@@ -92,6 +96,23 @@ export default function App() {
       setSelectedRider('all');
     }
   }, [riderOptions, selectedRider]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    loadLiveScoreFeed().then((feed) => {
+      if (!isMounted) {
+        return;
+      }
+
+      setLiveFeed(feed);
+      setLiveFeedLoaded(true);
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
@@ -171,6 +192,71 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Live public</span>
+          <strong>{liveFeed ? liveFeed.score_count : '--'}</strong>
+          <p>{liveFeed ? `${liveFeed.event_count} current events` : 'Awaiting FEI feed'}</p>
+        </article>
+      </section>
+
+      <section className="live-score-card" aria-labelledby="live-scoring-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-scoring-heading">Live public scoring</h2>
+          </div>
+          {liveFeed ? (
+            <span className="freshness-pill">Updated {formatTimestamp(liveFeed.updated_at)}</span>
+          ) : null}
+        </div>
+
+        {liveFeed && liveEvents.length > 0 ? (
+          <>
+            <p className="live-feed-summary">
+              Pulling {liveFeed.score_count} FEI scores across {liveFeed.event_count} events for{' '}
+              {formatFeedDateRange(liveFeed)}.
+            </p>
+            <div className="live-event-grid">
+              {liveEvents.map((event) => (
+                <article key={`${event.event_name}-${event.event_date}-${event.level}`} className="live-event">
+                  <div className="live-event-heading">
+                    <div>
+                      <h3>{event.event_name}</h3>
+                      <p>
+                        {event.level} · {event.country} · {event.event_date}
+                      </p>
+                    </div>
+                    <strong>{event.leader ? event.leader.finishing_score.toFixed(1) : '--'}</strong>
+                  </div>
+                  {event.leader ? (
+                    <p className="leader-copy">
+                      Leader: {event.leader.horse_name} with {event.leader.rider_name}
+                    </p>
+                  ) : null}
+                  <ol className="live-entries">
+                    {event.entries.slice(0, 5).map((entry) => (
+                      <li key={entry.source_record_id}>
+                        <span>
+                          #{entry.rank} {entry.horse_name}
+                          <small>{entry.rider_name}</small>
+                        </span>
+                        <strong>{entry.finishing_score.toFixed(1)}</strong>
+                      </li>
+                    ))}
+                  </ol>
+                </article>
+              ))}
+            </div>
+          </>
+        ) : (
+          <div className="empty-state">
+            <strong>{liveFeedLoaded ? 'No live FEI scores available yet.' : 'Loading live FEI scores...'}</strong>
+            <p>
+              Run <code>python3 -m equibets.fei_bot --current-events --live-output public/live_scores.json</code> to
+              search current events and publish the latest public scoreboard.
+            </p>
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">

@@ -35,6 +35,20 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+## Current-event live scoring flow
+
+Hourly live updates use the same FEI crawler with `--current-events`, which
+searches a configurable near-current window instead of a fixed historical
+range. The crawler writes:
+
+- `data/fei_results.json` for the deduplicated long-term result store.
+- `public/live_scores.json` for the website's live public scoring panel.
+
+The live feed groups current FEI results by event/date/level, ranks entries by
+lowest current finishing score, exposes the current leader, and carries
+`updated_at`, `window_start`, `window_end`, `event_count`, and `score_count`
+metadata so users can tell how fresh the public data is.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a
