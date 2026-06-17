@@ -15,7 +15,11 @@ class EventSourceTests(unittest.TestCase):
         registry = load_event_source_registry()
 
         self.assertEqual(registry.version, 2)
-        self.assertEqual(registry.coverage_targets.countries, ("all_fei_member_nations",))
+        self.assertGreaterEqual(len(registry.coverage_targets.countries), 100)
+        self.assertIn("GBR", registry.coverage_targets.countries)
+        self.assertIn("USA", registry.coverage_targets.countries)
+        self.assertIn("ZAF", registry.coverage_targets.countries)
+        self.assertIn("PER", registry.coverage_targets.countries)
         self.assertIn("starter", registry.coverage_targets.national_and_regional_levels)
         self.assertIn("introductory", registry.coverage_targets.national_and_regional_levels)
         self.assertIn("national_five_star", registry.coverage_targets.national_and_regional_levels)
@@ -23,6 +27,11 @@ class EventSourceTests(unittest.TestCase):
         self.assertIn("cci1_intro", registry.coverage_targets.fei_levels)
         self.assertIn("cci5_long", registry.coverage_targets.fei_levels)
         self.assertIn("championship", registry.coverage_targets.fei_levels)
+
+        for name, country_set in registry.coverage_targets.country_sets.items():
+            with self.subTest(country_set=name):
+                self.assertTrue(country_set)
+                self.assertTrue(set(country_set).issubset(registry.coverage_targets.countries))
 
     def test_package_exports_expanded_registry_api(self):
         self.assertIs(equibets.load_event_source_registry, load_event_source_registry)
@@ -35,6 +44,8 @@ class EventSourceTests(unittest.TestCase):
         self.assertEqual(sources[0].id, "data_fei")
         self.assertEqual(sources[0].priority, 0)
         self.assertEqual(sources[0].base_url, "https://data.fei.org/")
+        self.assertIn("GBR", sources[0].countries)
+        self.assertIn("USA", sources[0].countries)
         self.assertIn("cci5_long", sources[0].event_levels)
 
     def test_declared_level_targets_are_applied_to_sources(self):
@@ -92,6 +103,8 @@ class EventSourceTests(unittest.TestCase):
         expected_sources = {
             "fra": "europe_national_federations",
             "bra": "south_america_national_federations",
+            "per": "south_america_national_federations",
+            "jpn": "asia_national_federations",
             "zaf": "africa_national_federations",
         }
 
@@ -108,7 +121,9 @@ class EventSourceTests(unittest.TestCase):
             "GB": "british_eventing",
             "United States": "usea",
             "rsa": "africa_national_federations",
+            "ARE": "middle_east_national_federations",
             "UAE": "middle_east_national_federations",
+            "DEU": "europe_national_federations",
         }
 
         for country, expected_source_id in expected_sources.items():
@@ -118,11 +133,10 @@ class EventSourceTests(unittest.TestCase):
                 self.assertIn(expected_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
 
-    def test_country_lookup_keeps_global_backfill_for_unmapped_country_codes(self):
-        source_ids = [source.id for source in sources_for_country("per")]
+    def test_country_lookup_excludes_unknown_country_codes(self):
+        source_ids = [source.id for source in sources_for_country("xxx")]
 
-        self.assertEqual(source_ids[0], "data_fei")
-        self.assertIn("global_national_federations", source_ids)
+        self.assertEqual(source_ids, [])
         self.assertNotIn("usea", source_ids)
 
     def test_event_level_lookup_separates_fei_and_national_levels(self):

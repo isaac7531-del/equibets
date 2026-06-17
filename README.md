@@ -65,12 +65,11 @@ The source registry lives in `data/event_sources.json` and is loaded with
    every FEI member nation after regional and country sources are covered.
 
 The Python helpers can load the full registry or query matching sources by
-region, country, or event level. Country lookups include explicit
-country-specific sources, known regional federation registries, and the global
-all-FEI-member backfill source. Common aliases such as `UK`, `GB`, `US`,
-`UAE`, and `RSA` normalize to their FEI country codes, while unmapped FEI
-member country codes still receive FEI plus global national-federation
-coverage:
+region, country, or event level. Coverage targets declare explicit FEI member
+country sets by region plus the full all-member set, so country lookups include
+country-specific sources, regional federation registries, and the global
+all-FEI-member backfill source. Common aliases such as `UK`, `GB`, `US`, ISO
+codes like `ARE`/`DEU`, and `RSA` normalize to the registry country codes:
 
 ```python
 from equibets.sources import (

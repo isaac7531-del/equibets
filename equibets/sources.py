@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import json
 import re
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -16,80 +16,123 @@ from pathlib import Path
 DATA_FILE = Path(__file__).resolve().parents[1] / "data" / "event_sources.json"
 ACTIVE_STATUSES = frozenset({"active"})
 PLANNED_STATUSES = frozenset({"active", "planned"})
-COUNTRY_REGIONS = {
-    "ARE": ("middle_east", "asia"),
-    "ARG": ("south_america",),
-    "AUS": ("australia", "oceania"),
-    "AUT": ("europe",),
-    "BEL": ("europe",),
-    "BHR": ("middle_east", "asia"),
-    "BRA": ("south_america",),
-    "CAN": ("north_america",),
-    "CHE": ("europe",),
-    "CHL": ("south_america",),
-    "CHN": ("asia",),
-    "COL": ("south_america",),
-    "DEU": ("europe",),
-    "DNK": ("europe",),
-    "ECU": ("south_america",),
-    "ESP": ("europe",),
-    "FIN": ("europe",),
-    "FRA": ("europe",),
-    "GBR": ("uk", "europe"),
-    "HKG": ("asia",),
-    "IND": ("asia",),
-    "IRL": ("europe",),
-    "ITA": ("europe",),
-    "JPN": ("asia",),
-    "KOR": ("asia",),
-    "MEX": ("central_america_caribbean",),
-    "NLD": ("europe",),
-    "NOR": ("europe",),
-    "NZL": ("new_zealand", "oceania"),
-    "POL": ("europe",),
-    "PRT": ("europe",),
-    "QAT": ("middle_east", "asia"),
-    "SAU": ("middle_east", "asia"),
-    "SWE": ("europe",),
-    "THA": ("asia",),
-    "URY": ("south_america",),
-    "USA": ("usa", "north_america"),
-    "ZAF": ("africa",),
-}
+
 COUNTRY_ALIASES = {
-    "GB": "GBR",
-    "UK": "GBR",
-    "GREAT_BRITAIN": "GBR",
+    "ARE": "UAE",
     "BRITAIN": "GBR",
+    "CHE": "SUI",
+    "CHL": "CHI",
+    "DEU": "GER",
+    "DNK": "DEN",
+    "GB": "GBR",
+    "GREAT_BRITAIN": "GBR",
+    "NLD": "NED",
+    "PRT": "POR",
+    "RSA": "ZAF",
+    "SAU": "KSA",
+    "SOUTH_AFRICA": "ZAF",
+    "U.K.": "GBR",
+    "U.S.": "USA",
+    "UK": "GBR",
     "UNITED_KINGDOM": "GBR",
     "UNITED_STATES": "USA",
     "UNITED_STATES_OF_AMERICA": "USA",
     "US": "USA",
-    "UAE": "ARE",
-    "RSA": "ZAF",
-    "SOUTH_AFRICA": "ZAF",
+    "URY": "URU",
     "NEW_ZEALAND": "NZL",
+}
+EVENT_LEVEL_ALIASES = {
+    "advanced": "advanced",
+    "beginnovice": "beginner_novice",
+    "beginnernovice": "beginner_novice",
+    "bn": "beginner_novice",
+    "cciinternational": "fei_international",
+    "ccintro": "cci_intro",
+    "cciintro": "cci_intro",
+    "championship": "championship",
+    "fei": "fei_international",
+    "feiinternational": "fei_international",
+    "intro": "introductory",
+    "introductory": "introductory",
+    "modified": "modified",
+    "national": "national",
+    "novice": "novice",
+    "prelim": "preliminary",
+    "preliminary": "preliminary",
+    "regional": "regional",
+    "starter": "starter",
+    "training": "training",
+}
+STAR_WORDS = {
+    "1": "one",
+    "2": "two",
+    "3": "three",
+    "4": "four",
+    "5": "five",
 }
 
 
 @dataclass(frozen=True)
 class CoverageTargets:
-    """The countries and event levels the registry is expected to cover."""
+    """Reusable country and event-level groups declared by the registry."""
 
-    countries: tuple[str, ...]
-    national_and_regional_levels: tuple[str, ...]
-    fei_levels: tuple[str, ...]
+    country_sets: Mapping[str, tuple[str, ...]]
+    event_level_sets: Mapping[str, tuple[str, ...]]
 
     @classmethod
-    def from_mapping(cls, values: dict[str, object]) -> "CoverageTargets":
-        return cls(
-            countries=_string_tuple(values, "countries"),
-            national_and_regional_levels=_string_tuple(
-                values,
-                "all_national_and_regional_levels",
-            ),
-            fei_levels=_string_tuple(values, "all_fei_eventing_levels"),
-        )
+    def from_mapping(cls, values: Mapping[str, object]) -> "CoverageTargets":
+        country_sets = {
+            key: tuple(_normalize_country_code(country) for country in items)
+            for key, items in _required_string_lists(values, "country_sets").items()
+        }
+        event_level_sets = {
+            key: tuple(_normalize_event_level(level) for level in items)
+            for key, items in _required_string_lists(values, "event_level_sets").items()
+        }
+        if (
+            "all_fei_international_levels" in event_level_sets
+            and "all_fei_eventing_levels" not in event_level_sets
+        ):
+            event_level_sets["all_fei_eventing_levels"] = event_level_sets[
+                "all_fei_international_levels"
+            ]
+        return cls(country_sets=country_sets, event_level_sets=event_level_sets)
+
+    @property
+    def countries(self) -> tuple[str, ...]:
+        return self.country_sets["all_fei_member_nations"]
+
+    @property
+    def national_and_regional_levels(self) -> tuple[str, ...]:
+        return self.event_level_sets["all_national_and_regional_levels"]
+
+    @property
+    def fei_levels(self) -> tuple[str, ...]:
+        return self.event_level_sets["all_fei_eventing_levels"]
+
+    def expand_countries(self, values: Iterable[str]) -> tuple[str, ...]:
+        """Expand country-set tokens and normalize explicit country codes."""
+
+        countries: list[str] = []
+        for value in values:
+            countries.extend(
+                self.country_sets[value]
+                if value in self.country_sets
+                else (_normalize_country_code(value),)
+            )
+        return _unique_tuple(countries)
+
+    def expand_event_levels(self, values: Iterable[str]) -> tuple[str, ...]:
+        """Expand level-set tokens and normalize explicit event-level labels."""
+
+        levels: list[str] = []
+        for value in values:
+            levels.extend(
+                self.event_level_sets[value]
+                if value in self.event_level_sets
+                else (_normalize_event_level(value),)
+            )
+        return _unique_tuple(levels)
 
 
 @dataclass(frozen=True)
@@ -110,16 +153,26 @@ class EventSource:
     notes: str
 
     @classmethod
-    def from_mapping(cls, values: dict[str, object]) -> "EventSource":
+    def from_mapping(
+        cls,
+        values: Mapping[str, object],
+        coverage_targets: CoverageTargets | None = None,
+    ) -> "EventSource":
+        countries = _string_tuple(values, "countries")
+        event_levels = _string_tuple(values, "event_levels")
+        if coverage_targets is not None:
+            countries = coverage_targets.expand_countries(countries)
+            event_levels = coverage_targets.expand_event_levels(event_levels)
+
         return cls(
             id=_required_str(values, "id"),
             name=_required_str(values, "name"),
             priority=_required_int(values, "priority"),
             scope=_required_str(values, "scope"),
-            regions=_string_tuple(values, "regions"),
-            countries=_string_tuple(values, "countries"),
-            disciplines=_string_tuple(values, "disciplines"),
-            event_levels=_string_tuple(values, "event_levels"),
+            regions=tuple(_normalize_region(region) for region in _string_tuple(values, "regions")),
+            countries=countries,
+            disciplines=tuple(discipline.lower() for discipline in _string_tuple(values, "disciplines")),
+            event_levels=event_levels,
             source_type=_required_str(values, "source_type"),
             base_url=_optional_str(values, "base_url"),
             status=_required_str(values, "status"),
@@ -139,21 +192,21 @@ class EventSourceRegistry:
     sources: tuple[EventSource, ...]
 
     @classmethod
-    def from_mapping(cls, values: dict[str, object]) -> "EventSourceRegistry":
-        sources_value = values.get("sources")
-        if not isinstance(sources_value, list):
-            raise ValueError("sources must be a list")
-
-        coverage_targets_value = values.get("coverage_targets")
-        if not isinstance(coverage_targets_value, dict):
-            raise ValueError("coverage_targets must be an object")
+    def from_mapping(cls, values: Mapping[str, object]) -> "EventSourceRegistry":
+        coverage_targets = CoverageTargets.from_mapping(
+            _required_mapping(values, "coverage_targets")
+        )
+        primary_source_id = _required_str(values, "primary_source_id")
 
         sources = tuple(
             sorted(
-                (EventSource.from_mapping(item) for item in sources_value),
+                (
+                    EventSource.from_mapping(item, coverage_targets)
+                    for item in _required_items(values, "sources")
+                ),
                 key=lambda source: (
                     source.priority,
-                    source.id != values.get("primary_source_id"),
+                    source.id != primary_source_id,
                     source.id,
                 ),
             )
@@ -161,10 +214,13 @@ class EventSourceRegistry:
 
         return cls(
             version=_required_int(values, "version"),
-            primary_source_id=_required_str(values, "primary_source_id"),
+            primary_source_id=primary_source_id,
             coverage_goal=_required_str(values, "coverage_goal"),
-            coverage_targets=CoverageTargets.from_mapping(coverage_targets_value),
-            priority_regions=_string_tuple(values, "priority_regions"),
+            coverage_targets=coverage_targets,
+            priority_regions=tuple(
+                _normalize_region(region)
+                for region in _string_tuple(values, "priority_regions")
+            ),
             sources=sources,
         )
 
@@ -176,7 +232,7 @@ class EventSourceRegistry:
     ) -> list[EventSource]:
         """Return sources covering a region while preserving global priorities."""
 
-        normalized_region = _normalize_lookup(region)
+        normalized_region = _normalize_region(region)
         statuses = _allowed_statuses(include_planned)
 
         return [
@@ -194,22 +250,14 @@ class EventSourceRegistry:
     ) -> list[EventSource]:
         """Return sources that cover a country directly, regionally, or globally."""
 
-        normalized_country = _normalize_country(country)
-        country_regions = COUNTRY_REGIONS.get(normalized_country, ())
-        regional_country_tokens = {
-            f"all_fei_{region}_member_nations" for region in country_regions
-        }
+        normalized_country = _normalize_country_code(country)
         statuses = _allowed_statuses(include_planned)
 
         return [
             source
             for source in self.sources
             if source.status in statuses
-            and (
-                normalized_country in source.countries
-                or "all_fei_member_nations" in source.countries
-                or any(token in source.countries for token in regional_country_tokens)
-            )
+            and normalized_country in source.countries
         ]
 
     def sources_for_event_level(
@@ -291,87 +339,53 @@ def _allowed_statuses(include_planned: bool) -> frozenset[str]:
     return PLANNED_STATUSES if include_planned else ACTIVE_STATUSES
 
 
-def _normalize_lookup(value: str) -> str:
-    return value.strip().lower().replace(" ", "_").replace("-", "_")
-
-
-def _normalize_country(country: str) -> str:
-    value = country.strip().upper().replace(" ", "_").replace("-", "_")
+def _normalize_country_code(country: str) -> str:
+    value = re.sub(r"[^A-Z0-9.]+", "_", country.strip().upper()).strip("_")
+    if not value:
+        raise ValueError("country must be a non-empty string")
     return COUNTRY_ALIASES.get(value, value)
 
 
 def _normalize_event_level(event_level: str) -> str:
-    value = _normalize_lookup(event_level).replace("*", "")
-    aliases = {
-        "beginnernovice": "beginner_novice",
-        "intro": "introductory",
-        "cci_intro": "cci_intro",
-        "cci_i": "cci_intro",
-        "ccii": "cci_intro",
-        "cci1intro": "cci1_intro",
-        "cci1_intro": "cci1_intro",
-        "cci1_i": "cci1_intro",
-        "cci1i": "cci1_intro",
-        "cci1introductory": "cci1_intro",
-        "cci1_introductory": "cci1_intro",
-        "cci1_s": "cci1_short",
-        "cci1s": "cci1_short",
-        "cci1_l": "cci1_long",
-        "cci1l": "cci1_long",
-        "cci2_s": "cci2_short",
-        "cci2s": "cci2_short",
-        "cci2_l": "cci2_long",
-        "cci2l": "cci2_long",
-        "cci3_s": "cci3_short",
-        "cci3s": "cci3_short",
-        "cci3_l": "cci3_long",
-        "cci3l": "cci3_long",
-        "cci4_s": "cci4_short",
-        "cci4s": "cci4_short",
-        "cci4_l": "cci4_long",
-        "cci4l": "cci4_long",
-        "cci5_l": "cci5_long",
-        "cci5l": "cci5_long",
-        "cci1_short": "cci1_short",
-        "cci1_long": "cci1_long",
-        "cci2_short": "cci2_short",
-        "cci2_long": "cci2_long",
-        "cci3_short": "cci3_short",
-        "cci3_long": "cci3_long",
-        "cci4_short": "cci4_short",
-        "cci4_long": "cci4_long",
-        "cci5_long": "cci5_long",
-    }
-    if value in aliases:
-        return aliases[value]
+    normalized = event_level.strip().lower().replace("*", "")
+    if not normalized:
+        raise ValueError("event level must be a non-empty string")
 
-    cci_match = re.fullmatch(r"cci([1-5])_?([sl])", value)
-    if cci_match:
-        suffix = "short" if cci_match.group(2) == "s" else "long"
-        return f"cci{cci_match.group(1)}_{suffix}"
+    compact = re.sub(r"[^a-z0-9]+", "", normalized)
+    if compact in EVENT_LEVEL_ALIASES:
+        return EVENT_LEVEL_ALIASES[compact]
 
-    national_star_match = re.fullmatch(r"national_?([1-5])_?star", value)
-    if national_star_match:
-        names = {
-            "1": "one",
-            "2": "two",
-            "3": "three",
-            "4": "four",
-            "5": "five",
-        }
-        return f"national_{names[national_star_match.group(1)]}_star"
+    national_star = re.fullmatch(r"(?:national|ccn)([1-5])(?:star)?", compact)
+    if national_star:
+        return f"national_{STAR_WORDS[national_star.group(1)]}_star"
 
-    return value
+    cci_intro = re.fullmatch(r"cci1?(?:intro|introductory)", compact)
+    if cci_intro:
+        return "cci1_intro" if "1" in compact else "cci_intro"
+
+    cci_level = re.fullmatch(r"ccio?([1-5])(?:star)?(short|long|s|l)", compact)
+    if cci_level:
+        suffix = "short" if cci_level.group(2) in {"short", "s"} else "long"
+        return f"cci{cci_level.group(1)}_{suffix}"
+
+    if re.fullmatch(r"ccio?[1-5](?:star)?", compact):
+        return "fei_international"
+
+    return re.sub(r"[^a-z0-9]+", "_", normalized).strip("_")
 
 
-def _required_str(values: dict[str, object], key: str) -> str:
+def _normalize_region(region: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "_", region.strip().lower()).strip("_")
+
+
+def _required_str(values: Mapping[str, object], key: str) -> str:
     value = values.get(key)
     if not isinstance(value, str) or not value:
         raise ValueError(f"{key} must be a non-empty string")
     return value
 
 
-def _optional_str(values: dict[str, object], key: str) -> str | None:
+def _optional_str(values: Mapping[str, object], key: str) -> str | None:
     value = values.get(key)
     if value is None:
         return None
@@ -380,14 +394,43 @@ def _optional_str(values: dict[str, object], key: str) -> str | None:
     return value
 
 
-def _required_int(values: dict[str, object], key: str) -> int:
+def _required_int(values: Mapping[str, object], key: str) -> int:
     value = values.get(key)
     if not isinstance(value, int):
         raise ValueError(f"{key} must be an integer")
     return value
 
 
-def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
+def _required_mapping(values: Mapping[str, object], key: str) -> Mapping[str, object]:
+    value = values.get(key)
+    if not isinstance(value, Mapping):
+        raise ValueError(f"{key} must be an object")
+    return value
+
+
+def _required_items(values: Mapping[str, object], key: str) -> tuple[Mapping[str, object], ...]:
+    value = values.get(key)
+    if not isinstance(value, Iterable) or isinstance(value, (str, bytes)):
+        raise ValueError(f"{key} must be a list of objects")
+
+    items = tuple(value)
+    if not all(isinstance(item, Mapping) for item in items):
+        raise ValueError(f"{key} must contain only objects")
+    return items
+
+
+def _required_string_lists(
+    values: Mapping[str, object],
+    key: str,
+) -> Mapping[str, tuple[str, ...]]:
+    value = values.get(key)
+    if not isinstance(value, Mapping):
+        raise ValueError(f"{key} must be an object")
+
+    return {set_name: _string_tuple(value, set_name) for set_name in value}
+
+
+def _string_tuple(values: Mapping[str, object], key: str) -> tuple[str, ...]:
     value = values.get(key)
     if not isinstance(value, Iterable) or isinstance(value, (str, bytes)):
         raise ValueError(f"{key} must be a list of strings")
@@ -396,3 +439,7 @@ def _string_tuple(values: dict[str, object], key: str) -> tuple[str, ...]:
     if not all(isinstance(item, str) and item for item in items):
         raise ValueError(f"{key} must contain only non-empty strings")
     return items
+
+
+def _unique_tuple(values: Iterable[str]) -> tuple[str, ...]:
+    return tuple(dict.fromkeys(values))
