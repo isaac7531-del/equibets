@@ -9,6 +9,7 @@ from equibets.fei_bot import (
     CALENDAR_SEARCH_URL,
     HORSE_SEARCH_URL,
     PERSON_SEARCH_URL,
+    FeiBrowserClient,
     FeiDataBot,
     FeiEvent,
     FeiResultStore,
@@ -17,6 +18,7 @@ from equibets.fei_bot import (
     parse_calendar_events,
     parse_eventing_results,
     parse_result_links,
+    _requires_search_form,
 )
 
 
@@ -36,6 +38,25 @@ class FakeClient:
     def post(self, url, data):
         self.requests.append(("POST", url, dict(data)))
         return self.pages[("POST", url)]
+
+
+class FakePastShowsPage:
+    def __init__(self, *, wait_succeeds=True, evaluate_succeeds=True):
+        self.wait_succeeds = wait_succeeds
+        self.evaluate_succeeds = evaluate_succeeds
+        self.wait_script = ""
+        self.evaluate_script = ""
+        self.wait_timeout = None
+
+    def wait_for_function(self, script, *, timeout):
+        self.wait_script = script
+        self.wait_timeout = timeout
+        if not self.wait_succeeds:
+            raise RuntimeError("not ready")
+
+    def evaluate(self, script):
+        self.evaluate_script = script
+        return self.evaluate_succeeds
 
 
 class FeiBotTests(unittest.TestCase):
@@ -70,6 +91,31 @@ class FeiBotTests(unittest.TestCase):
         links = parse_result_links(event_detail_html(), EVENT_URL)
 
         self.assertEqual(links, [RESULT_URL])
+
+    def test_browser_retry_helper_targets_search_forms_only(self):
+        self.assertTrue(_requires_search_form(CALENDAR_SEARCH_URL))
+        self.assertTrue(_requires_search_form(PERSON_SEARCH_URL))
+        self.assertFalse(_requires_search_form(EVENT_URL))
+
+    def test_browser_wait_for_past_shows_requires_selected_results_grid(self):
+        page = FakePastShowsPage()
+        client = FeiBrowserClient()
+        client._page = page
+
+        self.assertTrue(client._wait_for_past_shows())
+        self.assertIn("PlaceHolderMain_lbBefore", page.wait_script)
+        self.assertIn("tr.row, tr.altrow", page.wait_script)
+        self.assertEqual(page.wait_timeout, 30_000)
+
+    def test_browser_past_shows_postback_sets_async_scroll_target(self):
+        page = FakePastShowsPage()
+        client = FeiBrowserClient()
+        client._page = page
+
+        self.assertTrue(client._trigger_past_shows_postback())
+        self.assertIn("hfBeforeArgs", page.evaluate_script)
+        self.assertIn("asyncScroll", page.evaluate_script)
+        self.assertIn("ctl00$PlaceHolderMain$lbBefore", page.evaluate_script)
 
     def test_parse_eventing_results_normalizes_phase_scores(self):
         event = FeiEvent(

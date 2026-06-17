@@ -23,6 +23,13 @@ from urllib.error import HTTPError
 from urllib.parse import urlencode, urljoin, urlsplit
 from urllib.request import Request, build_opener
 
+from equibets.live_scores import (
+    DEFAULT_DAYS_BACK,
+    DEFAULT_DAYS_FORWARD,
+    build_live_score_payload,
+    current_event_window,
+    write_live_score_payload,
+)
 from equibets.results import EventingResult, consolidate_results
 
 
@@ -144,12 +151,14 @@ class FeiBrowserClient:
         executable_path: str | None = None,
         storage_state: Path | str | None = None,
         challenge_wait_seconds: float = 10.0,
+        challenge_retries: int = 3,
     ) -> None:
         self.cookie = cookie
         self.headless = headless
         self.executable_path = executable_path or _default_browser_executable()
         self.storage_state = Path(storage_state) if storage_state else None
         self.challenge_wait_seconds = challenge_wait_seconds
+        self.challenge_retries = max(0, challenge_retries)
         self._playwright: object | None = None
         self._browser: object | None = None
         self._context: object | None = None
@@ -157,21 +166,11 @@ class FeiBrowserClient:
         self._ignore_storage_state = False
 
     def get(self, url: str) -> str:
-        page = self._ensure_page()
-        page.goto(url, wait_until="domcontentloaded", timeout=60_000)
-        self._wait_ready()
+        page = self._goto(url, require_form=_requires_search_form(url))
         return page.content()
 
     def post(self, url: str, data: Mapping[str, str]) -> str:
-        page = self._ensure_page()
-        if page.url != url:
-            page.goto(url, wait_until="domcontentloaded", timeout=60_000)
-            self._wait_ready()
-        if page.locator("form").count() == 0:
-            self._reset_browser_session()
-            page = self._ensure_page()
-            page.goto(url, wait_until="domcontentloaded", timeout=60_000)
-            self._wait_ready()
+        page = self._ensure_form_page(url)
         for name, value in data.items():
             self._fill_form_field(name, value)
         self._click_submit(data)
@@ -192,10 +191,70 @@ class FeiBrowserClient:
             link.first.evaluate("element => element.click()")
         self._wait_after_action()
         self._wait_ready()
+        if not self._wait_for_past_shows():
+            self._trigger_past_shows_postback()
+            self._wait_after_action()
+            self._wait_ready()
+            self._wait_for_past_shows()
         return page.content()
 
+    def _wait_for_past_shows(self) -> bool:
+        page = self._ensure_page()
+        try:
+            page.wait_for_function(
+                """() => {
+                    const past = document.querySelector('#PlaceHolderMain_lbBefore');
+                    const grid = document.querySelector('#PlaceHolderMain_wcResult_gvcRes');
+                    if (!past || !grid || !past.className.includes('selected')) {
+                        return false;
+                    }
+                    const match = past.textContent.match(/\\((\\d+)\\)/);
+                    const expected = match ? Number(match[1]) : 0;
+                    const resultRows = grid.querySelectorAll('tr.row, tr.altrow').length;
+                    const noData = grid.innerText.includes('No data found');
+                    return resultRows > 0 || expected === 0 || !noData;
+                }""",
+                timeout=30_000,
+            )
+        except Exception:
+            return False
+        return True
+
+    def _trigger_past_shows_postback(self) -> bool:
+        page = self._ensure_page()
+        try:
+            return bool(
+                page.evaluate(
+                    """() => {
+                        const hidden = document.querySelector('#hfBeforeArgs');
+                        if (hidden) {
+                            hidden.value = 'asyncScroll';
+                        }
+                        if (typeof WebForm_DoPostBackWithOptions === 'function'
+                            && typeof WebForm_PostBackOptions === 'function') {
+                            WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(
+                                'ctl00$PlaceHolderMain$lbBefore', '', true, '', '', false, true
+                            ));
+                            return true;
+                        }
+                        if (typeof __doPostBack === 'function') {
+                            __doPostBack('ctl00$PlaceHolderMain$lbBefore', '');
+                            return true;
+                        }
+                        const past = document.querySelector('#PlaceHolderMain_lbBefore');
+                        if (past) {
+                            past.click();
+                            return true;
+                        }
+                        return false;
+                    }"""
+                )
+            )
+        except Exception:
+            return False
+
     def close(self) -> None:
-        if self.storage_state and self._context is not None:
+        if self.storage_state and self._context is not None and not self._is_challenge_page():
             self.storage_state.parent.mkdir(parents=True, exist_ok=True)
             self._context.storage_state(path=str(self.storage_state))
         if self._browser is not None:
@@ -243,6 +302,23 @@ class FeiBrowserClient:
         )
         return self._page
 
+    def _goto(self, url: str, *, require_form: bool = False):
+        for attempt in range(self.challenge_retries + 1):
+            page = self._ensure_page()
+            page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+            self._wait_ready()
+            if not require_form or self._page_has_form():
+                return page
+            if attempt < self.challenge_retries:
+                self._reset_browser_session()
+        return self._ensure_page()
+
+    def _ensure_form_page(self, url: str):
+        page = self._ensure_page()
+        if page.url == url and self._page_has_form():
+            return page
+        return self._goto(url, require_form=True)
+
     def _reset_browser_session(self) -> None:
         self._ignore_storage_state = True
         for item in (self._browser, self._playwright):
@@ -255,6 +331,27 @@ class FeiBrowserClient:
         self._context = None
         self._page = None
         self._playwright = None
+
+    def _page_has_form(self) -> bool:
+        try:
+            return self._ensure_page().locator("form").count() > 0
+        except Exception:
+            return False
+
+    def _is_challenge_page(self) -> bool:
+        if self._page is None:
+            return False
+        try:
+            title = self._page.title().lower()
+            content = self._page.content().lower()
+        except Exception:
+            return False
+        return (
+            title == "fei.org"
+            or "captcha-delivery.com" in content
+            or "please enable js" in content
+            or "disable any ad blocker" in content
+        )
 
     def _wait_ready(self) -> None:
         page = self._ensure_page()
@@ -798,9 +895,28 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Collect FEI eventing results from data.fei.org")
     parser.add_argument("--start-date", type=_date_arg, help="Calendar start date, YYYY-MM-DD")
     parser.add_argument("--end-date", type=_date_arg, help="Calendar end date, YYYY-MM-DD")
+    parser.add_argument(
+        "--current-events",
+        action="store_true",
+        help="Default missing dates to the rolling current-event live-scoring window",
+    )
+    parser.add_argument(
+        "--current-days-back",
+        type=int,
+        default=DEFAULT_DAYS_BACK,
+        help="Days before today included by --current-events and --live-output defaults",
+    )
+    parser.add_argument(
+        "--current-days-forward",
+        type=int,
+        default=DEFAULT_DAYS_FORWARD,
+        help="Days after today included by --current-events and --live-output defaults",
+    )
     parser.add_argument("--event-url", action="append", default=[], help="Specific FEI event/result URL to open")
     parser.add_argument("--form-field", action="append", default=[], help="Extra FEI search form value as name=value")
     parser.add_argument("--output", type=Path, default=DEFAULT_RESULTS_FILE, help="JSON result store path")
+    parser.add_argument("--live-output", type=Path, help="Optional current-event live-scoring JSON output")
+    parser.add_argument("--live-max-standings-per-event", type=int, help="Limit standings rows in live-scoring output")
     parser.add_argument("--raw-dir", type=Path, help="Optional directory for raw FEI HTML responses")
     parser.add_argument("--max-events", type=int, help="Maximum events to open")
     parser.add_argument("--rate-limit", type=float, default=1.0, help="Delay between FEI requests in seconds")
@@ -809,11 +925,25 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--browser-executable", help="Chrome/Chromium executable for the browser driver")
     parser.add_argument("--storage-state", type=Path, help="Persist Playwright cookies/session state")
     parser.add_argument("--challenge-wait", type=float, default=10.0, help="Seconds to wait for FEI JS challenges")
+    parser.add_argument(
+        "--challenge-retries",
+        type=int,
+        default=3,
+        help="Fresh browser sessions to retry when a FEI search page remains on a challenge",
+    )
     parser.add_argument("--cookie", help="FEI session cookie header")
     parser.add_argument("--cookie-env", default="FEI_COOKIE", help="Environment variable containing FEI cookie")
     parser.add_argument("--verify", choices=("none", "warn", "require"), default="none")
     parser.add_argument("--dry-run", action="store_true", help="Collect and summarize without writing output")
     args = parser.parse_args(argv)
+
+    if args.current_events:
+        current_start, current_end = current_event_window(
+            days_back=args.current_days_back,
+            days_forward=args.current_days_forward,
+        )
+        args.start_date = args.start_date or current_start
+        args.end_date = args.end_date or current_end
 
     cookie = args.cookie or _env_value(args.cookie_env)
     client = _build_client(args, cookie)
@@ -840,9 +970,34 @@ def main(argv: Sequence[str] | None = None) -> int:
         store.save(merged)
         written = len(merged)
     else:
+        merged = results
         written = 0
 
-    print(
+    live_summary = ""
+    if args.live_output and not args.dry_run:
+        live_start = args.start_date
+        live_end = args.end_date
+        if live_start is None or live_end is None:
+            live_start, live_end = current_event_window(
+                days_back=args.current_days_back,
+                days_forward=args.current_days_forward,
+            )
+        live_payload = build_live_score_payload(
+            merged,
+            start_date=live_start,
+            end_date=live_end,
+            max_standings_per_event=args.live_max_standings_per_event,
+        )
+        write_live_score_payload(live_payload, args.live_output)
+        live_summary = (
+            f", live_events={live_payload['event_count']}, "
+            f"live_results={live_payload['result_count']}, "
+            f"live_output={args.live_output}"
+        )
+    elif args.live_output:
+        live_summary = ", live_output_skipped=dry_run"
+
+    message = (
         "FEI crawl complete: "
         f"events_found={summary.events_found}, "
         f"events_opened={summary.events_opened}, "
@@ -852,6 +1007,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"results_rejected={summary.results_rejected}, "
         f"results_in_store={written}"
     )
+    print(message + live_summary)
     return 0
 
 
@@ -1169,6 +1325,7 @@ def _build_client(args: argparse.Namespace, cookie: str | None) -> FeiHttpClient
             executable_path=args.browser_executable,
             storage_state=args.storage_state,
             challenge_wait_seconds=args.challenge_wait,
+            challenge_retries=args.challenge_retries,
         )
     if importlib.util.find_spec("playwright") is not None:
         return FeiBrowserClient(
@@ -1177,6 +1334,7 @@ def _build_client(args: argparse.Namespace, cookie: str | None) -> FeiHttpClient
             executable_path=args.browser_executable,
             storage_state=args.storage_state,
             challenge_wait_seconds=args.challenge_wait,
+            challenge_retries=args.challenge_retries,
         )
     return FeiHttpClient(cookie=cookie, rate_limit_seconds=args.rate_limit)
 
@@ -1203,6 +1361,10 @@ def _cookie_header_to_playwright(cookie_header: str, domain: str) -> list[dict[s
         if name:
             cookies.append({"name": name, "value": value, "domain": domain, "path": "/"})
     return cookies
+
+
+def _requires_search_form(url: str) -> bool:
+    return urlsplit(url).path.lower().endswith("/search.aspx")
 
 
 def _truthy(value: str) -> bool:
