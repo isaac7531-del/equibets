@@ -114,7 +114,15 @@ describe('App', () => {
     const firstEvent = liveScores.events[0];
     const leader = firstEvent.standings[0];
     expect(screen.getByText(liveScores.result_count.toString())).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        new RegExp(`${liveScores.event_count} public events? / ${liveScores.result_count} public results?`, 'i'),
+      ),
+    ).toBeInTheDocument();
     expect(screen.getByText(firstEvent.event_name)).toBeInTheDocument();
     expect(screen.getByText(leader.horse_name)).toBeInTheDocument();
+    expect(screen.getAllByRole('columnheader', { name: /dressage/i })).not.toHaveLength(0);
+    expect(screen.getAllByRole('columnheader', { name: /^sj$/i })).not.toHaveLength(0);
+    expect(screen.getAllByRole('columnheader', { name: /^xc$/i })).not.toHaveLength(0);
   });
 });
