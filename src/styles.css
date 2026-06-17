@@ -480,12 +480,25 @@ td:nth-child(6) {
 
 .live-event th:nth-child(3),
 .live-event td:nth-child(3) {
-  width: 82px;
+  padding-right: 1.1rem;
+  text-align: right;
+  width: 96px;
 }
 
 .live-event th:nth-child(4),
 .live-event td:nth-child(4) {
-  width: 190px;
+  width: 230px;
+}
+
+.live-breakdown-cell {
+  display: grid;
+  gap: 0.35rem;
+  grid-template-columns: repeat(3, minmax(54px, 1fr));
+}
+
+.live-breakdown-cell span {
+  margin-top: 0;
+  white-space: nowrap;
 }
 
 .live-breakdown-cell {
