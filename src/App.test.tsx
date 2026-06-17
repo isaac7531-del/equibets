@@ -2,6 +2,10 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it } from 'vitest';
 import App from './App';
+import liveScoresData from './data/live_scores.json';
+import type { LiveScorePayload } from './liveScores';
+
+const liveScores = liveScoresData as LiveScorePayload;
 
 describe('App', () => {
   beforeEach(() => {
@@ -47,7 +51,7 @@ describe('App', () => {
       xcJumping: '0',
     });
 
-    expect(screen.getByRole('cell', { name: '34.0' })).toBeInTheDocument();
+    expect(screen.getAllByRole('cell', { name: '34.0' })).not.toHaveLength(0);
     expect(screen.getAllByText('Juniper')).not.toHaveLength(0);
     expect(screen.getByText(/^Training ·/)).toBeInTheDocument();
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
@@ -96,5 +100,29 @@ describe('App', () => {
     expect(browser).not.toHaveTextContent('Copperfield');
     expect(screen.getAllByText('Oakley')).not.toHaveLength(0);
     expect(screen.queryByText('Copperfield')).not.toBeInTheDocument();
+  });
+
+  it('shows the current live public scoring feed', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /live public scoring/i })).toBeInTheDocument();
+    if (liveScores.result_count === 0) {
+      expect(screen.getByText(/no live public results in the current window/i)).toBeInTheDocument();
+      return;
+    }
+
+    const firstEvent = liveScores.events[0];
+    const leader = firstEvent.standings[0];
+    expect(screen.getByText(liveScores.result_count.toString())).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        new RegExp(`${liveScores.event_count} public events? / ${liveScores.result_count} public results?`, 'i'),
+      ),
+    ).toBeInTheDocument();
+    expect(screen.getByText(firstEvent.event_name)).toBeInTheDocument();
+    expect(screen.getByText(leader.horse_name)).toBeInTheDocument();
+    expect(screen.getAllByRole('columnheader', { name: /dressage/i })).not.toHaveLength(0);
+    expect(screen.getAllByRole('columnheader', { name: /^sj$/i })).not.toHaveLength(0);
+    expect(screen.getAllByRole('columnheader', { name: /^xc$/i })).not.toHaveLength(0);
   });
 });
