@@ -310,7 +310,7 @@ legend {
 }
 
 .live-event table {
-  min-width: 720px;
+  min-width: 820px;
 }
 
 .live-event thead th {
@@ -484,21 +484,21 @@ td:nth-child(6) {
 }
 
 .live-event th:nth-child(4),
-.live-event td:nth-child(4) {
-  width: 190px;
+.live-event td:nth-child(4),
+.live-event th:nth-child(5),
+.live-event td:nth-child(5),
+.live-event th:nth-child(6),
+.live-event td:nth-child(6) {
+  width: 86px;
 }
 
-.live-breakdown-cell {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.75rem;
-}
-
-.live-breakdown-cell span {
+.live-event th:nth-child(4),
+.live-event td:nth-child(4),
+.live-event th:nth-child(5),
+.live-event td:nth-child(5),
+.live-event th:nth-child(6),
+.live-event td:nth-child(6) {
   color: #42503e;
-  display: inline;
-  margin-top: 0;
-  white-space: nowrap;
 }
 
 .link-button {
