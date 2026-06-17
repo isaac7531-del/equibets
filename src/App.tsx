@@ -203,7 +203,10 @@ export default function App() {
           <div>
             <p className="eyebrow">Current events</p>
             <h2 id="live-results-heading">Live public scoring</h2>
-            <p className="muted-copy">{describeLiveFreshness(liveScores)}</p>
+            <p className="muted-copy">
+              {liveScores.event_count} public event{liveScores.event_count === 1 ? '' : 's'} / {liveScores.result_count}{' '}
+              public result{liveScores.result_count === 1 ? '' : 's'} · {describeLiveFreshness(liveScores)}
+            </p>
           </div>
           <span className="freshness-pill">{formatLiveWindow(liveScores)}</span>
         </div>
@@ -240,7 +243,9 @@ export default function App() {
                         <th>Rank</th>
                         <th>Combination</th>
                         <th>Total</th>
-                        <th>Breakdown</th>
+                        <th>Dressage</th>
+                        <th>SJ</th>
+                        <th>XC</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -252,11 +257,9 @@ export default function App() {
                             <span>{standing.rider_name}</span>
                           </td>
                           <td className="total-cell">{standing.finishing_score.toFixed(1)}</td>
-                          <td className="breakdown-cell live-breakdown-cell">
-                            <span>D {standing.dressage_score.toFixed(1)}</span>
-                            <span>SJ {standing.show_jumping_penalties.toFixed(1)}</span>
-                            <span>XC {standing.cross_country_penalties.toFixed(1)}</span>
-                          </td>
+                          <td>{standing.dressage_score.toFixed(1)}</td>
+                          <td>{standing.show_jumping_penalties.toFixed(1)}</td>
+                          <td>{standing.cross_country_penalties.toFixed(1)}</td>
                         </tr>
                       ))}
                     </tbody>
