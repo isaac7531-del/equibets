@@ -115,7 +115,10 @@ class FeiBotTests(unittest.TestCase):
         self.assertTrue(client._trigger_past_shows_postback())
         self.assertIn("hfBeforeArgs", page.evaluate_script)
         self.assertIn("asyncScroll", page.evaluate_script)
+        self.assertIn("__EVENTTARGET", page.evaluate_script)
         self.assertIn("ctl00$PlaceHolderMain$lbBefore", page.evaluate_script)
+        self.assertIn("HTMLFormElement.prototype.submit.call", page.evaluate_script)
+        self.assertNotIn("WebForm_DoPostBackWithOptions", page.evaluate_script)
 
     def test_parse_eventing_results_normalizes_phase_scores(self):
         event = FeiEvent(
