@@ -191,7 +191,67 @@ class FeiBrowserClient:
             link.first.evaluate("element => element.click()")
         self._wait_after_action()
         self._wait_ready()
+        if not self._wait_for_past_shows():
+            self._trigger_past_shows_postback()
+            self._wait_after_action()
+            self._wait_ready()
+            self._wait_for_past_shows()
         return page.content()
+
+    def _wait_for_past_shows(self) -> bool:
+        page = self._ensure_page()
+        try:
+            page.wait_for_function(
+                """() => {
+                    const past = document.querySelector('#PlaceHolderMain_lbBefore');
+                    const grid = document.querySelector('#PlaceHolderMain_wcResult_gvcRes');
+                    if (!past || !grid || !past.className.includes('selected')) {
+                        return false;
+                    }
+                    const match = past.textContent.match(/\\((\\d+)\\)/);
+                    const expected = match ? Number(match[1]) : 0;
+                    const resultRows = grid.querySelectorAll('tr.row, tr.altrow').length;
+                    const noData = grid.innerText.includes('No data found');
+                    return resultRows > 0 || expected === 0 || !noData;
+                }""",
+                timeout=30_000,
+            )
+        except Exception:
+            return False
+        return True
+
+    def _trigger_past_shows_postback(self) -> bool:
+        page = self._ensure_page()
+        try:
+            return bool(
+                page.evaluate(
+                    """() => {
+                        const hidden = document.querySelector('#hfBeforeArgs');
+                        if (hidden) {
+                            hidden.value = 'asyncScroll';
+                        }
+                        if (typeof WebForm_DoPostBackWithOptions === 'function'
+                            && typeof WebForm_PostBackOptions === 'function') {
+                            WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(
+                                'ctl00$PlaceHolderMain$lbBefore', '', true, '', '', false, true
+                            ));
+                            return true;
+                        }
+                        if (typeof __doPostBack === 'function') {
+                            __doPostBack('ctl00$PlaceHolderMain$lbBefore', '');
+                            return true;
+                        }
+                        const past = document.querySelector('#PlaceHolderMain_lbBefore');
+                        if (past) {
+                            past.click();
+                            return true;
+                        }
+                        return false;
+                    }"""
+                )
+            )
+        except Exception:
+            return False
 
     def close(self) -> None:
         if self.storage_state and self._context is not None and not self._is_challenge_page():
