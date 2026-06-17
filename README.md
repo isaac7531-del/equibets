@@ -94,3 +94,17 @@ Use `--storage-state data/fei_state.json` to reuse browser cookies,
 `--form-field name=value` for FEI form controls that need explicit values in a
 particular session, `--event-url` to crawl a known event page directly, and
 `FEI_COOKIE` or `--cookie` when the FEI Data session requires login.
+
+To refresh the website's live current-event scoring feed without opening result
+pages, run:
+
+```bash
+python3 -m equibets.fei_bot \
+  --start-date 2026-06-17 \
+  --end-date 2026-06-24 \
+  --current-events-only
+```
+
+This writes `public/current_events.json`, which the React app fetches at
+`/current_events.json` so users can select a current FEI event and prefill the
+live scoring calculator.

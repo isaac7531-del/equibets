@@ -90,7 +90,8 @@ button:disabled {
 .hero-card,
 .dashboard article,
 .calculator-card,
-.results-card {
+.results-card,
+.live-events-card {
   background: rgba(255, 252, 245, 0.88);
   border: 1px solid rgba(35, 67, 45, 0.12);
   box-shadow: 0 24px 80px rgba(67, 55, 37, 0.11);
@@ -160,10 +161,99 @@ button:disabled {
   padding: 1.35rem;
 }
 
+.live-events-card {
+  border-radius: 1.8rem;
+  margin-bottom: 1rem;
+  padding: 1.35rem;
+}
+
 .section-heading h2,
-.results-header h2 {
+.results-header h2,
+.live-events-header h2 {
   font-size: 1.55rem;
   margin: 0;
+}
+
+.live-events-header {
+  align-items: start;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 260px);
+  margin-bottom: 1rem;
+}
+
+.live-events-header p {
+  color: #65705f;
+  line-height: 1.6;
+  margin: 0.35rem 0 0;
+}
+
+.feed-meta {
+  display: grid;
+  gap: 0.7rem;
+  justify-items: end;
+}
+
+.feed-meta span {
+  color: #65705f;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-align: right;
+}
+
+.live-events-list {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.live-events-list article {
+  align-items: center;
+  background: #f7efe0;
+  border: 1px solid rgba(35, 67, 45, 0.12);
+  border-radius: 1.2rem;
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 1rem;
+}
+
+.live-events-list h3 {
+  font-size: 1rem;
+  margin: 0.45rem 0 0.25rem;
+}
+
+.live-events-list a {
+  color: #23432d;
+  text-decoration: none;
+}
+
+.live-events-list a:hover {
+  text-decoration: underline;
+}
+
+.live-events-list p {
+  color: #65705f;
+  margin: 0;
+}
+
+.status-pill {
+  background: #23432d;
+  border-radius: 999px;
+  color: #fff9ec;
+  display: inline-flex;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.6rem;
+  text-transform: uppercase;
+}
+
+code {
+  background: rgba(35, 67, 45, 0.08);
+  border-radius: 0.35rem;
+  color: #23432d;
+  padding: 0.1rem 0.25rem;
 }
 
 .form-grid {
@@ -416,8 +506,18 @@ td:nth-child(6) {
 
 @media (max-width: 900px) {
   .hero,
-  .workspace-grid {
+  .workspace-grid,
+  .live-events-header,
+  .live-events-list {
     grid-template-columns: 1fr;
+  }
+
+  .feed-meta {
+    justify-items: start;
+  }
+
+  .feed-meta span {
+    text-align: left;
   }
 
   .dashboard {
