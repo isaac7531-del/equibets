@@ -14,6 +14,7 @@ import {
   describeLiveFreshness,
   formatDate,
   formatLiveWindow,
+  formatSourceIds,
   getFeaturedLiveEvent,
   getLiveEvents,
   getLiveLeader,
@@ -228,7 +229,7 @@ export default function App() {
                   </div>
                   <p>
                     {event.result_count} public result{event.result_count === 1 ? '' : 's'} from{' '}
-                    {event.source_ids.join(', ')}
+                    {formatSourceIds(event.source_ids)}
                   </p>
                 </header>
 

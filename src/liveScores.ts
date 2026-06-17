@@ -41,6 +41,20 @@ export const getFeaturedLiveEvent = (payload: LiveScorePayload) => getLiveEvents
 
 export const getLiveLeader = (payload: LiveScorePayload) => getFeaturedLiveEvent(payload)?.standings[0];
 
+const sourceLabels: Record<string, string> = {
+  data_fei: 'FEI Data',
+};
+
+export const formatSourceId = (sourceId: string) =>
+  sourceLabels[sourceId] ??
+  sourceId
+    .split(/[_-]+/)
+    .filter(Boolean)
+    .map((part) => part[0]?.toUpperCase() + part.slice(1))
+    .join(' ');
+
+export const formatSourceIds = (sourceIds: string[]) => sourceIds.map(formatSourceId).join(', ');
+
 export const formatDate = (value: string | null | undefined) => {
   if (!value) {
     return 'Not set';
