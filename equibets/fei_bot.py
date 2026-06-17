@@ -31,6 +31,7 @@ CALENDAR_SEARCH_URL = urljoin(BASE_URL, "Calendar/Search.aspx")
 PERSON_SEARCH_URL = urljoin(BASE_URL, "Person/Search.aspx")
 HORSE_SEARCH_URL = urljoin(BASE_URL, "Horse/Search.aspx")
 DEFAULT_RESULTS_FILE = Path(__file__).resolve().parents[1] / "data" / "fei_results.json"
+DEFAULT_CURRENT_EVENTS_FILE = Path(__file__).resolve().parents[1] / "public" / "current_events.json"
 
 
 @dataclass(frozen=True)
@@ -411,6 +412,7 @@ class FeiDataBot:
         start_date: date | None = None,
         end_date: date | None = None,
         form_fields: Mapping[str, str] | None = None,
+        result_status: str | None = "With results",
     ) -> list[FeiEvent]:
         """Submit the FEI calendar search page and return discovered events."""
 
@@ -438,7 +440,7 @@ class FeiDataBot:
             if not set_field(("date", "end"), end_value):
                 set_field(("date", "to"), end_value)
         set_field(("discipline",), "Eventing")
-        set_field(("result", "status"), "With results")
+        set_field(("result", "status"), result_status)
         set_field(("search",), "Search")
         if form_fields:
             form.update(form_fields)
@@ -452,6 +454,26 @@ class FeiDataBot:
             results_page = self.client.open_past_shows()
             _write_raw(self.raw_dir, f"{CALENDAR_SEARCH_URL}#past", results_page)
             events = parse_calendar_events(results_page, CALENDAR_SEARCH_URL)
+        return events
+
+    def search_current_events(
+        self,
+        *,
+        start_date: date | None = None,
+        end_date: date | None = None,
+        form_fields: Mapping[str, str] | None = None,
+        max_events: int | None = None,
+    ) -> list[FeiEvent]:
+        """Search FEI calendar events without requiring completed result pages."""
+
+        events = self.search_calendar(
+            start_date=start_date,
+            end_date=end_date,
+            form_fields=form_fields,
+            result_status=None,
+        )
+        if max_events is not None:
+            return events[:max_events]
         return events
 
     def collect(
@@ -623,6 +645,48 @@ class FeiResultStore:
         with self.path.open("w", encoding="utf-8") as results_file:
             json.dump(payload, results_file, indent=2, sort_keys=True)
             results_file.write("\n")
+
+
+class FeiCurrentEventStore:
+    """Persist FEI calendar events for the website's live scoring feed."""
+
+    def __init__(self, path: Path | str = DEFAULT_CURRENT_EVENTS_FILE) -> None:
+        self.path = Path(path)
+
+    def save(
+        self,
+        events: Sequence[FeiEvent],
+        *,
+        window_start: date | None = None,
+        window_end: date | None = None,
+    ) -> None:
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        payload = {
+            "version": 1,
+            "source_id": "data_fei",
+            "updated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+            "window_start": window_start.isoformat() if window_start else None,
+            "window_end": window_end.isoformat() if window_end else None,
+            "events": [event_to_mapping(event) for event in events],
+        }
+        with self.path.open("w", encoding="utf-8") as events_file:
+            json.dump(payload, events_file, indent=2, sort_keys=True)
+            events_file.write("\n")
+
+
+def event_to_mapping(event: FeiEvent) -> dict[str, object]:
+    """Convert a FEI calendar event to the public current-event JSON shape."""
+
+    return {
+        "source_event_id": event.source_event_id,
+        "name": event.name,
+        "url": event.url,
+        "start_date": event.start_date.isoformat() if event.start_date else None,
+        "end_date": event.end_date.isoformat() if event.end_date else None,
+        "country": event.country,
+        "discipline": event.discipline,
+        "level": event.level,
+    }
 
 
 def result_to_mapping(result: EventingResult) -> dict[str, object]:
@@ -801,6 +865,16 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--event-url", action="append", default=[], help="Specific FEI event/result URL to open")
     parser.add_argument("--form-field", action="append", default=[], help="Extra FEI search form value as name=value")
     parser.add_argument("--output", type=Path, default=DEFAULT_RESULTS_FILE, help="JSON result store path")
+    parser.add_argument(
+        "--current-events-output",
+        type=Path,
+        help="Write discovered current/upcoming FEI calendar events for the website feed",
+    )
+    parser.add_argument(
+        "--current-events-only",
+        action="store_true",
+        help="Only search and write current/upcoming calendar events; do not open result pages",
+    )
     parser.add_argument("--raw-dir", type=Path, help="Optional directory for raw FEI HTML responses")
     parser.add_argument("--max-events", type=int, help="Maximum events to open")
     parser.add_argument("--rate-limit", type=float, default=1.0, help="Delay between FEI requests in seconds")
@@ -820,16 +894,45 @@ def main(argv: Sequence[str] | None = None) -> int:
     verifier = FeiVerifier(client) if args.verify != "none" else None
     bot = FeiDataBot(client, verifier=verifier, raw_dir=args.raw_dir)
     form_fields = _key_values(args.form_field)
+    current_events_output = args.current_events_output
+    if args.current_events_only and current_events_output is None:
+        current_events_output = DEFAULT_CURRENT_EVENTS_FILE
+    current_events: list[FeiEvent] = []
 
     try:
-        results, summary = bot.collect(
-            start_date=args.start_date,
-            end_date=args.end_date,
-            event_urls=args.event_url,
-            form_fields=form_fields,
-            max_events=args.max_events,
-            verify=args.verify,
-        )
+        if current_events_output is not None:
+            current_events = bot.search_current_events(
+                start_date=args.start_date,
+                end_date=args.end_date,
+                form_fields=form_fields,
+                max_events=args.max_events,
+            )
+            if not args.dry_run:
+                FeiCurrentEventStore(current_events_output).save(
+                    current_events,
+                    window_start=args.start_date,
+                    window_end=args.end_date,
+                )
+
+        if args.current_events_only:
+            results: list[EventingResult] = []
+            summary = FeiCrawlSummary(
+                events_found=len(current_events),
+                events_opened=0,
+                result_pages_opened=0,
+                results_collected=0,
+                results_verified=0,
+                results_rejected=0,
+            )
+        else:
+            results, summary = bot.collect(
+                start_date=args.start_date,
+                end_date=args.end_date,
+                event_urls=args.event_url,
+                form_fields=form_fields,
+                max_events=args.max_events,
+                verify=args.verify,
+            )
     finally:
         if hasattr(client, "close"):
             client.close()
@@ -850,6 +953,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"results_collected={summary.results_collected}, "
         f"results_verified={summary.results_verified}, "
         f"results_rejected={summary.results_rejected}, "
+        f"current_events_written={0 if args.dry_run or current_events_output is None else len(current_events)}, "
         f"results_in_store={written}"
     )
     return 0

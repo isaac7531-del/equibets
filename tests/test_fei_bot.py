@@ -10,6 +10,7 @@ from equibets.fei_bot import (
     HORSE_SEARCH_URL,
     PERSON_SEARCH_URL,
     FeiDataBot,
+    FeiCurrentEventStore,
     FeiEvent,
     FeiResultStore,
     FeiVerifier,
@@ -141,6 +142,25 @@ class FeiBotTests(unittest.TestCase):
         self.assertEqual(post_data["ctl00$Main$DateStart"], "01/05/2026")
         self.assertEqual(post_data["ctl00$Main$DateEnd"], "05/05/2026")
         self.assertEqual(post_data["ctl00$Main$Discipline"], "Eventing")
+        self.assertEqual(post_data["ctl00$Main$ResultStatus"], "With results")
+
+    def test_search_current_events_does_not_require_results(self):
+        client = FakeClient(
+            {
+                ("GET", CALENDAR_SEARCH_URL): calendar_search_form_html(),
+                ("POST", CALENDAR_SEARCH_URL): calendar_results_html(),
+            }
+        )
+        bot = FeiDataBot(client)
+
+        events = bot.search_current_events(
+            start_date=datetime(2026, 5, 1).date(),
+            end_date=datetime(2026, 5, 5).date(),
+        )
+
+        self.assertEqual(len(events), 1)
+        post_data = client.requests[1][2]
+        self.assertEqual(post_data["ctl00$Main$ResultStatus"], "")
 
     def test_verifier_checks_person_and_horse_search_pages(self):
         client = FakeClient(
@@ -185,6 +205,32 @@ class FeiBotTests(unittest.TestCase):
         self.assertEqual(payload["results"][0]["rider_name"], "Alex Rider")
         self.assertEqual(payload["results"][0]["dressage_score"], 30.2)
 
+    def test_current_event_store_writes_website_feed(self):
+        event = FeiEvent(
+            source_event_id="abc",
+            name="Badminton Horse Trials",
+            url=EVENT_URL,
+            start_date=datetime(2026, 5, 1).date(),
+            end_date=datetime(2026, 5, 5).date(),
+            country="GBR",
+            level="CCI5*-L",
+        )
+
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "current_events.json"
+            FeiCurrentEventStore(path).save(
+                [event],
+                window_start=datetime(2026, 5, 1).date(),
+                window_end=datetime(2026, 5, 5).date(),
+            )
+            payload = json.loads(path.read_text(encoding="utf-8"))
+
+        self.assertEqual(payload["source_id"], "data_fei")
+        self.assertEqual(payload["window_start"], "2026-05-01")
+        self.assertEqual(payload["window_end"], "2026-05-05")
+        self.assertEqual(payload["events"][0]["name"], "Badminton Horse Trials")
+        self.assertEqual(payload["events"][0]["start_date"], "2026-05-01")
+
 
 def calendar_search_form_html():
     return """
@@ -193,6 +239,7 @@ def calendar_search_form_html():
       <input type="text" name="ctl00$Main$DateStart" />
       <input type="text" name="ctl00$Main$DateEnd" />
       <input type="text" name="ctl00$Main$Discipline" />
+      <input type="text" name="ctl00$Main$ResultStatus" />
       <input type="submit" name="ctl00$Main$SearchButton" value="Search" />
     </form>
     """

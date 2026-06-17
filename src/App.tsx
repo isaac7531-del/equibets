@@ -1,4 +1,11 @@
-import { FormEvent, useEffect, useMemo, useState } from 'react';
+import { FormEvent, useCallback, useEffect, useMemo, useState } from 'react';
+import {
+  CurrentEventsUnavailableError,
+  currentEventStatus,
+  loadCurrentEvents,
+  type CurrentEventFeed,
+  type PublicCurrentEvent,
+} from './currentEvents';
 import {
   buildRiderLevelDirectory,
   calculateScore,
@@ -44,7 +51,7 @@ const createDefaultFormState = (): FormState => ({
 });
 
 const numberValue = (value: string) => Number.parseFloat(value || '0');
-const levelOptions = [
+const baseLevelOptions = [
   'Starter',
   'Beginner Novice',
   'Novice',
@@ -55,6 +62,15 @@ const levelOptions = [
   'Advanced',
 ];
 
+const emptyCurrentEventFeed: CurrentEventFeed = {
+  updatedAt: null,
+  windowStart: null,
+  windowEnd: null,
+  events: [],
+};
+
+type CurrentEventsState = 'loading' | 'ready' | 'missing' | 'error';
+
 const createScoreInput = (form: FormState): EventingScoreInput => ({
   dressagePercentage: numberValue(form.dressagePercentage),
   showJumpingPenalties: numberValue(form.showJumpingPenalties),
@@ -63,14 +79,43 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
   actualTimeSeconds: parseTimeToSeconds(numberValue(form.actualMinutes), numberValue(form.actualSeconds)),
 });
 
+const formatFeedWindow = (feed: CurrentEventFeed) => {
+  if (feed.updatedAt) {
+    return `Updated ${new Date(feed.updatedAt).toLocaleString()}`;
+  }
+  if (feed.windowStart && feed.windowEnd) {
+    return `${feed.windowStart} to ${feed.windowEnd}`;
+  }
+  return 'Feed pending';
+};
+
+const formatEventDateRange = (event: Pick<PublicCurrentEvent, 'startDate' | 'endDate'>) => {
+  if (!event.startDate) {
+    return 'Date pending';
+  }
+  if (!event.endDate || event.endDate === event.startDate) {
+    return event.startDate;
+  }
+  return `${event.startDate} to ${event.endDate}`;
+};
+
 export default function App() {
   const [form, setForm] = useState<FormState>(() => createDefaultFormState());
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
   const [selectedRider, setSelectedRider] = useState('all');
+  const [currentEventsFeed, setCurrentEventsFeed] = useState<CurrentEventFeed>(emptyCurrentEventFeed);
+  const [currentEventsState, setCurrentEventsState] = useState<CurrentEventsState>('loading');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
   const bestResult = sortedResults[0];
+  const levelOptions = useMemo(() => {
+    const feedLevels = currentEventsFeed.events
+      .map((event) => event.level)
+      .filter((level) => level && level !== 'Unknown');
+
+    return [...new Set([...baseLevelOptions, ...feedLevels])];
+  }, [currentEventsFeed.events]);
   const riderOptions = useMemo(
     () => [...new Set(results.map((result) => result.rider))].sort((a, b) => a.localeCompare(b)),
     [results],
@@ -86,6 +131,23 @@ export default function App() {
         : sortedResults.filter((result) => result.rider === selectedRider),
     [selectedRider, sortedResults],
   );
+
+  const refreshCurrentEvents = useCallback(() => {
+    setCurrentEventsState('loading');
+    loadCurrentEvents()
+      .then((feed) => {
+        setCurrentEventsFeed(feed);
+        setCurrentEventsState('ready');
+      })
+      .catch((error: unknown) => {
+        setCurrentEventsFeed(emptyCurrentEventFeed);
+        setCurrentEventsState(error instanceof CurrentEventsUnavailableError ? 'missing' : 'error');
+      });
+  }, []);
+
+  useEffect(() => {
+    refreshCurrentEvents();
+  }, [refreshCurrentEvents]);
 
   useEffect(() => {
     if (selectedRider !== 'all' && !riderOptions.includes(selectedRider)) {
@@ -117,6 +179,16 @@ export default function App() {
     setResults(nextResults);
     saveResults(nextResults);
     setForm(createDefaultFormState());
+  };
+
+  const scoreCurrentEvent = (event: PublicCurrentEvent) => {
+    setForm((current) => ({
+      ...current,
+      eventName: event.name,
+      level: event.level && event.level !== 'Unknown' ? event.level : current.level,
+      date: event.startDate ?? current.date,
+      notes: current.notes || `Pulled from ${event.discipline} current-event feed (${event.country}).`,
+    }));
   };
 
   const removeResult = (id: string) => {
@@ -171,6 +243,61 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+      </section>
+
+      <section className="live-events-card" aria-labelledby="live-events-heading">
+        <div className="live-events-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-events-heading">Live event scoring</h2>
+            <p>
+              Pull the latest FEI calendar feed, choose an event, and keep the live total calculating as scores
+              arrive.
+            </p>
+          </div>
+          <div className="feed-meta">
+            <span>{formatFeedWindow(currentEventsFeed)}</span>
+            <button className="secondary-button" type="button" onClick={refreshCurrentEvents}>
+              Refresh feed
+            </button>
+          </div>
+        </div>
+
+        {currentEventsState === 'loading' ? (
+          <div className="empty-state">
+            <strong>Loading current FEI events...</strong>
+            <p>The app is checking the public current-event feed for live scoring options.</p>
+          </div>
+        ) : currentEventsFeed.events.length === 0 ? (
+          <div className="empty-state">
+            <strong>No current-event feed is available yet.</strong>
+            <p>
+              Generate one with <code>python3 -m equibets.fei_bot --current-events-only</code>, then refresh this
+              panel.
+            </p>
+          </div>
+        ) : (
+          <div className="live-events-list">
+            {currentEventsFeed.events.map((event) => (
+              <article key={event.sourceEventId}>
+                <div>
+                  <span className="status-pill">{currentEventStatus(event)}</span>
+                  <h3>
+                    <a href={event.url} target="_blank" rel="noreferrer">
+                      {event.name}
+                    </a>
+                  </h3>
+                  <p>
+                    {event.level} · {event.country} · {formatEventDateRange(event)}
+                  </p>
+                </div>
+                <button className="secondary-button" type="button" onClick={() => scoreCurrentEvent(event)}>
+                  Score this event
+                </button>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">

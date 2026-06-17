@@ -1,11 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
 
 describe('App', () => {
   beforeEach(() => {
     window.localStorage.clear();
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () => new Response('', { status: 404 })),
+    );
   });
 
   const saveResult = async (
@@ -96,5 +100,43 @@ describe('App', () => {
     expect(browser).not.toHaveTextContent('Copperfield');
     expect(screen.getAllByText('Oakley')).not.toHaveLength(0);
     expect(screen.queryByText('Copperfield')).not.toBeInTheDocument();
+  });
+
+  it('loads current events and prefills the live scoring form', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async () =>
+        new Response(
+          JSON.stringify({
+            updated_at: '2026-06-17T00:00:00+00:00',
+            window_start: '2026-06-17',
+            window_end: '2026-06-24',
+            events: [
+              {
+                source_event_id: 'aachen-2026',
+                name: 'Aachen CCIO4*-S',
+                url: 'https://data.fei.org/Calendar/EventDetail.aspx?event=aachen',
+                start_date: '2026-06-17',
+                end_date: '2026-06-20',
+                country: 'GER',
+                discipline: 'Eventing',
+                level: 'CCIO4*-S',
+              },
+            ],
+          }),
+          { status: 200, headers: { 'Content-Type': 'application/json' } },
+        ),
+      ),
+    );
+    const user = userEvent.setup();
+    render(<App />);
+
+    await screen.findByRole('heading', { name: 'Aachen CCIO4*-S' });
+    await user.click(screen.getByRole('button', { name: /score this event/i }));
+
+    expect(screen.getByLabelText(/^event$/i)).toHaveValue('Aachen CCIO4*-S');
+    expect(screen.getByLabelText(/^level$/i)).toHaveValue('CCIO4*-S');
+    expect(screen.getByLabelText(/^date$/i)).toHaveValue('2026-06-17');
+    expect(screen.getByText(/Live now|Upcoming|Recently finished/)).toBeInTheDocument();
   });
 });
