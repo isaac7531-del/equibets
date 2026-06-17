@@ -23,6 +23,7 @@ from urllib.error import HTTPError
 from urllib.parse import urlencode, urljoin, urlsplit
 from urllib.request import Request, build_opener
 
+from equibets.live_scoring import DEFAULT_LIVE_SCORE_FILE, current_event_window, save_live_score_feed
 from equibets.results import EventingResult, consolidate_results
 
 
@@ -798,9 +799,34 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Collect FEI eventing results from data.fei.org")
     parser.add_argument("--start-date", type=_date_arg, help="Calendar start date, YYYY-MM-DD")
     parser.add_argument("--end-date", type=_date_arg, help="Calendar end date, YYYY-MM-DD")
+    parser.add_argument(
+        "--current-events",
+        action="store_true",
+        help="Search the near-current event window for scores that may still be updating",
+    )
+    parser.add_argument(
+        "--current-lookback-days",
+        type=int,
+        default=2,
+        help="Days before today to include with --current-events",
+    )
+    parser.add_argument(
+        "--current-lookahead-days",
+        type=int,
+        default=3,
+        help="Days after today to include with --current-events",
+    )
     parser.add_argument("--event-url", action="append", default=[], help="Specific FEI event/result URL to open")
     parser.add_argument("--form-field", action="append", default=[], help="Extra FEI search form value as name=value")
     parser.add_argument("--output", type=Path, default=DEFAULT_RESULTS_FILE, help="JSON result store path")
+    parser.add_argument(
+        "--live-output",
+        type=Path,
+        nargs="?",
+        const=DEFAULT_LIVE_SCORE_FILE,
+        default=None,
+        help=f"Write current-event live score feed JSON (default: {DEFAULT_LIVE_SCORE_FILE})",
+    )
     parser.add_argument("--raw-dir", type=Path, help="Optional directory for raw FEI HTML responses")
     parser.add_argument("--max-events", type=int, help="Maximum events to open")
     parser.add_argument("--rate-limit", type=float, default=1.0, help="Delay between FEI requests in seconds")
@@ -814,6 +840,14 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--verify", choices=("none", "warn", "require"), default="none")
     parser.add_argument("--dry-run", action="store_true", help="Collect and summarize without writing output")
     args = parser.parse_args(argv)
+
+    if args.current_events:
+        window_start, window_end = current_event_window(
+            lookback_days=args.current_lookback_days,
+            lookahead_days=args.current_lookahead_days,
+        )
+        args.start_date = args.start_date or window_start
+        args.end_date = args.end_date or window_end
 
     cookie = args.cookie or _env_value(args.cookie_env)
     client = _build_client(args, cookie)
@@ -842,6 +876,17 @@ def main(argv: Sequence[str] | None = None) -> int:
     else:
         written = 0
 
+    if args.live_output and not args.dry_run:
+        live_feed = save_live_score_feed(
+            results,
+            args.live_output,
+            window_start=args.start_date,
+            window_end=args.end_date,
+        )
+        live_scores_written = int(live_feed["score_count"])
+    else:
+        live_scores_written = 0
+
     print(
         "FEI crawl complete: "
         f"events_found={summary.events_found}, "
@@ -850,7 +895,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"results_collected={summary.results_collected}, "
         f"results_verified={summary.results_verified}, "
         f"results_rejected={summary.results_rejected}, "
-        f"results_in_store={written}"
+        f"results_in_store={written}, "
+        f"live_scores_written={live_scores_written}"
     )
     return 0
 
