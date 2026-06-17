@@ -16,13 +16,14 @@ import shutil
 import time
 from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.error import HTTPError
 from urllib.parse import urlencode, urljoin, urlsplit
 from urllib.request import Request, build_opener
 
+from equibets.live_scores import DEFAULT_LIVE_SCORE_FILE, save_live_score_payload
 from equibets.results import EventingResult, consolidate_results
 
 
@@ -801,6 +802,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--event-url", action="append", default=[], help="Specific FEI event/result URL to open")
     parser.add_argument("--form-field", action="append", default=[], help="Extra FEI search form value as name=value")
     parser.add_argument("--output", type=Path, default=DEFAULT_RESULTS_FILE, help="JSON result store path")
+    parser.add_argument("--live-output", type=Path, help="Write current-event live scoring JSON for the frontend")
+    parser.add_argument("--current-events", action="store_true", help="Search the rolling current-event date window")
     parser.add_argument("--raw-dir", type=Path, help="Optional directory for raw FEI HTML responses")
     parser.add_argument("--max-events", type=int, help="Maximum events to open")
     parser.add_argument("--rate-limit", type=float, default=1.0, help="Delay between FEI requests in seconds")
@@ -814,6 +817,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--verify", choices=("none", "warn", "require"), default="none")
     parser.add_argument("--dry-run", action="store_true", help="Collect and summarize without writing output")
     args = parser.parse_args(argv)
+    if args.current_events:
+        today = datetime.now(timezone.utc).date()
+        args.start_date = args.start_date or today - timedelta(days=7)
+        args.end_date = args.end_date or today + timedelta(days=2)
+        args.live_output = args.live_output or DEFAULT_LIVE_SCORE_FILE
 
     cookie = args.cookie or _env_value(args.cookie_env)
     client = _build_client(args, cookie)
@@ -834,15 +842,26 @@ def main(argv: Sequence[str] | None = None) -> int:
         if hasattr(client, "close"):
             client.close()
 
+    merged: list[EventingResult] = []
+    live_payload: dict[str, object] | None = None
     if not args.dry_run:
         store = FeiResultStore(args.output)
         merged = store.merge(results)
         store.save(merged)
         written = len(merged)
+        if args.live_output:
+            if args.start_date is None or args.end_date is None:
+                raise SystemExit("--live-output requires --current-events or explicit --start-date and --end-date")
+            live_payload = save_live_score_payload(
+                merged,
+                args.live_output,
+                window_start=args.start_date,
+                window_end=args.end_date,
+            )
     else:
         written = 0
 
-    print(
+    message = (
         "FEI crawl complete: "
         f"events_found={summary.events_found}, "
         f"events_opened={summary.events_opened}, "
@@ -852,6 +871,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"results_rejected={summary.results_rejected}, "
         f"results_in_store={written}"
     )
+    if live_payload is not None:
+        message += (
+            f", live_events={live_payload['event_count']}, "
+            f"live_results={live_payload['result_count']}"
+        )
+    print(message)
     return 0
 
 
