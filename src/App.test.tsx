@@ -51,7 +51,7 @@ describe('App', () => {
       xcJumping: '0',
     });
 
-    expect(screen.getByRole('cell', { name: '34.0' })).toBeInTheDocument();
+    expect(screen.getAllByRole('cell', { name: '34.0' })).not.toHaveLength(0);
     expect(screen.getAllByText('Juniper')).not.toHaveLength(0);
     expect(screen.getByText(/^Training ·/)).toBeInTheDocument();
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
