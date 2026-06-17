@@ -1,0 +1,790 @@
+{
+  "event_count": 2,
+  "events": [
+    {
+      "country": "CAN",
+      "event_date": "2026-06-13",
+      "event_name": "Bromont QC",
+      "latest_collected_at": "2026-06-17T07:14:48+00:00",
+      "level": "CCI1*-Intro",
+      "result_count": 7,
+      "source_ids": [
+        "data_fei"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 2.8,
+          "dressage_score": 35.1,
+          "finishing_score": 38.3,
+          "horse_name": "READY AT DAWN",
+          "rank": 1,
+          "rider_name": "Jessica RUPPEL (CAN)",
+          "show_jumping_penalties": 0.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 3.6,
+          "dressage_score": 36.7,
+          "finishing_score": 41.1,
+          "horse_name": "SPANISH MAJOR",
+          "rank": 2,
+          "rider_name": "Jessica RUPPEL (CAN)",
+          "show_jumping_penalties": 0.8,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 36.8,
+          "finishing_score": 48.8,
+          "horse_name": "WOOLASTON PROMISE",
+          "rank": 3,
+          "rider_name": "Caitlin KIDNEY (CAN)",
+          "show_jumping_penalties": 12.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 9.6,
+          "dressage_score": 31.3,
+          "finishing_score": 48.9,
+          "horse_name": "GRAF BOBBY",
+          "rank": 4,
+          "rider_name": "Dick BAYLY (CAN)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 1.2,
+          "dressage_score": 42.5,
+          "finishing_score": 56.1,
+          "horse_name": "FUEGO'S FABULOUS",
+          "rank": 5,
+          "rider_name": "Leah KIDNEY (CAN)",
+          "show_jumping_penalties": 12.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 18.0,
+          "dressage_score": 35.8,
+          "finishing_score": 57.8,
+          "horse_name": "DEPUTY JACK",
+          "rank": 6,
+          "rider_name": "Keely HYATT (CAN)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 26.0,
+          "dressage_score": 38.0,
+          "finishing_score": 64.0,
+          "horse_name": "TOM SAWYER",
+          "rank": 7,
+          "rider_name": "Cassandra GILLIS (CAN)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        }
+      ]
+    },
+    {
+      "country": "HUN",
+      "event_date": "2026-06-12",
+      "event_name": "Kaposv\u00e1r (M,D)",
+      "latest_collected_at": "2026-06-17T07:14:48+00:00",
+      "level": "CCI3*-S (M) , CCI2*-L (M) , CCI2*-S (M) , CCI1*-Intro (M)",
+      "result_count": 61,
+      "source_ids": [
+        "data_fei"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.3,
+          "finishing_score": 32.3,
+          "horse_name": "TULLIBARDS NOBODY KNOWS",
+          "rank": 1,
+          "rider_name": "Julia Maria LENTRODT (GER)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 33.8,
+          "finishing_score": 33.8,
+          "horse_name": "CORNLEY",
+          "rank": 2,
+          "rider_name": "Andrea CORSINI (ITA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 3.2,
+          "dressage_score": 31.0,
+          "finishing_score": 34.2,
+          "horse_name": "BLUERAVE ISABELLE",
+          "rank": 3,
+          "rider_name": "Daniel DUNST (AUT)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.5,
+          "finishing_score": 35.5,
+          "horse_name": "CANADA ST. JOHN'S",
+          "rank": 4,
+          "rider_name": "Petra KULCS\u00c1R (HUN)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.1,
+          "finishing_score": 36.1,
+          "horse_name": "CIN-CIN KISEGER",
+          "rank": 5,
+          "rider_name": "Anna R\u00c1DY (HUN)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 37.4,
+          "finishing_score": 37.4,
+          "horse_name": "MYVATN DE REMELLA",
+          "rank": 6,
+          "rider_name": "Andrea CORSINI (ITA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.4,
+          "dressage_score": 37.1,
+          "finishing_score": 37.5,
+          "horse_name": "KILIMANJARO",
+          "rank": 7,
+          "rider_name": "M\u00e1rton CZIROK (HUN)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 33.7,
+          "finishing_score": 37.7,
+          "horse_name": "GLOBAL JAVALL GOLD",
+          "rank": 8,
+          "rider_name": "Suhami PONZO (ITA)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 2.0,
+          "dressage_score": 35.8,
+          "finishing_score": 37.8,
+          "horse_name": "A TOUCH OF COBRA",
+          "rank": 9,
+          "rider_name": "Levante GIRARDI (ITA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.1,
+          "finishing_score": 38.1,
+          "horse_name": "UNIWAY",
+          "rank": 10,
+          "rider_name": "Anna R\u00c1DY (HUN)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 39.0,
+          "finishing_score": 39.0,
+          "horse_name": "JAMESON",
+          "rank": 11,
+          "rider_name": "Norina JAKLI (HUN)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.7,
+          "finishing_score": 39.7,
+          "horse_name": "MEDEA ZGE",
+          "rank": 12,
+          "rider_name": "Lisa HELD-DUNST (AUT)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 30.6,
+          "finishing_score": 39.8,
+          "horse_name": "COOLEY GOODWOOD",
+          "rank": 13,
+          "rider_name": "Arjan NAGRA (IND)",
+          "show_jumping_penalties": 9.2,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 40.0,
+          "finishing_score": 40.0,
+          "horse_name": "ANAKIN",
+          "rank": 14,
+          "rider_name": "Ilian ISKAROV (BUL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 1.2,
+          "dressage_score": 36.0,
+          "finishing_score": 41.2,
+          "horse_name": "GOLD SOHAYLA",
+          "rank": 15,
+          "rider_name": "Edoardo FORTINI (ITA)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.8,
+          "dressage_score": 33.7,
+          "finishing_score": 42.5,
+          "horse_name": "CORENTIN",
+          "rank": 16,
+          "rider_name": "Lisa HELD-DUNST (AUT)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 43.0,
+          "finishing_score": 43.0,
+          "horse_name": "SANTIAGO STEPPE",
+          "rank": 17,
+          "rider_name": "Suhami PONZO (ITA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 2.0,
+          "dressage_score": 33.1,
+          "finishing_score": 43.1,
+          "horse_name": "DAGOBERTA DEVIL",
+          "rank": 18,
+          "rider_name": "Johanna WERCHAU (GER)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 3.6,
+          "dressage_score": 40.2,
+          "finishing_score": 43.8,
+          "horse_name": "FERGUS DE MERZE",
+          "rank": 19,
+          "rider_name": "J\u00falia N\u00c9METH (HUN)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 2.4,
+          "dressage_score": 37.6,
+          "finishing_score": 44.0,
+          "horse_name": "JUMP FOR JOY",
+          "rank": 20,
+          "rider_name": "M\u00e1rton CZIROK (HUN)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 40.2,
+          "finishing_score": 44.2,
+          "horse_name": "FORINTOS LOVESZ",
+          "rank": 21,
+          "rider_name": "Zs\u00f3ka IV\u00c1NFI (HUN)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 8.8,
+          "dressage_score": 34.9,
+          "finishing_score": 44.5,
+          "horse_name": "FLYNN",
+          "rank": 22,
+          "rider_name": "Petra KULCS\u00c1R (HUN)",
+          "show_jumping_penalties": 0.8,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.8,
+          "finishing_score": 44.8,
+          "horse_name": "ATLANTA PEACH",
+          "rank": 23,
+          "rider_name": "Miriam BRAY (SLO)",
+          "show_jumping_penalties": 12.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 1.6,
+          "dressage_score": 43.0,
+          "finishing_score": 45.8,
+          "horse_name": "BZ LOLITA",
+          "rank": 24,
+          "rider_name": "Kinga NAGY (HUN)",
+          "show_jumping_penalties": 1.2,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 3.6,
+          "dressage_score": 38.4,
+          "finishing_score": 46.0,
+          "horse_name": "ISSELHOOK'S FEDERATION",
+          "rank": 25,
+          "rider_name": "Daniel DUNST (AUT)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.5,
+          "finishing_score": 46.5,
+          "horse_name": "R H F NUGGET XX",
+          "rank": 26,
+          "rider_name": "Georg SCHEIBLHOFER (AUT)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 3.6,
+          "dressage_score": 44.1,
+          "finishing_score": 47.7,
+          "horse_name": "DELIBAB FELHO",
+          "rank": 27,
+          "rider_name": "J\u00falia N\u00c9METH (HUN)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 6.4,
+          "dressage_score": 37.7,
+          "finishing_score": 48.1,
+          "horse_name": "KANNERA",
+          "rank": 28,
+          "rider_name": "Simone TRANFA (ITA)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 12.4,
+          "dressage_score": 37.0,
+          "finishing_score": 49.4,
+          "horse_name": "HERZENSBRECHER 11",
+          "rank": 29,
+          "rider_name": "Sarah Giulia GOLDSCHLAG (ITA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 37.5,
+          "finishing_score": 49.5,
+          "horse_name": "OZORA FABULA W",
+          "rank": 30,
+          "rider_name": "R\u00e9ka PAP (HUN)",
+          "show_jumping_penalties": 12.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 6.4,
+          "dressage_score": 33.7,
+          "finishing_score": 49.7,
+          "horse_name": "OSCAR 20",
+          "rank": 31,
+          "rider_name": "Miriam BRAY (SLO)",
+          "show_jumping_penalties": 9.6,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 42.3,
+          "finishing_score": 50.3,
+          "horse_name": "GREEN HORSE BARQUERO'S KA...",
+          "rank": 32,
+          "rider_name": "\u00d6rs HATVANI (HUN)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 2.8,
+          "dressage_score": 44.0,
+          "finishing_score": 50.8,
+          "horse_name": "SPERO",
+          "rank": 33,
+          "rider_name": "Lili DOBOS (HUN)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 10.4,
+          "dressage_score": 36.4,
+          "finishing_score": 51.2,
+          "horse_name": "DARLING DE' PIRALEI",
+          "rank": 34,
+          "rider_name": "Nicola DATTI (ITA)",
+          "show_jumping_penalties": 4.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 13.2,
+          "dressage_score": 36.8,
+          "finishing_score": 52.0,
+          "horse_name": "LIPYRUSO H",
+          "rank": 35,
+          "rider_name": "Martina GUERRA (ITA)",
+          "show_jumping_penalties": 2.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 44.2,
+          "finishing_score": 52.2,
+          "horse_name": "JANIS",
+          "rank": 36,
+          "rider_name": "Philip BLINDHOFER (AUT)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 6.8,
+          "dressage_score": 37.5,
+          "finishing_score": 52.3,
+          "horse_name": "KIM G Z",
+          "rank": 37,
+          "rider_name": "Emma HOTWAGNER (AUT)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 12.4,
+          "dressage_score": 35.7,
+          "finishing_score": 54.1,
+          "horse_name": "VANITY FZ",
+          "rank": 38,
+          "rider_name": "Martina GUERRA (ITA)",
+          "show_jumping_penalties": 6.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 2.0,
+          "dressage_score": 40.6,
+          "finishing_score": 54.6,
+          "horse_name": "PIKASO",
+          "rank": 39,
+          "rider_name": "Anna ANGELOVA (BUL)",
+          "show_jumping_penalties": 12.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 10.8,
+          "dressage_score": 40.1,
+          "finishing_score": 54.9,
+          "horse_name": "FERNHILL PEAK PANTHER",
+          "rank": 40,
+          "rider_name": "Carolina FERRARINI (ITA)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 8.4,
+          "dressage_score": 47.0,
+          "finishing_score": 59.4,
+          "horse_name": "SUGO",
+          "rank": 41,
+          "rider_name": "Zita Emma SZERDAHELYI (HUN)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 12.4,
+          "dressage_score": 44.3,
+          "finishing_score": 60.7,
+          "horse_name": "VERDEN BLUE",
+          "rank": 42,
+          "rider_name": "Melek Meryem CATALTEPE (ROU)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 8.0,
+          "dressage_score": 44.6,
+          "finishing_score": 63.0,
+          "horse_name": "HERMAN GIDRAN-13 (KOMENY)",
+          "rank": 43,
+          "rider_name": "Istv\u00e1n VARGA (HUN)",
+          "show_jumping_penalties": 10.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 11.0,
+          "dressage_score": 40.1,
+          "finishing_score": 63.1,
+          "horse_name": "NIGHT BLEU-L",
+          "rank": 44,
+          "rider_name": "Domen VIVOD (SLO)",
+          "show_jumping_penalties": 12.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 10.8,
+          "dressage_score": 44.4,
+          "finishing_score": 63.2,
+          "horse_name": "LCC RICHIE RICH",
+          "rank": 45,
+          "rider_name": "Fosco GIRARDI (ITA)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 26.0,
+          "dressage_score": 37.3,
+          "finishing_score": 63.3,
+          "horse_name": "KASSTORIE",
+          "rank": 46,
+          "rider_name": "Katerina NOVOTNA (CZE)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 24.8,
+          "dressage_score": 39.5,
+          "finishing_score": 64.3,
+          "horse_name": "VISTY",
+          "rank": 47,
+          "rider_name": "Sarka STVANOVA (CZE)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 16.0,
+          "dressage_score": 40.1,
+          "finishing_score": 64.5,
+          "horse_name": "MURCIELAGO C",
+          "rank": 48,
+          "rider_name": "Ginevra NOVELLI (ITA)",
+          "show_jumping_penalties": 8.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 27.6,
+          "dressage_score": 37.9,
+          "finishing_score": 65.5,
+          "horse_name": "CASSIETT",
+          "rank": 49,
+          "rider_name": "Sarolta SZALAI (HUN)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 53.3,
+          "finishing_score": 65.7,
+          "horse_name": "DEVA GIDRAN I-30 (SZIMPAT...",
+          "rank": 50,
+          "rider_name": "Viktor SZIJ (HUN)",
+          "show_jumping_penalties": 12.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 33.2,
+          "dressage_score": 33.5,
+          "finishing_score": 66.7,
+          "horse_name": "HERMES GAY",
+          "rank": 51,
+          "rider_name": "Stefano FIORAVANTI (ITA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 28.0,
+          "dressage_score": 36.6,
+          "finishing_score": 68.6,
+          "horse_name": "DILINO W",
+          "rank": 52,
+          "rider_name": "Katharina JUD (AUT)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 18.2,
+          "dressage_score": 33.2,
+          "finishing_score": 71.4,
+          "horse_name": "UMANOFF",
+          "rank": 53,
+          "rider_name": "Nadine HOFMANN (GER)",
+          "show_jumping_penalties": 20.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 22.8,
+          "dressage_score": 47.2,
+          "finishing_score": 74.0,
+          "horse_name": "ABERLON",
+          "rank": 54,
+          "rider_name": "Anna ANGELOVA (BUL)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 36.4,
+          "dressage_score": 34.1,
+          "finishing_score": 74.5,
+          "horse_name": "INDIKATOR",
+          "rank": 55,
+          "rider_name": "Zs\u00f3fia HOCK (HUN)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 45.2,
+          "dressage_score": 36.5,
+          "finishing_score": 86.5,
+          "horse_name": "CONNECTICUT",
+          "rank": 56,
+          "rider_name": "Maximili\u00e1n PANOV (HUN)",
+          "show_jumping_penalties": 4.8,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 50.0,
+          "dressage_score": 36.0,
+          "finishing_score": 91.2,
+          "horse_name": "LIONEL",
+          "rank": 57,
+          "rider_name": "Nina SAGMEISTER (AUT)",
+          "show_jumping_penalties": 5.2,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 48.0,
+          "dressage_score": 35.9,
+          "finishing_score": 95.1,
+          "horse_name": "DOLMEN AA",
+          "rank": 58,
+          "rider_name": "Nicola DATTI (ITA)",
+          "show_jumping_penalties": 11.2,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 26.8,
+          "dressage_score": 46.2,
+          "finishing_score": 101.0,
+          "horse_name": "TRINY",
+          "rank": 59,
+          "rider_name": "Bozhidara ILIEVA (BUL)",
+          "show_jumping_penalties": 28.0,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 46.4,
+          "dressage_score": 52.0,
+          "finishing_score": 104.8,
+          "horse_name": "MARY ROSE",
+          "rank": 60,
+          "rider_name": "Nicola DATTI (ITA)",
+          "show_jumping_penalties": 6.4,
+          "source_id": "data_fei"
+        },
+        {
+          "collected_at": "2026-06-17T07:14:48+00:00",
+          "cross_country_penalties": 94.8,
+          "dressage_score": 32.6,
+          "finishing_score": 127.4,
+          "horse_name": "BIJOU",
+          "rank": 61,
+          "rider_name": "Kata SZOKE (HUN)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "data_fei"
+        }
+      ]
+    }
+  ],
+  "generated_at": "2026-06-17T07:27:14+00:00",
+  "latest_collected_at": "2026-06-17T07:14:48+00:00",
+  "result_count": 68,
+  "source_ids": [
+    "data_fei"
+  ],
+  "version": 1,
+  "window": {
+    "end_date": "2026-06-19",
+    "start_date": "2026-06-10"
+  }
+}
