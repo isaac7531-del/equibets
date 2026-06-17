@@ -226,19 +226,19 @@ class FeiBrowserClient:
             return bool(
                 page.evaluate(
                     """() => {
+                        const form = document.forms.mainForm || document.querySelector('form');
+                        const target = document.querySelector('#__EVENTTARGET');
+                        const argument = document.querySelector('#__EVENTARGUMENT');
                         const hidden = document.querySelector('#hfBeforeArgs');
                         if (hidden) {
                             hidden.value = 'asyncScroll';
                         }
-                        if (typeof WebForm_DoPostBackWithOptions === 'function'
-                            && typeof WebForm_PostBackOptions === 'function') {
-                            WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(
-                                'ctl00$PlaceHolderMain$lbBefore', '', true, '', '', false, true
-                            ));
-                            return true;
-                        }
-                        if (typeof __doPostBack === 'function') {
-                            __doPostBack('ctl00$PlaceHolderMain$lbBefore', '');
+                        if (form && target) {
+                            target.value = 'ctl00$PlaceHolderMain$lbBefore';
+                            if (argument) {
+                                argument.value = '';
+                            }
+                            HTMLFormElement.prototype.submit.call(form);
                             return true;
                         }
                         const past = document.querySelector('#PlaceHolderMain_lbBefore');
