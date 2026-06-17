@@ -17,6 +17,7 @@ from equibets.fei_bot import (
     parse_calendar_events,
     parse_eventing_results,
     parse_result_links,
+    _requires_search_form,
 )
 
 
@@ -70,6 +71,11 @@ class FeiBotTests(unittest.TestCase):
         links = parse_result_links(event_detail_html(), EVENT_URL)
 
         self.assertEqual(links, [RESULT_URL])
+
+    def test_browser_retry_helper_targets_search_forms_only(self):
+        self.assertTrue(_requires_search_form(CALENDAR_SEARCH_URL))
+        self.assertTrue(_requires_search_form(PERSON_SEARCH_URL))
+        self.assertFalse(_requires_search_form(EVENT_URL))
 
     def test_parse_eventing_results_normalizes_phase_scores(self):
         event = FeiEvent(
