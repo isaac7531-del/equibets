@@ -12,7 +12,7 @@ import {
 import liveScoresData from './data/live_scores.json';
 import {
   describeLiveFreshness,
-  formatDate,
+  formatLiveEventMeta,
   formatLiveWindow,
   getFeaturedLiveEvent,
   getLiveEvents,
@@ -221,9 +221,7 @@ export default function App() {
               >
                 <header>
                   <div>
-                    <span>
-                      {formatDate(event.event_date)} / {event.country} / {event.level}
-                    </span>
+                    <span>{formatLiveEventMeta(event)}</span>
                     <h3>{event.event_name}</h3>
                   </div>
                   <p>
