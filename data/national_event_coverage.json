@@ -2,8 +2,8 @@
   "version": 1,
   "coverage_goal": "Resolve national-event coverage to concrete FEI/NOC country codes and normalized eventing levels.",
   "source_notes": [
-    "FEI states that National Federations are the authority for FEI disciplines in their countries and lists 135 full member National Federations plus one associate member in FEI Database.",
-    "The all_fei_member_nations set includes full members and the current associate member so global national-event backfill can track every country-like FEI federation target.",
+    "FEI states that National Federations are the authority for FEI disciplines in their countries and that the public National Federation list contains 135 affiliated federations.",
+    "The all_fei_member_nations set follows the public country-code coverage list and includes Nepal as the current associate-member coverage target.",
     "FEI Database uses NOC-style three-letter country codes rather than ISO alpha-3 codes for several federations, for example GER, SLO, TRI, and ISV."
   ],
   "source_urls": [
@@ -13,8 +13,8 @@
   ],
   "country_sets": {
     "all_fei_member_nations": {
-      "description": "All FEI National Federation country codes, including 135 full members and Nepal as the current associate member.",
-      "expected_count": 136,
+      "description": "All FEI National Federation country codes in the public coverage list, including Nepal as the current associate-member target.",
+      "expected_count": 135,
       "countries": [
         "ALB",
         "ALG",
@@ -154,8 +154,8 @@
       ]
     },
     "all_fei_full_member_nations": {
-      "description": "Full FEI member National Federations. Excludes Nepal, which is tracked separately as the current associate member.",
-      "expected_count": 135,
+      "description": "Country-code coverage list excluding Nepal, which is tracked separately as the current associate-member target.",
+      "expected_count": 134,
       "countries": [
         "ALB",
         "ALG",

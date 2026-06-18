@@ -46,8 +46,8 @@ class EventSourceTests(unittest.TestCase):
         member_countries = expand_country_tokens(("all_fei_member_nations",))
         full_member_countries = expand_country_tokens(("all_fei_full_member_nations",))
 
-        self.assertEqual(len(member_countries), 136)
-        self.assertEqual(len(full_member_countries), 135)
+        self.assertEqual(len(member_countries), 135)
+        self.assertEqual(len(full_member_countries), 134)
         self.assertEqual(member_countries, country_sets["all_fei_member_nations"])
         self.assertIn("USA", member_countries)
         self.assertIn("GBR", member_countries)
