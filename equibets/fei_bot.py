@@ -23,6 +23,13 @@ from urllib.error import HTTPError
 from urllib.parse import urlencode, urljoin, urlsplit
 from urllib.request import Request, build_opener
 
+from equibets.live_scores import (
+    DEFAULT_DAYS_BACK,
+    DEFAULT_DAYS_FORWARD,
+    build_live_score_payload,
+    current_event_window,
+    write_live_score_payload,
+)
 from equibets.results import EventingResult, consolidate_results
 
 
@@ -183,14 +190,52 @@ class FeiBrowserClient:
         """Switch FEI calendar search results to the Past Shows tab."""
 
         page = self._ensure_page()
-        link = page.locator("#PlaceHolderMain_lbBefore, a:has-text('Past Shows')")
+        link = page.locator("#PlaceHolderMain_lbBefore, a[id$='lbBefore'], a:has-text('Past Shows')")
         if link.count() == 0:
             return page.content()
+
+        def trigger_past_tab() -> None:
+            page.evaluate(
+                """() => {
+                    const link = document.querySelector("#PlaceHolderMain_lbBefore, a[id$='lbBefore'], a[href*='lbBefore']");
+                    if (!link) {
+                        return false;
+                    }
+                    if (typeof WebForm_DoPostBackWithOptions === 'function' && typeof WebForm_PostBackOptions === 'function') {
+                        WebForm_DoPostBackWithOptions(
+                            new WebForm_PostBackOptions("ctl00$PlaceHolderMain$lbBefore", "", true, "", "", false, true)
+                        );
+                    } else if (typeof __doPostBack === 'function') {
+                        __doPostBack("ctl00$PlaceHolderMain$lbBefore", "");
+                    } else {
+                        link.click();
+                    }
+                    return true;
+                }"""
+            )
+
+        def wait_for_past_tab() -> bool:
+            try:
+                page.wait_for_function(
+                    """() => {
+                        const link = document.querySelector("#PlaceHolderMain_lbBefore, a[id$='lbBefore']");
+                        return link && link.className.includes("selected");
+                    }""",
+                    timeout=10_000,
+                )
+                return True
+            except Exception:
+                return False
+
         try:
             link.first.click(timeout=5_000)
         except Exception:
-            link.first.evaluate("element => element.click()")
+            trigger_past_tab()
         self._wait_after_action()
+        if not wait_for_past_tab():
+            trigger_past_tab()
+            self._wait_after_action()
+            wait_for_past_tab()
         self._wait_ready()
         return page.content()
 
@@ -366,29 +411,34 @@ class FeiBrowserClient:
 
     def _submit_with_javascript(self, submit_name: str | None) -> bool:
         page = self._ensure_page()
-        return bool(
-            page.evaluate(
-                """submitName => {
-                    const submitter = submitName
-                        ? document.querySelector(`[name="${CSS.escape(submitName)}"]`)
-                        : null;
-                    if (submitter) {
-                        submitter.click();
+        try:
+            return bool(
+                page.evaluate(
+                    """submitName => {
+                        const submitter = submitName
+                            ? document.querySelector(`[name="${CSS.escape(submitName)}"]`)
+                            : null;
+                        if (submitter) {
+                            submitter.click();
+                            return true;
+                        }
+                        if (document.forms.length === 0) {
+                            return false;
+                        }
+                        if (document.forms[0].requestSubmit) {
+                            document.forms[0].requestSubmit();
+                        } else {
+                            document.forms[0].submit();
+                        }
                         return true;
-                    }
-                    if (document.forms.length === 0) {
-                        return false;
-                    }
-                    if (document.forms[0].requestSubmit) {
-                        document.forms[0].requestSubmit();
-                    } else {
-                        document.forms[0].submit();
-                    }
-                    return true;
-                }""",
-                submit_name,
+                    }""",
+                    submit_name,
+                )
             )
-        )
+        except Exception as exc:
+            if "Execution context was destroyed" in str(exc):
+                return True
+            raise
 
 
 class FeiDataBot:
@@ -798,9 +848,28 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Collect FEI eventing results from data.fei.org")
     parser.add_argument("--start-date", type=_date_arg, help="Calendar start date, YYYY-MM-DD")
     parser.add_argument("--end-date", type=_date_arg, help="Calendar end date, YYYY-MM-DD")
+    parser.add_argument(
+        "--current-events",
+        action="store_true",
+        help="Default missing dates to the rolling current-event live-scoring window",
+    )
+    parser.add_argument(
+        "--current-days-back",
+        type=int,
+        default=DEFAULT_DAYS_BACK,
+        help="Days before today included by --current-events and --live-output defaults",
+    )
+    parser.add_argument(
+        "--current-days-forward",
+        type=int,
+        default=DEFAULT_DAYS_FORWARD,
+        help="Days after today included by --current-events and --live-output defaults",
+    )
     parser.add_argument("--event-url", action="append", default=[], help="Specific FEI event/result URL to open")
     parser.add_argument("--form-field", action="append", default=[], help="Extra FEI search form value as name=value")
     parser.add_argument("--output", type=Path, default=DEFAULT_RESULTS_FILE, help="JSON result store path")
+    parser.add_argument("--live-output", type=Path, help="Optional current-event live-scoring JSON output")
+    parser.add_argument("--live-max-standings-per-event", type=int, help="Limit standings rows in live-scoring output")
     parser.add_argument("--raw-dir", type=Path, help="Optional directory for raw FEI HTML responses")
     parser.add_argument("--max-events", type=int, help="Maximum events to open")
     parser.add_argument("--rate-limit", type=float, default=1.0, help="Delay between FEI requests in seconds")
@@ -814,6 +883,14 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--verify", choices=("none", "warn", "require"), default="none")
     parser.add_argument("--dry-run", action="store_true", help="Collect and summarize without writing output")
     args = parser.parse_args(argv)
+
+    if args.current_events:
+        current_start, current_end = current_event_window(
+            days_back=args.current_days_back,
+            days_forward=args.current_days_forward,
+        )
+        args.start_date = args.start_date or current_start
+        args.end_date = args.end_date or current_end
 
     cookie = args.cookie or _env_value(args.cookie_env)
     client = _build_client(args, cookie)
@@ -840,9 +917,34 @@ def main(argv: Sequence[str] | None = None) -> int:
         store.save(merged)
         written = len(merged)
     else:
+        merged = results
         written = 0
 
-    print(
+    live_summary = ""
+    if args.live_output and not args.dry_run:
+        live_start = args.start_date
+        live_end = args.end_date
+        if live_start is None or live_end is None:
+            live_start, live_end = current_event_window(
+                days_back=args.current_days_back,
+                days_forward=args.current_days_forward,
+            )
+        live_payload = build_live_score_payload(
+            merged,
+            start_date=live_start,
+            end_date=live_end,
+            max_standings_per_event=args.live_max_standings_per_event,
+        )
+        write_live_score_payload(live_payload, args.live_output)
+        live_summary = (
+            f", live_events={live_payload['event_count']}, "
+            f"live_results={live_payload['result_count']}, "
+            f"live_output={args.live_output}"
+        )
+    elif args.live_output:
+        live_summary = ", live_output_skipped=dry_run"
+
+    message = (
         "FEI crawl complete: "
         f"events_found={summary.events_found}, "
         f"events_opened={summary.events_opened}, "
@@ -852,6 +954,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"results_rejected={summary.results_rejected}, "
         f"results_in_store={written}"
     )
+    print(message + live_summary)
     return 0
 
 
