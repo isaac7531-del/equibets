@@ -13,8 +13,8 @@ export type LiveScoreStanding = {
 export type LiveScoreEvent = {
   event_name: string;
   event_date: string;
-  level: string;
-  country: string;
+  level: string | null;
+  country: string | null;
   result_count: number;
   source_ids: string[];
   latest_collected_at: string | null;
@@ -95,3 +95,11 @@ export const formatLiveWindow = (payload: LiveScorePayload) => {
   }
   return `${formatDate(startDate)} - ${formatDate(endDate)}`;
 };
+
+export const formatLiveEventMeta = (event: Pick<LiveScoreEvent, 'event_date' | 'country' | 'level'>) =>
+  [formatDate(event.event_date), event.country, event.level]
+    .filter(
+      (value): value is string =>
+        typeof value === 'string' && value.trim() !== '' && value.trim().toLowerCase() !== 'null',
+    )
+    .join(' / ');

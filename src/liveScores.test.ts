@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   describeLiveFreshness,
+  formatLiveEventMeta,
   formatLiveWindow,
   getLiveLeader,
   type LiveScorePayload,
@@ -54,5 +55,15 @@ describe('live score helpers', () => {
 
   it('formats the current scoring window', () => {
     expect(formatLiveWindow(payload)).toContain('2026');
+  });
+
+  it('omits missing live-event metadata fields', () => {
+    expect(
+      formatLiveEventMeta({
+        event_date: '2026-06-14',
+        country: null,
+        level: 'CCI2*-S',
+      }),
+    ).toBe('Jun 14, 2026 / CCI2*-S');
   });
 });
