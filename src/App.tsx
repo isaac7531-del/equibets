@@ -10,6 +10,7 @@ import {
   type StoredResult,
 } from './scoring';
 import { loadResults, saveResults } from './storage';
+import liveScorePayload from './data/live_scores.json';
 
 type FormState = {
   rider: string;
@@ -25,6 +26,37 @@ type FormState = {
   actualMinutes: string;
   actualSeconds: string;
   notes: string;
+};
+
+type LiveScoreResult = {
+  rank: number;
+  rider_name: string;
+  horse_name: string;
+  total_penalties: number;
+  dressage_score: number;
+  show_jumping_penalties: number;
+  cross_country_jump_penalties: number;
+  cross_country_time_penalties: number;
+  collected_at: string;
+};
+
+type LiveScoreEvent = {
+  event_name: string;
+  event_date: string;
+  level: string;
+  country: string;
+  result_count: number;
+  leader: LiveScoreResult | null;
+  results: LiveScoreResult[];
+};
+
+type LiveScoresPayload = {
+  generated_at: string;
+  window_start: string;
+  window_end: string;
+  event_count: number;
+  result_count: number;
+  events: LiveScoreEvent[];
 };
 
 const createDefaultFormState = (): FormState => ({
@@ -44,6 +76,7 @@ const createDefaultFormState = (): FormState => ({
 });
 
 const numberValue = (value: string) => Number.parseFloat(value || '0');
+const liveScores = liveScorePayload as LiveScoresPayload;
 const levelOptions = [
   'Starter',
   'Beginner Novice',
@@ -62,6 +95,25 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
   optimumTimeSeconds: parseTimeToSeconds(numberValue(form.optimumMinutes), numberValue(form.optimumSeconds)),
   actualTimeSeconds: parseTimeToSeconds(numberValue(form.actualMinutes), numberValue(form.actualSeconds)),
 });
+
+const formatDate = (value: string) =>
+  new Intl.DateTimeFormat('en', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    timeZone: 'UTC',
+  }).format(new Date(`${value}T00:00:00Z`));
+
+const formatDateTime = (value: string) =>
+  new Intl.DateTimeFormat('en', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZone: 'UTC',
+    timeZoneName: 'short',
+  }).format(new Date(value));
 
 export default function App() {
   const [form, setForm] = useState<FormState>(() => createDefaultFormState());
@@ -86,6 +138,9 @@ export default function App() {
         : sortedResults.filter((result) => result.rider === selectedRider),
     [selectedRider, sortedResults],
   );
+  const featuredLiveEvent = liveScores.events[0];
+  const liveWindow = `${formatDate(liveScores.window_start)} - ${formatDate(liveScores.window_end)}`;
+  const liveUpdatedAt = formatDateTime(liveScores.generated_at);
 
   useEffect(() => {
     if (selectedRider !== 'all' && !riderOptions.includes(selectedRider)) {
@@ -171,6 +226,117 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+      </section>
+
+      <section className="live-scoring-card" aria-labelledby="live-scoring-heading">
+        <div className="live-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-scoring-heading">Live public scoring</h2>
+            <p>
+              FEI results pulled for {liveWindow}. Standings rank public combinations from lowest penalties to highest.
+            </p>
+          </div>
+          <div className="live-source-badge">
+            <span>Source</span>
+            <strong>data.fei.org</strong>
+          </div>
+        </div>
+
+        <div className="live-stats" aria-label="Live public scoring summary">
+          <article>
+            <span>Public events</span>
+            <strong>{liveScores.event_count}</strong>
+          </article>
+          <article>
+            <span>Public results</span>
+            <strong>{liveScores.result_count}</strong>
+          </article>
+          <article>
+            <span>Updated</span>
+            <strong>{liveUpdatedAt}</strong>
+          </article>
+        </div>
+
+        {featuredLiveEvent ? (
+          <div className="live-content-grid">
+            <article className="live-feature">
+              <div className="live-event-heading">
+                <div>
+                  <span>
+                    {featuredLiveEvent.level} · {featuredLiveEvent.country} · {formatDate(featuredLiveEvent.event_date)}
+                  </span>
+                  <h3>{featuredLiveEvent.event_name}</h3>
+                </div>
+                <strong>{featuredLiveEvent.result_count} results</strong>
+              </div>
+
+              {featuredLiveEvent.leader ? (
+                <div className="leader-card">
+                  <span>Current leader</span>
+                  <strong>{featuredLiveEvent.leader.horse_name}</strong>
+                  <p>
+                    {featuredLiveEvent.leader.rider_name} on{' '}
+                    {featuredLiveEvent.leader.total_penalties.toFixed(1)} penalties
+                  </p>
+                </div>
+              ) : null}
+
+              <div className="table-wrap">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Combination</th>
+                      <th>Total</th>
+                      <th>Breakdown</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {featuredLiveEvent.results.slice(0, 8).map((result) => (
+                      <tr key={`${featuredLiveEvent.event_name}-${result.rank}-${result.horse_name}-${result.rider_name}`}>
+                        <td>#{result.rank}</td>
+                        <td>
+                          <strong>{result.horse_name}</strong>
+                          <span>{result.rider_name}</span>
+                        </td>
+                        <td className="total-cell">{result.total_penalties.toFixed(1)}</td>
+                        <td className="breakdown-cell">
+                          D {result.dressage_score.toFixed(1)} / SJ {result.show_jumping_penalties.toFixed(1)} / XC{' '}
+                          {(result.cross_country_jump_penalties + result.cross_country_time_penalties).toFixed(1)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <aside className="live-event-list" aria-label="Current public events">
+              <h3>Events in this refresh</h3>
+              <div>
+                {liveScores.events.map((event) => (
+                  <article key={`${event.event_name}-${event.event_date}-${event.level}`}>
+                    <strong>{event.event_name}</strong>
+                    <span>
+                      {event.level} · {formatDate(event.event_date)} · {event.result_count} results
+                    </span>
+                    {event.leader ? (
+                      <p>
+                        Leader: {event.leader.horse_name} / {event.leader.rider_name} ({event.leader.total_penalties.toFixed(1)})
+                      </p>
+                    ) : null}
+                  </article>
+                ))}
+              </div>
+            </aside>
+          </div>
+        ) : (
+          <div className="empty-state">
+            <strong>No current public results in this refresh.</strong>
+            <p>The next FEI refresh will populate this section when current event result pages are available.</p>
+          </div>
+        )}
       </section>
 
       <section className="workspace-grid">

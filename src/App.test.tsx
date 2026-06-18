@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it } from 'vitest';
 import App from './App';
+import liveScorePayload from './data/live_scores.json';
 
 describe('App', () => {
   beforeEach(() => {
@@ -51,6 +52,17 @@ describe('App', () => {
     expect(screen.getAllByText('Juniper')).not.toHaveLength(0);
     expect(screen.getByText(/^Training ·/)).toBeInTheDocument();
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
+  });
+
+  it('renders the current FEI live scoring summary', () => {
+    render(<App />);
+
+    const liveScoring = screen.getByRole('region', { name: /live public scoring/i });
+    expect(liveScoring).toHaveTextContent('data.fei.org');
+    expect(liveScoring).toHaveTextContent('Public events');
+    expect(liveScoring).toHaveTextContent(String(liveScorePayload.event_count));
+    expect(liveScoring).toHaveTextContent('Public results');
+    expect(liveScoring).toHaveTextContent(String(liveScorePayload.result_count));
   });
 
   it('filters the rider dropdown to show horses by level', async () => {
