@@ -222,10 +222,10 @@ export default function App() {
               >
                 <header>
                   <div>
+                    <h3>{event.event_name}</h3>
                     <span>
                       {formatDate(event.event_date)} / {event.country} / {event.level}
                     </span>
-                    <h3>{event.event_name}</h3>
                   </div>
                   <p>
                     {event.result_count} public result{event.result_count === 1 ? '' : 's'} from{' '}
