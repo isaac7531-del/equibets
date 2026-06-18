@@ -52,7 +52,9 @@ python3 -m pip install -e .
 ## Event results source priority
 
 The initial source registry lives in `data/event_sources.json` and is loaded with
-`equibets.sources`.
+`equibets.sources`. Country-set and event-level placeholders are resolved with
+`data/national_event_coverage.json`, which tracks all FEI National Federation
+country codes and normalized eventing levels for national-event backfill.
 
 1. `data_fei` (`https://data.fei.org/`) is the primary source for eventing
    results across all FEI member nations.
@@ -60,6 +62,13 @@ The initial source registry lives in `data/event_sources.json` and is loaded wit
    Europe, the UK, Australia, New Zealand, and the USA.
 3. `global_national_federations` is the backfill path for national events from
    every FEI member nation after the priority regions are covered.
+
+Useful registry helpers:
+
+- `sources_for_country("USA", event_level="Preliminary")` returns the sources
+  responsible for a concrete country and level.
+- `national_event_coverage()` returns the full planned source/country/level
+  matrix for national eventing updates.
 
 Run the source registry checks with:
 

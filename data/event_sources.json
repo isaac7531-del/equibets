@@ -1,7 +1,7 @@
 {
   "version": 1,
   "primary_source_id": "data_fei",
-  "coverage_goal": "Collect eventing results for all nations, prioritizing data.fei and supplementing with national-event sources.",
+  "coverage_goal": "Collect eventing results for all FEI National Federation countries and all configured eventing levels, prioritizing data.fei and supplementing with national-event sources.",
   "priority_regions": [
     "europe",
     "uk",
@@ -30,7 +30,7 @@
       "source_type": "primary_database",
       "base_url": "https://data.fei.org/",
       "status": "active",
-      "notes": "Primary eventing source. Use before national sources whenever a result appears in the FEI database."
+      "notes": "Primary eventing source. Use before national sources whenever a result appears in the FEI database. Countries and FEI levels resolve through data/national_event_coverage.json."
     },
     {
       "id": "europe_national_federations",
@@ -168,7 +168,7 @@
       "source_type": "federation_registry",
       "base_url": null,
       "status": "planned",
-      "notes": "Backfill national events for every FEI member nation after higher-priority regions are covered."
+      "notes": "Backfill national events for every FEI National Federation country and every configured national/regional eventing level after higher-priority regions are covered."
     }
   ]
 }
