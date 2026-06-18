@@ -271,22 +271,27 @@ legend {
 
 .live-event-list {
   display: grid;
-  gap: 1rem;
+  gap: 1.35rem;
 }
 
 .live-event {
   background: #fffdf7;
-  border: 1px solid rgba(35, 67, 45, 0.1);
+  border: 1px solid rgba(35, 67, 45, 0.16);
   border-radius: 1.25rem;
+  box-shadow: 0 16px 40px rgba(67, 55, 37, 0.08);
   padding: 1rem;
 }
 
 .live-event header {
   align-items: start;
+  background: #f8f2e4;
+  border: 1px solid rgba(35, 67, 45, 0.08);
+  border-radius: 1rem;
   display: flex;
   gap: 1rem;
   justify-content: space-between;
   margin-bottom: 0.75rem;
+  padding: 0.85rem;
 }
 
 .live-event header span {
