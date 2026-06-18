@@ -318,6 +318,26 @@ legend {
   min-width: 520px;
 }
 
+.live-standings-table th:nth-child(1),
+.live-standings-table td:nth-child(1) {
+  width: 60px;
+}
+
+.live-standings-table th:nth-child(2),
+.live-standings-table td:nth-child(2) {
+  min-width: 220px;
+}
+
+.live-standings-table th:nth-child(3),
+.live-standings-table td:nth-child(3) {
+  width: 88px;
+}
+
+.live-standings-table th:nth-child(4),
+.live-standings-table td:nth-child(4) {
+  min-width: 190px;
+}
+
 .secondary-button {
   background: #eee1c7;
   color: #23432d;
@@ -456,18 +476,18 @@ td span {
   line-height: 1.35;
 }
 
-th:nth-child(1),
-td:nth-child(1) {
+.results-card:not(.live-results-card) th:nth-child(1),
+.results-card:not(.live-results-card) td:nth-child(1) {
   width: 48px;
 }
 
-th:nth-child(4),
-td:nth-child(4) {
+.results-card:not(.live-results-card) th:nth-child(4),
+.results-card:not(.live-results-card) td:nth-child(4) {
   width: 68px;
 }
 
-th:nth-child(6),
-td:nth-child(6) {
+.results-card:not(.live-results-card) th:nth-child(6),
+.results-card:not(.live-results-card) td:nth-child(6) {
   width: 72px;
 }
 

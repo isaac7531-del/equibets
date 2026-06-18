@@ -231,7 +231,7 @@ export default function App() {
                 </header>
 
                 <div className="table-wrap">
-                  <table>
+                  <table className="live-standings-table">
                     <thead>
                       <tr>
                         <th>Rank</th>
