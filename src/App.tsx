@@ -23,7 +23,9 @@ import {
 import liveScoresData from './data/live_scores.json';
 import {
   describeLiveFreshness,
+  formatCompetitionClasses,
   formatDate as formatLiveDate,
+  formatLiveEventTitle,
   formatLiveWindow,
   formatSourceList,
   getFeaturedLiveEvent,
@@ -269,9 +271,9 @@ export default function App() {
               >
                 <header>
                   <div>
-                    <h3>{event.event_name}</h3>
+                    <h3>{formatLiveEventTitle(event)}</h3>
                     <span>
-                      {formatLiveDate(event.event_date)} / {event.country} / {event.level}
+                      {formatLiveDate(event.event_date)} / {event.country} / {formatCompetitionClasses(event.level)}
                     </span>
                   </div>
                   <p>

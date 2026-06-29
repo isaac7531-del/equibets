@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it } from 'vitest';
 import App from './App';
 import liveScoresData from './data/live_scores.json';
-import type { LiveScorePayload } from './liveScores';
+import { formatLiveEventTitle, type LiveScorePayload } from './liveScores';
 
 const liveScores = liveScoresData as LiveScorePayload;
 
@@ -131,7 +131,7 @@ describe('App', () => {
     const firstEvent = liveScores.events[0];
     const leader = firstEvent.standings[0];
     expect(screen.getByText(liveScores.result_count.toString())).toBeInTheDocument();
-    expect(screen.getAllByText(firstEvent.event_name).length).toBeGreaterThan(0);
+    expect(screen.getByRole('heading', { name: formatLiveEventTitle(firstEvent) })).toBeInTheDocument();
     expect(screen.getAllByText(leader.horse_name).length).toBeGreaterThan(0);
   });
 });
