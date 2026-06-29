@@ -65,6 +65,8 @@ describe('live score helpers', () => {
 
   it('normalizes FEI class lists for event labels', () => {
     expect(formatCompetitionClasses('CCI4*-L , CCI3*-S , CCIP2-S')).toBe('CCI4*-L, CCI3*-S, CCIP2-S');
-    expect(formatLiveEventTitle({ event_name: 'Strzegom', level: 'CCI4*-L , CCI3*-S' })).toBe('Strzegom - CCI4*-L');
+    expect(formatLiveEventTitle({ event_name: 'Strzegom', level: 'CCI4*-L , CCI3*-S' })).toBe(
+      'Strzegom - CCI4*-L + 1 class',
+    );
   });
 });
