@@ -82,8 +82,8 @@ describe('App', () => {
     render(<App />);
 
     expect(screen.getByRole('heading', { name: /built for browser use and installable app workflows/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /web dashboard/i })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: /installable app/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 3, name: /web dashboard/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 3, name: /installable app/i })).toBeInTheDocument();
     expect(screen.getByText(/manifest, app icon, standalone display mode/i)).toBeInTheDocument();
   });
 

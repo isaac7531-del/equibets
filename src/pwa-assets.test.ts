@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
-const readWorkspaceFile = (path: string) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf-8');
+const readWorkspaceFile = (filePath: string) => readFileSync(join(process.cwd(), filePath), 'utf-8');
 
 describe('PWA asset contract', () => {
   it('defines an installable standalone manifest', () => {
