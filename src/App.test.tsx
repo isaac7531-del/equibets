@@ -78,6 +78,15 @@ describe('App', () => {
     expect(screen.getByText(/No deposits, withdrawals, stakes, or paid betting odds/i)).toBeInTheDocument();
   });
 
+  it('shows both web dashboard and installable app formats', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /built for browser use and installable app workflows/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /web dashboard/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /installable app/i })).toBeInTheDocument();
+    expect(screen.getByText(/manifest, app icon, standalone display mode/i)).toBeInTheDocument();
+  });
+
   it('filters the rider dropdown to show horses by level', async () => {
     const user = userEvent.setup();
     render(<App />);

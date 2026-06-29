@@ -89,6 +89,7 @@ button:disabled {
 
 .hero-card,
 .dashboard article,
+.platform-strip,
 .calculator-card,
 .results-card,
 .prediction-card,
@@ -147,6 +148,51 @@ button:disabled {
   font-size: 2rem;
   letter-spacing: -0.04em;
   margin-top: 0.2rem;
+}
+
+.platform-strip {
+  align-items: center;
+  border-radius: 1.8rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 0.65fr) minmax(0, 1fr);
+  margin-bottom: 1rem;
+  padding: 1.35rem;
+}
+
+.platform-strip h2 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.platform-cards {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.platform-cards article {
+  background: #f4ecd9;
+  border-radius: 1.2rem;
+  padding: 1rem;
+}
+
+.platform-cards span {
+  color: #956d26;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.platform-cards h3 {
+  margin: 0.35rem 0;
+}
+
+.platform-cards p {
+  color: #526050;
+  line-height: 1.55;
+  margin: 0;
 }
 
 .workspace-grid {
@@ -570,6 +616,7 @@ td span {
 
 @media (max-width: 900px) {
   .hero,
+  .platform-strip,
   .workspace-grid,
   .form-guide-grid {
     grid-template-columns: 1fr;
@@ -587,6 +634,7 @@ td span {
   }
 
   .dashboard,
+  .platform-cards,
   .form-grid,
   .browser-heading,
   .level-list div,

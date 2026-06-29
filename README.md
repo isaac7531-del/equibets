@@ -26,6 +26,10 @@ The website is a finished static application: it works with no backend, ships
 with curated public result examples, and folds any locally saved scores into the
 same consolidation and prediction workflow.
 
+The frontend now also ships as an installable app-style PWA. Browsers can use
+`public/manifest.webmanifest`, `public/app-icon.svg`, and `public/sw.js` to show
+standalone install prompts and cache the app shell for repeat visits.
+
 See `docs/results_calculator_feature.md` for the consolidation rules, prediction
 logic, and future weekly public-data update flow.
 

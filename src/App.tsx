@@ -88,6 +88,18 @@ const freePlayMarkets = [
   'Head-to-head matchups',
   'Final score over/under',
 ];
+const platformFormats = [
+  {
+    title: 'Web dashboard',
+    status: 'Ready now',
+    copy: 'Responsive analytics, score entry, form guide search, and free prediction roadmap in the browser.',
+  },
+  {
+    title: 'Installable app',
+    status: 'PWA shell',
+    copy: 'Manifest, app icon, standalone display mode, and offline app-shell caching for mobile and desktop installs.',
+  },
+];
 
 const createScoreInput = (form: FormState): EventingScoreInput => ({
   dressagePercentage: numberValue(form.dressagePercentage),
@@ -228,6 +240,22 @@ export default function App() {
           <strong>{publicResults.length}</strong>
           <p>{publicSourceCount} sources, refreshed {formatDateTime(latestRefresh)}</p>
         </article>
+      </section>
+
+      <section className="platform-strip" aria-labelledby="platform-formats-heading">
+        <div>
+          <p className="eyebrow">App and web</p>
+          <h2 id="platform-formats-heading">Built for browser use and installable app workflows</h2>
+        </div>
+        <div className="platform-cards">
+          {platformFormats.map((format) => (
+            <article key={format.title}>
+              <span>{format.status}</span>
+              <h3>{format.title}</h3>
+              <p>{format.copy}</p>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="workspace-grid">
