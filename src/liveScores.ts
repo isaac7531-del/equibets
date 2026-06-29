@@ -98,10 +98,13 @@ export const formatCompetitionClasses = (value: string) =>
 
 export const compactCompetitionClasses = (value: string) => {
   const classes = formatCompetitionClasses(value).split(', ').filter(Boolean);
-  if (classes.length <= 1) {
-    return classes[0] || 'Unspecified';
+  if (classes.length === 0) {
+    return 'Unspecified classes';
   }
-  return `${classes[0]} + ${classes.length - 1} class${classes.length === 2 ? '' : 'es'}`;
+  if (classes.length === 1) {
+    return classes[0];
+  }
+  return `${classes.length} FEI classes`;
 };
 
 export const formatLiveEventTitle = (event: Pick<LiveScoreEvent, 'event_name' | 'level'>) =>
