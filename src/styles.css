@@ -498,18 +498,23 @@ td span {
 .market-roadmap ul {
   display: grid;
   gap: 0.45rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   list-style: none;
   margin: 1rem 0;
   padding: 0;
 }
 
 .market-roadmap li {
+  align-items: center;
   background: #f4ecd9;
   border-radius: 999px;
   color: #23432d;
+  display: flex;
   font-size: 0.78rem;
   font-weight: 900;
+  line-height: 1.2;
+  min-height: 2.15rem;
+  overflow-wrap: anywhere;
   padding: 0.5rem 0.7rem;
 }
 
