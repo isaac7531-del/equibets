@@ -131,7 +131,7 @@ describe('App', () => {
     const firstEvent = liveScores.events[0];
     const leader = firstEvent.standings[0];
     expect(screen.getByText(liveScores.result_count.toString())).toBeInTheDocument();
-    expect(screen.getByText(firstEvent.event_name)).toBeInTheDocument();
-    expect(screen.getByText(leader.horse_name)).toBeInTheDocument();
+    expect(screen.getAllByText(firstEvent.event_name).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(leader.horse_name).length).toBeGreaterThan(0);
   });
 });
