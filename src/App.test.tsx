@@ -69,6 +69,15 @@ describe('App', () => {
     expect(screen.getByText(/medium confidence/i)).toBeInTheDocument();
   });
 
+  it('shows the free-play prediction market roadmap without gambling flows', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /prediction markets roadmap/i })).toBeInTheDocument();
+    expect(screen.getByText('Win market')).toBeInTheDocument();
+    expect(screen.getByText('Head-to-head matchups')).toBeInTheDocument();
+    expect(screen.getByText(/No deposits, withdrawals, stakes, or paid betting odds/i)).toBeInTheDocument();
+  });
+
   it('filters the rider dropdown to show horses by level', async () => {
     const user = userEvent.setup();
     render(<App />);

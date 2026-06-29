@@ -3,6 +3,10 @@
 Eventing form guide, results calculator, browser-based score tracker, and data
 source registry.
 
+Equibets is currently a non-gambling analytics and free prediction product. It
+does not include real-money betting, deposits, withdrawals, paid odds, or
+gambling settlement flows.
+
 ## What it does
 
 - Calculates dressage, show jumping, cross-country jumping, and cross-country
@@ -24,6 +28,14 @@ same consolidation and prediction workflow.
 
 See `docs/results_calculator_feature.md` for the consolidation rules, prediction
 logic, and future weekly public-data update flow.
+
+See `docs/legal_eventing_mvp_plan.md` for the step-by-step MVP plan covering
+rankings, free prediction markets, backend APIs, frontend pages, compliance
+boundaries, and the recommended stack.
+
+See `docs/platform_schema.sql` for the target PostgreSQL contract for riders,
+horses, combinations, events, results, model runs, free prediction markets, user
+predictions, and leaderboards.
 
 ## Dependency setup
 
@@ -101,3 +113,10 @@ Use `--storage-state data/fei_state.json` to reuse browser cookies,
 `--form-field name=value` for FEI form controls that need explicit values in a
 particular session, `--event-url` to crawl a known event page directly, and
 `FEI_COOKIE` or `--cookie` when the FEI Data session requires login.
+
+## Probability engine
+
+The initial free-play probability model lives in `equibets.probability`. It
+estimates phase expectations from recent consolidated results and runs a Monte
+Carlo simulation for non-gambling market probabilities such as win, top 3, top
+10, best dressage, clear show jumping, and clear cross-country.

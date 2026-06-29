@@ -78,6 +78,16 @@ const levelOptions = [
   'CCI4-S',
   'CCI5-L',
 ];
+const freePlayMarkets = [
+  'Win market',
+  'Top 3',
+  'Top 10',
+  'Best dressage',
+  'Clear show jumping',
+  'Clear cross-country',
+  'Head-to-head matchups',
+  'Final score over/under',
+];
 
 const createScoreInput = (form: FormState): EventingScoreInput => ({
   dressagePercentage: numberValue(form.dressagePercentage),
@@ -529,6 +539,21 @@ export default function App() {
               <p>Save or import results for a combination to calculate its likely score.</p>
             </div>
           )}
+
+          <div className="market-roadmap" aria-labelledby="market-roadmap-heading">
+            <p className="eyebrow">Free play only</p>
+            <h3 id="market-roadmap-heading">Prediction markets roadmap</h3>
+            <p>
+              Points-based predictions can sit on top of the probability model before any licensed real-money product
+              exists.
+            </p>
+            <ul>
+              {freePlayMarkets.map((market) => (
+                <li key={market}>{market}</li>
+              ))}
+            </ul>
+            <strong>No deposits, withdrawals, stakes, or paid betting odds.</strong>
+          </div>
         </section>
 
         <section className="results-card consolidated-card" aria-labelledby="consolidated-results-heading">
