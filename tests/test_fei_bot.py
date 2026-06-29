@@ -155,11 +155,58 @@ class TokenFillBrowserClient(FeiBrowserClient):
 
 
 class UnavailableFormClient:
+    def __init__(self):
+        self.closed = False
+        self.discarded_storage_state = False
+
     def get(self, url):
         raise FeiFormUnavailable("calendar form unavailable")
 
+    def discard_storage_state_on_close(self):
+        self.discarded_storage_state = True
+
     def close(self):
         self.closed = True
+
+
+class BlankChallengeLocator:
+    def __init__(self, page):
+        self.page = page
+
+    def inner_text(self, timeout):
+        self.page.inner_text_timeouts.append(timeout)
+        return ""
+
+
+class BlankChallengePage:
+    url = CALENDAR_SEARCH_URL
+
+    def __init__(self, clock):
+        self.clock = clock
+        self.waits = []
+        self.inner_text_timeouts = []
+
+    def wait_for_load_state(self, state, timeout):
+        self.load_state_timeout = timeout
+
+    def locator(self, selector):
+        return BlankChallengeLocator(self)
+
+    def title(self):
+        return "fei.org"
+
+    def wait_for_timeout(self, milliseconds):
+        self.waits.append(milliseconds)
+        self.clock[0] += milliseconds / 1000
+
+
+class BlankChallengeBrowserClient(FeiBrowserClient):
+    def __init__(self, page):
+        self.page = page
+        self.challenge_wait_seconds = 10.0
+
+    def _ensure_page(self):
+        return self.page
 
 
 class FeiBotTests(unittest.TestCase):
@@ -350,6 +397,18 @@ class FeiBotTests(unittest.TestCase):
         self.assertTrue(matched)
         self.assertEqual(client.filled, [("ctl00$PlaceHolderMain$DateFrom", "22/06/2026")])
 
+    def test_wait_ready_caps_blank_chrome_challenge_wait(self):
+        clock = [1000.0]
+        page = BlankChallengePage(clock)
+        client = BlankChallengeBrowserClient(page)
+
+        with patch("equibets.fei_bot.time.monotonic", side_effect=lambda: clock[0]):
+            client._wait_ready()
+
+        self.assertEqual(page.load_state_timeout, 10_000)
+        self.assertEqual(sum(page.waits), 2000)
+        self.assertEqual(page.inner_text_timeouts, [1000, 1000, 1000])
+
     def test_verifier_checks_person_and_horse_search_pages(self):
         client = FakeClient(
             {
@@ -413,8 +472,9 @@ class FeiBotTests(unittest.TestCase):
             output = Path(tmp) / "fei_results.json"
             live_output = Path(tmp) / "live_scores.json"
             FeiResultStore(output).save([result])
+            client = UnavailableFormClient()
 
-            with patch("equibets.fei_bot._build_client", return_value=UnavailableFormClient()):
+            with patch("equibets.fei_bot._build_client", return_value=client):
                 exit_code = main(
                     [
                         "--current-events",
@@ -432,6 +492,8 @@ class FeiBotTests(unittest.TestCase):
             payload = json.loads(live_output.read_text(encoding="utf-8"))
 
         self.assertEqual(exit_code, 0)
+        self.assertTrue(client.closed)
+        self.assertTrue(client.discarded_storage_state)
         self.assertEqual(payload["event_count"], 1)
         self.assertEqual(payload["result_count"], 1)
 
