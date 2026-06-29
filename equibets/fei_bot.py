@@ -194,26 +194,45 @@ class FeiBrowserClient:
         if link.count() == 0:
             return page.content()
 
-        def trigger_past_tab() -> None:
-            page.evaluate(
-                """() => {
-                    const link = document.querySelector("#PlaceHolderMain_lbBefore, a[id$='lbBefore'], a[href*='lbBefore']");
-                    if (!link) {
-                        return false;
-                    }
-                    const href = link.getAttribute("href") || "";
-                    const postBackMatch = href.match(/__doPostBack\\('([^']*)','([^']*)'\\)/);
-                    if (typeof __doPostBack === 'function') {
-                        __doPostBack(
-                            postBackMatch?.[1] || "ctl00$PlaceHolderMain$lbBefore",
-                            postBackMatch?.[2] || ""
-                        );
-                        return true;
-                    }
-                    link.click();
-                    return true;
-                }"""
-            )
+        def trigger_past_tab() -> bool:
+            try:
+                return bool(
+                    page.evaluate(
+                        """() => {
+                            const link = document.querySelector("#PlaceHolderMain_lbBefore, a[id$='lbBefore'], a[href*='lbBefore']");
+                            if (!link) {
+                                return false;
+                            }
+                            const href = link.getAttribute("href") || "";
+                            const optionsMatch = href.match(/WebForm_PostBackOptions\\(["']([^"']*)["'],\\s*["']([^"']*)["']/);
+                            const postBackMatch = href.match(/__doPostBack\\(["']([^"']*)["'],\\s*["']([^"']*)["']\\)/);
+                            const target = optionsMatch?.[1] || postBackMatch?.[1] || "ctl00$PlaceHolderMain$lbBefore";
+                            const argument = optionsMatch?.[2] || postBackMatch?.[2] || "";
+                            const form = link.closest("form") || document.forms[0];
+                            if (!form) {
+                                return false;
+                            }
+                            const setHidden = (name, value) => {
+                                let input = form.elements[name];
+                                if (!input) {
+                                    input = document.createElement("input");
+                                    input.type = "hidden";
+                                    input.name = name;
+                                    form.appendChild(input);
+                                }
+                                input.value = value;
+                            };
+                            setHidden("__EVENTTARGET", target);
+                            setHidden("__EVENTARGUMENT", argument);
+                            form.submit();
+                            return true;
+                        }"""
+                    )
+                )
+            except Exception as exc:
+                if "Execution context was destroyed" in str(exc):
+                    return True
+                raise
 
         def wait_for_past_tab() -> bool:
             try:
@@ -228,12 +247,16 @@ class FeiBrowserClient:
             except Exception:
                 return False
 
+        def page_has_calendar_events() -> bool:
+            return bool(parse_calendar_events(page.content(), CALENDAR_SEARCH_URL))
+
         try:
             link.first.click(timeout=5_000)
         except Exception:
             trigger_past_tab()
         self._wait_after_action()
-        if not wait_for_past_tab():
+        selected_after_click = wait_for_past_tab()
+        if not selected_after_click and not page_has_calendar_events():
             trigger_past_tab()
             self._wait_after_action()
             wait_for_past_tab()
