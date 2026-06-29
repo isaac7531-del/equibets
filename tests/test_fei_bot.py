@@ -38,6 +38,14 @@ class FakeClient:
         return self.pages[("POST", url)]
 
 
+class FailingVerifier:
+    def verify_person(self, name):
+        raise RuntimeError("verification search form unavailable")
+
+    def verify_horse(self, name):
+        raise RuntimeError("verification search form unavailable")
+
+
 class FeiBotTests(unittest.TestCase):
     def test_extract_form_fields_preserves_aspnet_state(self):
         html = """
@@ -141,6 +149,27 @@ class FeiBotTests(unittest.TestCase):
         self.assertEqual(post_data["ctl00$Main$DateStart"], "01/05/2026")
         self.assertEqual(post_data["ctl00$Main$DateEnd"], "05/05/2026")
         self.assertEqual(post_data["ctl00$Main$Discipline"], "Eventing")
+
+    def test_verify_warn_keeps_results_when_verification_lookup_fails(self):
+        client = FakeClient(
+            {
+                ("GET", CALENDAR_SEARCH_URL): calendar_search_form_html(),
+                ("POST", CALENDAR_SEARCH_URL): calendar_results_html(),
+                ("GET", EVENT_URL): event_detail_html(),
+                ("GET", RESULT_URL): result_page_html(),
+            }
+        )
+        bot = FeiDataBot(client, verifier=FailingVerifier())
+
+        results, summary = bot.collect(
+            start_date=datetime(2026, 5, 1).date(),
+            end_date=datetime(2026, 5, 5).date(),
+            verify="warn",
+        )
+
+        self.assertEqual(len(results), 1)
+        self.assertEqual(summary.results_collected, 1)
+        self.assertEqual(summary.results_verified, 0)
 
     def test_verifier_checks_person_and_horse_search_pages(self):
         client = FakeClient(
