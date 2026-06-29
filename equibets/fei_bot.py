@@ -12,9 +12,11 @@ import importlib.util
 import hashlib
 import json
 import re
+import signal
 import shutil
+import threading
 import time
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from html.parser import HTMLParser
@@ -38,6 +40,8 @@ CALENDAR_SEARCH_URL = urljoin(BASE_URL, "Calendar/Search.aspx")
 PERSON_SEARCH_URL = urljoin(BASE_URL, "Person/Search.aspx")
 HORSE_SEARCH_URL = urljoin(BASE_URL, "Horse/Search.aspx")
 DEFAULT_RESULTS_FILE = Path(__file__).resolve().parents[1] / "data" / "fei_results.json"
+BLANK_CHALLENGE_MAX_WAIT_SECONDS = 2.0
+PLAYWRIGHT_CLOSE_TIMEOUT_SECONDS = 5.0
 
 
 @dataclass(frozen=True)
@@ -68,6 +72,10 @@ class FeiCrawlSummary:
 
 class FeiFormUnavailable(RuntimeError):
     """Raised when FEI never exposes a submittable form after browser challenge handling."""
+
+
+class _OperationTimeout(TimeoutError):
+    """Raised internally when a bounded cleanup operation exceeds its timeout."""
 
 
 @dataclass(frozen=True)
@@ -166,6 +174,7 @@ class FeiBrowserClient:
         self._context: object | None = None
         self._page: object | None = None
         self._ignore_storage_state = False
+        self._discard_storage_state_on_close = False
 
     def get(self, url: str) -> str:
         page = self._ensure_page()
@@ -280,14 +289,24 @@ class FeiBrowserClient:
         self._wait_ready()
         return page.content()
 
+    def discard_storage_state_on_close(self) -> None:
+        self._discard_storage_state_on_close = True
+
     def close(self) -> None:
-        if self.storage_state and self._context is not None:
+        if self.storage_state and self._context is not None and not self._discard_storage_state_on_close:
             self.storage_state.parent.mkdir(parents=True, exist_ok=True)
-            self._context.storage_state(path=str(self.storage_state))
+            _run_with_timeout(
+                lambda: self._context.storage_state(path=str(self.storage_state)),
+                PLAYWRIGHT_CLOSE_TIMEOUT_SECONDS,
+            )
         if self._browser is not None:
-            self._browser.close()
+            _run_with_timeout(self._browser.close, PLAYWRIGHT_CLOSE_TIMEOUT_SECONDS)
         if self._playwright is not None:
-            self._playwright.stop()
+            _run_with_timeout(self._playwright.stop, PLAYWRIGHT_CLOSE_TIMEOUT_SECONDS)
+        self._browser = None
+        self._context = None
+        self._page = None
+        self._playwright = None
 
     def _ensure_page(self):
         if self._page is not None:
@@ -344,13 +363,20 @@ class FeiBrowserClient:
 
     def _wait_ready(self) -> None:
         page = self._ensure_page()
+        challenge_wait = max(0.0, self.challenge_wait_seconds)
         try:
-            page.wait_for_load_state("domcontentloaded", timeout=30_000)
+            page.wait_for_load_state(
+                "domcontentloaded",
+                timeout=min(30_000, max(1_000, int(challenge_wait * 1000))),
+            )
         except Exception:
             pass
-        for _ in range(6):
+        started_at = time.monotonic()
+        deadline = started_at + challenge_wait
+        blank_deadline = started_at + min(challenge_wait, BLANK_CHALLENGE_MAX_WAIT_SECONDS)
+        while True:
             try:
-                body = page.locator("body").inner_text(timeout=5_000)
+                body = page.locator("body").inner_text(timeout=1_000)
             except Exception:
                 body = ""
             title = page.title()
@@ -365,7 +391,13 @@ class FeiBrowserClient:
             )
             if not waiting_on_challenge:
                 return
-            page.wait_for_timeout(int(self.challenge_wait_seconds * 1000))
+            effective_deadline = deadline
+            if not body.strip() and title.lower() == "fei.org":
+                effective_deadline = min(effective_deadline, blank_deadline)
+            remaining = effective_deadline - time.monotonic()
+            if remaining <= 0:
+                return
+            page.wait_for_timeout(max(1, int(min(1.0, remaining) * 1000)))
 
     def _wait_after_action(self) -> None:
         page = self._ensure_page()
@@ -1025,6 +1057,8 @@ def main(argv: Sequence[str] | None = None) -> int:
                 results_rejected=0,
             )
             crawl_fallback_reason = str(exc)
+            if hasattr(client, "discard_storage_state_on_close"):
+                client.discard_storage_state_on_close()
     finally:
         if hasattr(client, "close"):
             client.close()
@@ -1382,6 +1416,31 @@ def _write_raw(raw_dir: Path | None, url: str, html: str) -> None:
     raw_dir.mkdir(parents=True, exist_ok=True)
     path = raw_dir / f"{_stable_id(url)}.html"
     path.write_text(html, encoding="utf-8")
+
+
+def _run_with_timeout(callback: Callable[[], object], timeout_seconds: float) -> bool:
+    if timeout_seconds <= 0 or threading.current_thread() is not threading.main_thread():
+        callback()
+        return True
+
+    previous_handler = signal.getsignal(signal.SIGALRM)
+    previous_timer = signal.getitimer(signal.ITIMER_REAL)
+
+    def raise_timeout(signum, frame):
+        raise _OperationTimeout()
+
+    signal.signal(signal.SIGALRM, raise_timeout)
+    signal.setitimer(signal.ITIMER_REAL, timeout_seconds)
+    try:
+        callback()
+        return True
+    except _OperationTimeout:
+        return False
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, 0)
+        signal.signal(signal.SIGALRM, previous_handler)
+        if previous_timer[0] > 0:
+            signal.setitimer(signal.ITIMER_REAL, previous_timer[0], previous_timer[1])
 
 
 def _build_client(args: argparse.Namespace, cookie: str | None) -> FeiHttpClient | FeiBrowserClient:
