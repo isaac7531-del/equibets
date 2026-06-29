@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it } from 'vitest';
 import App from './App';
@@ -15,6 +15,7 @@ describe('App', () => {
       horse: string;
       event: string;
       level: string;
+      country?: string;
       dressage: string;
       showJumping: string;
       xcJumping: string;
@@ -24,6 +25,10 @@ describe('App', () => {
     await user.type(screen.getByLabelText(/^horse$/i), result.horse);
     await user.type(screen.getByLabelText(/^event$/i), result.event);
     await user.selectOptions(screen.getByLabelText(/^level$/i), result.level);
+    if (result.country) {
+      await user.clear(screen.getByLabelText(/^country$/i));
+      await user.type(screen.getByLabelText(/^country$/i), result.country);
+    }
     await user.clear(screen.getByLabelText(/dressage/i));
     await user.type(screen.getByLabelText(/dressage/i), result.dressage);
     await user.clear(screen.getByLabelText(/show jumping/i));
@@ -42,15 +47,26 @@ describe('App', () => {
       horse: 'Juniper',
       event: 'Spring Horse Trials',
       level: 'Training',
+      country: 'USA',
       dressage: '70',
       showJumping: '4',
       xcJumping: '0',
     });
 
-    expect(screen.getByRole('cell', { name: '34.0' })).toBeInTheDocument();
-    expect(screen.getAllByText('Juniper')).not.toHaveLength(0);
-    expect(screen.getByText(/^Training ·/)).toBeInTheDocument();
+    expect(screen.getAllByRole('cell', { name: '34.0' }).length).toBeGreaterThanOrEqual(2);
+    expect(screen.getAllByText('Juniper').length).toBeGreaterThanOrEqual(2);
+    expect(screen.getByText(/^Training - USA/)).toBeInTheDocument();
+    expect(screen.getByText('My score')).toBeInTheDocument();
     expect(JSON.parse(window.localStorage.getItem('equibets.results') ?? '[]')).toHaveLength(1);
+  });
+
+  it('shows public results and prediction from consolidated data', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /likely finishing score/i })).toBeInTheDocument();
+    expect(screen.getAllByText('Atlas Bay').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('FEI').length).toBeGreaterThan(0);
+    expect(screen.getByText(/medium confidence/i)).toBeInTheDocument();
   });
 
   it('filters the rider dropdown to show horses by level', async () => {
@@ -94,7 +110,8 @@ describe('App', () => {
     expect(browser).toHaveTextContent('Novice');
     expect(browser).toHaveTextContent('Oakley');
     expect(browser).not.toHaveTextContent('Copperfield');
-    expect(screen.getAllByText('Oakley')).not.toHaveLength(0);
-    expect(screen.queryByText('Copperfield')).not.toBeInTheDocument();
+    const savedResults = screen.getByRole('region', { name: /saved results/i });
+    expect(within(savedResults).getAllByText('Oakley').length).toBeGreaterThan(0);
+    expect(within(savedResults).queryByText('Copperfield')).not.toBeInTheDocument();
   });
 });

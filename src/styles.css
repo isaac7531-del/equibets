@@ -90,7 +90,8 @@ button:disabled {
 .hero-card,
 .dashboard article,
 .calculator-card,
-.results-card {
+.results-card,
+.prediction-card {
   background: rgba(255, 252, 245, 0.88);
   border: 1px solid rgba(35, 67, 45, 0.12);
   box-shadow: 0 24px 80px rgba(67, 55, 37, 0.11);
@@ -130,7 +131,7 @@ button:disabled {
 .dashboard {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   margin-bottom: 1rem;
 }
 
@@ -155,7 +156,8 @@ button:disabled {
 }
 
 .calculator-card,
-.results-card {
+.results-card,
+.prediction-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
 }
@@ -387,18 +389,18 @@ td span {
   line-height: 1.35;
 }
 
-th:nth-child(1),
-td:nth-child(1) {
+.saved-results-table th:nth-child(1),
+.saved-results-table td:nth-child(1) {
   width: 48px;
 }
 
-th:nth-child(4),
-td:nth-child(4) {
+.saved-results-table th:nth-child(4),
+.saved-results-table td:nth-child(4) {
   width: 68px;
 }
 
-th:nth-child(6),
-td:nth-child(6) {
+.saved-results-table th:nth-child(6),
+.saved-results-table td:nth-child(6) {
   width: 72px;
 }
 
@@ -414,9 +416,115 @@ td:nth-child(6) {
   color: #71331f;
 }
 
+.form-guide-grid {
+  align-items: start;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(280px, 0.45fr) minmax(0, 1fr);
+  margin-top: 1rem;
+}
+
+.prediction-card label {
+  margin-top: 1rem;
+}
+
+.prediction-summary {
+  background: #f4ecd9;
+  border-radius: 1.25rem;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.prediction-summary > strong {
+  color: #23432d;
+  display: block;
+  font-size: clamp(3rem, 7vw, 5.2rem);
+  letter-spacing: -0.07em;
+  line-height: 1;
+  margin-top: 0.7rem;
+}
+
+.prediction-summary p {
+  color: #526050;
+  line-height: 1.6;
+}
+
+.prediction-summary dl {
+  display: grid;
+  gap: 0.65rem;
+  margin: 1rem 0 0;
+}
+
+.prediction-summary dl div {
+  align-items: center;
+  border-top: 1px solid rgba(35, 67, 45, 0.12);
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0.65rem;
+}
+
+.prediction-summary dt {
+  color: #65705f;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.prediction-summary dd {
+  color: #23432d;
+  font-weight: 900;
+  margin: 0;
+  text-align: right;
+}
+
+.confidence-pill,
+.source-badge {
+  background: #e5f0df;
+  border-radius: 999px;
+  color: #23432d;
+  display: inline-flex;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  padding: 0.45rem 0.65rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.confidence-low {
+  background: #f5e5c7;
+  color: #7b4b0b;
+}
+
+.confidence-medium {
+  background: #e8ecd0;
+  color: #53620d;
+}
+
+.confidence-high {
+  background: #dceede;
+  color: #23432d;
+}
+
+.source-user {
+  background: #efe1f4;
+  color: #633f78;
+}
+
+.consolidated-card table {
+  min-width: 850px;
+}
+
+.search-box {
+  min-width: min(260px, 100%);
+}
+
 @media (max-width: 900px) {
   .hero,
-  .workspace-grid {
+  .workspace-grid,
+  .form-guide-grid {
     grid-template-columns: 1fr;
   }
 

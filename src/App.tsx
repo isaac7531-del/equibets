@@ -9,14 +9,26 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import { publicResults } from './publicResults';
+import {
+  combinationOptions,
+  consolidateResults,
+  filterResults,
+  finishingScore,
+  latestCollectedAt,
+  predictFinishingScore,
+  resultFromStoredResult,
+  SOURCE_LABELS,
+} from './results';
 import { loadResults, saveResults } from './storage';
 
 type FormState = {
   rider: string;
   horse: string;
   eventName: string;
-  level: string;
   date: string;
+  level: string;
+  country: string;
   dressagePercentage: string;
   showJumpingPenalties: string;
   crossCountryJumpPenalties: string;
@@ -31,8 +43,9 @@ const createDefaultFormState = (): FormState => ({
   rider: '',
   horse: '',
   eventName: '',
-  level: 'Starter',
   date: new Date().toISOString().slice(0, 10),
+  level: 'CCI2-S',
+  country: 'GBR',
   dressagePercentage: '68.5',
   showJumpingPenalties: '0',
   crossCountryJumpPenalties: '0',
@@ -44,6 +57,12 @@ const createDefaultFormState = (): FormState => ({
 });
 
 const numberValue = (value: string) => Number.parseFloat(value || '0');
+const sourceLabel = (sourceId: string) => SOURCE_LABELS[sourceId] ?? sourceId;
+const formatDate = (value: string) => new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(value));
+const formatDateTime = (value: string | null) =>
+  value
+    ? new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(value))
+    : 'No public data yet';
 const levelOptions = [
   'Starter',
   'Beginner Novice',
@@ -53,6 +72,11 @@ const levelOptions = [
   'Preliminary',
   'Intermediate',
   'Advanced',
+  'CCI1-S',
+  'CCI2-S',
+  'CCI3-S',
+  'CCI4-S',
+  'CCI5-L',
 ];
 
 const createScoreInput = (form: FormState): EventingScoreInput => ({
@@ -66,11 +90,28 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 export default function App() {
   const [form, setForm] = useState<FormState>(() => createDefaultFormState());
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCombination, setSelectedCombination] = useState('');
   const [selectedRider, setSelectedRider] = useState('all');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
   const bestResult = sortedResults[0];
+  const savedResultRecords = useMemo(() => results.map(resultFromStoredResult), [results]);
+  const allResultRecords = useMemo(() => [...publicResults, ...savedResultRecords], [savedResultRecords]);
+  const consolidatedResults = useMemo(() => consolidateResults(allResultRecords), [allResultRecords]);
+  const filteredConsolidatedResults = useMemo(
+    () => filterResults(consolidatedResults, searchQuery),
+    [consolidatedResults, searchQuery],
+  );
+  const publicSourceCount = new Set(publicResults.map((result) => result.sourceId)).size;
+  const latestRefresh = latestCollectedAt(publicResults);
+  const options = combinationOptions(consolidatedResults);
+  const activeCombination = selectedCombination || options[0]?.key || '';
+  const prediction = useMemo(
+    () => predictFinishingScore(consolidatedResults, activeCombination),
+    [consolidatedResults, activeCombination],
+  );
   const riderOptions = useMemo(
     () => [...new Set(results.map((result) => result.rider))].sort((a, b) => a.localeCompare(b)),
     [results],
@@ -106,8 +147,9 @@ export default function App() {
       rider: form.rider.trim(),
       horse: form.horse.trim(),
       eventName: form.eventName.trim(),
-      level: form.level,
       date: form.date,
+      level: form.level.trim(),
+      country: form.country.trim().toUpperCase(),
       notes: form.notes.trim(),
       createdAt: new Date().toISOString(),
       score: currentScore,
@@ -135,10 +177,10 @@ export default function App() {
       <section className="hero">
         <div>
           <p className="eyebrow">Equibets</p>
-          <h1>Eventing score calculator and results tracker</h1>
+          <h1>Eventing form guide and score tracker</h1>
           <p className="hero-copy">
-            Capture dressage, show jumping, and cross-country penalties in one place, then keep a local record of
-            horse-and-rider results.
+            Capture your own scores, combine them with public eventing results, and estimate a horse-and-rider
+            combination's likely finishing score.
           </p>
         </div>
         <div className="hero-card" aria-live="polite">
@@ -170,6 +212,11 @@ export default function App() {
           <span>Best saved</span>
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
+        </article>
+        <article>
+          <span>Public data</span>
+          <strong>{publicResults.length}</strong>
+          <p>{publicSourceCount} sources, refreshed {formatDateTime(latestRefresh)}</p>
         </article>
       </section>
 
@@ -221,6 +268,16 @@ export default function App() {
             <label>
               Date
               <input type="date" required value={form.date} onChange={(event) => updateField('date', event.target.value)} />
+            </label>
+            <label>
+              Country
+              <input
+                required
+                value={form.country}
+                onChange={(event) => updateField('country', event.target.value)}
+                placeholder="GBR"
+                maxLength={3}
+              />
             </label>
           </div>
 
@@ -375,7 +432,7 @@ export default function App() {
               </section>
 
               <div className="table-wrap">
-                <table>
+                <table className="saved-results-table">
                   <thead>
                     <tr>
                       <th>Rank</th>
@@ -397,7 +454,7 @@ export default function App() {
                         <td className="event-cell">
                           <strong>{result.eventName}</strong>
                           <span>
-                            {resultLevel(result)} · {result.date}
+                            {resultLevel(result)} - {result.country || 'N/A'} - {result.date}
                           </span>
                         </td>
                         <td className="total-cell">{result.score.totalPenalties.toFixed(1)}</td>
@@ -417,6 +474,127 @@ export default function App() {
                 </table>
               </div>
             </>
+          )}
+        </section>
+      </section>
+
+      <section className="form-guide-grid" aria-label="Consolidated form guide">
+        <section className="prediction-card" aria-labelledby="prediction-heading">
+          <div className="section-heading">
+            <p className="eyebrow">Prediction</p>
+            <h2 id="prediction-heading">Likely finishing score</h2>
+          </div>
+
+          <label>
+            Combination
+            <select
+              value={activeCombination}
+              onChange={(event) => setSelectedCombination(event.target.value)}
+              disabled={options.length === 0}
+            >
+              {options.map((option) => (
+                <option key={option.key} value={option.key}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          {prediction ? (
+            <div className="prediction-summary">
+              <span className={`confidence-pill confidence-${prediction.confidence}`}>{prediction.confidence} confidence</span>
+              <strong>{prediction.likelyFinishingScore.toFixed(1)}</strong>
+              <p>
+                Based on {prediction.recentResultCount} recent consolidated starts for {prediction.horseName} and{' '}
+                {prediction.riderName}.
+              </p>
+              <dl>
+                <div>
+                  <dt>Best recent</dt>
+                  <dd>{prediction.bestRecentScore.toFixed(1)}</dd>
+                </div>
+                <div>
+                  <dt>Worst recent</dt>
+                  <dd>{prediction.worstRecentScore.toFixed(1)}</dd>
+                </div>
+                <div>
+                  <dt>Sources</dt>
+                  <dd>{prediction.sourceIds.map(sourceLabel).join(', ')}</dd>
+                </div>
+              </dl>
+            </div>
+          ) : (
+            <div className="empty-state">
+              <strong>No prediction yet.</strong>
+              <p>Save or import results for a combination to calculate its likely score.</p>
+            </div>
+          )}
+        </section>
+
+        <section className="results-card consolidated-card" aria-labelledby="consolidated-results-heading">
+          <div className="results-header">
+            <div>
+              <p className="eyebrow">Consolidated data</p>
+              <h2 id="consolidated-results-heading">Recent form guide</h2>
+            </div>
+            <label className="search-box">
+              Search
+              <input
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Horse, rider, event, source"
+              />
+            </label>
+          </div>
+
+          {filteredConsolidatedResults.length === 0 ? (
+            <div className="empty-state">
+              <strong>No matching results.</strong>
+              <p>Try another horse, rider, event, country, level, or source.</p>
+            </div>
+          ) : (
+            <div className="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Combination</th>
+                    <th>Event</th>
+                    <th>Level</th>
+                    <th>Source</th>
+                    <th>Total</th>
+                    <th>Phases</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredConsolidatedResults.map((result) => (
+                    <tr key={`${result.sourceId}-${result.sourceRecordId}`}>
+                      <td>
+                        <strong>{result.horseName}</strong>
+                        <span>{result.riderName}</span>
+                      </td>
+                      <td>
+                        <strong>{result.eventName}</strong>
+                        <span>{formatDate(result.eventDate)}</span>
+                      </td>
+                      <td>
+                        <strong>{result.level}</strong>
+                        <span>{result.country}</span>
+                      </td>
+                      <td>
+                        <span className={`source-badge ${result.isUserEntered ? 'source-user' : ''}`}>
+                          {sourceLabel(result.sourceId)}
+                        </span>
+                      </td>
+                      <td className="total-cell">{finishingScore(result).toFixed(1)}</td>
+                      <td className="breakdown-cell">
+                        D {result.dressageScore.toFixed(1)} / SJ {result.showJumpingPenalties.toFixed(1)} / XC{' '}
+                        {(result.crossCountryJumpPenalties + result.crossCountryTimePenalties).toFixed(1)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </section>
       </section>

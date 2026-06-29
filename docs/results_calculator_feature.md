@@ -1,6 +1,6 @@
 # Results calculator feature
 
-The results calculator should be a feature inside the website/application, not a
+The results calculator is a feature inside the website/application, not a
 separate product. It stores eventing results, accepts user-entered scores, and
 shows how horse/rider combinations are performing before upcoming events.
 
@@ -14,10 +14,14 @@ shows how horse/rider combinations are performing before upcoming events.
 
 ## Data consolidation
 
-1. Refresh public data weekly from `data/event_sources.json`.
-2. Normalize each result into `EventingResult`.
+The current static website ships with curated public sample results in
+`src/publicResults.ts` and merges them with local browser scores. Future public
+data refreshes should follow the same rules:
+
+1. Refresh public data weekly from the sources in `data/event_sources.json`.
+2. Normalize each result into the shared event-result shape.
 3. Deduplicate by combination, event, date, and level.
-4. Keep the lowest `source_priority` when duplicates exist, so `data_fei`
+4. Keep the lowest source priority when duplicates exist, so `data_fei`
    replaces national or user-entered duplicates.
 5. Keep user-entered scores when no official/public result exists for the same
    start.
@@ -51,8 +55,15 @@ The first prediction output includes:
 
 ## Website feature outline
 
-- Combination profile page: recent starts, phase penalties, and likely score.
-- Upcoming event page: predicted finishing scores for entered combinations.
 - Add my score form: rider, horse, event, date, level, country, phase scores.
-- Data freshness badge: last weekly public-data refresh and source coverage.
-- Source badges: FEI, national federation, global backfill, or user-entered.
+- Saved local results table ranked from lowest total penalties to highest.
+- Consolidated form guide: public sample results plus saved user scores.
+- Combination prediction panel: likely score, confidence, source IDs, best and
+  worst recent scores.
+- Data freshness badge: latest curated public-data timestamp and source
+  coverage.
+- Source badges: FEI, national federation, or user-entered.
+
+Future pages can split this single-page application into dedicated combination
+profiles and upcoming-event views after a backend or static refresh pipeline is
+available.
