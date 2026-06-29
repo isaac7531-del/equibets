@@ -540,20 +540,6 @@ export default function App() {
             </div>
           )}
 
-          <div className="market-roadmap" aria-labelledby="market-roadmap-heading">
-            <p className="eyebrow">Free play only</p>
-            <h3 id="market-roadmap-heading">Prediction markets roadmap</h3>
-            <p>
-              Points-based predictions can sit on top of the probability model before any licensed real-money product
-              exists.
-            </p>
-            <ul>
-              {freePlayMarkets.map((market) => (
-                <li key={market}>{market}</li>
-              ))}
-            </ul>
-            <strong>No deposits, withdrawals, stakes, or paid betting odds.</strong>
-          </div>
         </section>
 
         <section className="results-card consolidated-card" aria-labelledby="consolidated-results-heading">
@@ -622,6 +608,23 @@ export default function App() {
             </div>
           )}
         </section>
+      </section>
+
+      <section className="market-roadmap" aria-labelledby="market-roadmap-heading">
+        <div>
+          <p className="eyebrow">Free play only</p>
+          <h2 id="market-roadmap-heading">Prediction markets roadmap</h2>
+          <p>
+            Points-based predictions can sit on top of the probability model before any licensed real-money product
+            exists.
+          </p>
+        </div>
+        <ul>
+          {freePlayMarkets.map((market) => (
+            <li key={market}>{market}</li>
+          ))}
+        </ul>
+        <strong>No deposits, withdrawals, stakes, or paid betting odds.</strong>
       </section>
     </main>
   );
