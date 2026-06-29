@@ -498,8 +498,8 @@ td span {
 
 .market-roadmap ul {
   display: grid;
-  gap: 0.45rem;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   list-style: none;
   margin: 1rem 0;
   padding: 0;
@@ -511,7 +511,7 @@ td span {
   border-radius: 999px;
   color: #23432d;
   display: flex;
-  font-size: 0.78rem;
+  font-size: 0.86rem;
   font-weight: 900;
   line-height: 1.2;
   min-height: 2.15rem;
@@ -579,9 +579,6 @@ td span {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .market-roadmap ul {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
 }
 
 @media (max-width: 620px) {
