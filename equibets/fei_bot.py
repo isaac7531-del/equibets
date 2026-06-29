@@ -201,15 +201,16 @@ class FeiBrowserClient:
                     if (!link) {
                         return false;
                     }
-                    if (typeof WebForm_DoPostBackWithOptions === 'function' && typeof WebForm_PostBackOptions === 'function') {
-                        WebForm_DoPostBackWithOptions(
-                            new WebForm_PostBackOptions("ctl00$PlaceHolderMain$lbBefore", "", true, "", "", false, true)
+                    const href = link.getAttribute("href") || "";
+                    const postBackMatch = href.match(/__doPostBack\\('([^']*)','([^']*)'\\)/);
+                    if (typeof __doPostBack === 'function') {
+                        __doPostBack(
+                            postBackMatch?.[1] || "ctl00$PlaceHolderMain$lbBefore",
+                            postBackMatch?.[2] || ""
                         );
-                    } else if (typeof __doPostBack === 'function') {
-                        __doPostBack("ctl00$PlaceHolderMain$lbBefore", "");
-                    } else {
-                        link.click();
+                        return true;
                     }
+                    link.click();
                     return true;
                 }"""
             )
