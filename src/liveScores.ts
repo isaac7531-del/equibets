@@ -96,10 +96,16 @@ export const formatCompetitionClasses = (value: string) =>
     .filter(Boolean)
     .join(', ');
 
-export const primaryCompetitionClass = (value: string) => formatCompetitionClasses(value).split(', ')[0] || 'Unspecified';
+export const compactCompetitionClasses = (value: string) => {
+  const classes = formatCompetitionClasses(value).split(', ').filter(Boolean);
+  if (classes.length <= 1) {
+    return classes[0] || 'Unspecified';
+  }
+  return `${classes[0]} + ${classes.length - 1} class${classes.length === 2 ? '' : 'es'}`;
+};
 
 export const formatLiveEventTitle = (event: Pick<LiveScoreEvent, 'event_name' | 'level'>) =>
-  `${event.event_name} - ${primaryCompetitionClass(event.level)}`;
+  `${event.event_name} - ${compactCompetitionClasses(event.level)}`;
 
 export const describeLiveFreshness = (payload: LiveScorePayload) => {
   if (payload.latest_collected_at) {
