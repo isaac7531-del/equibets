@@ -66,6 +66,10 @@ class FeiCrawlSummary:
     results_rejected: int
 
 
+class FeiFormUnavailable(RuntimeError):
+    """Raised when FEI never exposes a submittable form after browser challenge handling."""
+
+
 @dataclass(frozen=True)
 class _Link:
     text: str
@@ -169,18 +173,31 @@ class FeiBrowserClient:
         self._wait_ready()
         return page.content()
 
-    def post(self, url: str, data: Mapping[str, str]) -> str:
+    def post(
+        self,
+        url: str,
+        data: Mapping[str, str],
+        field_intents: Sequence[tuple[Sequence[Sequence[str]], str]] = (),
+    ) -> str:
         page = self._ensure_page()
         if page.url != url:
             page.goto(url, wait_until="domcontentloaded", timeout=60_000)
             self._wait_ready()
-        if page.locator("form").count() == 0:
-            self._reset_browser_session()
-            page = self._ensure_page()
-            page.goto(url, wait_until="domcontentloaded", timeout=60_000)
-            self._wait_ready()
+        form_count = page.locator("form").count()
+        if form_count == 0:
+            for attempt in range(1, 4):
+                self._reset_browser_session()
+                page = self._ensure_page()
+                page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+                self._wait_ready()
+                form_count = page.locator("form").count()
+                if form_count:
+                    break
         for name, value in data.items():
             self._fill_form_field(name, value)
+        for token_options, value in field_intents:
+            if value:
+                self._fill_first_matching_form_field(token_options, value)
         self._click_submit(data)
         self._wait_after_action()
         self._wait_ready()
@@ -337,9 +354,12 @@ class FeiBrowserClient:
             except Exception:
                 body = ""
             title = page.title()
+            lowered_body = body.lower()
             waiting_on_challenge = (
                 "Please enable JS" in body
                 or "disable any ad blocker" in body
+                or "datadome" in lowered_body
+                or "captcha" in lowered_body
                 or title.lower() == "fei.org"
                 or not body.strip()
             )
@@ -404,6 +424,48 @@ class FeiBrowserClient:
         element.fill(value)
         return True
 
+    def _fill_first_matching_form_field(self, token_options: Sequence[Sequence[str]], value: str) -> bool:
+        return any(self._fill_matching_form_field(tokens, value) for tokens in token_options)
+
+    def _fill_matching_form_field(self, required_tokens: Sequence[str], value: str) -> bool:
+        page = self._ensure_page()
+        fields = page.locator("input, select, textarea")
+        for index in range(fields.count()):
+            element = fields.nth(index)
+            try:
+                info = element.evaluate(
+                    """element => {
+                        const labels = element.labels
+                            ? Array.from(element.labels).map(label => label.innerText || label.textContent || "")
+                            : [];
+                        return {
+                            name: element.getAttribute("name") || "",
+                            id: element.getAttribute("id") || "",
+                            type: (element.type || "").toLowerCase(),
+                            tag: element.tagName.toLowerCase(),
+                            disabled: element.disabled,
+                            label: labels.join(" "),
+                            placeholder: element.getAttribute("placeholder") || "",
+                            aria: element.getAttribute("aria-label") || "",
+                        };
+                    }"""
+                )
+            except Exception:
+                continue
+            if info["disabled"] or info["type"] in {"hidden", "submit", "button", "image", "reset"}:
+                continue
+            searchable = _header(
+                " ".join(
+                    str(info.get(key, ""))
+                    for key in ("name", "id", "label", "placeholder", "aria")
+                )
+            )
+            if all(token in searchable for token in required_tokens):
+                field_name = info.get("name")
+                if field_name:
+                    return self._fill_form_field(str(field_name), value)
+        return False
+
     def _click_submit(self, data: Mapping[str, str]) -> None:
         page = self._ensure_page()
         for name, value in data.items():
@@ -431,7 +493,7 @@ class FeiBrowserClient:
                         raise
                 return
         if not self._submit_with_javascript(None):
-            raise RuntimeError("Could not submit FEI form because no form was available")
+            raise FeiFormUnavailable("Could not submit FEI form because no form was available")
 
     def _submit_with_javascript(self, submit_name: str | None) -> bool:
         page = self._ensure_page()
@@ -491,6 +553,7 @@ class FeiDataBot:
         search_page = self.client.get(CALENDAR_SEARCH_URL)
         form = extract_form_fields(search_page)
         browser_form: dict[str, str] = {}
+        browser_field_intents: list[tuple[Sequence[Sequence[str]], str]] = []
 
         def set_field(required_tokens: Sequence[str], value: str | None) -> bool:
             if value is None:
@@ -505,21 +568,31 @@ class FeiDataBot:
 
         if start_date:
             start_value = _fei_date(start_date)
+            browser_field_intents.append(((("date", "start"), ("date", "from")), start_value))
             if not set_field(("date", "start"), start_value):
                 set_field(("date", "from"), start_value)
         if end_date:
             end_value = _fei_date(end_date)
+            browser_field_intents.append(((("date", "end"), ("date", "to")), end_value))
             if not set_field(("date", "end"), end_value):
                 set_field(("date", "to"), end_value)
+        browser_field_intents.append(((("discipline",),), "Eventing"))
         set_field(("discipline",), "Eventing")
+        browser_field_intents.append(((("result", "status"), ("with", "results"), ("results",)), "With results"))
         set_field(("result", "status"), "With results")
         set_field(("search",), "Search")
         if form_fields:
             form.update(form_fields)
             browser_form.update(form_fields)
 
-        post_form = browser_form if isinstance(self.client, FeiBrowserClient) else form
-        results_page = self.client.post(CALENDAR_SEARCH_URL, post_form)
+        if isinstance(self.client, FeiBrowserClient):
+            results_page = self.client.post(
+                CALENDAR_SEARCH_URL,
+                browser_form,
+                field_intents=browser_field_intents,
+            )
+        else:
+            results_page = self.client.post(CALENDAR_SEARCH_URL, form)
         _write_raw(self.raw_dir, CALENDAR_SEARCH_URL, results_page)
         events = parse_calendar_events(results_page, CALENDAR_SEARCH_URL)
         if not events and hasattr(self.client, "open_past_shows"):
@@ -927,16 +1000,31 @@ def main(argv: Sequence[str] | None = None) -> int:
     verifier = FeiVerifier(client) if args.verify != "none" else None
     bot = FeiDataBot(client, verifier=verifier, raw_dir=args.raw_dir)
     form_fields = _key_values(args.form_field)
+    crawl_fallback_reason: str | None = None
 
     try:
-        results, summary = bot.collect(
-            start_date=args.start_date,
-            end_date=args.end_date,
-            event_urls=args.event_url,
-            form_fields=form_fields,
-            max_events=args.max_events,
-            verify=args.verify,
-        )
+        try:
+            results, summary = bot.collect(
+                start_date=args.start_date,
+                end_date=args.end_date,
+                event_urls=args.event_url,
+                form_fields=form_fields,
+                max_events=args.max_events,
+                verify=args.verify,
+            )
+        except FeiFormUnavailable as exc:
+            if not args.live_output or args.event_url:
+                raise
+            results = []
+            summary = FeiCrawlSummary(
+                events_found=0,
+                events_opened=0,
+                result_pages_opened=0,
+                results_collected=0,
+                results_verified=0,
+                results_rejected=0,
+            )
+            crawl_fallback_reason = str(exc)
     finally:
         if hasattr(client, "close"):
             client.close()
@@ -973,6 +1061,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
     elif args.live_output:
         live_summary = ", live_output_skipped=dry_run"
+    if crawl_fallback_reason:
+        live_summary += ", crawl_fallback=existing_store"
 
     message = (
         "FEI crawl complete: "
@@ -984,6 +1074,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"results_rejected={summary.results_rejected}, "
         f"results_in_store={written}"
     )
+    if crawl_fallback_reason:
+        print(f"FEI crawl warning: {crawl_fallback_reason}; regenerated live output from existing store")
     print(message + live_summary)
     return 0
 
