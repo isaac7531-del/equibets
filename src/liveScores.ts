@@ -89,6 +89,18 @@ export const formatSourceId = (sourceId: string) => sourceLabels[sourceId] ?? so
 
 export const formatSourceList = (sourceIds: string[]) => sourceIds.map(formatSourceId).join(', ');
 
+export const formatCompetitionClasses = (value: string) =>
+  value
+    .split(',')
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .join(', ');
+
+export const primaryCompetitionClass = (value: string) => formatCompetitionClasses(value).split(', ')[0] || 'Unspecified';
+
+export const formatLiveEventTitle = (event: Pick<LiveScoreEvent, 'event_name' | 'level'>) =>
+  `${event.event_name} - ${primaryCompetitionClass(event.level)}`;
+
 export const describeLiveFreshness = (payload: LiveScorePayload) => {
   if (payload.latest_collected_at) {
     return `Latest result pulled ${formatDateTime(payload.latest_collected_at)}`;

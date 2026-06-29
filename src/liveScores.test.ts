@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import {
   describeLiveFreshness,
+  formatCompetitionClasses,
+  formatLiveEventTitle,
   formatLiveWindow,
   formatSourceList,
   getLiveLeader,
@@ -59,5 +61,10 @@ describe('live score helpers', () => {
 
   it('formats public source IDs for display', () => {
     expect(formatSourceList(['data_fei'])).toBe('FEI Data');
+  });
+
+  it('normalizes FEI class lists for event labels', () => {
+    expect(formatCompetitionClasses('CCI4*-L , CCI3*-S , CCIP2-S')).toBe('CCI4*-L, CCI3*-S, CCIP2-S');
+    expect(formatLiveEventTitle({ event_name: 'Strzegom', level: 'CCI4*-L , CCI3*-S' })).toBe('Strzegom - CCI4*-L');
   });
 });
