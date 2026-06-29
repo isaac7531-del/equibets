@@ -2,6 +2,10 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it } from 'vitest';
 import App from './App';
+import liveScoresData from './data/live_scores.json';
+import type { LiveScorePayload } from './liveScores';
+
+const liveScores = liveScoresData as LiveScorePayload;
 
 describe('App', () => {
   beforeEach(() => {
@@ -113,5 +117,21 @@ describe('App', () => {
     const savedResults = screen.getByRole('region', { name: /saved results/i });
     expect(within(savedResults).getAllByText('Oakley').length).toBeGreaterThan(0);
     expect(within(savedResults).queryByText('Copperfield')).not.toBeInTheDocument();
+  });
+
+  it('shows the current live public scoring feed', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /live public scoring/i })).toBeInTheDocument();
+    if (liveScores.result_count === 0) {
+      expect(screen.getByText(/no live public results in the current window/i)).toBeInTheDocument();
+      return;
+    }
+
+    const firstEvent = liveScores.events[0];
+    const leader = firstEvent.standings[0];
+    expect(screen.getByText(liveScores.result_count.toString())).toBeInTheDocument();
+    expect(screen.getAllByText(firstEvent.event_name).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(leader.horse_name).length).toBeGreaterThan(0);
   });
 });

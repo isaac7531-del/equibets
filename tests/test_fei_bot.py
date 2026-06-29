@@ -9,6 +9,7 @@ from equibets.fei_bot import (
     CALENDAR_SEARCH_URL,
     HORSE_SEARCH_URL,
     PERSON_SEARCH_URL,
+    FeiBrowserClient,
     FeiDataBot,
     FeiEvent,
     FeiResultStore,
@@ -36,6 +37,62 @@ class FakeClient:
     def post(self, url, data):
         self.requests.append(("POST", url, dict(data)))
         return self.pages[("POST", url)]
+
+
+class FailingVerifier:
+    def verify_person(self, name):
+        raise RuntimeError("verification search form unavailable")
+
+    def verify_horse(self, name):
+        raise RuntimeError("verification search form unavailable")
+
+
+class FakePastShowsLocator:
+    @property
+    def first(self):
+        return self
+
+    def count(self):
+        return 1
+
+    def click(self, timeout):
+        raise RuntimeError("click failed")
+
+
+class FakePastShowsPage:
+    url = CALENDAR_SEARCH_URL
+
+    def __init__(self):
+        self.evaluate_scripts = []
+        self._content = "<html><form></form></html>"
+
+    def locator(self, selector):
+        return FakePastShowsLocator()
+
+    def evaluate(self, script):
+        self.evaluate_scripts.append(script)
+        self._content = calendar_results_html()
+        return True
+
+    def wait_for_function(self, script, timeout):
+        raise RuntimeError("not selected")
+
+    def content(self):
+        return self._content
+
+
+class FakePastShowsClient(FeiBrowserClient):
+    def __init__(self, page):
+        self.page = page
+
+    def _ensure_page(self):
+        return self.page
+
+    def _wait_after_action(self):
+        pass
+
+    def _wait_ready(self):
+        pass
 
 
 class FeiBotTests(unittest.TestCase):
@@ -141,6 +198,41 @@ class FeiBotTests(unittest.TestCase):
         self.assertEqual(post_data["ctl00$Main$DateStart"], "01/05/2026")
         self.assertEqual(post_data["ctl00$Main$DateEnd"], "05/05/2026")
         self.assertEqual(post_data["ctl00$Main$Discipline"], "Eventing")
+
+    def test_verify_warn_keeps_results_when_verification_lookup_fails(self):
+        client = FakeClient(
+            {
+                ("GET", CALENDAR_SEARCH_URL): calendar_search_form_html(),
+                ("POST", CALENDAR_SEARCH_URL): calendar_results_html(),
+                ("GET", EVENT_URL): event_detail_html(),
+                ("GET", RESULT_URL): result_page_html(),
+            }
+        )
+        bot = FeiDataBot(client, verifier=FailingVerifier())
+
+        results, summary = bot.collect(
+            start_date=datetime(2026, 5, 1).date(),
+            end_date=datetime(2026, 5, 5).date(),
+            verify="warn",
+        )
+
+        self.assertEqual(len(results), 1)
+        self.assertEqual(summary.results_collected, 1)
+        self.assertEqual(summary.results_verified, 0)
+
+    def test_open_past_shows_fallback_submits_postback_form(self):
+        page = FakePastShowsPage()
+        client = FakePastShowsClient(page)
+
+        html = client.open_past_shows()
+
+        self.assertIn("Badminton Horse Trials", html)
+        self.assertEqual(len(page.evaluate_scripts), 1)
+        fallback_script = page.evaluate_scripts[0]
+        self.assertIn('setHidden("__EVENTTARGET", target)', fallback_script)
+        self.assertIn('setHidden("__EVENTARGUMENT", argument)', fallback_script)
+        self.assertIn("form.submit()", fallback_script)
+        self.assertNotIn("typeof __doPostBack", fallback_script)
 
     def test_verifier_checks_person_and_horse_search_pages(self):
         client = FakeClient(
