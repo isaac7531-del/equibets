@@ -3,10 +3,12 @@ import tempfile
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
+from unittest.mock import patch
 from urllib.parse import urljoin
 
 from equibets.fei_bot import (
     CALENDAR_SEARCH_URL,
+    FeiFormUnavailable,
     HORSE_SEARCH_URL,
     PERSON_SEARCH_URL,
     FeiBrowserClient,
@@ -15,6 +17,7 @@ from equibets.fei_bot import (
     FeiResultStore,
     FeiVerifier,
     extract_form_fields,
+    main,
     parse_calendar_events,
     parse_eventing_results,
     parse_result_links,
@@ -93,6 +96,70 @@ class FakePastShowsClient(FeiBrowserClient):
 
     def _wait_ready(self):
         pass
+
+
+class ChallengeCalendarBrowserClient(FeiBrowserClient):
+    def __init__(self):
+        self.posts = []
+
+    def get(self, url):
+        return "<html><title>DataDome</title><body>captcha</body></html>"
+
+    def post(self, url, data, field_intents=()):
+        self.posts.append((url, dict(data), field_intents))
+        return calendar_results_html()
+
+    def open_past_shows(self):
+        raise AssertionError("calendar results should parse without opening past shows")
+
+
+class FakeFieldElement:
+    def __init__(self, info):
+        self.info = info
+
+    def evaluate(self, script):
+        return self.info
+
+
+class FakeFieldsLocator:
+    def __init__(self, infos):
+        self.infos = infos
+
+    def count(self):
+        return len(self.infos)
+
+    def nth(self, index):
+        return FakeFieldElement(self.infos[index])
+
+
+class FakeTokenPage:
+    def __init__(self, infos):
+        self.infos = infos
+
+    def locator(self, selector):
+        self.selector = selector
+        return FakeFieldsLocator(self.infos)
+
+
+class TokenFillBrowserClient(FeiBrowserClient):
+    def __init__(self, page):
+        self.page = page
+        self.filled = []
+
+    def _ensure_page(self):
+        return self.page
+
+    def _fill_form_field(self, name, value):
+        self.filled.append((name, value))
+        return True
+
+
+class UnavailableFormClient:
+    def get(self, url):
+        raise FeiFormUnavailable("calendar form unavailable")
+
+    def close(self):
+        self.closed = True
 
 
 class FeiBotTests(unittest.TestCase):
@@ -234,6 +301,55 @@ class FeiBotTests(unittest.TestCase):
         self.assertIn("form.submit()", fallback_script)
         self.assertNotIn("typeof __doPostBack", fallback_script)
 
+    def test_browser_calendar_search_passes_field_intents_after_challenge_page(self):
+        client = ChallengeCalendarBrowserClient()
+        bot = FeiDataBot(client)
+
+        events = bot.search_calendar(
+            start_date=datetime(2026, 6, 22).date(),
+            end_date=datetime(2026, 7, 1).date(),
+        )
+
+        self.assertEqual(len(events), 1)
+        post_url, post_data, field_intents = client.posts[0]
+        self.assertEqual(post_url, CALENDAR_SEARCH_URL)
+        self.assertEqual(post_data, {})
+        self.assertIn(((("date", "start"), ("date", "from")), "22/06/2026"), field_intents)
+        self.assertIn(((("date", "end"), ("date", "to")), "01/07/2026"), field_intents)
+        self.assertIn(((("discipline",),), "Eventing"), field_intents)
+
+    def test_browser_field_intent_matches_live_form_control_by_alternative_tokens(self):
+        page = FakeTokenPage(
+            [
+                {
+                    "name": "__VIEWSTATE",
+                    "id": "__VIEWSTATE",
+                    "type": "hidden",
+                    "tag": "input",
+                    "disabled": False,
+                    "label": "",
+                    "placeholder": "",
+                    "aria": "",
+                },
+                {
+                    "name": "ctl00$PlaceHolderMain$DateFrom",
+                    "id": "PlaceHolderMain_DateFrom",
+                    "type": "text",
+                    "tag": "input",
+                    "disabled": False,
+                    "label": "Date from",
+                    "placeholder": "dd/MM/yyyy",
+                    "aria": "",
+                },
+            ]
+        )
+        client = TokenFillBrowserClient(page)
+
+        matched = client._fill_first_matching_form_field((("date", "start"), ("date", "from")), "22/06/2026")
+
+        self.assertTrue(matched)
+        self.assertEqual(client.filled, [("ctl00$PlaceHolderMain$DateFrom", "22/06/2026")])
+
     def test_verifier_checks_person_and_horse_search_pages(self):
         client = FakeClient(
             {
@@ -276,6 +392,48 @@ class FeiBotTests(unittest.TestCase):
         self.assertEqual(len(payload["results"]), 1)
         self.assertEqual(payload["results"][0]["rider_name"], "Alex Rider")
         self.assertEqual(payload["results"][0]["dressage_score"], 30.2)
+
+    def test_main_live_output_falls_back_to_existing_store_when_form_unavailable(self):
+        event = FeiEvent(
+            source_event_id="abc",
+            name="Badminton Horse Trials",
+            url=EVENT_URL,
+            start_date=datetime(2026, 5, 1).date(),
+            country="GBR",
+            level="CCI5*-L",
+        )
+        result = parse_eventing_results(
+            result_page_html(),
+            event,
+            RESULT_URL,
+            datetime(2026, 5, 2, tzinfo=timezone.utc),
+        )[0]
+
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp) / "fei_results.json"
+            live_output = Path(tmp) / "live_scores.json"
+            FeiResultStore(output).save([result])
+
+            with patch("equibets.fei_bot._build_client", return_value=UnavailableFormClient()):
+                exit_code = main(
+                    [
+                        "--current-events",
+                        "--start-date",
+                        "2026-05-01",
+                        "--end-date",
+                        "2026-05-05",
+                        "--output",
+                        str(output),
+                        "--live-output",
+                        str(live_output),
+                    ]
+                )
+
+            payload = json.loads(live_output.read_text(encoding="utf-8"))
+
+        self.assertEqual(exit_code, 0)
+        self.assertEqual(payload["event_count"], 1)
+        self.assertEqual(payload["result_count"], 1)
 
 
 def calendar_search_form_html():
