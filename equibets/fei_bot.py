@@ -552,7 +552,13 @@ class FeiDataBot:
                     all_results.append(result)
                     continue
 
-                is_verified = self._verify_result(result)
+                try:
+                    is_verified = self._verify_result(result)
+                except RuntimeError:
+                    if verify == "require":
+                        raise
+                    all_results.append(result)
+                    continue
                 if is_verified:
                     verified += 1
                     all_results.append(result)
