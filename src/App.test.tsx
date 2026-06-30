@@ -21,22 +21,28 @@ describe('App', () => {
       xcJumping: string;
     },
   ) => {
-    await user.type(screen.getByLabelText(/^rider$/i), result.rider);
-    await user.type(screen.getByLabelText(/^horse$/i), result.horse);
-    await user.type(screen.getByLabelText(/^event$/i), result.event);
-    await user.selectOptions(screen.getByLabelText(/^level$/i), result.level);
+    const calculatorForm = screen.getByLabelText(/^event$/i).closest('form');
+    if (!calculatorForm) {
+      throw new Error('Calculator form not found');
+    }
+    const calculator = within(calculatorForm);
+
+    await user.type(calculator.getByLabelText(/^rider$/i), result.rider);
+    await user.type(calculator.getByLabelText(/^horse$/i), result.horse);
+    await user.type(calculator.getByLabelText(/^event$/i), result.event);
+    await user.selectOptions(calculator.getByLabelText(/^level$/i), result.level);
     if (result.country) {
-      const resultCountryInput = screen.getAllByLabelText(/^country$/i)[0];
+      const resultCountryInput = calculator.getByLabelText(/^country$/i);
       await user.clear(resultCountryInput);
       await user.type(resultCountryInput, result.country);
     }
-    await user.clear(screen.getByLabelText(/dressage/i));
-    await user.type(screen.getByLabelText(/dressage/i), result.dressage);
-    await user.clear(screen.getByLabelText(/show jumping/i));
-    await user.type(screen.getByLabelText(/show jumping/i), result.showJumping);
-    await user.clear(screen.getByLabelText(/xc jumping/i));
-    await user.type(screen.getByLabelText(/xc jumping/i), result.xcJumping);
-    await user.click(screen.getByRole('button', { name: /save result/i }));
+    await user.clear(calculator.getByLabelText(/dressage/i));
+    await user.type(calculator.getByLabelText(/dressage/i), result.dressage);
+    await user.clear(calculator.getByLabelText(/show jumping/i));
+    await user.type(calculator.getByLabelText(/show jumping/i), result.showJumping);
+    await user.clear(calculator.getByLabelText(/xc jumping/i));
+    await user.type(calculator.getByLabelText(/xc jumping/i), result.xcJumping);
+    await user.click(calculator.getByRole('button', { name: /save result/i }));
   };
 
   it('saves a calculated result to the results table', async () => {
