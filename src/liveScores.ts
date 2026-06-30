@@ -90,10 +90,10 @@ export const formatSourceId = (sourceId: string) => sourceLabels[sourceId] ?? so
 export const formatSourceList = (sourceIds: string[]) => sourceIds.map(formatSourceId).join(', ');
 
 export const formatCompetitionClasses = (value: string) =>
-  value
+  Array.from(new Set(value
     .split(',')
     .map((part) => part.trim())
-    .filter(Boolean)
+    .filter(Boolean)))
     .join(', ');
 
 export const formatLiveEventTitle = (event: Pick<LiveScoreEvent, 'event_name' | 'result_count'>) =>
