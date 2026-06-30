@@ -32,6 +32,9 @@ The frontend now also ships as an installable app-style PWA. Browsers can use
 `public/manifest.webmanifest`, `public/app-icon.svg`, and `public/sw.js` to show
 standalone install prompts and cache the app shell for repeat visits.
 
+Production domain setup for `equibets.app` is documented in
+`docs/equibets_app_deployment.md`.
+
 See `docs/results_calculator_feature.md` for the consolidation rules, prediction
 logic, and future weekly public-data update flow.
 

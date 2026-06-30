@@ -19,6 +19,8 @@ describe('PWA asset contract', () => {
 
     expect(html).toContain('<link rel="manifest" href="/manifest.webmanifest" />');
     expect(html).toContain('<meta name="theme-color" content="#23432d" />');
+    expect(html).toContain('<link rel="canonical" href="https://equibets.app/" />');
+    expect(html).toContain('<meta property="og:url" content="https://equibets.app/" />');
     expect(html).toContain('<link rel="apple-touch-icon" href="/app-icon.svg" />');
   });
 
@@ -28,5 +30,13 @@ describe('PWA asset contract', () => {
     expect(serviceWorker).toContain("const CACHE_NAME = 'equibets-app-shell-v1'");
     expect(serviceWorker).toContain("'/manifest.webmanifest'");
     expect(serviceWorker).toContain("caches.match('/index.html')");
+  });
+
+  it('publishes crawler metadata for equibets.app', () => {
+    const robots = readWorkspaceFile('public/robots.txt');
+    const sitemap = readWorkspaceFile('public/sitemap.xml');
+
+    expect(robots).toContain('Sitemap: https://equibets.app/sitemap.xml');
+    expect(sitemap).toContain('<loc>https://equibets.app/</loc>');
   });
 });
