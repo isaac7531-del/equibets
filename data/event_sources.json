@@ -338,6 +338,7 @@
     "event_level_sets": {
       "all_national_and_regional_levels": [
         "starter",
+        "grassroots",
         "introductory",
         "beginner_novice",
         "novice",

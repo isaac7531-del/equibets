@@ -52,6 +52,8 @@ EVENT_LEVEL_ALIASES = {
     "championship": "championship",
     "fei": "fei_international",
     "feiinternational": "fei_international",
+    "grassroot": "grassroots",
+    "grassroots": "grassroots",
     "intro": "introductory",
     "introductory": "introductory",
     "modified": "modified",

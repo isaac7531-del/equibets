@@ -21,6 +21,7 @@ class EventSourceTests(unittest.TestCase):
         self.assertIn("ZAF", registry.coverage_targets.countries)
         self.assertIn("PER", registry.coverage_targets.countries)
         self.assertIn("starter", registry.coverage_targets.national_and_regional_levels)
+        self.assertIn("grassroots", registry.coverage_targets.national_and_regional_levels)
         self.assertIn("introductory", registry.coverage_targets.national_and_regional_levels)
         self.assertIn("national_five_star", registry.coverage_targets.national_and_regional_levels)
         self.assertIn("cci_intro", registry.coverage_targets.fei_levels)
@@ -168,12 +169,15 @@ class EventSourceTests(unittest.TestCase):
         fei_source_ids = [source.id for source in sources_for_event_level("CCI3*-S")]
         cci_intro_source_ids = [source.id for source in sources_for_event_level("CCI Intro")]
         cci_one_intro_source_ids = [source.id for source in sources_for_event_level("CCI1*-Intro")]
+        grassroots_source_ids = [source.id for source in sources_for_event_level("Grass Roots")]
         introductory_source_ids = [source.id for source in sources_for_event_level("Introductory")]
         national_source_ids = [source.id for source in sources_for_event_level("Training")]
 
         self.assertEqual(fei_source_ids, ["data_fei"])
         self.assertEqual(cci_intro_source_ids, ["data_fei"])
         self.assertEqual(cci_one_intro_source_ids, ["data_fei"])
+        self.assertNotIn("data_fei", grassroots_source_ids)
+        self.assertIn("global_national_federations", grassroots_source_ids)
         self.assertNotIn("data_fei", introductory_source_ids)
         self.assertIn("global_national_federations", introductory_source_ids)
         self.assertIn("central_america_caribbean_national_federations", introductory_source_ids)
