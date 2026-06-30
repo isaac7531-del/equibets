@@ -284,10 +284,10 @@ legend {
 }
 
 .live-event header {
-  align-items: start;
+  align-items: stretch;
   display: flex;
-  gap: 1rem;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 0.55rem;
   margin-bottom: 0.75rem;
 }
 
@@ -314,9 +314,8 @@ legend {
 
 .live-event header p {
   color: #65705f;
-  flex: 0 0 13rem;
   margin: 0;
-  text-align: right;
+  text-align: left;
 }
 
 .live-event table {
