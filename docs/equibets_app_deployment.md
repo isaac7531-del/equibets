@@ -82,6 +82,16 @@ npm run build
 python3 -m unittest discover -s tests
 ```
 
+Before public marketing, run the event-data refresh workflow with `FEI_COOKIE`
+configured and review these artifacts:
+
+- `data/upcoming_events.json`
+- `data/fei_results.json`
+- `data/horse_index.json`
+
+The in-app sample rows are not the production corpus. `horse_index.json` is the
+source-derived list that should become the production horse dataset.
+
 After DNS is live:
 
 1. Visit `https://equibets.app`.

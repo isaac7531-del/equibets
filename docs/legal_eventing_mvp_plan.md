@@ -37,6 +37,7 @@ place for every operating jurisdiction.
    - `events`, `event_divisions`, `event_entries`
    - `result_imports`, `event_results`, `result_phase_scores`
    - `upcoming_events` refresh output from global public calendars
+   - `horse_index` generated from every collected official/public result
 2. **Analytics**
    - rider rankings
    - horse rankings
@@ -79,6 +80,9 @@ place for every operating jurisdiction.
 - Use FEI Data as the first global eventing calendar and results source.
 - Refresh upcoming events daily into `data/upcoming_events.json`.
 - Refresh recent completed results daily into `data/fei_results.json`.
+- Build `data/horse_index.json` from every collected result so horse coverage
+  grows with FEI and national-source coverage instead of relying on curated
+  examples.
 - Upload refreshed JSON as artifacts first; promote to production only after
   schema validation and source-quality checks pass.
 - Add national federation adapters one at a time after FEI calendar/result

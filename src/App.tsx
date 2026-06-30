@@ -275,7 +275,7 @@ export default function App() {
         <article>
           <span>Upcoming</span>
           <strong>{upcomingEvents.length}</strong>
-          <p>global events, refreshed {formatDateTime(latestUpcomingRefresh)}</p>
+          <p>sample rows, refresh pipeline ready {formatDateTime(latestUpcomingRefresh)}</p>
         </article>
       </section>
 
@@ -444,8 +444,9 @@ export default function App() {
           <span className="data-pill">Daily FEI refresh ready</span>
         </div>
         <p className="supporting-copy">
-          The scheduled refresh writes normalized public calendar rows to `data/upcoming_events.json`; this table shows
-          the frontend contract until live data is promoted.
+          These are seed rows for the frontend contract. The scheduled refresh writes the full FEI calendar feed to
+          `data/upcoming_events.json` and builds `data/horse_index.json` from every collected result before production
+          promotion.
         </p>
         <div className="table-wrap">
           <table className="upcoming-events-table">

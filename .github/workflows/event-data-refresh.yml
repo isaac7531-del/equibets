@@ -80,6 +80,18 @@ jobs:
             --storage-state data/fei_state.json \
             --verify warn
 
+      - name: Build horse index from all collected results
+        if: env.FEI_COOKIE != ''
+        run: |
+          if [ -f data/fei_results.json ]; then
+            python3 -m equibets.horses \
+              --results data/fei_results.json \
+              --output data/horse_index.json \
+              --active-window-days 730
+          else
+            echo "No FEI result store found; horse index skipped."
+          fi
+
       - name: Explain skipped refresh
         if: env.FEI_COOKIE == ''
         run: |
@@ -93,3 +105,4 @@ jobs:
           path: |
             data/upcoming_events.json
             data/fei_results.json
+            data/horse_index.json

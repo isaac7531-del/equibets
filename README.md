@@ -21,12 +21,15 @@ gambling settlement flows.
   user-entered scores.
 - Estimates a likely finishing score from the most recent consolidated starts.
 - Tracks public event-results sources for FEI and national-event coverage.
+- Builds `data/horse_index.json` from every collected result so the production
+  corpus can cover all horses found in scraped FEI/national eventing data.
 
 ## Website application
 
 The website is a finished static application: it works with no backend, ships
-with curated public result examples, and folds any locally saved scores into the
-same consolidation and prediction workflow.
+with curated public result examples while the full scrape pipeline is being
+promoted, and folds any locally saved scores into the same consolidation and
+prediction workflow.
 
 The frontend now also ships as an installable app-style PWA. Browsers can use
 `public/manifest.webmanifest`, `public/app-icon.svg`, and `public/sw.js` to show
@@ -143,6 +146,23 @@ The scheduled GitHub Actions workflow at
 upcoming FEI events and recent FEI results when the `FEI_COOKIE` repository
 secret is configured. It uploads the refreshed JSON files as workflow artifacts
 for review before any production data publish step.
+
+## Horse index
+
+`equibets.horses` builds a horse index from every collected result. It is the
+path to covering all currently active eventing horses as source coverage grows.
+
+Example:
+
+```bash
+python3 -m equibets.horses \
+  --results data/fei_results.json \
+  --output data/horse_index.json \
+  --active-window-days 730
+```
+
+The scheduled refresh workflow runs this after FEI result collection and uploads
+`data/horse_index.json` alongside the raw refresh artifacts.
 
 ## Probability engine
 
