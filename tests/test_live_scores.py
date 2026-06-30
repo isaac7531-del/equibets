@@ -64,6 +64,30 @@ class LiveScoreTests(unittest.TestCase):
         self.assertEqual(event["standings"][0]["finishing_score"], 30.6)
         self.assertEqual(event["standings"][1]["rank"], 2)
 
+    def test_build_live_score_payload_merges_duplicate_event_class_lists(self):
+        payload = build_live_score_payload(
+            [
+                result(
+                    source_record_id="subset",
+                    level="CCI4*-L , CCI3*-S",
+                    collected_at="2026-05-18T12:00:00",
+                ),
+                result(
+                    source_record_id="expanded",
+                    level="CCI4*-L , CCI3*-S , CCIP2-S",
+                    collected_at="2026-05-18T13:00:00",
+                ),
+            ],
+            start_date=date(2026, 5, 18),
+            end_date=date(2026, 5, 18),
+            generated_at=datetime(2026, 5, 18, 14, 0, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual(payload["event_count"], 1)
+        self.assertEqual(payload["result_count"], 1)
+        self.assertEqual(payload["events"][0]["level"], "CCI4*-L , CCI3*-S , CCIP2-S")
+        self.assertEqual(payload["events"][0]["standings"][0]["collected_at"], "2026-05-18T13:00:00")
+
     def test_write_live_score_payload_creates_stable_json(self):
         payload = build_live_score_payload(
             [result()],
