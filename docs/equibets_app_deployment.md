@@ -4,7 +4,9 @@
 
 ## Recommended first launch
 
-Use Vercel, Netlify, or Cloudflare Pages as a static frontend host.
+Use Vercel first unless you already prefer Netlify or Cloudflare Pages. This
+repo now includes `vercel.json`, `netlify.toml`, and Netlify `_redirects`
+defaults for static PWA deployment.
 
 | Setting | Value |
 | --- | --- |
@@ -12,6 +14,44 @@ Use Vercel, Netlify, or Cloudflare Pages as a static frontend host.
 | Output directory | `dist` |
 | Production domain | `equibets.app` |
 | WWW redirect | `www.equibets.app` -> `equibets.app` |
+
+## Vercel launch steps
+
+1. Import the GitHub repository in Vercel.
+2. Select the Vite framework preset.
+3. Confirm build command `npm run build`.
+4. Confirm output directory `dist`.
+5. Add domains:
+   - `equibets.app`
+   - `www.equibets.app`
+6. In your domain registrar DNS, add:
+   - Apex `A`: `76.76.21.21`
+   - `www` `CNAME`: `cname.vercel-dns.com`
+7. Wait for Vercel to issue HTTPS certificates.
+8. Set `equibets.app` as the primary domain so `www` redirects to the apex.
+
+## Netlify launch steps
+
+1. Import the GitHub repository in Netlify.
+2. Netlify will read `netlify.toml`.
+3. Confirm build command `npm ci && npm run build`.
+4. Confirm publish directory `dist`.
+5. Add domains:
+   - `equibets.app`
+   - `www.equibets.app`
+6. In your domain registrar DNS, add:
+   - Apex `A`: `75.2.60.5`
+   - `www` `CNAME`: the Netlify site hostname
+7. Wait for Netlify DNS/HTTPS verification.
+
+## Cloudflare Pages launch steps
+
+1. Create a Pages project from the GitHub repository.
+2. Set build command `npm ci && npm run build`.
+3. Set output directory `dist`.
+4. Add `equibets.app` as a custom domain.
+5. If the domain is on Cloudflare DNS, use Cloudflare's generated CNAME records
+   and keep the records proxied.
 
 ## DNS records
 
