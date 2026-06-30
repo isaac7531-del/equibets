@@ -48,6 +48,8 @@ boundaries, and the recommended stack.
 See `docs/prediction_platform_architecture.md` and
 `docs/prediction_platform_schema.sql` for the full FEI/eventing prediction
 platform architecture and target PostgreSQL schema.
+The executable PostgreSQL migration starts at
+`db/migrations/001_prediction_platform_schema.sql`.
 
 See `docs/platform_schema.sql` for the target PostgreSQL contract for riders,
 horses, combinations, events, results, model runs, free prediction markets, user
@@ -134,6 +136,9 @@ particular session, `--event-url` to crawl a known event page directly, and
 
 Upcoming global eventing calendar rows are normalized by
 `equibets.upcoming_events` and written to `data/upcoming_events.json`.
+Automated imports are blocked until `data/source_compliance.json` explicitly
+marks the source as approved for the requested job type after terms, robots, and
+licence review.
 
 Example:
 
@@ -142,14 +147,16 @@ FEI_COOKIE="your-data-fei-session-cookie" \
 python3 -m equibets.upcoming_events \
   --days-ahead 180 \
   --output data/upcoming_events.json \
-  --storage-state data/fei_state.json
+  --storage-state data/fei_state.json \
+  --compliance-policy data/source_compliance.json
 ```
 
 The scheduled GitHub Actions workflow at
 `.github/workflows/event-data-refresh.yml` runs tests/builds daily, then refreshes
 upcoming FEI events and recent FEI results when the `FEI_COOKIE` repository
-secret is configured. It uploads the refreshed JSON files as workflow artifacts
-for review before any production data publish step.
+secret is configured and the source compliance policy allows `calendar` and
+`results` jobs. It uploads the refreshed JSON files as workflow artifacts for
+review before any production data publish step.
 
 ## Horse index
 

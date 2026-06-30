@@ -1,5 +1,6 @@
 """Utilities for eventing analytics, results, and predictions."""
 
+from .compliance import SourceComplianceError, SourceCompliancePolicy, require_source_approval
 from .probability import (
     EntryPhaseModel,
     FieldEntry,
@@ -21,6 +22,8 @@ __all__ = [
     "HorseIndexRecord",
     "MarketProbability",
     "ProbabilityPriors",
+    "SourceComplianceError",
+    "SourceCompliancePolicy",
     "UpcomingEvent",
     "UpcomingEventStore",
     "consolidate_results",
@@ -29,6 +32,7 @@ __all__ = [
     "estimate_phase_model",
     "load_event_sources",
     "predict_finishing_score",
+    "require_source_approval",
     "simulate_market_probabilities",
     "sources_for_region",
 ]

@@ -57,7 +57,8 @@ jobs:
           python3 -m equibets.upcoming_events \
             --days-ahead "$DAYS_AHEAD" \
             --output data/upcoming_events.json \
-            --storage-state data/fei_state.json
+            --storage-state data/fei_state.json \
+            --compliance-policy data/source_compliance.json
 
       - name: Refresh recent FEI results
         if: env.FEI_COOKIE != ''
@@ -78,6 +79,7 @@ jobs:
             --end-date "$END_DATE" \
             --output data/fei_results.json \
             --storage-state data/fei_state.json \
+            --compliance-policy data/source_compliance.json \
             --verify warn
 
       - name: Build horse index from all collected results

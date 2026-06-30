@@ -44,6 +44,9 @@ specific page type, use one of these alternatives:
    - Admin creates/updates `data_sources`.
    - Source is marked `approved_for_ingest` only after terms/robots/licence
      review passes.
+   - Import CLIs call the source-compliance gate before making network requests.
+     The default FEI policy is blocked until a reviewed policy explicitly allows
+     `calendar`, `entries`, or `results` jobs.
 
 2. **Upcoming events import**
    - Importer collects permitted FEI/global calendar rows.

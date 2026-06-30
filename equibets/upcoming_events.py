@@ -8,6 +8,8 @@ from collections.abc import Mapping, Sequence
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
+from .compliance import DATA_FILE as COMPLIANCE_FILE
+from .compliance import require_source_approval
 from .events import DEFAULT_UPCOMING_EVENTS_FILE, UpcomingEvent, UpcomingEventStore
 from .fei_bot import (
     FeiBrowserClient,
@@ -49,11 +51,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--storage-state", type=Path, help="Persist Playwright cookies/session state")
     parser.add_argument("--cookie", help="FEI session cookie header")
     parser.add_argument("--cookie-env", default="FEI_COOKIE", help="Environment variable containing FEI cookie")
+    parser.add_argument("--compliance-policy", type=Path, default=COMPLIANCE_FILE, help="Source compliance policy JSON")
     parser.add_argument("--dry-run", action="store_true", help="Collect and summarize without writing output")
     args = parser.parse_args(argv)
 
     start_date = args.start_date or date.today()
     end_date = args.end_date or start_date + timedelta(days=args.days_ahead)
+    require_source_approval("data_fei", "calendar", path=args.compliance_policy)
     cookie = args.cookie or os.environ.get(args.cookie_env)
     client = _build_client(args, cookie)
 

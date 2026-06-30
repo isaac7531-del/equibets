@@ -1,6 +1,7 @@
--- PostgreSQL schema for the FEI/eventing prediction platform.
--- This schema supports analytics and free-play predictions only.
--- It intentionally excludes betting odds, balances, deposits, withdrawals, and staking settlement.
+-- Prediction platform schema migration.
+-- Analytics/free-play only: no betting odds, balances, deposits, withdrawals, or staking settlement.
+
+begin;
 
 create extension if not exists pgcrypto;
 
@@ -285,9 +286,9 @@ create table identity_match_reviews (
   created_at timestamptz not null default now()
 );
 
-create index horses_normalized_name_idx on horses(normalized_name);
 create unique index competitions_event_level_section_class_uidx
   on competitions (event_id, level_code, coalesce(section_name, ''), coalesce(class_name, ''));
+create index horses_normalized_name_idx on horses(normalized_name);
 create index riders_normalized_name_idx on riders(normalized_name);
 create index events_starts_on_idx on events(starts_on);
 create index competitions_event_id_idx on competitions(event_id);
@@ -298,3 +299,5 @@ create index phase_scores_result_id_idx on phase_scores(result_id);
 create index performance_rollups_subject_idx on performance_rollups(subject_type, level_group, window);
 create index predictions_competition_rank_idx on predictions(competition_id, predicted_rank);
 create index scrape_jobs_source_status_idx on scrape_jobs(source_id, status, created_at desc);
+
+commit;

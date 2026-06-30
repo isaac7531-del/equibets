@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "source_id": "data_fei",
+      "display_name": "FEI Database",
+      "base_url": "https://data.fei.org/",
+      "robots_url": "https://data.fei.org/robots.txt",
+      "terms_url": "https://inside.fei.org/fei/terms-and-conditions",
+      "approved_for_ingest": false,
+      "raw_storage_allowed": false,
+      "allowed_job_types": [],
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "notes": "Set approved_for_ingest=true and list allowed job types only after confirming FEI terms, robots.txt, copyright, and access/licence requirements permit the planned use."
+    },
+    {
+      "source_id": "manual_upload",
+      "display_name": "Admin manual upload",
+      "base_url": null,
+      "robots_url": null,
+      "terms_url": null,
+      "approved_for_ingest": true,
+      "raw_storage_allowed": true,
+      "allowed_job_types": ["calendar", "entries", "results"],
+      "reviewed_at": "2026-06-30T00:00:00Z",
+      "reviewed_by": "system",
+      "notes": "Allowed for files the admin has rights to upload and use."
+    }
+  ]
+}
