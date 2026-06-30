@@ -26,8 +26,9 @@ describe('App', () => {
     await user.type(screen.getByLabelText(/^event$/i), result.event);
     await user.selectOptions(screen.getByLabelText(/^level$/i), result.level);
     if (result.country) {
-      await user.clear(screen.getByLabelText(/^country$/i));
-      await user.type(screen.getByLabelText(/^country$/i), result.country);
+      const resultCountryInput = screen.getAllByLabelText(/^country$/i)[0];
+      await user.clear(resultCountryInput);
+      await user.type(resultCountryInput, result.country);
     }
     await user.clear(screen.getByLabelText(/dressage/i));
     await user.type(screen.getByLabelText(/dressage/i), result.dressage);
