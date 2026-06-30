@@ -1,25 +1,100 @@
-import json
 import unittest
-from pathlib import Path
 
-from equibets.sources import load_event_sources, sources_for_region
-
-
-DATA_DIR = Path(__file__).resolve().parents[1] / "data"
-COVERAGE_FILE = DATA_DIR / "national_event_coverage.json"
+import equibets
+from equibets.sources import (
+    load_event_source_registry,
+    load_event_sources,
+    sources_for_country,
+    sources_for_event_level,
+    sources_for_region,
+)
 
 
 class EventSourceTests(unittest.TestCase):
+    def test_registry_declares_all_country_and_level_targets(self):
+        registry = load_event_source_registry()
+
+        self.assertEqual(registry.version, 2)
+        self.assertGreaterEqual(len(registry.coverage_targets.countries), 100)
+        self.assertIn("GBR", registry.coverage_targets.countries)
+        self.assertIn("USA", registry.coverage_targets.countries)
+        self.assertIn("ZAF", registry.coverage_targets.countries)
+        self.assertIn("PER", registry.coverage_targets.countries)
+        self.assertIn("starter", registry.coverage_targets.national_and_regional_levels)
+        self.assertIn("introductory", registry.coverage_targets.national_and_regional_levels)
+        self.assertIn("national_five_star", registry.coverage_targets.national_and_regional_levels)
+        self.assertIn("cci_intro", registry.coverage_targets.fei_levels)
+        self.assertIn("cci1_intro", registry.coverage_targets.fei_levels)
+        self.assertIn("cci5_long", registry.coverage_targets.fei_levels)
+        self.assertIn("championship", registry.coverage_targets.fei_levels)
+
+        for name, country_set in registry.coverage_targets.country_sets.items():
+            with self.subTest(country_set=name):
+                self.assertTrue(country_set)
+                self.assertTrue(set(country_set).issubset(registry.coverage_targets.countries))
+
+    def test_package_exports_expanded_registry_api(self):
+        self.assertIs(equibets.load_event_source_registry, load_event_source_registry)
+        self.assertIs(equibets.sources_for_country, sources_for_country)
+        self.assertIs(equibets.sources_for_event_level, sources_for_event_level)
+
     def test_data_fei_is_primary_source(self):
         sources = load_event_sources()
 
         self.assertEqual(sources[0].id, "data_fei")
         self.assertEqual(sources[0].priority, 0)
         self.assertEqual(sources[0].base_url, "https://data.fei.org/")
+        self.assertIn("GBR", sources[0].countries)
+        self.assertIn("USA", sources[0].countries)
+        self.assertIn("cci5_long", sources[0].event_levels)
 
-    def test_priority_regions_include_fei_and_national_sources(self):
+    def test_declared_level_targets_are_applied_to_sources(self):
+        registry = load_event_source_registry()
+        fei_levels = registry.coverage_targets.fei_levels
+        national_levels = registry.coverage_targets.national_and_regional_levels
+
+        for source in registry.sources:
+            with self.subTest(source=source.id):
+                if source.id == registry.primary_source_id:
+                    self.assertEqual(source.event_levels, fei_levels)
+                elif source.scope == "national":
+                    self.assertEqual(source.event_levels, national_levels)
+
+    def test_every_declared_country_has_fei_and_national_backfill_sources(self):
+        registry = load_event_source_registry()
+
+        for country in registry.coverage_targets.countries:
+            with self.subTest(country=country):
+                source_ids = [source.id for source in registry.sources_for_country(country)]
+                self.assertEqual(source_ids[0], "data_fei")
+                self.assertIn("global_national_federations", source_ids)
+
+    def test_every_declared_level_routes_to_the_expected_source_family(self):
+        registry = load_event_source_registry()
+
+        for level in registry.coverage_targets.fei_levels:
+            with self.subTest(level=level):
+                self.assertEqual(
+                    [source.id for source in registry.sources_for_event_level(level)],
+                    ["data_fei"],
+                )
+
+        for level in registry.coverage_targets.national_and_regional_levels:
+            with self.subTest(level=level):
+                source_ids = [source.id for source in registry.sources_for_event_level(level)]
+                self.assertNotIn("data_fei", source_ids)
+                self.assertIn("global_national_federations", source_ids)
+
+    def test_every_priority_region_includes_fei_regional_and_global_sources(self):
         expected_national_sources = {
+            "africa": "africa_national_federations",
+            "asia": "asia_national_federations",
             "europe": "europe_national_federations",
+            "middle_east": "middle_east_national_federations",
+            "north_america": "north_america_national_federations",
+            "central_america_caribbean": "central_america_caribbean_national_federations",
+            "south_america": "south_america_national_federations",
+            "oceania": "oceania_national_federations",
             "uk": "british_eventing",
             "australia": "equestrian_australia",
             "new_zealand": "equestrian_sports_new_zealand",
@@ -33,49 +108,83 @@ class EventSourceTests(unittest.TestCase):
                 self.assertIn(national_source_id, source_ids)
                 self.assertIn("global_national_federations", source_ids)
 
+    def test_country_lookup_includes_fei_specific_and_global_sources(self):
+        source_ids = [source.id for source in sources_for_country("usa")]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("north_america_national_federations", source_ids)
+        self.assertIn("usea", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+
+    def test_country_lookup_includes_regional_and_global_backfill_sources(self):
+        source_ids = [source.id for source in sources_for_country("can")]
+
+        self.assertEqual(source_ids[0], "data_fei")
+        self.assertIn("north_america_national_federations", source_ids)
+        self.assertIn("global_national_federations", source_ids)
+        self.assertNotIn("usea", source_ids)
+
+    def test_country_lookup_routes_known_countries_to_declared_regions(self):
+        expected_sources = {
+            "fra": "europe_national_federations",
+            "bra": "south_america_national_federations",
+            "per": "south_america_national_federations",
+            "jpn": "asia_national_federations",
+            "zaf": "africa_national_federations",
+        }
+
+        for country, regional_source_id in expected_sources.items():
+            with self.subTest(country=country):
+                source_ids = [source.id for source in sources_for_country(country)]
+                self.assertEqual(source_ids[0], "data_fei")
+                self.assertIn(regional_source_id, source_ids)
+                self.assertIn("global_national_federations", source_ids)
+
+    def test_country_lookup_normalizes_common_country_aliases(self):
+        expected_sources = {
+            "uk": "british_eventing",
+            "GB": "british_eventing",
+            "United States": "usea",
+            "rsa": "africa_national_federations",
+            "ARE": "middle_east_national_federations",
+            "UAE": "middle_east_national_federations",
+            "DEU": "europe_national_federations",
+        }
+
+        for country, expected_source_id in expected_sources.items():
+            with self.subTest(country=country):
+                source_ids = [source.id for source in sources_for_country(country)]
+                self.assertEqual(source_ids[0], "data_fei")
+                self.assertIn(expected_source_id, source_ids)
+                self.assertIn("global_national_federations", source_ids)
+
+    def test_country_lookup_excludes_unknown_country_codes(self):
+        source_ids = [source.id for source in sources_for_country("xxx")]
+
+        self.assertEqual(source_ids, [])
+        self.assertNotIn("usea", source_ids)
+
+    def test_event_level_lookup_separates_fei_and_national_levels(self):
+        fei_source_ids = [source.id for source in sources_for_event_level("CCI3*-S")]
+        cci_intro_source_ids = [source.id for source in sources_for_event_level("CCI Intro")]
+        cci_one_intro_source_ids = [source.id for source in sources_for_event_level("CCI1*-Intro")]
+        introductory_source_ids = [source.id for source in sources_for_event_level("Introductory")]
+        national_source_ids = [source.id for source in sources_for_event_level("Training")]
+
+        self.assertEqual(fei_source_ids, ["data_fei"])
+        self.assertEqual(cci_intro_source_ids, ["data_fei"])
+        self.assertEqual(cci_one_intro_source_ids, ["data_fei"])
+        self.assertNotIn("data_fei", introductory_source_ids)
+        self.assertIn("global_national_federations", introductory_source_ids)
+        self.assertIn("central_america_caribbean_national_federations", introductory_source_ids)
+        self.assertNotIn("data_fei", national_source_ids)
+        self.assertIn("global_national_federations", national_source_ids)
+        self.assertIn("north_america_national_federations", national_source_ids)
+
     def test_active_only_filter_keeps_current_primary_source(self):
         source_ids = [source.id for source in sources_for_region("usa", include_planned=False)]
 
         self.assertEqual(source_ids, ["data_fei"])
-
-    def test_national_coverage_metadata_references_configured_sources(self):
-        sources_by_id = {source.id: source for source in load_event_sources()}
-        coverage = _load_national_coverage()
-
-        self.assertEqual(
-            coverage["authority"]["affiliated_national_federation_count"],
-            coverage["country_coverage"]["country_count"],
-        )
-        self.assertEqual(
-            coverage["country_coverage"]["national_backfill_source_id"],
-            "global_national_federations",
-        )
-
-        referenced_source_ids = set(coverage["country_coverage"]["priority_country_source_ids"])
-        referenced_source_ids.add(coverage["country_coverage"]["primary_source_id"])
-        referenced_source_ids.add(coverage["country_coverage"]["national_backfill_source_id"])
-
-        for level_group in coverage["event_level_groups"]:
-            referenced_source_ids.update(level_group["covered_by_source_ids"])
-        for region in coverage["priority_regions"]:
-            referenced_source_ids.update(region["source_ids"])
-
-        self.assertLessEqual(referenced_source_ids, set(sources_by_id))
-
-    def test_coverage_levels_match_source_level_declarations(self):
-        sources_by_id = {source.id: source for source in load_event_sources()}
-        coverage = _load_national_coverage()
-
-        for level_group in coverage["event_level_groups"]:
-            level_id = level_group["id"]
-            for source_id in level_group["covered_by_source_ids"]:
-                with self.subTest(level_id=level_id, source_id=source_id):
-                    self.assertIn(level_id, sources_by_id[source_id].event_levels)
-
-
-def _load_national_coverage():
-    with COVERAGE_FILE.open(encoding="utf-8") as coverage_file:
-        return json.load(coverage_file)
 
 
 if __name__ == "__main__":

@@ -14,8 +14,7 @@ source registry.
 - Uses source priority to keep official/public results ahead of duplicate
   user-entered scores.
 - Estimates a likely finishing score from the most recent consolidated starts.
-- Tracks public event-results sources for FEI and all-country national-event
-  coverage.
+- Tracks public event-results sources for FEI and national-event coverage.
 
 ## Website application
 
@@ -59,19 +58,34 @@ python3 -m pip install -e .
 
 ## Event results source priority
 
-The initial source registry lives in `data/event_sources.json` and is loaded with
-`equibets.sources`. The national coverage target lives in
-`data/national_event_coverage.json`; it records the FEI-affiliated national
-federation count, priority countries/regions, and the domestic eventing levels
-covered by national backfill sources.
+The expanded source registry lives in `data/event_sources.json` and is loaded with
+`equibets.sources`.
 
-1. `data_fei` (`https://data.fei.org/`) is the primary source for eventing
-   results across all FEI member nations.
-2. National-event sources fill gaps after FEI data across national
-   championship, national, regional, and grassroots domestic levels, with
-   priority coverage for Europe, the UK, Australia, New Zealand, and the USA.
-3. `global_national_federations` is the backfill path for national events from
-   every FEI member nation after the priority regions are covered.
+1. `data_fei` (`https://data.fei.org/`) is the primary source for FEI eventing
+   results across all FEI member nations and FEI eventing levels.
+2. Regional national-federation registries cover national, regional, and
+   domestic levels across Africa, Asia, Europe, the Middle East, North America,
+   Central America and the Caribbean, South America, and Oceania.
+3. Country-specific priority sources fill high-value national-event gaps for the
+   UK, Australia, New Zealand, and the USA.
+4. `global_national_federations` is the backfill path for national events from
+   every FEI member nation after regional and country sources are covered.
+
+The Python helpers can load the full registry or query matching sources by
+region, country, or event level. Coverage targets declare explicit FEI member
+country sets by region plus the full all-member set, so country lookups include
+country-specific sources, regional federation registries, and the global
+all-FEI-member backfill source. Common aliases such as `UK`, `GB`, `US`, ISO
+codes like `ARE`/`DEU`, and `RSA` normalize to the registry country codes:
+
+```python
+from equibets.sources import (
+    load_event_source_registry,
+    sources_for_country,
+    sources_for_event_level,
+    sources_for_region,
+)
+```
 
 Run the source registry checks with:
 
