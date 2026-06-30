@@ -45,6 +45,10 @@ See `docs/legal_eventing_mvp_plan.md` for the step-by-step MVP plan covering
 rankings, free prediction markets, backend APIs, frontend pages, compliance
 boundaries, and the recommended stack.
 
+See `docs/prediction_platform_architecture.md` and
+`docs/prediction_platform_schema.sql` for the full FEI/eventing prediction
+platform architecture and target PostgreSQL schema.
+
 See `docs/platform_schema.sql` for the target PostgreSQL contract for riders,
 horses, combinations, events, results, model runs, free prediction markets, user
 predictions, and leaderboards.
