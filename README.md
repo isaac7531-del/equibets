@@ -14,7 +14,8 @@ source registry.
 - Uses source priority to keep official/public results ahead of duplicate
   user-entered scores.
 - Estimates a likely finishing score from the most recent consolidated starts.
-- Tracks public event-results sources for FEI and national-event coverage.
+- Tracks public event-results sources for FEI and all-country national-event
+  coverage.
 
 ## Website application
 
@@ -59,12 +60,16 @@ python3 -m pip install -e .
 ## Event results source priority
 
 The initial source registry lives in `data/event_sources.json` and is loaded with
-`equibets.sources`.
+`equibets.sources`. The national coverage target lives in
+`data/national_event_coverage.json`; it records the FEI-affiliated national
+federation count, priority countries/regions, and the domestic eventing levels
+covered by national backfill sources.
 
 1. `data_fei` (`https://data.fei.org/`) is the primary source for eventing
    results across all FEI member nations.
-2. National-event sources fill gaps after FEI data, with priority coverage for
-   Europe, the UK, Australia, New Zealand, and the USA.
+2. National-event sources fill gaps after FEI data across national
+   championship, national, regional, and grassroots domestic levels, with
+   priority coverage for Europe, the UK, Australia, New Zealand, and the USA.
 3. `global_national_federations` is the backfill path for national events from
    every FEI member nation after the priority regions are covered.
 

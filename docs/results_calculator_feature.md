@@ -9,8 +9,8 @@ shows how horse/rider combinations are performing before upcoming events.
 - Search a horse/rider combination and see recent finishing scores.
 - Compare official/public results with scores the user has added manually.
 - See a likely finishing score for upcoming events.
-- Track all nations over time, while prioritizing richer national-event data
-  from Europe, the UK, Australia, New Zealand, and the USA.
+- Track all FEI-affiliated nations over time, while prioritizing richer
+  national-event data from Europe, the UK, Australia, New Zealand, and the USA.
 
 ## Data consolidation
 
@@ -38,6 +38,25 @@ override official results.
 5. Normalize records into the common result table.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
+
+## National-event coverage target
+
+`data/national_event_coverage.json` defines the current all-country target for
+future national updates. It uses FEI's affiliated national federations as the
+country universe, keeps `data_fei` as the primary international source, and uses
+`global_national_federations` as the planned backfill for every FEI member
+nation.
+
+Domestic national-event coverage is grouped into four normalized level bands:
+
+- national championship and elite domestic classes
+- standard national classes
+- regional or state/provincial classes
+- grassroots, introductory, training, lower-level, and amateur classes
+
+The source registry mirrors these level bands on every planned national source
+so country and level coverage can be validated before federation-specific
+crawlers are added.
 
 ## Prediction logic
 
