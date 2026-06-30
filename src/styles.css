@@ -614,7 +614,11 @@ td span {
 }
 
 .search-box {
-  min-width: min(260px, 100%);
+  min-width: min(340px, 100%);
+}
+
+.search-box input {
+  width: 100%;
 }
 
 @media (max-width: 900px) {
