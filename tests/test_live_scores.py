@@ -64,6 +64,40 @@ class LiveScoreTests(unittest.TestCase):
         self.assertEqual(event["standings"][0]["finishing_score"], 30.6)
         self.assertEqual(event["standings"][1]["rank"], 2)
 
+    def test_build_live_score_payload_merges_overlapping_event_class_lists(self):
+        payload = build_live_score_payload(
+            [
+                result(
+                    source_record_id="current",
+                    level="CCI4*-L , CCI3*-S",
+                    collected_at="2026-05-18T12:00:00+00:00",
+                ),
+                result(
+                    source_record_id="older-overlap",
+                    level="CCI4*-L",
+                    collected_at="2026-05-18T10:00:00+00:00",
+                ),
+                result(
+                    source_record_id="second-class",
+                    rider_name="Second Rider",
+                    horse_name="Second Horse",
+                    level="CCI2*-L",
+                    dressage_score=31.0,
+                    collected_at="2026-05-18T11:00:00+00:00",
+                ),
+            ],
+            start_date=date(2026, 5, 18),
+            end_date=date(2026, 5, 18),
+            generated_at=datetime(2026, 5, 18, 13, 0, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual(payload["event_count"], 1)
+        event = payload["events"][0]
+        self.assertEqual(event["level"], "CCI4*-L, CCI3*-S, CCI2*-L")
+        self.assertEqual(event["result_count"], 2)
+        self.assertEqual(event["standings"][0]["horse_name"], "Pocket Rocket")
+        self.assertEqual(event["standings"][0]["collected_at"], "2026-05-18T12:00:00+00:00")
+
     def test_write_live_score_payload_creates_stable_json(self):
         payload = build_live_score_payload(
             [result()],
