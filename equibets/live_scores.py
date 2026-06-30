@@ -64,9 +64,9 @@ def build_live_score_payload(
         for result in consolidate_results(list(results))
         if start_date <= result.event_date <= end_date
     ]
-    grouped: dict[tuple[str, date, str, str], list[EventingResult]] = defaultdict(list)
+    grouped: dict[tuple[str, date, str], list[EventingResult]] = defaultdict(list)
     for result in consolidated:
-        grouped[(result.event_name, result.event_date, result.level, result.country)].append(result)
+        grouped[(result.event_name, result.event_date, result.country)].append(result)
 
     events = [
         _event_payload(key, event_results, max_standings_per_event=max_standings_per_event)
@@ -105,14 +105,14 @@ def write_live_score_payload(payload: dict[str, Any], path: Path | str = DEFAULT
 
 
 def _event_payload(
-    key: tuple[str, date, str, str],
+    key: tuple[str, date, str],
     event_results: list[EventingResult],
     *,
     max_standings_per_event: int | None,
 ) -> dict[str, Any]:
-    event_name, event_date, level, country = key
+    event_name, event_date, country = key
     ordered_results = sorted(
-        event_results,
+        _dedupe_event_results(event_results),
         key=lambda result: (
             result.finishing_score,
             result.rider_name.lower(),
@@ -125,13 +125,46 @@ def _event_payload(
     return {
         "event_name": event_name,
         "event_date": event_date.isoformat(),
-        "level": level,
+        "level": _combined_level_label(ordered_results),
         "country": country,
         "result_count": len(ordered_results),
         "source_ids": sorted({result.source_id for result in ordered_results}),
         "latest_collected_at": _latest_collected_at(ordered_results),
         "standings": _standings_payload(visible_results),
     }
+
+
+def _dedupe_event_results(results: Sequence[EventingResult]) -> list[EventingResult]:
+    selected: dict[tuple[str, str, float], EventingResult] = {}
+    for result in results:
+        key = (result.combination_key, result.source_id, result.finishing_score)
+        existing = selected.get(key)
+        if existing is None or _prefer_event_result(result, existing):
+            selected[key] = result
+    return list(selected.values())
+
+
+def _prefer_event_result(candidate: EventingResult, existing: EventingResult) -> bool:
+    candidate_class_count = len(_competition_classes(candidate.level))
+    existing_class_count = len(_competition_classes(existing.level))
+    if candidate_class_count != existing_class_count:
+        return candidate_class_count > existing_class_count
+    return candidate.collected_at > existing.collected_at
+
+
+def _combined_level_label(results: Sequence[EventingResult]) -> str:
+    classes: list[str] = []
+    seen: set[str] = set()
+    for result in results:
+        for competition_class in _competition_classes(result.level):
+            if competition_class not in seen:
+                seen.add(competition_class)
+                classes.append(competition_class)
+    return " , ".join(classes) if classes else "Unknown"
+
+
+def _competition_classes(level: str) -> list[str]:
+    return [competition_class.strip() for competition_class in level.split(",") if competition_class.strip()]
 
 
 def _standings_payload(results: Sequence[EventingResult]) -> list[dict[str, Any]]:
