@@ -87,6 +87,37 @@ describe('App', () => {
     expect(screen.getByText(/manifest, app icon, standalone display mode/i)).toBeInTheDocument();
   });
 
+  it('shows the worldwide upcoming event feed', () => {
+    render(<App />);
+
+    const upcomingFeed = screen.getByRole('region', { name: /upcoming event feed/i });
+    expect(upcomingFeed).toHaveTextContent('Badminton Horse Trials');
+    expect(upcomingFeed).toHaveTextContent('CHIO Aachen');
+    expect(upcomingFeed).toHaveTextContent('Daily FEI refresh ready');
+    expect(within(upcomingFeed).getAllByText('FEI').length).toBeGreaterThan(0);
+  });
+
+  it('saves horse profile data to the horse profile table', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    const horseData = screen.getByRole('region', { name: /add horse profile data/i });
+
+    await user.type(within(horseData).getByLabelText(/^horse name$/i), 'Pocket Rocket');
+    await user.type(within(horseData).getByLabelText(/^registered name$/i), 'Pocket Rocket II');
+    await user.type(within(horseData).getByLabelText(/^fei id$/i), '107bh10');
+    await user.clear(within(horseData).getByLabelText(/^country$/i));
+    await user.type(within(horseData).getByLabelText(/^country$/i), 'gbr');
+    await user.type(within(horseData).getByLabelText(/^sex$/i), 'Gelding');
+    await user.type(within(horseData).getByLabelText(/^birth year$/i), '2014');
+    await user.type(within(horseData).getByLabelText(/^owner$/i), 'Stone Eventing');
+    await user.click(within(horseData).getByRole('button', { name: /save horse profile/i }));
+
+    expect(horseData).toHaveTextContent('Pocket Rocket');
+    expect(horseData).toHaveTextContent('107BH10');
+    expect(horseData).toHaveTextContent('Gelding / 2014');
+    expect(JSON.parse(window.localStorage.getItem('equibets.horseProfiles') ?? '[]')).toHaveLength(1);
+  });
+
   it('filters the rider dropdown to show horses by level', async () => {
     const user = userEvent.setup();
     render(<App />);

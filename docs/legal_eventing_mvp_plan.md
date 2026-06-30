@@ -10,7 +10,7 @@ place for every operating jurisdiction.
 - **Now:** eventing form guide, rankings, phase analytics, and free-to-play
   predictions.
 - **Next:** richer probability markets, user accounts, leaderboards, event
-  import tooling, and admin review queues.
+  import tooling, manual horse data management, and admin review queues.
 - **Later:** licensed betting can be evaluated as a separate regulated product,
   not as a hidden extension of the analytics MVP.
 
@@ -36,6 +36,7 @@ place for every operating jurisdiction.
    - `riders`, `horses`, `horse_rider_combinations`
    - `events`, `event_divisions`, `event_entries`
    - `result_imports`, `event_results`, `result_phase_scores`
+   - `upcoming_events` refresh output from global public calendars
 2. **Analytics**
    - rider rankings
    - horse rankings
@@ -54,6 +55,7 @@ place for every operating jurisdiction.
    - import runs
    - data-quality flags
    - manual correction workflow
+   - horse-profile edit/review workflow
    - model run logs
 
 ## First backend API
@@ -71,6 +73,17 @@ place for every operating jurisdiction.
 | `POST /predictions` | submit a free prediction |
 | `GET /leaderboards` | free-play leaderboard |
 | `POST /admin/import-runs` | start or register a data import |
+
+## Data refresh path
+
+- Use FEI Data as the first global eventing calendar and results source.
+- Refresh upcoming events daily into `data/upcoming_events.json`.
+- Refresh recent completed results daily into `data/fei_results.json`.
+- Upload refreshed JSON as artifacts first; promote to production only after
+  schema validation and source-quality checks pass.
+- Add national federation adapters one at a time after FEI calendar/result
+  refresh is stable.
+- Preserve raw source HTML or API payloads where permitted for auditability.
 
 ## Probability model path
 

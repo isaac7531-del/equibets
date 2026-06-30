@@ -59,6 +59,23 @@ create table event_divisions (
   unique (event_id, level, division_name)
 );
 
+create table upcoming_events (
+  id uuid primary key default gen_random_uuid(),
+  source_id text not null references data_sources(id),
+  source_event_id text not null,
+  source_priority integer not null,
+  name text not null,
+  starts_on date not null,
+  ends_on date,
+  country_code char(3),
+  discipline text not null default 'Eventing',
+  level text,
+  source_url text not null,
+  collected_at timestamptz not null,
+  created_at timestamptz not null default now(),
+  unique (source_id, source_event_id)
+);
+
 create table event_entries (
   id uuid primary key default gen_random_uuid(),
   division_id uuid not null references event_divisions(id) on delete cascade,
@@ -186,6 +203,7 @@ create table leaderboard_snapshots (
 
 create index event_results_entry_id_idx on event_results(entry_id);
 create index event_results_collected_at_idx on event_results(collected_at desc);
+create index upcoming_events_starts_on_idx on upcoming_events(starts_on);
 create index entry_model_predictions_model_run_idx on entry_model_predictions(model_run_id);
 create index prediction_markets_division_status_idx on prediction_markets(division_id, status);
 create index user_predictions_user_id_idx on user_predictions(user_id);

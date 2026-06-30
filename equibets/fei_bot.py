@@ -411,6 +411,7 @@ class FeiDataBot:
         start_date: date | None = None,
         end_date: date | None = None,
         form_fields: Mapping[str, str] | None = None,
+        result_status: str | None = "With results",
     ) -> list[FeiEvent]:
         """Submit the FEI calendar search page and return discovered events."""
 
@@ -438,7 +439,7 @@ class FeiDataBot:
             if not set_field(("date", "end"), end_value):
                 set_field(("date", "to"), end_value)
         set_field(("discipline",), "Eventing")
-        set_field(("result", "status"), "With results")
+        set_field(("result", "status"), result_status)
         set_field(("search",), "Search")
         if form_fields:
             form.update(form_fields)

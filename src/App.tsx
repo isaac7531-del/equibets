@@ -21,6 +21,14 @@ import {
   SOURCE_LABELS,
 } from './results';
 import { loadResults, saveResults } from './storage';
+import {
+  createDefaultHorseProfileForm,
+  horseProfileFromForm,
+  sortHorseProfiles,
+  type HorseProfileFormState,
+} from './horseProfiles';
+import { loadHorseProfiles, saveHorseProfiles } from './storage';
+import { latestUpcomingEventRefresh, upcomingEvents } from './upcomingEvents';
 
 type FormState = {
   rider: string;
@@ -112,12 +120,15 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 export default function App() {
   const [form, setForm] = useState<FormState>(() => createDefaultFormState());
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [horseProfileForm, setHorseProfileForm] = useState<HorseProfileFormState>(() => createDefaultHorseProfileForm());
+  const [horseProfiles, setHorseProfiles] = useState(() => loadHorseProfiles());
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCombination, setSelectedCombination] = useState('');
   const [selectedRider, setSelectedRider] = useState('all');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const sortedHorseProfiles = useMemo(() => sortHorseProfiles(horseProfiles), [horseProfiles]);
   const bestResult = sortedResults[0];
   const savedResultRecords = useMemo(() => results.map(resultFromStoredResult), [results]);
   const allResultRecords = useMemo(() => [...publicResults, ...savedResultRecords], [savedResultRecords]);
@@ -128,6 +139,7 @@ export default function App() {
   );
   const publicSourceCount = new Set(publicResults.map((result) => result.sourceId)).size;
   const latestRefresh = latestCollectedAt(publicResults);
+  const latestUpcomingRefresh = latestUpcomingEventRefresh(upcomingEvents);
   const options = combinationOptions(consolidatedResults);
   const activeCombination = selectedCombination || options[0]?.key || '';
   const prediction = useMemo(
@@ -158,6 +170,10 @@ export default function App() {
 
   const updateField = (field: keyof FormState, value: string) => {
     setForm((current) => ({ ...current, [field]: value }));
+  };
+
+  const updateHorseProfileField = (field: keyof HorseProfileFormState, value: string) => {
+    setHorseProfileForm((current) => ({ ...current, [field]: value }));
   };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
@@ -192,6 +208,22 @@ export default function App() {
   const clearResults = () => {
     setResults([]);
     saveResults([]);
+  };
+
+  const handleHorseProfileSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const profile = horseProfileFromForm(horseProfileForm, crypto.randomUUID(), new Date().toISOString());
+    const nextProfiles = [profile, ...horseProfiles.filter((existing) => existing.name !== profile.name)];
+    setHorseProfiles(nextProfiles);
+    saveHorseProfiles(nextProfiles);
+    setHorseProfileForm(createDefaultHorseProfileForm());
+  };
+
+  const removeHorseProfile = (id: string) => {
+    const nextProfiles = horseProfiles.filter((profile) => profile.id !== id);
+    setHorseProfiles(nextProfiles);
+    saveHorseProfiles(nextProfiles);
   };
 
   return (
@@ -240,6 +272,11 @@ export default function App() {
           <strong>{publicResults.length}</strong>
           <p>{publicSourceCount} sources, refreshed {formatDateTime(latestRefresh)}</p>
         </article>
+        <article>
+          <span>Upcoming</span>
+          <strong>{upcomingEvents.length}</strong>
+          <p>global events, refreshed {formatDateTime(latestUpcomingRefresh)}</p>
+        </article>
       </section>
 
       <section className="platform-strip" aria-labelledby="platform-formats-heading">
@@ -255,6 +292,192 @@ export default function App() {
               <p>{format.copy}</p>
             </article>
           ))}
+        </div>
+      </section>
+
+      <section className="horse-data-card" aria-labelledby="horse-data-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Horse data</p>
+            <h2 id="horse-data-heading">Add horse profile data</h2>
+          </div>
+          <span className="data-pill">{sortedHorseProfiles.length} saved</span>
+        </div>
+
+        <form className="horse-profile-form" onSubmit={handleHorseProfileSubmit}>
+          <div className="form-grid horse-profile-grid">
+            <label>
+              Horse name
+              <input
+                required
+                value={horseProfileForm.name}
+                onChange={(event) => updateHorseProfileField('name', event.target.value)}
+                placeholder="Competition name"
+              />
+            </label>
+            <label>
+              Registered name
+              <input
+                value={horseProfileForm.registeredName}
+                onChange={(event) => updateHorseProfileField('registeredName', event.target.value)}
+                placeholder="Official registry name"
+              />
+            </label>
+            <label>
+              FEI ID
+              <input
+                value={horseProfileForm.feiId}
+                onChange={(event) => updateHorseProfileField('feiId', event.target.value)}
+                placeholder="e.g. 107BH10"
+              />
+            </label>
+            <label>
+              Country
+              <input
+                required
+                value={horseProfileForm.country}
+                onChange={(event) => updateHorseProfileField('country', event.target.value)}
+                maxLength={3}
+                placeholder="GBR"
+              />
+            </label>
+            <label>
+              Sex
+              <input
+                value={horseProfileForm.sex}
+                onChange={(event) => updateHorseProfileField('sex', event.target.value)}
+                placeholder="Mare, gelding, stallion"
+              />
+            </label>
+            <label>
+              Birth year
+              <input
+                inputMode="numeric"
+                value={horseProfileForm.birthYear}
+                onChange={(event) => updateHorseProfileField('birthYear', event.target.value)}
+                placeholder="2014"
+              />
+            </label>
+            <label>
+              Color
+              <input
+                value={horseProfileForm.color}
+                onChange={(event) => updateHorseProfileField('color', event.target.value)}
+                placeholder="Bay"
+              />
+            </label>
+            <label>
+              Owner
+              <input
+                value={horseProfileForm.owner}
+                onChange={(event) => updateHorseProfileField('owner', event.target.value)}
+                placeholder="Owner or syndicate"
+              />
+            </label>
+          </div>
+          <label>
+            Notes
+            <textarea
+              value={horseProfileForm.notes}
+              onChange={(event) => updateHorseProfileField('notes', event.target.value)}
+              placeholder="Pedigree notes, previous rider, quirks, or source links"
+            />
+          </label>
+          <button type="submit">Save horse profile</button>
+        </form>
+
+        {sortedHorseProfiles.length === 0 ? (
+          <div className="empty-state">
+            <strong>No horse profiles yet.</strong>
+            <p>Add horse records here, then connect them to public results and predictions as the backend comes online.</p>
+          </div>
+        ) : (
+          <div className="table-wrap">
+            <table className="horse-profile-table">
+              <thead>
+                <tr>
+                  <th>Horse</th>
+                  <th>Registry</th>
+                  <th>Profile</th>
+                  <th>Owner</th>
+                  <th aria-label="Actions" />
+                </tr>
+              </thead>
+              <tbody>
+                {sortedHorseProfiles.map((profile) => (
+                  <tr key={profile.id}>
+                    <td>
+                      <strong>{profile.name}</strong>
+                      <span>{profile.country}</span>
+                    </td>
+                    <td>
+                      <strong>{profile.feiId || 'No FEI ID'}</strong>
+                      <span>{profile.registeredName || 'No registered name yet'}</span>
+                    </td>
+                    <td>
+                      <strong>{[profile.sex, profile.birthYear].filter(Boolean).join(' / ') || 'Profile pending'}</strong>
+                      <span>{profile.color || 'Color pending'}</span>
+                    </td>
+                    <td>
+                      <strong>{profile.owner || 'Owner pending'}</strong>
+                      <span>{profile.notes || 'No notes'}</span>
+                    </td>
+                    <td>
+                      <button className="link-button" type="button" onClick={() => removeHorseProfile(profile.id)}>
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      <section className="results-card upcoming-events-card" aria-labelledby="upcoming-events-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Worldwide calendar</p>
+            <h2 id="upcoming-events-heading">Upcoming event feed</h2>
+          </div>
+          <span className="data-pill">Daily FEI refresh ready</span>
+        </div>
+        <p className="supporting-copy">
+          The scheduled refresh writes normalized public calendar rows to `data/upcoming_events.json`; this table shows
+          the frontend contract until live data is promoted.
+        </p>
+        <div className="table-wrap">
+          <table className="upcoming-events-table">
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>Dates</th>
+                <th>Country</th>
+                <th>Level</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              {upcomingEvents.map((event) => (
+                <tr key={event.sourceEventId}>
+                  <td>
+                    <strong>{event.name}</strong>
+                    <span>{event.discipline}</span>
+                  </td>
+                  <td>
+                    <strong>{formatDate(event.startDate)}</strong>
+                    <span>{event.endDate ? `to ${formatDate(event.endDate)}` : 'single day'}</span>
+                  </td>
+                  <td>{event.country}</td>
+                  <td>{event.level}</td>
+                  <td>
+                    <span className="source-badge">{sourceLabel(event.sourceId)}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </section>
 

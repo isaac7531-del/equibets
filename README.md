@@ -13,6 +13,8 @@ gambling settlement flows.
   time penalties.
 - Saves horse-and-rider results to local browser storage with level and country
   metadata.
+- Saves richer local horse profile records, including FEI ID, registry name,
+  country, owner, and notes.
 - Combines saved user scores with public sample results into one consolidated
   form guide.
 - Uses source priority to keep official/public results ahead of duplicate
@@ -117,6 +119,27 @@ Use `--storage-state data/fei_state.json` to reuse browser cookies,
 `--form-field name=value` for FEI form controls that need explicit values in a
 particular session, `--event-url` to crawl a known event page directly, and
 `FEI_COOKIE` or `--cookie` when the FEI Data session requires login.
+
+## Upcoming event refresh
+
+Upcoming global eventing calendar rows are normalized by
+`equibets.upcoming_events` and written to `data/upcoming_events.json`.
+
+Example:
+
+```bash
+FEI_COOKIE="your-data-fei-session-cookie" \
+python3 -m equibets.upcoming_events \
+  --days-ahead 180 \
+  --output data/upcoming_events.json \
+  --storage-state data/fei_state.json
+```
+
+The scheduled GitHub Actions workflow at
+`.github/workflows/event-data-refresh.yml` runs tests/builds daily, then refreshes
+upcoming FEI events and recent FEI results when the `FEI_COOKIE` repository
+secret is configured. It uploads the refreshed JSON files as workflow artifacts
+for review before any production data publish step.
 
 ## Probability engine
 

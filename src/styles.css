@@ -90,6 +90,7 @@ button:disabled {
 .hero-card,
 .dashboard article,
 .platform-strip,
+.horse-data-card,
 .calculator-card,
 .results-card,
 .prediction-card,
@@ -133,7 +134,7 @@ button:disabled {
 .dashboard {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   margin-bottom: 1rem;
 }
 
@@ -203,10 +204,63 @@ button:disabled {
 }
 
 .calculator-card,
+.horse-data-card,
 .results-card,
 .prediction-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
+}
+
+.horse-data-card {
+  margin-bottom: 1rem;
+}
+
+.upcoming-events-card {
+  margin-bottom: 1rem;
+}
+
+.supporting-copy {
+  color: #526050;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+
+.horse-profile-form {
+  background: #f7efe0;
+  border: 1px solid rgba(35, 67, 45, 0.12);
+  border-radius: 1.25rem;
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.horse-profile-form > button {
+  justify-self: start;
+}
+
+.horse-profile-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.data-pill {
+  background: #e5f0df;
+  border-radius: 999px;
+  color: #23432d;
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  padding: 0.5rem 0.7rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.horse-profile-table {
+  min-width: 920px;
+}
+
+.upcoming-events-table {
+  min-width: 760px;
 }
 
 .section-heading h2,
@@ -623,9 +677,12 @@ td span {
   }
 
   .dashboard {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .horse-profile-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 620px) {
@@ -636,6 +693,7 @@ td span {
   .dashboard,
   .platform-cards,
   .form-grid,
+  .horse-profile-grid,
   .browser-heading,
   .level-list div,
   .market-roadmap ul,
