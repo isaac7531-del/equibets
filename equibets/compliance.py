@@ -69,7 +69,8 @@ def require_source_approval(
         raise SourceComplianceError(f"{source_id} is missing from source compliance policy")
     if not policy.approved_for_ingest:
         raise SourceComplianceError(
-            f"{source_id} is not approved for automated ingest. Review terms/robots/licence before running {job_type}."
+            f"{source_id} automated ingest is disabled in source_compliance.json. "
+            f"Enable approved_for_ingest and {job_type} after confirming the source can be used this way."
         )
     if job_type not in policy.allowed_job_types:
         allowed = ", ".join(policy.allowed_job_types) or "none"

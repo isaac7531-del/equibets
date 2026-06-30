@@ -136,9 +136,10 @@ particular session, `--event-url` to crawl a known event page directly, and
 
 Upcoming global eventing calendar rows are normalized by
 `equibets.upcoming_events` and written to `data/upcoming_events.json`.
-Automated imports are blocked until `data/source_compliance.json` explicitly
-marks the source as approved for the requested job type after terms, robots, and
-licence review.
+Automated imports stay disabled until `data/source_compliance.json` explicitly
+marks the source as enabled for the requested job type. If you are satisfied the
+public source can be used this way, set `approved_for_ingest` and
+`allowed_job_types` there.
 
 Example:
 

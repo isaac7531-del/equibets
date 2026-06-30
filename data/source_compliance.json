@@ -12,7 +12,7 @@
       "allowed_job_types": [],
       "reviewed_at": null,
       "reviewed_by": null,
-      "notes": "Set approved_for_ingest=true and list allowed job types only after confirming FEI terms, robots.txt, copyright, and access/licence requirements permit the planned use."
+      "notes": "Owner/source-use switch. If you have confirmed this public FEI data use is permitted for calendar/results ingestion, set approved_for_ingest=true and allowed_job_types=[\"calendar\",\"results\"]."
     },
     {
       "source_id": "manual_upload",

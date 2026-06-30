@@ -82,10 +82,9 @@ npm run build
 python3 -m unittest discover -s tests
 ```
 
-Before public marketing, review `data/source_compliance.json`, confirm the
-source terms/robots/licence permit the job types you need, then run the
-event-data refresh workflow with `FEI_COOKIE` configured and review these
-artifacts:
+Before public marketing, update `data/source_compliance.json` to enable the
+source job types you want to run, then run the event-data refresh workflow with
+`FEI_COOKIE` configured and review these artifacts:
 
 - `data/upcoming_events.json`
 - `data/fei_results.json`

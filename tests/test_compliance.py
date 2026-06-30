@@ -8,7 +8,7 @@ from equibets.compliance import SourceComplianceError, require_source_approval
 
 class SourceComplianceTests(unittest.TestCase):
     def test_default_fei_policy_blocks_automated_ingest(self):
-        with self.assertRaisesRegex(SourceComplianceError, "not approved"):
+        with self.assertRaisesRegex(SourceComplianceError, "disabled in source_compliance"):
             require_source_approval("data_fei", "calendar")
 
     def test_approved_policy_allows_configured_job_type(self):

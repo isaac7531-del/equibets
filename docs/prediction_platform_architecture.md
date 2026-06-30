@@ -4,10 +4,10 @@ This document defines the target MVP architecture for an FEI/eventing prediction
 platform. The platform is an analytics and free-play prediction product, not a
 real-money betting system.
 
-## Compliance-first data policy
+## Source-use data policy
 
-Before ingesting any source, create a `data_sources` record and complete the
-source compliance review:
+Before ingesting any source, create a `data_sources` record and record the
+source-use review:
 
 - confirm terms of service permit the planned use;
 - check robots.txt and crawl-delay expectations;
@@ -42,10 +42,10 @@ specific page type, use one of these alternatives:
 
 1. **Source review**
    - Admin creates/updates `data_sources`.
-   - Source is marked `approved_for_ingest` only after terms/robots/licence
-     review passes.
-   - Import CLIs call the source-compliance gate before making network requests.
-     The default FEI policy is blocked until a reviewed policy explicitly allows
+   - Source is marked `approved_for_ingest` only after the owner/admin confirms
+     that the public source can be used for the requested job type.
+   - Import CLIs call the source-use gate before making network requests. The
+     default FEI policy is disabled until the config explicitly allows
      `calendar`, `entries`, or `results` jobs.
 
 2. **Upcoming events import**
