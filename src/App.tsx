@@ -764,7 +764,9 @@ export default function App() {
                     <th>Level</th>
                     <th>Source</th>
                     <th>Total</th>
-                    <th>Phases</th>
+                    <th>D</th>
+                    <th>SJ</th>
+                    <th>XC</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -788,10 +790,11 @@ export default function App() {
                         </span>
                       </td>
                       <td className="total-cell">{finishingScore(result).toFixed(1)}</td>
+                      <td>{result.dressageScore.toFixed(1)}</td>
+                      <td>{(result.showJumpingPenalties + (result.showJumpingTimePenalties ?? 0)).toFixed(1)}</td>
                       <td className="breakdown-cell">
-                        D {result.dressageScore.toFixed(1)} / SJ {result.showJumpingPenalties.toFixed(1)} / XC{' '}
                         {(result.crossCountryJumpPenalties + result.crossCountryTimePenalties).toFixed(1)}
-                        <span>{result.status ?? 'completed'}{result.merStatus ? ` - MER ${result.merStatus}` : ''}</span>
+                        <span>{formatResultStatus(result.status, result.merStatus)}</span>
                       </td>
                     </tr>
                   ))}
@@ -875,6 +878,11 @@ type CombinationSummary = {
 
 const eventKey = (result: { eventName: string; eventDate: string; country: string }) =>
   `${result.eventName}::${result.eventDate}::${result.country}`;
+
+const formatResultStatus = (status = 'completed', merStatus = '') => {
+  const mer = merStatus.trim();
+  return mer ? `${status} / ${mer}` : status;
+};
 
 const buildEventSummaries = (records: ReturnType<typeof consolidateResults>): EventSummary[] =>
   [...records.reduce((events, result) => {
