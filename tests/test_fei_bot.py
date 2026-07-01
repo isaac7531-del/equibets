@@ -106,6 +106,18 @@ class NavigatingPastShowsPage(FakePastShowsPage):
         return super().content()
 
 
+class GotoTimeoutPage(FakePastShowsPage):
+    url = CALENDAR_SEARCH_URL
+
+    def __init__(self):
+        super().__init__()
+        self.goto_calls = []
+
+    def goto(self, url, wait_until, timeout):
+        self.goto_calls.append((url, wait_until, timeout))
+        raise RuntimeError("Page.goto: Timeout 60000ms exceeded.")
+
+
 class FakePastShowsClient(FeiBrowserClient):
     def __init__(self, page):
         self.page = page
@@ -378,6 +390,18 @@ class FeiBotTests(unittest.TestCase):
 
         self.assertIn("Badminton Horse Trials", html)
         self.assertGreaterEqual(page.content_calls, 2)
+        self.assertIn(("domcontentloaded", 10_000), page.load_state_waits)
+        self.assertIn(("networkidle", 10_000), page.load_state_waits)
+        self.assertIn(500, page.timeout_waits)
+
+    def test_browser_get_continues_after_committed_navigation_timeout(self):
+        page = GotoTimeoutPage()
+        client = FakePastShowsClient(page)
+
+        html = client.get(CALENDAR_SEARCH_URL)
+
+        self.assertIn("<form>", html)
+        self.assertEqual(page.goto_calls, [(CALENDAR_SEARCH_URL, "domcontentloaded", 60_000)])
         self.assertIn(("domcontentloaded", 10_000), page.load_state_waits)
         self.assertIn(("networkidle", 10_000), page.load_state_waits)
         self.assertIn(500, page.timeout_waits)

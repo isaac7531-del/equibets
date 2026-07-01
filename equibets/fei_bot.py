@@ -177,8 +177,7 @@ class FeiBrowserClient:
         self._discard_storage_state_on_close = False
 
     def get(self, url: str) -> str:
-        page = self._ensure_page()
-        page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+        self._goto(url)
         self._wait_ready()
         return self._read_content()
 
@@ -190,14 +189,14 @@ class FeiBrowserClient:
     ) -> str:
         page = self._ensure_page()
         if page.url != url:
-            page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+            self._goto(url)
             self._wait_ready()
         form_count = page.locator("form").count()
         if form_count == 0:
             for attempt in range(1, 4):
                 self._reset_browser_session()
                 page = self._ensure_page()
-                page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+                self._goto(url)
                 self._wait_ready()
                 form_count = page.locator("form").count()
                 if form_count:
@@ -348,6 +347,15 @@ class FeiBrowserClient:
         )
         return self._page
 
+    def _goto(self, url: str) -> None:
+        page = self._ensure_page()
+        try:
+            page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+        except Exception as exc:
+            if not self._is_navigation_timeout(exc) or _is_blank_page_url(getattr(page, "url", "")):
+                raise
+            self._settle_after_transient_navigation(page)
+
     def _reset_browser_session(self) -> None:
         self._ignore_storage_state = True
         for item in (self._browser, self._playwright):
@@ -437,6 +445,11 @@ class FeiBrowserClient:
             "Unable to retrieve content because the page is navigating" in message
             or "Execution context was destroyed" in message
         )
+
+    @staticmethod
+    def _is_navigation_timeout(exc: Exception) -> bool:
+        message = str(exc)
+        return "Page.goto:" in message and "Timeout" in message
 
     @staticmethod
     def _settle_after_transient_navigation(page) -> None:
@@ -1460,6 +1473,10 @@ def _write_raw(raw_dir: Path | None, url: str, html: str) -> None:
     raw_dir.mkdir(parents=True, exist_ok=True)
     path = raw_dir / f"{_stable_id(url)}.html"
     path.write_text(html, encoding="utf-8")
+
+
+def _is_blank_page_url(url: str) -> bool:
+    return url in {"", "about:blank"}
 
 
 def _run_with_timeout(callback: Callable[[], object], timeout_seconds: float) -> bool:
