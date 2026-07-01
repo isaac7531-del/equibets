@@ -26,6 +26,7 @@ import {
   formatCompetitionClasses,
   formatDate as formatLiveDate,
   formatLiveEventTitle,
+  formatLiveScoreValue,
   formatLiveWindow,
   formatSourceList,
   getFeaturedLiveEvent,
@@ -359,11 +360,11 @@ export default function App() {
                             <strong>{standing.horse_name}</strong>
                             <span>{standing.rider_name}</span>
                           </td>
-                          <td className="total-cell">{standing.finishing_score.toFixed(1)}</td>
+                          <td className="total-cell">{formatLiveScoreValue(standing.finishing_score)}</td>
                           <td className="breakdown-cell live-breakdown-cell">
-                            <span>D {standing.dressage_score.toFixed(1)}</span>
-                            <span>SJ {standing.show_jumping_penalties.toFixed(1)}</span>
-                            <span>XC {standing.cross_country_penalties.toFixed(1)}</span>
+                            <span>D {formatLiveScoreValue(standing.dressage_score)}</span>
+                            <span>SJ {formatLiveScoreValue(standing.show_jumping_penalties)}</span>
+                            <span>XC {formatLiveScoreValue(standing.cross_country_penalties)}</span>
                           </td>
                         </tr>
                       ))}
