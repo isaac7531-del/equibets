@@ -3,6 +3,7 @@ import {
   describeLiveFreshness,
   formatCompetitionClasses,
   formatLiveEventTitle,
+  formatLiveScoreValue,
   formatLiveWindow,
   formatSourceList,
   getLiveLeader,
@@ -61,6 +62,13 @@ describe('live score helpers', () => {
 
   it('formats public source IDs for display', () => {
     expect(formatSourceList(['data_fei'])).toBe('FEI Data');
+  });
+
+  it('formats missing live phase values as explicit dashes', () => {
+    expect(formatLiveScoreValue(28)).toBe('28.0');
+    expect(formatLiveScoreValue(null)).toBe('--');
+    expect(formatLiveScoreValue(undefined)).toBe('--');
+    expect(formatLiveScoreValue(Number.NaN)).toBe('--');
   });
 
   it('normalizes FEI class lists for event labels', () => {
