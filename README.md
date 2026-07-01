@@ -3,27 +3,57 @@
 Eventing form guide, results calculator, browser-based score tracker, and data
 source registry.
 
+Equibets is currently a non-gambling analytics and free prediction product. It
+does not include real-money betting, deposits, withdrawals, paid odds, or
+gambling settlement flows.
+
 ## What it does
 
 - Calculates dressage, show jumping, cross-country jumping, and cross-country
   time penalties.
 - Saves horse-and-rider results to local browser storage with level and country
   metadata.
+- Saves richer local horse profile records, including FEI ID, registry name,
+  country, owner, and notes.
 - Combines saved user scores with public sample results into one consolidated
   form guide.
 - Uses source priority to keep official/public results ahead of duplicate
   user-entered scores.
 - Estimates a likely finishing score from the most recent consolidated starts.
 - Tracks public event-results sources for FEI and national-event coverage.
+- Builds `data/horse_index.json` from every collected result so the production
+  corpus can cover all horses found in scraped FEI/national eventing data.
 
 ## Website application
 
 The website is a finished static application: it works with no backend, ships
-with curated public result examples, and folds any locally saved scores into the
-same consolidation and prediction workflow.
+with curated public result examples while the full scrape pipeline is being
+promoted, and folds any locally saved scores into the same consolidation and
+prediction workflow.
+
+The frontend now also ships as an installable app-style PWA. Browsers can use
+`public/manifest.webmanifest`, `public/app-icon.svg`, and `public/sw.js` to show
+standalone install prompts and cache the app shell for repeat visits.
+
+Production domain setup for `equibets.app` is documented in
+`docs/equibets_app_deployment.md`.
 
 See `docs/results_calculator_feature.md` for the consolidation rules, prediction
 logic, and future weekly public-data update flow.
+
+See `docs/legal_eventing_mvp_plan.md` for the step-by-step MVP plan covering
+rankings, free prediction markets, backend APIs, frontend pages, compliance
+boundaries, and the recommended stack.
+
+See `docs/prediction_platform_architecture.md` and
+`docs/prediction_platform_schema.sql` for the full FEI/eventing prediction
+platform architecture and target PostgreSQL schema.
+The executable PostgreSQL migration starts at
+`db/migrations/001_prediction_platform_schema.sql`.
+
+See `docs/platform_schema.sql` for the target PostgreSQL contract for riders,
+horses, combinations, events, results, model runs, free prediction markets, user
+predictions, and leaderboards.
 
 ## Dependency setup
 
@@ -43,8 +73,8 @@ npm run dev
 ## Deployment
 
 The website is configured for Vercel in `vercel.json`. Follow
-`docs/vercel_deployment.md` to connect the GitHub repository to Vercel and point
-the GoDaddy-owned `equibets.app` domain at the production deployment.
+`docs/equibets_app_deployment.md` to connect the GitHub repository to Vercel and
+point the GoDaddy-owned `equibets.app` domain at the production deployment.
 
 ## Checks
 
@@ -107,3 +137,54 @@ Use `--storage-state data/fei_state.json` to reuse browser cookies,
 `--form-field name=value` for FEI form controls that need explicit values in a
 particular session, `--event-url` to crawl a known event page directly, and
 `FEI_COOKIE` or `--cookie` when the FEI Data session requires login.
+
+## Upcoming event refresh
+
+Upcoming global eventing calendar rows are normalized by
+`equibets.upcoming_events` and written to `data/upcoming_events.json`.
+Automated imports stay disabled until `data/source_compliance.json` explicitly
+marks the source as enabled for the requested job type. If you are satisfied the
+public source can be used this way, set `approved_for_ingest` and
+`allowed_job_types` there.
+
+Example:
+
+```bash
+FEI_COOKIE="your-data-fei-session-cookie" \
+python3 -m equibets.upcoming_events \
+  --days-ahead 180 \
+  --output data/upcoming_events.json \
+  --storage-state data/fei_state.json \
+  --compliance-policy data/source_compliance.json
+```
+
+The scheduled GitHub Actions workflow at
+`.github/workflows/event-data-refresh.yml` runs tests/builds daily, then refreshes
+upcoming FEI events and recent FEI results when the `FEI_COOKIE` repository
+secret is configured and the source compliance policy allows `calendar` and
+`results` jobs. It uploads the refreshed JSON files as workflow artifacts for
+review before any production data publish step.
+
+## Horse index
+
+`equibets.horses` builds a horse index from every collected result. It is the
+path to covering all currently active eventing horses as source coverage grows.
+
+Example:
+
+```bash
+python3 -m equibets.horses \
+  --results data/fei_results.json \
+  --output data/horse_index.json \
+  --active-window-days 730
+```
+
+The scheduled refresh workflow runs this after FEI result collection and uploads
+`data/horse_index.json` alongside the raw refresh artifacts.
+
+## Probability engine
+
+The initial free-play probability model lives in `equibets.probability`. It
+estimates phase expectations from recent consolidated results and runs a Monte
+Carlo simulation for non-gambling market probabilities such as win, top 3, top
+10, best dressage, clear show jumping, and clear cross-country.

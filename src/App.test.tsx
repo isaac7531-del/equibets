@@ -21,21 +21,28 @@ describe('App', () => {
       xcJumping: string;
     },
   ) => {
-    await user.type(screen.getByLabelText(/^rider$/i), result.rider);
-    await user.type(screen.getByLabelText(/^horse$/i), result.horse);
-    await user.type(screen.getByLabelText(/^event$/i), result.event);
-    await user.selectOptions(screen.getByLabelText(/^level$/i), result.level);
-    if (result.country) {
-      await user.clear(screen.getByLabelText(/^country$/i));
-      await user.type(screen.getByLabelText(/^country$/i), result.country);
+    const calculatorForm = screen.getByLabelText(/^event$/i).closest('form');
+    if (!calculatorForm) {
+      throw new Error('Calculator form not found');
     }
-    await user.clear(screen.getByLabelText(/dressage/i));
-    await user.type(screen.getByLabelText(/dressage/i), result.dressage);
-    await user.clear(screen.getByLabelText(/show jumping/i));
-    await user.type(screen.getByLabelText(/show jumping/i), result.showJumping);
-    await user.clear(screen.getByLabelText(/xc jumping/i));
-    await user.type(screen.getByLabelText(/xc jumping/i), result.xcJumping);
-    await user.click(screen.getByRole('button', { name: /save result/i }));
+    const calculator = within(calculatorForm);
+
+    await user.type(calculator.getByLabelText(/^rider$/i), result.rider);
+    await user.type(calculator.getByLabelText(/^horse$/i), result.horse);
+    await user.type(calculator.getByLabelText(/^event$/i), result.event);
+    await user.selectOptions(calculator.getByLabelText(/^level$/i), result.level);
+    if (result.country) {
+      const resultCountryInput = calculator.getByLabelText(/^country$/i);
+      await user.clear(resultCountryInput);
+      await user.type(resultCountryInput, result.country);
+    }
+    await user.clear(calculator.getByLabelText(/dressage/i));
+    await user.type(calculator.getByLabelText(/dressage/i), result.dressage);
+    await user.clear(calculator.getByLabelText(/show jumping/i));
+    await user.type(calculator.getByLabelText(/show jumping/i), result.showJumping);
+    await user.clear(calculator.getByLabelText(/xc jumping/i));
+    await user.type(calculator.getByLabelText(/xc jumping/i), result.xcJumping);
+    await user.click(calculator.getByRole('button', { name: /save result/i }));
   };
 
   it('saves a calculated result to the results table', async () => {
@@ -67,6 +74,55 @@ describe('App', () => {
     expect(screen.getAllByText('Atlas Bay').length).toBeGreaterThan(0);
     expect(screen.getAllByText('FEI').length).toBeGreaterThan(0);
     expect(screen.getByText(/medium confidence/i)).toBeInTheDocument();
+  });
+
+  it('shows the free-play prediction market roadmap without gambling flows', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /prediction markets roadmap/i })).toBeInTheDocument();
+    expect(screen.getByText('Win market')).toBeInTheDocument();
+    expect(screen.getByText('Head-to-head matchups')).toBeInTheDocument();
+    expect(screen.getByText(/No deposits, withdrawals, stakes, or paid betting odds/i)).toBeInTheDocument();
+  });
+
+  it('shows both web dashboard and installable app formats', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /built for browser use and installable app workflows/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 3, name: /web dashboard/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 3, name: /installable app/i })).toBeInTheDocument();
+    expect(screen.getByText(/manifest, app icon, standalone display mode/i)).toBeInTheDocument();
+  });
+
+  it('shows the worldwide upcoming event feed', () => {
+    render(<App />);
+
+    const upcomingFeed = screen.getByRole('region', { name: /upcoming event feed/i });
+    expect(upcomingFeed).toHaveTextContent('Badminton Horse Trials');
+    expect(upcomingFeed).toHaveTextContent('CHIO Aachen');
+    expect(upcomingFeed).toHaveTextContent('Daily FEI refresh ready');
+    expect(within(upcomingFeed).getAllByText('FEI').length).toBeGreaterThan(0);
+  });
+
+  it('saves horse profile data to the horse profile table', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    const horseData = screen.getByRole('region', { name: /add horse profile data/i });
+
+    await user.type(within(horseData).getByLabelText(/^horse name$/i), 'Pocket Rocket');
+    await user.type(within(horseData).getByLabelText(/^registered name$/i), 'Pocket Rocket II');
+    await user.type(within(horseData).getByLabelText(/^fei id$/i), '107bh10');
+    await user.clear(within(horseData).getByLabelText(/^country$/i));
+    await user.type(within(horseData).getByLabelText(/^country$/i), 'gbr');
+    await user.type(within(horseData).getByLabelText(/^sex$/i), 'Gelding');
+    await user.type(within(horseData).getByLabelText(/^birth year$/i), '2014');
+    await user.type(within(horseData).getByLabelText(/^owner$/i), 'Stone Eventing');
+    await user.click(within(horseData).getByRole('button', { name: /save horse profile/i }));
+
+    expect(horseData).toHaveTextContent('Pocket Rocket');
+    expect(horseData).toHaveTextContent('107BH10');
+    expect(horseData).toHaveTextContent('Gelding / 2014');
+    expect(JSON.parse(window.localStorage.getItem('equibets.horseProfiles') ?? '[]')).toHaveLength(1);
   });
 
   it('filters the rider dropdown to show horses by level', async () => {
