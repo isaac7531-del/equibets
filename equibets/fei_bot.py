@@ -23,6 +23,8 @@ from urllib.error import HTTPError
 from urllib.parse import urlencode, urljoin, urlsplit
 from urllib.request import Request, build_opener
 
+from equibets.compliance import DATA_FILE as COMPLIANCE_FILE
+from equibets.compliance import require_source_approval
 from equibets.results import EventingResult, consolidate_results
 
 
@@ -411,6 +413,7 @@ class FeiDataBot:
         start_date: date | None = None,
         end_date: date | None = None,
         form_fields: Mapping[str, str] | None = None,
+        result_status: str | None = "With results",
     ) -> list[FeiEvent]:
         """Submit the FEI calendar search page and return discovered events."""
 
@@ -438,7 +441,7 @@ class FeiDataBot:
             if not set_field(("date", "end"), end_value):
                 set_field(("date", "to"), end_value)
         set_field(("discipline",), "Eventing")
-        set_field(("result", "status"), "With results")
+        set_field(("result", "status"), result_status)
         set_field(("search",), "Search")
         if form_fields:
             form.update(form_fields)
@@ -811,10 +814,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--challenge-wait", type=float, default=10.0, help="Seconds to wait for FEI JS challenges")
     parser.add_argument("--cookie", help="FEI session cookie header")
     parser.add_argument("--cookie-env", default="FEI_COOKIE", help="Environment variable containing FEI cookie")
+    parser.add_argument("--compliance-policy", type=Path, default=COMPLIANCE_FILE, help="Source compliance policy JSON")
     parser.add_argument("--verify", choices=("none", "warn", "require"), default="none")
     parser.add_argument("--dry-run", action="store_true", help="Collect and summarize without writing output")
     args = parser.parse_args(argv)
 
+    require_source_approval("data_fei", "results", path=args.compliance_policy)
     cookie = args.cookie or _env_value(args.cookie_env)
     client = _build_client(args, cookie)
     verifier = FeiVerifier(client) if args.verify != "none" else None
