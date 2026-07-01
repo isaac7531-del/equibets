@@ -738,39 +738,45 @@ def parse_calendar_events(html: str, page_url: str = CALENDAR_SEARCH_URL) -> lis
     seen_urls: set[str] = set()
     for headers, row in _iter_table_rows(html):
         links = [link for cell in row.cells for link in cell.links]
-        event_link = _choose_calendar_link(links)
-        if event_link is None:
-            continue
-
-        event_url = urljoin(page_url, event_link.href)
-        if event_url in seen_urls:
+        event_links = _calendar_event_links(links)
+        if not event_links:
             continue
 
         data = _row_mapping(headers, row)
-        event_name = _first_value(data, ("show name", "event name", "event")) or event_link.text or event_url
-        venue = _first_value(data, ("venue", "location")) or event_name
+        show_name = _first_value(data, ("show name", "show")) or _first_value(data, ("event name",))
         start_date = _first_date(data, ("start", "from")) or _first_date(data, ("date",))
         end_date = _first_date(data, ("end", "to")) or start_date
         country = _first_value(data, ("country", "nation", "nf")) or ""
-        level = _first_value(data, ("level", "category", "type", "competition", "event code", "events")) or ""
         discipline = _first_value(data, ("discipline",)) or "Eventing"
         result_link = _choose_result_link(links)
 
-        events.append(
-            FeiEvent(
-                source_event_id=_stable_id(event_url),
-                name=event_name,
-                url=event_url,
-                start_date=start_date,
-                end_date=end_date,
-                country=country,
-                discipline=discipline,
-                level=level,
-                venue=venue,
-                result_page_url=urljoin(page_url, result_link.href) if result_link else "",
+        for event_link in event_links:
+            event_url = urljoin(page_url, event_link.href)
+            if event_url in seen_urls:
+                continue
+
+            event_name = show_name or event_link.text or event_url
+            venue = _first_value(data, ("venue", "location")) or show_name or event_name
+            level = _level_from_link(event_link.text) or _first_value(
+                data,
+                ("level", "category", "type", "competition", "event code", "events"),
+            ) or ""
+
+            events.append(
+                FeiEvent(
+                    source_event_id=_stable_id(event_url),
+                    name=event_name,
+                    url=event_url,
+                    start_date=start_date,
+                    end_date=end_date,
+                    country=country,
+                    discipline=discipline,
+                    level=level,
+                    venue=venue,
+                    result_page_url=urljoin(page_url, result_link.href) if result_link else "",
+                )
             )
-        )
-        seen_urls.add(event_url)
+            seen_urls.add(event_url)
     return events
 
 
@@ -1125,6 +1131,9 @@ def _row_mapping(headers: Sequence[str], row: _Row) -> dict[str, str]:
 
 
 def _choose_calendar_link(links: Sequence[_Link]) -> _Link | None:
+    event_links = _calendar_event_links(links)
+    if event_links:
+        return event_links[0]
     for link in links:
         candidate = f"{link.href} {link.text}".lower()
         if "calendar" in candidate and any(keyword in candidate for keyword in ("event", "show")):
@@ -1134,6 +1143,27 @@ def _choose_calendar_link(links: Sequence[_Link]) -> _Link | None:
         if any(keyword in candidate for keyword in ("event", "show")):
             return link
     return None
+
+
+def _calendar_event_links(links: Sequence[_Link]) -> list[_Link]:
+    event_detail_links: list[_Link] = []
+    seen: set[str] = set()
+    for link in links:
+        candidate = link.href.lower()
+        if "eventdetail.aspx" not in candidate:
+            continue
+        if link.href in seen:
+            continue
+        event_detail_links.append(link)
+        seen.add(link.href)
+    return event_detail_links
+
+
+def _level_from_link(value: str) -> str:
+    match = re.search(r"\bCCI\s*\d\*?(?:-[SL])?\b|\bCCI\d\*?(?:-[SL])?\b|\bCCIO\s*\d\*?(?:-[SL])?\b", value, re.IGNORECASE)
+    if not match:
+        return ""
+    return re.sub(r"\s+", "", match.group(0).upper()).replace("CCIO", "CCIO")
 
 
 def _choose_result_link(links: Sequence[_Link]) -> _Link | None:

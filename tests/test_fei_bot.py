@@ -66,6 +66,16 @@ class FeiBotTests(unittest.TestCase):
         self.assertEqual(events[0].country, "GBR")
         self.assertEqual(events[0].level, "CCI5*-L")
 
+    def test_parse_calendar_events_prefers_event_detail_over_show_detail(self):
+        events = parse_calendar_events(calendar_results_with_show_and_event_links())
+
+        self.assertEqual(len(events), 2)
+        self.assertTrue(all("EventDetail.aspx" in event.url for event in events))
+        self.assertFalse(any("ShowDetail.aspx" in event.url for event in events))
+        self.assertEqual(events[0].name, "Strzegom Horse Trials")
+        self.assertEqual(events[0].level, "CCI4*-L")
+        self.assertEqual(events[1].level, "CCI3*-L")
+
     def test_parse_result_links_finds_result_pages_from_event_detail(self):
         links = parse_result_links(event_detail_html(), EVENT_URL)
 
@@ -222,6 +232,28 @@ def calendar_results_html():
         <td>GBR</td>
         <td>Eventing</td>
         <td>CCI5*-L</td>
+      </tr>
+    </table>
+    """
+
+
+def calendar_results_with_show_and_event_links():
+    return """
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Show Name</th>
+        <th>Country</th>
+        <th>Events</th>
+      </tr>
+      <tr>
+        <td>2026-06-26</td>
+        <td><a href="/Calendar/ShowDetail.aspx?p=show">Strzegom Horse Trials</a></td>
+        <td>POL</td>
+        <td>
+          <a href="/Calendar/EventDetail.aspx?p=cci4">CCI4*-L</a>
+          <a href="/Calendar/EventDetail.aspx?p=cci3">CCI3*-L</a>
+        </td>
       </tr>
     </table>
     """
