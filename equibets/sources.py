@@ -1,8 +1,4 @@
-"""Event-result source registry helpers.
-
-The project prioritizes FEI data while still tracking national-event sources
-that are important for broader coverage.
-"""
+"""FEI event-result source registry helpers."""
 
 from __future__ import annotations
 
