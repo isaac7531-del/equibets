@@ -70,6 +70,12 @@ npm ci
 npm run dev
 ```
 
+## Deployment
+
+The website is configured for Vercel in `vercel.json`. Follow
+`docs/equibets_app_deployment.md` to connect the GitHub repository to Vercel and
+point the GoDaddy-owned `equibets.app` domain at the production deployment.
+
 ## Checks
 
 ```bash

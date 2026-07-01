@@ -10,7 +10,8 @@ defaults for static PWA deployment.
 
 | Setting | Value |
 | --- | --- |
-| Build command | `npm ci && npm run build` |
+| Install command | `npm ci` |
+| Build command | `npm run build` |
 | Output directory | `dist` |
 | Production domain | `equibets.app` |
 | WWW redirect | `www.equibets.app` -> `equibets.app` |
@@ -19,16 +20,19 @@ defaults for static PWA deployment.
 
 1. Import the GitHub repository in Vercel.
 2. Select the Vite framework preset.
-3. Confirm build command `npm run build`.
-4. Confirm output directory `dist`.
-5. Add domains:
+3. Confirm install command `npm ci`.
+4. Confirm build command `npm run build`.
+5. Confirm output directory `dist`.
+6. Add domains:
    - `equibets.app`
    - `www.equibets.app`
-6. In your domain registrar DNS, add:
+7. In GoDaddy DNS management, keep the GoDaddy nameservers and add:
    - Apex `A`: `76.76.21.21`
    - `www` `CNAME`: `cname.vercel-dns.com`
-7. Wait for Vercel to issue HTTPS certificates.
-8. Set `equibets.app` as the primary domain so `www` redirects to the apex.
+8. Remove or replace any existing GoDaddy parking, forwarding, or conflicting
+   `A`, `AAAA`, and `CNAME` records for `@` or `www`.
+9. Wait for Vercel to issue HTTPS certificates.
+10. Set `equibets.app` as the primary domain so `www` redirects to the apex.
 
 ## Netlify launch steps
 
