@@ -505,6 +505,30 @@ class FeiBotTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             output = Path(tmp) / "fei_results.json"
             live_output = Path(tmp) / "live_scores.json"
+            compliance_policy = Path(tmp) / "source_compliance.json"
+            compliance_policy.write_text(
+                json.dumps(
+                    {
+                        "version": 1,
+                        "sources": [
+                            {
+                                "source_id": "data_fei",
+                                "display_name": "FEI Database",
+                                "base_url": "https://data.fei.org/",
+                                "robots_url": "https://data.fei.org/robots.txt",
+                                "terms_url": "https://inside.fei.org/fei/terms-and-conditions",
+                                "approved_for_ingest": True,
+                                "raw_storage_allowed": True,
+                                "allowed_job_types": ["results"],
+                                "reviewed_at": "2026-07-01T00:00:00Z",
+                                "reviewed_by": "test",
+                                "notes": "Approved only for this CLI fallback test.",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
             FeiResultStore(output).save([result])
             client = UnavailableFormClient()
 
@@ -520,6 +544,8 @@ class FeiBotTests(unittest.TestCase):
                         str(output),
                         "--live-output",
                         str(live_output),
+                        "--compliance-policy",
+                        str(compliance_policy),
                     ]
                 )
 
