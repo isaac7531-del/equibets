@@ -2,10 +2,10 @@ export type LiveScoreStanding = {
   rank: number;
   rider_name: string;
   horse_name: string;
-  finishing_score: number;
-  dressage_score: number;
-  show_jumping_penalties: number;
-  cross_country_penalties: number;
+  finishing_score: number | null;
+  dressage_score: number | null;
+  show_jumping_penalties: number | null;
+  cross_country_penalties: number | null;
   source_id: string;
   collected_at: string;
 };
@@ -88,6 +88,9 @@ const sourceLabels: Record<string, string> = {
 export const formatSourceId = (sourceId: string) => sourceLabels[sourceId] ?? sourceId;
 
 export const formatSourceList = (sourceIds: string[]) => sourceIds.map(formatSourceId).join(', ');
+
+export const formatLiveScoreValue = (value: number | null | undefined) =>
+  typeof value === 'number' && Number.isFinite(value) ? value.toFixed(1) : '--';
 
 export const formatCompetitionClasses = (value: string) =>
   value
