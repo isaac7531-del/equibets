@@ -77,10 +77,6 @@ export type CombinationPrediction = {
 
 export const SOURCE_LABELS: Record<string, string> = {
   data_fei: 'FEI',
-  british_eventing: 'British Eventing',
-  equestrian_australia: 'Equestrian Australia',
-  equestrian_sports_new_zealand: 'ESNZ',
-  usea: 'USEA',
   user_submission: 'My score',
 };
 

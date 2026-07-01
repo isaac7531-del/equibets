@@ -18,7 +18,6 @@ import {
   finishingScore,
   latestCollectedAt,
   predictFinishingScore,
-  resultFromStoredResult,
   SOURCE_LABELS,
 } from './results';
 import { loadResults, saveResults } from './storage';
@@ -63,7 +62,7 @@ const formatDate = (value: string) => new Intl.DateTimeFormat('en', { month: 'sh
 const formatDateTime = (value: string | null) =>
   value
     ? new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(value))
-    : 'No public data yet';
+    : 'No FEI data yet';
 const levelOptions = [
   'Starter',
   'Beginner Novice',
@@ -107,8 +106,7 @@ export default function App() {
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
   const bestResult = sortedResults[0];
-  const savedResultRecords = useMemo(() => results.map(resultFromStoredResult), [results]);
-  const allResultRecords = useMemo(() => [...publicResults, ...savedResultRecords], [savedResultRecords]);
+  const allResultRecords = useMemo(() => publicResults.filter((result) => result.sourceId === 'data_fei'), []);
   const consolidatedResults = useMemo(() => consolidateResults(allResultRecords), [allResultRecords]);
   const filteredConsolidatedResults = useMemo(
     () =>
@@ -122,7 +120,6 @@ export default function App() {
       }),
     [consolidatedResults, endDateFilter, searchQuery, selectedCountryFilter, selectedLevelFilter, selectedStatusFilter, startDateFilter],
   );
-  const publicSourceCount = new Set(publicResults.map((result) => result.sourceId)).size;
   const latestRefresh = latestCollectedAt(publicResults);
   const options = combinationOptions(consolidatedResults);
   const activeCombination = selectedCombination || options[0]?.key || '';
@@ -227,8 +224,8 @@ export default function App() {
           <p className="eyebrow">Equibets</p>
           <h1>Eventing form guide and score tracker</h1>
           <p className="hero-copy">
-            Capture your own scores, combine them with public eventing results, and estimate a horse-and-rider
-            combination's likely finishing score.
+            Mirror FEI Eventing results in one searchable database, track horse performance history, and estimate
+            a horse-and-rider combination's likely finishing score.
           </p>
         </div>
         <div className="hero-card" aria-live="polite">
@@ -262,9 +259,9 @@ export default function App() {
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
         <article>
-          <span>Public data</span>
+          <span>FEI rows</span>
           <strong>{publicResults.length}</strong>
-          <p>{publicSourceCount} sources, refreshed {formatDateTime(latestRefresh)}</p>
+          <p>FEI only, refreshed {formatDateTime(latestRefresh)}</p>
         </article>
       </section>
 

@@ -66,7 +66,8 @@ def events(
         FROM events e
         LEFT JOIN result_rows r ON r.fei_event_id = e.fei_event_id
         LEFT JOIN classes c ON c.id = r.class_id
-        WHERE (%(country)s IS NULL OR e.country = %(country)s)
+        WHERE (r.source_id IS NULL OR r.source_id = 'data_fei')
+          AND (%(country)s IS NULL OR e.country = %(country)s)
           AND (%(level)s IS NULL OR c.class_level = %(level)s OR r.event_level = %(level)s)
           AND (%(start_date)s IS NULL OR e.start_date >= %(start_date)s)
           AND (%(end_date)s IS NULL OR e.end_date <= %(end_date)s)
@@ -96,7 +97,8 @@ def results(
         JOIN combinations co ON co.combination_key = r.combination_key
         JOIN riders ON riders.rider_key = co.rider_key
         JOIN horses ON horses.horse_key = co.horse_key
-        WHERE (%(country)s IS NULL OR r.event_country = %(country)s)
+        WHERE r.source_id = 'data_fei'
+          AND (%(country)s IS NULL OR r.event_country = %(country)s)
           AND (%(level)s IS NULL OR r.event_level = %(level)s)
           AND (%(rider)s IS NULL OR riders.rider_name ILIKE '%%' || %(rider)s || '%%')
           AND (%(horse)s IS NULL OR horses.horse_name ILIKE '%%' || %(horse)s || '%%')
@@ -119,6 +121,7 @@ def combination_history(conn: Annotated[Any, Depends(connection)], combination_k
         JOIN riders ON riders.rider_key = co.rider_key
         JOIN horses ON horses.horse_key = co.horse_key
         WHERE r.combination_key = %s
+          AND r.source_id = 'data_fei'
         ORDER BY r.event_date DESC
         """,
         (combination_key,),

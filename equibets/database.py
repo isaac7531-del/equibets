@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS combinations (
 
 CREATE TABLE IF NOT EXISTS result_rows (
     source_record_id text PRIMARY KEY,
-    source_id text NOT NULL,
+    source_id text NOT NULL CHECK (source_id = 'data_fei'),
     source_priority integer NOT NULL,
     fei_event_id text REFERENCES events(fei_event_id),
     class_id bigint REFERENCES classes(id),
@@ -185,6 +185,8 @@ class PostgresStore:
         return int(row[0]) if row else None
 
     def upsert_result(self, result: EventingResult, *, event: FeiEvent | None = None, class_id: int | None = None) -> None:
+        if result.source_id != "data_fei":
+            raise ValueError("PostgreSQL result store accepts FEI rows only")
         rider_key = _entity_key(result.rider_fei_id, result.rider_name)
         horse_key = _entity_key(result.horse_fei_id, result.horse_name)
         combination_key = _combination_key(result)
