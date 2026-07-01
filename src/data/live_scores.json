@@ -5,7 +5,7 @@
       "country": "POL",
       "event_date": "2026-06-25",
       "event_name": "Strzegom",
-      "latest_collected_at": "2026-07-01T01:05:06+00:00",
+      "latest_collected_at": "2026-07-01T02:04:31+00:00",
       "level": "CCI4*-L, CCIO4*-NC-S, CCI3*-L, CCI3*-S, CCI2*-L, CCIP2-S",
       "result_count": 42,
       "source_ids": [
@@ -211,7 +211,7 @@
           "source_id": "data_fei"
         },
         {
-          "collected_at": "2026-07-01T01:05:06+00:00",
+          "collected_at": "2026-07-01T02:04:31+00:00",
           "cross_country_penalties": 20.8,
           "dressage_score": 33.1,
           "finishing_score": 53.9,
@@ -222,7 +222,7 @@
           "source_id": "data_fei"
         },
         {
-          "collected_at": "2026-07-01T01:05:06+00:00",
+          "collected_at": "2026-07-01T02:04:31+00:00",
           "cross_country_penalties": 17.2,
           "dressage_score": 37.7,
           "finishing_score": 54.9,
@@ -244,7 +244,7 @@
           "source_id": "data_fei"
         },
         {
-          "collected_at": "2026-07-01T01:05:06+00:00",
+          "collected_at": "2026-07-01T02:04:31+00:00",
           "cross_country_penalties": 25.0,
           "dressage_score": 33.5,
           "finishing_score": 62.5,
@@ -2373,8 +2373,8 @@
       ]
     }
   ],
-  "generated_at": "2026-07-01T01:05:50+00:00",
-  "latest_collected_at": "2026-07-01T01:05:06+00:00",
+  "generated_at": "2026-07-01T02:05:18+00:00",
+  "latest_collected_at": "2026-07-01T02:04:31+00:00",
   "result_count": 212,
   "source_ids": [
     "data_fei"
