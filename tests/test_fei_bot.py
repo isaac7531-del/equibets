@@ -67,6 +67,8 @@ class FakePastShowsPage:
 
     def __init__(self):
         self.evaluate_scripts = []
+        self.load_state_waits = []
+        self.timeout_waits = []
         self._content = "<html><form></form></html>"
 
     def locator(self, selector):
@@ -80,8 +82,28 @@ class FakePastShowsPage:
     def wait_for_function(self, script, timeout):
         raise RuntimeError("not selected")
 
+    def wait_for_load_state(self, state, timeout):
+        self.load_state_waits.append((state, timeout))
+
+    def wait_for_timeout(self, milliseconds):
+        self.timeout_waits.append(milliseconds)
+
     def content(self):
         return self._content
+
+
+class NavigatingPastShowsPage(FakePastShowsPage):
+    def __init__(self):
+        super().__init__()
+        self.content_calls = 0
+
+    def content(self):
+        self.content_calls += 1
+        if self.content_calls == 1:
+            raise RuntimeError(
+                "Page.content: Unable to retrieve content because the page is navigating and changing the content"
+            )
+        return super().content()
 
 
 class FakePastShowsClient(FeiBrowserClient):
@@ -347,6 +369,18 @@ class FeiBotTests(unittest.TestCase):
         self.assertIn('setHidden("__EVENTARGUMENT", argument)', fallback_script)
         self.assertIn("form.submit()", fallback_script)
         self.assertNotIn("typeof __doPostBack", fallback_script)
+
+    def test_open_past_shows_retries_content_during_navigation(self):
+        page = NavigatingPastShowsPage()
+        client = FakePastShowsClient(page)
+
+        html = client.open_past_shows()
+
+        self.assertIn("Badminton Horse Trials", html)
+        self.assertGreaterEqual(page.content_calls, 2)
+        self.assertIn(("domcontentloaded", 10_000), page.load_state_waits)
+        self.assertIn(("networkidle", 10_000), page.load_state_waits)
+        self.assertIn(500, page.timeout_waits)
 
     def test_browser_calendar_search_passes_field_intents_after_challenge_page(self):
         client = ChallengeCalendarBrowserClient()
