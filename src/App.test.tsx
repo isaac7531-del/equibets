@@ -71,6 +71,21 @@ describe('App', () => {
     expect(screen.queryByText('USEA')).not.toBeInTheDocument();
   });
 
+  it('searches FEI combinations by rider or horse and selects the match', async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.type(screen.getByLabelText(/search combinations by rider or horse/i), 'Sophie');
+
+    const searchResults = screen.getByRole('region', { name: /combination search results/i });
+    expect(searchResults).toHaveTextContent('Riverglass / Sophie Bell');
+    expect(searchResults).not.toHaveTextContent('Atlas Bay / Mia Hughes');
+
+    await user.click(within(searchResults).getByRole('button', { name: /Riverglass \/ Sophie Bell/i }));
+
+    expect(screen.getByText(/Based on 1 recent consolidated starts for Riverglass and Sophie Bell/i)).toBeInTheDocument();
+  });
+
   it('filters the rider dropdown to show horses by level', async () => {
     const user = userEvent.setup();
     render(<App />);

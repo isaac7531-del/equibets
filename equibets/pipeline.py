@@ -20,6 +20,7 @@ class PipelineSummary:
     run_id: str
     events_found: int
     events_opened: int
+    combinations_saved: int
     result_rows_saved: int
     horse_histories_saved: int
     combination_histories_saved: int
@@ -61,6 +62,8 @@ class FeiEventingPipeline:
         all_results: list[EventingResult] = []
         horse_history_count = 0
         combination_history_count = 0
+        combinations_seen: set[tuple[str, str]] = set()
+        history_targets_seen: set[tuple[str, str, str]] = set()
 
         for event in events:
             self.store.upsert_event(event)
@@ -75,8 +78,13 @@ class FeiEventingPipeline:
                 class_id = self.store.upsert_class(event, result.level, result.source_url)
                 self.store.upsert_result(result, event=event, class_id=class_id)
                 all_results.append(result)
+                combinations_seen.add((result.rider_name, result.horse_name))
 
             for result in event_results:
+                history_target = (result.horse_fei_id or result.horse_name, result.rider_fei_id or result.rider_name, result.rider_name)
+                if history_target in history_targets_seen:
+                    continue
+                history_targets_seen.add(history_target)
                 try:
                     horse_history, combination_history, _ = self.bot.collect_horse_history(
                         horse_name=result.horse_name,
@@ -94,6 +102,7 @@ class FeiEventingPipeline:
                     self.store.upsert_result(history_result)
                     self.store.link_history(history_result, history_type="horse")
                     all_results.append(history_result)
+                    combinations_seen.add((history_result.rider_name, history_result.horse_name))
                     horse_history_count += 1
                 for history_result in consolidate_results(combination_history):
                     self.store.link_history(history_result, history_type="combination")
@@ -111,6 +120,7 @@ class FeiEventingPipeline:
             run_id=run_id,
             events_found=len(events),
             events_opened=len(events),
+            combinations_saved=len(combinations_seen),
             result_rows_saved=len(all_results),
             horse_histories_saved=horse_history_count,
             combination_histories_saved=combination_history_count,
@@ -219,7 +229,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     print(
         "FEI daily pipeline complete: "
         f"run_id={summary.run_id}, events={summary.events_opened}, "
-        f"results={summary.result_rows_saved}, horse_history={summary.horse_histories_saved}, "
+        f"combinations={summary.combinations_saved}, results={summary.result_rows_saved}, "
+        f"horse_history={summary.horse_histories_saved}, "
         f"combination_history={summary.combination_histories_saved}, predictions={summary.predictions_saved}, "
         f"failures={summary.failures}"
     )

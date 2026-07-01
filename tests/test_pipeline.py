@@ -105,6 +105,7 @@ class PipelineTests(unittest.TestCase):
 
         self.assertEqual(bot.form_fields, {"ctl00$Main$ResultStatus": "With results"})
         self.assertEqual(summary.events_opened, 1)
+        self.assertEqual(summary.combinations_saved, 1)
         self.assertEqual(summary.result_rows_saved, 1)
         self.assertEqual(len(store.results), 1)
         self.assertEqual(len(store.predictions), 1)

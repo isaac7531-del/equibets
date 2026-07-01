@@ -91,6 +91,7 @@ export default function App() {
   const [form, setForm] = useState<FormState>(() => createDefaultFormState());
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
   const [searchQuery, setSearchQuery] = useState('');
+  const [combinationSearch, setCombinationSearch] = useState('');
   const [selectedCombination, setSelectedCombination] = useState('');
   const [selectedRider, setSelectedRider] = useState('all');
   const [selectedLevelFilter, setSelectedLevelFilter] = useState('all');
@@ -145,6 +146,11 @@ export default function App() {
   const levelFilters = useMemo(() => [...new Set(consolidatedResults.map((result) => result.level))].sort(), [consolidatedResults]);
   const countryFilters = useMemo(() => [...new Set(consolidatedResults.map((result) => result.country))].sort(), [consolidatedResults]);
   const eventSummaries = useMemo(() => buildEventSummaries(consolidatedResults), [consolidatedResults]);
+  const combinationSummaries = useMemo(() => buildCombinationSummaries(consolidatedResults), [consolidatedResults]);
+  const filteredCombinationSummaries = useMemo(
+    () => filterCombinationSummaries(combinationSummaries, combinationSearch),
+    [combinationSearch, combinationSummaries],
+  );
   const today = new Date().toISOString().slice(0, 10);
   const upcomingEvents = eventSummaries.filter((event) => event.date >= today);
   const pastEvents = eventSummaries.filter((event) => event.date < today);
@@ -273,6 +279,32 @@ export default function App() {
               <h2>Events and combinations</h2>
             </div>
             <span className="source-badge">Daily 12-month crawl</span>
+          </div>
+          <label className="combination-search">
+            Search combinations by rider or horse
+            <input
+              value={combinationSearch}
+              onChange={(event) => setCombinationSearch(event.target.value)}
+              placeholder="Horse, rider, FEI ID, or horse/rider pair"
+            />
+          </label>
+          <div className="combination-search-results" role="region" aria-label="Combination search results">
+            {filteredCombinationSummaries.slice(0, 8).map((combination) => (
+              <button
+                className={`combination-result-button ${combination.key === activeCombination ? 'combination-result-active' : ''}`}
+                key={combination.key}
+                type="button"
+                onClick={() => setSelectedCombination(combination.key)}
+              >
+                <strong>{combination.horseName} / {combination.riderName}</strong>
+                <span>
+                  {combination.resultCount} FEI results / latest {combination.latestEventDate} / {combination.levels.join(', ')}
+                </span>
+              </button>
+            ))}
+            {filteredCombinationSummaries.length === 0 ? (
+              <p className="muted-copy">No FEI combinations match that rider or horse search.</p>
+            ) : null}
           </div>
           <div className="event-columns">
             <div>
@@ -829,6 +861,18 @@ type EventSummary = {
   resultCount: number;
 };
 
+type CombinationSummary = {
+  key: string;
+  riderName: string;
+  riderFeiId: string;
+  horseName: string;
+  horseFeiId: string;
+  latestEventDate: string;
+  levels: string[];
+  countries: string[];
+  resultCount: number;
+};
+
 const eventKey = (result: { eventName: string; eventDate: string; country: string }) =>
   `${result.eventName}::${result.eventDate}::${result.country}`;
 
@@ -853,3 +897,59 @@ const buildEventSummaries = (records: ReturnType<typeof consolidateResults>): Ev
     }
     return events;
   }, new Map<string, EventSummary>()).values()].sort((a, b) => b.date.localeCompare(a.date));
+
+const buildCombinationSummaries = (records: ReturnType<typeof consolidateResults>): CombinationSummary[] =>
+  [...records.reduce((combinations, result) => {
+    const key = combinationKey(result);
+    const existing = combinations.get(key);
+    if (existing) {
+      existing.resultCount += 1;
+      if (result.eventDate > existing.latestEventDate) {
+        existing.latestEventDate = result.eventDate;
+      }
+      if (!existing.levels.includes(result.level)) {
+        existing.levels.push(result.level);
+      }
+      if (!existing.countries.includes(result.country)) {
+        existing.countries.push(result.country);
+      }
+    } else {
+      combinations.set(key, {
+        key,
+        riderName: result.riderName,
+        riderFeiId: result.riderFeiId ?? '',
+        horseName: result.horseName,
+        horseFeiId: result.horseFeiId ?? '',
+        latestEventDate: result.eventDate,
+        levels: [result.level],
+        countries: [result.country],
+        resultCount: 1,
+      });
+    }
+    return combinations;
+  }, new Map<string, CombinationSummary>()).values()].sort((a, b) => {
+    if (a.latestEventDate !== b.latestEventDate) {
+      return b.latestEventDate.localeCompare(a.latestEventDate);
+    }
+    return `${a.horseName} ${a.riderName}`.localeCompare(`${b.horseName} ${b.riderName}`);
+  });
+
+const filterCombinationSummaries = (combinations: CombinationSummary[], query: string) => {
+  const normalizedQuery = query.trim().toLowerCase();
+  if (!normalizedQuery) {
+    return combinations;
+  }
+  return combinations.filter((combination) =>
+    [
+      combination.riderName,
+      combination.horseName,
+      combination.riderFeiId,
+      combination.horseFeiId,
+      `${combination.horseName} ${combination.riderName}`,
+      `${combination.riderName} ${combination.horseName}`,
+    ]
+      .join(' ')
+      .toLowerCase()
+      .includes(normalizedQuery),
+  );
+};

@@ -111,6 +111,46 @@ def results(
     return _rows(conn.execute(query, locals()).fetchall())
 
 
+@app.get("/combinations")
+def combinations(
+    conn: Annotated[Any, Depends(connection)],
+    q: str | None = None,
+    rider: str | None = None,
+    horse: str | None = None,
+    limit: Annotated[int, Query(ge=1, le=1000)] = 250,
+) -> list[dict[str, Any]]:
+    query = """
+        SELECT
+            co.combination_key,
+            co.combination_id,
+            riders.rider_name,
+            riders.fei_id AS rider_fei_id,
+            horses.horse_name,
+            horses.fei_id AS horse_fei_id,
+            count(r.source_record_id) AS result_count,
+            max(r.event_date) AS latest_event_date,
+            array_agg(DISTINCT r.event_level ORDER BY r.event_level) AS levels,
+            array_agg(DISTINCT r.event_country ORDER BY r.event_country) AS countries
+        FROM combinations co
+        JOIN riders ON riders.rider_key = co.rider_key
+        JOIN horses ON horses.horse_key = co.horse_key
+        JOIN result_rows r ON r.combination_key = co.combination_key
+        WHERE r.source_id = 'data_fei'
+          AND (%(q)s IS NULL OR (
+              riders.rider_name ILIKE '%%' || %(q)s || '%%'
+              OR horses.horse_name ILIKE '%%' || %(q)s || '%%'
+              OR riders.fei_id ILIKE '%%' || %(q)s || '%%'
+              OR horses.fei_id ILIKE '%%' || %(q)s || '%%'
+          ))
+          AND (%(rider)s IS NULL OR riders.rider_name ILIKE '%%' || %(rider)s || '%%')
+          AND (%(horse)s IS NULL OR horses.horse_name ILIKE '%%' || %(horse)s || '%%')
+        GROUP BY co.combination_key, co.combination_id, riders.rider_name, riders.fei_id, horses.horse_name, horses.fei_id
+        ORDER BY latest_event_date DESC NULLS LAST, horses.horse_name, riders.rider_name
+        LIMIT %(limit)s
+    """
+    return _rows(conn.execute(query, locals()).fetchall())
+
+
 @app.get("/combinations/{combination_key}/history")
 def combination_history(conn: Annotated[Any, Depends(connection)], combination_key: str) -> dict[str, Any]:
     result_rows = conn.execute(
