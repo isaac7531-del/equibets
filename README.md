@@ -101,3 +101,37 @@ Use `--storage-state data/fei_state.json` to reuse browser cookies,
 `--form-field name=value` for FEI form controls that need explicit values in a
 particular session, `--event-url` to crawl a known event page directly, and
 `FEI_COOKIE` or `--cookie` when the FEI Data session requires login.
+
+## FEI Eventing PostgreSQL pipeline and API
+
+The production collection path writes the rolling 12-month FEI Eventing dataset
+to PostgreSQL, enriches every discovered horse with FEI horse-history results,
+and stores transparent prediction evidence:
+
+```bash
+python3 -m pip install -e .
+DATABASE_URL="postgresql://user:password@localhost:5432/equibets" \
+python3 -m equibets.pipeline \
+  --driver browser \
+  --storage-state data/fei_state.json \
+  --raw-dir data/raw/fei
+```
+
+The pipeline creates and upserts the required tables: `events`, `classes`,
+`result_rows`, `horses`, `riders`, `combinations`, `horse_result_history`,
+`predictions`, and `scrape_logs`. By default it searches
+`https://data.fei.org/Calendar/Search.aspx` for Eventing competitions with
+results from the previous 365 days. Use `--event-url` to rerun one FEI event.
+
+Run the API with:
+
+```bash
+DATABASE_URL="postgresql://user:password@localhost:5432/equibets" \
+uvicorn api.main:app --reload
+```
+
+Suggested daily schedule:
+
+```cron
+15 3 * * * cd /path/to/equibets && DATABASE_URL="postgresql://..." python3 -m equibets.pipeline --driver browser --storage-state data/fei_state.json >> data/fei_pipeline.log 2>&1
+```

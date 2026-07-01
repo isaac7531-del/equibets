@@ -111,12 +111,19 @@ class FeiBotTests(unittest.TestCase):
             datetime(2026, 5, 2, tzinfo=timezone.utc),
         )
 
-        self.assertEqual(len(results), 1)
+        self.assertEqual(len(results), 2)
         self.assertEqual(results[0].dressage_score, 37.6)
         self.assertEqual(results[0].show_jumping_penalties, 8.0)
+        self.assertEqual(results[0].show_jumping_time_penalties, 0.0)
         self.assertEqual(results[0].cross_country_jump_penalties, 0.0)
         self.assertEqual(results[0].cross_country_time_penalties, 10.0)
         self.assertEqual(results[0].finishing_score, 55.6)
+        self.assertEqual(results[0].rider_fei_id, "10000001")
+        self.assertEqual(results[0].horse_fei_id, "107BH10")
+        self.assertEqual(results[0].placing, "2")
+        self.assertEqual(results[0].source_url, RESULT_URL)
+        self.assertEqual(results[1].status, "eliminated")
+        self.assertEqual(results[1].horse_fei_id, "107BH17")
 
     def test_bot_submits_calendar_opens_event_and_result_pages(self):
         client = FakeClient(
@@ -184,6 +191,7 @@ class FeiBotTests(unittest.TestCase):
         self.assertEqual(len(payload["results"]), 1)
         self.assertEqual(payload["results"][0]["rider_name"], "Alex Rider")
         self.assertEqual(payload["results"][0]["dressage_score"], 30.2)
+        self.assertEqual(payload["results"][0]["source_url"], RESULT_URL)
 
 
 def calendar_search_form_html():

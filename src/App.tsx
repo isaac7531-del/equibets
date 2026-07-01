@@ -11,6 +11,7 @@ import {
 } from './scoring';
 import { publicResults } from './publicResults';
 import {
+  combinationKey,
   combinationOptions,
   consolidateResults,
   filterResults,
@@ -93,6 +94,15 @@ export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCombination, setSelectedCombination] = useState('');
   const [selectedRider, setSelectedRider] = useState('all');
+  const [selectedLevelFilter, setSelectedLevelFilter] = useState('all');
+  const [selectedCountryFilter, setSelectedCountryFilter] = useState('all');
+  const [selectedStatusFilter, setSelectedStatusFilter] = useState('all');
+  const [startDateFilter, setStartDateFilter] = useState('');
+  const [endDateFilter, setEndDateFilter] = useState('');
+  const [selectedEventKey, setSelectedEventKey] = useState('');
+  const [adminEventUrl, setAdminEventUrl] = useState('');
+  const [adminHorseName, setAdminHorseName] = useState('');
+  const [adminStatus, setAdminStatus] = useState('');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
@@ -101,8 +111,16 @@ export default function App() {
   const allResultRecords = useMemo(() => [...publicResults, ...savedResultRecords], [savedResultRecords]);
   const consolidatedResults = useMemo(() => consolidateResults(allResultRecords), [allResultRecords]);
   const filteredConsolidatedResults = useMemo(
-    () => filterResults(consolidatedResults, searchQuery),
-    [consolidatedResults, searchQuery],
+    () =>
+      filterResults(consolidatedResults, searchQuery).filter((result) => {
+        const matchesLevel = selectedLevelFilter === 'all' || result.level === selectedLevelFilter;
+        const matchesCountry = selectedCountryFilter === 'all' || result.country === selectedCountryFilter;
+        const matchesStatus = selectedStatusFilter === 'all' || (result.status ?? 'completed') === selectedStatusFilter;
+        const matchesStart = !startDateFilter || result.eventDate >= startDateFilter;
+        const matchesEnd = !endDateFilter || result.eventDate <= endDateFilter;
+        return matchesLevel && matchesCountry && matchesStatus && matchesStart && matchesEnd;
+      }),
+    [consolidatedResults, endDateFilter, searchQuery, selectedCountryFilter, selectedLevelFilter, selectedStatusFilter, startDateFilter],
   );
   const publicSourceCount = new Set(publicResults.map((result) => result.sourceId)).size;
   const latestRefresh = latestCollectedAt(publicResults);
@@ -127,6 +145,19 @@ export default function App() {
         : sortedResults.filter((result) => result.rider === selectedRider),
     [selectedRider, sortedResults],
   );
+  const levelFilters = useMemo(() => [...new Set(consolidatedResults.map((result) => result.level))].sort(), [consolidatedResults]);
+  const countryFilters = useMemo(() => [...new Set(consolidatedResults.map((result) => result.country))].sort(), [consolidatedResults]);
+  const eventSummaries = useMemo(() => buildEventSummaries(consolidatedResults), [consolidatedResults]);
+  const today = new Date().toISOString().slice(0, 10);
+  const upcomingEvents = eventSummaries.filter((event) => event.date >= today);
+  const pastEvents = eventSummaries.filter((event) => event.date < today);
+  const activeEvent = eventSummaries.find((event) => event.key === selectedEventKey) ?? eventSummaries[0];
+  const activeEventResults = activeEvent
+    ? consolidatedResults.filter((result) => eventKey(result) === activeEvent.key)
+    : [];
+  const activeCombinationHistory = activeCombination
+    ? consolidatedResults.filter((result) => combinationKey(result) === activeCombination)
+    : [];
 
   useEffect(() => {
     if (selectedRider !== 'all' && !riderOptions.includes(selectedRider)) {
@@ -170,6 +201,23 @@ export default function App() {
   const clearResults = () => {
     setResults([]);
     saveResults([]);
+  };
+
+  const runAdminAction = async (path: string, body: object) => {
+    setAdminStatus('Running admin job...');
+    try {
+      const response = await fetch(path, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) {
+        throw new Error(await response.text());
+      }
+      setAdminStatus('Admin job queued successfully.');
+    } catch (error) {
+      setAdminStatus(error instanceof Error ? error.message : 'Admin job failed.');
+    }
   };
 
   return (
@@ -217,6 +265,77 @@ export default function App() {
           <span>Public data</span>
           <strong>{publicResults.length}</strong>
           <p>{publicSourceCount} sources, refreshed {formatDateTime(latestRefresh)}</p>
+        </article>
+      </section>
+
+      <section className="pipeline-grid" aria-label="FEI Eventing database">
+        <article className="results-card">
+          <div className="results-header">
+            <div>
+              <p className="eyebrow">FEI pipeline</p>
+              <h2>Events and combinations</h2>
+            </div>
+            <span className="source-badge">Daily 12-month crawl</span>
+          </div>
+          <div className="event-columns">
+            <div>
+              <h3>Upcoming events</h3>
+              {upcomingEvents.length === 0 ? (
+                <p className="muted-copy">Upcoming entries appear here after FEI start lists are imported.</p>
+              ) : (
+                upcomingEvents.map((event) => (
+                  <button className="event-button" key={event.key} type="button" onClick={() => setSelectedEventKey(event.key)}>
+                    {event.name}
+                    <span>{event.levels.join(', ')} / {event.country}</span>
+                  </button>
+                ))
+              )}
+            </div>
+            <div>
+              <h3>Past events with results</h3>
+              {pastEvents.slice(0, 6).map((event) => (
+                <button className="event-button" key={event.key} type="button" onClick={() => setSelectedEventKey(event.key)}>
+                  {event.name}
+                  <span>{event.date} / {event.levels.join(', ')} / {event.resultCount} combinations</span>
+                </button>
+              ))}
+            </div>
+          </div>
+          {activeEvent ? (
+            <div className="event-detail">
+              <h3>{activeEvent.name}</h3>
+              <p>{activeEvent.country} - {activeEvent.date} - {activeEvent.levels.join(', ')}</p>
+              <div className="combination-chip-list">
+                {activeEventResults.map((result) => (
+                  <button key={result.sourceRecordId} type="button" onClick={() => setSelectedCombination(combinationKey(result))}>
+                    {result.horseName} / {result.riderName}
+                  </button>
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </article>
+
+        <article className="prediction-card admin-card">
+          <div className="section-heading">
+            <p className="eyebrow">Admin</p>
+            <h2>Manual FEI rerun</h2>
+          </div>
+          <label>
+            Event result URL
+            <input value={adminEventUrl} onChange={(event) => setAdminEventUrl(event.target.value)} placeholder="https://data.fei.org/Result/ResultList.aspx?..." />
+          </label>
+          <button type="button" disabled={!adminEventUrl} onClick={() => runAdminAction('/admin/scrape/event', { event_url: adminEventUrl })}>
+            Re-run event scrape
+          </button>
+          <label>
+            Horse name
+            <input value={adminHorseName} onChange={(event) => setAdminHorseName(event.target.value)} placeholder="Horse name or FEI history target" />
+          </label>
+          <button type="button" disabled={!adminHorseName} onClick={() => runAdminAction('/admin/scrape/horse', { horse_name: adminHorseName })}>
+            Re-run horse history
+          </button>
+          {adminStatus ? <p className="muted-copy" role="status">{adminStatus}</p> : null}
         </article>
       </section>
 
@@ -508,6 +627,10 @@ export default function App() {
                 Based on {prediction.recentResultCount} recent consolidated starts for {prediction.horseName} and{' '}
                 {prediction.riderName}.
               </p>
+              <p>
+                Predicted range {prediction.predictedLowScore.toFixed(1)}-{prediction.predictedHighScore.toFixed(1)} with{' '}
+                {prediction.evidence.levelReliability} level reliability and a {prediction.evidence.trendDirection} trend.
+              </p>
               <dl>
                 <div>
                   <dt>Best recent</dt>
@@ -520,6 +643,18 @@ export default function App() {
                 <div>
                   <dt>Sources</dt>
                   <dd>{prediction.sourceIds.map(sourceLabel).join(', ')}</dd>
+                </div>
+                <div>
+                  <dt>XC clear rate</dt>
+                  <dd>{Math.round(prediction.evidence.xcClearJumpingRate * 100)}%</dd>
+                </div>
+                <div>
+                  <dt>Completion</dt>
+                  <dd>{Math.round(prediction.evidence.completionRate * 100)}%</dd>
+                </div>
+                <div>
+                  <dt>Recent 3 avg</dt>
+                  <dd>{prediction.evidence.recent3RunAverage?.toFixed(1) ?? 'n/a'}</dd>
                 </div>
               </dl>
             </div>
@@ -544,6 +679,44 @@ export default function App() {
                 onChange={(event) => setSearchQuery(event.target.value)}
                 placeholder="Horse, rider, event, source"
               />
+            </label>
+          </div>
+          <div className="filter-grid" aria-label="Filter FEI results">
+            <label>
+              Filter level
+              <select value={selectedLevelFilter} onChange={(event) => setSelectedLevelFilter(event.target.value)}>
+                <option value="all">All levels</option>
+                {levelFilters.map((level) => (
+                  <option key={level} value={level}>{level}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Filter country
+              <select value={selectedCountryFilter} onChange={(event) => setSelectedCountryFilter(event.target.value)}>
+                <option value="all">All countries</option>
+                {countryFilters.map((country) => (
+                  <option key={country} value={country}>{country}</option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Status
+              <select value={selectedStatusFilter} onChange={(event) => setSelectedStatusFilter(event.target.value)}>
+                <option value="all">All statuses</option>
+                <option value="completed">Completed</option>
+                <option value="eliminated">Eliminated</option>
+                <option value="retired">Retired</option>
+                <option value="withdrawn">Withdrawn</option>
+              </select>
+            </label>
+            <label>
+              From
+              <input type="date" value={startDateFilter} onChange={(event) => setStartDateFilter(event.target.value)} />
+            </label>
+            <label>
+              To
+              <input type="date" value={endDateFilter} onChange={(event) => setEndDateFilter(event.target.value)} />
             </label>
           </div>
 
@@ -589,6 +762,7 @@ export default function App() {
                       <td className="breakdown-cell">
                         D {result.dressageScore.toFixed(1)} / SJ {result.showJumpingPenalties.toFixed(1)} / XC{' '}
                         {(result.crossCountryJumpPenalties + result.crossCountryTimePenalties).toFixed(1)}
+                        <span>{result.status ?? 'completed'}{result.merStatus ? ` - MER ${result.merStatus}` : ''}</span>
                       </td>
                     </tr>
                   ))}
@@ -598,6 +772,87 @@ export default function App() {
           )}
         </section>
       </section>
+
+      <section className="results-card history-card" aria-labelledby="history-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Horse history</p>
+            <h2 id="history-heading">Selected combination evidence</h2>
+          </div>
+        </div>
+        {activeCombinationHistory.length === 0 ? (
+          <div className="empty-state">
+            <strong>No combination history.</strong>
+            <p>Select a horse/rider combination after FEI results are imported.</p>
+          </div>
+        ) : (
+          <div className="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Level</th>
+                  <th>Status</th>
+                  <th>D</th>
+                  <th>XC</th>
+                  <th>SJ</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {activeCombinationHistory.map((result) => (
+                  <tr key={`history-${result.sourceRecordId}`}>
+                    <td>
+                      <strong>{result.eventName}</strong>
+                      <span>{result.eventDate} - {result.country}</span>
+                    </td>
+                    <td>{result.level}</td>
+                    <td>{result.status ?? 'completed'}</td>
+                    <td>{result.dressageScore.toFixed(1)}</td>
+                    <td>{(result.crossCountryJumpPenalties + result.crossCountryTimePenalties).toFixed(1)}</td>
+                    <td>{(result.showJumpingPenalties + (result.showJumpingTimePenalties ?? 0)).toFixed(1)}</td>
+                    <td className="total-cell">{finishingScore(result).toFixed(1)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
     </main>
   );
 }
+
+type EventSummary = {
+  key: string;
+  name: string;
+  date: string;
+  country: string;
+  levels: string[];
+  resultCount: number;
+};
+
+const eventKey = (result: { eventName: string; eventDate: string; country: string }) =>
+  `${result.eventName}::${result.eventDate}::${result.country}`;
+
+const buildEventSummaries = (records: ReturnType<typeof consolidateResults>): EventSummary[] =>
+  [...records.reduce((events, result) => {
+    const key = eventKey(result);
+    const existing = events.get(key);
+    if (existing) {
+      existing.resultCount += 1;
+      if (!existing.levels.includes(result.level)) {
+        existing.levels.push(result.level);
+      }
+    } else {
+      events.set(key, {
+        key,
+        name: result.eventName,
+        date: result.eventDate,
+        country: result.country,
+        levels: [result.level],
+        resultCount: 1,
+      });
+    }
+    return events;
+  }, new Map<string, EventSummary>()).values()].sort((a, b) => b.date.localeCompare(a.date));

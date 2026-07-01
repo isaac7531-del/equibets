@@ -45,6 +45,8 @@ class FeiEvent:
     country: str = ""
     discipline: str = "Eventing"
     level: str = ""
+    venue: str = ""
+    result_page_url: str = ""
 
 
 @dataclass(frozen=True)
@@ -531,6 +533,9 @@ class FeiDataBot:
         pages_opened = 0
         seen = {event.url}
         queue: list[tuple[str, int]] = [(event.url, 0)]
+        if event.result_page_url:
+            seen.add(event.result_page_url)
+            queue.append((event.result_page_url, 1))
         while queue:
             page_url, depth = queue.pop(0)
             result_page = self.client.get(page_url)
@@ -545,6 +550,66 @@ class FeiDataBot:
                     seen.add(result_url)
                     queue.append((result_url, depth + 1))
         return results, pages_opened
+
+    def collect_horse_history(
+        self,
+        *,
+        horse_name: str,
+        horse_fei_id: str = "",
+        rider_name: str = "",
+        collected_at: datetime | None = None,
+        max_pages: int | None = None,
+    ) -> tuple[list[EventingResult], list[EventingResult], int]:
+        """Search FEI horse pages and collect horse-only plus same-rider history."""
+
+        collected_at = collected_at or datetime.now(timezone.utc).replace(microsecond=0)
+        search_page = self.client.get(HORSE_SEARCH_URL)
+        form = extract_form_fields(search_page)
+        query = horse_fei_id or horse_name
+        matched = False
+        for field_name in form:
+            normalized = _header(field_name)
+            if horse_fei_id and "fei" in normalized and "id" in normalized:
+                form[field_name] = horse_fei_id
+                matched = True
+                break
+            if not horse_fei_id and "name" in normalized:
+                form[field_name] = horse_name
+                matched = True
+                break
+        if not matched:
+            _set_first_text_field(search_page, form, query)
+        for field_name in form:
+            if "search" in _header(field_name):
+                form[field_name] = "Search"
+                break
+
+        horse_page = self.client.post(HORSE_SEARCH_URL, form)
+        _write_raw(self.raw_dir, f"{HORSE_SEARCH_URL}?q={query}", horse_page)
+        links = parse_result_links(horse_page, HORSE_SEARCH_URL)
+        pages_opened = 1
+        history: list[EventingResult] = []
+        for result_url in links[:max_pages]:
+            result_page = self.client.get(result_url)
+            pages_opened += 1
+            _write_raw(self.raw_dir, result_url, result_page)
+            event = FeiEvent(
+                source_event_id=_stable_id(result_url),
+                name="FEI horse history",
+                url=result_url,
+                level="Unknown",
+                venue="FEI horse history",
+            )
+            for result in parse_eventing_results(result_page, event, result_url, collected_at):
+                same_horse = _search_key(result.horse_name) == _search_key(horse_name)
+                same_id = bool(horse_fei_id and result.horse_fei_id == horse_fei_id)
+                if same_horse or same_id:
+                    history.append(result)
+
+        combination_history = [
+            result for result in history if rider_name and _search_key(result.rider_name) == _search_key(rider_name)
+        ]
+        return history, combination_history, pages_opened
 
     def _verify_result(self, result: EventingResult) -> bool:
         if self.verifier is None:
@@ -640,10 +705,21 @@ def result_to_mapping(result: EventingResult) -> dict[str, object]:
         "country": result.country,
         "dressage_score": result.dressage_score,
         "show_jumping_penalties": result.show_jumping_penalties,
+        "show_jumping_time_penalties": result.show_jumping_time_penalties,
         "cross_country_jump_penalties": result.cross_country_jump_penalties,
         "cross_country_time_penalties": result.cross_country_time_penalties,
         "collected_at": result.collected_at.isoformat(),
         "is_user_entered": result.is_user_entered,
+        "rider_fei_id": result.rider_fei_id,
+        "horse_fei_id": result.horse_fei_id,
+        "combination_id": result.combination_id,
+        "placing": result.placing,
+        "total_score": result.total_score,
+        "status": result.status,
+        "mer_status": result.mer_status,
+        "event_url": result.event_url,
+        "source_url": result.source_url,
+        "venue": result.venue,
     }
 
 
@@ -671,16 +747,14 @@ def parse_calendar_events(html: str, page_url: str = CALENDAR_SEARCH_URL) -> lis
             continue
 
         data = _row_mapping(headers, row)
-        event_name = (
-            _first_value(data, ("show", "event", "name", "venue"))
-            or event_link.text
-            or event_url
-        )
+        event_name = _first_value(data, ("show name", "event name", "event")) or event_link.text or event_url
+        venue = _first_value(data, ("venue", "location")) or event_name
         start_date = _first_date(data, ("start", "from")) or _first_date(data, ("date",))
         end_date = _first_date(data, ("end", "to")) or start_date
         country = _first_value(data, ("country", "nation", "nf")) or ""
         level = _first_value(data, ("level", "category", "type", "competition", "event code", "events")) or ""
         discipline = _first_value(data, ("discipline",)) or "Eventing"
+        result_link = _choose_result_link(links)
 
         events.append(
             FeiEvent(
@@ -692,6 +766,8 @@ def parse_calendar_events(html: str, page_url: str = CALENDAR_SEARCH_URL) -> lis
                 country=country,
                 discipline=discipline,
                 level=level,
+                venue=venue,
+                result_page_url=urljoin(page_url, result_link.href) if result_link else "",
             )
         )
         seen_urls.add(event_url)
@@ -707,10 +783,7 @@ def parse_result_links(html: str, page_url: str) -> list[str]:
     seen: set[str] = set()
     for link in parser.links:
         searchable = f"{link.text} {link.href}".lower()
-        if not any(
-            keyword in searchable
-            for keyword in ("result", "competition", "eventdetail.aspx", "resultlist.aspx")
-        ):
+        if not any(keyword in searchable for keyword in ("individual result", "result", "competition", "resultlist.aspx")):
             continue
         if any(skip in searchable for skip in ("calendar/search", "ranking/", "standing", "javascript:", "#")):
             continue
@@ -739,13 +812,19 @@ def parse_eventing_results(
 
         score_text = _first_value(data, ("score", "total", "final", "result"))
         total = _parse_score_number(score_text) if score_text else None
-        if score_text and total is None:
+        status = _status_from_data(data, score_text)
+        if score_text and total is None and status == "completed":
             continue
 
         dressage = _number_exact(data, "d") or _number_from(data, ("dressage", "dr", "phase a"), ("rank", "place"))
-        show_jumping = _sum_numbers(data, ("j obs", "j tim")) or _number_from(
+        show_jumping = _number_exact(data, "j obs") or _number_from(
             data,
-            ("show jumping", "jumping", "sj"),
+            ("show jumping jumping", "show jumping", "jumping", "sj", "j obs"),
+            ("cross", "xc", "time", "rank", "place"),
+        )
+        show_jumping_time = _number_exact(data, "j tim") or _number_from(
+            data,
+            ("show jumping time", "sj time", "j tim"),
             ("cross", "xc", "rank", "place"),
         )
         xc_jump = _number_from(
@@ -759,7 +838,7 @@ def parse_eventing_results(
             ("dressage", "show"),
         )
 
-        if dressage is None:
+        if dressage is None and total is not None:
             dressage = total
         if dressage is None:
             continue
@@ -771,6 +850,9 @@ def parse_eventing_results(
         level = _first_value(data, ("level", "category", "competition", "class")) or event.level or "Unknown"
         country = _first_value(data, ("country", "nation", "nf")) or event.country or "Unknown"
         record_id = _record_id(source_url, event.name, event_date, level, rider_name, horse_name)
+        fei_ids = _fei_ids(data)
+        placing = _first_value(data, ("pos", "place", "rank", "placing")) or ""
+        mer_status = _first_value(data, ("mer",)) or ""
 
         results.append(
             EventingResult(
@@ -785,10 +867,21 @@ def parse_eventing_results(
                 country=country,
                 dressage_score=dressage,
                 show_jumping_penalties=show_jumping or 0.0,
+                show_jumping_time_penalties=show_jumping_time or 0.0,
                 cross_country_jump_penalties=xc_jump or 0.0,
                 cross_country_time_penalties=xc_time or 0.0,
                 collected_at=collected_at,
                 is_user_entered=False,
+                rider_fei_id=fei_ids[0],
+                horse_fei_id=fei_ids[1],
+                combination_id=_combination_id(fei_ids[0], fei_ids[1]),
+                placing=placing,
+                total_score=total,
+                status=status,
+                mer_status=mer_status,
+                event_url=event.url,
+                source_url=source_url,
+                venue=event.venue or event.name,
             )
         )
     return results
@@ -1020,6 +1113,13 @@ def _row_mapping(headers: Sequence[str], row: _Row) -> dict[str, str]:
     values: dict[str, str] = {}
     for index, cell in enumerate(row.cells):
         header = headers[index] if index < len(headers) and headers[index] else f"column_{index + 1}"
+        if header in values:
+            suffix = 2
+            unique_header = f"{header} {suffix}"
+            while unique_header in values:
+                suffix += 1
+                unique_header = f"{header} {suffix}"
+            header = unique_header
         values[header] = cell.text
     return values
 
@@ -1032,6 +1132,14 @@ def _choose_calendar_link(links: Sequence[_Link]) -> _Link | None:
     for link in links:
         candidate = f"{link.href} {link.text}".lower()
         if any(keyword in candidate for keyword in ("event", "show")):
+            return link
+    return None
+
+
+def _choose_result_link(links: Sequence[_Link]) -> _Link | None:
+    for link in links:
+        candidate = f"{link.href} {link.text}".lower()
+        if "result" in candidate:
             return link
     return None
 
@@ -1128,6 +1236,41 @@ def _sum_numbers(data: Mapping[str, str], headers: Sequence[str]) -> float | Non
     if not numbers:
         return None
     return sum(numbers)
+
+
+def _fei_ids(data: Mapping[str, str]) -> tuple[str, str]:
+    rider_id = _first_value(data, ("athlete fei id", "rider fei id", "person fei id")) or ""
+    horse_id = _first_value(data, ("horse fei id",)) or ""
+    generic_ids = [value for header, value in data.items() if "fei id" in header and value]
+    if not rider_id and generic_ids:
+        rider_id = generic_ids[0]
+    if not horse_id and len(generic_ids) > 1:
+        horse_id = generic_ids[1]
+    return rider_id, horse_id
+
+
+def _status_from_data(data: Mapping[str, str], score_text: str | None) -> str:
+    searchable = " ".join(
+        value for header, value in data.items() if any(token in header for token in ("pos", "place", "rank", "score", "status", "result"))
+    )
+    if score_text:
+        searchable = f"{searchable} {score_text}"
+    normalized = searchable.lower()
+    if re.search(r"\b(el|elim|eliminated)\b", normalized):
+        return "eliminated"
+    if re.search(r"\b(ret|retired)\b", normalized):
+        return "retired"
+    if re.search(r"\b(wd|withdrawn)\b", normalized):
+        return "withdrawn"
+    if re.search(r"\b(dns|dq|disqualified)\b", normalized):
+        return "withdrawn"
+    return "completed"
+
+
+def _combination_id(rider_fei_id: str, horse_fei_id: str) -> str:
+    if not rider_fei_id or not horse_fei_id:
+        return ""
+    return f"{rider_fei_id}:{horse_fei_id}"
 
 
 def _record_id(*parts: object) -> str:

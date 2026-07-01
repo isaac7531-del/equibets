@@ -155,11 +155,92 @@ button:disabled {
   grid-template-columns: minmax(330px, 0.9fr) minmax(0, 1.1fr);
 }
 
+.pipeline-grid {
+  align-items: stretch;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.55fr);
+  margin-bottom: 1rem;
+}
+
 .calculator-card,
 .results-card,
 .prediction-card {
   border-radius: 1.8rem;
   padding: 1.35rem;
+}
+
+.event-columns,
+.filter-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.event-columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.event-columns h3,
+.event-detail h3 {
+  margin: 0 0 0.7rem;
+}
+
+.muted-copy {
+  color: #65705f;
+  line-height: 1.55;
+}
+
+.event-button {
+  align-items: start;
+  background: #f7efe0;
+  border-radius: 1rem;
+  color: #23432d;
+  display: grid;
+  justify-items: start;
+  margin-bottom: 0.6rem;
+  padding: 0.8rem;
+  text-align: left;
+  width: 100%;
+}
+
+.event-button span {
+  color: #65705f;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+}
+
+.event-detail {
+  background: #f4ecd9;
+  border-radius: 1.25rem;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.event-detail p {
+  color: #65705f;
+  margin-top: 0;
+}
+
+.combination-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.combination-chip-list button {
+  background: #fffdf7;
+  border: 1px solid rgba(35, 67, 45, 0.12);
+  color: #23432d;
+  padding: 0.6rem 0.75rem;
+}
+
+.admin-card {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.admin-card button {
+  width: 100%;
 }
 
 .section-heading h2,
@@ -521,14 +602,28 @@ td span {
   min-width: min(260px, 100%);
 }
 
+.filter-grid {
+  grid-template-columns: repeat(5, minmax(130px, 1fr));
+  margin-bottom: 1rem;
+}
+
+.history-card {
+  margin-top: 1rem;
+}
+
 @media (max-width: 900px) {
   .hero,
   .workspace-grid,
-  .form-guide-grid {
+  .form-guide-grid,
+  .pipeline-grid {
     grid-template-columns: 1fr;
   }
 
   .dashboard {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .filter-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -541,6 +636,8 @@ td span {
   .dashboard,
   .form-grid,
   .browser-heading,
+  .event-columns,
+  .filter-grid,
   .level-list div,
   .time-grid {
     grid-template-columns: 1fr;

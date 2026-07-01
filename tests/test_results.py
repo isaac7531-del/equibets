@@ -1,6 +1,6 @@
 import unittest
 
-from equibets.results import EventingResult, consolidate_results, predict_finishing_score
+from equibets.results import EventingResult, build_prediction_evidence, consolidate_results, predict_finishing_score
 
 
 def result(**overrides):
@@ -71,6 +71,33 @@ class ResultConsolidationTests(unittest.TestCase):
         self.assertEqual(prediction.confidence, "medium")
         self.assertEqual(prediction.source_ids, ("data_fei", "user_submission"))
         self.assertEqual(prediction.likely_finishing_score, 33.4)
+
+    def test_prediction_evidence_reports_completion_and_level_reliability(self):
+        results = [
+            result(source_record_id="fei-0", event_date="2025-12-01", level="CCI3-S", dressage_score=34.0),
+            result(source_record_id="fei-1", event_date="2026-01-01", level="CCI3-S", dressage_score=31.0),
+            result(source_record_id="fei-2", event_date="2026-02-01", level="CCI3-S", dressage_score=30.0),
+            result(source_record_id="fei-3", event_date="2026-03-01", level="CCI3-S", dressage_score=29.0),
+            result(
+                source_record_id="fei-4",
+                event_date="2026-04-01",
+                level="CCI3-S",
+                dressage_score=35.0,
+                status="eliminated",
+                placing="EL",
+                total_score=None,
+            ),
+        ]
+
+        evidence = build_prediction_evidence(results, "Alex Rider", "Pocket Rocket", target_level="CCI3-S")
+
+        self.assertEqual(evidence.same_level_result_count, 4)
+        self.assertEqual(evidence.completion_rate, 0.8)
+        self.assertEqual(evidence.elimination_retirement_rate, 0.2)
+        self.assertEqual(evidence.level_reliability, "proven")
+        self.assertEqual(evidence.trend_direction, "improving")
+        self.assertIsNotNone(evidence.predicted_final_score_low)
+        self.assertIsNotNone(evidence.predicted_final_score_high)
 
 
 if __name__ == "__main__":
