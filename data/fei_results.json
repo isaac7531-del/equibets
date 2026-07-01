@@ -11629,7 +11629,7 @@
       "source_record_id": "fei:cd0d6e702f0b5728"
     },
     {
-      "collected_at": "2026-07-01T01:05:06+00:00",
+      "collected_at": "2026-07-01T03:03:07+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 17.2,
@@ -13057,7 +13057,7 @@
       "source_record_id": "fei:6b1801b914091d8f"
     },
     {
-      "collected_at": "2026-07-01T01:05:06+00:00",
+      "collected_at": "2026-07-01T03:03:07+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 11.0,
       "cross_country_time_penalties": 14.0,
@@ -13091,7 +13091,7 @@
       "source_record_id": "fei:d691a3ee2c723a00"
     },
     {
-      "collected_at": "2026-07-01T01:05:06+00:00",
+      "collected_at": "2026-07-01T03:03:07+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 20.8,
@@ -13296,6 +13296,6 @@
     }
   ],
   "source_id": "data_fei",
-  "updated_at": "2026-07-01T01:05:50+00:00",
+  "updated_at": "2026-07-01T03:03:51+00:00",
   "version": 1
 }
