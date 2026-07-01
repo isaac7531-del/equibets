@@ -12,9 +12,11 @@ import importlib.util
 import hashlib
 import json
 import re
+import signal
 import shutil
+import threading
 import time
-from collections.abc import Iterable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from html.parser import HTMLParser
@@ -25,6 +27,13 @@ from urllib.request import Request, build_opener
 
 from equibets.compliance import DATA_FILE as COMPLIANCE_FILE
 from equibets.compliance import require_source_approval
+from equibets.live_scores import (
+    DEFAULT_DAYS_BACK,
+    DEFAULT_DAYS_FORWARD,
+    build_live_score_payload,
+    current_event_window,
+    write_live_score_payload,
+)
 from equibets.results import EventingResult, consolidate_results
 
 
@@ -33,6 +42,8 @@ CALENDAR_SEARCH_URL = urljoin(BASE_URL, "Calendar/Search.aspx")
 PERSON_SEARCH_URL = urljoin(BASE_URL, "Person/Search.aspx")
 HORSE_SEARCH_URL = urljoin(BASE_URL, "Horse/Search.aspx")
 DEFAULT_RESULTS_FILE = Path(__file__).resolve().parents[1] / "data" / "fei_results.json"
+BLANK_CHALLENGE_MAX_WAIT_SECONDS = 2.0
+PLAYWRIGHT_CLOSE_TIMEOUT_SECONDS = 5.0
 
 
 @dataclass(frozen=True)
@@ -59,6 +70,14 @@ class FeiCrawlSummary:
     results_collected: int
     results_verified: int
     results_rejected: int
+
+
+class FeiFormUnavailable(RuntimeError):
+    """Raised when FEI never exposes a submittable form after browser challenge handling."""
+
+
+class _OperationTimeout(TimeoutError):
+    """Raised internally when a bounded cleanup operation exceeds its timeout."""
 
 
 @dataclass(frozen=True)
@@ -157,6 +176,7 @@ class FeiBrowserClient:
         self._context: object | None = None
         self._page: object | None = None
         self._ignore_storage_state = False
+        self._discard_storage_state_on_close = False
 
     def get(self, url: str) -> str:
         page = self._ensure_page()
@@ -164,18 +184,31 @@ class FeiBrowserClient:
         self._wait_ready()
         return page.content()
 
-    def post(self, url: str, data: Mapping[str, str]) -> str:
+    def post(
+        self,
+        url: str,
+        data: Mapping[str, str],
+        field_intents: Sequence[tuple[Sequence[Sequence[str]], str]] = (),
+    ) -> str:
         page = self._ensure_page()
         if page.url != url:
             page.goto(url, wait_until="domcontentloaded", timeout=60_000)
             self._wait_ready()
-        if page.locator("form").count() == 0:
-            self._reset_browser_session()
-            page = self._ensure_page()
-            page.goto(url, wait_until="domcontentloaded", timeout=60_000)
-            self._wait_ready()
+        form_count = page.locator("form").count()
+        if form_count == 0:
+            for attempt in range(1, 4):
+                self._reset_browser_session()
+                page = self._ensure_page()
+                page.goto(url, wait_until="domcontentloaded", timeout=60_000)
+                self._wait_ready()
+                form_count = page.locator("form").count()
+                if form_count:
+                    break
         for name, value in data.items():
             self._fill_form_field(name, value)
+        for token_options, value in field_intents:
+            if value:
+                self._fill_first_matching_form_field(token_options, value)
         self._click_submit(data)
         self._wait_after_action()
         self._wait_ready()
@@ -185,25 +218,97 @@ class FeiBrowserClient:
         """Switch FEI calendar search results to the Past Shows tab."""
 
         page = self._ensure_page()
-        link = page.locator("#PlaceHolderMain_lbBefore, a:has-text('Past Shows')")
+        link = page.locator("#PlaceHolderMain_lbBefore, a[id$='lbBefore'], a:has-text('Past Shows')")
         if link.count() == 0:
             return page.content()
+
+        def trigger_past_tab() -> bool:
+            try:
+                return bool(
+                    page.evaluate(
+                        """() => {
+                            const link = document.querySelector("#PlaceHolderMain_lbBefore, a[id$='lbBefore'], a[href*='lbBefore']");
+                            if (!link) {
+                                return false;
+                            }
+                            const href = link.getAttribute("href") || "";
+                            const optionsMatch = href.match(/WebForm_PostBackOptions\\(["']([^"']*)["'],\\s*["']([^"']*)["']/);
+                            const postBackMatch = href.match(/__doPostBack\\(["']([^"']*)["'],\\s*["']([^"']*)["']\\)/);
+                            const target = optionsMatch?.[1] || postBackMatch?.[1] || "ctl00$PlaceHolderMain$lbBefore";
+                            const argument = optionsMatch?.[2] || postBackMatch?.[2] || "";
+                            const form = link.closest("form") || document.forms[0];
+                            if (!form) {
+                                return false;
+                            }
+                            const setHidden = (name, value) => {
+                                let input = form.elements[name];
+                                if (!input) {
+                                    input = document.createElement("input");
+                                    input.type = "hidden";
+                                    input.name = name;
+                                    form.appendChild(input);
+                                }
+                                input.value = value;
+                            };
+                            setHidden("__EVENTTARGET", target);
+                            setHidden("__EVENTARGUMENT", argument);
+                            form.submit();
+                            return true;
+                        }"""
+                    )
+                )
+            except Exception as exc:
+                if "Execution context was destroyed" in str(exc):
+                    return True
+                raise
+
+        def wait_for_past_tab() -> bool:
+            try:
+                page.wait_for_function(
+                    """() => {
+                        const link = document.querySelector("#PlaceHolderMain_lbBefore, a[id$='lbBefore']");
+                        return link && link.className.includes("selected");
+                    }""",
+                    timeout=10_000,
+                )
+                return True
+            except Exception:
+                return False
+
+        def page_has_calendar_events() -> bool:
+            return bool(parse_calendar_events(page.content(), CALENDAR_SEARCH_URL))
+
         try:
             link.first.click(timeout=5_000)
         except Exception:
-            link.first.evaluate("element => element.click()")
+            trigger_past_tab()
         self._wait_after_action()
+        selected_after_click = wait_for_past_tab()
+        if not selected_after_click and not page_has_calendar_events():
+            trigger_past_tab()
+            self._wait_after_action()
+            wait_for_past_tab()
         self._wait_ready()
         return page.content()
 
+    def discard_storage_state_on_close(self) -> None:
+        self._discard_storage_state_on_close = True
+
     def close(self) -> None:
-        if self.storage_state and self._context is not None:
+        if self.storage_state and self._context is not None and not self._discard_storage_state_on_close:
             self.storage_state.parent.mkdir(parents=True, exist_ok=True)
-            self._context.storage_state(path=str(self.storage_state))
+            _run_with_timeout(
+                lambda: self._context.storage_state(path=str(self.storage_state)),
+                PLAYWRIGHT_CLOSE_TIMEOUT_SECONDS,
+            )
         if self._browser is not None:
-            self._browser.close()
+            _run_with_timeout(self._browser.close, PLAYWRIGHT_CLOSE_TIMEOUT_SECONDS)
         if self._playwright is not None:
-            self._playwright.stop()
+            _run_with_timeout(self._playwright.stop, PLAYWRIGHT_CLOSE_TIMEOUT_SECONDS)
+        self._browser = None
+        self._context = None
+        self._page = None
+        self._playwright = None
 
     def _ensure_page(self):
         if self._page is not None:
@@ -260,25 +365,41 @@ class FeiBrowserClient:
 
     def _wait_ready(self) -> None:
         page = self._ensure_page()
+        challenge_wait = max(0.0, self.challenge_wait_seconds)
         try:
-            page.wait_for_load_state("domcontentloaded", timeout=30_000)
+            page.wait_for_load_state(
+                "domcontentloaded",
+                timeout=min(30_000, max(1_000, int(challenge_wait * 1000))),
+            )
         except Exception:
             pass
-        for _ in range(6):
+        started_at = time.monotonic()
+        deadline = started_at + challenge_wait
+        blank_deadline = started_at + min(challenge_wait, BLANK_CHALLENGE_MAX_WAIT_SECONDS)
+        while True:
             try:
-                body = page.locator("body").inner_text(timeout=5_000)
+                body = page.locator("body").inner_text(timeout=1_000)
             except Exception:
                 body = ""
             title = page.title()
+            lowered_body = body.lower()
             waiting_on_challenge = (
                 "Please enable JS" in body
                 or "disable any ad blocker" in body
+                or "datadome" in lowered_body
+                or "captcha" in lowered_body
                 or title.lower() == "fei.org"
                 or not body.strip()
             )
             if not waiting_on_challenge:
                 return
-            page.wait_for_timeout(int(self.challenge_wait_seconds * 1000))
+            effective_deadline = deadline
+            if not body.strip() and title.lower() == "fei.org":
+                effective_deadline = min(effective_deadline, blank_deadline)
+            remaining = effective_deadline - time.monotonic()
+            if remaining <= 0:
+                return
+            page.wait_for_timeout(max(1, int(min(1.0, remaining) * 1000)))
 
     def _wait_after_action(self) -> None:
         page = self._ensure_page()
@@ -337,6 +458,48 @@ class FeiBrowserClient:
         element.fill(value)
         return True
 
+    def _fill_first_matching_form_field(self, token_options: Sequence[Sequence[str]], value: str) -> bool:
+        return any(self._fill_matching_form_field(tokens, value) for tokens in token_options)
+
+    def _fill_matching_form_field(self, required_tokens: Sequence[str], value: str) -> bool:
+        page = self._ensure_page()
+        fields = page.locator("input, select, textarea")
+        for index in range(fields.count()):
+            element = fields.nth(index)
+            try:
+                info = element.evaluate(
+                    """element => {
+                        const labels = element.labels
+                            ? Array.from(element.labels).map(label => label.innerText || label.textContent || "")
+                            : [];
+                        return {
+                            name: element.getAttribute("name") || "",
+                            id: element.getAttribute("id") || "",
+                            type: (element.type || "").toLowerCase(),
+                            tag: element.tagName.toLowerCase(),
+                            disabled: element.disabled,
+                            label: labels.join(" "),
+                            placeholder: element.getAttribute("placeholder") || "",
+                            aria: element.getAttribute("aria-label") || "",
+                        };
+                    }"""
+                )
+            except Exception:
+                continue
+            if info["disabled"] or info["type"] in {"hidden", "submit", "button", "image", "reset"}:
+                continue
+            searchable = _header(
+                " ".join(
+                    str(info.get(key, ""))
+                    for key in ("name", "id", "label", "placeholder", "aria")
+                )
+            )
+            if all(token in searchable for token in required_tokens):
+                field_name = info.get("name")
+                if field_name:
+                    return self._fill_form_field(str(field_name), value)
+        return False
+
     def _click_submit(self, data: Mapping[str, str]) -> None:
         page = self._ensure_page()
         for name, value in data.items():
@@ -364,33 +527,38 @@ class FeiBrowserClient:
                         raise
                 return
         if not self._submit_with_javascript(None):
-            raise RuntimeError("Could not submit FEI form because no form was available")
+            raise FeiFormUnavailable("Could not submit FEI form because no form was available")
 
     def _submit_with_javascript(self, submit_name: str | None) -> bool:
         page = self._ensure_page()
-        return bool(
-            page.evaluate(
-                """submitName => {
-                    const submitter = submitName
-                        ? document.querySelector(`[name="${CSS.escape(submitName)}"]`)
-                        : null;
-                    if (submitter) {
-                        submitter.click();
+        try:
+            return bool(
+                page.evaluate(
+                    """submitName => {
+                        const submitter = submitName
+                            ? document.querySelector(`[name="${CSS.escape(submitName)}"]`)
+                            : null;
+                        if (submitter) {
+                            submitter.click();
+                            return true;
+                        }
+                        if (document.forms.length === 0) {
+                            return false;
+                        }
+                        if (document.forms[0].requestSubmit) {
+                            document.forms[0].requestSubmit();
+                        } else {
+                            document.forms[0].submit();
+                        }
                         return true;
-                    }
-                    if (document.forms.length === 0) {
-                        return false;
-                    }
-                    if (document.forms[0].requestSubmit) {
-                        document.forms[0].requestSubmit();
-                    } else {
-                        document.forms[0].submit();
-                    }
-                    return true;
-                }""",
-                submit_name,
+                    }""",
+                    submit_name,
+                )
             )
-        )
+        except Exception as exc:
+            if "Execution context was destroyed" in str(exc):
+                return True
+            raise
 
 
 class FeiDataBot:
@@ -420,6 +588,7 @@ class FeiDataBot:
         search_page = self.client.get(CALENDAR_SEARCH_URL)
         form = extract_form_fields(search_page)
         browser_form: dict[str, str] = {}
+        browser_field_intents: list[tuple[Sequence[Sequence[str]], str]] = []
 
         def set_field(required_tokens: Sequence[str], value: str | None) -> bool:
             if value is None:
@@ -434,21 +603,34 @@ class FeiDataBot:
 
         if start_date:
             start_value = _fei_date(start_date)
+            browser_field_intents.append(((("date", "start"), ("date", "from")), start_value))
             if not set_field(("date", "start"), start_value):
                 set_field(("date", "from"), start_value)
         if end_date:
             end_value = _fei_date(end_date)
+            browser_field_intents.append(((("date", "end"), ("date", "to")), end_value))
             if not set_field(("date", "end"), end_value):
                 set_field(("date", "to"), end_value)
+        browser_field_intents.append(((("discipline",),), "Eventing"))
         set_field(("discipline",), "Eventing")
-        set_field(("result", "status"), result_status)
+        if result_status is not None:
+            browser_field_intents.append(
+                ((("result", "status"), ("with", "results"), ("results",)), result_status)
+            )
+            set_field(("result", "status"), result_status)
         set_field(("search",), "Search")
         if form_fields:
             form.update(form_fields)
             browser_form.update(form_fields)
 
-        post_form = browser_form if isinstance(self.client, FeiBrowserClient) else form
-        results_page = self.client.post(CALENDAR_SEARCH_URL, post_form)
+        if isinstance(self.client, FeiBrowserClient):
+            results_page = self.client.post(
+                CALENDAR_SEARCH_URL,
+                browser_form,
+                field_intents=browser_field_intents,
+            )
+        else:
+            results_page = self.client.post(CALENDAR_SEARCH_URL, form)
         _write_raw(self.raw_dir, CALENDAR_SEARCH_URL, results_page)
         events = parse_calendar_events(results_page, CALENDAR_SEARCH_URL)
         if not events and hasattr(self.client, "open_past_shows"):
@@ -504,7 +686,13 @@ class FeiDataBot:
                     all_results.append(result)
                     continue
 
-                is_verified = self._verify_result(result)
+                try:
+                    is_verified = self._verify_result(result)
+                except RuntimeError:
+                    if verify == "require":
+                        raise
+                    all_results.append(result)
+                    continue
                 if is_verified:
                     verified += 1
                     all_results.append(result)
@@ -801,9 +989,28 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Collect FEI eventing results from data.fei.org")
     parser.add_argument("--start-date", type=_date_arg, help="Calendar start date, YYYY-MM-DD")
     parser.add_argument("--end-date", type=_date_arg, help="Calendar end date, YYYY-MM-DD")
+    parser.add_argument(
+        "--current-events",
+        action="store_true",
+        help="Default missing dates to the rolling current-event live-scoring window",
+    )
+    parser.add_argument(
+        "--current-days-back",
+        type=int,
+        default=DEFAULT_DAYS_BACK,
+        help="Days before today included by --current-events and --live-output defaults",
+    )
+    parser.add_argument(
+        "--current-days-forward",
+        type=int,
+        default=DEFAULT_DAYS_FORWARD,
+        help="Days after today included by --current-events and --live-output defaults",
+    )
     parser.add_argument("--event-url", action="append", default=[], help="Specific FEI event/result URL to open")
     parser.add_argument("--form-field", action="append", default=[], help="Extra FEI search form value as name=value")
     parser.add_argument("--output", type=Path, default=DEFAULT_RESULTS_FILE, help="JSON result store path")
+    parser.add_argument("--live-output", type=Path, help="Optional current-event live-scoring JSON output")
+    parser.add_argument("--live-max-standings-per-event", type=int, help="Limit standings rows in live-scoring output")
     parser.add_argument("--raw-dir", type=Path, help="Optional directory for raw FEI HTML responses")
     parser.add_argument("--max-events", type=int, help="Maximum events to open")
     parser.add_argument("--rate-limit", type=float, default=1.0, help="Delay between FEI requests in seconds")
@@ -819,22 +1026,47 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--dry-run", action="store_true", help="Collect and summarize without writing output")
     args = parser.parse_args(argv)
 
+    if args.current_events:
+        current_start, current_end = current_event_window(
+            days_back=args.current_days_back,
+            days_forward=args.current_days_forward,
+        )
+        args.start_date = args.start_date or current_start
+        args.end_date = args.end_date or current_end
+
     require_source_approval("data_fei", "results", path=args.compliance_policy)
     cookie = args.cookie or _env_value(args.cookie_env)
     client = _build_client(args, cookie)
     verifier = FeiVerifier(client) if args.verify != "none" else None
     bot = FeiDataBot(client, verifier=verifier, raw_dir=args.raw_dir)
     form_fields = _key_values(args.form_field)
+    crawl_fallback_reason: str | None = None
 
     try:
-        results, summary = bot.collect(
-            start_date=args.start_date,
-            end_date=args.end_date,
-            event_urls=args.event_url,
-            form_fields=form_fields,
-            max_events=args.max_events,
-            verify=args.verify,
-        )
+        try:
+            results, summary = bot.collect(
+                start_date=args.start_date,
+                end_date=args.end_date,
+                event_urls=args.event_url,
+                form_fields=form_fields,
+                max_events=args.max_events,
+                verify=args.verify,
+            )
+        except FeiFormUnavailable as exc:
+            if not args.live_output or args.event_url:
+                raise
+            results = []
+            summary = FeiCrawlSummary(
+                events_found=0,
+                events_opened=0,
+                result_pages_opened=0,
+                results_collected=0,
+                results_verified=0,
+                results_rejected=0,
+            )
+            crawl_fallback_reason = str(exc)
+            if hasattr(client, "discard_storage_state_on_close"):
+                client.discard_storage_state_on_close()
     finally:
         if hasattr(client, "close"):
             client.close()
@@ -845,9 +1077,36 @@ def main(argv: Sequence[str] | None = None) -> int:
         store.save(merged)
         written = len(merged)
     else:
+        merged = results
         written = 0
 
-    print(
+    live_summary = ""
+    if args.live_output and not args.dry_run:
+        live_start = args.start_date
+        live_end = args.end_date
+        if live_start is None or live_end is None:
+            live_start, live_end = current_event_window(
+                days_back=args.current_days_back,
+                days_forward=args.current_days_forward,
+            )
+        live_payload = build_live_score_payload(
+            merged,
+            start_date=live_start,
+            end_date=live_end,
+            max_standings_per_event=args.live_max_standings_per_event,
+        )
+        write_live_score_payload(live_payload, args.live_output)
+        live_summary = (
+            f", live_events={live_payload['event_count']}, "
+            f"live_results={live_payload['result_count']}, "
+            f"live_output={args.live_output}"
+        )
+    elif args.live_output:
+        live_summary = ", live_output_skipped=dry_run"
+    if crawl_fallback_reason:
+        live_summary += ", crawl_fallback=existing_store"
+
+    message = (
         "FEI crawl complete: "
         f"events_found={summary.events_found}, "
         f"events_opened={summary.events_opened}, "
@@ -857,6 +1116,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"results_rejected={summary.results_rejected}, "
         f"results_in_store={written}"
     )
+    if crawl_fallback_reason:
+        print(f"FEI crawl warning: {crawl_fallback_reason}; regenerated live output from existing store")
+    print(message + live_summary)
     return 0
 
 
@@ -1162,6 +1424,31 @@ def _write_raw(raw_dir: Path | None, url: str, html: str) -> None:
     raw_dir.mkdir(parents=True, exist_ok=True)
     path = raw_dir / f"{_stable_id(url)}.html"
     path.write_text(html, encoding="utf-8")
+
+
+def _run_with_timeout(callback: Callable[[], object], timeout_seconds: float) -> bool:
+    if timeout_seconds <= 0 or threading.current_thread() is not threading.main_thread():
+        callback()
+        return True
+
+    previous_handler = signal.getsignal(signal.SIGALRM)
+    previous_timer = signal.getitimer(signal.ITIMER_REAL)
+
+    def raise_timeout(signum, frame):
+        raise _OperationTimeout()
+
+    signal.signal(signal.SIGALRM, raise_timeout)
+    signal.setitimer(signal.ITIMER_REAL, timeout_seconds)
+    try:
+        callback()
+        return True
+    except _OperationTimeout:
+        return False
+    finally:
+        signal.setitimer(signal.ITIMER_REAL, 0)
+        signal.signal(signal.SIGALRM, previous_handler)
+        if previous_timer[0] > 0:
+            signal.setitimer(signal.ITIMER_REAL, previous_timer[0], previous_timer[1])
 
 
 def _build_client(args: argparse.Namespace, cookie: str | None) -> FeiHttpClient | FeiBrowserClient:
