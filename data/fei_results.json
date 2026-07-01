@@ -10694,7 +10694,7 @@
       "source_record_id": "fei:06b5ca7916e250e4"
     },
     {
-      "collected_at": "2026-06-29T23:03:35+00:00",
+      "collected_at": "2026-07-01T01:05:06+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 11.0,
       "cross_country_time_penalties": 20.0,
@@ -10796,7 +10796,7 @@
       "source_record_id": "fei:40774df7ee40b427"
     },
     {
-      "collected_at": "2026-06-29T23:03:35+00:00",
+      "collected_at": "2026-07-01T01:05:06+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 17.2,
@@ -10830,7 +10830,7 @@
       "source_record_id": "fei:596c712555798d61"
     },
     {
-      "collected_at": "2026-06-29T23:03:35+00:00",
+      "collected_at": "2026-07-01T01:05:06+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 30.0,
@@ -11374,7 +11374,7 @@
       "source_record_id": "fei:b6e7e78fa7594e0e"
     },
     {
-      "collected_at": "2026-06-29T23:03:35+00:00",
+      "collected_at": "2026-07-01T01:05:06+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 8.0,
@@ -11578,7 +11578,7 @@
       "source_record_id": "fei:2dec8354c55ad15c"
     },
     {
-      "collected_at": "2026-06-29T23:03:35+00:00",
+      "collected_at": "2026-07-01T01:05:06+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 1.2,
@@ -11629,7 +11629,7 @@
       "source_record_id": "fei:cd0d6e702f0b5728"
     },
     {
-      "collected_at": "2026-06-29T23:03:35+00:00",
+      "collected_at": "2026-07-01T01:05:06+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 17.2,
@@ -12054,7 +12054,7 @@
       "source_record_id": "fei:6ce25176aa373cee"
     },
     {
-      "collected_at": "2026-06-29T23:03:35+00:00",
+      "collected_at": "2026-07-01T01:05:06+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 32.4,
@@ -12581,7 +12581,7 @@
       "source_record_id": "fei:9bc9e45072e7e81d"
     },
     {
-      "collected_at": "2026-06-29T23:03:35+00:00",
+      "collected_at": "2026-07-01T01:05:06+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 29.2,
@@ -12649,7 +12649,7 @@
       "source_record_id": "fei:6166cec89ab39ff8"
     },
     {
-      "collected_at": "2026-06-29T23:03:35+00:00",
+      "collected_at": "2026-07-01T01:05:06+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 11.0,
       "cross_country_time_penalties": 26.8,
@@ -12989,7 +12989,7 @@
       "source_record_id": "fei:a653cb78b4462c04"
     },
     {
-      "collected_at": "2026-06-29T23:03:35+00:00",
+      "collected_at": "2026-07-01T01:05:06+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 32.0,
@@ -13057,7 +13057,7 @@
       "source_record_id": "fei:6b1801b914091d8f"
     },
     {
-      "collected_at": "2026-06-29T23:03:35+00:00",
+      "collected_at": "2026-07-01T01:05:06+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 11.0,
       "cross_country_time_penalties": 14.0,
@@ -13091,7 +13091,7 @@
       "source_record_id": "fei:d691a3ee2c723a00"
     },
     {
-      "collected_at": "2026-06-29T23:03:35+00:00",
+      "collected_at": "2026-07-01T01:05:06+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 20.8,
@@ -13125,7 +13125,7 @@
       "source_record_id": "fei:aad495760c8d4044"
     },
     {
-      "collected_at": "2026-06-29T23:03:35+00:00",
+      "collected_at": "2026-07-01T01:05:06+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 14.8,
@@ -13193,7 +13193,7 @@
       "source_record_id": "fei:487280f65990694f"
     },
     {
-      "collected_at": "2026-06-29T23:03:35+00:00",
+      "collected_at": "2026-07-01T01:05:06+00:00",
       "country": "POL",
       "cross_country_jump_penalties": 11.0,
       "cross_country_time_penalties": 21.6,
@@ -13296,6 +13296,6 @@
     }
   ],
   "source_id": "data_fei",
-  "updated_at": "2026-07-01T00:04:23+00:00",
+  "updated_at": "2026-07-01T01:05:50+00:00",
   "version": 1
 }
