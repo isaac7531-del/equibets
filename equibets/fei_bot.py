@@ -182,7 +182,7 @@ class FeiBrowserClient:
         page = self._ensure_page()
         page.goto(url, wait_until="domcontentloaded", timeout=60_000)
         self._wait_ready()
-        return page.content()
+        return self._read_content()
 
     def post(
         self,
@@ -212,7 +212,7 @@ class FeiBrowserClient:
         self._click_submit(data)
         self._wait_after_action()
         self._wait_ready()
-        return page.content()
+        return self._read_content()
 
     def open_past_shows(self) -> str:
         """Switch FEI calendar search results to the Past Shows tab."""
@@ -220,7 +220,7 @@ class FeiBrowserClient:
         page = self._ensure_page()
         link = page.locator("#PlaceHolderMain_lbBefore, a[id$='lbBefore'], a:has-text('Past Shows')")
         if link.count() == 0:
-            return page.content()
+            return self._read_content()
 
         def trigger_past_tab() -> bool:
             try:
@@ -276,7 +276,7 @@ class FeiBrowserClient:
                 return False
 
         def page_has_calendar_events() -> bool:
-            return bool(parse_calendar_events(page.content(), CALENDAR_SEARCH_URL))
+            return bool(parse_calendar_events(self._read_content(), CALENDAR_SEARCH_URL))
 
         try:
             link.first.click(timeout=5_000)
@@ -289,7 +289,7 @@ class FeiBrowserClient:
             self._wait_after_action()
             wait_for_past_tab()
         self._wait_ready()
-        return page.content()
+        return self._read_content()
 
     def discard_storage_state_on_close(self) -> None:
         self._discard_storage_state_on_close = True
@@ -381,7 +381,10 @@ class FeiBrowserClient:
                 body = page.locator("body").inner_text(timeout=1_000)
             except Exception:
                 body = ""
-            title = page.title()
+            try:
+                title = page.title()
+            except Exception:
+                title = ""
             lowered_body = body.lower()
             waiting_on_challenge = (
                 "Please enable JS" in body
@@ -404,10 +407,51 @@ class FeiBrowserClient:
     def _wait_after_action(self) -> None:
         page = self._ensure_page()
         try:
+            page.wait_for_load_state("domcontentloaded", timeout=30_000)
+        except Exception:
+            pass
+        try:
             page.wait_for_load_state("networkidle", timeout=30_000)
         except Exception:
             pass
         page.wait_for_timeout(3_000)
+
+    def _read_content(self) -> str:
+        page = self._ensure_page()
+        last_error: Exception | None = None
+        for _ in range(5):
+            try:
+                self._wait_ready()
+                return page.content()
+            except Exception as exc:
+                if not self._is_transient_navigation_error(exc):
+                    raise
+                last_error = exc
+                self._settle_after_transient_navigation(page)
+        if last_error is not None:
+            raise last_error
+        return page.content()
+
+    @staticmethod
+    def _is_transient_navigation_error(exc: Exception) -> bool:
+        message = str(exc)
+        return (
+            "Unable to retrieve content because the page is navigating" in message
+            or "Execution context was destroyed" in message
+        )
+
+    @staticmethod
+    def _settle_after_transient_navigation(page) -> None:
+        wait_for_load_state = getattr(page, "wait_for_load_state", None)
+        if wait_for_load_state is not None:
+            for state in ("domcontentloaded", "networkidle"):
+                try:
+                    wait_for_load_state(state, timeout=10_000)
+                except Exception:
+                    pass
+        wait_for_timeout = getattr(page, "wait_for_timeout", None)
+        if wait_for_timeout is not None:
+            wait_for_timeout(500)
 
     def _fill_form_field(self, name: str, value: str) -> bool:
         if value == "" or name.startswith("__"):
