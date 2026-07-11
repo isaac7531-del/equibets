@@ -67,6 +67,8 @@ const createDefaultFormState = (): FormState => ({
 
 const numberValue = (value: string) => Number.parseFloat(value || '0');
 const sourceLabel = (sourceId: string) => SOURCE_LABELS[sourceId] ?? sourceId;
+const pluralize = (count: number, singular: string, plural = `${singular}s`) =>
+  `${count} ${count === 1 ? singular : plural}`;
 const formatDate = (value: string) => new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(value));
 const formatDateTime = (value: string | null) =>
   value
@@ -329,15 +331,16 @@ export default function App() {
           <span>Public data</span>
           <strong>{publicResultRecords.length}</strong>
           <p>
-            {publicSourceCount} sources, {liveDataStatus === 'live' ? 'live feed' : 'seed fallback'}, refreshed{' '}
-            {formatDateTime(latestRefresh)}
+            {pluralize(publicSourceCount, 'source')}, {liveDataStatus === 'live' ? 'live feed' : 'seed fallback'},
+            refreshed {formatDateTime(latestRefresh)}
           </p>
         </article>
         <article>
           <span>Current events</span>
           <strong>{liveEventCount}</strong>
           <p>
-            {calendarEvents.length} calendar rows, {calendarDataStatus === 'live' ? 'live feed' : 'seed fallback'}{' '}
+            {pluralize(calendarEvents.length, 'calendar row')},{' '}
+            {calendarDataStatus === 'live' ? 'live feed' : 'seed fallback'}{' '}
             {formatDateTime(latestUpcomingRefresh)}
           </p>
         </article>
@@ -840,8 +843,8 @@ export default function App() {
               <span className={`confidence-pill confidence-${prediction.confidence}`}>{prediction.confidence} confidence</span>
               <strong>{prediction.likelyFinishingScore.toFixed(1)}</strong>
               <p>
-                Based on {prediction.recentResultCount} recent consolidated starts for {prediction.horseName} and{' '}
-                {prediction.riderName}.
+                Based on {pluralize(prediction.recentResultCount, 'recent consolidated start')} for{' '}
+                {prediction.horseName} and {prediction.riderName}.
               </p>
               <dl>
                 <div>
