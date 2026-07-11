@@ -160,10 +160,31 @@ python3 -m equibets.upcoming_events \
 
 The scheduled GitHub Actions workflow at
 `.github/workflows/event-data-refresh.yml` runs tests/builds daily, then refreshes
-upcoming FEI events and recent FEI results when the `FEI_COOKIE` repository
-secret is configured and the source compliance policy allows `calendar` and
-`results` jobs. It uploads the refreshed JSON files as workflow artifacts for
-review before any production data publish step.
+upcoming FEI events, current-event FEI results, and recent FEI results when the
+`FEI_COOKIE` repository secret is configured and the source compliance policy
+allows `calendar` and `results` jobs. It uploads the refreshed JSON files as
+workflow artifacts for review before any production data publish step.
+
+Current-event refreshes bridge the upcoming calendar to live scoring. The command
+loads active rows from `data/upcoming_events.json`, searches recent FEI calendar
+results, opens the matching event/result pages, and merges new scores into
+`data/fei_results.json`:
+
+```bash
+FEI_COOKIE="your-data-fei-session-cookie" \
+python3 -m equibets.current_events \
+  --upcoming-events data/upcoming_events.json \
+  --output data/fei_results.json \
+  --storage-state data/fei_state.json \
+  --compliance-policy data/source_compliance.json \
+  --search-past-days 3 \
+  --verify warn
+```
+
+When refreshed JSON is published under the website's `/data/` path, the frontend
+loads `/data/fei_results.json` and `/data/upcoming_events.json` at runtime. Those
+live records replace the bundled seed rows and flow through the existing result
+consolidation and likely-score prediction logic.
 
 ## Horse index
 

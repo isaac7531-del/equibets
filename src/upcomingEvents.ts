@@ -62,3 +62,24 @@ export const latestUpcomingEventRefresh = (events: UpcomingEventRecord[]) =>
 
     return latest;
   }, null);
+
+export type UpcomingEventStatus = 'live' | 'upcoming' | 'complete';
+
+export const eventStatus = (event: UpcomingEventRecord, today = new Date()): UpcomingEventStatus => {
+  const todayKey = dateKey(today);
+  const startKey = event.startDate;
+  const endKey = event.endDate ?? event.startDate;
+
+  if (startKey <= todayKey && todayKey <= endKey) {
+    return 'live';
+  }
+  if (todayKey < startKey) {
+    return 'upcoming';
+  }
+  return 'complete';
+};
+
+export const currentEvents = (events: UpcomingEventRecord[], today = new Date()) =>
+  events.filter((event) => eventStatus(event, today) === 'live');
+
+const dateKey = (value: Date) => value.toISOString().slice(0, 10);

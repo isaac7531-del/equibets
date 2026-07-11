@@ -682,7 +682,8 @@ td span {
 }
 
 .confidence-pill,
-.source-badge {
+.source-badge,
+.status-pill {
   background: rgba(34, 211, 238, 0.15);
   border-radius: 999px;
   color: var(--accent);
@@ -714,6 +715,21 @@ td span {
 .source-user {
   background: rgba(168, 85, 247, 0.16);
   color: #e9d5ff;
+}
+
+.status-live {
+  background: rgba(190, 242, 100, 0.16);
+  color: var(--accent-3);
+}
+
+.status-upcoming {
+  background: rgba(34, 211, 238, 0.15);
+  color: var(--accent);
+}
+
+.status-complete {
+  background: rgba(148, 163, 184, 0.16);
+  color: var(--subtle);
 }
 
 .consolidated-card table {
