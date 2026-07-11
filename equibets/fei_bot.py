@@ -487,8 +487,20 @@ class FeiDataBot:
                 form_fields=form_fields,
             )
 
+        return self.collect_events(events, max_events=max_events, verify=verify)
+
+    def collect_events(
+        self,
+        events: Sequence[FeiEvent],
+        *,
+        max_events: int | None = None,
+        verify: str = "none",
+    ) -> tuple[list[EventingResult], FeiCrawlSummary]:
+        """Collect normalized results from known FEI calendar events."""
+
+        selected_events = list(events)
         if max_events is not None:
-            events = events[:max_events]
+            selected_events = selected_events[:max_events]
 
         collected_at = datetime.now(timezone.utc).replace(microsecond=0)
         all_results: list[EventingResult] = []
@@ -496,7 +508,7 @@ class FeiDataBot:
         verified = 0
         rejected = 0
 
-        for event in events:
+        for event in selected_events:
             event_results, pages_opened = self.collect_event(event, collected_at=collected_at)
             result_pages_opened += pages_opened
             for result in event_results:
@@ -514,8 +526,8 @@ class FeiDataBot:
                     rejected += 1
 
         return all_results, FeiCrawlSummary(
-            events_found=len(events),
-            events_opened=len(events),
+            events_found=len(selected_events),
+            events_opened=len(selected_events),
             result_pages_opened=result_pages_opened,
             results_collected=len(all_results),
             results_verified=verified,

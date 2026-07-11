@@ -21,6 +21,7 @@ import {
   SOURCE_LABELS,
 } from './results';
 import { loadResults, saveResults } from './storage';
+import { loadLiveResults, loadLiveUpcomingEvents } from './liveData';
 import {
   createDefaultHorseProfileForm,
   horseProfileFromForm,
@@ -28,7 +29,7 @@ import {
   type HorseProfileFormState,
 } from './horseProfiles';
 import { loadHorseProfiles, saveHorseProfiles } from './storage';
-import { latestUpcomingEventRefresh, upcomingEvents } from './upcomingEvents';
+import { currentEvents, eventStatus, latestUpcomingEventRefresh, upcomingEvents } from './upcomingEvents';
 
 type FormState = {
   rider: string;
@@ -66,6 +67,8 @@ const createDefaultFormState = (): FormState => ({
 
 const numberValue = (value: string) => Number.parseFloat(value || '0');
 const sourceLabel = (sourceId: string) => SOURCE_LABELS[sourceId] ?? sourceId;
+const pluralize = (count: number, singular: string, plural = `${singular}s`) =>
+  `${count} ${count === 1 ? singular : plural}`;
 const formatDate = (value: string) => new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(value));
 const formatDateTime = (value: string | null) =>
   value
@@ -120,6 +123,10 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 export default function App() {
   const [form, setForm] = useState<FormState>(() => createDefaultFormState());
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [publicResultRecords, setPublicResultRecords] = useState(publicResults);
+  const [calendarEvents, setCalendarEvents] = useState(upcomingEvents);
+  const [liveDataStatus, setLiveDataStatus] = useState<'seed' | 'live' | 'unavailable'>('seed');
+  const [calendarDataStatus, setCalendarDataStatus] = useState<'seed' | 'live' | 'unavailable'>('seed');
   const [horseProfileForm, setHorseProfileForm] = useState<HorseProfileFormState>(() => createDefaultHorseProfileForm());
   const [horseProfiles, setHorseProfiles] = useState(() => loadHorseProfiles());
   const [searchQuery, setSearchQuery] = useState('');
@@ -131,15 +138,19 @@ export default function App() {
   const sortedHorseProfiles = useMemo(() => sortHorseProfiles(horseProfiles), [horseProfiles]);
   const bestResult = sortedResults[0];
   const savedResultRecords = useMemo(() => results.map(resultFromStoredResult), [results]);
-  const allResultRecords = useMemo(() => [...publicResults, ...savedResultRecords], [savedResultRecords]);
+  const allResultRecords = useMemo(
+    () => [...publicResultRecords, ...savedResultRecords],
+    [publicResultRecords, savedResultRecords],
+  );
   const consolidatedResults = useMemo(() => consolidateResults(allResultRecords), [allResultRecords]);
   const filteredConsolidatedResults = useMemo(
     () => filterResults(consolidatedResults, searchQuery),
     [consolidatedResults, searchQuery],
   );
-  const publicSourceCount = new Set(publicResults.map((result) => result.sourceId)).size;
-  const latestRefresh = latestCollectedAt(publicResults);
-  const latestUpcomingRefresh = latestUpcomingEventRefresh(upcomingEvents);
+  const publicSourceCount = new Set(publicResultRecords.map((result) => result.sourceId)).size;
+  const latestRefresh = latestCollectedAt(publicResultRecords);
+  const latestUpcomingRefresh = latestUpcomingEventRefresh(calendarEvents);
+  const liveEventCount = currentEvents(calendarEvents).length;
   const options = combinationOptions(consolidatedResults);
   const activeCombination = selectedCombination || options[0]?.key || '';
   const prediction = useMemo(
@@ -161,6 +172,55 @@ export default function App() {
         : sortedResults.filter((result) => result.rider === selectedRider),
     [selectedRider, sortedResults],
   );
+
+  useEffect(() => {
+    if (typeof fetch !== 'function') {
+      return;
+    }
+
+    let isCurrent = true;
+    const browserFetch = fetch.bind(globalThis);
+
+    loadLiveResults(browserFetch)
+      .then((feed) => {
+        if (!isCurrent) {
+          return;
+        }
+        if (feed.records.length > 0) {
+          setPublicResultRecords(feed.records);
+          setLiveDataStatus('live');
+        } else {
+          setLiveDataStatus('unavailable');
+        }
+      })
+      .catch(() => {
+        if (isCurrent) {
+          setLiveDataStatus('unavailable');
+        }
+      });
+
+    loadLiveUpcomingEvents(browserFetch)
+      .then((feed) => {
+        if (!isCurrent) {
+          return;
+        }
+        if (feed.events.length > 0) {
+          setCalendarEvents(feed.events);
+          setCalendarDataStatus('live');
+        } else {
+          setCalendarDataStatus('unavailable');
+        }
+      })
+      .catch(() => {
+        if (isCurrent) {
+          setCalendarDataStatus('unavailable');
+        }
+      });
+
+    return () => {
+      isCurrent = false;
+    };
+  }, []);
 
   useEffect(() => {
     if (selectedRider !== 'all' && !riderOptions.includes(selectedRider)) {
@@ -233,8 +293,8 @@ export default function App() {
           <p className="eyebrow">Equibets</p>
           <h1>Eventing form guide and score tracker</h1>
           <p className="hero-copy">
-            Capture your own scores, combine them with public eventing results, and estimate a horse-and-rider
-            combination's likely finishing score.
+            Capture your own scores, combine them with public eventing results, and pull current FEI event data into
+            live scoring predictions as refreshed JSON is published.
           </p>
         </div>
         <div className="hero-card" aria-live="polite">
@@ -269,13 +329,20 @@ export default function App() {
         </article>
         <article>
           <span>Public data</span>
-          <strong>{publicResults.length}</strong>
-          <p>{publicSourceCount} sources, refreshed {formatDateTime(latestRefresh)}</p>
+          <strong>{publicResultRecords.length}</strong>
+          <p>
+            {pluralize(publicSourceCount, 'source')}, {liveDataStatus === 'live' ? 'live feed' : 'seed fallback'},
+            updated {formatDateTime(latestRefresh)}
+          </p>
         </article>
         <article>
-          <span>Upcoming</span>
-          <strong>{upcomingEvents.length}</strong>
-          <p>sample rows, refresh pipeline ready {formatDateTime(latestUpcomingRefresh)}</p>
+          <span>Current events</span>
+          <strong>{liveEventCount}</strong>
+          <p>
+            {pluralize(calendarEvents.length, 'calendar row')},{' '}
+            {calendarDataStatus === 'live' ? 'live feed' : 'seed fallback'}{' '}
+            {formatDateTime(latestUpcomingRefresh)}
+          </p>
         </article>
       </section>
 
@@ -441,12 +508,12 @@ export default function App() {
             <p className="eyebrow">Worldwide calendar</p>
             <h2 id="upcoming-events-heading">Upcoming event feed</h2>
           </div>
-          <span className="data-pill">Daily FEI refresh ready</span>
+          <span className="data-pill">{liveEventCount > 0 ? `${liveEventCount} live now` : 'FEI refresh ready'}</span>
         </div>
         <p className="supporting-copy">
-          These are seed rows for the frontend contract. The scheduled refresh writes the full FEI calendar feed to
-          `data/upcoming_events.json` and builds `data/horse_index.json` from every collected result before production
-          promotion.
+          The app loads `/data/upcoming_events.json` and `/data/fei_results.json` when published, then falls back to seed
+          rows. Events happening today are marked live and their collected results flow into the form guide and prediction
+          score.
         </p>
         <div className="table-wrap">
           <table className="upcoming-events-table">
@@ -456,11 +523,14 @@ export default function App() {
                 <th>Dates</th>
                 <th>Country</th>
                 <th>Level</th>
+                <th>Status</th>
                 <th>Source</th>
               </tr>
             </thead>
             <tbody>
-              {upcomingEvents.map((event) => (
+              {calendarEvents.map((event) => {
+                const status = eventStatus(event);
+                return (
                 <tr key={event.sourceEventId}>
                   <td>
                     <strong>{event.name}</strong>
@@ -473,10 +543,16 @@ export default function App() {
                   <td>{event.country}</td>
                   <td>{event.level}</td>
                   <td>
+                    <span className={`status-pill status-${status}`}>
+                      {status === 'live' ? 'Live now' : status === 'upcoming' ? 'Upcoming' : 'Complete'}
+                    </span>
+                  </td>
+                  <td>
                     <span className="source-badge">{sourceLabel(event.sourceId)}</span>
                   </td>
                 </tr>
-              ))}
+                );
+              })}
             </tbody>
           </table>
         </div>
@@ -767,8 +843,8 @@ export default function App() {
               <span className={`confidence-pill confidence-${prediction.confidence}`}>{prediction.confidence} confidence</span>
               <strong>{prediction.likelyFinishingScore.toFixed(1)}</strong>
               <p>
-                Based on {prediction.recentResultCount} recent consolidated starts for {prediction.horseName} and{' '}
-                {prediction.riderName}.
+                Based on {pluralize(prediction.recentResultCount, 'recent consolidated start')} for{' '}
+                {prediction.horseName} and {prediction.riderName}.
               </p>
               <dl>
                 <div>

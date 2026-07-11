@@ -1,11 +1,16 @@
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
 
 describe('App', () => {
   beforeEach(() => {
     window.localStorage.clear();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.unstubAllGlobals();
   });
 
   const saveResult = async (
@@ -100,8 +105,72 @@ describe('App', () => {
     const upcomingFeed = screen.getByRole('region', { name: /upcoming event feed/i });
     expect(upcomingFeed).toHaveTextContent('Badminton Horse Trials');
     expect(upcomingFeed).toHaveTextContent('CHIO Aachen');
-    expect(upcomingFeed).toHaveTextContent('Daily FEI refresh ready');
+    expect(upcomingFeed).toHaveTextContent('FEI refresh ready');
     expect(within(upcomingFeed).getAllByText('FEI').length).toBeGreaterThan(0);
+  });
+
+  it('loads published live result and calendar JSON into scoring views', async () => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(async (url: string) => {
+        if (url.endsWith('/data/upcoming_events.json')) {
+          return new Response(
+            JSON.stringify({
+              updated_at: '2026-07-11T12:00:00Z',
+              events: [
+                {
+                  source_id: 'data_fei',
+                  source_event_id: 'fei-live-aachen',
+                  source_priority: 0,
+                  name: 'Aachen Live',
+                  start_date: '2000-01-01',
+                  end_date: '2099-12-31',
+                  country: 'GER',
+                  discipline: 'Eventing',
+                  level: 'CCI4*-S',
+                  source_url: 'https://data.fei.org/Calendar/EventDetail.aspx?event=live',
+                  collected_at: '2026-07-11T12:00:00Z',
+                },
+              ],
+            }),
+          );
+        }
+
+        return new Response(
+          JSON.stringify({
+            updated_at: '2026-07-11T12:00:00Z',
+            results: [
+              {
+                source_id: 'data_fei',
+                source_record_id: 'fei-live-aachen-1',
+                source_priority: 0,
+                rider_name: 'Live Rider',
+                horse_name: 'Live Ridge',
+                event_name: 'Aachen Live',
+                event_date: '2026-07-11',
+                level: 'CCI4*-S',
+                country: 'GER',
+                dressage_score: 28.4,
+                show_jumping_penalties: 0,
+                cross_country_jump_penalties: 0,
+                cross_country_time_penalties: 1.2,
+                collected_at: '2026-07-11T12:00:00Z',
+                is_user_entered: false,
+              },
+            ],
+          }),
+        );
+      }),
+    );
+
+    render(<App />);
+
+    expect(await screen.findByText('Live Ridge')).toBeInTheDocument();
+    const upcomingFeed = screen.getByRole('region', { name: /upcoming event feed/i });
+    expect(upcomingFeed).toHaveTextContent('Aachen Live');
+    expect(upcomingFeed).toHaveTextContent('Live now');
+    expect(screen.getByText('1 live now')).toBeInTheDocument();
+    expect(screen.getAllByText(/live feed/i).length).toBeGreaterThanOrEqual(2);
   });
 
   it('saves horse profile data to the horse profile table', async () => {

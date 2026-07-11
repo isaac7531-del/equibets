@@ -1,6 +1,7 @@
 """Utilities for eventing analytics, results, and predictions."""
 
 from .compliance import SourceComplianceError, SourceCompliancePolicy, require_source_approval
+from .current_events import CurrentEventRefreshSummary, active_events, collect_current_event_results
 from .probability import (
     EntryPhaseModel,
     FieldEntry,
@@ -24,8 +25,11 @@ __all__ = [
     "ProbabilityPriors",
     "SourceComplianceError",
     "SourceCompliancePolicy",
+    "CurrentEventRefreshSummary",
     "UpcomingEvent",
     "UpcomingEventStore",
+    "active_events",
+    "collect_current_event_results",
     "consolidate_results",
     "consolidate_upcoming_events",
     "build_horse_index",

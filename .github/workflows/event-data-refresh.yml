@@ -13,6 +13,10 @@ on:
         description: "Days of recent results to collect"
         required: false
         default: "14"
+      live_past_days:
+        description: "Recent calendar-result days to search for live/current events"
+        required: false
+        default: "3"
 
 jobs:
   refresh-event-data:
@@ -24,6 +28,7 @@ jobs:
       FEI_COOKIE: ${{ secrets.FEI_COOKIE }}
       DAYS_AHEAD: ${{ inputs.days_ahead || '180' }}
       PAST_DAYS: ${{ inputs.past_days || '14' }}
+      LIVE_PAST_DAYS: ${{ inputs.live_past_days || '3' }}
     steps:
       - uses: actions/checkout@v4
 
@@ -59,6 +64,17 @@ jobs:
             --output data/upcoming_events.json \
             --storage-state data/fei_state.json \
             --compliance-policy data/source_compliance.json
+
+      - name: Refresh current FEI event results
+        if: env.FEI_COOKIE != ''
+        run: |
+          python3 -m equibets.current_events \
+            --upcoming-events data/upcoming_events.json \
+            --output data/fei_results.json \
+            --storage-state data/fei_state.json \
+            --compliance-policy data/source_compliance.json \
+            --search-past-days "$LIVE_PAST_DAYS" \
+            --verify warn
 
       - name: Refresh recent FEI results
         if: env.FEI_COOKIE != ''
