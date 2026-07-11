@@ -733,7 +733,18 @@ td span {
 }
 
 .consolidated-card table {
-  min-width: 850px;
+  min-width: 0;
+  table-layout: auto;
+}
+
+.consolidated-card th:nth-child(5),
+.consolidated-card td:nth-child(5) {
+  width: 74px;
+}
+
+.consolidated-card th:nth-child(6),
+.consolidated-card td:nth-child(6) {
+  width: 112px;
 }
 
 .search-box {
