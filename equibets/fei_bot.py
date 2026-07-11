@@ -562,12 +562,20 @@ class FeiBrowserClient:
         buttons = page.locator("input[type=submit], button, input[type=button]")
         for index in range(buttons.count()):
             button = buttons.nth(index)
-            text = _header((button.get_attribute("value") or "") + " " + button.inner_text(timeout=1_000))
+            try:
+                button_name = button.get_attribute("name", timeout=1_000)
+                text = _header(
+                    (button.get_attribute("value", timeout=1_000) or "")
+                    + " "
+                    + button.inner_text(timeout=1_000)
+                )
+            except Exception:
+                continue
             if "search" in text:
                 try:
                     button.click(timeout=5_000)
                 except Exception:
-                    if not self._submit_with_javascript(button.get_attribute("name")):
+                    if not self._submit_with_javascript(button_name):
                         raise
                 return
         if not self._submit_with_javascript(None):
@@ -732,7 +740,7 @@ class FeiDataBot:
 
                 try:
                     is_verified = self._verify_result(result)
-                except RuntimeError:
+                except Exception:
                     if verify == "require":
                         raise
                     all_results.append(result)
