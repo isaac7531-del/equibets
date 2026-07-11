@@ -332,7 +332,7 @@ export default function App() {
           <strong>{publicResultRecords.length}</strong>
           <p>
             {pluralize(publicSourceCount, 'source')}, {liveDataStatus === 'live' ? 'live feed' : 'seed fallback'},
-            refreshed {formatDateTime(latestRefresh)}
+            updated {formatDateTime(latestRefresh)}
           </p>
         </article>
         <article>
