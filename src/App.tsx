@@ -302,7 +302,7 @@ export default function App() {
           <p>
             {liveLeader && featuredLiveEvent
               ? `${liveLeader.horse_name} leads ${featuredLiveEvent.event_name}`
-              : 'No current public results yet'}
+              : 'Current FEI window checked'}
           </p>
         </article>
       </section>
@@ -320,7 +320,7 @@ export default function App() {
         {liveEvents.length === 0 ? (
           <div className="empty-state">
             <strong>No live public results in the current window.</strong>
-            <p>Run the FEI current-events pull to populate official standings as new scores are published.</p>
+            <p>The latest FEI current-events pull completed; this panel will populate as official standings land.</p>
           </div>
         ) : (
           <div className="live-event-list">
