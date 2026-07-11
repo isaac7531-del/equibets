@@ -44,10 +44,10 @@ class FakeClient:
 
 class FailingVerifier:
     def verify_person(self, name):
-        raise RuntimeError("verification search form unavailable")
+        raise TimeoutError("verification search form timed out")
 
     def verify_horse(self, name):
-        raise RuntimeError("verification search form unavailable")
+        raise TimeoutError("verification search form timed out")
 
 
 class FakePastShowsLocator:
