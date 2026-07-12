@@ -13295,7 +13295,7 @@
       "source_record_id": "fei:82afe43d26c40f2a"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 5.2,
@@ -13312,7 +13312,7 @@
       "source_record_id": "fei:db025dd745ef8fa2"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 5.6,
@@ -13329,7 +13329,24 @@
       "source_record_id": "fei:7be7e6fedd35a638"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 1.6,
+      "dressage_score": 41.1,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "KANOS",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Anna BALCAROVA (CZE)",
+      "show_jumping_penalties": 24.4,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:c0327dd629f62c09"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 1.6,
@@ -13346,7 +13363,7 @@
       "source_record_id": "fei:073aa2dfb8c36607"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 25.6,
@@ -13363,7 +13380,24 @@
       "source_record_id": "fei:a8ef4f83afdef229"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 31.8,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "DSP DESCANSADO",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Carl VOIGT (GER)",
+      "show_jumping_penalties": 8.4,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:efe7b0f240fc7825"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 4.8,
@@ -13380,7 +13414,24 @@
       "source_record_id": "fei:074e56f98bfa6e07"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 33.8,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "STEPPKE 25",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Christoph WAHLER (GER)",
+      "show_jumping_penalties": 8.0,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:1d7fe416b43e68e3"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 32.0,
@@ -13397,7 +13448,7 @@
       "source_record_id": "fei:e8625d40038a45cf"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 15.6,
@@ -13414,7 +13465,7 @@
       "source_record_id": "fei:d8817da623ff28ae"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 15.6,
@@ -13431,7 +13482,7 @@
       "source_record_id": "fei:fcd9f2f8ddc1027d"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 26.0,
@@ -13448,7 +13499,41 @@
       "source_record_id": "fei:730f9d1a6282cdd5"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 3.2,
+      "dressage_score": 32.7,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "KOENIGSBLAUER",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Ella KRUEGER (GER)",
+      "show_jumping_penalties": 18.4,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:51c0bf20903dc69f"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 41.7,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "ML DIRTY HARRY",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Ellen Kristina HYNNE (NOR)",
+      "show_jumping_penalties": 6.0,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:4311c58d31f2b852"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -13465,7 +13550,24 @@
       "source_record_id": "fei:b1660ab016f95b67"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 32.1,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "FEUERTAENZER",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Friedrich-Bernd REHKAMP (GER)",
+      "show_jumping_penalties": 10.8,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:476da34ba28534a3"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 1.2,
@@ -13482,7 +13584,24 @@
       "source_record_id": "fei:0de3cd56922f0766"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 31.0,
+      "cross_country_time_penalties": 18.0,
+      "dressage_score": 31.3,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "BRISBANE",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Jillian GIESSEN (NED)",
+      "show_jumping_penalties": 4.0,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:ac7427995da836f1"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 24.4,
@@ -13499,7 +13618,7 @@
       "source_record_id": "fei:4a0b399d3356991e"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 5.2,
@@ -13516,7 +13635,7 @@
       "source_record_id": "fei:47be284af0ed6f8a"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 2.4,
@@ -13533,7 +13652,7 @@
       "source_record_id": "fei:119e703ced0a29f3"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 1.6,
@@ -13550,7 +13669,7 @@
       "source_record_id": "fei:536440349c09011e"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 6.0,
@@ -13567,7 +13686,7 @@
       "source_record_id": "fei:25bc60513be5ab73"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 16.8,
@@ -13584,7 +13703,7 @@
       "source_record_id": "fei:c6043406fba8bf2b"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 15.2,
@@ -13601,7 +13720,7 @@
       "source_record_id": "fei:05bc35c62c5f3f07"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 2.0,
@@ -13618,7 +13737,7 @@
       "source_record_id": "fei:b2155a4a4eaaf3e3"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 30.4,
@@ -13635,7 +13754,7 @@
       "source_record_id": "fei:6462eb5a1a0fcb44"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -13652,7 +13771,7 @@
       "source_record_id": "fei:44d4b8b15184fe14"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 14.0,
@@ -13669,7 +13788,7 @@
       "source_record_id": "fei:416c680fd6fcfcda"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 20.0,
@@ -13686,7 +13805,24 @@
       "source_record_id": "fei:4888e7f7b33ee1ca"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 1.6,
+      "dressage_score": 38.3,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "LA DIVA",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Liv Noe HARTMANN (GER)",
+      "show_jumping_penalties": 5.6,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:ef26a54f53044d10"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 2.8,
@@ -13703,7 +13839,24 @@
       "source_record_id": "fei:cff3b731102d13e4"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 29.1,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "HJOPTIMUS",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Mathies R\u00dcDER (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:b727f1804f8adb0d"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 3.6,
@@ -13720,7 +13873,24 @@
       "source_record_id": "fei:65ebcd89567c75e7"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 2.8,
+      "dressage_score": 35.0,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "KAN-DO 2",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Moritz SPONAGEL (GER)",
+      "show_jumping_penalties": 6.0,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:7841b553cc51af1a"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 14.4,
@@ -13737,7 +13907,7 @@
       "source_record_id": "fei:2cf3e3e2e6b8b36b"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -13754,7 +13924,7 @@
       "source_record_id": "fei:78af5460e0b79be2"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 18.0,
@@ -13771,7 +13941,24 @@
       "source_record_id": "fei:606e8deb780aff31"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 32.3,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "FAVORITA V",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Pita SCHMID (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:a7637b2750d0f243"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 3.2,
@@ -13788,7 +13975,92 @@
       "source_record_id": "fei:c5f5d62e58e36579"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 20.0,
+      "cross_country_time_penalties": 32.4,
+      "dressage_score": 40.5,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "MOTION",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Roxana GRAMAN (NED)",
+      "show_jumping_penalties": 2.8,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:23045ea32f9473cd"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 40.0,
+      "cross_country_time_penalties": 26.0,
+      "dressage_score": 38.3,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "LUCKY TWIST",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Selma KVARNSTRAND (SWE)",
+      "show_jumping_penalties": 12.0,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:520614cac9fff08a"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 18.4,
+      "dressage_score": 34.0,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "CALYPSO",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Silva KELLY (GER)",
+      "show_jumping_penalties": 0.8,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:ad4a60f6a593f945"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 1.2,
+      "dressage_score": 32.8,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "FRANK WHITE",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Silva KELLY (GER)",
+      "show_jumping_penalties": 6.4,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:053ab02f2d4a8c5f"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 27.4,
+      "event_date": "2026-07-02",
+      "event_name": "Luhm\u00fchlen",
+      "horse_name": "PROMISING PETE TSF",
+      "is_user_entered": false,
+      "level": "CCI3*-L , CCI3*-S , CCI2*-L , CCI2*-S",
+      "rider_name": "Smilla Maline PHILIPP (GER)",
+      "show_jumping_penalties": 2.8,
+      "source_id": "data_fei",
+      "source_priority": 0,
+      "source_record_id": "fei:cb20f9356f6c5dbc"
+    },
+    {
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "AUT",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 9.6,
@@ -13805,7 +14077,7 @@
       "source_record_id": "fei:8153d50093c09454"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "EST",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 12.4,
@@ -13822,7 +14094,7 @@
       "source_record_id": "fei:2f161cc156dcad4c"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "EST",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 5.2,
@@ -13839,7 +14111,7 @@
       "source_record_id": "fei:66ca41c21326a307"
     },
     {
-      "collected_at": "2026-07-11T20:04:27+00:00",
+      "collected_at": "2026-07-12T02:03:50+00:00",
       "country": "EST",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 9.6,
@@ -13857,6 +14129,6 @@
     }
   ],
   "source_id": "data_fei",
-  "updated_at": "2026-07-12T00:03:45+00:00",
+  "updated_at": "2026-07-12T02:04:30+00:00",
   "version": 1
 }
