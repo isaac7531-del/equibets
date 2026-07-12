@@ -16,7 +16,9 @@ from equibets.results import EventingResult, consolidate_results, load_results
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_RESULTS_FILE = REPO_ROOT / "data" / "fei_results.json"
 DEFAULT_LIVE_SCORES_FILE = REPO_ROOT / "src" / "data" / "live_scores.json"
-DEFAULT_DAYS_BACK = 7
+# FEI result rows use the show start date. A two-week window keeps multi-day
+# current-event starts visible even when scores publish near the end of a show.
+DEFAULT_DAYS_BACK = 14
 DEFAULT_DAYS_FORWARD = 2
 
 
