@@ -20,6 +20,20 @@ import {
   resultFromStoredResult,
   SOURCE_LABELS,
 } from './results';
+import liveScoresData from './data/live_scores.json';
+import {
+  describeLiveFreshness,
+  formatCompetitionClasses,
+  formatDate as formatLiveDate,
+  formatLiveEventTitle,
+  formatLiveScoreValue,
+  formatLiveWindow,
+  formatSourceList,
+  getFeaturedLiveEvent,
+  getLiveEvents,
+  getLiveLeader,
+  type LiveScorePayload,
+} from './liveScores';
 import { loadResults, saveResults } from './storage';
 import {
   createDefaultHorseProfileForm,
@@ -109,6 +123,8 @@ const platformFormats = [
   },
 ];
 
+const liveScores = liveScoresData as LiveScorePayload;
+
 const createScoreInput = (form: FormState): EventingScoreInput => ({
   dressagePercentage: numberValue(form.dressagePercentage),
   showJumpingPenalties: numberValue(form.showJumpingPenalties),
@@ -161,6 +177,9 @@ export default function App() {
         : sortedResults.filter((result) => result.rider === selectedRider),
     [selectedRider, sortedResults],
   );
+  const liveEvents = getLiveEvents(liveScores);
+  const featuredLiveEvent = getFeaturedLiveEvent(liveScores);
+  const liveLeader = getLiveLeader(liveScores);
 
   useEffect(() => {
     if (selectedRider !== 'all' && !riderOptions.includes(selectedRider)) {
@@ -277,6 +296,85 @@ export default function App() {
           <strong>{upcomingEvents.length}</strong>
           <p>sample rows, refresh pipeline ready {formatDateTime(latestUpcomingRefresh)}</p>
         </article>
+        <article>
+          <span>Public live</span>
+          <strong>{liveScores.result_count}</strong>
+          <p>
+            {liveLeader && featuredLiveEvent
+              ? `${liveLeader.horse_name} leads ${featuredLiveEvent.event_name}`
+              : 'No current public results yet'}
+          </p>
+        </article>
+      </section>
+
+      <section className="results-card live-results-card" aria-labelledby="live-results-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Current events</p>
+            <h2 id="live-results-heading">Live public scoring</h2>
+            <p className="muted-copy">{describeLiveFreshness(liveScores)}</p>
+          </div>
+          <span className="freshness-pill">{formatLiveWindow(liveScores)}</span>
+        </div>
+
+        {liveEvents.length === 0 ? (
+          <div className="empty-state">
+            <strong>No live public results in the current window.</strong>
+            <p>Run the FEI current-events pull to populate official standings as new scores are published.</p>
+          </div>
+        ) : (
+          <div className="live-event-list">
+            {liveEvents.slice(0, 4).map((event) => (
+              <article
+                className="live-event"
+                key={`${event.event_name}-${event.event_date}-${event.level}-${event.country}`}
+              >
+                <header>
+                  <div>
+                    <h3>{formatLiveEventTitle(event)}</h3>
+                    <span>
+                      {formatLiveDate(event.event_date)} / {event.country} / {formatCompetitionClasses(event.level)}
+                    </span>
+                  </div>
+                  <p>
+                    {event.result_count} public result{event.result_count === 1 ? '' : 's'} from{' '}
+                    {formatSourceList(event.source_ids)}
+                  </p>
+                </header>
+
+                <div className="table-wrap">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Rank</th>
+                        <th>Combination</th>
+                        <th>Total</th>
+                        <th>Breakdown</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {event.standings.map((standing) => (
+                        <tr key={`${standing.rank}-${standing.rider_name}-${standing.horse_name}`}>
+                          <td>#{standing.rank}</td>
+                          <td>
+                            <strong>{standing.horse_name}</strong>
+                            <span>{standing.rider_name}</span>
+                          </td>
+                          <td className="total-cell">{formatLiveScoreValue(standing.finishing_score)}</td>
+                          <td className="breakdown-cell live-breakdown-cell">
+                            <span>D {formatLiveScoreValue(standing.dressage_score)}</span>
+                            <span>SJ {formatLiveScoreValue(standing.show_jumping_penalties)}</span>
+                            <span>XC {formatLiveScoreValue(standing.cross_country_penalties)}</span>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="platform-strip" aria-labelledby="platform-formats-heading">
