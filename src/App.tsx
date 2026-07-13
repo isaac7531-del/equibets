@@ -124,6 +124,8 @@ const platformFormats = [
 ];
 
 const liveScores = liveScoresData as LiveScorePayload;
+const LIVE_EVENT_PREVIEW_LIMIT = 4;
+const LIVE_STANDINGS_PREVIEW_LIMIT = 8;
 
 const createScoreInput = (form: FormState): EventingScoreInput => ({
   dressagePercentage: numberValue(form.dressagePercentage),
@@ -324,55 +326,65 @@ export default function App() {
           </div>
         ) : (
           <div className="live-event-list">
-            {liveEvents.slice(0, 4).map((event) => (
-              <article
-                className="live-event"
-                key={`${event.event_name}-${event.event_date}-${event.level}-${event.country}`}
-              >
-                <header>
-                  <div>
-                    <h3>{formatLiveEventTitle(event)}</h3>
-                    <span>
-                      {formatLiveDate(event.event_date)} / {event.country} / {formatCompetitionClasses(event.level)}
-                    </span>
-                  </div>
-                  <p>
-                    {event.result_count} public result{event.result_count === 1 ? '' : 's'} from{' '}
-                    {formatSourceList(event.source_ids)}
-                  </p>
-                </header>
+            {liveEvents.slice(0, LIVE_EVENT_PREVIEW_LIMIT).map((event) => {
+              const visibleStandings = event.standings.slice(0, LIVE_STANDINGS_PREVIEW_LIMIT);
 
-                <div className="table-wrap">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Rank</th>
-                        <th>Combination</th>
-                        <th>Total</th>
-                        <th>Breakdown</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {event.standings.map((standing) => (
-                        <tr key={`${standing.rank}-${standing.rider_name}-${standing.horse_name}`}>
-                          <td>#{standing.rank}</td>
-                          <td>
-                            <strong>{standing.horse_name}</strong>
-                            <span>{standing.rider_name}</span>
-                          </td>
-                          <td className="total-cell">{formatLiveScoreValue(standing.finishing_score)}</td>
-                          <td className="breakdown-cell live-breakdown-cell">
-                            <span>D {formatLiveScoreValue(standing.dressage_score)}</span>
-                            <span>SJ {formatLiveScoreValue(standing.show_jumping_penalties)}</span>
-                            <span>XC {formatLiveScoreValue(standing.cross_country_penalties)}</span>
-                          </td>
+              return (
+                <article
+                  className="live-event"
+                  key={`${event.event_name}-${event.event_date}-${event.level}-${event.country}`}
+                >
+                  <header>
+                    <div>
+                      <h3>{formatLiveEventTitle(event)}</h3>
+                      <span>
+                        {formatLiveDate(event.event_date)} / {event.country} / {formatCompetitionClasses(event.level)}
+                      </span>
+                    </div>
+                    <p>
+                      {event.result_count} public result{event.result_count === 1 ? '' : 's'} from{' '}
+                      {formatSourceList(event.source_ids)}
+                    </p>
+                  </header>
+
+                  <div className="table-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Rank</th>
+                          <th>Combination</th>
+                          <th>Total</th>
+                          <th>Breakdown</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </article>
-            ))}
+                      </thead>
+                      <tbody>
+                        {visibleStandings.map((standing) => (
+                          <tr key={`${standing.rank}-${standing.rider_name}-${standing.horse_name}`}>
+                            <td>#{standing.rank}</td>
+                            <td>
+                              <strong>{standing.horse_name}</strong>
+                              <span>{standing.rider_name}</span>
+                            </td>
+                            <td className="total-cell">{formatLiveScoreValue(standing.finishing_score)}</td>
+                            <td className="breakdown-cell live-breakdown-cell">
+                              <span>D {formatLiveScoreValue(standing.dressage_score)}</span>
+                              <span>SJ {formatLiveScoreValue(standing.show_jumping_penalties)}</span>
+                              <span>XC {formatLiveScoreValue(standing.cross_country_penalties)}</span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  {event.result_count > visibleStandings.length && (
+                    <p className="live-event-footer">
+                      Showing top {visibleStandings.length} of {event.result_count} public result
+                      {event.result_count === 1 ? '' : 's'}.
+                    </p>
+                  )}
+                </article>
+              );
+            })}
           </div>
         )}
       </section>
