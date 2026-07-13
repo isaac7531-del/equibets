@@ -184,10 +184,15 @@ describe('App', () => {
       return;
     }
 
+    const liveFeed = screen.getByRole('region', { name: /live public scoring/i });
     const firstEvent = liveScores.events[0];
     const leader = firstEvent.standings[0];
     expect(screen.getByText(liveScores.result_count.toString())).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: formatLiveEventTitle(firstEvent) })).toBeInTheDocument();
     expect(screen.getAllByText(leader.horse_name).length).toBeGreaterThan(0);
+    if (firstEvent.result_count > 8) {
+      expect(liveFeed).toHaveTextContent(`Showing top 8 of ${firstEvent.result_count} public results.`);
+      expect(within(liveFeed).queryByText(firstEvent.standings[8].horse_name)).not.toBeInTheDocument();
+    }
   });
 });
