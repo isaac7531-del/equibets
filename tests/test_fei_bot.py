@@ -135,6 +135,33 @@ class ChallengeCalendarBrowserClient(FeiBrowserClient):
         raise AssertionError("calendar results should parse without opening past shows")
 
 
+class SplitSearchBrowserClient(FeiBrowserClient):
+    def __init__(self):
+        self.posts = []
+        self.opened_past_shows = 0
+
+    def get(self, url):
+        if url == CALENDAR_SEARCH_URL:
+            return calendar_search_form_html()
+        if url == EVENT_URL:
+            return event_detail_html()
+        if url == RESULT_URL:
+            return result_page_html()
+        raise AssertionError(f"Unexpected GET {url}")
+
+    def post(self, url, data, field_intents=()):
+        self.posts.append((url, dict(data), field_intents))
+        start = data.get("ctl00$Main$DateStart")
+        end = data.get("ctl00$Main$DateEnd")
+        if start == end == "01/05/2026":
+            return calendar_results_html()
+        return capped_calendar_results_html()
+
+    def open_past_shows(self):
+        self.opened_past_shows += 1
+        return capped_calendar_results_html()
+
+
 class FakeFieldElement:
     def __init__(self, info):
         self.info = info
@@ -399,6 +426,30 @@ class FeiBotTests(unittest.TestCase):
         self.assertIn(((("date", "end"), ("date", "to")), "01/07/2026"), field_intents)
         self.assertIn(((("discipline",),), "Eventing"), field_intents)
 
+    def test_collect_splits_empty_multi_day_calendar_search(self):
+        client = SplitSearchBrowserClient()
+        bot = FeiDataBot(client)
+
+        results, summary = bot.collect(
+            start_date=datetime(2026, 5, 1).date(),
+            end_date=datetime(2026, 5, 3).date(),
+        )
+
+        searched_windows = [
+            (
+                post_data["ctl00$Main$DateStart"],
+                post_data["ctl00$Main$DateEnd"],
+            )
+            for _, post_data, _ in client.posts
+        ]
+        self.assertEqual(len(results), 1)
+        self.assertEqual(summary.events_found, 1)
+        self.assertEqual(summary.result_pages_opened, 2)
+        self.assertIn(("01/05/2026", "03/05/2026"), searched_windows)
+        self.assertIn(("01/05/2026", "01/05/2026"), searched_windows)
+        self.assertIn(("02/05/2026", "02/05/2026"), searched_windows)
+        self.assertIn(("03/05/2026", "03/05/2026"), searched_windows)
+
     def test_browser_field_intent_matches_live_form_control_by_alternative_tokens(self):
         page = FakeTokenPage(
             [
@@ -588,6 +639,16 @@ def calendar_results_html():
         <td>CCI5*-L</td>
       </tr>
     </table>
+    """
+
+
+def capped_calendar_results_html():
+    return """
+    <html>
+      <body>
+        <p>Too much data to download (&gt; 30000 lines). Please refine your search.</p>
+      </body>
+    </html>
     """
 
 

@@ -18,7 +18,7 @@ import threading
 import time
 from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import dataclass
-from datetime import date, datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.error import HTTPError
@@ -715,7 +715,7 @@ class FeiDataBot:
                 for url in event_urls
             ]
         else:
-            events = self.search_calendar(
+            events = self._search_calendar_with_split_fallback(
                 start_date=start_date,
                 end_date=end_date,
                 form_fields=form_fields,
@@ -761,6 +761,35 @@ class FeiDataBot:
             results_verified=verified,
             results_rejected=rejected,
         )
+
+    def _search_calendar_with_split_fallback(
+        self,
+        *,
+        start_date: date | None,
+        end_date: date | None,
+        form_fields: Mapping[str, str] | None,
+    ) -> list[FeiEvent]:
+        events = self.search_calendar(
+            start_date=start_date,
+            end_date=end_date,
+            form_fields=form_fields,
+        )
+        if events or start_date is None or end_date is None or end_date <= start_date:
+            return events
+
+        split_events: list[FeiEvent] = []
+        seen: set[str] = set()
+        for event_date in _date_range(start_date, end_date):
+            for event in self.search_calendar(
+                start_date=event_date,
+                end_date=event_date,
+                form_fields=form_fields,
+            ):
+                if event.source_event_id in seen:
+                    continue
+                seen.add(event.source_event_id)
+                split_events.append(event)
+        return split_events or events
 
     def collect_event(
         self,
@@ -1555,6 +1584,13 @@ def _truthy(value: str) -> bool:
 
 def _fei_date(value: date) -> str:
     return value.strftime("%d/%m/%Y")
+
+
+def _date_range(start_date: date, end_date: date) -> Iterable[date]:
+    current = start_date
+    while current <= end_date:
+        yield current
+        current += timedelta(days=1)
 
 
 def _key_values(items: Sequence[str]) -> dict[str, str]:
