@@ -479,6 +479,14 @@ legend {
   min-width: 720px;
 }
 
+.live-event-footer {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+  margin: 0.75rem 0 0;
+  text-align: right;
+}
+
 .secondary-button {
   background: rgba(148, 163, 184, 0.18);
   color: var(--text);
