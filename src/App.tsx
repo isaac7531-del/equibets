@@ -124,7 +124,6 @@ const platformFormats = [
 ];
 
 const liveScores = liveScoresData as LiveScorePayload;
-const LIVE_EVENT_PREVIEW_LIMIT = 4;
 const LIVE_STANDINGS_PREVIEW_LIMIT = 8;
 
 const createScoreInput = (form: FormState): EventingScoreInput => ({
@@ -326,7 +325,7 @@ export default function App() {
           </div>
         ) : (
           <div className="live-event-list">
-            {liveEvents.slice(0, LIVE_EVENT_PREVIEW_LIMIT).map((event) => {
+            {liveEvents.map((event) => {
               const visibleStandings = event.standings.slice(0, LIVE_STANDINGS_PREVIEW_LIMIT);
 
               return (

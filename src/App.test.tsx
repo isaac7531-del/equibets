@@ -188,7 +188,9 @@ describe('App', () => {
     const firstEvent = liveScores.events[0];
     const leader = firstEvent.standings[0];
     expect(screen.getByText(liveScores.result_count.toString())).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: formatLiveEventTitle(firstEvent) })).toBeInTheDocument();
+    liveScores.events.forEach((event) => {
+      expect(screen.getByRole('heading', { name: formatLiveEventTitle(event) })).toBeInTheDocument();
+    });
     expect(screen.getAllByText(leader.horse_name).length).toBeGreaterThan(0);
     if (firstEvent.result_count > 8) {
       expect(liveFeed).toHaveTextContent(`Showing top 8 of ${firstEvent.result_count} public results.`);
