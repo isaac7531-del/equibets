@@ -275,16 +275,14 @@ class FeiBrowserClient:
             except Exception:
                 return False
 
-        def page_has_calendar_events() -> bool:
-            return bool(parse_calendar_events(self._read_content(), CALENDAR_SEARCH_URL))
-
+        triggered_postback = False
         try:
             link.first.click(timeout=5_000)
         except Exception:
-            trigger_past_tab()
+            triggered_postback = trigger_past_tab()
         self._wait_after_action()
         selected_after_click = wait_for_past_tab()
-        if not selected_after_click and not page_has_calendar_events():
+        if not selected_after_click and not triggered_postback:
             trigger_past_tab()
             self._wait_after_action()
             wait_for_past_tab()
@@ -685,7 +683,10 @@ class FeiDataBot:
             results_page = self.client.post(CALENDAR_SEARCH_URL, form)
         _write_raw(self.raw_dir, CALENDAR_SEARCH_URL, results_page)
         events = parse_calendar_events(results_page, CALENDAR_SEARCH_URL)
-        if not events and hasattr(self.client, "open_past_shows"):
+        should_open_past_shows = not events or (
+            result_status is not None and _has_unselected_past_shows_tab(results_page)
+        )
+        if should_open_past_shows and hasattr(self.client, "open_past_shows"):
             results_page = self.client.open_past_shows()
             _write_raw(self.raw_dir, f"{CALENDAR_SEARCH_URL}#past", results_page)
             events = parse_calendar_events(results_page, CALENDAR_SEARCH_URL)
@@ -968,6 +969,15 @@ def parse_calendar_events(html: str, page_url: str = CALENDAR_SEARCH_URL) -> lis
         )
         seen_urls.add(event_url)
     return events
+
+
+def _has_unselected_past_shows_tab(html: str) -> bool:
+    for anchor in re.findall(r"<a\b[^>]*>", html, flags=re.IGNORECASE):
+        if not re.search(r"""\bid\s*=\s*["'][^"']*lbBefore["']""", anchor, flags=re.IGNORECASE):
+            continue
+        class_match = re.search(r"""\bclass\s*=\s*["']([^"']*)["']""", anchor, flags=re.IGNORECASE)
+        return class_match is None or "selected" not in class_match.group(1).lower().split()
+    return False
 
 
 def parse_result_links(html: str, page_url: str) -> list[str]:

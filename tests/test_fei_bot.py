@@ -62,6 +62,11 @@ class FakePastShowsLocator:
         raise RuntimeError("click failed")
 
 
+class SilentPastShowsLocator(FakePastShowsLocator):
+    def click(self, timeout):
+        pass
+
+
 class FakePastShowsPage:
     url = CALENDAR_SEARCH_URL
 
@@ -106,6 +111,15 @@ class NavigatingPastShowsPage(FakePastShowsPage):
         return super().content()
 
 
+class UpcomingPastShowsPage(FakePastShowsPage):
+    def __init__(self):
+        super().__init__()
+        self._content = upcoming_calendar_results_html()
+
+    def locator(self, selector):
+        return SilentPastShowsLocator()
+
+
 class FakePastShowsClient(FeiBrowserClient):
     def __init__(self, page):
         self.page = page
@@ -133,6 +147,21 @@ class ChallengeCalendarBrowserClient(FeiBrowserClient):
 
     def open_past_shows(self):
         raise AssertionError("calendar results should parse without opening past shows")
+
+
+class UpcomingCalendarBrowserClient(FeiBrowserClient):
+    def __init__(self):
+        self.opened_past_shows = 0
+
+    def get(self, url):
+        return calendar_search_form_html()
+
+    def post(self, url, data, field_intents=()):
+        return upcoming_calendar_results_html()
+
+    def open_past_shows(self):
+        self.opened_past_shows += 1
+        return calendar_results_html()
 
 
 class SplitSearchBrowserClient(FeiBrowserClient):
@@ -409,6 +438,40 @@ class FeiBotTests(unittest.TestCase):
         self.assertIn(("networkidle", 10_000), page.load_state_waits)
         self.assertIn(500, page.timeout_waits)
 
+    def test_open_past_shows_retries_postback_when_upcoming_rows_remain(self):
+        page = UpcomingPastShowsPage()
+        client = FakePastShowsClient(page)
+
+        html = client.open_past_shows()
+
+        self.assertIn("Badminton Horse Trials", html)
+        self.assertEqual(len(page.evaluate_scripts), 1)
+
+    def test_result_search_switches_nonempty_upcoming_calendar_to_past_shows(self):
+        client = UpcomingCalendarBrowserClient()
+        bot = FeiDataBot(client)
+
+        events = bot.search_calendar(
+            start_date=datetime(2026, 5, 1).date(),
+            end_date=datetime(2026, 5, 5).date(),
+        )
+
+        self.assertEqual([event.name for event in events], ["Badminton Horse Trials"])
+        self.assertEqual(client.opened_past_shows, 1)
+
+    def test_upcoming_search_keeps_nonempty_upcoming_calendar(self):
+        client = UpcomingCalendarBrowserClient()
+        bot = FeiDataBot(client)
+
+        events = bot.search_calendar(
+            start_date=datetime(2026, 5, 1).date(),
+            end_date=datetime(2026, 5, 5).date(),
+            result_status=None,
+        )
+
+        self.assertEqual([event.name for event in events], ["Future Horse Trials"])
+        self.assertEqual(client.opened_past_shows, 0)
+
     def test_browser_calendar_search_passes_field_intents_after_challenge_page(self):
         client = ChallengeCalendarBrowserClient()
         bot = FeiDataBot(client)
@@ -637,6 +700,31 @@ def calendar_results_html():
         <td>GBR</td>
         <td>Eventing</td>
         <td>CCI5*-L</td>
+      </tr>
+    </table>
+    """
+
+
+def upcoming_calendar_results_html():
+    return """
+    <div id="tabs">
+      <a id="PlaceHolderMain_lbAfter" class="itemlevel1 selected">Upcoming Shows (1)</a>
+      <a id="PlaceHolderMain_lbBefore" class="itemlevel1">Past Shows (1)</a>
+    </div>
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Show Name</th>
+        <th>Country</th>
+        <th>Discipline</th>
+        <th>Level</th>
+      </tr>
+      <tr>
+        <td>2026-05-05</td>
+        <td><a href="/Calendar/ShowDetail.aspx?event=future">Future Horse Trials</a></td>
+        <td>USA</td>
+        <td>Eventing</td>
+        <td>CCI4*-L</td>
       </tr>
     </table>
     """
