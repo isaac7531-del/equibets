@@ -179,6 +179,9 @@ class FeiBrowserClient:
         self._discard_storage_state_on_close = False
 
     def get(self, url: str) -> str:
+        return self._with_clean_session_retry(lambda: self._get_once(url))
+
+    def _get_once(self, url: str) -> str:
         page = self._ensure_page()
         page.goto(url, wait_until="domcontentloaded", timeout=60_000)
         self._wait_ready()
@@ -190,20 +193,20 @@ class FeiBrowserClient:
         data: Mapping[str, str],
         field_intents: Sequence[tuple[Sequence[Sequence[str]], str]] = (),
     ) -> str:
+        return self._with_clean_session_retry(
+            lambda: self._post_once(url, data, field_intents=field_intents)
+        )
+
+    def _post_once(
+        self,
+        url: str,
+        data: Mapping[str, str],
+        field_intents: Sequence[tuple[Sequence[Sequence[str]], str]] = (),
+    ) -> str:
         page = self._ensure_page()
         if page.url != url:
             page.goto(url, wait_until="domcontentloaded", timeout=60_000)
-            self._wait_ready()
-        form_count = page.locator("form").count()
-        if form_count == 0:
-            for attempt in range(1, 4):
-                self._reset_browser_session()
-                page = self._ensure_page()
-                page.goto(url, wait_until="domcontentloaded", timeout=60_000)
-                self._wait_ready()
-                form_count = page.locator("form").count()
-                if form_count:
-                    break
+        self._wait_ready()
         for name, value in data.items():
             self._fill_form_field(name, value)
         for token_options, value in field_intents:
@@ -213,6 +216,17 @@ class FeiBrowserClient:
         self._wait_after_action()
         self._wait_ready()
         return self._read_content()
+
+    def _with_clean_session_retry(self, operation: Callable[[], str]) -> str:
+        try:
+            return operation()
+        except FeiFormUnavailable:
+            self._reset_browser_session()
+        try:
+            return operation()
+        except FeiFormUnavailable as exc:
+            self.discard_storage_state_on_close()
+            raise FeiFormUnavailable(f"{exc} (clean-session retry exhausted)") from exc
 
     def open_past_shows(self) -> str:
         """Switch FEI calendar search results to the Past Shows tab."""
@@ -384,22 +398,35 @@ class FeiBrowserClient:
             except Exception:
                 title = ""
             lowered_body = body.lower()
-            waiting_on_challenge = (
-                "Please enable JS" in body
-                or "disable any ad blocker" in body
-                or "datadome" in lowered_body
-                or "captcha" in lowered_body
-                or title.lower() == "fei.org"
-                or not body.strip()
+            challenge_reason = next(
+                (
+                    reason
+                    for marker, reason in (
+                        ("please enable js", "JavaScript challenge"),
+                        ("disable any ad blocker", "ad-blocker challenge"),
+                        ("datadome", "DataDome challenge"),
+                        ("captcha", "CAPTCHA challenge"),
+                    )
+                    if marker in lowered_body
+                ),
+                None,
             )
-            if not waiting_on_challenge:
+            if challenge_reason is None and title.lower() == "fei.org":
+                challenge_reason = "FEI challenge title"
+            if challenge_reason is None and not body.strip():
+                challenge_reason = "blank challenge page"
+            if challenge_reason is None:
                 return
             effective_deadline = deadline
             if not body.strip() and title.lower() == "fei.org":
                 effective_deadline = min(effective_deadline, blank_deadline)
             remaining = effective_deadline - time.monotonic()
             if remaining <= 0:
-                return
+                elapsed = max(0.0, time.monotonic() - started_at)
+                raise FeiFormUnavailable(
+                    f"FEI page remained behind an unresolved {challenge_reason} "
+                    f"after {elapsed:g} seconds"
+                )
             page.wait_for_timeout(max(1, int(min(1.0, remaining) * 1000)))
 
     def _wait_after_action(self) -> None:
@@ -1162,17 +1189,22 @@ def main(argv: Sequence[str] | None = None) -> int:
         if hasattr(client, "close"):
             client.close()
 
-    if not args.dry_run:
+    if not args.dry_run and not crawl_fallback_reason:
         store = FeiResultStore(args.output)
         merged = store.merge(results)
         store.save(merged)
+        written = len(merged)
+    elif not args.dry_run:
+        merged = FeiResultStore(args.output).load()
         written = len(merged)
     else:
         merged = results
         written = 0
 
     live_summary = ""
-    if args.live_output and not args.dry_run:
+    if args.live_output and not args.dry_run and crawl_fallback_reason:
+        live_summary = f", live_output_preserved={args.live_output}"
+    elif args.live_output and not args.dry_run:
         live_start = args.start_date
         live_end = args.end_date
         if live_start is None or live_end is None:
@@ -1208,7 +1240,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         f"results_in_store={written}"
     )
     if crawl_fallback_reason:
-        print(f"FEI crawl warning: {crawl_fallback_reason}; regenerated live output from existing store")
+        print(
+            f"FEI crawl warning: {crawl_fallback_reason}; "
+            "kept the existing result store and live output unchanged"
+        )
     print(message + live_summary)
     return 0
 
