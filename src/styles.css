@@ -472,11 +472,11 @@ legend {
 
 .live-event header p {
   color: var(--muted);
-  flex: 0 0 14rem;
+  flex: 0 0 auto;
   line-height: 1.45;
   margin: 0;
-  overflow-wrap: anywhere;
   text-align: right;
+  white-space: nowrap;
 }
 
 .live-event table {
