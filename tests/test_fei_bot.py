@@ -253,14 +253,16 @@ class BlankChallengeLocator:
 
     def inner_text(self, timeout):
         self.page.inner_text_timeouts.append(timeout)
-        return ""
+        return self.page.body
 
 
 class BlankChallengePage:
     url = CALENDAR_SEARCH_URL
 
-    def __init__(self, clock):
+    def __init__(self, clock, *, body="", title="fei.org"):
         self.clock = clock
+        self.body = body
+        self.page_title = title
         self.waits = []
         self.inner_text_timeouts = []
 
@@ -271,7 +273,7 @@ class BlankChallengePage:
         return BlankChallengeLocator(self)
 
     def title(self):
-        return "fei.org"
+        return self.page_title
 
     def wait_for_timeout(self, milliseconds):
         self.waits.append(milliseconds)
@@ -285,6 +287,23 @@ class BlankChallengeBrowserClient(FeiBrowserClient):
 
     def _ensure_page(self):
         return self.page
+
+
+class RetryingChallengeBrowserClient(FeiBrowserClient):
+    def __init__(self, failures):
+        self.failures = failures
+        self.calls = 0
+        self.reset_count = 0
+        self._discard_storage_state_on_close = False
+
+    def _get_once(self, url):
+        self.calls += 1
+        if self.calls <= self.failures:
+            raise FeiFormUnavailable("unresolved DataDome challenge")
+        return "<html><body>FEI result page</body></html>"
+
+    def _reset_browser_session(self):
+        self.reset_count += 1
 
 
 class FeiBotTests(unittest.TestCase):
@@ -551,11 +570,54 @@ class FeiBotTests(unittest.TestCase):
         client = BlankChallengeBrowserClient(page)
 
         with patch("equibets.fei_bot.time.monotonic", side_effect=lambda: clock[0]):
-            client._wait_ready()
+            with self.assertRaisesRegex(
+                FeiFormUnavailable,
+                "unresolved FEI challenge title after 2 seconds",
+            ):
+                client._wait_ready()
 
         self.assertEqual(page.load_state_timeout, 10_000)
         self.assertEqual(sum(page.waits), 2000)
         self.assertEqual(page.inner_text_timeouts, [1000, 1000, 1000])
+
+    def test_wait_ready_surfaces_unresolved_datadome_challenge(self):
+        clock = [1000.0]
+        page = BlankChallengePage(
+            clock,
+            body="DataDome requires a CAPTCHA before access",
+            title="DataDome",
+        )
+        client = BlankChallengeBrowserClient(page)
+        client.challenge_wait_seconds = 0
+
+        with patch("equibets.fei_bot.time.monotonic", side_effect=lambda: clock[0]):
+            with self.assertRaisesRegex(
+                FeiFormUnavailable,
+                "unresolved DataDome challenge after 0 seconds",
+            ):
+                client._wait_ready()
+
+        self.assertEqual(page.waits, [])
+
+    def test_browser_retries_unresolved_challenge_once_with_clean_session(self):
+        client = RetryingChallengeBrowserClient(failures=1)
+
+        html = client.get(RESULT_URL)
+
+        self.assertIn("FEI result page", html)
+        self.assertEqual(client.calls, 2)
+        self.assertEqual(client.reset_count, 1)
+        self.assertFalse(client._discard_storage_state_on_close)
+
+    def test_browser_surfaces_challenge_after_single_clean_session_retry(self):
+        client = RetryingChallengeBrowserClient(failures=2)
+
+        with self.assertRaisesRegex(FeiFormUnavailable, "clean-session retry exhausted"):
+            client.get(RESULT_URL)
+
+        self.assertEqual(client.calls, 2)
+        self.assertEqual(client.reset_count, 1)
+        self.assertTrue(client._discard_storage_state_on_close)
 
     def test_verifier_checks_person_and_horse_search_pages(self):
         client = FakeClient(
@@ -644,6 +706,20 @@ class FeiBotTests(unittest.TestCase):
                 encoding="utf-8",
             )
             FeiResultStore(output).save([result])
+            previous_store_contents = output.read_text(encoding="utf-8")
+            previous_live_payload = {
+                "version": 1,
+                "generated_at": "2026-05-18T12:05:00+00:00",
+                "latest_collected_at": "2026-05-18T12:00:00+00:00",
+                "event_count": 1,
+                "result_count": 1,
+                "events": [],
+            }
+            live_output.write_text(
+                json.dumps(previous_live_payload, indent=2, sort_keys=True) + "\n",
+                encoding="utf-8",
+            )
+            previous_live_contents = live_output.read_text(encoding="utf-8")
             client = UnavailableFormClient()
 
             with patch("equibets.fei_bot._build_client", return_value=client):
@@ -664,12 +740,18 @@ class FeiBotTests(unittest.TestCase):
                 )
 
             payload = json.loads(live_output.read_text(encoding="utf-8"))
+            final_store_contents = output.read_text(encoding="utf-8")
+            final_live_contents = live_output.read_text(encoding="utf-8")
 
         self.assertEqual(exit_code, 0)
         self.assertTrue(client.closed)
         self.assertTrue(client.discarded_storage_state)
         self.assertEqual(payload["event_count"], 1)
         self.assertEqual(payload["result_count"], 1)
+        self.assertEqual(payload["generated_at"], "2026-05-18T12:05:00+00:00")
+        self.assertEqual(payload["latest_collected_at"], "2026-05-18T12:00:00+00:00")
+        self.assertEqual(final_store_contents, previous_store_contents)
+        self.assertEqual(final_live_contents, previous_live_contents)
 
 
 def calendar_search_form_html():
