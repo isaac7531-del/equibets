@@ -449,6 +449,7 @@ legend {
 }
 
 .live-event header > div {
+  flex: 1 1 auto;
   min-width: 0;
 }
 
@@ -471,7 +472,10 @@ legend {
 
 .live-event header p {
   color: var(--muted);
+  flex: 0 0 14rem;
+  line-height: 1.45;
   margin: 0;
+  overflow-wrap: anywhere;
   text-align: right;
 }
 
