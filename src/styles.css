@@ -880,4 +880,89 @@ td span {
   .live-event header p {
     text-align: left;
   }
+
+  .live-event .table-wrap {
+    overflow-x: visible;
+  }
+
+  .live-event table {
+    min-width: 0;
+  }
+
+  .live-event thead {
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  .live-event tbody {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .live-event tbody tr {
+    background: rgba(15, 23, 42, 0.58);
+    border: 1px solid rgba(125, 211, 252, 0.12);
+    border-radius: 0.9rem;
+    display: grid;
+    grid-template-areas:
+      "rank combination total"
+      "breakdown breakdown breakdown";
+    grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+    padding: 0.55rem 0.65rem;
+  }
+
+  .live-event tbody td {
+    border-bottom: 0;
+    padding: 0.35rem 0.2rem;
+    width: auto;
+  }
+
+  .live-event tbody td:nth-child(1) {
+    grid-area: rank;
+  }
+
+  .live-event tbody td:nth-child(2) {
+    grid-area: combination;
+  }
+
+  .live-event tbody td:nth-child(3) {
+    align-self: start;
+    grid-area: total;
+    text-align: right;
+  }
+
+  .live-event tbody td:nth-child(4) {
+    border-top: 1px solid rgba(125, 211, 252, 0.12);
+    grid-area: breakdown;
+    margin-top: 0.25rem;
+    padding-top: 0.55rem;
+  }
+
+  .live-event .total-cell::before {
+    color: var(--subtle);
+    content: "Total";
+    display: block;
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.1rem;
+    text-transform: uppercase;
+  }
+
+  .live-breakdown-cell::before {
+    color: var(--subtle);
+    content: "Phase scores";
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    margin-right: auto;
+    text-transform: uppercase;
+  }
 }
