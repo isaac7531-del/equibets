@@ -885,6 +885,13 @@ td span {
     flex-direction: column;
   }
 
+  .freshness-pill {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    text-align: center;
+    white-space: normal;
+  }
+
   .live-event header p {
     text-align: left;
   }
