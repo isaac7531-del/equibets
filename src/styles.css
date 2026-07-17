@@ -253,6 +253,10 @@ button:disabled {
   grid-template-columns: minmax(330px, 0.9fr) minmax(0, 1.1fr);
 }
 
+.workspace-grid > * {
+  min-width: 0;
+}
+
 .calculator-card,
 .horse-data-card,
 .results-card,
