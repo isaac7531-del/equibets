@@ -692,6 +692,10 @@ td span {
   margin-top: 1rem;
 }
 
+.form-guide-grid > * {
+  min-width: 0;
+}
+
 .prediction-card label {
   margin-top: 1rem;
 }
