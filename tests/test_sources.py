@@ -85,6 +85,27 @@ class EventSourceTests(unittest.TestCase):
                 self.assertNotIn("data_fei", source_ids)
                 self.assertIn("global_national_federations", source_ids)
 
+    def test_every_country_and_level_pair_has_a_source_route(self):
+        registry = load_event_source_registry()
+        levels = (
+            registry.coverage_targets.fei_levels
+            + registry.coverage_targets.national_and_regional_levels
+        )
+
+        for country in registry.coverage_targets.countries:
+            country_source_ids = {
+                source.id for source in registry.sources_for_country(country)
+            }
+            for level in levels:
+                with self.subTest(country=country, level=level):
+                    level_source_ids = {
+                        source.id for source in registry.sources_for_event_level(level)
+                    }
+                    self.assertTrue(
+                        country_source_ids & level_source_ids,
+                        f"No event source covers {country} at {level}",
+                    )
+
     def test_every_priority_region_includes_fei_regional_and_global_sources(self):
         expected_national_sources = {
             "africa": "africa_national_federations",
