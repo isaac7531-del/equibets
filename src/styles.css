@@ -183,7 +183,7 @@ button:disabled {
 .dashboard {
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   margin-bottom: 1rem;
 }
 
@@ -251,6 +251,10 @@ button:disabled {
   display: grid;
   gap: 1rem;
   grid-template-columns: minmax(330px, 0.9fr) minmax(0, 1.1fr);
+}
+
+.workspace-grid > * {
+  min-width: 0;
 }
 
 .calculator-card,
@@ -407,6 +411,90 @@ legend {
   margin-bottom: 1rem;
 }
 
+.muted-copy {
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0.35rem 0 0;
+}
+
+.freshness-pill {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.16), rgba(190, 242, 100, 0.16));
+  border: 1px solid rgba(190, 242, 100, 0.24);
+  border-radius: 999px;
+  color: var(--accent-3);
+  font-size: 0.82rem;
+  font-weight: 900;
+  padding: 0.55rem 0.8rem;
+  white-space: nowrap;
+}
+
+.live-results-card {
+  margin-bottom: 1rem;
+}
+
+.live-event-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.live-event {
+  background: rgba(2, 6, 23, 0.34);
+  border: 1px solid rgba(125, 211, 252, 0.16);
+  border-radius: 1.25rem;
+  padding: 1rem;
+}
+
+.live-event header {
+  align-items: start;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.live-event header > div {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.live-event header span {
+  color: var(--subtle);
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  text-transform: uppercase;
+}
+
+.live-event h3 {
+  color: var(--text);
+  font-size: 1.2rem;
+  margin: 0 0 0.2rem;
+}
+
+.live-event header p {
+  color: var(--muted);
+  flex: 0 0 auto;
+  line-height: 1.45;
+  margin: 0;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.live-event table {
+  min-width: 720px;
+}
+
+.live-event-footer {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+  margin: 0.75rem 0 0;
+  text-align: right;
+}
+
 .secondary-button {
   background: rgba(148, 163, 184, 0.18);
   color: var(--text);
@@ -545,6 +633,34 @@ td span {
   line-height: 1.35;
 }
 
+.live-event th:nth-child(1),
+.live-event td:nth-child(1) {
+  width: 58px;
+}
+
+.live-event th:nth-child(3),
+.live-event td:nth-child(3) {
+  width: 82px;
+}
+
+.live-event th:nth-child(4),
+.live-event td:nth-child(4) {
+  width: 190px;
+}
+
+.live-breakdown-cell {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+}
+
+.live-breakdown-cell span {
+  color: var(--muted);
+  display: inline;
+  margin-top: 0;
+  white-space: nowrap;
+}
+
 .saved-results-table th:nth-child(1),
 .saved-results-table td:nth-child(1) {
   width: 48px;
@@ -578,6 +694,10 @@ td span {
   gap: 1rem;
   grid-template-columns: minmax(280px, 0.45fr) minmax(0, 1fr);
   margin-top: 1rem;
+}
+
+.form-guide-grid > * {
+  min-width: 0;
 }
 
 .prediction-card label {
@@ -750,10 +870,107 @@ td span {
   .platform-cards,
   .form-grid,
   .horse-profile-grid,
+  .results-header,
+  .live-event header,
   .browser-heading,
   .level-list div,
   .market-roadmap ul,
   .time-grid {
     grid-template-columns: 1fr;
+  }
+
+  .results-header,
+  .live-event header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .live-event header p {
+    text-align: left;
+  }
+
+  .live-event .table-wrap {
+    overflow-x: visible;
+  }
+
+  .live-event table {
+    min-width: 0;
+  }
+
+  .live-event thead {
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
+  .live-event tbody {
+    display: grid;
+    gap: 0.65rem;
+  }
+
+  .live-event tbody tr {
+    background: rgba(15, 23, 42, 0.58);
+    border: 1px solid rgba(125, 211, 252, 0.12);
+    border-radius: 0.9rem;
+    display: grid;
+    grid-template-areas:
+      "rank combination total"
+      "breakdown breakdown breakdown";
+    grid-template-columns: 2.75rem minmax(0, 1fr) auto;
+    padding: 0.55rem 0.65rem;
+  }
+
+  .live-event tbody td {
+    border-bottom: 0;
+    padding: 0.35rem 0.2rem;
+    width: auto;
+  }
+
+  .live-event tbody td:nth-child(1) {
+    grid-area: rank;
+  }
+
+  .live-event tbody td:nth-child(2) {
+    grid-area: combination;
+  }
+
+  .live-event tbody td:nth-child(3) {
+    align-self: start;
+    grid-area: total;
+    text-align: right;
+  }
+
+  .live-event tbody td:nth-child(4) {
+    border-top: 1px solid rgba(125, 211, 252, 0.12);
+    grid-area: breakdown;
+    margin-top: 0.25rem;
+    padding-top: 0.55rem;
+  }
+
+  .live-event .total-cell::before {
+    color: var(--subtle);
+    content: "Total";
+    display: block;
+    font-size: 0.66rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.1rem;
+    text-transform: uppercase;
+  }
+
+  .live-breakdown-cell::before {
+    color: var(--subtle);
+    content: "Phase scores";
+    font-size: 0.68rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    margin-right: auto;
+    text-transform: uppercase;
   }
 }
