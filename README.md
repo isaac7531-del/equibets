@@ -154,7 +154,7 @@ python3 -m equibets.fei_bot \
   --compliance-policy data/source_compliance.json
 ```
 
-The default current-event window is seven days back through two days forward.
+The default current-event window is fourteen days back through two days forward.
 If results were collected separately, rebuild only the frontend snapshot with:
 
 ```bash
