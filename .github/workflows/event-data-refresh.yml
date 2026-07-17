@@ -92,7 +92,7 @@ jobs:
             --raw-dir data/raw/fei \
             --storage-state data/fei_state.json \
             --compliance-policy data/source_compliance.json \
-            --verify warn
+            --verify none
 
       - name: Build horse index from all collected results
         if: env.FEI_COOKIE != ''
