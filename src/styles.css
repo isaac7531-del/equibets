@@ -893,7 +893,11 @@ td span {
   }
 
   .live-event header p {
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
     text-align: left;
+    white-space: normal;
   }
 
   .live-event .table-wrap {
