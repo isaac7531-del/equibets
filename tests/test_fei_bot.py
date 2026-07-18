@@ -2,8 +2,10 @@ import json
 import tempfile
 import unittest
 from datetime import datetime, timezone
+from io import BytesIO
 from pathlib import Path
 from unittest.mock import patch
+from urllib.error import HTTPError
 from urllib.parse import urljoin
 
 from equibets.fei_bot import (
@@ -14,6 +16,7 @@ from equibets.fei_bot import (
     FeiBrowserClient,
     FeiDataBot,
     FeiEvent,
+    FeiHttpClient,
     FeiResultStore,
     FeiVerifier,
     extract_form_fields,
@@ -307,6 +310,20 @@ class RetryingChallengeBrowserClient(FeiBrowserClient):
 
 
 class FeiBotTests(unittest.TestCase):
+    def test_http_client_classifies_fei_challenge_as_form_unavailable(self):
+        client = FeiHttpClient(rate_limit_seconds=0)
+        challenge = HTTPError(
+            CALENDAR_SEARCH_URL,
+            403,
+            "Forbidden",
+            {},
+            BytesIO(b"<p>Please enable JS and disable any ad blocker</p>"),
+        )
+
+        with patch.object(client._opener, "open", side_effect=challenge):
+            with self.assertRaisesRegex(FeiFormUnavailable, "JavaScript challenge"):
+                client.get(CALENDAR_SEARCH_URL)
+
     def test_extract_form_fields_preserves_aspnet_state(self):
         html = """
         <form>

@@ -151,6 +151,11 @@ class FeiHttpClient:
                 return response.read().decode(charset, "replace")
         except HTTPError as exc:
             message = exc.read().decode("utf-8", "replace")[:500]
+            challenge_reason = _challenge_reason(message)
+            if challenge_reason:
+                raise FeiFormUnavailable(
+                    f"FEI request remained behind an unresolved {challenge_reason}: {url}"
+                ) from exc
             raise RuntimeError(f"FEI request failed: {exc.code} {exc.reason}: {url}\n{message}") from exc
 
 
@@ -397,24 +402,7 @@ class FeiBrowserClient:
                 title = page.title()
             except Exception:
                 title = ""
-            lowered_body = body.lower()
-            challenge_reason = next(
-                (
-                    reason
-                    for marker, reason in (
-                        ("please enable js", "JavaScript challenge"),
-                        ("disable any ad blocker", "ad-blocker challenge"),
-                        ("datadome", "DataDome challenge"),
-                        ("captcha", "CAPTCHA challenge"),
-                    )
-                    if marker in lowered_body
-                ),
-                None,
-            )
-            if challenge_reason is None and title.lower() == "fei.org":
-                challenge_reason = "FEI challenge title"
-            if challenge_reason is None and not body.strip():
-                challenge_reason = "blank challenge page"
+            challenge_reason = _challenge_reason(body, title=title)
             if challenge_reason is None:
                 return
             effective_deadline = deadline
@@ -1533,6 +1521,28 @@ def _stable_id(value: str) -> str:
 
 def _search_key(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", value.lower()).strip()
+
+
+def _challenge_reason(body: str, *, title: str = "") -> str | None:
+    lowered_body = body.lower()
+    reason = next(
+        (
+            label
+            for marker, label in (
+                ("please enable js", "JavaScript challenge"),
+                ("disable any ad blocker", "ad-blocker challenge"),
+                ("datadome", "DataDome challenge"),
+                ("captcha", "CAPTCHA challenge"),
+            )
+            if marker in lowered_body
+        ),
+        None,
+    )
+    if reason is None and title.lower() == "fei.org":
+        return "FEI challenge title"
+    if reason is None and not body.strip():
+        return "blank challenge page"
+    return reason
 
 
 def _header(value: str) -> str:
