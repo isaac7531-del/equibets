@@ -963,6 +963,11 @@ td span {
     grid-area: breakdown;
     margin-top: 0.25rem;
     padding-top: 0.55rem;
+    width: auto;
+  }
+
+  .live-breakdown-cell {
+    column-gap: 0.2rem;
   }
 
   .live-event .total-cell::before {

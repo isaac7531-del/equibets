@@ -20,4 +20,13 @@ describe('responsive layout contract', () => {
       /@media\s*\(max-width:\s*620px\)[\s\S]*\.live-event header p\s*{[^}]*max-width:\s*100%\s*;[^}]*min-width:\s*0\s*;[^}]*overflow-wrap:\s*anywhere\s*;[^}]*white-space:\s*normal\s*;/,
     );
   });
+
+  it('removes the desktop breakdown width from mobile leaderboard rows', () => {
+    expect(readStyles()).toMatch(
+      /@media\s*\(max-width:\s*620px\)[\s\S]*\.live-event tbody td:nth-child\(4\)\s*{[^}]*width:\s*auto\s*;/,
+    );
+    expect(readStyles()).toMatch(
+      /@media\s*\(max-width:\s*620px\)[\s\S]*\.live-breakdown-cell\s*{[^}]*column-gap:\s*0\.2rem\s*;/,
+    );
+  });
 });
