@@ -138,6 +138,31 @@ Use `--storage-state data/fei_state.json` to reuse browser cookies,
 particular session, `--event-url` to crawl a known event page directly, and
 `FEI_COOKIE` or `--cookie` when the FEI Data session requires login.
 
+## Current-event live scoring
+
+Hourly or ad-hoc refreshes can search the rolling current-event window, merge
+new FEI records into the result store, and write the frontend live-scoring
+snapshot:
+
+```bash
+python3 -m equibets.fei_bot \
+  --current-events \
+  --output data/fei_results.json \
+  --live-output src/data/live_scores.json \
+  --raw-dir data/raw/fei \
+  --storage-state data/fei_state.json \
+  --compliance-policy data/source_compliance.json
+```
+
+The default current-event window is fourteen days back through two days forward.
+If results were collected separately, rebuild only the frontend snapshot with:
+
+```bash
+python3 -m equibets.live_scores \
+  --results data/fei_results.json \
+  --output src/data/live_scores.json
+```
+
 ## Upcoming event refresh
 
 Upcoming global eventing calendar rows are normalized by
