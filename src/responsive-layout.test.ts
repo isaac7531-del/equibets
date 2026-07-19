@@ -26,7 +26,13 @@ describe('responsive layout contract', () => {
       /@media\s*\(max-width:\s*620px\)[\s\S]*\.live-event tbody td:nth-child\(4\)\s*{[^}]*width:\s*auto\s*;/,
     );
     expect(readStyles()).toMatch(
-      /@media\s*\(max-width:\s*620px\)[\s\S]*\.live-breakdown-cell\s*{[^}]*column-gap:\s*0\.2rem\s*;/,
+      /@media\s*\(max-width:\s*620px\)[\s\S]*\.live-breakdown-cell\s*{[^}]*column-gap:\s*0\.35rem\s*;[^}]*row-gap:\s*0\.35rem\s*;/,
+    );
+  });
+
+  it('places the mobile phase label on its own row before score values', () => {
+    expect(readStyles()).toMatch(
+      /@media\s*\(max-width:\s*620px\)[\s\S]*\.live-breakdown-cell::before\s*{[^}]*flex-basis:\s*100%\s*;/,
     );
   });
 });

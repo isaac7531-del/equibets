@@ -967,7 +967,8 @@ td span {
   }
 
   .live-breakdown-cell {
-    column-gap: 0.2rem;
+    column-gap: 0.35rem;
+    row-gap: 0.35rem;
   }
 
   .live-event .total-cell::before {
@@ -983,10 +984,10 @@ td span {
   .live-breakdown-cell::before {
     color: var(--subtle);
     content: "Phase scores";
+    flex-basis: 100%;
     font-size: 0.68rem;
     font-weight: 900;
     letter-spacing: 0.08em;
-    margin-right: auto;
     text-transform: uppercase;
   }
 }
