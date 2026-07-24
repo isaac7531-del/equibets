@@ -83,6 +83,7 @@ export const formatDateTime = (value: string | null | undefined) => {
 
 const sourceLabels: Record<string, string> = {
   data_fei: 'FEI Data',
+  rechenstelle: 'Rechenstelle',
 };
 
 export const formatSourceId = (sourceId: string) => sourceLabels[sourceId] ?? sourceId;
@@ -100,7 +101,7 @@ export const formatCompetitionClasses = (value: string) =>
     .join(', ');
 
 export const formatLiveEventTitle = (event: Pick<LiveScoreEvent, 'event_name' | 'result_count'>) =>
-  `${event.event_name} - ${event.result_count} FEI result${event.result_count === 1 ? '' : 's'}`;
+  `${event.event_name} - ${event.result_count} result${event.result_count === 1 ? '' : 's'}`;
 
 export const describeLiveFreshness = (payload: LiveScorePayload) => {
   if (payload.latest_collected_at) {

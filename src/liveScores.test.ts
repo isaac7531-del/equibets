@@ -62,6 +62,7 @@ describe('live score helpers', () => {
 
   it('formats public source IDs for display', () => {
     expect(formatSourceList(['data_fei'])).toBe('FEI Data');
+    expect(formatSourceList(['rechenstelle'])).toBe('Rechenstelle');
   });
 
   it('formats missing live phase values as explicit dashes', () => {
@@ -73,6 +74,6 @@ describe('live score helpers', () => {
 
   it('normalizes FEI class lists for event labels', () => {
     expect(formatCompetitionClasses('CCI4*-L , CCI3*-S , CCIP2-S')).toBe('CCI4*-L, CCI3*-S, CCIP2-S');
-    expect(formatLiveEventTitle({ event_name: 'Strzegom', result_count: 42 })).toBe('Strzegom - 42 FEI results');
+    expect(formatLiveEventTitle({ event_name: 'Strzegom', result_count: 42 })).toBe('Strzegom - 42 results');
   });
 });
