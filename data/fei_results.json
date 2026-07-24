@@ -29717,7 +29717,7 @@
       "source_record_id": "fei:58bf026f634c1717"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29734,7 +29734,7 @@
       "source_record_id": "rechenstelle:b6b81d6f87505301"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29751,7 +29751,7 @@
       "source_record_id": "rechenstelle:f7cc94e967c5af6c"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29768,7 +29768,24 @@
       "source_record_id": "rechenstelle:2d1634cd403e5667"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
+      "country": "IRL",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 41.3,
+      "event_date": "2026-07-21",
+      "event_name": "Millstreet \u00b7 CCI4*-L",
+      "horse_name": "Qatar van de Heffinck",
+      "is_user_entered": false,
+      "level": "CCI4*-L",
+      "rider_name": "Alyssa YALLOP (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:6fcdcde9bd68e771"
+    },
+    {
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29785,7 +29802,7 @@
       "source_record_id": "rechenstelle:b6b6bcd2393d59d1"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29802,7 +29819,7 @@
       "source_record_id": "rechenstelle:59bd64dbef8f2dbf"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29819,7 +29836,7 @@
       "source_record_id": "rechenstelle:0b2f5e47929569d4"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29836,7 +29853,7 @@
       "source_record_id": "rechenstelle:6369e3866c37c7ad"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29853,7 +29870,7 @@
       "source_record_id": "rechenstelle:9e682314a4e2417d"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29870,7 +29887,7 @@
       "source_record_id": "rechenstelle:add5184752238e4a"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29887,7 +29904,7 @@
       "source_record_id": "rechenstelle:6c7fd70ca864fee9"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29904,7 +29921,7 @@
       "source_record_id": "rechenstelle:7e9567d76e45e228"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29921,7 +29938,7 @@
       "source_record_id": "rechenstelle:6a451547e64053fd"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29938,7 +29955,7 @@
       "source_record_id": "rechenstelle:b0c20a1fbe513c1d"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29955,7 +29972,7 @@
       "source_record_id": "rechenstelle:e8640d3a0a5357d0"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29972,7 +29989,7 @@
       "source_record_id": "rechenstelle:9359a9f205e3218e"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -29989,7 +30006,7 @@
       "source_record_id": "rechenstelle:6ef0d983e35444a1"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30006,7 +30023,7 @@
       "source_record_id": "rechenstelle:b070de7ecfa51a03"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30023,7 +30040,7 @@
       "source_record_id": "rechenstelle:deca11c99e24773c"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30040,7 +30057,7 @@
       "source_record_id": "rechenstelle:de803310717329e9"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30057,7 +30074,7 @@
       "source_record_id": "rechenstelle:c1a4af64172a4030"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30074,7 +30091,7 @@
       "source_record_id": "rechenstelle:c1e3593a82131ccb"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30091,7 +30108,7 @@
       "source_record_id": "rechenstelle:bf2e106657ef5a28"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30108,7 +30125,7 @@
       "source_record_id": "rechenstelle:a2aacfe4f060c5a2"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30125,7 +30142,7 @@
       "source_record_id": "rechenstelle:bf371a1d32b39700"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30142,7 +30159,7 @@
       "source_record_id": "rechenstelle:c2ff1a205db7dcc4"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30159,7 +30176,7 @@
       "source_record_id": "rechenstelle:0e28143fc97da77d"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30176,7 +30193,7 @@
       "source_record_id": "rechenstelle:b895ca07b7db8118"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30193,7 +30210,7 @@
       "source_record_id": "rechenstelle:89840dcde79eff49"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30210,7 +30227,7 @@
       "source_record_id": "rechenstelle:d5848bad9dc682e1"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30227,7 +30244,7 @@
       "source_record_id": "rechenstelle:a49325708b5b3846"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30244,7 +30261,7 @@
       "source_record_id": "rechenstelle:78eb6613acbd17c1"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30261,7 +30278,7 @@
       "source_record_id": "rechenstelle:6c307a751def4d2f"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30278,7 +30295,7 @@
       "source_record_id": "rechenstelle:4395b2d47bc36f85"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30295,7 +30312,7 @@
       "source_record_id": "rechenstelle:eee764f1c5d7b7b3"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30312,7 +30329,7 @@
       "source_record_id": "rechenstelle:3f242e3ebb4ef905"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30329,7 +30346,7 @@
       "source_record_id": "rechenstelle:5b23f1b276a402a6"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30346,7 +30363,7 @@
       "source_record_id": "rechenstelle:cd62e9cd6fc795cf"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30363,7 +30380,7 @@
       "source_record_id": "rechenstelle:e6435925b05c721b"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30380,7 +30397,7 @@
       "source_record_id": "rechenstelle:239dc8d17606a2a0"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30397,7 +30414,7 @@
       "source_record_id": "rechenstelle:1b946cb795fc798b"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30414,7 +30431,7 @@
       "source_record_id": "rechenstelle:f8d5185fd9c46b39"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30431,7 +30448,7 @@
       "source_record_id": "rechenstelle:99618a8851086d9c"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30448,7 +30465,7 @@
       "source_record_id": "rechenstelle:7ae7535364548fc2"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30465,7 +30482,7 @@
       "source_record_id": "rechenstelle:0767bc186077bc82"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30482,7 +30499,7 @@
       "source_record_id": "rechenstelle:d8b47255a7fa0633"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30499,7 +30516,7 @@
       "source_record_id": "rechenstelle:58b2bede0ca460b1"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30516,7 +30533,7 @@
       "source_record_id": "rechenstelle:886142d9c9a2e5c3"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30533,7 +30550,7 @@
       "source_record_id": "rechenstelle:84f2f9939766fc2f"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30550,7 +30567,7 @@
       "source_record_id": "rechenstelle:7047cf4569c83c16"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30567,7 +30584,7 @@
       "source_record_id": "rechenstelle:0517f6ade2bd2ae7"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30584,7 +30601,7 @@
       "source_record_id": "rechenstelle:b0e00fe3f00d1489"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30601,7 +30618,7 @@
       "source_record_id": "rechenstelle:ea2205a5e93a87eb"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30618,7 +30635,7 @@
       "source_record_id": "rechenstelle:003b201705d3a549"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30635,7 +30652,7 @@
       "source_record_id": "rechenstelle:bd9c8f51d6447e3b"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30652,7 +30669,7 @@
       "source_record_id": "rechenstelle:4be27ac302727922"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30669,7 +30686,7 @@
       "source_record_id": "rechenstelle:1ac83251bc63f36e"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30686,7 +30703,7 @@
       "source_record_id": "rechenstelle:853639ba6505114d"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30703,7 +30720,7 @@
       "source_record_id": "rechenstelle:c72fd678c0e1245a"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30720,7 +30737,7 @@
       "source_record_id": "rechenstelle:947f69eb6d4a55d3"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30737,11 +30754,28 @@
       "source_record_id": "rechenstelle:a1cda34f6b605832"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
-      "dressage_score": 40.0,
+      "dressage_score": 40.3,
+      "event_date": "2026-07-21",
+      "event_name": "Millstreet \u00b7 CCI4*-L",
+      "horse_name": "DStud Flirtation",
+      "is_user_entered": false,
+      "level": "CCI4*-L",
+      "rider_name": "Joseph MURPHY (IRL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:b544b0b101b64fe4"
+    },
+    {
+      "collected_at": "2026-07-24T10:04:00+00:00",
+      "country": "IRL",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 35.1,
       "event_date": "2026-07-21",
       "event_name": "Millstreet \u00b7 CCI4*-L",
       "horse_name": "Hableur",
@@ -30754,7 +30788,7 @@
       "source_record_id": "rechenstelle:ff0f3cc7c6694b7a"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30771,7 +30805,7 @@
       "source_record_id": "rechenstelle:1fcbe0a7cbbe5926"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30788,7 +30822,7 @@
       "source_record_id": "rechenstelle:be359a3e9b3d2021"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30805,7 +30839,7 @@
       "source_record_id": "rechenstelle:7307dc552fc6a33e"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30822,7 +30856,24 @@
       "source_record_id": "rechenstelle:abeae0baef1a73e1"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
+      "country": "IRL",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 30.0,
+      "event_date": "2026-07-21",
+      "event_name": "Millstreet \u00b7 CCI3*-S",
+      "horse_name": "Newmarket Amy",
+      "is_user_entered": false,
+      "level": "CCI3*-S",
+      "rider_name": "Kevin MCNAB (AUS)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:839c739a9bf6512c"
+    },
+    {
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30839,7 +30890,7 @@
       "source_record_id": "rechenstelle:40df62248e13a878"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30856,7 +30907,7 @@
       "source_record_id": "rechenstelle:4a1fa41abb8e7ea1"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30873,7 +30924,7 @@
       "source_record_id": "rechenstelle:4cb32137a9167a77"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30890,7 +30941,7 @@
       "source_record_id": "rechenstelle:53c0751129bddf3b"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30907,7 +30958,7 @@
       "source_record_id": "rechenstelle:43a908e2ecf803f2"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30924,7 +30975,24 @@
       "source_record_id": "rechenstelle:e2ed36f216254dcb"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
+      "country": "IRL",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 33.8,
+      "event_date": "2026-07-21",
+      "event_name": "Millstreet \u00b7 CCI4*-L",
+      "horse_name": "Jarson",
+      "is_user_entered": false,
+      "level": "CCI4*-L",
+      "rider_name": "Louisa LOCKWOOD (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:ae8eb114f6df7cbc"
+    },
+    {
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30941,7 +31009,7 @@
       "source_record_id": "rechenstelle:55c74cb52d242296"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30958,7 +31026,24 @@
       "source_record_id": "rechenstelle:9eef0d67fb995e07"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
+      "country": "IRL",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 40.3,
+      "event_date": "2026-07-21",
+      "event_name": "Millstreet \u00b7 CCI3*-S",
+      "horse_name": "Glenvine Codename R",
+      "is_user_entered": false,
+      "level": "CCI3*-S",
+      "rider_name": "Lucy Ruth MCDOWELL (IRL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:41375cbcbedc79f2"
+    },
+    {
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30975,7 +31060,7 @@
       "source_record_id": "rechenstelle:7e7a49817073a26a"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -30992,7 +31077,24 @@
       "source_record_id": "rechenstelle:ca540e518cff84cf"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
+      "country": "IRL",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 39.1,
+      "event_date": "2026-07-21",
+      "event_name": "Millstreet \u00b7 CCI3*-S",
+      "horse_name": "Rathfleask",
+      "is_user_entered": false,
+      "level": "CCI3*-S",
+      "rider_name": "Matthew LOVE (IRL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:dabb41387ffeea3b"
+    },
+    {
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31009,7 +31111,7 @@
       "source_record_id": "rechenstelle:7bb5509711fade34"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31026,7 +31128,7 @@
       "source_record_id": "rechenstelle:b4f7e64f05854ad9"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31043,7 +31145,7 @@
       "source_record_id": "rechenstelle:c4c02c43d326a43b"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31060,7 +31162,7 @@
       "source_record_id": "rechenstelle:95775fda604f1293"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31077,7 +31179,7 @@
       "source_record_id": "rechenstelle:c81dfffbb934d2b6"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31094,7 +31196,7 @@
       "source_record_id": "rechenstelle:a1d93d92dbd67d67"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31111,7 +31213,24 @@
       "source_record_id": "rechenstelle:2a359030fa7b7db1"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
+      "country": "IRL",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 33.4,
+      "event_date": "2026-07-21",
+      "event_name": "Millstreet \u00b7 CCI3*-S",
+      "horse_name": "Stillbrook Aoife",
+      "is_user_entered": false,
+      "level": "CCI3*-S",
+      "rider_name": "Molly O'CONNOR (IRL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:ea9a3bc86313b02a"
+    },
+    {
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31128,7 +31247,7 @@
       "source_record_id": "rechenstelle:3e5f6934313c8cfb"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31145,7 +31264,7 @@
       "source_record_id": "rechenstelle:8c9e9b5ac71b99df"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31162,7 +31281,7 @@
       "source_record_id": "rechenstelle:80412f9b135a28e8"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31179,7 +31298,7 @@
       "source_record_id": "rechenstelle:0760a88aba80891f"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31196,7 +31315,7 @@
       "source_record_id": "rechenstelle:8b5aa47516265aa4"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31213,7 +31332,24 @@
       "source_record_id": "rechenstelle:f988e6ebd1fe3537"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
+      "country": "IRL",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 39.5,
+      "event_date": "2026-07-21",
+      "event_name": "Millstreet \u00b7 CCI3*-S",
+      "horse_name": "Imhotep de Gece",
+      "is_user_entered": false,
+      "level": "CCI3*-S",
+      "rider_name": "Nicolas M\u00dcLLER (HUN)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:42f477384ba143c5"
+    },
+    {
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31230,7 +31366,7 @@
       "source_record_id": "rechenstelle:b2d676abd707f700"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31247,7 +31383,7 @@
       "source_record_id": "rechenstelle:69a7807844022796"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31264,7 +31400,7 @@
       "source_record_id": "rechenstelle:abe9db4ba50e7c43"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31281,7 +31417,7 @@
       "source_record_id": "rechenstelle:9cb562309659a434"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31298,7 +31434,7 @@
       "source_record_id": "rechenstelle:87bc49e28048886b"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31315,7 +31451,7 @@
       "source_record_id": "rechenstelle:2f72d89730bfe606"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31332,7 +31468,7 @@
       "source_record_id": "rechenstelle:3c9c600c55b0914b"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31349,7 +31485,7 @@
       "source_record_id": "rechenstelle:d5fc4f831c676bfc"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31366,7 +31502,7 @@
       "source_record_id": "rechenstelle:45afc0b938377b41"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31383,7 +31519,7 @@
       "source_record_id": "rechenstelle:5217a01af398cfed"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31400,7 +31536,7 @@
       "source_record_id": "rechenstelle:a8dabcd86f8092f7"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31417,7 +31553,7 @@
       "source_record_id": "rechenstelle:63cefd02541246e3"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31434,7 +31570,24 @@
       "source_record_id": "rechenstelle:993bdfc2e472f73c"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
+      "country": "IRL",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 33.3,
+      "event_date": "2026-07-21",
+      "event_name": "Millstreet \u00b7 CCI4*-L",
+      "horse_name": "Bloomfield Manuscript",
+      "is_user_entered": false,
+      "level": "CCI4*-L",
+      "rider_name": "Sam ECROYD (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:9ac0213c0dfcac75"
+    },
+    {
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31451,7 +31604,7 @@
       "source_record_id": "rechenstelle:0c3cfb6e5f9b9fb9"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31468,7 +31621,7 @@
       "source_record_id": "rechenstelle:13926c339d40ba15"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31485,7 +31638,7 @@
       "source_record_id": "rechenstelle:ae53e0af882fc46b"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31502,7 +31655,7 @@
       "source_record_id": "rechenstelle:9dcb1b90ed1f7073"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31519,7 +31672,7 @@
       "source_record_id": "rechenstelle:e6999dcf89f2b884"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31536,7 +31689,7 @@
       "source_record_id": "rechenstelle:58822f5e98f6f55f"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31553,7 +31706,7 @@
       "source_record_id": "rechenstelle:0216b103d13b9e91"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31570,7 +31723,24 @@
       "source_record_id": "rechenstelle:03ec869b2b243317"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
+      "country": "IRL",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 35.2,
+      "event_date": "2026-07-21",
+      "event_name": "Millstreet \u00b7 CCI4*-L",
+      "horse_name": "Kilroe Frolic",
+      "is_user_entered": false,
+      "level": "CCI4*-L",
+      "rider_name": "Sian COLEMAN (IRL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:3ea773d9446b7d6f"
+    },
+    {
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31587,7 +31757,7 @@
       "source_record_id": "rechenstelle:9823938ffc9dc2d0"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31604,7 +31774,7 @@
       "source_record_id": "rechenstelle:3b6184eb8964e793"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31621,7 +31791,7 @@
       "source_record_id": "rechenstelle:859f268e7cdeec1a"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31638,7 +31808,7 @@
       "source_record_id": "rechenstelle:5cd8b96ad0fc12ab"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31655,7 +31825,7 @@
       "source_record_id": "rechenstelle:318e5f31f579db4e"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31672,7 +31842,7 @@
       "source_record_id": "rechenstelle:78c83ee2efa04f41"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31689,7 +31859,24 @@
       "source_record_id": "rechenstelle:67a57cf3a55a9928"
     },
     {
-      "collected_at": "2026-07-24T09:05:31+00:00",
+      "collected_at": "2026-07-24T10:04:00+00:00",
+      "country": "IRL",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 32.7,
+      "event_date": "2026-07-21",
+      "event_name": "Millstreet \u00b7 CCI3*-S",
+      "horse_name": "El Porvenir Luigui",
+      "is_user_entered": false,
+      "level": "CCI3*-S",
+      "rider_name": "Tommy GREENGARD (USA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:2ec337656feef0a6"
+    },
+    {
+      "collected_at": "2026-07-24T10:04:00+00:00",
       "country": "IRL",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -31707,6 +31894,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-07-24T09:05:33+00:00",
+  "updated_at": "2026-07-24T10:04:02+00:00",
   "version": 1
 }
