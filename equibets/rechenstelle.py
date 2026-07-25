@@ -89,15 +89,25 @@ class RechenstelleBoard:
     country: str
 
 
+STATUS_TOKEN_RE = re.compile(
+    r"\b(?:WD|WDBDRE|EL|RET|RT|DNS|DSQ|ELcDRE|RTcDRE)\b",
+    re.IGNORECASE,
+)
+
+
 class _LeaderboardParser(HTMLParser):
     """Extract parent standing rows from a Rechenstelle leaderboard table."""
 
     def __init__(self) -> None:
         super().__init__()
         self.rows: list[list[dict[str, str | None]]] = []
+        self.header_cells: list[str] = []
         self.title = ""
         self.last_update = ""
         self._capture_title = False
+        self._in_thead = False
+        self._in_header_row = False
+        self._header_cell: str | None = None
         self._in_parent = False
         self._row: list[dict[str, str | None]] | None = None
         self._cell: dict[str, str | None] | None = None
@@ -110,6 +120,15 @@ class _LeaderboardParser(HTMLParser):
             return
         if tag == "p" and "lastupdate" in attributes.get("class", "").split():
             self._last_update_pending = True
+            return
+        if tag == "thead":
+            self._in_thead = True
+            return
+        if self._in_thead and tag == "tr" and not self.header_cells:
+            self._in_header_row = True
+            return
+        if self._in_header_row and tag in {"th", "td"}:
+            self._header_cell = ""
             return
         if tag == "tr" and attributes.get("class", "").startswith("parent"):
             self._in_parent = True
@@ -127,6 +146,19 @@ class _LeaderboardParser(HTMLParser):
     def handle_endtag(self, tag: str) -> None:
         if tag == "title":
             self._capture_title = False
+            return
+        if tag == "thead":
+            self._in_thead = False
+            self._in_header_row = False
+            return
+        if tag == "tr" and self._in_header_row:
+            self._in_header_row = False
+            return
+        if tag in {"th", "td"} and self._header_cell is not None:
+            label = _clean_text(self._header_cell)
+            if label:
+                self.header_cells.append(label)
+            self._header_cell = None
             return
         if tag == "td" and self._cell is not None and self._row is not None:
             self._row.append(self._cell)
@@ -146,6 +178,9 @@ class _LeaderboardParser(HTMLParser):
             if match:
                 self.last_update = match.group(1).strip()
                 self._last_update_pending = False
+            return
+        if self._header_cell is not None:
+            self._header_cell += data
             return
         if self._cell is not None:
             self._cell["text"] = (self._cell["text"] or "") + data
@@ -176,10 +211,13 @@ def parse_leaderboard_results(
     parser = _LeaderboardParser()
     parser.feed(html)
     collected = collected_at or datetime.now(timezone.utc)
+    phase_order = _detect_phase_order(parser.header_cells)
     results: list[EventingResult] = []
 
     for row in parser.rows:
         if len(row) < 8:
+            continue
+        if _row_has_status(row):
             continue
         rider_name = _clean_text(row[2].get("text"))
         horse_name = _clean_text(row[4].get("text"))
@@ -187,9 +225,7 @@ def parse_leaderboard_results(
         if not rider_name or not horse_name or dressage is None:
             continue
 
-        xc_jump = _parse_number(row[9].get("text")) if len(row) > 9 else None
-        xc_time = _parse_number(row[10].get("text")) if len(row) > 10 else None
-        show_jumping = _parse_number(row[13].get("text")) if len(row) > 13 else None
+        show_jumping, xc_jump, xc_time = _phase_penalties(row, phase_order=phase_order)
         nation = row[3].get("flag")
         rider_label = f"{rider_name} ({nation})" if nation else rider_name
         start_no = _clean_text(row[1].get("text"))
@@ -207,14 +243,64 @@ def parse_leaderboard_results(
                 level=board.level,
                 country=board.country,
                 dressage_score=dressage,
-                show_jumping_penalties=show_jumping or 0.0,
-                cross_country_jump_penalties=xc_jump or 0.0,
-                cross_country_time_penalties=xc_time or 0.0,
+                show_jumping_penalties=show_jumping,
+                cross_country_jump_penalties=xc_jump,
+                cross_country_time_penalties=xc_time,
                 collected_at=collected,
                 is_user_entered=False,
             )
         )
     return results
+
+
+def _detect_phase_order(header_cells: Sequence[str]) -> str:
+    """Return sj_then_xc or xc_then_sj from the primary header row."""
+
+    normalized = [html_lib.unescape(cell).casefold() for cell in header_cells]
+    try:
+        jumping_at = next(index for index, cell in enumerate(normalized) if cell == "jumping")
+        cross_country_at = next(
+            index for index, cell in enumerate(normalized) if cell == "cross-country"
+        )
+    except StopIteration:
+        return "xc_then_sj"
+    if jumping_at < cross_country_at:
+        return "sj_then_xc"
+    return "xc_then_sj"
+
+
+def _phase_penalties(
+    row: Sequence[dict[str, str | None]],
+    *,
+    phase_order: str,
+) -> tuple[float, float, float]:
+    """Map Jumping/XC columns for short (SJ→XC) and long (XC→SJ) boards."""
+
+    if phase_order == "sj_then_xc":
+        show_jumping = _parse_number(row[9].get("text")) if len(row) > 9 else None
+        # Jumping "Time" is elapsed clock time, not penalty points.
+        xc_jump = _parse_number(row[13].get("text")) if len(row) > 13 else None
+        xc_time = _parse_xc_time_penalties(row[14].get("text")) if len(row) > 14 else None
+    else:
+        xc_jump = _parse_number(row[9].get("text")) if len(row) > 9 else None
+        xc_time = _parse_xc_time_penalties(row[10].get("text")) if len(row) > 10 else None
+        show_jumping = _parse_number(row[13].get("text")) if len(row) > 13 else None
+    return show_jumping or 0.0, xc_jump or 0.0, xc_time or 0.0
+
+
+def _row_has_status(row: Sequence[dict[str, str | None]]) -> bool:
+    return any(STATUS_TOKEN_RE.search(_clean_text(cell.get("text"))) for cell in row)
+
+
+def _parse_xc_time_penalties(value: str | None) -> float | None:
+    """Parse XC time penalties, ignoring mm:ss clock times."""
+
+    text = _clean_text(value)
+    if not text:
+        return None
+    if re.fullmatch(r"\d{1,2}:\d{2}(?:\.\d+)?", text):
+        return 0.0
+    return _parse_number(text)
 
 
 def collect_boards(
@@ -239,10 +325,30 @@ def millstreet_july_2026_boards() -> list[RechenstelleBoard]:
 
 
 def merge_into_store(store_path: Path, new_results: Iterable[EventingResult]) -> list[EventingResult]:
-    """Merge Rechenstelle rows into the shared results store."""
+    """Merge Rechenstelle rows into the shared results store.
+
+    Previous Rechenstelle rows for the same event/level/date are replaced so
+    retired/eliminated combinations disappear when they leave the live board.
+    """
 
     store = FeiResultStore(store_path)
-    merged = consolidate_results([*store.load(), *new_results])
+    incoming = list(new_results)
+    refresh_keys = {
+        (_slug(result.event_name), result.event_date, _slug(result.level), result.source_id)
+        for result in incoming
+    }
+    retained = [
+        result
+        for result in store.load()
+        if (
+            _slug(result.event_name),
+            result.event_date,
+            _slug(result.level),
+            result.source_id,
+        )
+        not in refresh_keys
+    ]
+    merged = consolidate_results([*retained, *incoming])
     store.path.parent.mkdir(parents=True, exist_ok=True)
     payload = {
         "version": 1,
@@ -254,6 +360,10 @@ def merge_into_store(store_path: Path, new_results: Iterable[EventingResult]) ->
         json.dump(payload, results_file, indent=2, sort_keys=True)
         results_file.write("\n")
     return merged
+
+
+def _slug(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
 
 
 def _clean_text(value: str | None) -> str:
