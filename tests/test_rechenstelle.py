@@ -66,6 +66,24 @@ SAMPLE_HTML = """
           <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
         </tr>
         <tr class="parent0">
+          <td><strong></strong></td>
+          <td>337</td>
+          <td class="riderCell"><span class="riderName">Alice CASBURN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Topspin</span></td>
+          <td>420,0</td>
+          <td>66,67</td>
+          <td>33,3</td>
+          <td>16.</td>
+          <td>2,8</td>
+          <td>06:37</td>
+          <td>36,1</td>
+          <td>1.</td>
+          <td></td>
+          <td></td>
+          <td class="borderCell">WDbSJ</td>
+        </tr>
+        <tr class="parent0">
           <td></td>
           <td>111</td>
           <td class="riderCell"><span class="riderName">Kaylawna SMITH-COOK</span></td>

@@ -89,8 +89,11 @@ class RechenstelleBoard:
     country: str
 
 
+# Rechenstelle marks retirements/withdrawals with compact tokens such as WD,
+# WDbDRE, WDbSJ, EL, ELcDRE, RT, and RTcDRE. Accept any WD/EL/RT suffix so
+# phase-specific forms are skipped when they leave the scored field.
 STATUS_TOKEN_RE = re.compile(
-    r"\b(?:WD|WDBDRE|EL|RET|RT|DNS|DSQ|ELcDRE|RTcDRE)\b",
+    r"\b(?:WD\w*|EL\w*|RET|RT\w*|DNS|DSQ)\b",
     re.IGNORECASE,
 )
 
