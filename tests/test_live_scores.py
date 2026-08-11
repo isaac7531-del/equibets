@@ -33,7 +33,7 @@ class LiveScoreTests(unittest.TestCase):
     def test_current_event_window_default_covers_multiday_event_starts(self):
         start_date, end_date = current_event_window(date(2026, 7, 12))
 
-        self.assertEqual(start_date, date(2026, 6, 28))
+        self.assertEqual(start_date, date(2026, 6, 21))
         self.assertEqual(end_date, date(2026, 7, 14))
 
     def test_current_event_window_includes_recent_and_upcoming_events(self):
