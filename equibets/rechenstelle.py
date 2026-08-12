@@ -77,6 +77,18 @@ MILLSTREET_JULY_2026 = (
     },
 )
 
+# FEI Eventing World Championship Aachen (CH-M-C), Aug 11–16 2026.
+# Dressage start list / live board; rows without dressage scores are skipped.
+AACHEN_CHMC_2026 = (
+    {
+        "url": "https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+        "event_name": "Aachen · CH-M-C",
+        "level": "CH-M-C",
+        "event_date": date(2026, 8, 11),
+        "country": "GER",
+    },
+)
+
 
 @dataclass(frozen=True)
 class RechenstelleBoard:
@@ -327,6 +339,12 @@ def millstreet_july_2026_boards() -> list[RechenstelleBoard]:
     return [RechenstelleBoard(**item) for item in MILLSTREET_JULY_2026]
 
 
+def aachen_chmc_2026_boards() -> list[RechenstelleBoard]:
+    """Return the Aachen 2026 FEI Eventing World Championship board set."""
+
+    return [RechenstelleBoard(**item) for item in AACHEN_CHMC_2026]
+
+
 def merge_into_store(store_path: Path, new_results: Iterable[EventingResult]) -> list[EventingResult]:
     """Merge Rechenstelle rows into the shared results store.
 
@@ -401,15 +419,24 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull the Millstreet July 2026 public leaderboards",
     )
+    parser.add_argument(
+        "--aachen-ch-m-c-2026",
+        action="store_true",
+        help="Pull the Aachen 2026 FEI Eventing World Championship leaderboard",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
 
-    if not args.millstreet_july_2026:
-        raise SystemExit("Specify --millstreet-july-2026")
+    boards: list[RechenstelleBoard] = []
+    if args.millstreet_july_2026:
+        boards.extend(millstreet_july_2026_boards())
+    if args.aachen_ch_m_c_2026:
+        boards.extend(aachen_chmc_2026_boards())
+    if not boards:
+        raise SystemExit("Specify --millstreet-july-2026 and/or --aachen-ch-m-c-2026")
 
-    boards = millstreet_july_2026_boards()
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)
     results = collect_boards(boards, collected_at=collected_at)
     print(

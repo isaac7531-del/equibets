@@ -194,6 +194,98 @@ LONG_FORMAT_CLOCK_TIME_HTML = """
 """
 
 
+AACHEN_START_LIST_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 12 2026 1:15PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td>09:30:00</td>
+          <td>107</td>
+          <td class="riderCell"><span class="riderName">Daniel DUNST</span></td>
+          <td><sup>*</sup><img src="../../../../flags/AUT.PNG" alt="AUT"></td>
+          <td class="horseCell"><span class="horseName">Chevalier 97</span></td>
+          <td>&nbsp;&nbsp;&nbsp;</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>09:37:00</td>
+          <td>165</td>
+          <td class="riderCell"><span class="riderName">Clarke JOHNSTONE</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Rocket Man</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
+AACHEN_DRESSAGE_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 12 2026 2:00PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>138</td>
+          <td class="riderCell"><span class="riderName">Michael JUNG</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">fischerChipmunk FRH</span></td>
+          <td>480,0</td>
+          <td>80,00</td>
+          <td>20,0</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>107</td>
+          <td class="riderCell"><span class="riderName">Daniel DUNST</span></td>
+          <td><sup>*</sup><img src="../../../../flags/AUT.PNG" alt="AUT"></td>
+          <td class="horseCell"><span class="horseName">Chevalier 97</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 class RechenstelleTests(unittest.TestCase):
     def test_parse_leaderboard_results_normalizes_scores_and_skips_status_rows(self):
         board = RechenstelleBoard(
@@ -264,6 +356,35 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(leader.cross_country_jump_penalties, 2.8)
         self.assertEqual(leader.cross_country_time_penalties, 0.0)
         self.assertEqual(leader.finishing_score, 37.1)
+
+    def test_aachen_start_list_without_dressage_yields_no_scored_rows(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_START_LIST_HTML, board=board)
+        self.assertEqual(results, [])
+
+    def test_aachen_dressage_scores_are_parsed(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_DRESSAGE_HTML, board=board)
+        self.assertEqual(len(results), 1)
+        leader = results[0]
+        self.assertEqual(leader.rider_name, "Michael JUNG (GER)")
+        self.assertEqual(leader.horse_name, "fischerChipmunk FRH")
+        self.assertEqual(leader.dressage_score, 20.0)
+        self.assertEqual(leader.event_name, "Aachen · CH-M-C")
+        self.assertEqual(leader.level, "CH-M-C")
+        self.assertEqual(leader.country, "GER")
 
 
 if __name__ == "__main__":
