@@ -16,10 +16,10 @@ from equibets.results import EventingResult, consolidate_results, load_results
 REPO_ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_RESULTS_FILE = REPO_ROOT / "data" / "fei_results.json"
 DEFAULT_LIVE_SCORES_FILE = REPO_ROOT / "src" / "data" / "live_scores.json"
-# FEI result rows use the show start date. A three-week window keeps multi-day
+# FEI result rows use the show start date. A four-week window keeps multi-day
 # championship starts visible through the short gap after finals publish and
-# before the next major FEI eventing show opens.
-DEFAULT_DAYS_BACK = 21
+# before the next major FEI eventing show opens live scoring boards.
+DEFAULT_DAYS_BACK = 28
 DEFAULT_DAYS_FORWARD = 2
 
 
