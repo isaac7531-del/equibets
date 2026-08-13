@@ -240,6 +240,64 @@ AACHEN_START_LIST_HTML = """
 """
 
 
+AACHEN_LIVE_FIRST_HOUR_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 13 2026 10:17AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td>1.</td>
+          <td>165</td>
+          <td class="riderCell"><span class="riderName">Clarke JOHNSTONE</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Rocket Man</span></td>
+          <td>513,5</td>
+          <td>71,32</td>
+          <td>28,7</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>129</td>
+          <td class="riderCell"><span class="riderName">Benjamin MASSIE</span></td>
+          <td><sup>*</sup><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Figaro Fonroy</span></td>
+          <td>61,5</td>
+          <td>64,00</td>
+          <td>36,0</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>10:19:00</td>
+          <td>172</td>
+          <td class="riderCell"><span class="riderName">Robin GODEL</span></td>
+          <td><sup>*</sup><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Grandeur de Lully CH</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -385,6 +443,25 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(leader.event_name, "Aachen · CH-M-C")
         self.assertEqual(leader.level, "CH-M-C")
         self.assertEqual(leader.country, "GER")
+
+    def test_aachen_live_first_hour_dressage_leaders_are_parsed(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_FIRST_HOUR_HTML, board=board)
+        self.assertEqual(len(results), 2)
+        leader, second = results
+        self.assertEqual(leader.rider_name, "Clarke JOHNSTONE (NZL)")
+        self.assertEqual(leader.horse_name, "Rocket Man")
+        self.assertEqual(leader.dressage_score, 28.7)
+        self.assertEqual(leader.finishing_score, 28.7)
+        self.assertEqual(second.rider_name, "Benjamin MASSIE (FRA)")
+        self.assertEqual(second.horse_name, "Figaro Fonroy")
+        self.assertEqual(second.dressage_score, 36.0)
 
 
 if __name__ == "__main__":
