@@ -298,6 +298,88 @@ AACHEN_LIVE_FIRST_HOUR_HTML = """
 """
 
 
+AACHEN_LIVE_REVISED_MARKS_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 13 2026 11:09AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>165</td>
+          <td class="riderCell"><span class="riderName">Clarke JOHNSTONE</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Rocket Man</span></td>
+          <td>513,5</td>
+          <td>71,32</td>
+          <td>28,7</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>172</td>
+          <td class="riderCell"><span class="riderName">Robin GODEL</span></td>
+          <td><sup>*</sup><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Grandeur de Lully CH</span></td>
+          <td>503,0</td>
+          <td>69,86</td>
+          <td>30,1</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>140</td>
+          <td class="riderCell"><span class="riderName">Libussa L&Uuml;BBEKE</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Caramia FRH</span></td>
+          <td>495,0</td>
+          <td>68,75</td>
+          <td>31,3</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent1">
+          <td><strong>7.</strong></td>
+          <td>114</td>
+          <td class="riderCell"><span class="riderName">Senne VERVAECKE</span></td>
+          <td><sup>*</sup><img src="../../../../flags/BEL.PNG" alt="BEL"></td>
+          <td class="horseCell"><span class="horseName">Google van Alsingen</span></td>
+          <td>(R)467,0</td>
+          <td>64,86</td>
+          <td>35,1</td>
+          <td>7.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>11:16:00</td>
+          <td>138</td>
+          <td class="riderCell"><span class="riderName">Michael JUNG</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">fischerChipmunk FRH</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -462,6 +544,25 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(second.rider_name, "Benjamin MASSIE (FRA)")
         self.assertEqual(second.horse_name, "Figaro Fonroy")
         self.assertEqual(second.dressage_score, 36.0)
+
+    def test_aachen_live_revised_dressage_marks_use_score_column(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_REVISED_MARKS_HTML, board=board)
+        self.assertEqual(len(results), 4)
+        by_horse = {result.horse_name: result for result in results}
+        self.assertEqual(by_horse["Rocket Man"].dressage_score, 28.7)
+        self.assertEqual(by_horse["Grandeur de Lully CH"].rider_name, "Robin GODEL (SUI)")
+        self.assertEqual(by_horse["Grandeur de Lully CH"].dressage_score, 30.1)
+        self.assertEqual(by_horse["Caramia FRH"].rider_name, "Libussa LÜBBEKE (GER)")
+        self.assertEqual(by_horse["Caramia FRH"].dressage_score, 31.3)
+        self.assertEqual(by_horse["Google van Alsingen"].rider_name, "Senne VERVAECKE (BEL)")
+        self.assertEqual(by_horse["Google van Alsingen"].dressage_score, 35.1)
 
 
 if __name__ == "__main__":
