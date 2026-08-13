@@ -855,6 +855,75 @@ AACHEN_LIVE_1658_HTML = """
 </html>
 """
 
+AACHEN_LIVE_1720_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 13 2026 5:20PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>135</td>
+          <td class="riderCell"><span class="riderName">Tom MCEWEN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">JL Dublin</span></td>
+          <td>528,5</td>
+          <td>73,40</td>
+          <td>26,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>35.</strong></td>
+          <td>125</td>
+          <td class="riderCell"><span class="riderName">Axel LINDBERG</span></td>
+          <td><img src="../../../../flags/FIN.PNG" alt="FIN"></td>
+          <td class="horseCell"><span class="horseName">Quelle Bonne</span></td>
+          <td>439,5</td>
+          <td>61,04</td>
+          <td>39,0</td>
+          <td>35.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>40.</strong></td>
+          <td>154</td>
+          <td class="riderCell"><span class="riderName">Paolo TORLONIA</span></td>
+          <td><sup>*</sup><img src="../../../../flags/ITA.PNG" alt="ITA"></td>
+          <td class="horseCell"><span class="horseName">Zinny</span></td>
+          <td>422,5</td>
+          <td>58,68</td>
+          <td>41,3</td>
+          <td>40.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>43.</strong></td>
+          <td>144</td>
+          <td class="riderCell"><span class="riderName">Ashish LIMAYE</span></td>
+          <td><img src="../../../../flags/IND.PNG" alt="IND"></td>
+          <td class="horseCell"><span class="horseName">D'Avril du Pinier</span></td>
+          <td>399,0</td>
+          <td>55,42</td>
+          <td>44,6</td>
+          <td>43.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 
 AACHEN_LIVE_MIDMORNING_HTML = """
 <html>
@@ -1287,6 +1356,34 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(torlonia.horse_name, "Zinny")
         self.assertEqual(torlonia.dressage_score, 40.8)
         self.assertEqual(torlonia.finishing_score, 40.8)
+
+    def test_aachen_live_1720_revises_lindberg_torlonia_and_limaye(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1720_HTML, board=board)
+        self.assertEqual(len(results), 4)
+        leader, lindberg, torlonia, limaye = results
+        self.assertEqual(leader.rider_name, "Tom MCEWEN (GBR)")
+        self.assertEqual(leader.horse_name, "JL Dublin")
+        self.assertEqual(leader.dressage_score, 26.6)
+        self.assertEqual(leader.finishing_score, 26.6)
+        self.assertEqual(lindberg.rider_name, "Axel LINDBERG (FIN)")
+        self.assertEqual(lindberg.horse_name, "Quelle Bonne")
+        self.assertEqual(lindberg.dressage_score, 39.0)
+        self.assertEqual(lindberg.finishing_score, 39.0)
+        self.assertEqual(torlonia.rider_name, "Paolo TORLONIA (ITA)")
+        self.assertEqual(torlonia.horse_name, "Zinny")
+        self.assertEqual(torlonia.dressage_score, 41.3)
+        self.assertEqual(torlonia.finishing_score, 41.3)
+        self.assertEqual(limaye.rider_name, "Ashish LIMAYE (IND)")
+        self.assertEqual(limaye.horse_name, "D'Avril du Pinier")
+        self.assertEqual(limaye.dressage_score, 44.6)
+        self.assertEqual(limaye.finishing_score, 44.6)
 
 
 if __name__ == "__main__":
