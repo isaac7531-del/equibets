@@ -380,6 +380,76 @@ AACHEN_LIVE_REVISED_MARKS_HTML = """
 """
 
 
+AACHEN_LIVE_MIDMORNING_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 13 2026 11:49AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>165</td>
+          <td class="riderCell"><span class="riderName">Clarke JOHNSTONE</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Rocket Man</span></td>
+          <td>513,5</td>
+          <td>71,32</td>
+          <td>28,7</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>136</td>
+          <td class="riderCell"><span class="riderName">Gemma STEVENS</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Flash Cooley</span></td>
+          <td>509,0</td>
+          <td>70,69</td>
+          <td>29,3</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>172</td>
+          <td class="riderCell"><span class="riderName">Robin GODEL</span></td>
+          <td><sup>*</sup><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Grandeur de Lully CH</span></td>
+          <td>503,0</td>
+          <td>69,86</td>
+          <td>30,1</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>163</td>
+          <td class="riderCell"><span class="riderName">Florinoor HOOGLAND</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NED.PNG" alt="NED"></td>
+          <td class="horseCell"><span class="horseName">Hontoni</span></td>
+          <td></td>
+          <td></td>
+          <td>WDbDRE</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -563,6 +633,27 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(by_horse["Caramia FRH"].dressage_score, 31.3)
         self.assertEqual(by_horse["Google van Alsingen"].rider_name, "Senne VERVAECKE (BEL)")
         self.assertEqual(by_horse["Google van Alsingen"].dressage_score, 35.1)
+
+    def test_aachen_live_midmorning_inserts_stevens_second(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_MIDMORNING_HTML, board=board)
+        self.assertEqual(len(results), 3)
+        leader, second, third = results
+        self.assertEqual(leader.rider_name, "Clarke JOHNSTONE (NZL)")
+        self.assertEqual(leader.horse_name, "Rocket Man")
+        self.assertEqual(leader.dressage_score, 28.7)
+        self.assertEqual(second.rider_name, "Gemma STEVENS (GBR)")
+        self.assertEqual(second.horse_name, "Flash Cooley")
+        self.assertEqual(second.dressage_score, 29.3)
+        self.assertEqual(second.finishing_score, 29.3)
+        self.assertEqual(third.rider_name, "Robin GODEL (SUI)")
+        self.assertEqual(third.dressage_score, 30.1)
 
 
 if __name__ == "__main__":
