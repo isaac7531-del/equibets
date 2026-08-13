@@ -786,6 +786,75 @@ AACHEN_LIVE_1602_HTML = """
 </html>
 """
 
+AACHEN_LIVE_1658_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 13 2026 4:58PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent1">
+          <td><strong>1.</strong></td>
+          <td>135</td>
+          <td class="riderCell"><span class="riderName">Tom MCEWEN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">JL Dublin</span></td>
+          <td>528,5</td>
+          <td>73,40</td>
+          <td>26,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>7.</strong></td>
+          <td>166</td>
+          <td class="riderCell"><span class="riderName">Samantha LISSINGTON</span></td>
+          <td><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Lucas Stone</span></td>
+          <td>506,0</td>
+          <td>70,28</td>
+          <td>29,7</td>
+          <td>7.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>9.</strong></td>
+          <td>102</td>
+          <td class="riderCell"><span class="riderName">Olivia BARTON</span></td>
+          <td><img src="../../../../flags/AUS.PNG" alt="AUS"></td>
+          <td class="horseCell"><span class="horseName">APH Sodoku</span></td>
+          <td>499,5</td>
+          <td>69,38</td>
+          <td>30,6</td>
+          <td>9.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>38.</strong></td>
+          <td>154</td>
+          <td class="riderCell"><span class="riderName">Paolo TORLONIA</span></td>
+          <td><sup>*</sup><img src="../../../../flags/ITA.PNG" alt="ITA"></td>
+          <td class="horseCell"><span class="horseName">Zinny</span></td>
+          <td>(R)426,0</td>
+          <td>59,17</td>
+          <td>40,8</td>
+          <td>38.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 
 AACHEN_LIVE_MIDMORNING_HTML = """
 <html>
@@ -1190,6 +1259,34 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(johner.horse_name, "Erin")
         self.assertEqual(johner.dressage_score, 31.5)
         self.assertEqual(johner.finishing_score, 31.5)
+
+    def test_aachen_live_1658_inserts_lissington_barton_and_revises_torlonia(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1658_HTML, board=board)
+        self.assertEqual(len(results), 4)
+        leader, lissington, barton, torlonia = results
+        self.assertEqual(leader.rider_name, "Tom MCEWEN (GBR)")
+        self.assertEqual(leader.horse_name, "JL Dublin")
+        self.assertEqual(leader.dressage_score, 26.6)
+        self.assertEqual(leader.finishing_score, 26.6)
+        self.assertEqual(lissington.rider_name, "Samantha LISSINGTON (NZL)")
+        self.assertEqual(lissington.horse_name, "Lucas Stone")
+        self.assertEqual(lissington.dressage_score, 29.7)
+        self.assertEqual(lissington.finishing_score, 29.7)
+        self.assertEqual(barton.rider_name, "Olivia BARTON (AUS)")
+        self.assertEqual(barton.horse_name, "APH Sodoku")
+        self.assertEqual(barton.dressage_score, 30.6)
+        self.assertEqual(barton.finishing_score, 30.6)
+        self.assertEqual(torlonia.rider_name, "Paolo TORLONIA (ITA)")
+        self.assertEqual(torlonia.horse_name, "Zinny")
+        self.assertEqual(torlonia.dressage_score, 40.8)
+        self.assertEqual(torlonia.finishing_score, 40.8)
 
 
 if __name__ == "__main__":
