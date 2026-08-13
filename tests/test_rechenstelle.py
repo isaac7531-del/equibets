@@ -543,6 +543,168 @@ AACHEN_LIVE_1400_HTML = """
 </html>
 """
 
+AACHEN_LIVE_1502_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 13 2026 3:02PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>167</td>
+          <td class="riderCell"><span class="riderName">Jonelle PRICE</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Senor Crocodillo</span></td>
+          <td>524,5</td>
+          <td>72,85</td>
+          <td>27,2</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>127</td>
+          <td class="riderCell"><span class="riderName">Alexis GOURY</span></td>
+          <td><sup>*</sup><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Je'vall</span></td>
+          <td>516,0</td>
+          <td>71,67</td>
+          <td>28,3</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>165</td>
+          <td class="riderCell"><span class="riderName">Clarke JOHNSTONE</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Rocket Man</span></td>
+          <td>513,5</td>
+          <td>71,32</td>
+          <td>28,7</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>4.</strong></td>
+          <td>136</td>
+          <td class="riderCell"><span class="riderName">Gemma STEVENS</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Flash Cooley</span></td>
+          <td>509,0</td>
+          <td>70,69</td>
+          <td>29,3</td>
+          <td>4.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>29.</strong></td>
+          <td>121</td>
+          <td class="riderCell"><span class="riderName">Matěj SUKDOLÁK</span></td>
+          <td><sup>*</sup><img src="../../../../flags/CZE.PNG" alt="CZE"></td>
+          <td class="horseCell"><span class="horseName">Qaid</span></td>
+          <td>403,0</td>
+          <td>55,97</td>
+          <td>44,0</td>
+          <td>29.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>163</td>
+          <td class="riderCell"><span class="riderName">Florinoor HOOGLAND</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NED.PNG" alt="NED"></td>
+          <td class="horseCell"><span class="horseName">Hontoni</span></td>
+          <td></td>
+          <td></td>
+          <td>WDbDRE</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+AACHEN_LIVE_1506_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 13 2026 3:06PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>167</td>
+          <td class="riderCell"><span class="riderName">Jonelle PRICE</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Senor Crocodillo</span></td>
+          <td>524,5</td>
+          <td>72,85</td>
+          <td>27,2</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>127</td>
+          <td class="riderCell"><span class="riderName">Alexis GOURY</span></td>
+          <td><sup>*</sup><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Je'vall</span></td>
+          <td>515,0</td>
+          <td>71,53</td>
+          <td>28,5</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>10.</strong></td>
+          <td>173</td>
+          <td class="riderCell"><span class="riderName">Mélody JOHNER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Erin</span></td>
+          <td>467,0</td>
+          <td>67,41</td>
+          <td>32,6</td>
+          <td>10.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>163</td>
+          <td class="riderCell"><span class="riderName">Florinoor HOOGLAND</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NED.PNG" alt="NED"></td>
+          <td class="horseCell"><span class="horseName">Hontoni</span></td>
+          <td></td>
+          <td></td>
+          <td>WDbDRE</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 
 AACHEN_LIVE_MIDMORNING_HTML = """
 <html>
@@ -869,6 +1031,57 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(aondio.horse_name, "It's Athene")
         self.assertEqual(aondio.dressage_score, 41.2)
         self.assertEqual(aondio.finishing_score, 41.2)
+
+    def test_aachen_live_1502_inserts_goury_second(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1502_HTML, board=board)
+        self.assertEqual(len(results), 5)
+        leader, goury, johnstone, stevens, sukdolak = results
+        self.assertEqual(leader.rider_name, "Jonelle PRICE (NZL)")
+        self.assertEqual(leader.horse_name, "Senor Crocodillo")
+        self.assertEqual(leader.dressage_score, 27.2)
+        self.assertEqual(goury.rider_name, "Alexis GOURY (FRA)")
+        self.assertEqual(goury.horse_name, "Je'vall")
+        self.assertEqual(goury.dressage_score, 28.3)
+        self.assertEqual(goury.finishing_score, 28.3)
+        self.assertEqual(johnstone.rider_name, "Clarke JOHNSTONE (NZL)")
+        self.assertEqual(johnstone.horse_name, "Rocket Man")
+        self.assertEqual(johnstone.dressage_score, 28.7)
+        self.assertEqual(stevens.rider_name, "Gemma STEVENS (GBR)")
+        self.assertEqual(stevens.horse_name, "Flash Cooley")
+        self.assertEqual(stevens.dressage_score, 29.3)
+        self.assertEqual(sukdolak.rider_name, "Matěj SUKDOLÁK (CZE)")
+        self.assertEqual(sukdolak.horse_name, "Qaid")
+        self.assertEqual(sukdolak.dressage_score, 44.0)
+
+    def test_aachen_live_1506_revises_goury_and_adds_johner(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1506_HTML, board=board)
+        self.assertEqual(len(results), 3)
+        leader, goury, johner = results
+        self.assertEqual(leader.rider_name, "Jonelle PRICE (NZL)")
+        self.assertEqual(leader.horse_name, "Senor Crocodillo")
+        self.assertEqual(leader.dressage_score, 27.2)
+        self.assertEqual(goury.rider_name, "Alexis GOURY (FRA)")
+        self.assertEqual(goury.horse_name, "Je'vall")
+        self.assertEqual(goury.dressage_score, 28.5)
+        self.assertEqual(goury.finishing_score, 28.5)
+        self.assertEqual(johner.rider_name, "Mélody JOHNER (SUI)")
+        self.assertEqual(johner.horse_name, "Erin")
+        self.assertEqual(johner.dressage_score, 32.6)
+        self.assertEqual(johner.finishing_score, 32.6)
 
 
 if __name__ == "__main__":
