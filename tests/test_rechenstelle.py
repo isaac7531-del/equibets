@@ -462,6 +462,88 @@ AACHEN_LIVE_AFTERNOON_HTML = """
 """
 
 
+AACHEN_LIVE_1400_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 13 2026 2:00PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>167</td>
+          <td class="riderCell"><span class="riderName">Jonelle PRICE</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Senor Crocodillo</span></td>
+          <td>524,5</td>
+          <td>72,85</td>
+          <td>27,2</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>8.</strong></td>
+          <td>185</td>
+          <td class="riderCell"><span class="riderName">Phillip DUTTON</span></td>
+          <td><sup>*</sup><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">Denim</span></td>
+          <td>485,5</td>
+          <td>67,43</td>
+          <td>32,6</td>
+          <td>8.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>19.</strong></td>
+          <td>105</td>
+          <td class="riderCell"><span class="riderName">Sam WOODS</span></td>
+          <td><sup>*</sup><img src="../../../../flags/AUS.PNG" alt="AUS"></td>
+          <td class="horseCell"><span class="horseName">SS Eight Count</span></td>
+          <td>451,0</td>
+          <td>62,64</td>
+          <td>37,4</td>
+          <td>19.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>25.</strong></td>
+          <td>151</td>
+          <td class="riderCell"><span class="riderName">Francesco AONDIO BERTERO</span></td>
+          <td><img src="../../../../flags/ITA.PNG" alt="ITA"></td>
+          <td class="horseCell"><span class="horseName">It's Athene</span></td>
+          <td>423,5</td>
+          <td>58,82</td>
+          <td>41,2</td>
+          <td>25.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>163</td>
+          <td class="riderCell"><span class="riderName">Florinoor HOOGLAND</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NED.PNG" alt="NED"></td>
+          <td class="horseCell"><span class="horseName">Hontoni</span></td>
+          <td></td>
+          <td></td>
+          <td>WDbDRE</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_LIVE_MIDMORNING_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -761,6 +843,32 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(fourth.rider_name, "Maarten BOON (BEL)")
         self.assertEqual(fourth.horse_name, "Gravin van Cantos")
         self.assertEqual(fourth.dressage_score, 31.4)
+
+    def test_aachen_live_1400_revises_woods_and_aondio_marks(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1400_HTML, board=board)
+        self.assertEqual(len(results), 4)
+        leader, dutton, woods, aondio = results
+        self.assertEqual(leader.rider_name, "Jonelle PRICE (NZL)")
+        self.assertEqual(leader.horse_name, "Senor Crocodillo")
+        self.assertEqual(leader.dressage_score, 27.2)
+        self.assertEqual(dutton.rider_name, "Phillip DUTTON (USA)")
+        self.assertEqual(dutton.horse_name, "Denim")
+        self.assertEqual(dutton.dressage_score, 32.6)
+        self.assertEqual(woods.rider_name, "Sam WOODS (AUS)")
+        self.assertEqual(woods.horse_name, "SS Eight Count")
+        self.assertEqual(woods.dressage_score, 37.4)
+        self.assertEqual(woods.finishing_score, 37.4)
+        self.assertEqual(aondio.rider_name, "Francesco AONDIO BERTERO (ITA)")
+        self.assertEqual(aondio.horse_name, "It's Athene")
+        self.assertEqual(aondio.dressage_score, 41.2)
+        self.assertEqual(aondio.finishing_score, 41.2)
 
 
 if __name__ == "__main__":
