@@ -705,6 +705,87 @@ AACHEN_LIVE_1506_HTML = """
 </html>
 """
 
+AACHEN_LIVE_1602_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 13 2026 4:02PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent1">
+          <td><strong>1.</strong></td>
+          <td>135</td>
+          <td class="riderCell"><span class="riderName">Tom MCEWEN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">JL Dublin</span></td>
+          <td>528,5</td>
+          <td>73,40</td>
+          <td>26,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>167</td>
+          <td class="riderCell"><span class="riderName">Jonelle PRICE</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Senor Crocodillo</span></td>
+          <td>524,5</td>
+          <td>72,85</td>
+          <td>27,2</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>4.</strong></td>
+          <td>137</td>
+          <td class="riderCell"><span class="riderName">Malin HANSEN-HOTOPP</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Carlitos Quidditch K</span></td>
+          <td>514,0</td>
+          <td>71,39</td>
+          <td>28,6</td>
+          <td>4.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>11.</strong></td>
+          <td>173</td>
+          <td class="riderCell"><span class="riderName">Mélody JOHNER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Erin</span></td>
+          <td>493,5</td>
+          <td>68,54</td>
+          <td>31,5</td>
+          <td>11.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>163</td>
+          <td class="riderCell"><span class="riderName">Florinoor HOOGLAND</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NED.PNG" alt="NED"></td>
+          <td class="horseCell"><span class="horseName">Hontoni</span></td>
+          <td></td>
+          <td></td>
+          <td>WDbDRE</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 
 AACHEN_LIVE_MIDMORNING_HTML = """
 <html>
@@ -1082,6 +1163,33 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(johner.horse_name, "Erin")
         self.assertEqual(johner.dressage_score, 32.6)
         self.assertEqual(johner.finishing_score, 32.6)
+
+    def test_aachen_live_1602_inserts_mcewen_lead_and_revises_johner(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1602_HTML, board=board)
+        self.assertEqual(len(results), 4)
+        leader, price, hansen, johner = results
+        self.assertEqual(leader.rider_name, "Tom MCEWEN (GBR)")
+        self.assertEqual(leader.horse_name, "JL Dublin")
+        self.assertEqual(leader.dressage_score, 26.6)
+        self.assertEqual(leader.finishing_score, 26.6)
+        self.assertEqual(price.rider_name, "Jonelle PRICE (NZL)")
+        self.assertEqual(price.horse_name, "Senor Crocodillo")
+        self.assertEqual(price.dressage_score, 27.2)
+        self.assertEqual(hansen.rider_name, "Malin HANSEN-HOTOPP (GER)")
+        self.assertEqual(hansen.horse_name, "Carlitos Quidditch K")
+        self.assertEqual(hansen.dressage_score, 28.6)
+        self.assertEqual(hansen.finishing_score, 28.6)
+        self.assertEqual(johner.rider_name, "Mélody JOHNER (SUI)")
+        self.assertEqual(johner.horse_name, "Erin")
+        self.assertEqual(johner.dressage_score, 31.5)
+        self.assertEqual(johner.finishing_score, 31.5)
 
 
 if __name__ == "__main__":
