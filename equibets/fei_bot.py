@@ -420,6 +420,13 @@ class FeiBrowserClient:
     def _wait_after_action(self) -> None:
         page = self._ensure_page()
         try:
+            page.wait_for_load_state(
+                "domcontentloaded",
+                timeout=min(30_000, max(1_000, int(challenge_wait * 1000))),
+            )
+        except Exception:
+            pass
+        try:
             page.wait_for_load_state("domcontentloaded", timeout=30_000)
         except Exception:
             pass
