@@ -39,6 +39,12 @@ override official results.
 6. Re-run consolidation and prediction calculations.
 7. Show the latest `collected_at` timestamp in the website UI.
 
+For current-event/live-scoring refreshes, run `equibets.fei_bot` with
+`--current-events` and `--live-output src/data/live_scores.json`. This searches
+the rolling current window, merges official FEI records, and publishes grouped
+leaderboards for the website. If the result store is already up to date,
+`equibets.live_scores` can rebuild the website snapshot without crawling.
+
 ## Prediction logic
 
 `predict_finishing_score` uses the most recent consolidated starts for a
