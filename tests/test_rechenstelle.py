@@ -1031,6 +1031,204 @@ AACHEN_LIVE_1007_FRIDAY_HTML = """
 """
 
 
+AACHEN_LIVE_1102_FRIDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 14 2026 11:02AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>135</td>
+          <td class="riderCell"><span class="riderName">Tom MCEWEN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">JL Dublin</span></td>
+          <td>528,5</td>
+          <td>73,40</td>
+          <td>26,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>6.</strong></td>
+          <td>169</td>
+          <td class="riderCell"><span class="riderName">Monica SPENCER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Artist</span></td>
+          <td>512,0</td>
+          <td>71,11</td>
+          <td>28,9</td>
+          <td>6.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>11.</strong></td>
+          <td>186</td>
+          <td class="riderCell"><span class="riderName">Boyd MARTIN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">Cooley Nutcracker</span></td>
+          <td>497,5</td>
+          <td>69,10</td>
+          <td>30,9</td>
+          <td>11.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>17.</strong></td>
+          <td>119</td>
+          <td class="riderCell"><span class="riderName">Alex HUA TIAN</span></td>
+          <td><img src="../../../../flags/CHN.PNG" alt="CHN"></td>
+          <td class="horseCell"><span class="horseName">Chicko</span></td>
+          <td>486,0</td>
+          <td>67,50</td>
+          <td>32,5</td>
+          <td>17.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>41.</strong></td>
+          <td>108</td>
+          <td class="riderCell"><span class="riderName">Katrin KHODDAM-HAZRATI</span></td>
+          <td><sup>*</sup><img src="../../../../flags/AUT.PNG" alt="AUT"></td>
+          <td class="horseCell"><span class="horseName">Renegade</span></td>
+          <td>444,5</td>
+          <td>61,74</td>
+          <td>38,3</td>
+          <td>41.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>44.</strong></td>
+          <td>120</td>
+          <td class="riderCell"><span class="riderName">Pavel BŘEZINA</span></td>
+          <td><sup>*</sup><img src="../../../../flags/CZE.PNG" alt="CZE"></td>
+          <td class="horseCell"><span class="horseName">Turin</span></td>
+          <td>441,0</td>
+          <td>61,25</td>
+          <td>38,8</td>
+          <td>44.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
+AACHEN_LIVE_1105_FRIDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 14 2026 11:05AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>135</td>
+          <td class="riderCell"><span class="riderName">Tom MCEWEN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">JL Dublin</span></td>
+          <td>528,5</td>
+          <td>73,40</td>
+          <td>26,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>101</td>
+          <td class="riderCell"><span class="riderName">Oliver BARRETT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/AUS.PNG" alt="AUS"></td>
+          <td class="horseCell"><span class="horseName">Sandhills Briar</span></td>
+          <td>22,0</td>
+          <td>73,33</td>
+          <td>26,7</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>7.</strong></td>
+          <td>169</td>
+          <td class="riderCell"><span class="riderName">Monica SPENCER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Artist</span></td>
+          <td>512,0</td>
+          <td>71,11</td>
+          <td>28,9</td>
+          <td>7.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
+AACHEN_LIVE_1105_BARRETT_REVISED_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 14 2026 11:05AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>135</td>
+          <td class="riderCell"><span class="riderName">Tom MCEWEN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">JL Dublin</span></td>
+          <td>528,5</td>
+          <td>73,40</td>
+          <td>26,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>101</td>
+          <td class="riderCell"><span class="riderName">Oliver BARRETT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/AUS.PNG" alt="AUS"></td>
+          <td class="horseCell"><span class="horseName">Sandhills Briar</span></td>
+          <td>146,5</td>
+          <td>69,76</td>
+          <td>30,2</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_LIVE_1720_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -1618,6 +1816,74 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(pitakanonda.rider_name, "Weerapat PITAKANONDA (THA)")
         self.assertEqual(pitakanonda.horse_name, "B.Grimm Chateau de Versailles M2S")
         self.assertEqual(pitakanonda.dressage_score, 41.4)
+
+    def test_aachen_live_1102_friday_adds_spencer_martin_and_revises_hua_tian(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1102_FRIDAY_HTML, board=board)
+        self.assertEqual(len(results), 6)
+        leader, spencer, martin, hua_tian, khoddam, brezina = results
+        self.assertEqual(leader.rider_name, "Tom MCEWEN (GBR)")
+        self.assertEqual(leader.horse_name, "JL Dublin")
+        self.assertEqual(leader.dressage_score, 26.6)
+        self.assertEqual(spencer.rider_name, "Monica SPENCER (NZL)")
+        self.assertEqual(spencer.horse_name, "Artist")
+        self.assertEqual(spencer.dressage_score, 28.9)
+        self.assertEqual(martin.rider_name, "Boyd MARTIN (USA)")
+        self.assertEqual(martin.horse_name, "Cooley Nutcracker")
+        self.assertEqual(martin.dressage_score, 30.9)
+        self.assertEqual(hua_tian.rider_name, "Alex HUA TIAN (CHN)")
+        self.assertEqual(hua_tian.horse_name, "Chicko")
+        self.assertEqual(hua_tian.dressage_score, 32.5)
+        self.assertEqual(khoddam.rider_name, "Katrin KHODDAM-HAZRATI (AUT)")
+        self.assertEqual(khoddam.horse_name, "Renegade")
+        self.assertEqual(khoddam.dressage_score, 38.3)
+        self.assertEqual(brezina.rider_name, "Pavel BŘEZINA (CZE)")
+        self.assertEqual(brezina.horse_name, "Turin")
+        self.assertEqual(brezina.dressage_score, 38.8)
+
+    def test_aachen_live_1105_friday_adds_barrett_into_second(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1105_FRIDAY_HTML, board=board)
+        self.assertEqual(len(results), 3)
+        leader, barrett, spencer = results
+        self.assertEqual(leader.rider_name, "Tom MCEWEN (GBR)")
+        self.assertEqual(leader.horse_name, "JL Dublin")
+        self.assertEqual(leader.dressage_score, 26.6)
+        self.assertEqual(barrett.rider_name, "Oliver BARRETT (AUS)")
+        self.assertEqual(barrett.horse_name, "Sandhills Briar")
+        self.assertEqual(barrett.dressage_score, 26.7)
+        self.assertEqual(spencer.rider_name, "Monica SPENCER (NZL)")
+        self.assertEqual(spencer.horse_name, "Artist")
+        self.assertEqual(spencer.dressage_score, 28.9)
+
+    def test_aachen_live_1105_friday_revises_in_progress_barrett_to_30_2(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1105_BARRETT_REVISED_HTML, board=board)
+        self.assertEqual(len(results), 2)
+        leader, barrett = results
+        self.assertEqual(leader.rider_name, "Tom MCEWEN (GBR)")
+        self.assertEqual(leader.dressage_score, 26.6)
+        self.assertEqual(barrett.rider_name, "Oliver BARRETT (AUS)")
+        self.assertEqual(barrett.horse_name, "Sandhills Briar")
+        self.assertEqual(barrett.dressage_score, 30.2)
 
 
 if __name__ == "__main__":
