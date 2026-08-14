@@ -855,6 +855,182 @@ AACHEN_LIVE_1658_HTML = """
 </html>
 """
 
+AACHEN_LIVE_1000_FRIDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 14 2026 10:00AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>135</td>
+          <td class="riderCell"><span class="riderName">Tom MCEWEN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">JL Dublin</span></td>
+          <td>528,5</td>
+          <td>73,40</td>
+          <td>26,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>127</td>
+          <td class="riderCell"><span class="riderName">Alexis GOURY</span></td>
+          <td><sup>*</sup><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Je'Vall</span></td>
+          <td>515,0</td>
+          <td>71,53</td>
+          <td>28,5</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>123</td>
+          <td class="riderCell"><span class="riderName">Peter T. FLARUP</span></td>
+          <td><img src="../../../../flags/DEN.PNG" alt="DEN"></td>
+          <td class="horseCell"><span class="horseName">H.Carald Z</span></td>
+          <td>178,0</td>
+          <td>68,46</td>
+          <td>31,5</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>28.</strong></td>
+          <td>143</td>
+          <td class="riderCell"><span class="riderName">Bal&aacute;zs KAIZINGER</span></td>
+          <td><img src="../../../../flags/HUN.PNG" alt="HUN"></td>
+          <td class="horseCell"><span class="horseName">Clover 15</span></td>
+          <td>466,0</td>
+          <td>64,72</td>
+          <td>35,3</td>
+          <td>28.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>32.</strong></td>
+          <td>170</td>
+          <td class="riderCell"><span class="riderName">Joanna PAWLAK</span></td>
+          <td><img src="../../../../flags/POL.PNG" alt="POL"></td>
+          <td class="horseCell"><span class="horseName">Armin de Monsieur</span></td>
+          <td>452,0</td>
+          <td>62,78</td>
+          <td>37,2</td>
+          <td>32.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>36.</strong></td>
+          <td>159</td>
+          <td class="riderCell"><span class="riderName">Noor SLAOUI</span></td>
+          <td><img src="../../../../flags/MAR.PNG" alt="MAR"></td>
+          <td class="horseCell"><span class="horseName">Legende P</span></td>
+          <td>441,5</td>
+          <td>61,32</td>
+          <td>38,7</td>
+          <td>36.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>44.</strong></td>
+          <td>181</td>
+          <td class="riderCell"><span class="riderName">Weerapat PITAKANONDA</span></td>
+          <td><img src="../../../../flags/THA.PNG" alt="THA"></td>
+          <td class="horseCell"><span class="horseName">B.Grimm Chateau de Versailles M2S</span></td>
+          <td>422,0</td>
+          <td>58,61</td>
+          <td>41,4</td>
+          <td>44.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
+AACHEN_LIVE_1007_FRIDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 14 2026 10:07AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>135</td>
+          <td class="riderCell"><span class="riderName">Tom MCEWEN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">JL Dublin</span></td>
+          <td>528,5</td>
+          <td>73,40</td>
+          <td>26,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>119</td>
+          <td class="riderCell"><span class="riderName">Alex HUA TIAN</span></td>
+          <td><img src="../../../../flags/CHN.PNG" alt="CHN"></td>
+          <td class="horseCell"><span class="horseName">Chicko</span></td>
+          <td>185,5</td>
+          <td>68,70</td>
+          <td>31,9</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>26.</strong></td>
+          <td>123</td>
+          <td class="riderCell"><span class="riderName">Peter T. FLARUP</span></td>
+          <td><img src="../../../../flags/DEN.PNG" alt="DEN"></td>
+          <td class="horseCell"><span class="horseName">H.Carald Z</span></td>
+          <td>467,0</td>
+          <td>64,86</td>
+          <td>35,1</td>
+          <td>26.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>46.</strong></td>
+          <td>181</td>
+          <td class="riderCell"><span class="riderName">Weerapat PITAKANONDA</span></td>
+          <td><img src="../../../../flags/THA.PNG" alt="THA"></td>
+          <td class="horseCell"><span class="horseName">B.Grimm Chateau de Versailles M2S</span></td>
+          <td>422,0</td>
+          <td>58,61</td>
+          <td>41,4</td>
+          <td>46.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_LIVE_1720_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -1384,6 +1560,64 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(limaye.horse_name, "D'Avril du Pinier")
         self.assertEqual(limaye.dressage_score, 44.6)
         self.assertEqual(limaye.finishing_score, 44.6)
+
+    def test_aachen_live_1000_friday_adds_flarup_kaizinger_pawlak_slaoui_pitakanonda(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1000_FRIDAY_HTML, board=board)
+        self.assertEqual(len(results), 7)
+        leader, goury, flarup, kaizinger, pawlak, slaoui, pitakanonda = results
+        self.assertEqual(leader.rider_name, "Tom MCEWEN (GBR)")
+        self.assertEqual(leader.horse_name, "JL Dublin")
+        self.assertEqual(leader.dressage_score, 26.6)
+        self.assertEqual(leader.finishing_score, 26.6)
+        self.assertEqual(goury.rider_name, "Alexis GOURY (FRA)")
+        self.assertEqual(goury.horse_name, "Je'Vall")
+        self.assertEqual(goury.dressage_score, 28.5)
+        self.assertEqual(flarup.rider_name, "Peter T. FLARUP (DEN)")
+        self.assertEqual(flarup.horse_name, "H.Carald Z")
+        self.assertEqual(flarup.dressage_score, 31.5)
+        self.assertEqual(kaizinger.rider_name, "Balázs KAIZINGER (HUN)")
+        self.assertEqual(kaizinger.horse_name, "Clover 15")
+        self.assertEqual(kaizinger.dressage_score, 35.3)
+        self.assertEqual(pawlak.rider_name, "Joanna PAWLAK (POL)")
+        self.assertEqual(pawlak.horse_name, "Armin de Monsieur")
+        self.assertEqual(pawlak.dressage_score, 37.2)
+        self.assertEqual(slaoui.rider_name, "Noor SLAOUI (MAR)")
+        self.assertEqual(slaoui.horse_name, "Legende P")
+        self.assertEqual(slaoui.dressage_score, 38.7)
+        self.assertEqual(pitakanonda.rider_name, "Weerapat PITAKANONDA (THA)")
+        self.assertEqual(pitakanonda.horse_name, "B.Grimm Chateau de Versailles M2S")
+        self.assertEqual(pitakanonda.dressage_score, 41.4)
+
+    def test_aachen_live_1007_friday_revises_flarup_and_adds_hua_tian(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1007_FRIDAY_HTML, board=board)
+        self.assertEqual(len(results), 4)
+        leader, hua_tian, flarup, pitakanonda = results
+        self.assertEqual(leader.rider_name, "Tom MCEWEN (GBR)")
+        self.assertEqual(leader.horse_name, "JL Dublin")
+        self.assertEqual(leader.dressage_score, 26.6)
+        self.assertEqual(hua_tian.rider_name, "Alex HUA TIAN (CHN)")
+        self.assertEqual(hua_tian.horse_name, "Chicko")
+        self.assertEqual(hua_tian.dressage_score, 31.9)
+        self.assertEqual(flarup.rider_name, "Peter T. FLARUP (DEN)")
+        self.assertEqual(flarup.horse_name, "H.Carald Z")
+        self.assertEqual(flarup.dressage_score, 35.1)
+        self.assertEqual(pitakanonda.rider_name, "Weerapat PITAKANONDA (THA)")
+        self.assertEqual(pitakanonda.horse_name, "B.Grimm Chateau de Versailles M2S")
+        self.assertEqual(pitakanonda.dressage_score, 41.4)
 
 
 if __name__ == "__main__":
