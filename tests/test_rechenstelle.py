@@ -1745,6 +1745,124 @@ AACHEN_LIVE_1622_FRIDAY_HTML = """
 """
 
 
+AACHEN_LIVE_1657_FRIDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 14 2026 4:57PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>139</td>
+          <td class="riderCell"><span class="riderName">Julia KRAJEWSKI</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Uelzener's Nickel</span></td>
+          <td>561,5</td>
+          <td>77,99</td>
+          <td>22,0</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>133</td>
+          <td class="riderCell"><span class="riderName">Laura COLLETT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">London 52</span></td>
+          <td>556,0</td>
+          <td>77,22</td>
+          <td>22,8</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>138</td>
+          <td class="riderCell"><span class="riderName">Michael JUNG</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">fischerChipmunk FRH</span></td>
+          <td>554,5</td>
+          <td>77,01</td>
+          <td>23,0</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>4.</strong></td>
+          <td>132</td>
+          <td class="riderCell"><span class="riderName">Rosalind CANTER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Lordships Graffalo</span></td>
+          <td>551,5</td>
+          <td>76,60</td>
+          <td>23,4</td>
+          <td>4.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>35.</strong></td>
+          <td>176</td>
+          <td class="riderCell"><span class="riderName">Frida ANDERSEN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/SWE.PNG" alt="SWE"></td>
+          <td class="horseCell"><span class="horseName">Box Leo</span></td>
+          <td>488,0</td>
+          <td>67,78</td>
+          <td>32,2</td>
+          <td>35.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent1">
+          <td><strong>42.</strong></td>
+          <td>153</td>
+          <td class="riderCell"><span class="riderName">Vittoria PANIZZON</span></td>
+          <td><sup>*</sup><img src="../../../../flags/ITA.PNG" alt="ITA"></td>
+          <td class="horseCell"><span class="horseName">DHI Jackpot</span></td>
+          <td>483,0</td>
+          <td>67,08</td>
+          <td>32,9</td>
+          <td>42.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>44.</strong></td>
+          <td>112</td>
+          <td class="riderCell"><span class="riderName">Lara DE LIEDEKERKE-MEIER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/BEL.PNG" alt="BEL"></td>
+          <td class="horseCell"><span class="horseName">Kiarado d'Arville</span></td>
+          <td>481,0</td>
+          <td>66,81</td>
+          <td>33,2</td>
+          <td>44.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>67.</strong></td>
+          <td>161</td>
+          <td class="riderCell"><span class="riderName">Sanne DE JONG</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NED.PNG" alt="NED"></td>
+          <td class="horseCell"><span class="horseName">Enjoy</span></td>
+          <td>450,0</td>
+          <td>62,50</td>
+          <td>37,5</td>
+          <td>67.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_LIVE_1611_FRIDAY_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -2962,6 +3080,48 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(jung.rider_name, "Michael JUNG (GER)")
         self.assertEqual(jung.horse_name, "fischerChipmunk FRH")
         self.assertEqual(jung.dressage_score, 23.0)
+
+    def test_aachen_live_1657_friday_inserts_canter_andersen_panizzon_de_liedekerke_de_jong(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1657_FRIDAY_HTML, board=board)
+        self.assertEqual(len(results), 8)
+        (
+            krajewski,
+            collett,
+            jung,
+            canter,
+            andersen,
+            panizzon,
+            de_liedekerke,
+            de_jong,
+        ) = results
+        self.assertEqual(krajewski.rider_name, "Julia KRAJEWSKI (GER)")
+        self.assertEqual(krajewski.dressage_score, 22.0)
+        self.assertEqual(collett.rider_name, "Laura COLLETT (GBR)")
+        self.assertEqual(collett.dressage_score, 22.8)
+        self.assertEqual(jung.rider_name, "Michael JUNG (GER)")
+        self.assertEqual(jung.dressage_score, 23.0)
+        self.assertEqual(canter.rider_name, "Rosalind CANTER (GBR)")
+        self.assertEqual(canter.horse_name, "Lordships Graffalo")
+        self.assertEqual(canter.dressage_score, 23.4)
+        self.assertEqual(andersen.rider_name, "Frida ANDERSEN (SWE)")
+        self.assertEqual(andersen.horse_name, "Box Leo")
+        self.assertEqual(andersen.dressage_score, 32.2)
+        self.assertEqual(panizzon.rider_name, "Vittoria PANIZZON (ITA)")
+        self.assertEqual(panizzon.horse_name, "DHI Jackpot")
+        self.assertEqual(panizzon.dressage_score, 32.9)
+        self.assertEqual(de_liedekerke.rider_name, "Lara DE LIEDEKERKE-MEIER (BEL)")
+        self.assertEqual(de_liedekerke.horse_name, "Kiarado d'Arville")
+        self.assertEqual(de_liedekerke.dressage_score, 33.2)
+        self.assertEqual(de_jong.rider_name, "Sanne DE JONG (NED)")
+        self.assertEqual(de_jong.horse_name, "Enjoy")
+        self.assertEqual(de_jong.dressage_score, 37.5)
 
 
 if __name__ == "__main__":
