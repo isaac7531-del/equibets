@@ -1629,6 +1629,64 @@ AACHEN_LIVE_1517_FRIDAY_HTML = """
 """
 
 
+AACHEN_LIVE_1521_FRIDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 14 2026 3:21PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>139</td>
+          <td class="riderCell"><span class="riderName">Julia KRAJEWSKI</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Uelzener's Nickel</span></td>
+          <td>561,5</td>
+          <td>77,99</td>
+          <td>22,0</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>4.</strong></td>
+          <td>188</td>
+          <td class="riderCell"><span class="riderName">Tamra SMITH</span></td>
+          <td><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">Lillet 3</span></td>
+          <td>525,5</td>
+          <td>72,99</td>
+          <td>27,0</td>
+          <td>4.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>158</td>
+          <td class="riderCell"><span class="riderName">Toshiyuki TANAKA</span></td>
+          <td><sup>*</sup><img src="../../../../flags/JPN.PNG" alt="JPN"></td>
+          <td class="horseCell"><span class="horseName">Jefferson JRA</span></td>
+          <td>183,5</td>
+          <td>70,58</td>
+          <td>29,4</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_LIVE_1203_FRIDAY_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -2513,6 +2571,26 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(tim_price.rider_name, "Tim PRICE (NZL)")
         self.assertEqual(tim_price.horse_name, "Falco")
         self.assertEqual(tim_price.dressage_score, 33.7)
+
+    def test_aachen_live_1521_friday_empty_rank_tanaka_settles_at_29_4(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1521_FRIDAY_HTML, board=board)
+        self.assertEqual(len(results), 3)
+        krajewski, smith, tanaka = results
+        self.assertEqual(krajewski.rider_name, "Julia KRAJEWSKI (GER)")
+        self.assertEqual(krajewski.dressage_score, 22.0)
+        self.assertEqual(smith.rider_name, "Tamra SMITH (USA)")
+        self.assertEqual(smith.horse_name, "Lillet 3")
+        self.assertEqual(smith.dressage_score, 27.0)
+        self.assertEqual(tanaka.rider_name, "Toshiyuki TANAKA (JPN)")
+        self.assertEqual(tanaka.horse_name, "Jefferson JRA")
+        self.assertEqual(tanaka.dressage_score, 29.4)
 
 
 if __name__ == "__main__":
