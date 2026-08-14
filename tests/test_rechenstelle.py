@@ -1347,6 +1347,100 @@ AACHEN_LIVE_1151_FRIDAY_HTML = """
 """
 
 
+AACHEN_LIVE_1301_FRIDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 14 2026 1:01PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>139</td>
+          <td class="riderCell"><span class="riderName">Julia KRAJEWSKI</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Uelzener's Nickel</span></td>
+          <td>561,5</td>
+          <td>77,99</td>
+          <td>22,0</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>133</td>
+          <td class="riderCell"><span class="riderName">Laura COLLETT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">London 52</span></td>
+          <td>556,0</td>
+          <td>77,22</td>
+          <td>22,8</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>148</td>
+          <td class="riderCell"><span class="riderName">Georgie GOSS</span></td>
+          <td><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">Kojak</span></td>
+          <td>199,5</td>
+          <td>68,79</td>
+          <td>31,2</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>21.</strong></td>
+          <td>113</td>
+          <td class="riderCell"><span class="riderName">Karin DONCKERS</span></td>
+          <td><sup>*</sup><img src="../../../../flags/BEL.PNG" alt="BEL"></td>
+          <td class="horseCell"><span class="horseName">Leipheimer van't Verahof</span></td>
+          <td>492,0</td>
+          <td>68,33</td>
+          <td>31,7</td>
+          <td>21.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>26.</strong></td>
+          <td>134</td>
+          <td class="riderCell"><span class="riderName">Caroline HARRIS</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">D. Day</span></td>
+          <td>485,0</td>
+          <td>67,36</td>
+          <td>32,6</td>
+          <td>26.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>32.</strong></td>
+          <td>152</td>
+          <td class="riderCell"><span class="riderName">Andrea CINCINNATI</span></td>
+          <td><sup>*</sup><img src="../../../../flags/ITA.PNG" alt="ITA"></td>
+          <td class="horseCell"><span class="horseName">Cecelia Lad</span></td>
+          <td>(R)477,0</td>
+          <td>66,25</td>
+          <td>33,8</td>
+          <td>32.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_LIVE_1203_FRIDAY_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -2141,6 +2235,36 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(parro.rider_name, "Carlos PARRO (BRA)")
         self.assertEqual(parro.horse_name, "Safira")
         self.assertEqual(parro.dressage_score, 44.5)
+
+    def test_aachen_live_1301_friday_inserts_collett_second(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1301_FRIDAY_HTML, board=board)
+        self.assertEqual(len(results), 6)
+        krajewski, collett, goss, donckers, harris, cincinnati = results
+        self.assertEqual(krajewski.rider_name, "Julia KRAJEWSKI (GER)")
+        self.assertEqual(krajewski.horse_name, "Uelzener's Nickel")
+        self.assertEqual(krajewski.dressage_score, 22.0)
+        self.assertEqual(collett.rider_name, "Laura COLLETT (GBR)")
+        self.assertEqual(collett.horse_name, "London 52")
+        self.assertEqual(collett.dressage_score, 22.8)
+        self.assertEqual(goss.rider_name, "Georgie GOSS (IRL)")
+        self.assertEqual(goss.horse_name, "Kojak")
+        self.assertEqual(goss.dressage_score, 31.2)
+        self.assertEqual(donckers.rider_name, "Karin DONCKERS (BEL)")
+        self.assertEqual(donckers.horse_name, "Leipheimer van't Verahof")
+        self.assertEqual(donckers.dressage_score, 31.7)
+        self.assertEqual(harris.rider_name, "Caroline HARRIS (GBR)")
+        self.assertEqual(harris.horse_name, "D. Day")
+        self.assertEqual(harris.dressage_score, 32.6)
+        self.assertEqual(cincinnati.rider_name, "Andrea CINCINNATI (ITA)")
+        self.assertEqual(cincinnati.horse_name, "Cecelia Lad")
+        self.assertEqual(cincinnati.dressage_score, 33.8)
 
 
 if __name__ == "__main__":
