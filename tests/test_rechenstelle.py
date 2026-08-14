@@ -1229,6 +1229,194 @@ AACHEN_LIVE_1105_BARRETT_REVISED_HTML = """
 """
 
 
+AACHEN_LIVE_1151_FRIDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 14 2026 11:51AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>139</td>
+          <td class="riderCell"><span class="riderName">Julia KRAJEWSKI</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Uelzener's Nickel</span></td>
+          <td>561,5</td>
+          <td>77,99</td>
+          <td>22,0</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>135</td>
+          <td class="riderCell"><span class="riderName">Tom MCEWEN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">JL Dublin</span></td>
+          <td>528,5</td>
+          <td>73,40</td>
+          <td>26,6</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>8.</strong></td>
+          <td>150</td>
+          <td class="riderCell"><span class="riderName">Austin O'CONNOR</span></td>
+          <td><sup>*</sup><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">Colorado Blue</span></td>
+          <td>511,0</td>
+          <td>70,97</td>
+          <td>29,0</td>
+          <td>8.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>9.</strong></td>
+          <td>128</td>
+          <td class="riderCell"><span class="riderName">Gaspard MAKSUD</span></td>
+          <td><sup>*</sup><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Zaragoza</span></td>
+          <td>509,0</td>
+          <td>70,69</td>
+          <td>29,3</td>
+          <td>9.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>19.</strong></td>
+          <td>101</td>
+          <td class="riderCell"><span class="riderName">Oliver BARRETT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/AUS.PNG" alt="AUS"></td>
+          <td class="horseCell"><span class="horseName">Sandhills Briar</span></td>
+          <td>(R)491,5</td>
+          <td>68,26</td>
+          <td>31,7</td>
+          <td>19.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent1">
+          <td><strong>38.</strong></td>
+          <td>178</td>
+          <td class="riderCell"><span class="riderName">Louise ROMEIKE</span></td>
+          <td><sup>*</sup><img src="../../../../flags/SWE.PNG" alt="SWE"></td>
+          <td class="horseCell"><span class="horseName">Caspian 15</span></td>
+          <td>466,0</td>
+          <td>64,72</td>
+          <td>35,3</td>
+          <td>38.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>59.</strong></td>
+          <td>117</td>
+          <td class="riderCell"><span class="riderName">Carlos PARRO</span></td>
+          <td><sup>*</sup><img src="../../../../flags/BRA.PNG" alt="BRA"></td>
+          <td class="horseCell"><span class="horseName">Safira</span></td>
+          <td>(R)402,0</td>
+          <td>55,83</td>
+          <td>44,2</td>
+          <td>59.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>61.</strong></td>
+          <td>174</td>
+          <td class="riderCell"><span class="riderName">Nadja MINDER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Top Job's Jalisco</span></td>
+          <td>385,5</td>
+          <td>53,54</td>
+          <td>46,5</td>
+          <td>61.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
+AACHEN_LIVE_1203_FRIDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 14 2026 12:03PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>139</td>
+          <td class="riderCell"><span class="riderName">Julia KRAJEWSKI</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Uelzener's Nickel</span></td>
+          <td>561,5</td>
+          <td>77,99</td>
+          <td>22,0</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>16.</strong></td>
+          <td>101</td>
+          <td class="riderCell"><span class="riderName">Oliver BARRETT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/AUS.PNG" alt="AUS"></td>
+          <td class="horseCell"><span class="horseName">Sandhills Briar</span></td>
+          <td>494,5</td>
+          <td>68,68</td>
+          <td>31,3</td>
+          <td>16.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>27.</strong></td>
+          <td>157</td>
+          <td class="riderCell"><span class="riderName">Kento NAGURA</span></td>
+          <td><sup>*</sup><img src="../../../../flags/JPN.PNG" alt="JPN"></td>
+          <td class="horseCell"><span class="horseName">Vinci de la Vigne JRA</span></td>
+          <td>480,0</td>
+          <td>66,67</td>
+          <td>33,3</td>
+          <td>27.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>59.</strong></td>
+          <td>117</td>
+          <td class="riderCell"><span class="riderName">Carlos PARRO</span></td>
+          <td><sup>*</sup><img src="../../../../flags/BRA.PNG" alt="BRA"></td>
+          <td class="horseCell"><span class="horseName">Safira</span></td>
+          <td>399,5</td>
+          <td>55,49</td>
+          <td>44,5</td>
+          <td>59.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_LIVE_1720_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -1884,6 +2072,75 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(barrett.rider_name, "Oliver BARRETT (AUS)")
         self.assertEqual(barrett.horse_name, "Sandhills Briar")
         self.assertEqual(barrett.dressage_score, 30.2)
+
+    def test_aachen_live_1151_friday_krajewski_leads_and_adds_oconnor_maksud(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1151_FRIDAY_HTML, board=board)
+        self.assertEqual(len(results), 8)
+        (
+            krajewski,
+            mcewen,
+            oconnor,
+            maksud,
+            barrett,
+            romeike,
+            parro,
+            minder,
+        ) = results
+        self.assertEqual(krajewski.rider_name, "Julia KRAJEWSKI (GER)")
+        self.assertEqual(krajewski.horse_name, "Uelzener's Nickel")
+        self.assertEqual(krajewski.dressage_score, 22.0)
+        self.assertEqual(mcewen.rider_name, "Tom MCEWEN (GBR)")
+        self.assertEqual(mcewen.horse_name, "JL Dublin")
+        self.assertEqual(mcewen.dressage_score, 26.6)
+        self.assertEqual(oconnor.rider_name, "Austin O'CONNOR (IRL)")
+        self.assertEqual(oconnor.horse_name, "Colorado Blue")
+        self.assertEqual(oconnor.dressage_score, 29.0)
+        self.assertEqual(maksud.rider_name, "Gaspard MAKSUD (FRA)")
+        self.assertEqual(maksud.horse_name, "Zaragoza")
+        self.assertEqual(maksud.dressage_score, 29.3)
+        self.assertEqual(barrett.rider_name, "Oliver BARRETT (AUS)")
+        self.assertEqual(barrett.horse_name, "Sandhills Briar")
+        self.assertEqual(barrett.dressage_score, 31.7)
+        self.assertEqual(romeike.rider_name, "Louise ROMEIKE (SWE)")
+        self.assertEqual(romeike.horse_name, "Caspian 15")
+        self.assertEqual(romeike.dressage_score, 35.3)
+        self.assertEqual(parro.rider_name, "Carlos PARRO (BRA)")
+        self.assertEqual(parro.horse_name, "Safira")
+        self.assertEqual(parro.dressage_score, 44.2)
+        self.assertEqual(minder.rider_name, "Nadja MINDER (SUI)")
+        self.assertEqual(minder.horse_name, "Top Job's Jalisco")
+        self.assertEqual(minder.dressage_score, 46.5)
+
+    def test_aachen_live_1203_friday_revises_barrett_parro_and_nagura(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1203_FRIDAY_HTML, board=board)
+        self.assertEqual(len(results), 4)
+        krajewski, barrett, nagura, parro = results
+        self.assertEqual(krajewski.rider_name, "Julia KRAJEWSKI (GER)")
+        self.assertEqual(krajewski.horse_name, "Uelzener's Nickel")
+        self.assertEqual(krajewski.dressage_score, 22.0)
+        self.assertEqual(barrett.rider_name, "Oliver BARRETT (AUS)")
+        self.assertEqual(barrett.horse_name, "Sandhills Briar")
+        self.assertEqual(barrett.dressage_score, 31.3)
+        self.assertEqual(nagura.rider_name, "Kento NAGURA (JPN)")
+        self.assertEqual(nagura.horse_name, "Vinci de la Vigne JRA")
+        self.assertEqual(nagura.dressage_score, 33.3)
+        self.assertEqual(parro.rider_name, "Carlos PARRO (BRA)")
+        self.assertEqual(parro.horse_name, "Safira")
+        self.assertEqual(parro.dressage_score, 44.5)
 
 
 if __name__ == "__main__":
