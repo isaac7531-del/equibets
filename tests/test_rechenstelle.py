@@ -1629,6 +1629,122 @@ AACHEN_LIVE_1517_FRIDAY_HTML = """
 """
 
 
+AACHEN_LIVE_1620_FRIDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 14 2026 4:20PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>139</td>
+          <td class="riderCell"><span class="riderName">Julia KRAJEWSKI</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Uelzener's Nickel</span></td>
+          <td>561,5</td>
+          <td>77,99</td>
+          <td>22,0</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>133</td>
+          <td class="riderCell"><span class="riderName">Laura COLLETT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">London 52</span></td>
+          <td>556,0</td>
+          <td>77,22</td>
+          <td>22,8</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>138</td>
+          <td class="riderCell"><span class="riderName">Michael JUNG</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">fischerChipmunk FRH</span></td>
+          <td>7,5</td>
+          <td>76,90</td>
+          <td>23,1</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
+AACHEN_LIVE_1622_FRIDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 14 2026 4:22PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start TimeDressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>139</td>
+          <td class="riderCell"><span class="riderName">Julia KRAJEWSKI</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Uelzener's Nickel</span></td>
+          <td>561,5</td>
+          <td>77,99</td>
+          <td>22,0</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>133</td>
+          <td class="riderCell"><span class="riderName">Laura COLLETT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">London 52</span></td>
+          <td>556,0</td>
+          <td>77,22</td>
+          <td>22,8</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>138</td>
+          <td class="riderCell"><span class="riderName">Michael JUNG</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">fischerChipmunk FRH</span></td>
+          <td>554,5</td>
+          <td>77,01</td>
+          <td>23,0</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_LIVE_1611_FRIDAY_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -2807,6 +2923,45 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(vogg.rider_name, "Felix VOGG (SUI)")
         self.assertEqual(vogg.horse_name, "Frieda")
         self.assertEqual(vogg.dressage_score, 29.3)
+
+    def test_aachen_live_1620_friday_empty_rank_jung_in_progress(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1620_FRIDAY_HTML, board=board)
+        self.assertEqual(len(results), 3)
+        krajewski, collett, jung = results
+        self.assertEqual(krajewski.rider_name, "Julia KRAJEWSKI (GER)")
+        self.assertEqual(krajewski.dressage_score, 22.0)
+        self.assertEqual(collett.rider_name, "Laura COLLETT (GBR)")
+        self.assertEqual(collett.horse_name, "London 52")
+        self.assertEqual(collett.dressage_score, 22.8)
+        self.assertEqual(jung.rider_name, "Michael JUNG (GER)")
+        self.assertEqual(jung.horse_name, "fischerChipmunk FRH")
+        self.assertEqual(jung.dressage_score, 23.1)
+
+    def test_aachen_live_1622_friday_empty_rank_jung_settles_at_23_0(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1622_FRIDAY_HTML, board=board)
+        self.assertEqual(len(results), 3)
+        krajewski, collett, jung = results
+        self.assertEqual(krajewski.rider_name, "Julia KRAJEWSKI (GER)")
+        self.assertEqual(krajewski.dressage_score, 22.0)
+        self.assertEqual(collett.rider_name, "Laura COLLETT (GBR)")
+        self.assertEqual(collett.dressage_score, 22.8)
+        self.assertEqual(jung.rider_name, "Michael JUNG (GER)")
+        self.assertEqual(jung.horse_name, "fischerChipmunk FRH")
+        self.assertEqual(jung.dressage_score, 23.0)
 
 
 if __name__ == "__main__":
