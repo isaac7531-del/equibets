@@ -2681,6 +2681,200 @@ AACHEN_LIVE_1506_SATURDAY_HTML = """
 """
 
 
+AACHEN_LIVE_1600_SATURDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 15 2026  4:00PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>138</td>
+          <td class="riderCell"><span class="riderName">Michael JUNG</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">fischerChipmunk FRH</span></td>
+          <td>554,5</td>
+          <td>77,01</td>
+          <td>23,0</td>
+          <td>3.</td>
+          <td>0,0</td>
+          <td>09:45</td>
+          <td>23,0</td>
+          <td>1.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>132</td>
+          <td class="riderCell"><span class="riderName">Rosalind CANTER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Lordships Graffalo</span></td>
+          <td>551,5</td>
+          <td>76,60</td>
+          <td>23,4</td>
+          <td>4.</td>
+          <td>0,0</td>
+          <td>09:44</td>
+          <td>23,4</td>
+          <td>2.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>133</td>
+          <td class="riderCell"><span class="riderName">Laura COLLETT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">London 52</span></td>
+          <td>556,0</td>
+          <td>77,22</td>
+          <td>22,8</td>
+          <td>2.</td>
+          <td>0,8</td>
+          <td>09:52</td>
+          <td>23,6</td>
+          <td>3.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>4.</strong></td>
+          <td>135</td>
+          <td class="riderCell"><span class="riderName">Tom MCEWEN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">JL Dublin</span></td>
+          <td>528,5</td>
+          <td>73,40</td>
+          <td>26,6</td>
+          <td>5.</td>
+          <td>2,0</td>
+          <td>09:55</td>
+          <td>28,6</td>
+          <td>4.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>5.</strong></td>
+          <td>141</td>
+          <td class="riderCell"><span class="riderName">Christoph WAHLER</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">D'Accord FRH</span></td>
+          <td>508,5</td>
+          <td>70,63</td>
+          <td>29,4</td>
+          <td>19.</td>
+          <td>0,0</td>
+          <td>09:41</td>
+          <td>29,4</td>
+          <td>5.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>6.</strong></td>
+          <td>184</td>
+          <td class="riderCell"><span class="riderName">William COLEMAN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">Diabolo</span></td>
+          <td>504,0</td>
+          <td>70,00</td>
+          <td>30,0</td>
+          <td>21.</td>
+          <td>0,0</td>
+          <td>09:48</td>
+          <td>30,0</td>
+          <td>6.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>7.</strong></td>
+          <td>128</td>
+          <td class="riderCell"><span class="riderName">Gaspard MAKSUD</span></td>
+          <td><sup>*</sup><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Zaragoza</span></td>
+          <td>509,0</td>
+          <td>70,69</td>
+          <td>29,3</td>
+          <td>16.</td>
+          <td>1,6</td>
+          <td>09:54</td>
+          <td>30,9</td>
+          <td>7.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>15.</strong></td>
+          <td>175</td>
+          <td class="riderCell"><span class="riderName">Felix VOGG</span></td>
+          <td><sup>*</sup><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Frieda</span></td>
+          <td>509,0</td>
+          <td>70,69</td>
+          <td>29,3</td>
+          <td>16.</td>
+          <td>5,2</td>
+          <td>10:03</td>
+          <td>34,5</td>
+          <td>15.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>38.</strong></td>
+          <td>131</td>
+          <td class="riderCell"><span class="riderName">Nicolas TOUZAINT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Diabolo Menthe</span></td>
+          <td>527,5</td>
+          <td>73,26</td>
+          <td>26,7</td>
+          <td>6.</td>
+          <td>21,4</td>
+          <td>10:16</td>
+          <td>48,1</td>
+          <td>38.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>151</td>
+          <td class="riderCell"><span class="riderName">Francesco AONDIO BERTERO</span></td>
+          <td><img src="../../../../flags/ITA.PNG" alt="ITA"></td>
+          <td class="horseCell"><span class="horseName">It's Athene</span></td>
+          <td>423,5</td>
+          <td>58,82</td>
+          <td>41,2</td>
+          <td>80.</td>
+          <td></td><td></td>
+          <td>RT XC</td>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>154</td>
+          <td class="riderCell"><span class="riderName">Paolo TORLONIA</span></td>
+          <td><sup>*</sup><img src="../../../../flags/ITA.PNG" alt="ITA"></td>
+          <td class="horseCell"><span class="horseName">Zinny</span></td>
+          <td>422,5</td>
+          <td>58,68</td>
+          <td>41,3</td>
+          <td>81.</td>
+          <td></td><td></td>
+          <td>RT XC</td>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_LIVE_1354_SATURDAY_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -5228,6 +5422,55 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(siegl.dressage_score, 29.2)
         self.assertEqual(siegl.cross_country_jump_penalties, 18.4)
         self.assertEqual(siegl.finishing_score, 47.6)
+
+    def test_aachen_live_1600_saturday_records_after_xc_leaders_and_new_rt(self):
+        parser = _LeaderboardParser()
+        parser.feed(AACHEN_LIVE_1600_SATURDAY_HTML)
+        self.assertEqual(parser.last_update, "Aug 15 2026  4:00PM")
+        self.assertEqual(parser.header_cells[0], "Rank")
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1600_SATURDAY_HTML, board=board)
+        rider_names = [result.rider_name for result in results]
+        self.assertEqual(len(results), 9)
+        self.assertNotIn("Francesco AONDIO BERTERO (ITA)", rider_names)
+        self.assertNotIn("Paolo TORLONIA (ITA)", rider_names)
+        by_rider = {result.rider_name: result for result in results}
+        jung = by_rider["Michael JUNG (GER)"]
+        self.assertEqual(jung.horse_name, "fischerChipmunk FRH")
+        self.assertEqual(jung.dressage_score, 23.0)
+        self.assertEqual(jung.cross_country_jump_penalties, 0.0)
+        self.assertEqual(jung.finishing_score, 23.0)
+        canter = by_rider["Rosalind CANTER (GBR)"]
+        self.assertEqual(canter.horse_name, "Lordships Graffalo")
+        self.assertEqual(canter.dressage_score, 23.4)
+        self.assertEqual(canter.cross_country_jump_penalties, 0.0)
+        self.assertEqual(canter.finishing_score, 23.4)
+        collett = by_rider["Laura COLLETT (GBR)"]
+        self.assertEqual(collett.horse_name, "London 52")
+        self.assertEqual(collett.dressage_score, 22.8)
+        self.assertEqual(collett.cross_country_jump_penalties, 0.8)
+        self.assertEqual(collett.finishing_score, 23.6)
+        maksud = by_rider["Gaspard MAKSUD (FRA)"]
+        self.assertEqual(maksud.horse_name, "Zaragoza")
+        self.assertEqual(maksud.dressage_score, 29.3)
+        self.assertEqual(maksud.cross_country_jump_penalties, 1.6)
+        self.assertEqual(maksud.finishing_score, 30.9)
+        vogg = by_rider["Felix VOGG (SUI)"]
+        self.assertEqual(vogg.horse_name, "Frieda")
+        self.assertEqual(vogg.dressage_score, 29.3)
+        self.assertEqual(vogg.cross_country_jump_penalties, 5.2)
+        self.assertEqual(vogg.finishing_score, 34.5)
+        touzaint = by_rider["Nicolas TOUZAINT (FRA)"]
+        self.assertEqual(touzaint.horse_name, "Diabolo Menthe")
+        self.assertEqual(touzaint.dressage_score, 26.7)
+        self.assertEqual(touzaint.cross_country_jump_penalties, 21.4)
+        self.assertEqual(touzaint.finishing_score, 48.1)
 
     def test_aachen_live_1354_saturday_records_krajewski_xc_and_new_el(self):
         parser = _LeaderboardParser()
