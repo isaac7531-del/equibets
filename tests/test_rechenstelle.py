@@ -2281,6 +2281,224 @@ AACHEN_LIVE_1103_SATURDAY_HTML = """
 """
 
 
+AACHEN_LIVE_1304_SATURDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 15 2026  1:04PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time<br>Cross/ <br>Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td>13:39:00</td>
+          <td>139</td>
+          <td class="riderCell"><span class="riderName">Julia KRAJEWSKI</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Uelzener's Nickel</span></td>
+          <td>561,5</td>
+          <td>77,99</td>
+          <td>22,0</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>135</td>
+          <td class="riderCell"><span class="riderName">Tom MCEWEN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">JL Dublin</span></td>
+          <td>528,5</td>
+          <td>73,40</td>
+          <td>26,6</td>
+          <td>5.</td>
+          <td>2,0</td>
+          <td>09:55</td>
+          <td>28,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>12:59:00</td>
+          <td>169</td>
+          <td class="riderCell"><span class="riderName">Monica SPENCER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Artist</span></td>
+          <td>512,0</td>
+          <td>71,11</td>
+          <td>28,9</td>
+          <td>13.</td>
+          <td>0,0</td>
+          <td></td>
+          <td>28,9</td>
+          <td></td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>173</td>
+          <td class="riderCell"><span class="riderName">M&eacute;lody JOHNER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Erin</span></td>
+          <td>493,5</td>
+          <td>68,54</td>
+          <td>31,5</td>
+          <td>33.</td>
+          <td>0,0</td>
+          <td class="good">09:44</td>
+          <td>31,5</td>
+          <td>2.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>137</td>
+          <td class="riderCell"><span class="riderName">Malin HANSEN-HOTOPP</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Carlitos Quidditch K</span></td>
+          <td>514,0</td>
+          <td>71,39</td>
+          <td>28,6</td>
+          <td>11.</td>
+          <td>3,2</td>
+          <td>09:58</td>
+          <td>31,8</td>
+          <td>3.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>4.</strong></td>
+          <td>147</td>
+          <td class="riderCell"><span class="riderName">Aoife CLARK</span></td>
+          <td><sup>*</sup><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">Full Monty de Lacense</span></td>
+          <td>493,5</td>
+          <td>68,54</td>
+          <td>31,5</td>
+          <td>32.</td>
+          <td>1,2</td>
+          <td>09:53</td>
+          <td>32,7</td>
+          <td>4.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>5.</strong></td>
+          <td>127</td>
+          <td class="riderCell"><span class="riderName">Alexis GOURY</span></td>
+          <td><sup>*</sup><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Je'Vall</span></td>
+          <td>515,0</td>
+          <td>71,53</td>
+          <td>28,5</td>
+          <td>10.</td>
+          <td>6,4</td>
+          <td>10:06</td>
+          <td>34,9</td>
+          <td>5.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>14.</strong></td>
+          <td>118</td>
+          <td class="riderCell"><span class="riderName">Jessica PHOENIX</span></td>
+          <td><img src="../../../../flags/CAN.PNG" alt="CAN"></td>
+          <td class="horseCell"><span class="horseName">Fluorescent Adolescent</span></td>
+          <td>467,5</td>
+          <td>64,93</td>
+          <td>35,1</td>
+          <td>56.</td>
+          <td>12,0</td>
+          <td>10:20</td>
+          <td>47,1</td>
+          <td>14.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>31.</strong></td>
+          <td>124</td>
+          <td class="riderCell"><span class="riderName">Esteban BENITEZ VALLE</span></td>
+          <td><img src="../../../../flags/ESP.PNG" alt="ESP"></td>
+          <td class="horseCell"><span class="horseName">Utrera AA 35 1</span></td>
+          <td>480,5</td>
+          <td>66,74</td>
+          <td>33,3</td>
+          <td>46.</td>
+          <td>59,0</td>
+          <td>11:05</td>
+          <td>92,3</td>
+          <td>31.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>123</td>
+          <td class="riderCell"><span class="riderName">Peter T. FLARUP</span></td>
+          <td><img src="../../../../flags/DEN.PNG" alt="DEN"></td>
+          <td class="horseCell"><span class="horseName">H.Carald Z</span></td>
+          <td>467,0</td>
+          <td>64,86</td>
+          <td>35,1</td>
+          <td>57.</td>
+          <td></td><td></td>
+          <td>EL XC</td>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>170</td>
+          <td class="riderCell"><span class="riderName">Joanna PAWLAK</span></td>
+          <td><img src="../../../../flags/POL.PNG" alt="POL"></td>
+          <td class="horseCell"><span class="horseName">Armin de Monsieur</span></td>
+          <td>452,0</td>
+          <td>62,78</td>
+          <td>37,2</td>
+          <td>65.</td>
+          <td></td><td></td>
+          <td>EL XC</td>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>154</td>
+          <td class="riderCell"><span class="riderName">Paolo TORLONIA</span></td>
+          <td><sup>*</sup><img src="../../../../flags/ITA.PNG" alt="ITA"></td>
+          <td class="horseCell"><span class="horseName">Zinny</span></td>
+          <td>422,5</td>
+          <td>58,68</td>
+          <td>41,3</td>
+          <td>81.</td>
+          <td></td><td></td>
+          <td>RT XC</td>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>181</td>
+          <td class="riderCell"><span class="riderName">Weerapat PITAKANONDA</span></td>
+          <td><img src="../../../../flags/THA.PNG" alt="THA"></td>
+          <td class="horseCell"><span class="horseName">B.Grimm Chateau de Versailles M2S</span></td>
+          <td>422,0</td>
+          <td>58,61</td>
+          <td>41,4</td>
+          <td>82.</td>
+          <td></td><td></td>
+          <td>EL XC</td>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_LIVE_1203_SATURDAY_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -4268,6 +4486,73 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(mcewen.dressage_score, 26.6)
         self.assertEqual(mcewen.cross_country_jump_penalties, 11.0)
         self.assertEqual(mcewen.finishing_score, 37.6)
+
+    def test_aachen_live_1304_saturday_records_mcewen_lead_and_new_el_xc(self):
+        parser = _LeaderboardParser()
+        parser.feed(AACHEN_LIVE_1304_SATURDAY_HTML)
+        self.assertEqual(parser.last_update, "Aug 15 2026  1:04PM")
+        self.assertEqual(parser.header_cells[0], "Start TimeCross/ Rank")
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1304_SATURDAY_HTML, board=board)
+        rider_names = [result.rider_name for result in results]
+        self.assertEqual(len(results), 9)
+        self.assertNotIn("Peter T. FLARUP (DEN)", rider_names)
+        self.assertNotIn("Joanna PAWLAK (POL)", rider_names)
+        self.assertNotIn("Paolo TORLONIA (ITA)", rider_names)
+        self.assertNotIn("Weerapat PITAKANONDA (THA)", rider_names)
+        by_rider = {result.rider_name: result for result in results}
+        krajewski = by_rider["Julia KRAJEWSKI (GER)"]
+        self.assertEqual(krajewski.dressage_score, 22.0)
+        self.assertEqual(krajewski.finishing_score, 22.0)
+        self.assertEqual(krajewski.cross_country_jump_penalties, 0.0)
+        self.assertEqual(krajewski.cross_country_time_penalties, 0.0)
+        mcewen = by_rider["Tom MCEWEN (GBR)"]
+        self.assertEqual(mcewen.horse_name, "JL Dublin")
+        self.assertEqual(mcewen.dressage_score, 26.6)
+        self.assertEqual(mcewen.cross_country_jump_penalties, 2.0)
+        self.assertEqual(mcewen.cross_country_time_penalties, 0.0)
+        self.assertEqual(mcewen.finishing_score, 28.6)
+        spencer = by_rider["Monica SPENCER (NZL)"]
+        self.assertEqual(spencer.horse_name, "Artist")
+        self.assertEqual(spencer.dressage_score, 28.9)
+        self.assertEqual(spencer.cross_country_jump_penalties, 0.0)
+        self.assertEqual(spencer.finishing_score, 28.9)
+        johner = by_rider["Mélody JOHNER (SUI)"]
+        self.assertEqual(johner.horse_name, "Erin")
+        self.assertEqual(johner.dressage_score, 31.5)
+        self.assertEqual(johner.cross_country_jump_penalties, 0.0)
+        self.assertEqual(johner.finishing_score, 31.5)
+        hansen = by_rider["Malin HANSEN-HOTOPP (GER)"]
+        self.assertEqual(hansen.horse_name, "Carlitos Quidditch K")
+        self.assertEqual(hansen.dressage_score, 28.6)
+        self.assertEqual(hansen.cross_country_jump_penalties, 3.2)
+        self.assertEqual(hansen.finishing_score, 31.8)
+        clark = by_rider["Aoife CLARK (IRL)"]
+        self.assertEqual(clark.horse_name, "Full Monty de Lacense")
+        self.assertEqual(clark.dressage_score, 31.5)
+        self.assertEqual(clark.cross_country_jump_penalties, 1.2)
+        self.assertEqual(clark.finishing_score, 32.7)
+        goury = by_rider["Alexis GOURY (FRA)"]
+        self.assertEqual(goury.horse_name, "Je'Vall")
+        self.assertEqual(goury.dressage_score, 28.5)
+        self.assertEqual(goury.cross_country_jump_penalties, 6.4)
+        self.assertEqual(goury.finishing_score, 34.9)
+        phoenix = by_rider["Jessica PHOENIX (CAN)"]
+        self.assertEqual(phoenix.horse_name, "Fluorescent Adolescent")
+        self.assertEqual(phoenix.dressage_score, 35.1)
+        self.assertEqual(phoenix.cross_country_jump_penalties, 12.0)
+        self.assertEqual(phoenix.finishing_score, 47.1)
+        benitez = by_rider["Esteban BENITEZ VALLE (ESP)"]
+        self.assertEqual(benitez.horse_name, "Utrera AA 35 1")
+        self.assertEqual(benitez.dressage_score, 33.3)
+        self.assertEqual(benitez.cross_country_jump_penalties, 59.0)
+        self.assertEqual(benitez.finishing_score, 92.3)
 
 
 if __name__ == "__main__":
