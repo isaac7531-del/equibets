@@ -1961,6 +1961,116 @@ AACHEN_LIVE_1900_FRIDAY_HTML = """
 """
 
 
+AACHEN_LIVE_0854_SATURDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 15 2026  8:54AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time<br>Cross/ <br>Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td>13:39:00</td>
+          <td>139</td>
+          <td class="riderCell"><span class="riderName">Julia KRAJEWSKI</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Uelzener's Nickel</span></td>
+          <td>561,5</td>
+          <td>77,99</td>
+          <td>22,0</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>13:55:00</td>
+          <td>133</td>
+          <td class="riderCell"><span class="riderName">Laura COLLETT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">London 52</span></td>
+          <td>556,0</td>
+          <td>77,22</td>
+          <td>22,8</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>15:19:00</td>
+          <td>138</td>
+          <td class="riderCell"><span class="riderName">Michael JUNG</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">fischerChipmunk FRH</span></td>
+          <td>554,5</td>
+          <td>77,01</td>
+          <td>23,0</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>15:35:00</td>
+          <td>132</td>
+          <td class="riderCell"><span class="riderName">Rosalind CANTER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Lordships Graffalo</span></td>
+          <td>551,5</td>
+          <td>76,60</td>
+          <td>23,4</td>
+          <td>4.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>126</td>
+          <td class="riderCell"><span class="riderName">Sanna SILTAKORPI</span></td>
+          <td><img src="../../../../flags/FIN.PNG" alt="FIN"></td>
+          <td class="horseCell"><span class="horseName">Bofey Click</span></td>
+          <td>442,0</td>
+          <td>61,39</td>
+          <td>38,6</td>
+          <td>71.</td>
+          <td></td>
+          <td></td>
+          <td>WDbXC</td>
+          <td></td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>163</td>
+          <td class="riderCell"><span class="riderName">Florinoor HOOGLAND</span></td>
+          <td><img src="../../../../flags/NED.PNG" alt="NED"></td>
+          <td class="horseCell"><span class="horseName">Hontoni</span></td>
+          <td></td>
+          <td></td>
+          <td>WDbDRE</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent1">
+          <td>09:43:00</td>
+          <td>153</td>
+          <td class="riderCell"><span class="riderName">Vittoria PANIZZON</span></td>
+          <td><sup>*</sup><img src="../../../../flags/ITA.PNG" alt="ITA"></td>
+          <td class="horseCell"><span class="horseName">DHI Jackpot</span></td>
+          <td>483,0</td>
+          <td>67,08</td>
+          <td>32,9</td>
+          <td>42.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_LIVE_1922_FRIDAY_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -3493,6 +3603,39 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(panizzon.horse_name, "DHI Jackpot")
         self.assertEqual(panizzon.dressage_score, 32.9)
         self.assertTrue(all(result.show_jumping_penalties == 0.0 for result in results))
+        self.assertTrue(
+            all(
+                result.cross_country_jump_penalties == 0.0
+                and result.cross_country_time_penalties == 0.0
+                for result in results
+            )
+        )
+
+    def test_aachen_live_0854_saturday_skips_wdbxc_before_cross_country(self):
+        parser = _LeaderboardParser()
+        parser.feed(AACHEN_LIVE_0854_SATURDAY_HTML)
+        self.assertEqual(parser.last_update, "Aug 15 2026  8:54AM")
+        self.assertEqual(parser.header_cells[0], "Start TimeCross/ Rank")
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_0854_SATURDAY_HTML, board=board)
+        self.assertEqual(len(results), 5)
+        rider_names = [result.rider_name for result in results]
+        self.assertNotIn("Sanna SILTAKORPI (FIN)", rider_names)
+        self.assertNotIn("Florinoor HOOGLAND (NED)", rider_names)
+        krajewski, collett, jung, canter, panizzon = results
+        self.assertEqual(krajewski.rider_name, "Julia KRAJEWSKI (GER)")
+        self.assertEqual(krajewski.dressage_score, 22.0)
+        self.assertEqual(collett.dressage_score, 22.8)
+        self.assertEqual(jung.dressage_score, 23.0)
+        self.assertEqual(canter.dressage_score, 23.4)
+        self.assertEqual(panizzon.rider_name, "Vittoria PANIZZON (ITA)")
+        self.assertEqual(panizzon.dressage_score, 32.9)
         self.assertTrue(
             all(
                 result.cross_country_jump_penalties == 0.0
