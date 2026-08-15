@@ -2483,6 +2483,204 @@ AACHEN_LIVE_1408_SATURDAY_HTML = """
 """
 
 
+AACHEN_LIVE_1506_SATURDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 15 2026  3:06PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time<br>Cross/ <br>Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank afterDressage</th>
+          <th>Cross-Country</th><th>Rank afterCross-Country</th>
+          <th>Jumping</th><th>FinalScore</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td>15:19:00</td>
+          <td>138</td>
+          <td class="riderCell"><span class="riderName">Michael JUNG</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">fischerChipmunk FRH</span></td>
+          <td>554,5</td>
+          <td>77,01</td>
+          <td>23,0</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>15:35:00</td>
+          <td>132</td>
+          <td class="riderCell"><span class="riderName">Rosalind CANTER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Lordships Graffalo</span></td>
+          <td>551,5</td>
+          <td>76,60</td>
+          <td>23,4</td>
+          <td>4.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>133</td>
+          <td class="riderCell"><span class="riderName">Laura COLLETT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">London 52</span></td>
+          <td>556,0</td>
+          <td>77,22</td>
+          <td>22,8</td>
+          <td>2.</td>
+          <td>0,8</td>
+          <td>09:52</td>
+          <td>23,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>15:07:00</td>
+          <td>131</td>
+          <td class="riderCell"><span class="riderName">Nicolas TOUZAINT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Diabolo Menthe</span></td>
+          <td>527,5</td>
+          <td>73,26</td>
+          <td>26,7</td>
+          <td>6.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>135</td>
+          <td class="riderCell"><span class="riderName">Tom MCEWEN</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">JL Dublin</span></td>
+          <td>528,5</td>
+          <td>73,40</td>
+          <td>26,6</td>
+          <td>5.</td>
+          <td>2,0</td>
+          <td>09:55</td>
+          <td>28,6</td>
+          <td>2.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>141</td>
+          <td class="riderCell"><span class="riderName">Christoph WAHLER</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">D'Accord FRH</span></td>
+          <td>508,5</td>
+          <td>70,63</td>
+          <td>29,4</td>
+          <td>19.</td>
+          <td>0,0</td>
+          <td>09:41</td>
+          <td>29,4</td>
+          <td>3.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>6.</strong></td>
+          <td>130</td>
+          <td class="riderCell"><span class="riderName">Astier NICOLAS</span></td>
+          <td><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Alertamalib'Or</span></td>
+          <td>502,0</td>
+          <td>69,72</td>
+          <td>30,3</td>
+          <td>23.</td>
+          <td>0,8</td>
+          <td>09:52</td>
+          <td>31,1</td>
+          <td>6.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>8.</strong></td>
+          <td>104</td>
+          <td class="riderCell"><span class="riderName">Andrew HOY</span></td>
+          <td><sup>*</sup><img src="../../../../flags/AUS.PNG" alt="AUS"></td>
+          <td class="horseCell"><span class="horseName">Vassily de Lassos</span></td>
+          <td>526,0</td>
+          <td>73,06</td>
+          <td>26,9</td>
+          <td>7.</td>
+          <td>4,8</td>
+          <td>10:02</td>
+          <td>31,7</td>
+          <td>8.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>14.</strong></td>
+          <td>188</td>
+          <td class="riderCell"><span class="riderName">Tamra SMITH</span></td>
+          <td><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">Lillet 3</span></td>
+          <td>525,5</td>
+          <td>72,99</td>
+          <td>27,0</td>
+          <td>8.</td>
+          <td>8,0</td>
+          <td>10:10</td>
+          <td>35,0</td>
+          <td>14.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>30.</strong></td>
+          <td>109</td>
+          <td class="riderCell"><span class="riderName">Lea SIEGL</span></td>
+          <td><sup>*</sup><img src="../../../../flags/AUT.PNG" alt="AUT"></td>
+          <td class="horseCell"><span class="horseName">Watermill Giorgio RS</span></td>
+          <td>510,0</td>
+          <td>70,83</td>
+          <td>29,2</td>
+          <td>15.</td>
+          <td>18,4</td>
+          <td>10:36</td>
+          <td>47,6</td>
+          <td>30.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>158</td>
+          <td class="riderCell"><span class="riderName">Toshiyuki TANAKA</span></td>
+          <td><sup>*</sup><img src="../../../../flags/JPN.PNG" alt="JPN"></td>
+          <td class="horseCell"><span class="horseName">Jefferson JRA</span></td>
+          <td>494,0</td>
+          <td>68,61</td>
+          <td>31,4</td>
+          <td>30.</td>
+          <td></td><td></td>
+          <td>EL XC</td>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>145</td>
+          <td class="riderCell"><span class="riderName">Fouaad MIRZA</span></td>
+          <td><img src="../../../../flags/IND.PNG" alt="IND"></td>
+          <td class="horseCell"><span class="horseName">Mokatoo</span></td>
+          <td>435,0</td>
+          <td>60,42</td>
+          <td>39,6</td>
+          <td>77.</td>
+          <td></td><td></td>
+          <td>EL XC</td>
+          <td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
 AACHEN_LIVE_1354_SATURDAY_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -4976,6 +5174,60 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(donckers.dressage_score, 31.7)
         self.assertEqual(donckers.cross_country_jump_penalties, 18.8)
         self.assertEqual(donckers.finishing_score, 50.5)
+
+    def test_aachen_live_1506_saturday_records_hoy_xc_and_new_el(self):
+        parser = _LeaderboardParser()
+        parser.feed(AACHEN_LIVE_1506_SATURDAY_HTML)
+        self.assertEqual(parser.last_update, "Aug 15 2026  3:06PM")
+        self.assertEqual(parser.header_cells[0], "Start TimeCross/ Rank")
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/aachen/leaderboard01.html",
+            event_name="Aachen · CH-M-C",
+            level="CH-M-C",
+            event_date=date(2026, 8, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(AACHEN_LIVE_1506_SATURDAY_HTML, board=board)
+        rider_names = [result.rider_name for result in results]
+        self.assertEqual(len(results), 10)
+        self.assertNotIn("Toshiyuki TANAKA (JPN)", rider_names)
+        self.assertNotIn("Fouaad MIRZA (IND)", rider_names)
+        by_rider = {result.rider_name: result for result in results}
+        jung = by_rider["Michael JUNG (GER)"]
+        self.assertEqual(jung.horse_name, "fischerChipmunk FRH")
+        self.assertEqual(jung.dressage_score, 23.0)
+        self.assertEqual(jung.cross_country_jump_penalties, 0.0)
+        self.assertEqual(jung.finishing_score, 23.0)
+        collett = by_rider["Laura COLLETT (GBR)"]
+        self.assertEqual(collett.horse_name, "London 52")
+        self.assertEqual(collett.dressage_score, 22.8)
+        self.assertEqual(collett.cross_country_jump_penalties, 0.8)
+        self.assertEqual(collett.finishing_score, 23.6)
+        wahler = by_rider["Christoph WAHLER (GER)"]
+        self.assertEqual(wahler.horse_name, "D'Accord FRH")
+        self.assertEqual(wahler.dressage_score, 29.4)
+        self.assertEqual(wahler.cross_country_jump_penalties, 0.0)
+        self.assertEqual(wahler.finishing_score, 29.4)
+        nicolas = by_rider["Astier NICOLAS (FRA)"]
+        self.assertEqual(nicolas.horse_name, "Alertamalib'Or")
+        self.assertEqual(nicolas.dressage_score, 30.3)
+        self.assertEqual(nicolas.cross_country_jump_penalties, 0.8)
+        self.assertEqual(nicolas.finishing_score, 31.1)
+        hoy = by_rider["Andrew HOY (AUS)"]
+        self.assertEqual(hoy.horse_name, "Vassily de Lassos")
+        self.assertEqual(hoy.dressage_score, 26.9)
+        self.assertEqual(hoy.cross_country_jump_penalties, 4.8)
+        self.assertEqual(hoy.finishing_score, 31.7)
+        smith = by_rider["Tamra SMITH (USA)"]
+        self.assertEqual(smith.horse_name, "Lillet 3")
+        self.assertEqual(smith.dressage_score, 27.0)
+        self.assertEqual(smith.cross_country_jump_penalties, 8.0)
+        self.assertEqual(smith.finishing_score, 35.0)
+        siegl = by_rider["Lea SIEGL (AUT)"]
+        self.assertEqual(siegl.horse_name, "Watermill Giorgio RS")
+        self.assertEqual(siegl.dressage_score, 29.2)
+        self.assertEqual(siegl.cross_country_jump_penalties, 18.4)
+        self.assertEqual(siegl.finishing_score, 47.6)
 
     def test_aachen_live_1354_saturday_records_krajewski_xc_and_new_el(self):
         parser = _LeaderboardParser()
