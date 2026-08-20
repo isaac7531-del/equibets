@@ -367,15 +367,6 @@ class FeiBrowserClient:
         )
         return self._page
 
-    def _goto(self, url: str) -> None:
-        page = self._ensure_page()
-        try:
-            page.goto(url, wait_until="domcontentloaded", timeout=60_000)
-        except Exception as exc:
-            if not self._is_navigation_timeout(exc) or _is_blank_page_url(getattr(page, "url", "")):
-                raise
-            self._settle_after_transient_navigation(page)
-
     def _reset_browser_session(self) -> None:
         self._ignore_storage_state = True
         for item in (self._browser, self._playwright):
@@ -428,13 +419,6 @@ class FeiBrowserClient:
 
     def _wait_after_action(self) -> None:
         page = self._ensure_page()
-        try:
-            page.wait_for_load_state(
-                "domcontentloaded",
-                timeout=min(30_000, max(1_000, int(challenge_wait * 1000))),
-            )
-        except Exception:
-            pass
         try:
             page.wait_for_load_state("domcontentloaded", timeout=30_000)
         except Exception:
