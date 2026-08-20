@@ -8,6 +8,7 @@ from datetime import date, datetime, timezone
 from equibets.rechenstelle import (
     RechenstelleBoard,
     _LeaderboardParser,
+    hambach_aug_2026_boards,
     parse_leaderboard_results,
 )
 
@@ -4585,6 +4586,129 @@ AACHEN_LIVE_MIDMORNING_HTML = """
 """
 
 
+HAMBACH_DRESSAGE_HTML = """
+<html>
+  <head><title>LeaderBoard · Hambach/Ufr. · CCI 3*-S</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 20 2026 6:59PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>104</td>
+          <td class="riderCell"><span class="riderName">Anna SIEMER</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Grazia K</span></td>
+          <td>318,5</td>
+          <td>69,24</td>
+          <td>30,8</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>38</td>
+          <td class="riderCell"><span class="riderName">Hanne HENNING</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Sicherlich Wilde Hilde</span></td>
+          <td>314,5</td>
+          <td>68,37</td>
+          <td>31,6</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+HAMBACH_ELIOPE_HTML = """
+<html>
+  <head><title>LeaderBoard · Hambach/Ufr. · CCI 3*-S</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 20 2026 6:59PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>103</td>
+          <td class="riderCell"><span class="riderName">Anna SIEMER</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Eliope</span></td>
+          <td>313,5</td>
+          <td>68,15</td>
+          <td>31,9</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>12</td>
+          <td class="riderCell"><span class="riderName">Lea PONCELET</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Elixir des Cabanes</span></td>
+          <td></td>
+          <td></td>
+          <td>EL XC</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+HAMBACH_INTRO_START_LIST_HTML = """
+<html>
+  <head><title>LeaderBoard · Hambach/Ufr. · CCI 1*-Intro</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 20 2026 5:53PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td>17:00:00</td>
+          <td>49</td>
+          <td class="riderCell"><span class="riderName">Sophie GRIEGER</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Claire Clementine</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 AACHEN_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -6077,6 +6201,63 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(benitez.dressage_score, 33.3)
         self.assertEqual(benitez.cross_country_jump_penalties, 59.0)
         self.assertEqual(benitez.finishing_score, 92.3)
+
+    def test_hambach_boards_cover_three_august_classes(self):
+        boards = hambach_aug_2026_boards()
+        self.assertEqual(len(boards), 3)
+        self.assertEqual(
+            [board.level for board in boards],
+            ["CCI3*-S", "CCI2*-S", "CCI1*-Intro"],
+        )
+        self.assertTrue(all(board.event_date == date(2026, 8, 21) for board in boards))
+        self.assertTrue(all(board.country == "GER" for board in boards))
+
+    def test_hambach_dressage_scores_are_parsed(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/hambach/leaderboard01.html",
+            event_name="Hambach · CCI3*-S",
+            level="CCI3*-S",
+            event_date=date(2026, 8, 21),
+            country="GER",
+        )
+        results = parse_leaderboard_results(HAMBACH_DRESSAGE_HTML, board=board)
+        self.assertEqual(len(results), 2)
+        leader, second = results
+        self.assertEqual(leader.rider_name, "Anna SIEMER (GER)")
+        self.assertEqual(leader.horse_name, "Grazia K")
+        self.assertEqual(leader.dressage_score, 30.8)
+        self.assertEqual(leader.finishing_score, 30.8)
+        self.assertEqual(leader.event_name, "Hambach · CCI3*-S")
+        self.assertEqual(second.rider_name, "Hanne HENNING (GER)")
+        self.assertEqual(second.horse_name, "Sicherlich Wilde Hilde")
+        self.assertEqual(second.dressage_score, 31.6)
+
+    def test_hambach_horse_names_starting_with_el_are_not_treated_as_eliminations(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/hambach/leaderboard01.html",
+            event_name="Hambach · CCI3*-S",
+            level="CCI3*-S",
+            event_date=date(2026, 8, 21),
+            country="GER",
+        )
+        results = parse_leaderboard_results(HAMBACH_ELIOPE_HTML, board=board)
+        self.assertEqual(len(results), 1)
+        eliope = results[0]
+        self.assertEqual(eliope.rider_name, "Anna SIEMER (GER)")
+        self.assertEqual(eliope.horse_name, "Eliope")
+        self.assertEqual(eliope.dressage_score, 31.9)
+        self.assertEqual(eliope.finishing_score, 31.9)
+
+    def test_hambach_intro_start_list_without_dressage_yields_no_scored_rows(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/hambach/leaderboard03.html",
+            event_name="Hambach · CCI1*-Intro",
+            level="CCI1*-Intro",
+            event_date=date(2026, 8, 21),
+            country="GER",
+        )
+        results = parse_leaderboard_results(HAMBACH_INTRO_START_LIST_HTML, board=board)
+        self.assertEqual(results, [])
 
 
 if __name__ == "__main__":

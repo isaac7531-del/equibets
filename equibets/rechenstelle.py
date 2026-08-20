@@ -89,6 +89,32 @@ AACHEN_CHMC_2026 = (
     },
 )
 
+# Hambach (GER) CCI3*-S / CCI2*-S / CCI1*-Intro, Aug 21–23 2026.
+# Dressage opened on the public boards on Aug 20; rows without dressage are skipped.
+HAMBACH_AUG_2026 = (
+    {
+        "url": "https://live.rechenstelle.de/2026/hambach/leaderboard01.html",
+        "event_name": "Hambach · CCI3*-S",
+        "level": "CCI3*-S",
+        "event_date": date(2026, 8, 21),
+        "country": "GER",
+    },
+    {
+        "url": "https://live.rechenstelle.de/2026/hambach/leaderboard02.html",
+        "event_name": "Hambach · CCI2*-S",
+        "level": "CCI2*-S",
+        "event_date": date(2026, 8, 21),
+        "country": "GER",
+    },
+    {
+        "url": "https://live.rechenstelle.de/2026/hambach/leaderboard03.html",
+        "event_name": "Hambach · CCI1*-Intro",
+        "level": "CCI1*-Intro",
+        "event_date": date(2026, 8, 21),
+        "country": "GER",
+    },
+)
+
 
 @dataclass(frozen=True)
 class RechenstelleBoard:
@@ -304,7 +330,13 @@ def _phase_penalties(
 
 
 def _row_has_status(row: Sequence[dict[str, str | None]]) -> bool:
-    return any(STATUS_TOKEN_RE.search(_clean_text(cell.get("text"))) for cell in row)
+    # Rider (2) and horse (4) names can start with EL/RT (Eliope, Elliot) and
+    # must not be treated as elimination/retirement tokens.
+    return any(
+        STATUS_TOKEN_RE.search(_clean_text(cell.get("text")))
+        for index, cell in enumerate(row)
+        if index not in {2, 4}
+    )
 
 
 def _parse_xc_time_penalties(value: str | None) -> float | None:
@@ -343,6 +375,12 @@ def aachen_chmc_2026_boards() -> list[RechenstelleBoard]:
     """Return the Aachen 2026 FEI Eventing World Championship board set."""
 
     return [RechenstelleBoard(**item) for item in AACHEN_CHMC_2026]
+
+
+def hambach_aug_2026_boards() -> list[RechenstelleBoard]:
+    """Return the Hambach August 2026 public leaderboard set."""
+
+    return [RechenstelleBoard(**item) for item in HAMBACH_AUG_2026]
 
 
 def merge_into_store(store_path: Path, new_results: Iterable[EventingResult]) -> list[EventingResult]:
@@ -424,6 +462,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull the Aachen 2026 FEI Eventing World Championship leaderboard",
     )
+    parser.add_argument(
+        "--hambach-2026",
+        action="store_true",
+        help="Pull the Hambach August 2026 public leaderboards",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--dry-run", action="store_true")
@@ -434,8 +477,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         boards.extend(millstreet_july_2026_boards())
     if args.aachen_ch_m_c_2026:
         boards.extend(aachen_chmc_2026_boards())
+    if args.hambach_2026:
+        boards.extend(hambach_aug_2026_boards())
     if not boards:
-        raise SystemExit("Specify --millstreet-july-2026 and/or --aachen-ch-m-c-2026")
+        raise SystemExit(
+            "Specify --millstreet-july-2026, --aachen-ch-m-c-2026, and/or --hambach-2026"
+        )
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)
     results = collect_boards(boards, collected_at=collected_at)
