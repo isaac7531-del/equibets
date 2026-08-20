@@ -126,6 +126,8 @@ const platformFormats = [
 const liveScores = liveScoresData as LiveScorePayload;
 const LIVE_STANDINGS_PREVIEW_LIMIT = 8;
 
+const liveScores = liveScoresData as LiveScorePayload;
+
 const createScoreInput = (form: FormState): EventingScoreInput => ({
   dressagePercentage: numberValue(form.dressagePercentage),
   showJumpingPenalties: numberValue(form.showJumpingPenalties),
