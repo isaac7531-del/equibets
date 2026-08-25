@@ -10,6 +10,7 @@ from equibets.rechenstelle import (
     _LeaderboardParser,
     hambach_aug_2026_boards,
     parse_leaderboard_results,
+    segersjo_aug_2026_boards,
 )
 
 
@@ -4810,6 +4811,39 @@ HAMBACH_INTRO_START_LIST_HTML = """
 </html>
 """
 
+SEGERSJO_START_LIST_HTML = """
+<html>
+  <head><title>LeaderBoard · Segersjö 2026 · CCI3*-S</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 25 2026  5:40PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td></td>
+          <td>114</td>
+          <td class="riderCell"><span class="riderName">Kai R&Uuml;DER</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Nash</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 AACHEN_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -6397,6 +6431,31 @@ class RechenstelleTests(unittest.TestCase):
             country="GER",
         )
         results = parse_leaderboard_results(HAMBACH_INTRO_START_LIST_HTML, board=board)
+        self.assertEqual(results, [])
+
+    def test_segersjo_boards_cover_three_august_classes(self):
+        boards = segersjo_aug_2026_boards()
+        self.assertEqual(len(boards), 3)
+        self.assertEqual(
+            [board.level for board in boards],
+            ["CCI3*-S", "CH-EU-J-CCI2*-L", "CH-EU-Y-CCI3*-L"],
+        )
+        self.assertEqual(
+            [board.url.rsplit("/", 1)[-1] for board in boards],
+            ["leaderboard01.html", "leaderboard11.html", "leaderboard61.html"],
+        )
+        self.assertTrue(all(board.event_date == date(2026, 8, 26) for board in boards))
+        self.assertTrue(all(board.country == "SWE" for board in boards))
+
+    def test_segersjo_start_list_without_dressage_yields_no_scored_rows(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/segersjo/leaderboard01.html",
+            event_name="Segersjö · CCI3*-S",
+            level="CCI3*-S",
+            event_date=date(2026, 8, 26),
+            country="SWE",
+        )
+        results = parse_leaderboard_results(SEGERSJO_START_LIST_HTML, board=board)
         self.assertEqual(results, [])
 
 

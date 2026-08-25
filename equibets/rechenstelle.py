@@ -115,6 +115,32 @@ HAMBACH_AUG_2026 = (
     },
 )
 
+# Segersjö (SWE) CCI3*-S / CH-EU-J-CCI2*-L / CH-EU-Y-CCI3*-L, Aug 26–30 2026.
+# Public start-list boards appeared Aug 25; rows without dressage are skipped.
+SEGERSJO_AUG_2026 = (
+    {
+        "url": "https://live.rechenstelle.de/2026/segersjo/leaderboard01.html",
+        "event_name": "Segersjö · CCI3*-S",
+        "level": "CCI3*-S",
+        "event_date": date(2026, 8, 26),
+        "country": "SWE",
+    },
+    {
+        "url": "https://live.rechenstelle.de/2026/segersjo/leaderboard11.html",
+        "event_name": "Segersjö · CH-EU-J-CCI2*-L",
+        "level": "CH-EU-J-CCI2*-L",
+        "event_date": date(2026, 8, 26),
+        "country": "SWE",
+    },
+    {
+        "url": "https://live.rechenstelle.de/2026/segersjo/leaderboard61.html",
+        "event_name": "Segersjö · CH-EU-Y-CCI3*-L",
+        "level": "CH-EU-Y-CCI3*-L",
+        "event_date": date(2026, 8, 26),
+        "country": "SWE",
+    },
+)
+
 
 @dataclass(frozen=True)
 class RechenstelleBoard:
@@ -383,6 +409,12 @@ def hambach_aug_2026_boards() -> list[RechenstelleBoard]:
     return [RechenstelleBoard(**item) for item in HAMBACH_AUG_2026]
 
 
+def segersjo_aug_2026_boards() -> list[RechenstelleBoard]:
+    """Return the Segersjö August 2026 public leaderboard set."""
+
+    return [RechenstelleBoard(**item) for item in SEGERSJO_AUG_2026]
+
+
 def merge_into_store(store_path: Path, new_results: Iterable[EventingResult]) -> list[EventingResult]:
     """Merge Rechenstelle rows into the shared results store.
 
@@ -467,6 +499,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull the Hambach August 2026 public leaderboards",
     )
+    parser.add_argument(
+        "--segersjo-2026",
+        action="store_true",
+        help="Pull the Segersjö August 2026 public leaderboards",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--dry-run", action="store_true")
@@ -479,9 +516,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         boards.extend(aachen_chmc_2026_boards())
     if args.hambach_2026:
         boards.extend(hambach_aug_2026_boards())
+    if args.segersjo_2026:
+        boards.extend(segersjo_aug_2026_boards())
     if not boards:
         raise SystemExit(
-            "Specify --millstreet-july-2026, --aachen-ch-m-c-2026, and/or --hambach-2026"
+            "Specify --millstreet-july-2026, --aachen-ch-m-c-2026, --hambach-2026, and/or --segersjo-2026"
         )
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)
