@@ -5375,6 +5375,87 @@ SEGERSJO_YR_DRESSAGE_MIDAFTERNOON_HTML = """
 </html>
 """
 
+SEGERSJO_YR_DRESSAGE_LATE_AFTERNOON_HTML = """
+<html>
+  <head><title>LeaderBoard · Segersjö 2026 · CH-EU-Y-CCI3*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 27 2026  4:02PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>331</td>
+          <td class="riderCell"><span class="riderName">Carl VOIGT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">DSP Descansado</span></td>
+          <td>573,0</td>
+          <td>76,40</td>
+          <td>23,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>318</td>
+          <td class="riderCell"><span class="riderName">Aline TEILLARD</span></td>
+          <td><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Elixir de Sienne</span></td>
+          <td>21,5</td>
+          <td>71,67</td>
+          <td>28,3</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>337</td>
+          <td class="riderCell"><span class="riderName">Molly O'CONNOR</span></td>
+          <td><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">Stillbrook Aoife</span></td>
+          <td>523,0</td>
+          <td>69,73</td>
+          <td>30,3</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>319</td>
+          <td class="riderCell"><span class="riderName">Jeanne BRUNEL</span></td>
+          <td><sup>*</sup><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Dexter Z</span></td>
+          <td>518,0</td>
+          <td>69,07</td>
+          <td>30,9</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>16:06:00</td>
+          <td>306</td>
+          <td class="riderCell"><span class="riderName">Lien DE DYCKER</span></td>
+          <td><img src="../../../../flags/BEL.PNG" alt="BEL"></td>
+          <td class="horseCell"><span class="horseName">Rohan van het Avenhof</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 AACHEN_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -7169,6 +7250,33 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(by_horse["Ashwood Iron Lady"].rider_name, "Ciara O'CONNOR (IRL)")
         self.assertEqual(by_horse["Ashwood Iron Lady"].dressage_score, 32.7)
         self.assertNotIn("DSP Descansado", by_horse)
+
+    def test_segersjo_yr_late_afternoon_scores_promote_descansado(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/segersjo/leaderboard61.html",
+            event_name="Segersjö · CH-EU-Y-CCI3*-L",
+            level="CH-EU-Y-CCI3*-L",
+            event_date=date(2026, 8, 26),
+            country="SWE",
+        )
+        results = parse_leaderboard_results(
+            SEGERSJO_YR_DRESSAGE_LATE_AFTERNOON_HTML,
+            board=board,
+        )
+        self.assertEqual(len(results), 4)
+        by_horse = {result.horse_name: result for result in results}
+        leader = results[0]
+        self.assertEqual(leader.rider_name, "Carl VOIGT (GER)")
+        self.assertEqual(leader.horse_name, "DSP Descansado")
+        self.assertEqual(leader.dressage_score, 23.6)
+        self.assertEqual(leader.finishing_score, 23.6)
+        self.assertEqual(by_horse["Elixir de Sienne"].rider_name, "Aline TEILLARD (FRA)")
+        self.assertEqual(by_horse["Elixir de Sienne"].dressage_score, 28.3)
+        self.assertEqual(by_horse["Stillbrook Aoife"].rider_name, "Molly O'CONNOR (IRL)")
+        self.assertEqual(by_horse["Stillbrook Aoife"].dressage_score, 30.3)
+        self.assertEqual(by_horse["Dexter Z"].rider_name, "Jeanne BRUNEL (FRA)")
+        self.assertEqual(by_horse["Dexter Z"].dressage_score, 30.9)
+        self.assertNotIn("Rohan van het Avenhof", by_horse)
 
 
 if __name__ == "__main__":
