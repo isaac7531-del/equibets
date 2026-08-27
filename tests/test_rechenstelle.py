@@ -4844,6 +4844,63 @@ SEGERSJO_START_LIST_HTML = """
 </html>
 """
 
+SEGERSJO_JUNIOR_DRESSAGE_HTML = """
+<html>
+  <head><title>LeaderBoard · Segersjö 2026 · CH-EU-J-CCI2*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 27 2026  8:46AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td></td>
+          <td>205</td>
+          <td class="riderCell"><span class="riderName">Eline DE RIDDER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/BEL.PNG" alt="BEL"></td>
+          <td class="horseCell"><span class="horseName">Mandorior</span></td>
+          <td>144,5</td>
+          <td>68,81</td>
+          <td>31,2</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent1">
+          <td><strong>1.</strong></td>
+          <td>258</td>
+          <td class="riderCell"><span class="riderName">Tova MADER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/SWE.PNG" alt="SWE"></td>
+          <td class="horseCell"><span class="horseName">TJA Morning Star</span></td>
+          <td>420,0</td>
+          <td>66,67</td>
+          <td>33,3</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>08:43:00</td>
+          <td>226</td>
+          <td class="riderCell"><span class="riderName">Arabella HENDERSON</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Ex Cavalier's Law</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 AACHEN_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -6457,6 +6514,28 @@ class RechenstelleTests(unittest.TestCase):
         )
         results = parse_leaderboard_results(SEGERSJO_START_LIST_HTML, board=board)
         self.assertEqual(results, [])
+
+    def test_segersjo_junior_dressage_scores_are_parsed(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/segersjo/leaderboard11.html",
+            event_name="Segersjö · CH-EU-J-CCI2*-L",
+            level="CH-EU-J-CCI2*-L",
+            event_date=date(2026, 8, 26),
+            country="SWE",
+        )
+        results = parse_leaderboard_results(SEGERSJO_JUNIOR_DRESSAGE_HTML, board=board)
+        self.assertEqual(len(results), 2)
+        leader, second = results
+        self.assertEqual(leader.rider_name, "Eline DE RIDDER (BEL)")
+        self.assertEqual(leader.horse_name, "Mandorior")
+        self.assertEqual(leader.dressage_score, 31.2)
+        self.assertEqual(leader.finishing_score, 31.2)
+        self.assertEqual(leader.level, "CH-EU-J-CCI2*-L")
+        self.assertEqual(leader.country, "SWE")
+        self.assertEqual(second.rider_name, "Tova MADER (SWE)")
+        self.assertEqual(second.horse_name, "TJA Morning Star")
+        self.assertEqual(second.dressage_score, 33.3)
+        self.assertEqual(second.finishing_score, 33.3)
 
 
 if __name__ == "__main__":
