@@ -5294,6 +5294,87 @@ SEGERSJO_YR_DRESSAGE_OPENING_HTML = """
 </html>
 """
 
+SEGERSJO_YR_DRESSAGE_MIDAFTERNOON_HTML = """
+<html>
+  <head><title>LeaderBoard · Segersjö 2026 · CH-EU-Y-CCI3*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 27 2026  3:01PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>319</td>
+          <td class="riderCell"><span class="riderName">Jeanne BRUNEL</span></td>
+          <td><sup>*</sup><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Dexter Z</span></td>
+          <td>518,0</td>
+          <td>69,07</td>
+          <td>30,9</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>326</td>
+          <td class="riderCell"><span class="riderName">Liv Noe HARTMANN</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">La Diva</span></td>
+          <td>514,5</td>
+          <td>68,60</td>
+          <td>31,4</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>321</td>
+          <td class="riderCell"><span class="riderName">Jago JACKSON</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Kinda Brunette</span></td>
+          <td>513,0</td>
+          <td>68,40</td>
+          <td>31,6</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>6.</strong></td>
+          <td>336</td>
+          <td class="riderCell"><span class="riderName">Ciara O'CONNOR</span></td>
+          <td><sup>*</sup><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">Ashwood Iron Lady</span></td>
+          <td>504,5</td>
+          <td>67,27</td>
+          <td>32,7</td>
+          <td>6.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>15:05:30</td>
+          <td>331</td>
+          <td class="riderCell"><span class="riderName">Carl VOIGT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">DSP Descansado</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 AACHEN_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -7061,6 +7142,33 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(by_horse["Finsceal Endeavour"].rider_name, "Amelia MCCARTHY (IRL)")
         self.assertEqual(by_horse["Finsceal Endeavour"].dressage_score, 47.2)
         self.assertNotIn("La Diva", by_horse)
+
+    def test_segersjo_yr_midafternoon_scores_promote_dexter_and_score_la_diva(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/segersjo/leaderboard61.html",
+            event_name="Segersjö · CH-EU-Y-CCI3*-L",
+            level="CH-EU-Y-CCI3*-L",
+            event_date=date(2026, 8, 26),
+            country="SWE",
+        )
+        results = parse_leaderboard_results(
+            SEGERSJO_YR_DRESSAGE_MIDAFTERNOON_HTML,
+            board=board,
+        )
+        self.assertEqual(len(results), 4)
+        by_horse = {result.horse_name: result for result in results}
+        leader = results[0]
+        self.assertEqual(leader.rider_name, "Jeanne BRUNEL (FRA)")
+        self.assertEqual(leader.horse_name, "Dexter Z")
+        self.assertEqual(leader.dressage_score, 30.9)
+        self.assertEqual(leader.finishing_score, 30.9)
+        self.assertEqual(by_horse["La Diva"].rider_name, "Liv Noe HARTMANN (GER)")
+        self.assertEqual(by_horse["La Diva"].dressage_score, 31.4)
+        self.assertEqual(by_horse["Kinda Brunette"].rider_name, "Jago JACKSON (GBR)")
+        self.assertEqual(by_horse["Kinda Brunette"].dressage_score, 31.6)
+        self.assertEqual(by_horse["Ashwood Iron Lady"].rider_name, "Ciara O'CONNOR (IRL)")
+        self.assertEqual(by_horse["Ashwood Iron Lady"].dressage_score, 32.7)
+        self.assertNotIn("DSP Descansado", by_horse)
 
 
 if __name__ == "__main__":
