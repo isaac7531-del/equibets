@@ -5642,6 +5642,87 @@ SEGERSJO_YR_DRESSAGE_EVENING_HTML = """
 </html>
 """
 
+SEGERSJO_YR_DRESSAGE_LATE_EVENING_HTML = """
+<html>
+  <head><title>LeaderBoard · Segersjö 2026 · CH-EU-Y-CCI3*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 27 2026  6:04PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>331</td>
+          <td class="riderCell"><span class="riderName">Carl VOIGT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">DSP Descansado</span></td>
+          <td>573,0</td>
+          <td>76,40</td>
+          <td>23,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>329</td>
+          <td class="riderCell"><span class="riderName">Mathies R&Uuml;DER</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Hjoptimus</span></td>
+          <td>572,0</td>
+          <td>76,27</td>
+          <td>23,7</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>323</td>
+          <td class="riderCell"><span class="riderName">Elizabeth BARRATT</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Ride For Thais Chaman Dumontceau</span></td>
+          <td>564,0</td>
+          <td>75,20</td>
+          <td>24,8</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>32.</strong></td>
+          <td>335</td>
+          <td class="riderCell"><span class="riderName">Anna NANGLE</span></td>
+          <td><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">Stroke Of Genius</span></td>
+          <td>461,5</td>
+          <td>61,53</td>
+          <td>38,5</td>
+          <td>32.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>333</td>
+          <td class="riderCell"><span class="riderName">Jasper KELLY</span></td>
+          <td><sup>*</sup><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">Agatha Raisin</span></td>
+          <td></td>
+          <td></td>
+          <td>WDbDRE</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 AACHEN_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -7520,6 +7601,34 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(by_horse["Juna R"].dressage_score, 29.0)
         self.assertEqual(by_horse["This Ones On You"].rider_name, "Joshua LEVETT (GBR)")
         self.assertEqual(by_horse["This Ones On You"].dressage_score, 30.9)
+        self.assertNotIn("Agatha Raisin", by_horse)
+
+    def test_segersjo_yr_late_evening_scores_revise_stroke_of_genius(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/segersjo/leaderboard61.html",
+            event_name="Segersjö · CH-EU-Y-CCI3*-L",
+            level="CH-EU-Y-CCI3*-L",
+            event_date=date(2026, 8, 26),
+            country="SWE",
+        )
+        results = parse_leaderboard_results(
+            SEGERSJO_YR_DRESSAGE_LATE_EVENING_HTML,
+            board=board,
+        )
+        self.assertEqual(len(results), 4)
+        by_horse = {result.horse_name: result for result in results}
+        leader = results[0]
+        self.assertEqual(leader.rider_name, "Carl VOIGT (GER)")
+        self.assertEqual(leader.horse_name, "DSP Descansado")
+        self.assertEqual(leader.dressage_score, 23.6)
+        self.assertEqual(leader.finishing_score, 23.6)
+        self.assertEqual(by_horse["Hjoptimus"].rider_name, "Mathies RÜDER (GER)")
+        self.assertEqual(by_horse["Hjoptimus"].dressage_score, 23.7)
+        self.assertEqual(by_horse["Ride For Thais Chaman Dumontceau"].rider_name, "Elizabeth BARRATT (GBR)")
+        self.assertEqual(by_horse["Ride For Thais Chaman Dumontceau"].dressage_score, 24.8)
+        self.assertEqual(by_horse["Stroke Of Genius"].rider_name, "Anna NANGLE (IRL)")
+        self.assertEqual(by_horse["Stroke Of Genius"].dressage_score, 38.5)
+        self.assertEqual(by_horse["Stroke Of Genius"].finishing_score, 38.5)
         self.assertNotIn("Agatha Raisin", by_horse)
 
 
