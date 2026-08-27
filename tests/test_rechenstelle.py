@@ -5456,6 +5456,99 @@ SEGERSJO_YR_DRESSAGE_LATE_AFTERNOON_HTML = """
 </html>
 """
 
+SEGERSJO_YR_DRESSAGE_EARLY_EVENING_HTML = """
+<html>
+  <head><title>LeaderBoard · Segersjö 2026 · CH-EU-Y-CCI3*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 27 2026  5:02PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>331</td>
+          <td class="riderCell"><span class="riderName">Carl VOIGT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">DSP Descansado</span></td>
+          <td>573,0</td>
+          <td>76,40</td>
+          <td>23,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>323</td>
+          <td class="riderCell"><span class="riderName">Elizabeth BARRATT</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Ride For Thais Chaman Dumontceau</span></td>
+          <td>564,0</td>
+          <td>75,20</td>
+          <td>24,8</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>349</td>
+          <td class="riderCell"><span class="riderName">Filip STRZYZEWSKI</span></td>
+          <td><img src="../../../../flags/POL.PNG" alt="POL"></td>
+          <td class="horseCell"><span class="horseName">El Sovski</span></td>
+          <td>541,5</td>
+          <td>72,20</td>
+          <td>27,8</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>4.</strong></td>
+          <td>318</td>
+          <td class="riderCell"><span class="riderName">Aline TEILLARD</span></td>
+          <td><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Elixir de Sienne</span></td>
+          <td>534,0</td>
+          <td>71,20</td>
+          <td>28,8</td>
+          <td>4.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>5.</strong></td>
+          <td>328</td>
+          <td class="riderCell"><span class="riderName">Ella KRUEGER</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Königsblauer</span></td>
+          <td>531,5</td>
+          <td>70,87</td>
+          <td>29,1</td>
+          <td>5.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>17:06:30</td>
+          <td>333</td>
+          <td class="riderCell"><span class="riderName">Jasper KELLY</span></td>
+          <td><sup>*</sup><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">Agatha Raisin</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 AACHEN_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -7277,6 +7370,35 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(by_horse["Dexter Z"].rider_name, "Jeanne BRUNEL (FRA)")
         self.assertEqual(by_horse["Dexter Z"].dressage_score, 30.9)
         self.assertNotIn("Rohan van het Avenhof", by_horse)
+
+    def test_segersjo_yr_early_evening_scores_insert_barratt_and_el_sovski(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/segersjo/leaderboard61.html",
+            event_name="Segersjö · CH-EU-Y-CCI3*-L",
+            level="CH-EU-Y-CCI3*-L",
+            event_date=date(2026, 8, 26),
+            country="SWE",
+        )
+        results = parse_leaderboard_results(
+            SEGERSJO_YR_DRESSAGE_EARLY_EVENING_HTML,
+            board=board,
+        )
+        self.assertEqual(len(results), 5)
+        by_horse = {result.horse_name: result for result in results}
+        leader = results[0]
+        self.assertEqual(leader.rider_name, "Carl VOIGT (GER)")
+        self.assertEqual(leader.horse_name, "DSP Descansado")
+        self.assertEqual(leader.dressage_score, 23.6)
+        self.assertEqual(leader.finishing_score, 23.6)
+        self.assertEqual(by_horse["Ride For Thais Chaman Dumontceau"].rider_name, "Elizabeth BARRATT (GBR)")
+        self.assertEqual(by_horse["Ride For Thais Chaman Dumontceau"].dressage_score, 24.8)
+        self.assertEqual(by_horse["El Sovski"].rider_name, "Filip STRZYZEWSKI (POL)")
+        self.assertEqual(by_horse["El Sovski"].dressage_score, 27.8)
+        self.assertEqual(by_horse["Elixir de Sienne"].rider_name, "Aline TEILLARD (FRA)")
+        self.assertEqual(by_horse["Elixir de Sienne"].dressage_score, 28.8)
+        self.assertEqual(by_horse["Königsblauer"].rider_name, "Ella KRUEGER (GER)")
+        self.assertEqual(by_horse["Königsblauer"].dressage_score, 29.1)
+        self.assertNotIn("Agatha Raisin", by_horse)
 
 
 if __name__ == "__main__":
