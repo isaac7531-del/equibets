@@ -5051,6 +5051,87 @@ SEGERSJO_JUNIOR_DRESSAGE_LATER_SESSION_HTML = """
 </html>
 """
 
+SEGERSJO_JUNIOR_DRESSAGE_LATE_MORNING_HTML = """
+<html>
+  <head><title>LeaderBoard · Segersjö 2026 · CH-EU-J-CCI2*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 27 2026 12:03PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>228</td>
+          <td class="riderCell"><span class="riderName">Annabel RIDGWAY</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Emerald Katie</span></td>
+          <td>454,0</td>
+          <td>72,06</td>
+          <td>27,9</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>233</td>
+          <td class="riderCell"><span class="riderName">Milla STAADE</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Christ William</span></td>
+          <td>447,0</td>
+          <td>70,95</td>
+          <td>29,1</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>234</td>
+          <td class="riderCell"><span class="riderName">Lukas Wilhelm S&Uuml;HLING</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Allnightparty</span></td>
+          <td>389,0</td>
+          <td>72,04</td>
+          <td>28,0</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>4.</strong></td>
+          <td>218</td>
+          <td class="riderCell"><span class="riderName">Tifaniie VILLETON</span></td>
+          <td><sup>*</sup><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Gaiete d'Agenais</span></td>
+          <td>440,0</td>
+          <td>69,84</td>
+          <td>30,2</td>
+          <td>4.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>12:08:30</td>
+          <td>251</td>
+          <td class="riderCell"><span class="riderName">Camille Lasse WEISS</span></td>
+          <td><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">CSF Hi Spec</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 AACHEN_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -6739,6 +6820,32 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(by_horse["Mandorior"].dressage_score, 32.1)
         self.assertEqual(by_horse["Mandorior"].finishing_score, 32.1)
         self.assertNotIn("Gaiete d'Agenais", by_horse)
+
+    def test_segersjo_junior_late_morning_scores_promote_new_leader(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/segersjo/leaderboard11.html",
+            event_name="Segersjö · CH-EU-J-CCI2*-L",
+            level="CH-EU-J-CCI2*-L",
+            event_date=date(2026, 8, 26),
+            country="SWE",
+        )
+        results = parse_leaderboard_results(
+            SEGERSJO_JUNIOR_DRESSAGE_LATE_MORNING_HTML,
+            board=board,
+        )
+        self.assertEqual(len(results), 4)
+        by_horse = {result.horse_name: result for result in results}
+        leader = results[0]
+        self.assertEqual(leader.rider_name, "Annabel RIDGWAY (GBR)")
+        self.assertEqual(leader.horse_name, "Emerald Katie")
+        self.assertEqual(leader.dressage_score, 27.9)
+        self.assertEqual(leader.finishing_score, 27.9)
+        self.assertEqual(by_horse["Christ William"].dressage_score, 29.1)
+        self.assertEqual(by_horse["Allnightparty"].rider_name, "Lukas Wilhelm SÜHLING (GER)")
+        self.assertEqual(by_horse["Allnightparty"].dressage_score, 28.0)
+        self.assertEqual(by_horse["Gaiete d'Agenais"].rider_name, "Tifaniie VILLETON (FRA)")
+        self.assertEqual(by_horse["Gaiete d'Agenais"].dressage_score, 30.2)
+        self.assertNotIn("CSF Hi Spec", by_horse)
 
 
 if __name__ == "__main__":
