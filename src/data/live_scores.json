@@ -1219,37 +1219,37 @@
       "country": "SWE",
       "event_date": "2026-08-26",
       "event_name": "Segersj\u00f6 \u00b7 CCI3*-S",
-      "latest_collected_at": "2026-08-28T12:01:03+00:00",
+      "latest_collected_at": "2026-08-28T13:18:13+00:00",
       "level": "CCI3*-S",
-      "result_count": 5,
+      "result_count": 13,
       "source_ids": [
         "rechenstelle"
       ],
       "standings": [
         {
-          "collected_at": "2026-08-28T12:01:03+00:00",
-          "cross_country_penalties": 0.0,
-          "dressage_score": 31.3,
-          "finishing_score": 31.3,
-          "horse_name": "Joli Harlem LVST",
-          "rank": 1,
-          "rider_name": "Linnea OP DE WEEGH THVETUS (SWE)",
-          "show_jumping_penalties": 0.0,
-          "source_id": "rechenstelle"
-        },
-        {
-          "collected_at": "2026-08-28T12:01:03+00:00",
+          "collected_at": "2026-08-28T13:18:13+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.5,
           "finishing_score": 31.5,
           "horse_name": "Flanders",
-          "rank": 2,
+          "rank": 1,
           "rider_name": "Aria RAMKALI (SWE)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-28T12:01:03+00:00",
+          "collected_at": "2026-08-28T13:18:13+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 33.5,
+          "finishing_score": 33.5,
+          "horse_name": "Oakvalley Quickster",
+          "rank": 2,
+          "rider_name": "Nicole PALM (SWE)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-08-28T13:18:13+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.7,
           "finishing_score": 33.7,
@@ -1260,7 +1260,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-28T12:01:03+00:00",
+          "collected_at": "2026-08-28T13:18:13+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.4,
           "finishing_score": 34.4,
@@ -1271,13 +1271,101 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-28T12:01:03+00:00",
+          "collected_at": "2026-08-28T13:18:13+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.0,
+          "finishing_score": 35.0,
+          "horse_name": "High Dreams",
+          "rank": 5,
+          "rider_name": "Alva DANIELSSON (SWE)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-08-28T13:18:13+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.0,
+          "finishing_score": 35.0,
+          "horse_name": "Wharton Street",
+          "rank": 5,
+          "rider_name": "Jelena FEMIC (SWE)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-08-28T13:18:13+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.4,
+          "finishing_score": 35.4,
+          "horse_name": "Nash",
+          "rank": 7,
+          "rider_name": "Kai R\u00dcDER (GER)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-08-28T13:18:13+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.0,
+          "finishing_score": 38.0,
+          "horse_name": "Delelia",
+          "rank": 8,
+          "rider_name": "Moa ELOFSSON (SWE)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-08-28T13:18:13+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.6,
+          "finishing_score": 38.6,
+          "horse_name": "Joli Harlem LVST",
+          "rank": 9,
+          "rider_name": "Linnea OP DE WEEGH THVETUS (SWE)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-08-28T13:18:13+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.6,
+          "finishing_score": 38.6,
+          "horse_name": "Celine Dion E",
+          "rank": 9,
+          "rider_name": "Matilda DAVIDSSON (SWE)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-08-28T13:18:13+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 38.6,
           "finishing_score": 38.6,
           "horse_name": "Van Gils SG",
-          "rank": 5,
+          "rank": 9,
           "rider_name": "Niklas LINDB\u00c4CK (SWE)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-08-28T13:18:13+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 40.7,
+          "finishing_score": 40.7,
+          "horse_name": "Canela",
+          "rank": 12,
+          "rider_name": "Jenny GLEBENIUS (SWE)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-08-28T13:18:13+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 45.0,
+          "finishing_score": 45.0,
+          "horse_name": "Ebony Angel",
+          "rank": 13,
+          "rider_name": "Zophia ZANDER NORELL (SWE)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         }
@@ -3404,9 +3492,9 @@
       ]
     }
   ],
-  "generated_at": "2026-08-28T12:01:03+00:00",
-  "latest_collected_at": "2026-08-28T12:01:03+00:00",
-  "result_count": 301,
+  "generated_at": "2026-08-28T13:18:13+00:00",
+  "latest_collected_at": "2026-08-28T13:18:13+00:00",
+  "result_count": 309,
   "source_ids": [
     "rechenstelle"
   ],
