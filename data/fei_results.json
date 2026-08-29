@@ -40019,7 +40019,7 @@
       "source_record_id": "rechenstelle:ea7f44584edccf24"
     },
     {
-      "collected_at": "2026-08-29T16:26:08+00:00",
+      "collected_at": "2026-08-29T17:40:16+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 29.2,
       "cross_country_time_penalties": 0.0,
@@ -40087,7 +40087,7 @@
       "source_record_id": "rechenstelle:f637d7ce6beb89bc"
     },
     {
-      "collected_at": "2026-08-29T16:26:08+00:00",
+      "collected_at": "2026-08-29T17:40:16+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 5.6,
       "cross_country_time_penalties": 0.0,
@@ -40750,7 +40750,7 @@
       "source_record_id": "rechenstelle:978ac69aff42fd9a"
     },
     {
-      "collected_at": "2026-08-29T16:26:08+00:00",
+      "collected_at": "2026-08-29T17:40:16+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -40801,7 +40801,7 @@
       "source_record_id": "rechenstelle:13dc32e9a69e9b04"
     },
     {
-      "collected_at": "2026-08-29T16:26:08+00:00",
+      "collected_at": "2026-08-29T17:40:16+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 25.6,
       "cross_country_time_penalties": 0.0,
@@ -40869,7 +40869,7 @@
       "source_record_id": "rechenstelle:d820c590edc19dfb"
     },
     {
-      "collected_at": "2026-08-29T16:26:08+00:00",
+      "collected_at": "2026-08-29T17:40:16+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 4.0,
       "cross_country_time_penalties": 0.0,
@@ -41005,7 +41005,7 @@
       "source_record_id": "rechenstelle:8a6e976d73ceb055"
     },
     {
-      "collected_at": "2026-08-29T16:26:08+00:00",
+      "collected_at": "2026-08-29T17:40:16+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 36.8,
       "cross_country_time_penalties": 0.0,
@@ -41192,7 +41192,7 @@
       "source_record_id": "rechenstelle:c236eb8972b3a175"
     },
     {
-      "collected_at": "2026-08-29T16:26:08+00:00",
+      "collected_at": "2026-08-29T17:40:16+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 9.2,
       "cross_country_time_penalties": 0.0,
@@ -41243,7 +41243,7 @@
       "source_record_id": "rechenstelle:e3260a03da90b5e7"
     },
     {
-      "collected_at": "2026-08-29T16:26:08+00:00",
+      "collected_at": "2026-08-29T17:40:16+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 30.0,
       "cross_country_time_penalties": 0.0,
@@ -41260,7 +41260,7 @@
       "source_record_id": "rechenstelle:26e09caab2fcac67"
     },
     {
-      "collected_at": "2026-08-29T16:26:08+00:00",
+      "collected_at": "2026-08-29T17:40:16+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 1.2,
       "cross_country_time_penalties": 0.0,
@@ -41277,7 +41277,7 @@
       "source_record_id": "rechenstelle:ee318c9050c658e6"
     },
     {
-      "collected_at": "2026-08-29T16:26:08+00:00",
+      "collected_at": "2026-08-29T17:40:16+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 34.0,
       "cross_country_time_penalties": 0.0,
@@ -41498,7 +41498,7 @@
       "source_record_id": "rechenstelle:4593fc1a3dc90208"
     },
     {
-      "collected_at": "2026-08-29T16:26:08+00:00",
+      "collected_at": "2026-08-29T17:40:16+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 2.0,
       "cross_country_time_penalties": 0.0,
@@ -41549,7 +41549,7 @@
       "source_record_id": "rechenstelle:dd9946d36bb4b329"
     },
     {
-      "collected_at": "2026-08-29T16:26:08+00:00",
+      "collected_at": "2026-08-29T17:40:16+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 16.4,
       "cross_country_time_penalties": 0.0,
@@ -41787,9 +41787,9 @@
       "source_record_id": "rechenstelle:b0b14b11cf5e77e5"
     },
     {
-      "collected_at": "2026-08-29T16:26:08+00:00",
+      "collected_at": "2026-08-29T17:40:16+00:00",
       "country": "SWE",
-      "cross_country_jump_penalties": 65.6,
+      "cross_country_jump_penalties": 45.6,
       "cross_country_time_penalties": 0.0,
       "dressage_score": 45.0,
       "event_date": "2026-08-26",
@@ -41805,6 +41805,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-08-29T17:13:19+00:00",
+  "updated_at": "2026-08-29T18:12:24+00:00",
   "version": 1
 }
