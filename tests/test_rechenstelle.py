@@ -5723,6 +5723,172 @@ SEGERSJO_YR_DRESSAGE_LATE_EVENING_HTML = """
 </html>
 """
 
+SEGERSJO_CCI3_SATURDAY_XC_HTML = """
+<html>
+  <head><title>LeaderBoard · Segersjö 2026 · CCI3*-S</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 29 2026  6:11PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Cross/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td>18:18:00</td>
+          <td>102</td>
+          <td class="riderCell"><span class="riderName">Niklas LINDB&Auml;CK</span></td>
+          <td><img src="../../../../flags/SWE.PNG" alt="SWE"></td>
+          <td class="horseCell"><span class="horseName">A Star Is Born Vuo</span></td>
+          <td>303,0</td>
+          <td>65,87</td>
+          <td>34,1</td>
+          <td>4.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>18:09:00</td>
+          <td>105</td>
+          <td class="riderCell"><span class="riderName">Martina ANDERSSON</span></td>
+          <td><img src="../../../../flags/SWE.PNG" alt="SWE"></td>
+          <td class="horseCell"><span class="horseName">Condor Da Carma</span></td>
+          <td>296,0</td>
+          <td>64,35</td>
+          <td>35,7</td>
+          <td>8.</td>
+          <td>0,0</td>
+          <td></td>
+          <td>35,7</td>
+          <td></td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>5.</strong></td>
+          <td>106</td>
+          <td class="riderCell"><span class="riderName">Anna NILSSON</span></td>
+          <td><img src="../../../../flags/SWE.PNG" alt="SWE"></td>
+          <td class="horseCell"><span class="horseName">Crottys Rock</span></td>
+          <td>305,0</td>
+          <td>66,30</td>
+          <td>33,7</td>
+          <td>3.</td>
+          <td>5,6</td>
+          <td>06:18</td>
+          <td>39,3</td>
+          <td>5.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>7.</strong></td>
+          <td>103</td>
+          <td class="riderCell"><span class="riderName">Jenny GLEBENIUS</span></td>
+          <td><img src="../../../../flags/SWE.PNG" alt="SWE"></td>
+          <td class="horseCell"><span class="horseName">Canela</span></td>
+          <td>273,0</td>
+          <td>59,35</td>
+          <td>40,7</td>
+          <td>15.</td>
+          <td>0,0</td>
+          <td>06:00</td>
+          <td>40,7</td>
+          <td>7.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>109</td>
+          <td class="riderCell"><span class="riderName">Aria RAMKALI</span></td>
+          <td><img src="../../../../flags/SWE.PNG" alt="SWE"></td>
+          <td class="horseCell"><span class="horseName">Flanders</span></td>
+          <td>315,0</td>
+          <td>68,48</td>
+          <td>31,5</td>
+          <td>1.</td>
+          <td></td>
+          <td></td>
+          <td>EL XC</td>
+          <td></td>
+          <td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+SEGERSJO_YR_JUNA_R_XC_CORRECTION_HTML = """
+<html>
+  <head><title>LeaderBoard · Segersjö 2026 · CH-EU-Y-CCI3*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 29 2026  5:21PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>331</td>
+          <td class="riderCell"><span class="riderName">Carl VOIGT</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">DSP Descansado</span></td>
+          <td>573,0</td>
+          <td>76,40</td>
+          <td>23,6</td>
+          <td>1.</td>
+          <td>0,0</td>
+          <td>08:46</td>
+          <td>23,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>32.</strong></td>
+          <td>327</td>
+          <td class="riderCell"><span class="riderName">Silva KELLY</span></td>
+          <td><sup>*</sup><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Calypso</span></td>
+          <td>508,5</td>
+          <td>67,80</td>
+          <td>32,2</td>
+          <td>21.</td>
+          <td>18,4</td>
+          <td>09:32</td>
+          <td>50,6</td>
+          <td>32.</td>
+          <td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>39.</strong></td>
+          <td>339</td>
+          <td class="riderCell"><span class="riderName">Eleonora FAVA</span></td>
+          <td><sup>*</sup><img src="../../../../flags/ITA.PNG" alt="ITA"></td>
+          <td class="horseCell"><span class="horseName">Juna R</span></td>
+          <td>532,5</td>
+          <td>71,00</td>
+          <td>29,0</td>
+          <td>6.</td>
+          <td>51,2</td>
+          <td>10:04</td>
+          <td>80,2</td>
+          <td>39.</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 AACHEN_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Aachen 2026 · FEI Eventing World Championship</title></head>
@@ -7630,6 +7796,64 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(by_horse["Stroke Of Genius"].dressage_score, 38.5)
         self.assertEqual(by_horse["Stroke Of Genius"].finishing_score, 38.5)
         self.assertNotIn("Agatha Raisin", by_horse)
+
+    def test_segersjo_cci3_saturday_xc_skips_eliminations_and_keeps_mid_round(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/segersjo/leaderboard01.html",
+            event_name="Segersjö · CCI3*-S",
+            level="CCI3*-S",
+            event_date=date(2026, 8, 26),
+            country="SWE",
+        )
+        results = parse_leaderboard_results(SEGERSJO_CCI3_SATURDAY_XC_HTML, board=board)
+        self.assertEqual(len(results), 4)
+        by_horse = {result.horse_name: result for result in results}
+        leader = results[0]
+        self.assertEqual(leader.rider_name, "Niklas LINDBÄCK (SWE)")
+        self.assertEqual(leader.horse_name, "A Star Is Born Vuo")
+        self.assertEqual(leader.dressage_score, 34.1)
+        self.assertEqual(leader.cross_country_jump_penalties, 0.0)
+        self.assertEqual(leader.finishing_score, 34.1)
+        mid_round = by_horse["Condor Da Carma"]
+        self.assertEqual(mid_round.rider_name, "Martina ANDERSSON (SWE)")
+        self.assertEqual(mid_round.cross_country_jump_penalties, 0.0)
+        self.assertEqual(mid_round.cross_country_time_penalties, 0.0)
+        self.assertEqual(mid_round.finishing_score, 35.7)
+        crottys = by_horse["Crottys Rock"]
+        self.assertEqual(crottys.rider_name, "Anna NILSSON (SWE)")
+        self.assertEqual(crottys.dressage_score, 33.7)
+        self.assertEqual(crottys.cross_country_jump_penalties, 5.6)
+        self.assertEqual(crottys.cross_country_time_penalties, 0.0)
+        self.assertEqual(crottys.finishing_score, 39.3)
+        canela = by_horse["Canela"]
+        self.assertEqual(canela.rider_name, "Jenny GLEBENIUS (SWE)")
+        self.assertEqual(canela.cross_country_jump_penalties, 0.0)
+        self.assertEqual(canela.finishing_score, 40.7)
+        self.assertNotIn("Flanders", by_horse)
+
+    def test_segersjo_yr_juna_r_xc_correction_is_parsed(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/segersjo/leaderboard61.html",
+            event_name="Segersjö · CH-EU-Y-CCI3*-L",
+            level="CH-EU-Y-CCI3*-L",
+            event_date=date(2026, 8, 26),
+            country="SWE",
+        )
+        results = parse_leaderboard_results(SEGERSJO_YR_JUNA_R_XC_CORRECTION_HTML, board=board)
+        self.assertEqual(len(results), 3)
+        by_horse = {result.horse_name: result for result in results}
+        self.assertEqual(by_horse["DSP Descansado"].finishing_score, 23.6)
+        calypso = by_horse["Calypso"]
+        self.assertEqual(calypso.rider_name, "Silva KELLY (GER)")
+        self.assertEqual(calypso.dressage_score, 32.2)
+        self.assertEqual(calypso.cross_country_jump_penalties, 18.4)
+        self.assertEqual(calypso.finishing_score, 50.6)
+        juna = by_horse["Juna R"]
+        self.assertEqual(juna.rider_name, "Eleonora FAVA (ITA)")
+        self.assertEqual(juna.dressage_score, 29.0)
+        self.assertEqual(juna.cross_country_jump_penalties, 51.2)
+        self.assertEqual(juna.cross_country_time_penalties, 0.0)
+        self.assertEqual(juna.finishing_score, 80.2)
 
 
 if __name__ == "__main__":
