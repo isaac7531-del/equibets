@@ -3349,7 +3349,7 @@
       ]
     }
   ],
-  "generated_at": "2026-08-29T23:21:31+00:00",
+  "generated_at": "2026-08-30T00:19:19+00:00",
   "latest_collected_at": "2026-08-29T17:40:16+00:00",
   "result_count": 296,
   "source_ids": [
@@ -3357,7 +3357,7 @@
   ],
   "version": 1,
   "window": {
-    "end_date": "2026-08-31",
-    "start_date": "2026-08-01"
+    "end_date": "2026-09-01",
+    "start_date": "2026-08-02"
   }
 }
