@@ -5,7 +5,7 @@
       "country": "SWE",
       "event_date": "2026-08-26",
       "event_name": "Segersj\u00f6 \u00b7 CH-EU-Y-CCI3*-L",
-      "latest_collected_at": "2026-08-30T14:02:12+00:00",
+      "latest_collected_at": "2026-08-30T14:26:51+00:00",
       "level": "CH-EU-Y-CCI3*-L",
       "result_count": 38,
       "source_ids": [
@@ -13,7 +13,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 23.7,
           "finishing_score": 23.7,
@@ -24,7 +24,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.8,
           "dressage_score": 24.8,
           "finishing_score": 26.0,
@@ -35,7 +35,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.6,
           "finishing_score": 30.4,
@@ -46,7 +46,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 23.6,
           "finishing_score": 32.8,
@@ -57,7 +57,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.4,
           "finishing_score": 34.4,
@@ -68,7 +68,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 2.4,
           "dressage_score": 32.0,
           "finishing_score": 34.8,
@@ -79,7 +79,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.6,
           "finishing_score": 35.8,
@@ -90,7 +90,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.8,
           "dressage_score": 34.4,
           "finishing_score": 36.0,
@@ -101,7 +101,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 3.2,
           "dressage_score": 33.3,
           "finishing_score": 37.3,
@@ -112,7 +112,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 2.4,
           "dressage_score": 30.9,
           "finishing_score": 37.3,
@@ -123,7 +123,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 36.1,
           "finishing_score": 38.1,
@@ -134,7 +134,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 35.0,
           "finishing_score": 39.0,
@@ -145,7 +145,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 3.2,
           "dressage_score": 29.0,
           "finishing_score": 40.2,
@@ -156,7 +156,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.8,
           "finishing_score": 40.2,
@@ -167,7 +167,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 3.6,
           "dressage_score": 35.7,
           "finishing_score": 40.9,
@@ -178,7 +178,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 5.6,
           "dressage_score": 29.9,
           "finishing_score": 41.1,
@@ -189,7 +189,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.6,
           "dressage_score": 32.8,
           "finishing_score": 44.8,
@@ -200,7 +200,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.9,
           "finishing_score": 46.5,
@@ -211,7 +211,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.6,
           "dressage_score": 32.4,
           "finishing_score": 46.8,
@@ -222,7 +222,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.3,
           "finishing_score": 47.7,
@@ -233,7 +233,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.4,
           "finishing_score": 49.4,
@@ -244,7 +244,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 18.8,
           "dressage_score": 30.9,
           "finishing_score": 49.7,
@@ -255,7 +255,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 9.2,
           "dressage_score": 32.8,
           "finishing_score": 50.4,
@@ -266,7 +266,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 14.6,
           "dressage_score": 31.6,
           "finishing_score": 52.2,
@@ -277,7 +277,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.8,
           "dressage_score": 35.9,
           "finishing_score": 52.7,
@@ -288,7 +288,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 39.0,
           "finishing_score": 53.8,
@@ -299,7 +299,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 18.4,
           "dressage_score": 32.2,
           "finishing_score": 54.6,
@@ -310,7 +310,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 11.2,
           "dressage_score": 30.3,
           "finishing_score": 54.7,
@@ -321,7 +321,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 11.0,
           "dressage_score": 36.7,
           "finishing_score": 57.3,
@@ -332,7 +332,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 29.2,
           "dressage_score": 29.1,
           "finishing_score": 64.3,
@@ -343,7 +343,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 45.2,
           "dressage_score": 34.1,
           "finishing_score": 80.1,
@@ -354,7 +354,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 45.2,
           "dressage_score": 34.9,
           "finishing_score": 80.9,
@@ -365,7 +365,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 51.6,
           "dressage_score": 32.0,
           "finishing_score": 84.4,
@@ -376,7 +376,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 51.2,
           "dressage_score": 29.0,
           "finishing_score": 86.2,
@@ -387,7 +387,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 31.8,
           "dressage_score": 32.7,
           "finishing_score": 92.1,
@@ -398,7 +398,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 46.8,
           "dressage_score": 41.0,
           "finishing_score": 93.8,
@@ -409,7 +409,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 54.0,
           "dressage_score": 31.9,
           "finishing_score": 95.1,
@@ -420,7 +420,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 85.6,
           "dressage_score": 33.3,
           "finishing_score": 140.1,
@@ -436,7 +436,7 @@
       "country": "SWE",
       "event_date": "2026-08-26",
       "event_name": "Segersj\u00f6 \u00b7 CH-EU-J-CCI2*-L",
-      "latest_collected_at": "2026-08-30T14:02:12+00:00",
+      "latest_collected_at": "2026-08-30T14:26:51+00:00",
       "level": "CH-EU-J-CCI2*-L",
       "result_count": 48,
       "source_ids": [
@@ -444,7 +444,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 25.8,
           "finishing_score": 25.8,
@@ -455,7 +455,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 26.1,
           "finishing_score": 26.1,
@@ -466,7 +466,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 26.8,
           "finishing_score": 26.8,
@@ -477,7 +477,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 27.5,
           "finishing_score": 27.9,
@@ -488,7 +488,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 27.9,
           "finishing_score": 28.3,
@@ -499,7 +499,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.7,
           "finishing_score": 31.7,
@@ -510,7 +510,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.9,
           "finishing_score": 32.9,
@@ -521,7 +521,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.2,
           "dressage_score": 32.2,
           "finishing_score": 33.4,
@@ -532,7 +532,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.4,
           "dressage_score": 32.9,
           "finishing_score": 33.7,
@@ -543,7 +543,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.5,
           "finishing_score": 33.9,
@@ -554,7 +554,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.1,
           "finishing_score": 34.1,
@@ -565,7 +565,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.7,
           "finishing_score": 34.5,
@@ -576,7 +576,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.2,
           "finishing_score": 34.6,
@@ -587,7 +587,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.2,
           "dressage_score": 27.9,
           "finishing_score": 34.7,
@@ -598,7 +598,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.4,
           "dressage_score": 28.7,
           "finishing_score": 34.7,
@@ -609,7 +609,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 2.4,
           "dressage_score": 28.0,
           "finishing_score": 35.2,
@@ -620,7 +620,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 2.4,
           "dressage_score": 29.2,
           "finishing_score": 35.6,
@@ -631,7 +631,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.9,
           "finishing_score": 35.9,
@@ -642,7 +642,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.9,
           "finishing_score": 38.1,
@@ -653,7 +653,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.4,
           "finishing_score": 38.4,
@@ -664,7 +664,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.4,
           "finishing_score": 38.4,
@@ -675,7 +675,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 37.9,
           "finishing_score": 39.5,
@@ -686,7 +686,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.2,
           "dressage_score": 33.3,
           "finishing_score": 39.7,
@@ -697,7 +697,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.9,
           "finishing_score": 39.9,
@@ -708,7 +708,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.1,
           "finishing_score": 40.1,
@@ -719,7 +719,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 6.0,
           "dressage_score": 33.7,
           "finishing_score": 40.1,
@@ -730,7 +730,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 11.0,
           "dressage_score": 29.1,
           "finishing_score": 40.5,
@@ -741,7 +741,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.9,
           "finishing_score": 41.5,
@@ -752,7 +752,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 3.2,
           "dressage_score": 33.7,
           "finishing_score": 41.7,
@@ -763,7 +763,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.8,
           "finishing_score": 42.0,
@@ -774,7 +774,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 6.4,
           "dressage_score": 31.8,
           "finishing_score": 43.4,
@@ -785,7 +785,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.9,
           "finishing_score": 43.9,
@@ -796,7 +796,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.2,
           "dressage_score": 34.1,
           "finishing_score": 44.1,
@@ -807,7 +807,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 4.0,
           "dressage_score": 32.2,
           "finishing_score": 45.4,
@@ -818,7 +818,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 36.7,
           "finishing_score": 45.5,
@@ -829,7 +829,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 35.2,
           "finishing_score": 47.2,
@@ -840,7 +840,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.6,
           "dressage_score": 37.2,
           "finishing_score": 48.4,
@@ -851,7 +851,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 2.0,
           "dressage_score": 37.5,
           "finishing_score": 49.1,
@@ -862,7 +862,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.3,
           "finishing_score": 56.1,
@@ -873,7 +873,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 26.8,
           "dressage_score": 32.5,
           "finishing_score": 60.1,
@@ -884,7 +884,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 4.8,
           "dressage_score": 39.1,
           "finishing_score": 61.5,
@@ -895,7 +895,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 2.4,
           "dressage_score": 39.9,
           "finishing_score": 62.7,
@@ -906,7 +906,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 24.4,
           "dressage_score": 33.9,
           "finishing_score": 65.1,
@@ -917,7 +917,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 27.6,
           "dressage_score": 35.5,
           "finishing_score": 72.3,
@@ -928,7 +928,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 30.4,
           "dressage_score": 31.2,
           "finishing_score": 75.6,
@@ -939,7 +939,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 36.8,
           "dressage_score": 34.1,
           "finishing_score": 78.9,
@@ -950,7 +950,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 44.4,
           "dressage_score": 37.5,
           "finishing_score": 81.9,
@@ -961,7 +961,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 62.4,
           "dressage_score": 33.3,
           "finishing_score": 95.7,
@@ -977,154 +977,143 @@
       "country": "SWE",
       "event_date": "2026-08-26",
       "event_name": "Segersj\u00f6 \u00b7 CCI3*-S",
-      "latest_collected_at": "2026-08-30T14:02:12+00:00",
+      "latest_collected_at": "2026-08-30T14:26:51+00:00",
       "level": "CCI3*-S",
-      "result_count": 13,
+      "result_count": 12,
       "source_ids": [
         "rechenstelle"
       ],
       "standings": [
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
-          "cross_country_penalties": 1.2,
-          "dressage_score": 34.1,
-          "finishing_score": 35.3,
-          "horse_name": "A Star Is Born Vuo",
-          "rank": 1,
-          "rider_name": "Niklas LINDB\u00c4CK (SWE)",
-          "show_jumping_penalties": 0.0,
-          "source_id": "rechenstelle"
-        },
-        {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 4.0,
           "dressage_score": 34.4,
           "finishing_score": 38.4,
           "horse_name": "Zixten af Tollstad",
-          "rank": 2,
+          "rank": 1,
           "rider_name": "Katrin NORLING (SWE)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
-          "cross_country_penalties": 5.6,
-          "dressage_score": 33.7,
+          "collected_at": "2026-08-30T14:26:51+00:00",
+          "cross_country_penalties": 1.2,
+          "dressage_score": 34.1,
           "finishing_score": 39.3,
-          "horse_name": "Crottys Rock",
-          "rank": 3,
-          "rider_name": "Anna NILSSON (SWE)",
-          "show_jumping_penalties": 0.0,
+          "horse_name": "A Star Is Born Vuo",
+          "rank": 2,
+          "rider_name": "Niklas LINDB\u00c4CK (SWE)",
+          "show_jumping_penalties": 4.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 40.7,
           "finishing_score": 40.7,
           "horse_name": "Canela",
-          "rank": 4,
+          "rank": 3,
           "rider_name": "Jenny GLEBENIUS (SWE)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 2.0,
           "dressage_score": 42.2,
-          "finishing_score": 44.2,
+          "finishing_score": 48.2,
           "horse_name": "Lucky Twist",
-          "rank": 5,
+          "rank": 4,
           "rider_name": "Selma KVARNSTRAND (SWE)",
-          "show_jumping_penalties": 0.0,
+          "show_jumping_penalties": 4.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
+          "cross_country_penalties": 5.6,
+          "dressage_score": 33.7,
+          "finishing_score": 54.5,
+          "horse_name": "Crottys Rock",
+          "rank": 5,
+          "rider_name": "Anna NILSSON (SWE)",
+          "show_jumping_penalties": 15.2,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 9.2,
           "dressage_score": 38.0,
-          "finishing_score": 47.2,
+          "finishing_score": 55.2,
           "horse_name": "Delelia",
           "rank": 6,
           "rider_name": "Moa ELOFSSON (SWE)",
-          "show_jumping_penalties": 0.0,
+          "show_jumping_penalties": 8.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 16.4,
           "dressage_score": 39.5,
-          "finishing_score": 55.9,
+          "finishing_score": 57.1,
           "horse_name": "Kingen",
           "rank": 7,
           "rider_name": "Sophia FOLKESSON (SWE)",
-          "show_jumping_penalties": 0.0,
+          "show_jumping_penalties": 1.2,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
-          "cross_country_penalties": 25.6,
-          "dressage_score": 37.0,
-          "finishing_score": 62.6,
-          "horse_name": "Nash",
-          "rank": 8,
-          "rider_name": "Kai R\u00dcDER (GER)",
-          "show_jumping_penalties": 0.0,
-          "source_id": "rechenstelle"
-        },
-        {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 30.0,
           "dressage_score": 33.5,
-          "finishing_score": 63.5,
+          "finishing_score": 67.5,
           "horse_name": "Oakvalley Quickster",
-          "rank": 9,
+          "rank": 8,
           "rider_name": "Nicole PALM (SWE)",
-          "show_jumping_penalties": 0.0,
+          "show_jumping_penalties": 4.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
-          "cross_country_penalties": 29.2,
-          "dressage_score": 35.0,
-          "finishing_score": 64.2,
-          "horse_name": "High Dreams",
-          "rank": 10,
-          "rider_name": "Alva DANIELSSON (SWE)",
-          "show_jumping_penalties": 0.0,
+          "collected_at": "2026-08-30T14:26:51+00:00",
+          "cross_country_penalties": 25.6,
+          "dressage_score": 37.0,
+          "finishing_score": 67.8,
+          "horse_name": "Nash",
+          "rank": 9,
+          "rider_name": "Kai R\u00dcDER (GER)",
+          "show_jumping_penalties": 5.2,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 34.0,
           "dressage_score": 38.6,
           "finishing_score": 72.6,
           "horse_name": "Van Gils SG",
-          "rank": 11,
+          "rank": 10,
           "rider_name": "Niklas LINDB\u00c4CK (SWE)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
-          "cross_country_penalties": 36.8,
-          "dressage_score": 38.6,
-          "finishing_score": 75.4,
-          "horse_name": "Joli Harlem LVST",
-          "rank": 12,
-          "rider_name": "Linnea OP DE WEEGH THVETUS (SWE)",
-          "show_jumping_penalties": 0.0,
+          "collected_at": "2026-08-30T14:26:51+00:00",
+          "cross_country_penalties": 29.2,
+          "dressage_score": 35.0,
+          "finishing_score": 82.2,
+          "horse_name": "High Dreams",
+          "rank": 11,
+          "rider_name": "Alva DANIELSSON (SWE)",
+          "show_jumping_penalties": 18.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 45.6,
           "dressage_score": 45.0,
-          "finishing_score": 102.6,
+          "finishing_score": 110.6,
           "horse_name": "Ebony Angel",
-          "rank": 13,
+          "rank": 12,
           "rider_name": "Zophia ZANDER NORELL (SWE)",
-          "show_jumping_penalties": 12.0,
+          "show_jumping_penalties": 20.0,
           "source_id": "rechenstelle"
         }
       ]
@@ -1133,7 +1122,7 @@
       "country": "GER",
       "event_date": "2026-08-21",
       "event_name": "Hambach \u00b7 CCI3*-S",
-      "latest_collected_at": "2026-08-30T14:02:12+00:00",
+      "latest_collected_at": "2026-08-30T14:26:51+00:00",
       "level": "CCI3*-S",
       "result_count": 38,
       "source_ids": [
@@ -1141,7 +1130,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.4,
           "finishing_score": 30.4,
@@ -1152,7 +1141,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.6,
           "dressage_score": 30.3,
           "finishing_score": 31.9,
@@ -1163,7 +1152,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.6,
           "finishing_score": 35.6,
@@ -1174,7 +1163,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 28.2,
           "finishing_score": 36.2,
@@ -1185,7 +1174,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 6.4,
           "dressage_score": 31.4,
           "finishing_score": 37.8,
@@ -1196,7 +1185,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.6,
           "dressage_score": 40.3,
           "finishing_score": 41.9,
@@ -1207,7 +1196,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 12.0,
           "dressage_score": 30.8,
           "finishing_score": 42.8,
@@ -1218,7 +1207,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 11.6,
           "dressage_score": 32.8,
           "finishing_score": 45.6,
@@ -1229,7 +1218,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 3.2,
           "dressage_score": 38.6,
           "finishing_score": 45.8,
@@ -1240,7 +1229,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 38.5,
           "finishing_score": 46.5,
@@ -1251,7 +1240,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 14.4,
           "dressage_score": 32.5,
           "finishing_score": 46.9,
@@ -1262,7 +1251,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 3.2,
           "dressage_score": 39.6,
           "finishing_score": 47.2,
@@ -1273,7 +1262,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 16.8,
           "dressage_score": 31.9,
           "finishing_score": 49.1,
@@ -1284,7 +1273,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 11.2,
           "dressage_score": 34.1,
           "finishing_score": 49.3,
@@ -1295,7 +1284,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 10.4,
           "dressage_score": 37.5,
           "finishing_score": 51.9,
@@ -1306,7 +1295,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 23.8,
           "dressage_score": 28.8,
           "finishing_score": 52.6,
@@ -1317,7 +1306,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 3.2,
           "dressage_score": 37.3,
           "finishing_score": 52.9,
@@ -1328,7 +1317,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 12.8,
           "dressage_score": 36.1,
           "finishing_score": 52.9,
@@ -1339,7 +1328,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 4.4,
           "dressage_score": 38.2,
           "finishing_score": 54.6,
@@ -1350,7 +1339,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 9.6,
           "dressage_score": 40.3,
           "finishing_score": 57.9,
@@ -1361,7 +1350,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 17.6,
           "dressage_score": 40.5,
           "finishing_score": 58.1,
@@ -1372,7 +1361,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 7.6,
           "dressage_score": 34.9,
           "finishing_score": 58.5,
@@ -1383,7 +1372,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 10.0,
           "dressage_score": 40.0,
           "finishing_score": 60.4,
@@ -1394,7 +1383,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 8.8,
           "dressage_score": 37.3,
           "finishing_score": 60.5,
@@ -1405,7 +1394,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 8.0,
           "dressage_score": 36.1,
           "finishing_score": 60.9,
@@ -1416,7 +1405,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 42.8,
           "dressage_score": 24.8,
           "finishing_score": 68.8,
@@ -1427,7 +1416,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 30.2,
           "dressage_score": 36.9,
           "finishing_score": 69.1,
@@ -1438,7 +1427,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 15.2,
           "dressage_score": 42.5,
           "finishing_score": 70.1,
@@ -1449,7 +1438,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 34.4,
           "dressage_score": 37.4,
           "finishing_score": 71.8,
@@ -1460,7 +1449,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 29.6,
           "dressage_score": 45.9,
           "finishing_score": 75.5,
@@ -1471,7 +1460,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 34.0,
           "dressage_score": 36.6,
           "finishing_score": 77.4,
@@ -1482,7 +1471,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 27.0,
           "dressage_score": 47.5,
           "finishing_score": 80.1,
@@ -1493,7 +1482,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 40.4,
           "dressage_score": 40.1,
           "finishing_score": 82.1,
@@ -1504,7 +1493,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 47.2,
           "dressage_score": 37.4,
           "finishing_score": 91.0,
@@ -1515,7 +1504,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 48.8,
           "dressage_score": 45.0,
           "finishing_score": 97.8,
@@ -1526,7 +1515,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 78.0,
           "dressage_score": 33.5,
           "finishing_score": 117.9,
@@ -1537,7 +1526,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 106.0,
           "dressage_score": 25.8,
           "finishing_score": 137.0,
@@ -1548,7 +1537,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 100.8,
           "dressage_score": 31.4,
           "finishing_score": 141.4,
@@ -1564,7 +1553,7 @@
       "country": "GER",
       "event_date": "2026-08-21",
       "event_name": "Hambach \u00b7 CCI2*-S",
-      "latest_collected_at": "2026-08-30T14:02:12+00:00",
+      "latest_collected_at": "2026-08-30T14:26:51+00:00",
       "level": "CCI2*-S",
       "result_count": 44,
       "source_ids": [
@@ -1572,7 +1561,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 2.0,
           "dressage_score": 27.6,
           "finishing_score": 29.6,
@@ -1583,7 +1572,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.3,
           "finishing_score": 30.3,
@@ -1594,7 +1583,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.1,
           "finishing_score": 31.1,
@@ -1605,7 +1594,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.3,
           "finishing_score": 32.3,
@@ -1616,7 +1605,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.8,
           "dressage_score": 31.9,
           "finishing_score": 32.7,
@@ -1627,7 +1616,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 4.0,
           "dressage_score": 29.1,
           "finishing_score": 33.1,
@@ -1638,7 +1627,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.1,
           "finishing_score": 34.1,
@@ -1649,7 +1638,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.6,
           "dressage_score": 33.0,
           "finishing_score": 34.6,
@@ -1660,7 +1649,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 3.2,
           "dressage_score": 32.8,
           "finishing_score": 36.0,
@@ -1671,7 +1660,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.5,
           "finishing_score": 36.5,
@@ -1682,7 +1671,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.8,
           "finishing_score": 37.8,
@@ -1693,7 +1682,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.9,
           "finishing_score": 37.9,
@@ -1704,7 +1693,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 6.4,
           "dressage_score": 31.7,
           "finishing_score": 38.1,
@@ -1715,7 +1704,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 3.2,
           "dressage_score": 31.0,
           "finishing_score": 38.2,
@@ -1726,7 +1715,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 2.8,
           "dressage_score": 31.6,
           "finishing_score": 38.4,
@@ -1737,7 +1726,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.2,
           "finishing_score": 40.2,
@@ -1748,7 +1737,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 2.0,
           "dressage_score": 34.8,
           "finishing_score": 40.8,
@@ -1759,7 +1748,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 3.2,
           "dressage_score": 32.6,
           "finishing_score": 41.0,
@@ -1770,7 +1759,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 6.4,
           "dressage_score": 35.1,
           "finishing_score": 41.5,
@@ -1781,7 +1770,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.2,
           "dressage_score": 29.4,
           "finishing_score": 42.6,
@@ -1792,7 +1781,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 4.8,
           "dressage_score": 35.1,
           "finishing_score": 43.9,
@@ -1803,7 +1792,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.4,
           "finishing_score": 45.4,
@@ -1814,7 +1803,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.7,
           "finishing_score": 45.7,
@@ -1825,7 +1814,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 43.4,
           "finishing_score": 47.4,
@@ -1836,7 +1825,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 3.6,
           "dressage_score": 36.5,
           "finishing_score": 49.3,
@@ -1847,7 +1836,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 8.8,
           "dressage_score": 39.1,
           "finishing_score": 51.9,
@@ -1858,7 +1847,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 18.4,
           "dressage_score": 36.7,
           "finishing_score": 55.1,
@@ -1869,7 +1858,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 6.4,
           "dressage_score": 38.5,
           "finishing_score": 56.9,
@@ -1880,7 +1869,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 4.8,
           "dressage_score": 36.5,
           "finishing_score": 57.7,
@@ -1891,7 +1880,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 8.0,
           "dressage_score": 34.4,
           "finishing_score": 58.4,
@@ -1902,7 +1891,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 24.4,
           "dressage_score": 31.5,
           "finishing_score": 59.9,
@@ -1913,7 +1902,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 29.6,
           "dressage_score": 30.8,
           "finishing_score": 60.8,
@@ -1924,7 +1913,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 20.0,
           "dressage_score": 30.2,
           "finishing_score": 62.2,
@@ -1935,7 +1924,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 28.4,
           "dressage_score": 32.2,
           "finishing_score": 64.6,
@@ -1946,7 +1935,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 32.0,
           "dressage_score": 33.9,
           "finishing_score": 65.9,
@@ -1957,7 +1946,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 35.2,
           "dressage_score": 35.3,
           "finishing_score": 74.5,
@@ -1968,7 +1957,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 37.2,
           "dressage_score": 28.1,
           "finishing_score": 77.3,
@@ -1979,7 +1968,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 52.8,
           "dressage_score": 31.9,
           "finishing_score": 84.7,
@@ -1990,7 +1979,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 46.8,
           "dressage_score": 33.9,
           "finishing_score": 88.7,
@@ -2001,7 +1990,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 31.2,
           "dressage_score": 33.5,
           "finishing_score": 89.1,
@@ -2012,7 +2001,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 54.4,
           "dressage_score": 34.9,
           "finishing_score": 89.3,
@@ -2023,7 +2012,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 34.0,
           "dressage_score": 32.8,
           "finishing_score": 91.2,
@@ -2034,7 +2023,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 71.6,
           "dressage_score": 35.7,
           "finishing_score": 120.9,
@@ -2045,7 +2034,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 88.4,
           "dressage_score": 35.8,
           "finishing_score": 128.2,
@@ -2061,7 +2050,7 @@
       "country": "GER",
       "event_date": "2026-08-21",
       "event_name": "Hambach \u00b7 CCI1*-Intro",
-      "latest_collected_at": "2026-08-30T14:02:12+00:00",
+      "latest_collected_at": "2026-08-30T14:26:51+00:00",
       "level": "CCI1*-Intro",
       "result_count": 47,
       "source_ids": [
@@ -2069,7 +2058,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.4,
           "finishing_score": 29.4,
@@ -2080,7 +2069,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.2,
           "finishing_score": 31.2,
@@ -2091,7 +2080,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.0,
           "finishing_score": 32.0,
@@ -2102,7 +2091,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.1,
           "finishing_score": 32.1,
@@ -2113,7 +2102,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 28.2,
           "finishing_score": 32.6,
@@ -2124,7 +2113,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 26.7,
           "finishing_score": 34.7,
@@ -2135,7 +2124,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.9,
           "finishing_score": 34.7,
@@ -2146,7 +2135,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.5,
           "finishing_score": 34.9,
@@ -2157,7 +2146,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.8,
           "finishing_score": 35.2,
@@ -2168,7 +2157,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 35.7,
           "finishing_score": 35.7,
@@ -2179,7 +2168,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 35.9,
           "finishing_score": 35.9,
@@ -2190,7 +2179,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.3,
           "finishing_score": 37.7,
@@ -2201,7 +2190,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.5,
           "finishing_score": 38.5,
@@ -2212,7 +2201,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.8,
           "finishing_score": 38.8,
@@ -2223,7 +2212,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 28.9,
           "finishing_score": 38.9,
@@ -2234,7 +2223,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 38.6,
           "finishing_score": 39.8,
@@ -2245,7 +2234,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 36.0,
           "finishing_score": 40.0,
@@ -2256,7 +2245,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.6,
           "dressage_score": 34.6,
           "finishing_score": 40.2,
@@ -2267,7 +2256,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 37.0,
           "finishing_score": 41.0,
@@ -2278,7 +2267,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 7.2,
           "dressage_score": 33.9,
           "finishing_score": 41.1,
@@ -2289,7 +2278,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.1,
           "finishing_score": 41.1,
@@ -2300,7 +2289,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 36.1,
           "finishing_score": 41.3,
@@ -2311,7 +2300,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.3,
           "finishing_score": 41.3,
@@ -2322,7 +2311,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 37.3,
           "finishing_score": 41.3,
@@ -2333,7 +2322,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 37.0,
           "finishing_score": 41.8,
@@ -2344,7 +2333,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 38.8,
           "finishing_score": 42.8,
@@ -2355,7 +2344,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.2,
           "finishing_score": 42.8,
@@ -2366,7 +2355,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.4,
           "finishing_score": 43.6,
@@ -2377,7 +2366,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 37.5,
           "finishing_score": 44.3,
@@ -2388,7 +2377,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 10.8,
           "dressage_score": 33.4,
           "finishing_score": 44.6,
@@ -2399,7 +2388,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 4.4,
           "dressage_score": 37.5,
           "finishing_score": 45.9,
@@ -2410,7 +2399,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 44.0,
           "finishing_score": 49.6,
@@ -2421,7 +2410,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 6.4,
           "dressage_score": 37.0,
           "finishing_score": 51.0,
@@ -2432,7 +2421,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 7.6,
           "dressage_score": 35.3,
           "finishing_score": 51.7,
@@ -2443,7 +2432,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 40.8,
           "finishing_score": 52.8,
@@ -2454,7 +2443,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 42.1,
           "finishing_score": 54.1,
@@ -2465,7 +2454,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 37.1,
           "finishing_score": 54.3,
@@ -2476,7 +2465,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 6.0,
           "dressage_score": 37.4,
           "finishing_score": 54.6,
@@ -2487,7 +2476,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 22.8,
           "dressage_score": 33.3,
           "finishing_score": 56.1,
@@ -2498,7 +2487,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 47.2,
           "finishing_score": 57.2,
@@ -2509,7 +2498,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 6.4,
           "dressage_score": 43.8,
           "finishing_score": 62.2,
@@ -2520,7 +2509,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 11.2,
           "dressage_score": 46.5,
           "finishing_score": 65.3,
@@ -2531,7 +2520,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 20.8,
           "dressage_score": 33.8,
           "finishing_score": 69.0,
@@ -2542,7 +2531,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 47.7,
           "finishing_score": 75.3,
@@ -2553,7 +2542,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 40.0,
           "dressage_score": 37.5,
           "finishing_score": 85.5,
@@ -2564,7 +2553,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 31.2,
           "dressage_score": 41.7,
           "finishing_score": 86.1,
@@ -2575,7 +2564,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 73.6,
           "dressage_score": 36.3,
           "finishing_score": 117.9,
@@ -2591,7 +2580,7 @@
       "country": "GER",
       "event_date": "2026-08-11",
       "event_name": "Aachen \u00b7 CH-M-C",
-      "latest_collected_at": "2026-08-30T14:02:12+00:00",
+      "latest_collected_at": "2026-08-30T14:26:51+00:00",
       "level": "CH-M-C",
       "result_count": 59,
       "source_ids": [
@@ -2599,7 +2588,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 23.0,
           "finishing_score": 23.0,
@@ -2610,7 +2599,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 23.4,
           "finishing_score": 23.4,
@@ -2621,7 +2610,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.8,
           "dressage_score": 22.8,
           "finishing_score": 28.0,
@@ -2632,7 +2621,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.0,
           "finishing_score": 30.0,
@@ -2643,7 +2632,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.6,
           "dressage_score": 29.3,
           "finishing_score": 30.9,
@@ -2654,7 +2643,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 4.8,
           "dressage_score": 26.9,
           "finishing_score": 31.7,
@@ -2665,7 +2654,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 2.0,
           "dressage_score": 26.6,
           "finishing_score": 32.6,
@@ -2676,7 +2665,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.8,
           "dressage_score": 30.3,
           "finishing_score": 32.7,
@@ -2687,7 +2676,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 3.2,
           "dressage_score": 28.6,
           "finishing_score": 33.0,
@@ -2698,7 +2687,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 6.4,
           "dressage_score": 28.5,
           "finishing_score": 34.9,
@@ -2709,7 +2698,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.2,
           "dressage_score": 31.5,
           "finishing_score": 36.7,
@@ -2720,7 +2709,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 4.8,
           "dressage_score": 32.5,
           "finishing_score": 37.3,
@@ -2731,7 +2720,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 6.4,
           "dressage_score": 30.9,
           "finishing_score": 37.3,
@@ -2742,7 +2731,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 37.6,
           "finishing_score": 37.6,
@@ -2753,7 +2742,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 2.8,
           "dressage_score": 35.3,
           "finishing_score": 38.1,
@@ -2764,7 +2753,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.4,
           "finishing_score": 38.6,
@@ -2775,7 +2764,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 13.6,
           "dressage_score": 22.0,
           "finishing_score": 39.6,
@@ -2786,7 +2775,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.5,
           "finishing_score": 40.3,
@@ -2797,7 +2786,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 8.0,
           "dressage_score": 29.0,
           "finishing_score": 41.0,
@@ -2808,7 +2797,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.2,
           "dressage_score": 32.6,
           "finishing_score": 41.8,
@@ -2819,7 +2808,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 8.4,
           "dressage_score": 33.7,
           "finishing_score": 42.1,
@@ -2830,7 +2819,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 5.2,
           "dressage_score": 29.3,
           "finishing_score": 43.3,
@@ -2841,7 +2830,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 10.4,
           "dressage_score": 30.1,
           "finishing_score": 44.5,
@@ -2852,7 +2841,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 7.6,
           "dressage_score": 32.8,
           "finishing_score": 44.8,
@@ -2863,7 +2852,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 12.4,
           "dressage_score": 33.2,
           "finishing_score": 45.6,
@@ -2874,7 +2863,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 4.8,
           "dressage_score": 28.9,
           "finishing_score": 45.7,
@@ -2885,7 +2874,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 12.4,
           "dressage_score": 32.6,
           "finishing_score": 46.2,
@@ -2896,7 +2885,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 12.0,
           "dressage_score": 31.0,
           "finishing_score": 47.0,
@@ -2907,7 +2896,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 7.2,
           "dressage_score": 33.5,
           "finishing_score": 48.7,
@@ -2918,7 +2907,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 12.0,
           "dressage_score": 35.1,
           "finishing_score": 51.5,
@@ -2929,7 +2918,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 18.4,
           "dressage_score": 29.2,
           "finishing_score": 52.0,
@@ -2940,7 +2929,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 5.2,
           "dressage_score": 32.2,
           "finishing_score": 53.4,
@@ -2951,7 +2940,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 18.8,
           "dressage_score": 31.7,
           "finishing_score": 54.5,
@@ -2962,7 +2951,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 15.6,
           "dressage_score": 34.4,
           "finishing_score": 54.8,
@@ -2973,7 +2962,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 11.6,
           "dressage_score": 34.9,
           "finishing_score": 55.3,
@@ -2984,7 +2973,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.8,
           "dressage_score": 33.9,
           "finishing_score": 55.9,
@@ -2995,7 +2984,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 1.2,
           "dressage_score": 34.2,
           "finishing_score": 56.6,
@@ -3006,7 +2995,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 0.8,
           "dressage_score": 39.0,
           "finishing_score": 57.4,
@@ -3017,7 +3006,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 30.4,
           "dressage_score": 27.2,
           "finishing_score": 57.6,
@@ -3028,7 +3017,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 25.2,
           "dressage_score": 29.7,
           "finishing_score": 60.1,
@@ -3039,7 +3028,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 25.8,
           "dressage_score": 31.3,
           "finishing_score": 61.1,
@@ -3050,7 +3039,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 24.4,
           "dressage_score": 31.2,
           "finishing_score": 63.6,
@@ -3061,7 +3050,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 13.2,
           "dressage_score": 40.3,
           "finishing_score": 63.9,
@@ -3072,7 +3061,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 16.8,
           "dressage_score": 36.3,
           "finishing_score": 67.5,
@@ -3083,7 +3072,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 28.4,
           "dressage_score": 41.0,
           "finishing_score": 73.4,
@@ -3094,7 +3083,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 37.2,
           "dressage_score": 37.6,
           "finishing_score": 75.6,
@@ -3105,7 +3094,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 32.4,
           "dressage_score": 38.8,
           "finishing_score": 76.8,
@@ -3116,7 +3105,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 34.0,
           "dressage_score": 30.6,
           "finishing_score": 81.0,
@@ -3127,7 +3116,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 30.0,
           "dressage_score": 38.3,
           "finishing_score": 81.1,
@@ -3138,7 +3127,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 30.0,
           "dressage_score": 41.9,
           "finishing_score": 84.7,
@@ -3149,7 +3138,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 35.2,
           "dressage_score": 35.1,
           "finishing_score": 86.3,
@@ -3160,7 +3149,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 25.2,
           "dressage_score": 44.0,
           "finishing_score": 86.8,
@@ -3171,7 +3160,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 36.4,
           "dressage_score": 37.5,
           "finishing_score": 87.1,
@@ -3182,7 +3171,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 47.2,
           "dressage_score": 39.0,
           "finishing_score": 87.4,
@@ -3193,7 +3182,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 53.6,
           "dressage_score": 32.6,
           "finishing_score": 95.0,
@@ -3204,7 +3193,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 50.0,
           "dressage_score": 33.3,
           "finishing_score": 101.3,
@@ -3215,7 +3204,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 36.0,
           "dressage_score": 35.3,
           "finishing_score": 101.7,
@@ -3226,7 +3215,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 42.0,
           "dressage_score": 44.6,
           "finishing_score": 106.6,
@@ -3237,7 +3226,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-08-30T14:02:12+00:00",
+          "collected_at": "2026-08-30T14:26:51+00:00",
           "cross_country_penalties": 132.8,
           "dressage_score": 34.1,
           "finishing_score": 181.3,
@@ -3250,9 +3239,9 @@
       ]
     }
   ],
-  "generated_at": "2026-08-30T14:02:12+00:00",
-  "latest_collected_at": "2026-08-30T14:02:12+00:00",
-  "result_count": 287,
+  "generated_at": "2026-08-30T14:26:51+00:00",
+  "latest_collected_at": "2026-08-30T14:26:51+00:00",
+  "result_count": 286,
   "source_ids": [
     "rechenstelle"
   ],

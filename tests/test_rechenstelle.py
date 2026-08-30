@@ -5838,6 +5838,99 @@ SEGERSJO_CCI3_SATURDAY_XC_HTML = """
 </html>
 """
 
+SEGERSJO_CCI3_SUNDAY_SJ_COMPLETE_HTML = """
+<html>
+  <head><title>LeaderBoard · Segersjö 2026 · CCI3*-S</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Aug 30 2026  4:26PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>118</td>
+          <td class="riderCell"><span class="riderName">Katrin NORLING</span></td>
+          <td><img src="../../../../flags/SWE.PNG" alt="SWE"></td>
+          <td class="horseCell"><span class="horseName">Zixten af Tollstad</span></td>
+          <td>302,0</td>
+          <td>65,65</td>
+          <td>34,4</td>
+          <td>5.</td>
+          <td>4,0</td>
+          <td>06:14</td>
+          <td>38,4</td>
+          <td>2.</td>
+          <td>0,0</td>
+          <td>70,15</td>
+          <td>38,4</td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>102</td>
+          <td class="riderCell"><span class="riderName">Niklas LINDB&Auml;CK</span></td>
+          <td><img src="../../../../flags/SWE.PNG" alt="SWE"></td>
+          <td class="horseCell"><span class="horseName">A Star Is Born Vuo</span></td>
+          <td>303,0</td>
+          <td>65,87</td>
+          <td>34,1</td>
+          <td>4.</td>
+          <td>1,2</td>
+          <td>06:07</td>
+          <td>35,3</td>
+          <td>1.</td>
+          <td>4,0</td>
+          <td>67,94</td>
+          <td>39,3</td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>103</td>
+          <td class="riderCell"><span class="riderName">Jenny GLEBENIUS</span></td>
+          <td><img src="../../../../flags/SWE.PNG" alt="SWE"></td>
+          <td class="horseCell"><span class="horseName">Canela</span></td>
+          <td>273,0</td>
+          <td>59,35</td>
+          <td>40,7</td>
+          <td>15.</td>
+          <td>0,0</td>
+          <td>06:00</td>
+          <td>40,7</td>
+          <td>4.</td>
+          <td>0,0</td>
+          <td>69,04</td>
+          <td>40,7</td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>111</td>
+          <td class="riderCell"><span class="riderName">Linnea OP DE WEEGH THVETUS</span></td>
+          <td><img src="../../../../flags/SWE.PNG" alt="SWE"></td>
+          <td class="horseCell"><span class="horseName">Joli Harlem LVST</span></td>
+          <td>282,5</td>
+          <td>61,41</td>
+          <td>38,6</td>
+          <td>12.</td>
+          <td>36,8</td>
+          <td>06:46</td>
+          <td>75,4</td>
+          <td>12.</td>
+          <td></td>
+          <td></td>
+          <td>EL SJ</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 SEGERSJO_YR_JUNA_R_XC_CORRECTION_HTML = """
 <html>
   <head><title>LeaderBoard · Segersjö 2026 · CH-EU-Y-CCI3*-L</title></head>
@@ -7872,6 +7965,36 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(juna.cross_country_jump_penalties, 51.2)
         self.assertEqual(juna.cross_country_time_penalties, 0.0)
         self.assertEqual(juna.finishing_score, 80.2)
+
+    def test_segersjo_cci3_sunday_sj_complete_promotes_zixten_and_skips_el_sj(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/segersjo/leaderboard01.html",
+            event_name="Segersjö · CCI3*-S",
+            level="CCI3*-S",
+            event_date=date(2026, 8, 26),
+            country="SWE",
+        )
+        results = parse_leaderboard_results(SEGERSJO_CCI3_SUNDAY_SJ_COMPLETE_HTML, board=board)
+        self.assertEqual(len(results), 3)
+        by_horse = {result.horse_name: result for result in results}
+        leader = results[0]
+        self.assertEqual(leader.horse_name, "Zixten af Tollstad")
+        self.assertEqual(leader.rider_name, "Katrin NORLING (SWE)")
+        self.assertEqual(leader.dressage_score, 34.4)
+        self.assertEqual(leader.show_jumping_penalties, 0.0)
+        self.assertEqual(leader.cross_country_jump_penalties, 4.0)
+        self.assertEqual(leader.finishing_score, 38.4)
+        star = by_horse["A Star Is Born Vuo"]
+        self.assertEqual(star.rider_name, "Niklas LINDBÄCK (SWE)")
+        self.assertEqual(star.dressage_score, 34.1)
+        self.assertEqual(star.show_jumping_penalties, 4.0)
+        self.assertEqual(star.cross_country_jump_penalties, 1.2)
+        self.assertEqual(star.finishing_score, 39.3)
+        canela = by_horse["Canela"]
+        self.assertEqual(canela.rider_name, "Jenny GLEBENIUS (SWE)")
+        self.assertEqual(canela.show_jumping_penalties, 0.0)
+        self.assertEqual(canela.finishing_score, 40.7)
+        self.assertNotIn("Joli Harlem LVST", by_horse)
 
 
 if __name__ == "__main__":
