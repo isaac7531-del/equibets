@@ -40036,7 +40036,7 @@
       "source_record_id": "rechenstelle:d4430784889e1a97"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -40104,7 +40104,7 @@
       "source_record_id": "rechenstelle:d0353e314d178cf0"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 1.6,
       "cross_country_time_penalties": 0.0,
@@ -40155,7 +40155,7 @@
       "source_record_id": "rechenstelle:ca3c30ccbe59f235"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -40189,7 +40189,7 @@
       "source_record_id": "rechenstelle:487ca2360342240c"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -40240,7 +40240,7 @@
       "source_record_id": "rechenstelle:76c00f476034bab8"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -40257,7 +40257,7 @@
       "source_record_id": "rechenstelle:e52e06709411d439"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 85.6,
       "cross_country_time_penalties": 0.0,
@@ -40268,13 +40268,13 @@
       "is_user_entered": false,
       "level": "CH-EU-Y-CCI3*-L",
       "rider_name": "Caroline VAN ROSSUM (BEL)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 21.2,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:377eb3c8e411f5bf"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 45.2,
       "cross_country_time_penalties": 0.0,
@@ -40291,7 +40291,7 @@
       "source_record_id": "rechenstelle:f2e58516ab5184b3"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 31.8,
       "cross_country_time_penalties": 0.0,
@@ -40308,7 +40308,7 @@
       "source_record_id": "rechenstelle:4eac15f72ff8360c"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 54.0,
       "cross_country_time_penalties": 0.0,
@@ -40325,7 +40325,7 @@
       "source_record_id": "rechenstelle:fa379ac3466cba10"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -40342,7 +40342,7 @@
       "source_record_id": "rechenstelle:d793ecb813c10ffc"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 5.6,
       "cross_country_time_penalties": 0.0,
@@ -40359,7 +40359,7 @@
       "source_record_id": "rechenstelle:0c28832c7c4422fa"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 51.2,
       "cross_country_time_penalties": 0.0,
@@ -40393,7 +40393,7 @@
       "source_record_id": "rechenstelle:fd6ba5185bfa8244"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.8,
       "cross_country_time_penalties": 0.0,
@@ -40427,7 +40427,7 @@
       "source_record_id": "rechenstelle:f7405f0384a7af96"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 29.2,
       "cross_country_time_penalties": 0.0,
@@ -40461,7 +40461,7 @@
       "source_record_id": "rechenstelle:9aeee2017b64db4d"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 12.4,
       "cross_country_time_penalties": 0.0,
@@ -40546,7 +40546,7 @@
       "source_record_id": "rechenstelle:5ab091b7485f7907"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 3.2,
       "cross_country_time_penalties": 0.0,
@@ -40563,7 +40563,7 @@
       "source_record_id": "rechenstelle:bcb45493b6c1514c"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 3.2,
       "cross_country_time_penalties": 0.0,
@@ -40597,7 +40597,7 @@
       "source_record_id": "rechenstelle:0f87f16a0967d484"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 14.6,
       "cross_country_time_penalties": 0.0,
@@ -40648,7 +40648,7 @@
       "source_record_id": "rechenstelle:6bd941a230297eca"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 18.8,
       "cross_country_time_penalties": 0.0,
@@ -40699,7 +40699,7 @@
       "source_record_id": "rechenstelle:0504d00330adaf18"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 2.4,
       "cross_country_time_penalties": 0.0,
@@ -40767,7 +40767,7 @@
       "source_record_id": "rechenstelle:77e4b2835770861c"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 51.6,
       "cross_country_time_penalties": 0.0,
@@ -40801,7 +40801,7 @@
       "source_record_id": "rechenstelle:64bfbcabff68c361"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 2.4,
       "cross_country_time_penalties": 0.0,
@@ -40818,7 +40818,7 @@
       "source_record_id": "rechenstelle:4372124424682fba"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 9.2,
       "cross_country_time_penalties": 0.0,
@@ -40835,7 +40835,7 @@
       "source_record_id": "rechenstelle:77c133096a5d137d"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 1.6,
       "cross_country_time_penalties": 0.0,
@@ -40852,7 +40852,7 @@
       "source_record_id": "rechenstelle:af093176777a3c13"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.8,
       "cross_country_time_penalties": 0.0,
@@ -40869,7 +40869,7 @@
       "source_record_id": "rechenstelle:64b6d04f56ec7fb6"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 45.2,
       "cross_country_time_penalties": 0.0,
@@ -40937,7 +40937,7 @@
       "source_record_id": "rechenstelle:371ef061ac730ec7"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41039,7 +41039,7 @@
       "source_record_id": "rechenstelle:8117c84aafdf2ebe"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41124,7 +41124,7 @@
       "source_record_id": "rechenstelle:a8fe21cab9d2f33a"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 11.2,
       "cross_country_time_penalties": 0.0,
@@ -41209,7 +41209,7 @@
       "source_record_id": "rechenstelle:be45acf1fae77fbd"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41243,7 +41243,7 @@
       "source_record_id": "rechenstelle:cf669b8f279d6e37"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41260,7 +41260,7 @@
       "source_record_id": "rechenstelle:b28c057cb1947610"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 11.0,
       "cross_country_time_penalties": 0.0,
@@ -41328,7 +41328,7 @@
       "source_record_id": "rechenstelle:13f165682c6c7745"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.8,
       "cross_country_time_penalties": 0.0,
@@ -41345,7 +41345,7 @@
       "source_record_id": "rechenstelle:2611a64ddb4b5d81"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41362,7 +41362,7 @@
       "source_record_id": "rechenstelle:66339ef2efd6f611"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 3.6,
       "cross_country_time_penalties": 0.0,
@@ -41396,7 +41396,7 @@
       "source_record_id": "rechenstelle:dae87fa034825c1b"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 18.4,
       "cross_country_time_penalties": 0.0,
@@ -41464,7 +41464,7 @@
       "source_record_id": "rechenstelle:48c7a463d1a2dd82"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 46.8,
       "cross_country_time_penalties": 0.0,
@@ -41549,7 +41549,7 @@
       "source_record_id": "rechenstelle:29f78e5e43991da6"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41600,7 +41600,7 @@
       "source_record_id": "rechenstelle:f1d93c39b4f0f824"
     },
     {
-      "collected_at": "2026-08-30T07:05:18+00:00",
+      "collected_at": "2026-08-30T11:18:40+00:00",
       "country": "SWE",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41669,6 +41669,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-08-30T10:09:46+00:00",
+  "updated_at": "2026-08-30T11:19:01+00:00",
   "version": 1
 }
