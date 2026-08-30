@@ -90,6 +90,24 @@ SAMPLE_HTML = """
           <td class="borderCell">WDbSJ</td>
         </tr>
         <tr class="parent0">
+          <td><strong></strong></td>
+          <td>256</td>
+          <td class="riderCell"><span class="riderName">Savannah CARLESUND</span></td>
+          <td><img src="../../../../flags/SWE.PNG" alt="SWE"></td>
+          <td class="horseCell"><span class="horseName">First Choice 33</span></td>
+          <td>388,5</td>
+          <td>61,67</td>
+          <td>38,3</td>
+          <td>36.</td>
+          <td>0,0</td>
+          <td>07:19</td>
+          <td>38,3</td>
+          <td>36.</td>
+          <td></td>
+          <td></td>
+          <td class="borderCell">NAbSJ</td>
+        </tr>
+        <tr class="parent0">
           <td></td>
           <td>111</td>
           <td class="riderCell"><span class="riderName">Kaylawna SMITH-COOK</span></td>

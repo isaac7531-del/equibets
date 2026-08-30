@@ -154,10 +154,11 @@ class RechenstelleBoard:
 
 
 # Rechenstelle marks retirements/withdrawals with compact tokens such as WD,
-# WDbDRE, WDbSJ, EL, ELcDRE, RT, and RTcDRE. Accept any WD/EL/RT suffix so
-# phase-specific forms are skipped when they leave the scored field.
+# WDbDRE, WDbSJ, NAbSJ (not accepted before show jumping), EL, ELcDRE, RT,
+# and RTcDRE. Accept any WD/EL/RT/NAb suffix so phase-specific forms are
+# skipped when they leave the scored field.
 STATUS_TOKEN_RE = re.compile(
-    r"\b(?:WD\w*|EL\w*|RET|RT\w*|DNS|DSQ)\b",
+    r"\b(?:WD\w*|NAb\w*|EL\w*|RET|RT\w*|DNS|DSQ)\b",
     re.IGNORECASE,
 )
 
