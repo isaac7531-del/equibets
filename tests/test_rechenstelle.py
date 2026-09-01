@@ -8,6 +8,7 @@ from datetime import date, datetime, timezone
 from equibets.rechenstelle import (
     RechenstelleBoard,
     _LeaderboardParser,
+    burghley_sep_2026_boards,
     hambach_aug_2026_boards,
     parse_leaderboard_results,
     segersjo_aug_2026_boards,
@@ -4862,6 +4863,51 @@ SEGERSJO_START_LIST_HTML = """
 </html>
 """
 
+BURGHLEY_START_LIST_HTML = """
+<html>
+  <head><title>LeaderBoard · Burghley 2026 · CCI5*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep  1 2026  2:31PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td></td>
+          <td>10</td>
+          <td class="riderCell"><span class="riderName">Sarah BULLIMORE</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Corimiro</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>42</td>
+          <td class="riderCell"><span class="riderName">Susannah BERRY</span></td>
+          <td><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">Clever Trick</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 SEGERSJO_JUNIOR_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Segersjö 2026 · CH-EU-J-CCI2*-L</title></head>
@@ -7995,6 +8041,27 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(canela.show_jumping_penalties, 0.0)
         self.assertEqual(canela.finishing_score, 40.7)
         self.assertNotIn("Joli Harlem LVST", by_horse)
+
+    def test_burghley_boards_cover_cci5_long(self):
+        boards = burghley_sep_2026_boards()
+        self.assertEqual(len(boards), 1)
+        board = boards[0]
+        self.assertEqual(board.level, "CCI5*-L")
+        self.assertEqual(board.event_name, "Burghley · CCI5*-L")
+        self.assertEqual(board.country, "GBR")
+        self.assertEqual(board.event_date, date(2026, 9, 2))
+        self.assertTrue(board.url.endswith("/2026/burghley/leaderboard01.html"))
+
+    def test_burghley_start_list_without_dressage_yields_no_scored_rows(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+            event_name="Burghley · CCI5*-L",
+            level="CCI5*-L",
+            event_date=date(2026, 9, 2),
+            country="GBR",
+        )
+        results = parse_leaderboard_results(BURGHLEY_START_LIST_HTML, board=board)
+        self.assertEqual(results, [])
 
 
 if __name__ == "__main__":

@@ -141,6 +141,18 @@ SEGERSJO_AUG_2026 = (
     },
 )
 
+# Burghley (GBR) CCI5*-L, Sep 2–6 2026 (BE competition days 3–6 Sep).
+# Public start-list board appeared Sep 1; rows without dressage are skipped.
+BURGHLEY_SEP_2026 = (
+    {
+        "url": "https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+        "event_name": "Burghley · CCI5*-L",
+        "level": "CCI5*-L",
+        "event_date": date(2026, 9, 2),
+        "country": "GBR",
+    },
+)
+
 
 @dataclass(frozen=True)
 class RechenstelleBoard:
@@ -416,6 +428,12 @@ def segersjo_aug_2026_boards() -> list[RechenstelleBoard]:
     return [RechenstelleBoard(**item) for item in SEGERSJO_AUG_2026]
 
 
+def burghley_sep_2026_boards() -> list[RechenstelleBoard]:
+    """Return the Burghley September 2026 public leaderboard set."""
+
+    return [RechenstelleBoard(**item) for item in BURGHLEY_SEP_2026]
+
+
 def merge_into_store(store_path: Path, new_results: Iterable[EventingResult]) -> list[EventingResult]:
     """Merge Rechenstelle rows into the shared results store.
 
@@ -505,6 +523,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull the Segersjö August 2026 public leaderboards",
     )
+    parser.add_argument(
+        "--burghley-2026",
+        action="store_true",
+        help="Pull the Burghley September 2026 public leaderboard",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--dry-run", action="store_true")
@@ -519,9 +542,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         boards.extend(hambach_aug_2026_boards())
     if args.segersjo_2026:
         boards.extend(segersjo_aug_2026_boards())
+    if args.burghley_2026:
+        boards.extend(burghley_sep_2026_boards())
     if not boards:
         raise SystemExit(
-            "Specify --millstreet-july-2026, --aachen-ch-m-c-2026, --hambach-2026, and/or --segersjo-2026"
+            "Specify --millstreet-july-2026, --aachen-ch-m-c-2026, --hambach-2026, "
+            "--segersjo-2026, and/or --burghley-2026"
         )
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)
