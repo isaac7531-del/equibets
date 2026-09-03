@@ -5229,6 +5229,99 @@ BURGHLEY_LIVE_BIRD_REVISED_HTML = """
 </html>
 """
 
+BURGHLEY_LIVE_THURSDAY_AFTERNOON_HTML = """
+<html>
+  <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep  3 2026  3:01PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>21</td>
+          <td class="riderCell"><span class="riderName">Nadja MINDER</span></td>
+          <td><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Toblerone</span></td>
+          <td>549,5</td>
+          <td>70,45</td>
+          <td>29,5</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>14</td>
+          <td class="riderCell"><span class="riderName">Gemma STEVENS</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Chilli Knight</span></td>
+          <td>549,0</td>
+          <td>70,38</td>
+          <td>29,6</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>18</td>
+          <td class="riderCell"><span class="riderName">Max WARBURTON</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Deerpairc Revelry</span></td>
+          <td>537,0</td>
+          <td>68,85</td>
+          <td>31,2</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>8.</strong></td>
+          <td>17</td>
+          <td class="riderCell"><span class="riderName">Alexander BRAGG</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Jaeger Master</span></td>
+          <td>502,0</td>
+          <td>64,36</td>
+          <td>35,6</td>
+          <td>8.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>9.</strong></td>
+          <td>19</td>
+          <td class="riderCell"><span class="riderName">Tayla MASON</span></td>
+          <td><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Centennial</span></td>
+          <td>497,0</td>
+          <td>63,72</td>
+          <td>36,2</td>
+          <td>9.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>15:10:00</td>
+          <td>24</td>
+          <td class="riderCell"><span class="riderName">Caroline POWELL</span></td>
+          <td><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">High Time</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 BURGHLEY_LIVE_BRAGG_HTML = """
 <html>
   <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
@@ -8713,6 +8806,39 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(bragg.cross_country_jump_penalties, 0.0)
         self.assertEqual(bragg.cross_country_time_penalties, 0.0)
         self.assertNotIn("Centennial", {result.horse_name for result in results})
+
+    def test_burghley_thursday_afternoon_dressage_adds_minder_lead(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+            event_name="Burghley · CCI5*-L",
+            level="CCI5*-L",
+            event_date=date(2026, 9, 2),
+            country="GBR",
+        )
+        results = parse_leaderboard_results(BURGHLEY_LIVE_THURSDAY_AFTERNOON_HTML, board=board)
+        self.assertEqual(len(results), 5)
+        ordered = sorted(results, key=lambda result: result.finishing_score)
+        self.assertEqual(
+            [(result.horse_name, result.finishing_score) for result in ordered],
+            [
+                ("Toblerone", 29.5),
+                ("Chilli Knight", 29.6),
+                ("Deerpairc Revelry", 31.2),
+                ("Jaeger Master", 35.6),
+                ("Centennial", 36.2),
+            ],
+        )
+        leader = ordered[0]
+        self.assertEqual(leader.rider_name, "Nadja MINDER (SUI)")
+        self.assertEqual(leader.dressage_score, 29.5)
+        self.assertEqual(leader.show_jumping_penalties, 0.0)
+        bragg = next(result for result in results if result.horse_name == "Jaeger Master")
+        self.assertEqual(bragg.rider_name, "Alexander BRAGG (GBR)")
+        self.assertEqual(bragg.dressage_score, 35.6)
+        mason = next(result for result in results if result.horse_name == "Centennial")
+        self.assertEqual(mason.rider_name, "Tayla MASON (NZL)")
+        self.assertEqual(mason.dressage_score, 36.2)
+        self.assertNotIn("High Time", {result.horse_name for result in results})
 
 
 if __name__ == "__main__":
