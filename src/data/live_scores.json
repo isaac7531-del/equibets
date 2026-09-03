@@ -1,6 +1,30 @@
 {
-  "event_count": 7,
+  "event_count": 8,
   "events": [
+    {
+      "country": "GBR",
+      "event_date": "2026-09-02",
+      "event_name": "Burghley \u00b7 CCI5*-L",
+      "latest_collected_at": "2026-09-03T09:07:07+00:00",
+      "level": "CCI5*-L",
+      "result_count": 1,
+      "source_ids": [
+        "rechenstelle"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-09-03T09:07:07+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.4,
+          "finishing_score": 34.4,
+          "horse_name": "HSH Tolan King",
+          "rank": 1,
+          "rider_name": "Caroline PAMUKCU (USA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        }
+      ]
+    },
     {
       "country": "SWE",
       "event_date": "2026-08-26",
@@ -3239,15 +3263,15 @@
       ]
     }
   ],
-  "generated_at": "2026-08-30T14:26:51+00:00",
-  "latest_collected_at": "2026-08-30T14:26:51+00:00",
-  "result_count": 286,
+  "generated_at": "2026-09-03T09:07:07+00:00",
+  "latest_collected_at": "2026-09-03T09:07:07+00:00",
+  "result_count": 287,
   "source_ids": [
     "rechenstelle"
   ],
   "version": 1,
   "window": {
-    "end_date": "2026-09-01",
-    "start_date": "2026-08-02"
+    "end_date": "2026-09-05",
+    "start_date": "2026-08-06"
   }
 }

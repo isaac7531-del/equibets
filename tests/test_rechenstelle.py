@@ -4908,6 +4908,96 @@ BURGHLEY_START_LIST_HTML = """
 </html>
 """
 
+BURGHLEY_LIVE_FIRST_RIDE_HTML = """
+<html>
+  <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep  3 2026 10:02AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td></td>
+          <td>2</td>
+          <td class="riderCell"><span class="riderName">Caroline PAMUKCU</span></td>
+          <td><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">HSH Tolan King</span></td>
+          <td>163,0</td>
+          <td>65,20</td>
+          <td>34,8</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>10:08:00</td>
+          <td>3</td>
+          <td class="riderCell"><span class="riderName">Tim PRICE</span></td>
+          <td><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Global Quest</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+BURGHLEY_LIVE_REVISED_FIRST_RIDE_HTML = """
+<html>
+  <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep  3 2026 10:06AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>2</td>
+          <td class="riderCell"><span class="riderName">Caroline PAMUKCU</span></td>
+          <td><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">HSH Tolan King</span></td>
+          <td>&nbsp; <a href="DressageSheets/dressagesheet0100054.html">511,5</a></td>
+          <td>65,58</td>
+          <td>34,4</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>10:08:00</td>
+          <td>3</td>
+          <td class="riderCell"><span class="riderName">Tim PRICE</span></td>
+          <td><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Global Quest</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 SEGERSJO_JUNIOR_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Segersjö 2026 · CH-EU-J-CCI2*-L</title></head>
@@ -8062,6 +8152,44 @@ class RechenstelleTests(unittest.TestCase):
         )
         results = parse_leaderboard_results(BURGHLEY_START_LIST_HTML, board=board)
         self.assertEqual(results, [])
+
+    def test_burghley_opening_dressage_scores_pathfinder(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+            event_name="Burghley · CCI5*-L",
+            level="CCI5*-L",
+            event_date=date(2026, 9, 2),
+            country="GBR",
+        )
+        results = parse_leaderboard_results(BURGHLEY_LIVE_FIRST_RIDE_HTML, board=board)
+        self.assertEqual(len(results), 1)
+        leader = results[0]
+        self.assertEqual(leader.rider_name, "Caroline PAMUKCU (USA)")
+        self.assertEqual(leader.horse_name, "HSH Tolan King")
+        self.assertEqual(leader.dressage_score, 34.8)
+        self.assertEqual(leader.show_jumping_penalties, 0.0)
+        self.assertEqual(leader.cross_country_jump_penalties, 0.0)
+        self.assertEqual(leader.cross_country_time_penalties, 0.0)
+        self.assertEqual(leader.finishing_score, 34.8)
+        self.assertEqual(leader.event_name, "Burghley · CCI5*-L")
+        self.assertEqual(leader.level, "CCI5*-L")
+        self.assertEqual(leader.country, "GBR")
+
+    def test_burghley_revised_first_ride_uses_score_column(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+            event_name="Burghley · CCI5*-L",
+            level="CCI5*-L",
+            event_date=date(2026, 9, 2),
+            country="GBR",
+        )
+        results = parse_leaderboard_results(BURGHLEY_LIVE_REVISED_FIRST_RIDE_HTML, board=board)
+        self.assertEqual(len(results), 1)
+        leader = results[0]
+        self.assertEqual(leader.rider_name, "Caroline PAMUKCU (USA)")
+        self.assertEqual(leader.horse_name, "HSH Tolan King")
+        self.assertEqual(leader.dressage_score, 34.4)
+        self.assertEqual(leader.finishing_score, 34.4)
 
 
 if __name__ == "__main__":

@@ -41632,9 +41632,26 @@
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:f366d8a4db223a2a"
+    },
+    {
+      "collected_at": "2026-09-03T09:07:07+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 34.4,
+      "event_date": "2026-09-02",
+      "event_name": "Burghley \u00b7 CCI5*-L",
+      "horse_name": "HSH Tolan King",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Caroline PAMUKCU (USA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:3931c8d4dd605311"
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-08-30T15:03:39+00:00",
+  "updated_at": "2026-09-03T09:07:07+00:00",
   "version": 1
 }
