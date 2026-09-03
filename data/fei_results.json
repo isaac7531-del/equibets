@@ -41634,7 +41634,7 @@
       "source_record_id": "rechenstelle:f366d8a4db223a2a"
     },
     {
-      "collected_at": "2026-09-03T10:05:43+00:00",
+      "collected_at": "2026-09-03T10:16:51+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41651,7 +41651,24 @@
       "source_record_id": "rechenstelle:3931c8d4dd605311"
     },
     {
-      "collected_at": "2026-09-03T10:05:43+00:00",
+      "collected_at": "2026-09-03T10:16:51+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 38.2,
+      "event_date": "2026-09-02",
+      "event_name": "Burghley \u00b7 CCI5*-L",
+      "horse_name": "Redfield Fyre",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Cassie SANGER (USA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:493d0edf84b5e4e4"
+    },
+    {
+      "collected_at": "2026-09-03T10:16:51+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41668,7 +41685,7 @@
       "source_record_id": "rechenstelle:4ffdcb4ff6e7b6a6"
     },
     {
-      "collected_at": "2026-09-03T10:05:43+00:00",
+      "collected_at": "2026-09-03T10:16:51+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41685,7 +41702,7 @@
       "source_record_id": "rechenstelle:1ebf7e0f84b4bd2d"
     },
     {
-      "collected_at": "2026-09-03T10:05:43+00:00",
+      "collected_at": "2026-09-03T10:16:51+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41702,7 +41719,7 @@
       "source_record_id": "rechenstelle:d303494151dfdf04"
     },
     {
-      "collected_at": "2026-09-03T10:05:43+00:00",
+      "collected_at": "2026-09-03T10:16:51+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41719,7 +41736,7 @@
       "source_record_id": "rechenstelle:3d01aa72bcf5a542"
     },
     {
-      "collected_at": "2026-09-03T10:05:43+00:00",
+      "collected_at": "2026-09-03T10:16:51+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41737,6 +41754,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-03T10:05:44+00:00",
+  "updated_at": "2026-09-03T10:16:51+00:00",
   "version": 1
 }
