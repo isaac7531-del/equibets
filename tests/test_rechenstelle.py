@@ -5172,6 +5172,111 @@ BURGHLEY_LIVE_SANGER_HTML = """
 </html>
 """
 
+BURGHLEY_LIVE_THURSDAY_MIDDAY_HTML = """
+<html>
+  <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep  3 2026 11:57AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>14</td>
+          <td class="riderCell"><span class="riderName">Gemma STEVENS</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Chilli Knight</span></td>
+          <td>549,0</td>
+          <td>70,38</td>
+          <td>29,6</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>3</td>
+          <td class="riderCell"><span class="riderName">Tim PRICE</span></td>
+          <td><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Global Quest</span></td>
+          <td>530,0</td>
+          <td>67,95</td>
+          <td>32,1</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>5.</strong></td>
+          <td>11</td>
+          <td class="riderCell"><span class="riderName">Clarke JOHNSTONE</span></td>
+          <td><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Domasco</span></td>
+          <td>511,0</td>
+          <td>65,51</td>
+          <td>34,5</td>
+          <td>5.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent1">
+          <td><strong>6.</strong></td>
+          <td>16</td>
+          <td class="riderCell"><span class="riderName">Jack PINKNEY</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Claragh Olala</span></td>
+          <td>484,0</td>
+          <td>62,05</td>
+          <td>38,0</td>
+          <td>6.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>11.</strong></td>
+          <td>12</td>
+          <td class="riderCell"><span class="riderName">Joseph MURPHY</span></td>
+          <td><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">Calmaro</span></td>
+          <td>457,0</td>
+          <td>58,59</td>
+          <td>41,4</td>
+          <td>11.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>12.</strong></td>
+          <td>15</td>
+          <td class="riderCell"><span class="riderName">Tom BIRD</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Cowling Hot Gossip</span></td>
+          <td>424,0</td>
+          <td>54,36</td>
+          <td>45,6</td>
+          <td>12.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>14:00:00</td>
+          <td>17</td>
+          <td class="riderCell"><span class="riderName">Alexander BRAGG</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Jaeger Master</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 SEGERSJO_JUNIOR_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Segersjö 2026 · CH-EU-J-CCI2*-L</title></head>
@@ -8415,6 +8520,37 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(sanger.dressage_score, 38.2)
         self.assertEqual(sanger.show_jumping_penalties, 0.0)
         self.assertNotIn("Domasco", {result.horse_name for result in results})
+
+    def test_burghley_thursday_midday_dressage_adds_morning_scores(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+            event_name="Burghley · CCI5*-L",
+            level="CCI5*-L",
+            event_date=date(2026, 9, 2),
+            country="GBR",
+        )
+        results = parse_leaderboard_results(BURGHLEY_LIVE_THURSDAY_MIDDAY_HTML, board=board)
+        self.assertEqual(len(results), 6)
+        ordered = sorted(results, key=lambda result: result.finishing_score)
+        self.assertEqual(
+            [(result.horse_name, result.finishing_score) for result in ordered],
+            [
+                ("Chilli Knight", 29.6),
+                ("Global Quest", 32.1),
+                ("Domasco", 34.5),
+                ("Claragh Olala", 38.0),
+                ("Calmaro", 41.4),
+                ("Cowling Hot Gossip", 45.6),
+            ],
+        )
+        leader = ordered[0]
+        self.assertEqual(leader.rider_name, "Gemma STEVENS (GBR)")
+        self.assertEqual(leader.dressage_score, 29.6)
+        self.assertEqual(leader.show_jumping_penalties, 0.0)
+        johnstone = next(result for result in results if result.horse_name == "Domasco")
+        self.assertEqual(johnstone.rider_name, "Clarke JOHNSTONE (NZL)")
+        self.assertEqual(johnstone.dressage_score, 34.5)
+        self.assertNotIn("Jaeger Master", {result.horse_name for result in results})
 
 
 if __name__ == "__main__":
