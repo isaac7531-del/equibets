@@ -41634,11 +41634,11 @@
       "source_record_id": "rechenstelle:f366d8a4db223a2a"
     },
     {
-      "collected_at": "2026-09-03T13:06:12+00:00",
+      "collected_at": "2026-09-03T14:11:20+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
-      "dressage_score": 35.4,
+      "dressage_score": 35.6,
       "event_date": "2026-09-02",
       "event_name": "Burghley \u00b7 CCI5*-L",
       "horse_name": "Jaeger Master",
@@ -41651,7 +41651,24 @@
       "source_record_id": "rechenstelle:2bcf63804e7de565"
     },
     {
-      "collected_at": "2026-09-03T13:06:12+00:00",
+      "collected_at": "2026-09-03T14:11:20+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 36.9,
+      "event_date": "2026-09-02",
+      "event_name": "Burghley \u00b7 CCI5*-L",
+      "horse_name": "Filao de Perle",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Benjamin MASSIE (FRA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:3e08fb5f1b7cdf9d"
+    },
+    {
+      "collected_at": "2026-09-03T14:11:20+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41668,7 +41685,7 @@
       "source_record_id": "rechenstelle:3931c8d4dd605311"
     },
     {
-      "collected_at": "2026-09-03T13:06:12+00:00",
+      "collected_at": "2026-09-03T14:11:20+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41685,7 +41702,7 @@
       "source_record_id": "rechenstelle:493d0edf84b5e4e4"
     },
     {
-      "collected_at": "2026-09-03T13:06:12+00:00",
+      "collected_at": "2026-09-03T14:11:20+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41702,7 +41719,7 @@
       "source_record_id": "rechenstelle:5367c1bf81d8451f"
     },
     {
-      "collected_at": "2026-09-03T13:06:12+00:00",
+      "collected_at": "2026-09-03T14:11:20+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41719,7 +41736,7 @@
       "source_record_id": "rechenstelle:90640c31f3f4af02"
     },
     {
-      "collected_at": "2026-09-03T13:06:12+00:00",
+      "collected_at": "2026-09-03T14:11:20+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41736,7 +41753,7 @@
       "source_record_id": "rechenstelle:4ffdcb4ff6e7b6a6"
     },
     {
-      "collected_at": "2026-09-03T13:06:12+00:00",
+      "collected_at": "2026-09-03T14:11:20+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41753,7 +41770,7 @@
       "source_record_id": "rechenstelle:e1545f937e08d323"
     },
     {
-      "collected_at": "2026-09-03T13:06:12+00:00",
+      "collected_at": "2026-09-03T14:11:20+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41770,7 +41787,7 @@
       "source_record_id": "rechenstelle:78240405b093c12d"
     },
     {
-      "collected_at": "2026-09-03T13:06:12+00:00",
+      "collected_at": "2026-09-03T14:11:20+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41787,7 +41804,58 @@
       "source_record_id": "rechenstelle:1ebf7e0f84b4bd2d"
     },
     {
-      "collected_at": "2026-09-03T13:06:12+00:00",
+      "collected_at": "2026-09-03T14:11:20+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 31.2,
+      "event_date": "2026-09-02",
+      "event_name": "Burghley \u00b7 CCI5*-L",
+      "horse_name": "Deerpairc Revelry",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Max WARBURTON (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:61fbb45e0592d078"
+    },
+    {
+      "collected_at": "2026-09-03T14:11:20+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 29.5,
+      "event_date": "2026-09-02",
+      "event_name": "Burghley \u00b7 CCI5*-L",
+      "horse_name": "Toblerone",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Nadja MINDER (SUI)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:4fab33ca2c5a06f8"
+    },
+    {
+      "collected_at": "2026-09-03T14:11:20+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 44.1,
+      "event_date": "2026-09-02",
+      "event_name": "Burghley \u00b7 CCI5*-L",
+      "horse_name": "Autograf",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Simon GRIEVE (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:d71e9f02841e08d4"
+    },
+    {
+      "collected_at": "2026-09-03T14:11:20+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41804,7 +41872,24 @@
       "source_record_id": "rechenstelle:d303494151dfdf04"
     },
     {
-      "collected_at": "2026-09-03T13:06:12+00:00",
+      "collected_at": "2026-09-03T14:11:20+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 36.2,
+      "event_date": "2026-09-02",
+      "event_name": "Burghley \u00b7 CCI5*-L",
+      "horse_name": "Centennial",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Tayla MASON (NZL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:80e88007070464b5"
+    },
+    {
+      "collected_at": "2026-09-03T14:11:20+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41821,7 +41906,7 @@
       "source_record_id": "rechenstelle:3d01aa72bcf5a542"
     },
     {
-      "collected_at": "2026-09-03T13:06:12+00:00",
+      "collected_at": "2026-09-03T14:11:20+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41838,7 +41923,7 @@
       "source_record_id": "rechenstelle:33795d7448485cf6"
     },
     {
-      "collected_at": "2026-09-03T13:06:12+00:00",
+      "collected_at": "2026-09-03T14:11:20+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41856,6 +41941,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-03T13:06:12+00:00",
+  "updated_at": "2026-09-03T14:11:20+00:00",
   "version": 1
 }
