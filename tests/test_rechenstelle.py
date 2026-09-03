@@ -5322,6 +5322,123 @@ BURGHLEY_LIVE_THURSDAY_AFTERNOON_HTML = """
 </html>
 """
 
+BURGHLEY_LIVE_THURSDAY_LATE_AFTERNOON_HTML = """
+<html>
+  <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep  3 2026  3:56PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>21</td>
+          <td class="riderCell"><span class="riderName">Nadja MINDER</span></td>
+          <td><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Toblerone</span></td>
+          <td>550,0</td>
+          <td>70,51</td>
+          <td>29,5</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>5.</strong></td>
+          <td>28</td>
+          <td class="riderCell"><span class="riderName">Yasmin INGHAM</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Goliath du Loir</span></td>
+          <td>525,0</td>
+          <td>67,31</td>
+          <td>32,7</td>
+          <td>5.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>6.</strong></td>
+          <td>24</td>
+          <td class="riderCell"><span class="riderName">Caroline POWELL</span></td>
+          <td><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">High Time</span></td>
+          <td>516,0</td>
+          <td>66,15</td>
+          <td>33,9</td>
+          <td>6.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>15.</strong></td>
+          <td>29</td>
+          <td class="riderCell"><span class="riderName">Jesse CAMPBELL</span></td>
+          <td><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Cooley Lafitte</span></td>
+          <td>481,5</td>
+          <td>61,73</td>
+          <td>38,3</td>
+          <td>15.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>17.</strong></td>
+          <td>26</td>
+          <td class="riderCell"><span class="riderName">Samuel JEFFREE</span></td>
+          <td><img src="../../../../flags/AUS.PNG" alt="AUS"></td>
+          <td class="horseCell"><span class="horseName">Santoro</span></td>
+          <td>478,5</td>
+          <td>61,35</td>
+          <td>38,7</td>
+          <td>17.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>18.</strong></td>
+          <td>27</td>
+          <td class="riderCell"><span class="riderName">Harry MEADE</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Et Hop du Matz</span></td>
+          <td>475,5</td>
+          <td>60,96</td>
+          <td>39,0</td>
+          <td>18.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>19.</strong></td>
+          <td>25</td>
+          <td class="riderCell"><span class="riderName">Emma T V THOMAS</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Icarus</span></td>
+          <td>464,0</td>
+          <td>59,49</td>
+          <td>40,5</td>
+          <td>19.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>10:00:00</td>
+          <td>30</td>
+          <td class="riderCell"><span class="riderName">Sam WATSON</span></td>
+          <td><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">Ballyneety Rocketman</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 BURGHLEY_LIVE_BRAGG_HTML = """
 <html>
   <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
@@ -8839,6 +8956,44 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(mason.rider_name, "Tayla MASON (NZL)")
         self.assertEqual(mason.dressage_score, 36.2)
         self.assertNotIn("High Time", {result.horse_name for result in results})
+
+    def test_burghley_thursday_late_afternoon_dressage_adds_powell(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+            event_name="Burghley · CCI5*-L",
+            level="CCI5*-L",
+            event_date=date(2026, 9, 2),
+            country="GBR",
+        )
+        results = parse_leaderboard_results(
+            BURGHLEY_LIVE_THURSDAY_LATE_AFTERNOON_HTML,
+            board=board,
+        )
+        self.assertEqual(len(results), 7)
+        ordered = sorted(results, key=lambda result: result.finishing_score)
+        self.assertEqual(
+            [(result.horse_name, result.finishing_score) for result in ordered],
+            [
+                ("Toblerone", 29.5),
+                ("Goliath du Loir", 32.7),
+                ("High Time", 33.9),
+                ("Cooley Lafitte", 38.3),
+                ("Santoro", 38.7),
+                ("Et Hop du Matz", 39.0),
+                ("Icarus", 40.5),
+            ],
+        )
+        leader = ordered[0]
+        self.assertEqual(leader.rider_name, "Nadja MINDER (SUI)")
+        self.assertEqual(leader.dressage_score, 29.5)
+        powell = next(result for result in results if result.horse_name == "High Time")
+        self.assertEqual(powell.rider_name, "Caroline POWELL (NZL)")
+        self.assertEqual(powell.dressage_score, 33.9)
+        self.assertEqual(powell.show_jumping_penalties, 0.0)
+        ingham = next(result for result in results if result.horse_name == "Goliath du Loir")
+        self.assertEqual(ingham.rider_name, "Yasmin INGHAM (GBR)")
+        self.assertEqual(ingham.dressage_score, 32.7)
+        self.assertNotIn("Ballyneety Rocketman", {result.horse_name for result in results})
 
 
 if __name__ == "__main__":
