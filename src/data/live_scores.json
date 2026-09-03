@@ -5,15 +5,15 @@
       "country": "GBR",
       "event_date": "2026-09-02",
       "event_name": "Burghley \u00b7 CCI5*-L",
-      "latest_collected_at": "2026-09-03T14:11:20+00:00",
+      "latest_collected_at": "2026-09-03T15:04:36+00:00",
       "level": "CCI5*-L",
-      "result_count": 18,
+      "result_count": 24,
       "source_ids": [
         "rechenstelle"
       ],
       "standings": [
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.5,
           "finishing_score": 29.5,
@@ -24,7 +24,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.6,
           "finishing_score": 29.6,
@@ -35,7 +35,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.2,
           "finishing_score": 31.2,
@@ -46,7 +46,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.1,
           "finishing_score": 32.1,
@@ -57,155 +57,221 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.7,
+          "finishing_score": 32.7,
+          "horse_name": "Goliath du Loir",
+          "rank": 5,
+          "rider_name": "Yasmin INGHAM (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-09-03T15:04:36+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 33.9,
+          "finishing_score": 33.9,
+          "horse_name": "High Time",
+          "rank": 6,
+          "rider_name": "Caroline POWELL (NZL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.1,
           "finishing_score": 34.1,
           "horse_name": "Hawk Eye",
-          "rank": 5,
+          "rank": 7,
           "rider_name": "Tom JACKSON (GBR)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.4,
           "finishing_score": 34.4,
           "horse_name": "HSH Tolan King",
-          "rank": 6,
+          "rank": 8,
           "rider_name": "Caroline PAMUKCU (USA)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.5,
           "finishing_score": 34.5,
           "horse_name": "Domasco",
-          "rank": 7,
+          "rank": 9,
           "rider_name": "Clarke JOHNSTONE (NZL)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 35.6,
           "finishing_score": 35.6,
           "horse_name": "Jaeger Master",
-          "rank": 8,
+          "rank": 10,
           "rider_name": "Alexander BRAGG (GBR)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 36.2,
           "finishing_score": 36.2,
           "horse_name": "Centennial",
-          "rank": 9,
+          "rank": 11,
           "rider_name": "Tayla MASON (NZL)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 36.9,
           "finishing_score": 36.9,
           "horse_name": "Filao de Perle",
-          "rank": 10,
+          "rank": 12,
           "rider_name": "Benjamin MASSIE (FRA)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 38.0,
           "finishing_score": 38.0,
           "horse_name": "Claragh Olala",
-          "rank": 11,
+          "rank": 13,
           "rider_name": "Jack PINKNEY (GBR)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 38.2,
           "finishing_score": 38.2,
           "horse_name": "Redfield Fyre",
-          "rank": 12,
+          "rank": 14,
           "rider_name": "Cassie SANGER (USA)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 38.3,
           "finishing_score": 38.3,
           "horse_name": "Ballyneety Silver Service",
-          "rank": 13,
+          "rank": 15,
           "rider_name": "Holly RICHARDSON (GBR)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.3,
+          "finishing_score": 38.3,
+          "horse_name": "Cooley Lafitte",
+          "rank": 15,
+          "rider_name": "Jesse CAMPBELL (NZL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-09-03T15:04:36+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.7,
+          "finishing_score": 38.7,
+          "horse_name": "Santoro",
+          "rank": 17,
+          "rider_name": "Samuel JEFFREE (AUS)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-09-03T15:04:36+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 39.0,
+          "finishing_score": 39.0,
+          "horse_name": "Et Hop du Matz",
+          "rank": 18,
+          "rider_name": "Harry MEADE (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-09-03T15:04:36+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 40.5,
+          "finishing_score": 40.5,
+          "horse_name": "Icarus",
+          "rank": 19,
+          "rider_name": "Emma T V THOMAS (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 40.5,
           "finishing_score": 40.5,
           "horse_name": "Clever Trick",
-          "rank": 14,
+          "rank": 19,
           "rider_name": "Susannah BERRY (IRL)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.0,
           "finishing_score": 41.0,
           "horse_name": "Lionel II",
-          "rank": 15,
+          "rank": 21,
           "rider_name": "Mary EDMUNDSON (GBR)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.4,
           "finishing_score": 41.4,
           "horse_name": "Calmaro",
-          "rank": 16,
+          "rank": 22,
           "rider_name": "Joseph MURPHY (IRL)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 44.1,
           "finishing_score": 44.1,
           "horse_name": "Autograf",
-          "rank": 17,
+          "rank": 23,
           "rider_name": "Simon GRIEVE (GBR)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T14:11:20+00:00",
+          "collected_at": "2026-09-03T15:04:36+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 45.8,
           "finishing_score": 45.8,
           "horse_name": "Cowling Hot Gossip",
-          "rank": 18,
+          "rank": 24,
           "rider_name": "Tom BIRD (GBR)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
@@ -3450,9 +3516,9 @@
       ]
     }
   ],
-  "generated_at": "2026-09-03T14:11:20+00:00",
-  "latest_collected_at": "2026-09-03T14:11:20+00:00",
-  "result_count": 304,
+  "generated_at": "2026-09-03T15:04:36+00:00",
+  "latest_collected_at": "2026-09-03T15:04:36+00:00",
+  "result_count": 310,
   "source_ids": [
     "rechenstelle"
   ],

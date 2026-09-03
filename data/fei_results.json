@@ -41634,7 +41634,7 @@
       "source_record_id": "rechenstelle:f366d8a4db223a2a"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41651,7 +41651,7 @@
       "source_record_id": "rechenstelle:2bcf63804e7de565"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41668,7 +41668,7 @@
       "source_record_id": "rechenstelle:3e08fb5f1b7cdf9d"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41685,7 +41685,24 @@
       "source_record_id": "rechenstelle:3931c8d4dd605311"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 33.9,
+      "event_date": "2026-09-02",
+      "event_name": "Burghley \u00b7 CCI5*-L",
+      "horse_name": "High Time",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Caroline POWELL (NZL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:a72ce3c5d588f0a8"
+    },
+    {
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41702,7 +41719,7 @@
       "source_record_id": "rechenstelle:493d0edf84b5e4e4"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41719,7 +41736,24 @@
       "source_record_id": "rechenstelle:5367c1bf81d8451f"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 40.5,
+      "event_date": "2026-09-02",
+      "event_name": "Burghley \u00b7 CCI5*-L",
+      "horse_name": "Icarus",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Emma T V THOMAS (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:b1ae8eda4cf75578"
+    },
+    {
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41736,7 +41770,24 @@
       "source_record_id": "rechenstelle:90640c31f3f4af02"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 39.0,
+      "event_date": "2026-09-02",
+      "event_name": "Burghley \u00b7 CCI5*-L",
+      "horse_name": "Et Hop du Matz",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Harry MEADE (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:534685d9c99148b6"
+    },
+    {
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41753,7 +41804,7 @@
       "source_record_id": "rechenstelle:4ffdcb4ff6e7b6a6"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41770,7 +41821,24 @@
       "source_record_id": "rechenstelle:e1545f937e08d323"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 38.3,
+      "event_date": "2026-09-02",
+      "event_name": "Burghley \u00b7 CCI5*-L",
+      "horse_name": "Cooley Lafitte",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Jesse CAMPBELL (NZL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:b668fb9241497f48"
+    },
+    {
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41787,7 +41855,7 @@
       "source_record_id": "rechenstelle:78240405b093c12d"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41804,7 +41872,7 @@
       "source_record_id": "rechenstelle:1ebf7e0f84b4bd2d"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41821,7 +41889,7 @@
       "source_record_id": "rechenstelle:61fbb45e0592d078"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41838,7 +41906,24 @@
       "source_record_id": "rechenstelle:4fab33ca2c5a06f8"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 38.7,
+      "event_date": "2026-09-02",
+      "event_name": "Burghley \u00b7 CCI5*-L",
+      "horse_name": "Santoro",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Samuel JEFFREE (AUS)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:935c5093c438d152"
+    },
+    {
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41855,7 +41940,7 @@
       "source_record_id": "rechenstelle:d71e9f02841e08d4"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41872,7 +41957,7 @@
       "source_record_id": "rechenstelle:d303494151dfdf04"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41889,7 +41974,7 @@
       "source_record_id": "rechenstelle:80e88007070464b5"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41906,7 +41991,7 @@
       "source_record_id": "rechenstelle:3d01aa72bcf5a542"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41923,7 +42008,7 @@
       "source_record_id": "rechenstelle:33795d7448485cf6"
     },
     {
-      "collected_at": "2026-09-03T14:11:20+00:00",
+      "collected_at": "2026-09-03T15:04:36+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41938,9 +42023,26 @@
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:19d4287f5fafdf9e"
+    },
+    {
+      "collected_at": "2026-09-03T15:04:36+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 32.7,
+      "event_date": "2026-09-02",
+      "event_name": "Burghley \u00b7 CCI5*-L",
+      "horse_name": "Goliath du Loir",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Yasmin INGHAM (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:696e63ca0b6d484c"
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-03T14:11:20+00:00",
+  "updated_at": "2026-09-03T15:04:36+00:00",
   "version": 1
 }
