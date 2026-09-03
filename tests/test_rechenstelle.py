@@ -4998,6 +4998,111 @@ BURGHLEY_LIVE_REVISED_FIRST_RIDE_HTML = """
 </html>
 """
 
+BURGHLEY_LIVE_THURSDAY_MORNING_HTML = """
+<html>
+  <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep  3 2026 10:47AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>3</td>
+          <td class="riderCell"><span class="riderName">Tim PRICE</span></td>
+          <td><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Global Quest</span></td>
+          <td>530,0</td>
+          <td>67,95</td>
+          <td>32,1</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>6</td>
+          <td class="riderCell"><span class="riderName">Tom JACKSON</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Hawk Eye</span></td>
+          <td>514,0</td>
+          <td>65,90</td>
+          <td>34,1</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>2</td>
+          <td class="riderCell"><span class="riderName">Caroline PAMUKCU</span></td>
+          <td><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">HSH Tolan King</span></td>
+          <td>511,5</td>
+          <td>65,58</td>
+          <td>34,4</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>4.</strong></td>
+          <td>4</td>
+          <td class="riderCell"><span class="riderName">Holly RICHARDSON</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Ballyneety Silver Service</span></td>
+          <td>481,5</td>
+          <td>61,73</td>
+          <td>38,3</td>
+          <td>4.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>5.</strong></td>
+          <td>5</td>
+          <td class="riderCell"><span class="riderName">Susannah BERRY</span></td>
+          <td><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">Clever Trick</span></td>
+          <td>464,0</td>
+          <td>59,49</td>
+          <td>40,5</td>
+          <td>5.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>6.</strong></td>
+          <td>8</td>
+          <td class="riderCell"><span class="riderName">Mary EDMUNDSON</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Lionel II</span></td>
+          <td>460,0</td>
+          <td>58,97</td>
+          <td>41,0</td>
+          <td>6.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>11:10:00</td>
+          <td>10</td>
+          <td class="riderCell"><span class="riderName">Cassie SANGER</span></td>
+          <td><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">Redfield Fyre</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 SEGERSJO_JUNIOR_DRESSAGE_HTML = """
 <html>
   <head><title>LeaderBoard · Segersjö 2026 · CH-EU-J-CCI2*-L</title></head>
@@ -8190,6 +8295,32 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(leader.horse_name, "HSH Tolan King")
         self.assertEqual(leader.dressage_score, 34.4)
         self.assertEqual(leader.finishing_score, 34.4)
+
+    def test_burghley_thursday_morning_dressage_keeps_score_column(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+            event_name="Burghley · CCI5*-L",
+            level="CCI5*-L",
+            event_date=date(2026, 9, 2),
+            country="GBR",
+        )
+        results = parse_leaderboard_results(BURGHLEY_LIVE_THURSDAY_MORNING_HTML, board=board)
+        self.assertEqual(len(results), 6)
+        by_horse = {result.horse_name: result for result in results}
+        self.assertEqual(by_horse["Global Quest"].rider_name, "Tim PRICE (NZL)")
+        self.assertEqual(by_horse["Global Quest"].dressage_score, 32.1)
+        self.assertEqual(by_horse["Global Quest"].finishing_score, 32.1)
+        self.assertEqual(by_horse["Hawk Eye"].rider_name, "Tom JACKSON (GBR)")
+        self.assertEqual(by_horse["Hawk Eye"].dressage_score, 34.1)
+        self.assertEqual(by_horse["HSH Tolan King"].dressage_score, 34.4)
+        self.assertEqual(by_horse["Ballyneety Silver Service"].dressage_score, 38.3)
+        self.assertEqual(by_horse["Clever Trick"].dressage_score, 40.5)
+        self.assertEqual(by_horse["Lionel II"].dressage_score, 41.0)
+        for result in results:
+            self.assertEqual(result.show_jumping_penalties, 0.0)
+            self.assertEqual(result.cross_country_jump_penalties, 0.0)
+            self.assertEqual(result.cross_country_time_penalties, 0.0)
+        self.assertNotIn("Redfield Fyre", by_horse)
 
 
 if __name__ == "__main__":
