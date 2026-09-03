@@ -41634,7 +41634,7 @@
       "source_record_id": "rechenstelle:f366d8a4db223a2a"
     },
     {
-      "collected_at": "2026-09-03T11:03:34+00:00",
+      "collected_at": "2026-09-03T12:03:32+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41651,7 +41651,7 @@
       "source_record_id": "rechenstelle:3931c8d4dd605311"
     },
     {
-      "collected_at": "2026-09-03T11:03:34+00:00",
+      "collected_at": "2026-09-03T12:03:32+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41668,7 +41668,7 @@
       "source_record_id": "rechenstelle:493d0edf84b5e4e4"
     },
     {
-      "collected_at": "2026-09-03T11:03:34+00:00",
+      "collected_at": "2026-09-03T12:03:32+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41685,7 +41685,7 @@
       "source_record_id": "rechenstelle:5367c1bf81d8451f"
     },
     {
-      "collected_at": "2026-09-03T11:03:34+00:00",
+      "collected_at": "2026-09-03T12:03:32+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41702,7 +41702,7 @@
       "source_record_id": "rechenstelle:90640c31f3f4af02"
     },
     {
-      "collected_at": "2026-09-03T11:03:34+00:00",
+      "collected_at": "2026-09-03T12:03:32+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41719,7 +41719,7 @@
       "source_record_id": "rechenstelle:4ffdcb4ff6e7b6a6"
     },
     {
-      "collected_at": "2026-09-03T11:03:34+00:00",
+      "collected_at": "2026-09-03T12:03:32+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41736,7 +41736,7 @@
       "source_record_id": "rechenstelle:e1545f937e08d323"
     },
     {
-      "collected_at": "2026-09-03T11:03:34+00:00",
+      "collected_at": "2026-09-03T12:03:32+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41753,7 +41753,7 @@
       "source_record_id": "rechenstelle:78240405b093c12d"
     },
     {
-      "collected_at": "2026-09-03T11:03:34+00:00",
+      "collected_at": "2026-09-03T12:03:32+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41770,7 +41770,7 @@
       "source_record_id": "rechenstelle:1ebf7e0f84b4bd2d"
     },
     {
-      "collected_at": "2026-09-03T11:03:34+00:00",
+      "collected_at": "2026-09-03T12:03:32+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41787,7 +41787,7 @@
       "source_record_id": "rechenstelle:d303494151dfdf04"
     },
     {
-      "collected_at": "2026-09-03T11:03:34+00:00",
+      "collected_at": "2026-09-03T12:03:32+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41804,11 +41804,11 @@
       "source_record_id": "rechenstelle:3d01aa72bcf5a542"
     },
     {
-      "collected_at": "2026-09-03T11:03:34+00:00",
+      "collected_at": "2026-09-03T12:03:32+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
-      "dressage_score": 45.6,
+      "dressage_score": 45.8,
       "event_date": "2026-09-02",
       "event_name": "Burghley \u00b7 CCI5*-L",
       "horse_name": "Cowling Hot Gossip",
@@ -41821,7 +41821,7 @@
       "source_record_id": "rechenstelle:33795d7448485cf6"
     },
     {
-      "collected_at": "2026-09-03T11:03:34+00:00",
+      "collected_at": "2026-09-03T12:03:32+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -41839,6 +41839,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-03T11:03:34+00:00",
+  "updated_at": "2026-09-03T12:03:32+00:00",
   "version": 1
 }

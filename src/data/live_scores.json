@@ -5,7 +5,7 @@
       "country": "GBR",
       "event_date": "2026-09-02",
       "event_name": "Burghley \u00b7 CCI5*-L",
-      "latest_collected_at": "2026-09-03T11:03:34+00:00",
+      "latest_collected_at": "2026-09-03T12:03:32+00:00",
       "level": "CCI5*-L",
       "result_count": 12,
       "source_ids": [
@@ -13,7 +13,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-09-03T11:03:34+00:00",
+          "collected_at": "2026-09-03T12:03:32+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.6,
           "finishing_score": 29.6,
@@ -24,7 +24,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T11:03:34+00:00",
+          "collected_at": "2026-09-03T12:03:32+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.1,
           "finishing_score": 32.1,
@@ -35,7 +35,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T11:03:34+00:00",
+          "collected_at": "2026-09-03T12:03:32+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.1,
           "finishing_score": 34.1,
@@ -46,7 +46,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T11:03:34+00:00",
+          "collected_at": "2026-09-03T12:03:32+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.4,
           "finishing_score": 34.4,
@@ -57,7 +57,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T11:03:34+00:00",
+          "collected_at": "2026-09-03T12:03:32+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.5,
           "finishing_score": 34.5,
@@ -68,7 +68,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T11:03:34+00:00",
+          "collected_at": "2026-09-03T12:03:32+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 38.0,
           "finishing_score": 38.0,
@@ -79,7 +79,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T11:03:34+00:00",
+          "collected_at": "2026-09-03T12:03:32+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 38.2,
           "finishing_score": 38.2,
@@ -90,7 +90,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T11:03:34+00:00",
+          "collected_at": "2026-09-03T12:03:32+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 38.3,
           "finishing_score": 38.3,
@@ -101,7 +101,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T11:03:34+00:00",
+          "collected_at": "2026-09-03T12:03:32+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 40.5,
           "finishing_score": 40.5,
@@ -112,7 +112,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T11:03:34+00:00",
+          "collected_at": "2026-09-03T12:03:32+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.0,
           "finishing_score": 41.0,
@@ -123,7 +123,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T11:03:34+00:00",
+          "collected_at": "2026-09-03T12:03:32+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.4,
           "finishing_score": 41.4,
@@ -134,10 +134,10 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-03T11:03:34+00:00",
+          "collected_at": "2026-09-03T12:03:32+00:00",
           "cross_country_penalties": 0.0,
-          "dressage_score": 45.6,
-          "finishing_score": 45.6,
+          "dressage_score": 45.8,
+          "finishing_score": 45.8,
           "horse_name": "Cowling Hot Gossip",
           "rank": 12,
           "rider_name": "Tom BIRD (GBR)",
@@ -3384,8 +3384,8 @@
       ]
     }
   ],
-  "generated_at": "2026-09-03T11:03:34+00:00",
-  "latest_collected_at": "2026-09-03T11:03:34+00:00",
+  "generated_at": "2026-09-03T12:03:32+00:00",
+  "latest_collected_at": "2026-09-03T12:03:32+00:00",
   "result_count": 298,
   "source_ids": [
     "rechenstelle"
