@@ -6099,6 +6099,135 @@ BURGHLEY_LIVE_FRIDAY_AFTERNOON_BLOCK_HTML = """
 </html>
 """
 
+BURGHLEY_LIVE_FRIDAY_AFTERNOON_COMPLETE_HTML = """
+<html>
+  <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep  4 2026  4:01PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>21</td>
+          <td class="riderCell"><span class="riderName">Nadja MINDER</span></td>
+          <td><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Toblerone</span></td>
+          <td>550,0</td>
+          <td>70,51</td>
+          <td>29,5</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>3.</strong></td>
+          <td>55</td>
+          <td class="riderCell"><span class="riderName">Tim PRICE</span></td>
+          <td><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Falco</span></td>
+          <td>542,0</td>
+          <td>69,49</td>
+          <td>30,5</td>
+          <td>3.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>5.</strong></td>
+          <td>53</td>
+          <td class="riderCell"><span class="riderName">Caroline PAMUKCU</span></td>
+          <td><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">HSH Blake</span></td>
+          <td>530,5</td>
+          <td>68,01</td>
+          <td>32,0</td>
+          <td>5.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>8.</strong></td>
+          <td>52</td>
+          <td class="riderCell"><span class="riderName">Tom JACKSON</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">United 36</span></td>
+          <td>521,5</td>
+          <td>66,86</td>
+          <td>33,1</td>
+          <td>8.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent1">
+          <td><strong>9.</strong></td>
+          <td>50</td>
+          <td class="riderCell"><span class="riderName">William COLEMAN</span></td>
+          <td><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">Very Dignified</span></td>
+          <td>521,0</td>
+          <td>66,79</td>
+          <td>33,2</td>
+          <td>9.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>17.</strong></td>
+          <td>43</td>
+          <td class="riderCell"><span class="riderName">Jennie BRANNIGAN</span></td>
+          <td><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">Fe Lifestyle</span></td>
+          <td>499,0</td>
+          <td>63,97</td>
+          <td>36,0</td>
+          <td>17.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>23.</strong></td>
+          <td>54</td>
+          <td class="riderCell"><span class="riderName">Susannah BERRY</span></td>
+          <td><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">John The Bull</span></td>
+          <td>490,0</td>
+          <td>62,82</td>
+          <td>37,2</td>
+          <td>23.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>27.</strong></td>
+          <td>56</td>
+          <td class="riderCell"><span class="riderName">Harry MEADE</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Cavalier Crystal</span></td>
+          <td>483,5</td>
+          <td>61,99</td>
+          <td>38,0</td>
+          <td>27.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>43.</strong></td>
+          <td>51</td>
+          <td class="riderCell"><span class="riderName">Holly RICHARDSON</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Bally Louis</span></td>
+          <td>462,5</td>
+          <td>59,29</td>
+          <td>40,7</td>
+          <td>43.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 BURGHLEY_LIVE_BRAGG_HTML = """
 <html>
   <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
@@ -9916,6 +10045,41 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(by_horse["Chiraz"].cross_country_jump_penalties, 0.0)
         self.assertEqual(by_horse["Chiraz"].cross_country_time_penalties, 0.0)
         self.assertNotIn("Bally Louis", {result.horse_name for result in results})
+
+    def test_burghley_friday_afternoon_complete_adds_six_settled_rides(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+            event_name="Burghley · CCI5*-L",
+            level="CCI5*-L",
+            event_date=date(2026, 9, 2),
+            country="GBR",
+        )
+        results = parse_leaderboard_results(
+            BURGHLEY_LIVE_FRIDAY_AFTERNOON_COMPLETE_HTML,
+            board=board,
+        )
+        self.assertEqual(len(results), 9)
+        by_horse = {result.horse_name: result for result in results}
+        self.assertEqual(by_horse["Toblerone"].dressage_score, 29.5)
+        self.assertEqual(by_horse["Falco"].rider_name, "Tim PRICE (NZL)")
+        self.assertEqual(by_horse["Falco"].dressage_score, 30.5)
+        self.assertEqual(by_horse["HSH Blake"].rider_name, "Caroline PAMUKCU (USA)")
+        self.assertEqual(by_horse["HSH Blake"].dressage_score, 32.0)
+        self.assertEqual(by_horse["United 36"].rider_name, "Tom JACKSON (GBR)")
+        self.assertEqual(by_horse["United 36"].dressage_score, 33.1)
+        self.assertEqual(by_horse["Very Dignified"].rider_name, "William COLEMAN (USA)")
+        self.assertEqual(by_horse["Very Dignified"].dressage_score, 33.2)
+        self.assertEqual(by_horse["Fe Lifestyle"].rider_name, "Jennie BRANNIGAN (USA)")
+        self.assertEqual(by_horse["Fe Lifestyle"].dressage_score, 36.0)
+        self.assertEqual(by_horse["John The Bull"].rider_name, "Susannah BERRY (IRL)")
+        self.assertEqual(by_horse["John The Bull"].dressage_score, 37.2)
+        self.assertEqual(by_horse["Cavalier Crystal"].rider_name, "Harry MEADE (GBR)")
+        self.assertEqual(by_horse["Cavalier Crystal"].dressage_score, 38.0)
+        self.assertEqual(by_horse["Bally Louis"].rider_name, "Holly RICHARDSON (GBR)")
+        self.assertEqual(by_horse["Bally Louis"].dressage_score, 40.7)
+        self.assertEqual(by_horse["Falco"].show_jumping_penalties, 0.0)
+        self.assertEqual(by_horse["Falco"].cross_country_jump_penalties, 0.0)
+        self.assertEqual(by_horse["Falco"].cross_country_time_penalties, 0.0)
 
 
 if __name__ == "__main__":
