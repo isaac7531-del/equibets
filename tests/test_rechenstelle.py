@@ -5577,6 +5577,75 @@ BURGHLEY_LIVE_FRIDAY_FIRST_RIDE_SETTLED_HTML = """
 </html>
 """
 
+BURGHLEY_LIVE_FRIDAY_SECOND_RIDE_HTML = """
+<html>
+  <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep  4 2026 10:14AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>21</td>
+          <td class="riderCell"><span class="riderName">Nadja MINDER</span></td>
+          <td><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Toblerone</span></td>
+          <td>550,0</td>
+          <td>70,51</td>
+          <td>29,5</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>12.</strong></td>
+          <td>31</td>
+          <td class="riderCell"><span class="riderName">Jonelle PRICE</span></td>
+          <td><img src="../../../../flags/NZL.PNG" alt="NZL"></td>
+          <td class="horseCell"><span class="horseName">Chilli's Midnight Star</span></td>
+          <td>497,5</td>
+          <td>63,78</td>
+          <td>36,2</td>
+          <td>12.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>19.</strong></td>
+          <td>30</td>
+          <td class="riderCell"><span class="riderName">Sam WATSON</span></td>
+          <td><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">Ballyneety Rocketman</span></td>
+          <td>464,5</td>
+          <td>59,55</td>
+          <td>40,5</td>
+          <td>19.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>10:16:00</td>
+          <td>32</td>
+          <td class="riderCell"><span class="riderName">Michael OWEN</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Monbeg Darwin</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 BURGHLEY_LIVE_BRAGG_HTML = """
 <html>
   <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
@@ -9192,6 +9261,33 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(watson.cross_country_jump_penalties, 0.0)
         self.assertEqual(watson.cross_country_time_penalties, 0.0)
         self.assertNotIn("Chilli's Midnight Star", {result.horse_name for result in results})
+
+    def test_burghley_friday_second_ride_adds_jonelle_price(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+            event_name="Burghley · CCI5*-L",
+            level="CCI5*-L",
+            event_date=date(2026, 9, 2),
+            country="GBR",
+        )
+        results = parse_leaderboard_results(BURGHLEY_LIVE_FRIDAY_SECOND_RIDE_HTML, board=board)
+        self.assertEqual(len(results), 3)
+        ordered = sorted(results, key=lambda result: result.finishing_score)
+        self.assertEqual(
+            [(result.horse_name, result.finishing_score) for result in ordered],
+            [
+                ("Toblerone", 29.5),
+                ("Chilli's Midnight Star", 36.2),
+                ("Ballyneety Rocketman", 40.5),
+            ],
+        )
+        price = next(result for result in results if result.horse_name == "Chilli's Midnight Star")
+        self.assertEqual(price.rider_name, "Jonelle PRICE (NZL)")
+        self.assertEqual(price.dressage_score, 36.2)
+        self.assertEqual(price.show_jumping_penalties, 0.0)
+        watson = next(result for result in results if result.horse_name == "Ballyneety Rocketman")
+        self.assertEqual(watson.dressage_score, 40.5)
+        self.assertNotIn("Monbeg Darwin", {result.horse_name for result in results})
 
 
 if __name__ == "__main__":
