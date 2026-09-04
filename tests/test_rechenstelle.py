@@ -5808,6 +5808,123 @@ BURGHLEY_LIVE_FRIDAY_STRAWSON_HTML = """
 </html>
 """
 
+BURGHLEY_LIVE_FRIDAY_MORNING_COMPLETE_HTML = """
+<html>
+  <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep  4 2026 12:03PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>21</td>
+          <td class="riderCell"><span class="riderName">Nadja MINDER</span></td>
+          <td><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Toblerone</span></td>
+          <td>550,0</td>
+          <td>70,51</td>
+          <td>29,5</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>12.</strong></td>
+          <td>39</td>
+          <td class="riderCell"><span class="riderName">Lucy LATTA</span></td>
+          <td><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">RCA Patron Saint</span></td>
+          <td>499,0</td>
+          <td>63,97</td>
+          <td>36,0</td>
+          <td>12.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>18.</strong></td>
+          <td>40</td>
+          <td class="riderCell"><span class="riderName">Austin O'CONNOR</span></td>
+          <td><img src="../../../../flags/IRL.PNG" alt="IRL"></td>
+          <td class="horseCell"><span class="horseName">Sixmilewater</span></td>
+          <td>483,5</td>
+          <td>61,99</td>
+          <td>38,0</td>
+          <td>18.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>23.</strong></td>
+          <td>42</td>
+          <td class="riderCell"><span class="riderName">Anthony CLARK</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Ballinaguilkey Fortunus</span></td>
+          <td>480,5</td>
+          <td>61,60</td>
+          <td>38,4</td>
+          <td>23.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>26.</strong></td>
+          <td>37</td>
+          <td class="riderCell"><span class="riderName">Tara DIXON</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Master Smart</span></td>
+          <td>473,0</td>
+          <td>60,64</td>
+          <td>39,4</td>
+          <td>26.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>27.</strong></td>
+          <td>36</td>
+          <td class="riderCell"><span class="riderName">Tom STRAWSON</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Public Address</span></td>
+          <td>467,0</td>
+          <td>59,87</td>
+          <td>40,1</td>
+          <td>27.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>34.</strong></td>
+          <td>38</td>
+          <td class="riderCell"><span class="riderName">Kate ROCHER-SMITH</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Dassett Select</span></td>
+          <td>441,0</td>
+          <td>56,54</td>
+          <td>43,5</td>
+          <td>34.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>14:00:00</td>
+          <td>43</td>
+          <td class="riderCell"><span class="riderName">Jennie BRANNIGAN</span></td>
+          <td><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">Fe Lifestyle</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 BURGHLEY_LIVE_BRAGG_HTML = """
 <html>
   <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
@@ -9515,6 +9632,52 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(strawson.cross_country_jump_penalties, 0.0)
         self.assertEqual(strawson.cross_country_time_penalties, 0.0)
         self.assertNotIn("Master Smart", {result.horse_name for result in results})
+
+    def test_burghley_friday_morning_complete_adds_five_settled_rides(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+            event_name="Burghley · CCI5*-L",
+            level="CCI5*-L",
+            event_date=date(2026, 9, 2),
+            country="GBR",
+        )
+        results = parse_leaderboard_results(
+            BURGHLEY_LIVE_FRIDAY_MORNING_COMPLETE_HTML,
+            board=board,
+        )
+        self.assertEqual(len(results), 7)
+        ordered = sorted(results, key=lambda result: result.finishing_score)
+        self.assertEqual(
+            [(result.horse_name, result.finishing_score) for result in ordered],
+            [
+                ("Toblerone", 29.5),
+                ("RCA Patron Saint", 36.0),
+                ("Sixmilewater", 38.0),
+                ("Ballinaguilkey Fortunus", 38.4),
+                ("Master Smart", 39.4),
+                ("Public Address", 40.1),
+                ("Dassett Select", 43.5),
+            ],
+        )
+        latta = next(result for result in results if result.horse_name == "RCA Patron Saint")
+        self.assertEqual(latta.rider_name, "Lucy LATTA (IRL)")
+        self.assertEqual(latta.dressage_score, 36.0)
+        oconnor = next(result for result in results if result.horse_name == "Sixmilewater")
+        self.assertEqual(oconnor.rider_name, "Austin O'CONNOR (IRL)")
+        self.assertEqual(oconnor.dressage_score, 38.0)
+        clark = next(result for result in results if result.horse_name == "Ballinaguilkey Fortunus")
+        self.assertEqual(clark.rider_name, "Anthony CLARK (GBR)")
+        self.assertEqual(clark.dressage_score, 38.4)
+        dixon = next(result for result in results if result.horse_name == "Master Smart")
+        self.assertEqual(dixon.rider_name, "Tara DIXON (GBR)")
+        self.assertEqual(dixon.dressage_score, 39.4)
+        rocher = next(result for result in results if result.horse_name == "Dassett Select")
+        self.assertEqual(rocher.rider_name, "Kate ROCHER-SMITH (GBR)")
+        self.assertEqual(rocher.dressage_score, 43.5)
+        self.assertEqual(rocher.show_jumping_penalties, 0.0)
+        self.assertEqual(rocher.cross_country_jump_penalties, 0.0)
+        self.assertEqual(rocher.cross_country_time_penalties, 0.0)
+        self.assertNotIn("Fe Lifestyle", {result.horse_name for result in results})
 
 
 if __name__ == "__main__":
