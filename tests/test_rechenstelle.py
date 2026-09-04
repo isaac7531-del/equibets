@@ -5925,6 +5925,63 @@ BURGHLEY_LIVE_FRIDAY_MORNING_COMPLETE_HTML = """
 </html>
 """
 
+BURGHLEY_LIVE_FRIDAY_AFTERNOON_FIRST_RIDE_HTML = """
+<html>
+  <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep  4 2026  2:01PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>21</td>
+          <td class="riderCell"><span class="riderName">Nadja MINDER</span></td>
+          <td><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Toblerone</span></td>
+          <td>550,0</td>
+          <td>70,51</td>
+          <td>29,5</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong></strong></td>
+          <td>43</td>
+          <td class="riderCell"><span class="riderName">Jennie BRANNIGAN</span></td>
+          <td><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">Fe Lifestyle</span></td>
+          <td>104,0</td>
+          <td>65,00</td>
+          <td>35,0</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>14:08:00</td>
+          <td>44</td>
+          <td class="riderCell"><span class="riderName">Ema KLUGMAN</span></td>
+          <td><img src="../../../../flags/AUS.PNG" alt="AUS"></td>
+          <td class="horseCell"><span class="horseName">Chiraz</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 BURGHLEY_LIVE_BRAGG_HTML = """
 <html>
   <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
@@ -9678,6 +9735,38 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(rocher.cross_country_jump_penalties, 0.0)
         self.assertEqual(rocher.cross_country_time_penalties, 0.0)
         self.assertNotIn("Fe Lifestyle", {result.horse_name for result in results})
+
+    def test_burghley_friday_afternoon_first_ride_adds_brannigan(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+            event_name="Burghley · CCI5*-L",
+            level="CCI5*-L",
+            event_date=date(2026, 9, 2),
+            country="GBR",
+        )
+        results = parse_leaderboard_results(
+            BURGHLEY_LIVE_FRIDAY_AFTERNOON_FIRST_RIDE_HTML,
+            board=board,
+        )
+        self.assertEqual(len(results), 2)
+        ordered = sorted(results, key=lambda result: result.finishing_score)
+        self.assertEqual(
+            [(result.horse_name, result.finishing_score) for result in ordered],
+            [
+                ("Toblerone", 29.5),
+                ("Fe Lifestyle", 35.0),
+            ],
+        )
+        leader = ordered[0]
+        self.assertEqual(leader.rider_name, "Nadja MINDER (SUI)")
+        self.assertEqual(leader.dressage_score, 29.5)
+        brannigan = next(result for result in results if result.horse_name == "Fe Lifestyle")
+        self.assertEqual(brannigan.rider_name, "Jennie BRANNIGAN (USA)")
+        self.assertEqual(brannigan.dressage_score, 35.0)
+        self.assertEqual(brannigan.show_jumping_penalties, 0.0)
+        self.assertEqual(brannigan.cross_country_jump_penalties, 0.0)
+        self.assertEqual(brannigan.cross_country_time_penalties, 0.0)
+        self.assertNotIn("Chiraz", {result.horse_name for result in results})
 
 
 if __name__ == "__main__":
