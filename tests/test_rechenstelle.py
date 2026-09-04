@@ -5646,6 +5646,168 @@ BURGHLEY_LIVE_FRIDAY_SECOND_RIDE_HTML = """
 </html>
 """
 
+BURGHLEY_LIVE_FRIDAY_MORNING_HTML = """
+<html>
+  <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep  4 2026 10:52AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>21</td>
+          <td class="riderCell"><span class="riderName">Nadja MINDER</span></td>
+          <td><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Toblerone</span></td>
+          <td>550,0</td>
+          <td>70,51</td>
+          <td>29,5</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>6.</strong></td>
+          <td>34</td>
+          <td class="riderCell"><span class="riderName">Sarah BULLIMORE</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Corimiro</span></td>
+          <td>518,0</td>
+          <td>66,41</td>
+          <td>33,6</td>
+          <td>6.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent1">
+          <td><strong>15.</strong></td>
+          <td>35</td>
+          <td class="riderCell"><span class="riderName">Arthur MARX</span></td>
+          <td><img src="../../../../flags/FRA.PNG" alt="FRA"></td>
+          <td class="horseCell"><span class="horseName">Church'ile</span></td>
+          <td>&sup1; 485,5</td>
+          <td>62,24</td>
+          <td>37,8</td>
+          <td>15.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>20.</strong></td>
+          <td>32</td>
+          <td class="riderCell"><span class="riderName">Michael OWEN</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Monbeg Darwin</span></td>
+          <td>481,0</td>
+          <td>61,67</td>
+          <td>38,3</td>
+          <td>20.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>26.</strong></td>
+          <td>33</td>
+          <td class="riderCell"><span class="riderName">Matthew HEATH</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Benedict Radau</span></td>
+          <td>463,5</td>
+          <td>59,42</td>
+          <td>40,6</td>
+          <td>26.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>11:10:00</td>
+          <td>36</td>
+          <td class="riderCell"><span class="riderName">Tom STRAWSON</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Public Address</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+BURGHLEY_LIVE_FRIDAY_STRAWSON_HTML = """
+<html>
+  <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep  4 2026 11:17AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>21</td>
+          <td class="riderCell"><span class="riderName">Nadja MINDER</span></td>
+          <td><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Toblerone</span></td>
+          <td>550,0</td>
+          <td>70,51</td>
+          <td>29,5</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>6.</strong></td>
+          <td>34</td>
+          <td class="riderCell"><span class="riderName">Sarah BULLIMORE</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Corimiro</span></td>
+          <td>518,0</td>
+          <td>66,41</td>
+          <td>33,6</td>
+          <td>6.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>23.</strong></td>
+          <td>36</td>
+          <td class="riderCell"><span class="riderName">Tom STRAWSON</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Public Address</span></td>
+          <td>467,0</td>
+          <td>59,87</td>
+          <td>40,1</td>
+          <td>23.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>11:18:00</td>
+          <td>37</td>
+          <td class="riderCell"><span class="riderName">Tara DIXON</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Master Smart</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 BURGHLEY_LIVE_BRAGG_HTML = """
 <html>
   <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
@@ -9288,6 +9450,71 @@ class RechenstelleTests(unittest.TestCase):
         watson = next(result for result in results if result.horse_name == "Ballyneety Rocketman")
         self.assertEqual(watson.dressage_score, 40.5)
         self.assertNotIn("Monbeg Darwin", {result.horse_name for result in results})
+
+    def test_burghley_friday_morning_dressage_adds_four_settled_rides(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+            event_name="Burghley · CCI5*-L",
+            level="CCI5*-L",
+            event_date=date(2026, 9, 2),
+            country="GBR",
+        )
+        results = parse_leaderboard_results(BURGHLEY_LIVE_FRIDAY_MORNING_HTML, board=board)
+        self.assertEqual(len(results), 5)
+        ordered = sorted(results, key=lambda result: result.finishing_score)
+        self.assertEqual(
+            [(result.horse_name, result.finishing_score) for result in ordered],
+            [
+                ("Toblerone", 29.5),
+                ("Corimiro", 33.6),
+                ("Church'ile", 37.8),
+                ("Monbeg Darwin", 38.3),
+                ("Benedict Radau", 40.6),
+            ],
+        )
+        bullimore = next(result for result in results if result.horse_name == "Corimiro")
+        self.assertEqual(bullimore.rider_name, "Sarah BULLIMORE (GBR)")
+        self.assertEqual(bullimore.dressage_score, 33.6)
+        self.assertEqual(bullimore.show_jumping_penalties, 0.0)
+        marx = next(result for result in results if result.horse_name == "Church'ile")
+        self.assertEqual(marx.rider_name, "Arthur MARX (FRA)")
+        self.assertEqual(marx.dressage_score, 37.8)
+        owen = next(result for result in results if result.horse_name == "Monbeg Darwin")
+        self.assertEqual(owen.rider_name, "Michael OWEN (GBR)")
+        self.assertEqual(owen.dressage_score, 38.3)
+        heath = next(result for result in results if result.horse_name == "Benedict Radau")
+        self.assertEqual(heath.rider_name, "Matthew HEATH (GBR)")
+        self.assertEqual(heath.dressage_score, 40.6)
+        self.assertEqual(heath.cross_country_jump_penalties, 0.0)
+        self.assertEqual(heath.cross_country_time_penalties, 0.0)
+        self.assertNotIn("Public Address", {result.horse_name for result in results})
+
+    def test_burghley_friday_morning_adds_strawson(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+            event_name="Burghley · CCI5*-L",
+            level="CCI5*-L",
+            event_date=date(2026, 9, 2),
+            country="GBR",
+        )
+        results = parse_leaderboard_results(BURGHLEY_LIVE_FRIDAY_STRAWSON_HTML, board=board)
+        self.assertEqual(len(results), 3)
+        ordered = sorted(results, key=lambda result: result.finishing_score)
+        self.assertEqual(
+            [(result.horse_name, result.finishing_score) for result in ordered],
+            [
+                ("Toblerone", 29.5),
+                ("Corimiro", 33.6),
+                ("Public Address", 40.1),
+            ],
+        )
+        strawson = next(result for result in results if result.horse_name == "Public Address")
+        self.assertEqual(strawson.rider_name, "Tom STRAWSON (GBR)")
+        self.assertEqual(strawson.dressage_score, 40.1)
+        self.assertEqual(strawson.show_jumping_penalties, 0.0)
+        self.assertEqual(strawson.cross_country_jump_penalties, 0.0)
+        self.assertEqual(strawson.cross_country_time_penalties, 0.0)
+        self.assertNotIn("Master Smart", {result.horse_name for result in results})
 
 
 if __name__ == "__main__":
