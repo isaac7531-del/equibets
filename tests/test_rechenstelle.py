@@ -5982,6 +5982,123 @@ BURGHLEY_LIVE_FRIDAY_AFTERNOON_FIRST_RIDE_HTML = """
 </html>
 """
 
+BURGHLEY_LIVE_FRIDAY_AFTERNOON_BLOCK_HTML = """
+<html>
+  <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep  4 2026  2:46PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>21</td>
+          <td class="riderCell"><span class="riderName">Nadja MINDER</span></td>
+          <td><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Toblerone</span></td>
+          <td>550,0</td>
+          <td>70,51</td>
+          <td>29,5</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent1">
+          <td><strong>6.</strong></td>
+          <td>50</td>
+          <td class="riderCell"><span class="riderName">William COLEMAN</span></td>
+          <td><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">Very Dignified</span></td>
+          <td>521,0</td>
+          <td>66,79</td>
+          <td>33,2</td>
+          <td>6.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>8.</strong></td>
+          <td>48</td>
+          <td class="riderCell"><span class="riderName">Tiana COUDRAY</span></td>
+          <td><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">D'Artagnan</span></td>
+          <td>516,5</td>
+          <td>66,22</td>
+          <td>33,8</td>
+          <td>8.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>14.</strong></td>
+          <td>43</td>
+          <td class="riderCell"><span class="riderName">Jennie BRANNIGAN</span></td>
+          <td><img src="../../../../flags/USA.PNG" alt="USA"></td>
+          <td class="horseCell"><span class="horseName">Fe Lifestyle</span></td>
+          <td>499,0</td>
+          <td>63,97</td>
+          <td>36,0</td>
+          <td>14.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>16.</strong></td>
+          <td>49</td>
+          <td class="riderCell"><span class="riderName">Katie MAGEE</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Treworra</span></td>
+          <td>498,0</td>
+          <td>63,85</td>
+          <td>36,2</td>
+          <td>16.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>28.</strong></td>
+          <td>44</td>
+          <td class="riderCell"><span class="riderName">Ema KLUGMAN</span></td>
+          <td><img src="../../../../flags/AUS.PNG" alt="AUS"></td>
+          <td class="horseCell"><span class="horseName">Chiraz</span></td>
+          <td>479,5</td>
+          <td>61,47</td>
+          <td>38,5</td>
+          <td>28.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>32.</strong></td>
+          <td>46</td>
+          <td class="riderCell"><span class="riderName">Robin GODEL</span></td>
+          <td><img src="../../../../flags/SUI.PNG" alt="SUI"></td>
+          <td class="horseCell"><span class="horseName">Dealer de la Bride</span></td>
+          <td>470,5</td>
+          <td>60,32</td>
+          <td>39,7</td>
+          <td>32.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td>15:10:00</td>
+          <td>51</td>
+          <td class="riderCell"><span class="riderName">Holly RICHARDSON</span></td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td class="horseCell"><span class="horseName">Bally Louis</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
 BURGHLEY_LIVE_BRAGG_HTML = """
 <html>
   <head><title>LeaderBoard · Burghley 2026 · Defender Burghley CCI5*-L</title></head>
@@ -9767,6 +9884,38 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(brannigan.cross_country_jump_penalties, 0.0)
         self.assertEqual(brannigan.cross_country_time_penalties, 0.0)
         self.assertNotIn("Chiraz", {result.horse_name for result in results})
+
+    def test_burghley_friday_afternoon_block_adds_five_rides_and_corrects_brannigan(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/burghley/leaderboard01.html",
+            event_name="Burghley · CCI5*-L",
+            level="CCI5*-L",
+            event_date=date(2026, 9, 2),
+            country="GBR",
+        )
+        results = parse_leaderboard_results(
+            BURGHLEY_LIVE_FRIDAY_AFTERNOON_BLOCK_HTML,
+            board=board,
+        )
+        self.assertEqual(len(results), 7)
+        by_horse = {result.horse_name: result for result in results}
+        self.assertEqual(by_horse["Toblerone"].dressage_score, 29.5)
+        self.assertEqual(by_horse["Very Dignified"].rider_name, "William COLEMAN (USA)")
+        self.assertEqual(by_horse["Very Dignified"].dressage_score, 33.2)
+        self.assertEqual(by_horse["D'Artagnan"].rider_name, "Tiana COUDRAY (USA)")
+        self.assertEqual(by_horse["D'Artagnan"].dressage_score, 33.8)
+        self.assertEqual(by_horse["Fe Lifestyle"].rider_name, "Jennie BRANNIGAN (USA)")
+        self.assertEqual(by_horse["Fe Lifestyle"].dressage_score, 36.0)
+        self.assertEqual(by_horse["Treworra"].rider_name, "Katie MAGEE (GBR)")
+        self.assertEqual(by_horse["Treworra"].dressage_score, 36.2)
+        self.assertEqual(by_horse["Chiraz"].rider_name, "Ema KLUGMAN (AUS)")
+        self.assertEqual(by_horse["Chiraz"].dressage_score, 38.5)
+        self.assertEqual(by_horse["Dealer de la Bride"].rider_name, "Robin GODEL (SUI)")
+        self.assertEqual(by_horse["Dealer de la Bride"].dressage_score, 39.7)
+        self.assertEqual(by_horse["Chiraz"].show_jumping_penalties, 0.0)
+        self.assertEqual(by_horse["Chiraz"].cross_country_jump_penalties, 0.0)
+        self.assertEqual(by_horse["Chiraz"].cross_country_time_penalties, 0.0)
+        self.assertNotIn("Bally Louis", {result.horse_name for result in results})
 
 
 if __name__ == "__main__":
