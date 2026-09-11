@@ -153,6 +153,55 @@ BURGHLEY_SEP_2026 = (
     },
 )
 
+# Langenhagen-Twenge (GER) CCI3*-S / CCI2*-S / CCI1*-Intro, Sep 11–13 2026.
+# Public class boards use 011/012/021/022 plus 03/04 for Intro. Championship
+# overlay boards 901–905 repeat the same combinations and are not ingested.
+# Rows without dressage are skipped.
+LANGENHAGEN_SEP_2026 = (
+    {
+        "url": "https://live.rechenstelle.de/2026/langenhagen/leaderboard011.html",
+        "event_name": "Langenhagen · CCI3*-S younger",
+        "level": "CCI3*-S",
+        "event_date": date(2026, 9, 11),
+        "country": "GER",
+    },
+    {
+        "url": "https://live.rechenstelle.de/2026/langenhagen/leaderboard012.html",
+        "event_name": "Langenhagen · CCI3*-S older",
+        "level": "CCI3*-S",
+        "event_date": date(2026, 9, 11),
+        "country": "GER",
+    },
+    {
+        "url": "https://live.rechenstelle.de/2026/langenhagen/leaderboard021.html",
+        "event_name": "Langenhagen · CCI2*-S Sec 1",
+        "level": "CCI2*-S",
+        "event_date": date(2026, 9, 11),
+        "country": "GER",
+    },
+    {
+        "url": "https://live.rechenstelle.de/2026/langenhagen/leaderboard022.html",
+        "event_name": "Langenhagen · CCI2*-S Sec 2",
+        "level": "CCI2*-S",
+        "event_date": date(2026, 9, 11),
+        "country": "GER",
+    },
+    {
+        "url": "https://live.rechenstelle.de/2026/langenhagen/leaderboard03.html",
+        "event_name": "Langenhagen · CCI1*-Intro B",
+        "level": "CCI1*-Intro",
+        "event_date": date(2026, 9, 11),
+        "country": "GER",
+    },
+    {
+        "url": "https://live.rechenstelle.de/2026/langenhagen/leaderboard04.html",
+        "event_name": "Langenhagen · CCI1*-Intro A",
+        "level": "CCI1*-Intro",
+        "event_date": date(2026, 9, 11),
+        "country": "GER",
+    },
+)
+
 
 @dataclass(frozen=True)
 class RechenstelleBoard:
@@ -434,6 +483,12 @@ def burghley_sep_2026_boards() -> list[RechenstelleBoard]:
     return [RechenstelleBoard(**item) for item in BURGHLEY_SEP_2026]
 
 
+def langenhagen_sep_2026_boards() -> list[RechenstelleBoard]:
+    """Return the Langenhagen September 2026 public class leaderboards."""
+
+    return [RechenstelleBoard(**item) for item in LANGENHAGEN_SEP_2026]
+
+
 def merge_into_store(store_path: Path, new_results: Iterable[EventingResult]) -> list[EventingResult]:
     """Merge Rechenstelle rows into the shared results store.
 
@@ -528,6 +583,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull the Burghley September 2026 public leaderboard",
     )
+    parser.add_argument(
+        "--langenhagen-2026",
+        action="store_true",
+        help="Pull the Langenhagen September 2026 public class leaderboards",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--dry-run", action="store_true")
@@ -544,10 +604,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         boards.extend(segersjo_aug_2026_boards())
     if args.burghley_2026:
         boards.extend(burghley_sep_2026_boards())
+    if args.langenhagen_2026:
+        boards.extend(langenhagen_sep_2026_boards())
     if not boards:
         raise SystemExit(
             "Specify --millstreet-july-2026, --aachen-ch-m-c-2026, --hambach-2026, "
-            "--segersjo-2026, and/or --burghley-2026"
+            "--segersjo-2026, --burghley-2026, and/or --langenhagen-2026"
         )
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)

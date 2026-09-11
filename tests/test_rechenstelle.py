@@ -10,6 +10,7 @@ from equibets.rechenstelle import (
     _LeaderboardParser,
     burghley_sep_2026_boards,
     hambach_aug_2026_boards,
+    langenhagen_sep_2026_boards,
     parse_leaderboard_results,
     segersjo_aug_2026_boards,
 )
@@ -10370,6 +10371,199 @@ class RechenstelleTests(unittest.TestCase):
         self.assertNotIn("Fe Lifestyle", horses)
         self.assertNotIn("Benedict Radau", horses)
         self.assertNotIn("Centennial", horses)
+
+    def test_langenhagen_boards_cover_september_class_sections(self):
+        boards = langenhagen_sep_2026_boards()
+        self.assertEqual(len(boards), 6)
+        self.assertEqual(
+            [board.level for board in boards],
+            ["CCI3*-S", "CCI3*-S", "CCI2*-S", "CCI2*-S", "CCI1*-Intro", "CCI1*-Intro"],
+        )
+        self.assertEqual(
+            [board.url.rsplit("/", 1)[-1] for board in boards],
+            [
+                "leaderboard011.html",
+                "leaderboard012.html",
+                "leaderboard021.html",
+                "leaderboard022.html",
+                "leaderboard03.html",
+                "leaderboard04.html",
+            ],
+        )
+        self.assertTrue(all(board.event_date == date(2026, 9, 11) for board in boards))
+        self.assertTrue(all(board.country == "GER" for board in boards))
+
+    def test_langenhagen_cci3_older_dressage_scores_are_parsed(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/langenhagen/leaderboard012.html",
+            event_name="Langenhagen · CCI3*-S older",
+            level="CCI3*-S",
+            event_date=date(2026, 9, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(LANGENHAGEN_CCI3_OLDER_DRESSAGE_HTML, board=board)
+        self.assertEqual(len(results), 2)
+        leader, second = results
+        self.assertEqual(leader.rider_name, "Brandon SCHÄFER-GEHRAU (GER)")
+        self.assertEqual(leader.horse_name, "Very Special")
+        self.assertEqual(leader.dressage_score, 26.7)
+        self.assertEqual(leader.finishing_score, 26.7)
+        self.assertEqual(leader.event_name, "Langenhagen · CCI3*-S older")
+        self.assertEqual(second.rider_name, "Jillian GIESSEN (NED)")
+        self.assertEqual(second.horse_name, "Ni Hao")
+        self.assertEqual(second.dressage_score, 28.2)
+
+    def test_langenhagen_cci2_skips_wdbdre_status_row(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/langenhagen/leaderboard021.html",
+            event_name="Langenhagen · CCI2*-S Sec 1",
+            level="CCI2*-S",
+            event_date=date(2026, 9, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(LANGENHAGEN_CCI2_WDBDRE_HTML, board=board)
+        self.assertEqual(len(results), 1)
+        leader = results[0]
+        self.assertEqual(leader.rider_name, "Antonia VON BAATH (GER)")
+        self.assertEqual(leader.horse_name, "FRH Gentle Willowbee H")
+        self.assertEqual(leader.dressage_score, 24.3)
+        horses = {result.horse_name for result in results}
+        self.assertNotIn("Eckinops d'Am", horses)
+
+    def test_langenhagen_intro_start_list_without_dressage_yields_no_scored_rows(self):
+        board = RechenstelleBoard(
+            url="https://live.rechenstelle.de/2026/langenhagen/leaderboard03.html",
+            event_name="Langenhagen · CCI1*-Intro B",
+            level="CCI1*-Intro",
+            event_date=date(2026, 9, 11),
+            country="GER",
+        )
+        results = parse_leaderboard_results(LANGENHAGEN_INTRO_START_LIST_HTML, board=board)
+        self.assertEqual(results, [])
+
+
+LANGENHAGEN_CCI3_OLDER_DRESSAGE_HTML = """
+<html>
+  <head><title>LeaderBoard · Langenhagen - Twenge · CCI 3*-S 2001 &amp; older</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep 11 2026 11:26AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Jumping</th><th>Rank after Jumping</th>
+          <th>Cross-Country</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>12</td>
+          <td class="riderCell"><span class="riderName">Brandon SCHÄFER-GEHRAU</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Very Special</span></td>
+          <td>366,5</td>
+          <td>73,30</td>
+          <td>26,7</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td><strong>2.</strong></td>
+          <td>44</td>
+          <td class="riderCell"><span class="riderName">Jillian GIESSEN</span></td>
+          <td><img src="../../../../flags/NED.PNG" alt="NED"></td>
+          <td class="horseCell"><span class="horseName">Ni Hao</span></td>
+          <td>359,0</td>
+          <td>71,80</td>
+          <td>28,2</td>
+          <td>2.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+LANGENHAGEN_CCI2_WDBDRE_HTML = """
+<html>
+  <head><title>LeaderBoard · Langenhagen - Twenge · CCI 2*-S</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep 11 2026  1:11PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Jumping</th><th>Rank after Jumping</th>
+          <th>Cross-Country</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>32</td>
+          <td class="riderCell"><span class="riderName">Antonia VON BAATH</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">FRH Gentle Willowbee H</span></td>
+          <td>318,0</td>
+          <td>75,71</td>
+          <td>24,3</td>
+          <td>1.</td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr class="parent0">
+          <td></td>
+          <td>88</td>
+          <td class="riderCell"><span class="riderName">Victor Ignacio LOPEZ MALDONADO</span></td>
+          <td><img src="../../../../flags/MEX.PNG" alt="MEX"></td>
+          <td class="horseCell"><span class="horseName">Eckinops d'Am</span></td>
+          <td></td>
+          <td></td>
+          <td>WDbDRE</td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+LANGENHAGEN_INTRO_START_LIST_HTML = """
+<html>
+  <head><title>LeaderBoard · Langenhagen - Twenge · CCI 1*-Intro</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep 11 2026 11:26AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Jumping</th><th>Rank after Jumping</th>
+          <th>Cross-Country</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td>15:00:00</td>
+          <td>139</td>
+          <td class="riderCell"><span class="riderName">Vanessa BÖLTING</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Daily Spirit B</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
 
 
 if __name__ == "__main__":
