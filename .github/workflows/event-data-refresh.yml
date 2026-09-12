@@ -82,6 +82,18 @@ jobs:
             --compliance-policy data/source_compliance.json \
             --verify warn
 
+      - name: Refresh current FEI live scores
+        if: env.FEI_COOKIE != ''
+        run: |
+          python3 -m equibets.fei_bot \
+            --current-events \
+            --output data/fei_results.json \
+            --live-output src/data/live_scores.json \
+            --raw-dir data/raw/fei \
+            --storage-state data/fei_state.json \
+            --compliance-policy data/source_compliance.json \
+            --verify none
+
       - name: Build horse index from all collected results
         if: env.FEI_COOKIE != ''
         run: |
@@ -108,3 +120,4 @@ jobs:
             data/upcoming_events.json
             data/fei_results.json
             data/horse_index.json
+            src/data/live_scores.json
