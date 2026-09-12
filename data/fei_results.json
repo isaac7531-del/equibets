@@ -42076,7 +42076,7 @@
       "source_record_id": "rechenstelle:696e63ca0b6d484c"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -42093,7 +42093,7 @@
       "source_record_id": "rechenstelle:73b1429dcb151bdc"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -42110,7 +42110,7 @@
       "source_record_id": "rechenstelle:07368cc48aa53f77"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -42127,7 +42127,7 @@
       "source_record_id": "rechenstelle:26be7fc7e3a5639d"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -42195,7 +42195,7 @@
       "source_record_id": "rechenstelle:3ae0c3572edf8e0d"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -42263,7 +42263,7 @@
       "source_record_id": "rechenstelle:3c59fdf0b5a5ed6a"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -42365,7 +42365,7 @@
       "source_record_id": "rechenstelle:07199a450f433cbf"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -42382,7 +42382,7 @@
       "source_record_id": "rechenstelle:240b04299b532318"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -42433,7 +42433,7 @@
       "source_record_id": "rechenstelle:83f1f32a7e1e8c79"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -42444,7 +42444,7 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Anna VON HELLDORFF (GER)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 8.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:34e2f4444c5f206d"
@@ -42552,7 +42552,7 @@
       "source_record_id": "rechenstelle:27483d64c69c03ab"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -42807,7 +42807,7 @@
       "source_record_id": "rechenstelle:b2f6c93a9b5e3883"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -42977,9 +42977,9 @@
       "source_record_id": "rechenstelle:e7937bd9bcc51eaf"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
-      "cross_country_jump_penalties": 0.0,
+      "cross_country_jump_penalties": 24.4,
       "cross_country_time_penalties": 0.0,
       "dressage_score": 24.3,
       "event_date": "2026-09-11",
@@ -43028,7 +43028,7 @@
       "source_record_id": "rechenstelle:dfc924fb808d441d"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -43039,7 +43039,7 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Christian CHABOT (LUX)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 12.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:77cbe3d60bde8c78"
@@ -43300,7 +43300,7 @@
       "source_record_id": "rechenstelle:ee6d38eab21553b9"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -43311,13 +43311,13 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Dr. Clemens HAYESSEN (GER)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 0.8,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:820a1d9c71590bb1"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -43334,7 +43334,7 @@
       "source_record_id": "rechenstelle:a6d590344aeca014"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -43453,7 +43453,7 @@
       "source_record_id": "rechenstelle:543c6d61b149314d"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -43464,7 +43464,7 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Emely KURBEL (GER)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:ad5c212c58e55f7b"
@@ -43572,7 +43572,7 @@
       "source_record_id": "rechenstelle:350db4e700636195"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -43583,7 +43583,7 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Emmi Pauline OSTMANN (GER)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.4,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:e1a74574769c8cb4"
@@ -43742,7 +43742,24 @@
       "source_record_id": "rechenstelle:433bc06fd7cf48be"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 27.4,
+      "event_date": "2026-09-11",
+      "event_name": "Langenhagen \u00b7 CCI1*-Intro A",
+      "horse_name": "Metallica SGN",
+      "is_user_entered": false,
+      "level": "CCI1*-Intro",
+      "rider_name": "Franziska NIEHOFF (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:3e54ba6613f22201"
+    },
+    {
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -43861,7 +43878,7 @@
       "source_record_id": "rechenstelle:51991b0db44621ab"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -43980,7 +43997,7 @@
       "source_record_id": "rechenstelle:292d6e0a19725adc"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -43997,7 +44014,7 @@
       "source_record_id": "rechenstelle:c6e1917a91f6ebf3"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -44014,7 +44031,7 @@
       "source_record_id": "rechenstelle:53053bdc6cd885a0"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -44025,7 +44042,7 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Ismina Alice BUDD (NOR)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 14.4,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:2d4449fc3f2f0a72"
@@ -44097,23 +44114,6 @@
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:aa05a55d7cfd2949"
-    },
-    {
-      "collected_at": "2026-09-12T12:01:50+00:00",
-      "country": "GER",
-      "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
-      "dressage_score": 30.2,
-      "event_date": "2026-09-11",
-      "event_name": "Langenhagen \u00b7 CCI1*-Intro A",
-      "horse_name": "Flip de Wip",
-      "is_user_entered": false,
-      "level": "CCI1*-Intro",
-      "rider_name": "Jana MIEBACH (GER)",
-      "show_jumping_penalties": 4.0,
-      "source_id": "rechenstelle",
-      "source_priority": 5,
-      "source_record_id": "rechenstelle:b2247372bc62eb46"
     },
     {
       "collected_at": "2026-09-12T12:01:50+00:00",
@@ -44286,7 +44286,7 @@
       "source_record_id": "rechenstelle:b0d40cb6076f4a54"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -44354,7 +44354,7 @@
       "source_record_id": "rechenstelle:5fb7135bcbc253d2"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -44490,7 +44490,7 @@
       "source_record_id": "rechenstelle:e9c2ccb41eee1363"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -44507,7 +44507,7 @@
       "source_record_id": "rechenstelle:4a47f839f9add971"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -44813,7 +44813,7 @@
       "source_record_id": "rechenstelle:56d54edf718710cb"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -44932,7 +44932,7 @@
       "source_record_id": "rechenstelle:d8776a88a7164122"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -45000,7 +45000,7 @@
       "source_record_id": "rechenstelle:9585cb5a0f8a2177"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -45119,7 +45119,7 @@
       "source_record_id": "rechenstelle:fc38bcdee54290c9"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -45136,7 +45136,7 @@
       "source_record_id": "rechenstelle:f9e2c6ac8a775b49"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -45204,7 +45204,7 @@
       "source_record_id": "rechenstelle:d361467e261c8f13"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -45215,13 +45215,13 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Lorelotte WELLER (GER)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:e3c9d0b869c1a7a0"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -45255,7 +45255,7 @@
       "source_record_id": "rechenstelle:6c4fccabaa2d07a8"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -45266,13 +45266,13 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Louisa R\u00d6MER (GER)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 8.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:d1ee9d51b6764b34"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -45289,7 +45289,7 @@
       "source_record_id": "rechenstelle:e04331034eadb5b1"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -45306,7 +45306,7 @@
       "source_record_id": "rechenstelle:da1bb40a439e029c"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -45374,9 +45374,9 @@
       "source_record_id": "rechenstelle:a0c2377ae3a90cb6"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
-      "cross_country_jump_penalties": 0.0,
+      "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 0.0,
       "dressage_score": 37.3,
       "event_date": "2026-09-11",
@@ -45527,7 +45527,7 @@
       "source_record_id": "rechenstelle:1a1a6efb5485ad4e"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -45538,7 +45538,7 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Malin HANSEN-HOTOPP (GER)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:05ad184137c4e2e8"
@@ -45561,7 +45561,7 @@
       "source_record_id": "rechenstelle:23978c25db51c6e3"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -45935,7 +45935,7 @@
       "source_record_id": "rechenstelle:17b14b146286a118"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -45946,7 +45946,7 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Nuria LLADONOSA PEIRET\u00d3 (ESP)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 12.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:d3cb41e4d703d700"
@@ -46326,7 +46326,7 @@
       "source_record_id": "rechenstelle:b5132613d52e38ff"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -46377,7 +46377,7 @@
       "source_record_id": "rechenstelle:27ff90ee855672d4"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -46462,7 +46462,7 @@
       "source_record_id": "rechenstelle:3989c26b098399a6"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -46473,7 +46473,7 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Valentina BENITEZ VALLE (GER)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:f154f689e29b1dde"
@@ -46547,7 +46547,7 @@
       "source_record_id": "rechenstelle:fd94f4b3acbef66f"
     },
     {
-      "collected_at": "2026-09-12T12:01:50+00:00",
+      "collected_at": "2026-09-12T13:03:42+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -46558,7 +46558,7 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Wiebke SCHINDEWOLF (GER)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.4,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:13bf569a49f65526"
@@ -46599,6 +46599,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-12T12:01:51+00:00",
+  "updated_at": "2026-09-12T13:03:42+00:00",
   "version": 1
 }
