@@ -63,6 +63,7 @@ describe('live score helpers', () => {
   it('formats public source IDs for display', () => {
     expect(formatSourceList(['data_fei'])).toBe('FEI Data');
     expect(formatSourceList(['rechenstelle'])).toBe('Rechenstelle');
+    expect(formatSourceList(['eventingscores'])).toBe('EventingScores');
   });
 
   it('formats missing live phase values as explicit dashes', () => {

@@ -84,6 +84,7 @@ export const formatDateTime = (value: string | null | undefined) => {
 const sourceLabels: Record<string, string> = {
   data_fei: 'FEI Data',
   rechenstelle: 'Rechenstelle',
+  eventingscores: 'EventingScores',
 };
 
 export const formatSourceId = (sourceId: string) => sourceLabels[sourceId] ?? sourceId;

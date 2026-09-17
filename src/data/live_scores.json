@@ -1,6 +1,63 @@
 {
-  "event_count": 13,
+  "event_count": 14,
   "events": [
+    {
+      "country": "GBR",
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
+      "latest_collected_at": "2026-09-17T08:26:59+00:00",
+      "level": "CCI4*-S",
+      "result_count": 4,
+      "source_ids": [
+        "eventingscores"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-09-17T08:26:59+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 27.2,
+          "finishing_score": 27.2,
+          "horse_name": "BROOKFIELD DANNY DE MUZE",
+          "rank": 1,
+          "rider_name": "Tom McEwen (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T08:26:59+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.1,
+          "finishing_score": 35.1,
+          "horse_name": "CHAKITA",
+          "rank": 2,
+          "rider_name": "Samantha Lissington (NZL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T08:26:59+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 36.7,
+          "finishing_score": 36.7,
+          "horse_name": "BLS ABSOLUTELY",
+          "rank": 3,
+          "rider_name": "Tom Jackson (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T08:26:59+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 37.9,
+          "finishing_score": 37.9,
+          "horse_name": "SPORTSFIELD COOPER",
+          "rank": 4,
+          "rider_name": "Patrick Whelan (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        }
+      ]
+    },
     {
       "country": "GER",
       "event_date": "2026-09-11",
@@ -6309,15 +6366,16 @@
       ]
     }
   ],
-  "generated_at": "2026-09-13T15:03:34+00:00",
-  "latest_collected_at": "2026-09-13T15:03:33+00:00",
-  "result_count": 558,
+  "generated_at": "2026-09-17T08:27:01+00:00",
+  "latest_collected_at": "2026-09-17T08:26:59+00:00",
+  "result_count": 562,
   "source_ids": [
+    "eventingscores",
     "rechenstelle"
   ],
   "version": 1,
   "window": {
-    "end_date": "2026-09-15",
-    "start_date": "2026-08-16"
+    "end_date": "2026-09-19",
+    "start_date": "2026-08-20"
   }
 }
