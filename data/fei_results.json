@@ -47261,7 +47261,7 @@
       "source_record_id": "rechenstelle:fb131959e28a3b88"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47278,7 +47278,7 @@
       "source_record_id": "eventingscores:2f49778caff553c7"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47295,7 +47295,24 @@
       "source_record_id": "eventingscores:8dbd6ad28680a37e"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 31.9,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-L",
+      "horse_name": "DHI KING NELSON",
+      "is_user_entered": false,
+      "level": "CCI4*-L",
+      "rider_name": "Barnie Brotherton (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:2a0f1e9d8cb75a4d"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47312,7 +47329,7 @@
       "source_record_id": "eventingscores:6d1610821c7dcbd0"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47329,7 +47346,7 @@
       "source_record_id": "eventingscores:bb317291bb8442d9"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47346,7 +47363,7 @@
       "source_record_id": "eventingscores:0d2670ff1eb28fbf"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47363,7 +47380,7 @@
       "source_record_id": "eventingscores:49b2b98b6863328d"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47380,7 +47397,7 @@
       "source_record_id": "eventingscores:7fa74801d09a96a8"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47397,7 +47414,24 @@
       "source_record_id": "eventingscores:828460ad09686ae2"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 42.6,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
+      "horse_name": "MGH HILDARE HARLEQUIN",
+      "is_user_entered": false,
+      "level": "CCI4*-S",
+      "rider_name": "Danielle Mccormack (IRL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:ae614021b8414975"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47414,7 +47448,7 @@
       "source_record_id": "eventingscores:1171f50c34f98f0c"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47431,7 +47465,7 @@
       "source_record_id": "eventingscores:f622b097f635880f"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47448,7 +47482,7 @@
       "source_record_id": "eventingscores:ed47c86c9a356f3e"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47465,7 +47499,7 @@
       "source_record_id": "eventingscores:8d5f93927fa0d0dd"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47482,7 +47516,7 @@
       "source_record_id": "eventingscores:614e292acb108556"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47499,7 +47533,7 @@
       "source_record_id": "eventingscores:09601ae100016a95"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47516,7 +47550,7 @@
       "source_record_id": "eventingscores:0216b08520677cf4"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47533,7 +47567,7 @@
       "source_record_id": "eventingscores:a8b6eb03b0260961"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47550,7 +47584,7 @@
       "source_record_id": "eventingscores:d8ad63b01b10f276"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47567,7 +47601,7 @@
       "source_record_id": "eventingscores:c2ecf526b4c8a201"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47584,7 +47618,24 @@
       "source_record_id": "eventingscores:49cda4766857f619"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 39.6,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-L",
+      "horse_name": "EMERALD ENDEAVOUR",
+      "is_user_entered": false,
+      "level": "CCI4*-L",
+      "rider_name": "Harry Dzenis (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:cdf065fda7386113"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47601,7 +47652,7 @@
       "source_record_id": "eventingscores:5a7d044d7d84622f"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47618,7 +47669,7 @@
       "source_record_id": "eventingscores:91a43f6b54d0951d"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47635,7 +47686,24 @@
       "source_record_id": "eventingscores:8e99a90cd0bfdf61"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 33.7,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-L",
+      "horse_name": "CYMOON ''F'' Z",
+      "is_user_entered": false,
+      "level": "CCI4*-L",
+      "rider_name": "Isabelle Cook (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:5872e638e22ce0ef"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47652,7 +47720,24 @@
       "source_record_id": "eventingscores:4607f2040325a514"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 37.9,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
+      "horse_name": "MY FOREVER BLUE",
+      "is_user_entered": false,
+      "level": "CCI4*-S",
+      "rider_name": "Jeanette Brakewell (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:9185757083d26f4d"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47669,7 +47754,7 @@
       "source_record_id": "eventingscores:a84f19b2addab301"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47686,7 +47771,24 @@
       "source_record_id": "eventingscores:4f10cb537778dd4c"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 39.4,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-L",
+      "horse_name": "THE SPICE MERCHANT",
+      "is_user_entered": false,
+      "level": "CCI4*-L",
+      "rider_name": "Jess Rimmer (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:4f923322d3ef7f77"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47703,7 +47805,24 @@
       "source_record_id": "eventingscores:505b650e83a3da70"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 33.2,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-L",
+      "horse_name": "LICENCE TO COOLEY",
+      "is_user_entered": false,
+      "level": "CCI4*-L",
+      "rider_name": "John Tilley (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:ccc80ae93f3386ef"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47720,7 +47839,7 @@
       "source_record_id": "eventingscores:1511f35722c7d3bd"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47737,7 +47856,7 @@
       "source_record_id": "eventingscores:f8c791e18e841992"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47754,7 +47873,7 @@
       "source_record_id": "eventingscores:195533833ff46f58"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47771,7 +47890,7 @@
       "source_record_id": "eventingscores:8cd1782783da0dd4"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47788,7 +47907,7 @@
       "source_record_id": "eventingscores:657c7a8399a05f37"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47805,7 +47924,7 @@
       "source_record_id": "eventingscores:d8ee9fde667f924e"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47822,7 +47941,7 @@
       "source_record_id": "eventingscores:097d75c3b693f9ab"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47839,7 +47958,24 @@
       "source_record_id": "eventingscores:5e5d2a31db9b761d"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 31.2,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
+      "horse_name": "PRIMITIVE FUNTIME",
+      "is_user_entered": false,
+      "level": "CCI4*-S",
+      "rider_name": "Max Warburton (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:3810cf68dfcca7b9"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47856,7 +47992,41 @@
       "source_record_id": "eventingscores:7c1616e721857978"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 34.0,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-L",
+      "horse_name": "SOMMERSBY",
+      "is_user_entered": false,
+      "level": "CCI4*-L",
+      "rider_name": "Oliver Townend (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:badf01c6ca919b59"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 32.9,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-L",
+      "horse_name": "JEWELENT",
+      "is_user_entered": false,
+      "level": "CCI4*-L",
+      "rider_name": "Olivia Dutton (USA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:91604ce660a1a629"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47873,7 +48043,24 @@
       "source_record_id": "eventingscores:ba5701a876b6cdaf"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 41.2,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
+      "horse_name": "LAKELANDS WOODY",
+      "is_user_entered": false,
+      "level": "CCI4*-S",
+      "rider_name": "Patrick Whelan (IRL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:f3311fdecede08cb"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47890,7 +48077,24 @@
       "source_record_id": "eventingscores:176f0a81332a3e65"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 39.4,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
+      "horse_name": "KILMANAHAN ULYSSES",
+      "is_user_entered": false,
+      "level": "CCI4*-S",
+      "rider_name": "Phoebe Locke (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:9c7eaa25eef88150"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47907,7 +48111,7 @@
       "source_record_id": "eventingscores:8ce10f0edef8f29e"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47924,7 +48128,7 @@
       "source_record_id": "eventingscores:24038d0d9d0f752e"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47941,7 +48145,7 @@
       "source_record_id": "eventingscores:0417e1f461ea8a04"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47958,7 +48162,7 @@
       "source_record_id": "eventingscores:99033e6c13125c92"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47975,7 +48179,7 @@
       "source_record_id": "eventingscores:c9157c42db23aca3"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47992,7 +48196,24 @@
       "source_record_id": "eventingscores:3bc2aadb04c8126e"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 29.4,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
+      "horse_name": "COOLEY CORPELLO",
+      "is_user_entered": false,
+      "level": "CCI4*-S",
+      "rider_name": "Samantha Lissington (NZL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:75395672e116b9eb"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48009,7 +48230,41 @@
       "source_record_id": "eventingscores:4a00993bf2d35c6c"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 30.2,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
+      "horse_name": "NAKOTA",
+      "is_user_entered": false,
+      "level": "CCI4*-S",
+      "rider_name": "Sarah Bullimore (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:75e40f31d55b542f"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 39.2,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
+      "horse_name": "LUNA DE LA SALLE",
+      "is_user_entered": false,
+      "level": "CCI4*-S",
+      "rider_name": "Sarah Dessambre (BEL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:52d5ffab9d779fd4"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48026,7 +48281,24 @@
       "source_record_id": "eventingscores:8c748c11bed28290"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 31.5,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-L",
+      "horse_name": "JOHN THE BULL",
+      "is_user_entered": false,
+      "level": "CCI4*-L",
+      "rider_name": "Susie Berry (IRL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:da9ba46bddf90eeb"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48043,7 +48315,7 @@
       "source_record_id": "eventingscores:d12e7f6bd36ced70"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48060,7 +48332,24 @@
       "source_record_id": "eventingscores:9205d7f85828c6fc"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 31.7,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
+      "horse_name": "THE HIGHLANDER",
+      "is_user_entered": false,
+      "level": "CCI4*-S",
+      "rider_name": "Tim Price (NZL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:e6a9c30badb1bf0a"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48077,7 +48366,7 @@
       "source_record_id": "eventingscores:3cb1ea8d269fcbdc"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48094,7 +48383,7 @@
       "source_record_id": "eventingscores:3147b83af152f849"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48111,7 +48400,7 @@
       "source_record_id": "eventingscores:12ef34d0b6d3fe36"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48128,7 +48417,24 @@
       "source_record_id": "eventingscores:0304674839edcbe5"
     },
     {
-      "collected_at": "2026-09-17T12:16:35+00:00",
+      "collected_at": "2026-09-17T14:21:43+00:00",
+      "country": "GBR",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 37.3,
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-L",
+      "horse_name": "THE MAIL MAN",
+      "is_user_entered": false,
+      "level": "CCI4*-L",
+      "rider_name": "Tom Rowland (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "eventingscores",
+      "source_priority": 8,
+      "source_record_id": "eventingscores:60ef3bf6420ce7e9"
+    },
+    {
+      "collected_at": "2026-09-17T14:21:43+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48146,6 +48452,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-17T12:16:37+00:00",
+  "updated_at": "2026-09-17T14:21:44+00:00",
   "version": 1
 }
