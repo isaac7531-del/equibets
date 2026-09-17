@@ -1,19 +1,19 @@
 {
-  "event_count": 14,
+  "event_count": 15,
   "events": [
     {
       "country": "GBR",
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
-      "latest_collected_at": "2026-09-17T09:22:21+00:00",
+      "latest_collected_at": "2026-09-17T10:18:44+00:00",
       "level": "CCI4*-S",
-      "result_count": 11,
+      "result_count": 20,
       "source_ids": [
         "eventingscores"
       ],
       "standings": [
         {
-          "collected_at": "2026-09-17T09:22:21+00:00",
+          "collected_at": "2026-09-17T10:18:44+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 27.2,
           "finishing_score": 27.2,
@@ -24,112 +24,323 @@
           "source_id": "eventingscores"
         },
         {
-          "collected_at": "2026-09-17T09:22:21+00:00",
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 29.1,
+          "finishing_score": 29.1,
+          "horse_name": "SELLA",
+          "rank": 2,
+          "rider_name": "Therese Viklund (SWE)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.2,
           "finishing_score": 30.2,
           "horse_name": "CIL DARA BOMBAY S",
-          "rank": 2,
+          "rank": 3,
           "rider_name": "Isabel English (AUS)",
           "show_jumping_penalties": 0.0,
           "source_id": "eventingscores"
         },
         {
-          "collected_at": "2026-09-17T09:22:21+00:00",
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 31.7,
+          "finishing_score": 31.7,
+          "horse_name": "MONTPELLIER SCAIS",
+          "rank": 4,
+          "rider_name": "Alexandra Knowles (USA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.4,
+          "finishing_score": 34.4,
+          "horse_name": "ILLICO DE L'ESQUES AA",
+          "rank": 5,
+          "rider_name": "Cosby Green (USA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.4,
           "finishing_score": 34.4,
           "horse_name": "MBF QUIDAMS TOUCH",
-          "rank": 3,
+          "rank": 5,
           "rider_name": "Sammi Birch (AUS)",
           "show_jumping_penalties": 0.0,
           "source_id": "eventingscores"
         },
         {
-          "collected_at": "2026-09-17T09:22:21+00:00",
+          "collected_at": "2026-09-17T10:18:44+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 35.1,
           "finishing_score": 35.1,
           "horse_name": "CHAKITA",
-          "rank": 4,
+          "rank": 7,
           "rider_name": "Samantha Lissington (NZL)",
           "show_jumping_penalties": 0.0,
           "source_id": "eventingscores"
         },
         {
-          "collected_at": "2026-09-17T09:22:21+00:00",
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.9,
+          "finishing_score": 35.9,
+          "horse_name": "INDIAN TONIC",
+          "rank": 8,
+          "rider_name": "Jonelle Price (NZL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 36.7,
           "finishing_score": 36.7,
           "horse_name": "BLS ABSOLUTELY",
-          "rank": 5,
+          "rank": 9,
           "rider_name": "Tom Jackson (GBR)",
           "show_jumping_penalties": 0.0,
           "source_id": "eventingscores"
         },
         {
-          "collected_at": "2026-09-17T09:22:21+00:00",
+          "collected_at": "2026-09-17T10:18:44+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 37.9,
           "finishing_score": 37.9,
           "horse_name": "CLIMATE CHANGE",
-          "rank": 6,
+          "rank": 10,
           "rider_name": "Kirsty Chabert (GBR)",
           "show_jumping_penalties": 0.0,
           "source_id": "eventingscores"
         },
         {
-          "collected_at": "2026-09-17T09:22:21+00:00",
+          "collected_at": "2026-09-17T10:18:44+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 37.9,
           "finishing_score": 37.9,
           "horse_name": "SPORTSFIELD COOPER",
-          "rank": 6,
+          "rank": 10,
           "rider_name": "Patrick Whelan (IRL)",
           "show_jumping_penalties": 0.0,
           "source_id": "eventingscores"
         },
         {
-          "collected_at": "2026-09-17T09:22:21+00:00",
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.8,
+          "finishing_score": 38.8,
+          "horse_name": "MBF JACKPOT",
+          "rank": 12,
+          "rider_name": "Jack Pinkney (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 40.1,
           "finishing_score": 40.1,
           "horse_name": "AQARDENTE Z",
-          "rank": 8,
+          "rank": 13,
           "rider_name": "Kylie Roddy (GBR)",
           "show_jumping_penalties": 0.0,
           "source_id": "eventingscores"
         },
         {
-          "collected_at": "2026-09-17T09:22:21+00:00",
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 40.6,
+          "finishing_score": 40.6,
+          "horse_name": "BELTANE'S PRINCE CHILLI",
+          "rank": 14,
+          "rider_name": "Katie Magee (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 40.8,
+          "finishing_score": 40.8,
+          "horse_name": "ANNESTOWN ROYAL BLUE",
+          "rank": 15,
+          "rider_name": "Daniel Alderson (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.0,
           "finishing_score": 41.0,
           "horse_name": "BEST ESCAPADE",
-          "rank": 9,
+          "rank": 16,
           "rider_name": "Simon Grieve (GBR)",
           "show_jumping_penalties": 0.0,
           "source_id": "eventingscores"
         },
         {
-          "collected_at": "2026-09-17T09:22:21+00:00",
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 41.7,
+          "finishing_score": 41.7,
+          "horse_name": "INUIT DU MANE ROZ",
+          "rank": 17,
+          "rider_name": "Gireg Le Coz (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 43.3,
           "finishing_score": 43.3,
           "horse_name": "H PLC DE CORBOU",
-          "rank": 10,
+          "rank": 18,
           "rider_name": "Jeanne Rossez (FRA)",
           "show_jumping_penalties": 0.0,
           "source_id": "eventingscores"
         },
         {
-          "collected_at": "2026-09-17T09:22:21+00:00",
+          "collected_at": "2026-09-17T10:18:44+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 43.6,
           "finishing_score": 43.6,
           "horse_name": "BELLINE NEWMARKET DELIGHT",
-          "rank": 11,
+          "rank": 19,
           "rider_name": "Godfrey Gibbons (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 44.0,
+          "finishing_score": 44.0,
+          "horse_name": "GRAND ESPOIR",
+          "rank": 20,
+          "rider_name": "John Tilley (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        }
+      ]
+    },
+    {
+      "country": "GBR",
+      "event_date": "2026-09-17",
+      "event_name": "Blenheim \u00b7 CCI4*-L",
+      "latest_collected_at": "2026-09-17T10:18:44+00:00",
+      "level": "CCI4*-L",
+      "result_count": 9,
+      "source_ids": [
+        "eventingscores"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 30.8,
+          "finishing_score": 30.8,
+          "horse_name": "KATCHAFIRE",
+          "rank": 1,
+          "rider_name": "Ginny Thomasen (NZL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.6,
+          "finishing_score": 32.6,
+          "horse_name": "ARDEO PREMIER",
+          "rank": 2,
+          "rider_name": "Alexander Bragg (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 33.4,
+          "finishing_score": 33.4,
+          "horse_name": "BALANCERO",
+          "rank": 3,
+          "rider_name": "Laura Collett (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.9,
+          "finishing_score": 34.9,
+          "horse_name": "DITCHFORD EXPLORER",
+          "rank": 4,
+          "rider_name": "Ben Way (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 37.4,
+          "finishing_score": 37.4,
+          "horse_name": "COOLEY STIRLING",
+          "rank": 5,
+          "rider_name": "Clarke Johnstone (NZL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.4,
+          "finishing_score": 38.4,
+          "horse_name": "INCOGNITO IV",
+          "rank": 6,
+          "rider_name": "Katey Cuthbertson (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 40.3,
+          "finishing_score": 40.3,
+          "horse_name": "GREEN DAY DESTROIS C",
+          "rank": 7,
+          "rider_name": "Regis Prudhon (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 40.8,
+          "finishing_score": 40.8,
+          "horse_name": "BRINDLEY'S FINALE",
+          "rank": 8,
+          "rider_name": "Rafael Losano (BRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventingscores"
+        },
+        {
+          "collected_at": "2026-09-17T10:18:44+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 43.1,
+          "finishing_score": 43.1,
+          "horse_name": "COOMBELAND TALISMAN",
+          "rank": 9,
+          "rider_name": "Rupert Batting (GBR)",
           "show_jumping_penalties": 0.0,
           "source_id": "eventingscores"
         }
@@ -6443,9 +6654,9 @@
       ]
     }
   ],
-  "generated_at": "2026-09-17T09:22:23+00:00",
-  "latest_collected_at": "2026-09-17T09:22:21+00:00",
-  "result_count": 569,
+  "generated_at": "2026-09-17T10:18:46+00:00",
+  "latest_collected_at": "2026-09-17T10:18:44+00:00",
+  "result_count": 587,
   "source_ids": [
     "eventingscores",
     "rechenstelle"
