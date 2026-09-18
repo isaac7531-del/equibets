@@ -161,6 +161,68 @@ class EventingScoresParseTests(unittest.TestCase):
         results = parse_leaderboard_results(SAMPLE_CCI4_LONG_START_LIST_HTML, board=board)
         self.assertEqual(results, [])
 
+    def test_friday_numeric_dressage_is_ingested_and_remaining_start_times_skipped(self):
+        board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69244.html?eventid=2990",
+            event_name="Blenheim · CCI4*-S 8/9YO",
+            level="CCI4*-S",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>SJ</th><th>XCT</th><th>XCJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>160</td>
+          <td></td>
+          <td>Ginny Howe (GBR)</td>
+          <td data-horse="CHF CAPTAIN JACOB" data-number="160"
+              data-rider="Ginny Howe (GBR)">CHF CAPTAIN JACOB</td>
+          <td class="score">56.04%</td>
+          <td class="score">59.17%</td>
+          <td class="score">59.38%</td>
+          <td class="score">41.7</td>
+          <td></td><td></td><td></td><td class="score">41.7</td><td></td>
+        </tr>
+        <tr>
+          <td>161</td>
+          <td></td>
+          <td>Mina Saiagh (FRA)</td>
+          <td data-horse="OFF-WHITE ISAIE SAINT JEAN AA" data-number="161"
+              data-rider="Mina Saiagh (FRA)">OFF-WHITE ISAIE SAINT JEAN AA</td>
+          <td></td><td></td><td></td>
+          <td>Fri 09:06</td>
+          <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        results = parse_leaderboard_results(
+            html,
+            board=board,
+            collected_at=datetime(2026, 9, 18, 8, 5, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual(len(results), 1)
+        first = results[0]
+        self.assertEqual(first.rider_name, "Ginny Howe (GBR)")
+        self.assertEqual(first.horse_name, "CHF CAPTAIN JACOB")
+        self.assertEqual(first.dressage_score, 41.7)
+        self.assertEqual(first.finishing_score, 41.7)
+        self.assertEqual(first.source_id, "eventingscores")
+        self.assertNotIn("OFF-WHITE ISAIE SAINT JEAN AA", {result.horse_name for result in results})
+
 
 if __name__ == "__main__":
     unittest.main()
