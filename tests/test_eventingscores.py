@@ -296,6 +296,136 @@ class EventingScoresParseTests(unittest.TestCase):
         self.assertEqual(by_horse["SHANNONDALE ARNOLD"].dressage_score, 32.9)
         self.assertNotIn("HANAMI 4", by_horse)
 
+    def test_post_break_friday_numeric_dressage_is_ingested_and_remaining_start_times_skipped(self):
+        eight_nine_board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69244.html?eventid=2990",
+            event_name="Blenheim · CCI4*-S 8/9YO",
+            level="CCI4*-S",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        eight_nine_html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>SJ</th><th>XCT</th><th>XCJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>173</td>
+          <td></td>
+          <td>Izzy Taylor (GBR)</td>
+          <td data-horse="BARRINGTON BOY" data-number="173"
+              data-rider="Izzy Taylor (GBR)">BARRINGTON BOY</td>
+          <td class="score">73.75%</td>
+          <td class="score">71.46%</td>
+          <td class="score">72.71%</td>
+          <td class="score">27.4</td>
+          <td></td><td></td><td></td><td class="score">27.4</td><td>2nd</td>
+        </tr>
+        <tr>
+          <td>171</td>
+          <td></td>
+          <td>Pia Leuwer (GER)</td>
+          <td data-horse="HANAMI 4" data-number="171"
+              data-rider="Pia Leuwer (GER)">HANAMI 4</td>
+          <td class="score">67.29%</td>
+          <td class="score">66.46%</td>
+          <td class="score">66.88%</td>
+          <td class="score">33.1</td>
+          <td></td><td></td><td></td><td class="score">33.1</td><td></td>
+        </tr>
+        <tr>
+          <td>178</td>
+          <td></td>
+          <td>Bubby Upton (GBR)</td>
+          <td data-horse="AUCKLAND 7" data-number="178"
+              data-rider="Bubby Upton (GBR)">AUCKLAND 7</td>
+          <td></td><td></td><td></td>
+          <td>Fri 11:07</td>
+          <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        eight_nine_results = parse_leaderboard_results(
+            eight_nine_html,
+            board=eight_nine_board,
+            collected_at=datetime(2026, 9, 18, 10, 4, tzinfo=timezone.utc),
+        )
+        eight_nine_by_horse = {result.horse_name: result for result in eight_nine_results}
+        self.assertEqual(len(eight_nine_results), 2)
+        self.assertEqual(eight_nine_by_horse["BARRINGTON BOY"].rider_name, "Izzy Taylor (GBR)")
+        self.assertEqual(eight_nine_by_horse["BARRINGTON BOY"].dressage_score, 27.4)
+        self.assertEqual(eight_nine_by_horse["BARRINGTON BOY"].finishing_score, 27.4)
+        self.assertEqual(eight_nine_by_horse["HANAMI 4"].dressage_score, 33.1)
+        self.assertNotIn("AUCKLAND 7", eight_nine_by_horse)
+
+        cci4_board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69243.html?eventid=2990",
+            event_name="Blenheim · CCI4*-L",
+            level="CCI4*-L",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        cci4_html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>XCT</th><th>XCJ</th><th>SJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>52</td>
+          <td></td>
+          <td>Alexandre D’Orso (FRA)</td>
+          <td data-horse="CANON ST MARTIN" data-number="52"
+              data-rider="Alexandre D’Orso (FRA)">CANON ST MARTIN</td>
+          <td class="score">67.08%</td>
+          <td class="score">66.88%</td>
+          <td class="score">67.08%</td>
+          <td class="score">33.0</td>
+          <td></td><td></td><td></td><td class="score">33.0</td><td></td>
+        </tr>
+        <tr>
+          <td>59</td>
+          <td></td>
+          <td>John Westmore (GBR)</td>
+          <td data-horse="OUGHTERARD QUALITY" data-number="59"
+              data-rider="John Westmore (GBR)">OUGHTERARD QUALITY</td>
+          <td></td><td></td><td></td>
+          <td>Fri 11:07</td>
+          <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        cci4_results = parse_leaderboard_results(
+            cci4_html,
+            board=cci4_board,
+            collected_at=datetime(2026, 9, 18, 10, 4, tzinfo=timezone.utc),
+        )
+        self.assertEqual(len(cci4_results), 1)
+        self.assertEqual(cci4_results[0].rider_name, "Alexandre D’Orso (FRA)")
+        self.assertEqual(cci4_results[0].horse_name, "CANON ST MARTIN")
+        self.assertEqual(cci4_results[0].dressage_score, 33.0)
+        self.assertEqual(cci4_results[0].finishing_score, 33.0)
+        self.assertNotIn("OUGHTERARD QUALITY", {result.horse_name for result in cci4_results})
+
 
 if __name__ == "__main__":
     unittest.main()
