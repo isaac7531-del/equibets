@@ -1087,6 +1087,174 @@ class EventingScoresParseTests(unittest.TestCase):
         self.assertEqual(cci4_by_horse["BARRINGTON REVELATION"].dressage_score, 39.9)
         self.assertNotIn("SHANNONDALE ALDO", cci4_by_horse)
 
+    def test_post_1607_friday_numeric_dressage_is_ingested_and_1637_start_times_skipped(self):
+        eight_nine_board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69244.html?eventid=2990",
+            event_name="Blenheim · CCI4*-S 8/9YO",
+            level="CCI4*-S",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        eight_nine_html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>SJ</th><th>XCT</th><th>XCJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>208</td>
+          <td></td>
+          <td>Bubby Upton (GBR)</td>
+          <td data-horse="SANCERRE DE TIJI" data-number="208"
+              data-rider="Bubby Upton (GBR)">SANCERRE DE TIJI</td>
+          <td class="score">73.13%</td>
+          <td class="score">73.13%</td>
+          <td class="score">73.13%</td>
+          <td class="score">26.9</td>
+          <td>Sat 10:44</td><td></td><td></td><td class="score">26.9</td><td>1st</td>
+        </tr>
+        <tr>
+          <td>207</td>
+          <td></td>
+          <td>Padraig Mccarthy (IRL)</td>
+          <td data-horse="KILROE TIGER" data-number="207"
+              data-rider="Padraig Mccarthy (IRL)">KILROE TIGER</td>
+          <td class="score">69.17%</td>
+          <td class="score">68.96%</td>
+          <td class="score">68.54%</td>
+          <td class="score">31.1</td>
+          <td>Sat 10:42</td><td></td><td></td><td class="score">31.1</td><td></td>
+        </tr>
+        <tr>
+          <td>210</td>
+          <td></td>
+          <td>Gireg Le Coz (FRA)</td>
+          <td data-horse="MILWAUKEE TCS" data-number="210"
+              data-rider="Gireg Le Coz (FRA)">MILWAUKEE TCS</td>
+          <td class="score">70.42%</td>
+          <td class="score">70.21%</td>
+          <td class="score">70.21%</td>
+          <td class="score">29.7</td>
+          <td>Sat 10:47</td><td></td><td></td><td class="score">29.7</td><td></td>
+        </tr>
+        <tr>
+          <td>212</td>
+          <td></td>
+          <td>Astier Nicolas (FRA)</td>
+          <td data-horse="HITCHQOTE DU COUDRAY" data-number="212"
+              data-rider="Astier Nicolas (FRA)">HITCHQOTE DU COUDRAY</td>
+          <td></td><td></td><td></td>
+          <td>Fri 16:37</td>
+          <td>Sat 10:51</td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        eight_nine_results = parse_leaderboard_results(
+            eight_nine_html,
+            board=eight_nine_board,
+            collected_at=datetime(2026, 9, 18, 15, 33, tzinfo=timezone.utc),
+        )
+        eight_nine_by_horse = {result.horse_name: result for result in eight_nine_results}
+        self.assertEqual(len(eight_nine_results), 3)
+        self.assertEqual(eight_nine_by_horse["SANCERRE DE TIJI"].rider_name, "Bubby Upton (GBR)")
+        self.assertEqual(eight_nine_by_horse["SANCERRE DE TIJI"].dressage_score, 26.9)
+        self.assertEqual(eight_nine_by_horse["SANCERRE DE TIJI"].finishing_score, 26.9)
+        self.assertEqual(eight_nine_by_horse["KILROE TIGER"].dressage_score, 31.1)
+        self.assertEqual(eight_nine_by_horse["MILWAUKEE TCS"].dressage_score, 29.7)
+        self.assertNotIn("HITCHQOTE DU COUDRAY", eight_nine_by_horse)
+
+        cci4_board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69243.html?eventid=2990",
+            event_name="Blenheim · CCI4*-L",
+            level="CCI4*-L",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        cci4_html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>XCT</th><th>XCJ</th><th>SJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>75</td>
+          <td></td>
+          <td>Sarah Hedges (GBR)</td>
+          <td data-horse="IGNA" data-number="75"
+              data-rider="Sarah Hedges (GBR)">IGNA</td>
+          <td class="score">69.58%</td>
+          <td class="score">69.58%</td>
+          <td class="score">69.58%</td>
+          <td class="score">30.4</td>
+          <td>Sat 16:08</td><td></td><td></td><td class="score">30.4</td><td>8th</td>
+        </tr>
+        <tr>
+          <td>74</td>
+          <td></td>
+          <td>Alexander Bragg (GBR)</td>
+          <td data-horse="SHANNONDALE ALDO" data-number="74"
+              data-rider="Alexander Bragg (GBR)">SHANNONDALE ALDO</td>
+          <td class="score">63.33%</td>
+          <td class="score">63.33%</td>
+          <td class="score">63.33%</td>
+          <td class="score">36.7</td>
+          <td>Sat 16:04</td><td></td><td></td><td class="score">36.7</td><td></td>
+        </tr>
+        <tr>
+          <td>77</td>
+          <td></td>
+          <td>Dani Stewart-Richardson (GBR)</td>
+          <td data-horse="LONDONLOOK TN" data-number="77"
+              data-rider="Dani Stewart-Richardson (GBR)">LONDONLOOK TN</td>
+          <td class="score">69.17%</td>
+          <td class="score">69.17%</td>
+          <td class="score">69.38%</td>
+          <td class="score">30.8</td>
+          <td>Sat 16:12</td><td></td><td></td><td class="score">30.8</td><td></td>
+        </tr>
+        <tr>
+          <td>79</td>
+          <td></td>
+          <td>Megan Bailey (GBR)</td>
+          <td data-horse="ELECTED" data-number="79"
+              data-rider="Megan Bailey (GBR)">ELECTED</td>
+          <td></td><td></td><td></td>
+          <td>Fri 16:37</td>
+          <td>Sat 16:19</td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        cci4_results = parse_leaderboard_results(
+            cci4_html,
+            board=cci4_board,
+            collected_at=datetime(2026, 9, 18, 15, 33, tzinfo=timezone.utc),
+        )
+        cci4_by_horse = {result.horse_name: result for result in cci4_results}
+        self.assertEqual(len(cci4_results), 3)
+        self.assertEqual(cci4_by_horse["IGNA"].rider_name, "Sarah Hedges (GBR)")
+        self.assertEqual(cci4_by_horse["IGNA"].dressage_score, 30.4)
+        self.assertEqual(cci4_by_horse["SHANNONDALE ALDO"].dressage_score, 36.7)
+        self.assertEqual(cci4_by_horse["LONDONLOOK TN"].dressage_score, 30.8)
+        self.assertNotIn("ELECTED", cci4_by_horse)
+
 
 if __name__ == "__main__":
     unittest.main()
