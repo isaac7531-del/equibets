@@ -223,6 +223,79 @@ class EventingScoresParseTests(unittest.TestCase):
         self.assertEqual(first.source_id, "eventingscores")
         self.assertNotIn("OFF-WHITE ISAIE SAINT JEAN AA", {result.horse_name for result in results})
 
+    def test_later_friday_numeric_dressage_is_ingested_and_break_start_times_skipped(self):
+        board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69244.html?eventid=2990",
+            event_name="Blenheim · CCI4*-S 8/9YO",
+            level="CCI4*-S",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>SJ</th><th>XCT</th><th>XCJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>165</td>
+          <td></td>
+          <td>Rosalind Canter (GBR)</td>
+          <td data-horse="ARMSCOTE EXPLORER" data-number="165"
+              data-rider="Rosalind Canter (GBR)">ARMSCOTE EXPLORER</td>
+          <td class="score">68.54%</td>
+          <td class="score">70.00%</td>
+          <td class="score">69.38%</td>
+          <td class="score">30.7</td>
+          <td></td><td></td><td></td><td class="score">30.7</td><td>9th</td>
+        </tr>
+        <tr>
+          <td>164</td>
+          <td></td>
+          <td>Tom McEwen (GBR)</td>
+          <td data-horse="SHANNONDALE ARNOLD" data-number="164"
+              data-rider="Tom McEwen (GBR)">SHANNONDALE ARNOLD</td>
+          <td class="score">67.29%</td>
+          <td class="score">67.92%</td>
+          <td class="score">66.04%</td>
+          <td class="score">32.9</td>
+          <td></td><td></td><td></td><td class="score">32.9</td><td></td>
+        </tr>
+        <tr>
+          <td>171</td>
+          <td></td>
+          <td>Pia Leuwer (GER)</td>
+          <td data-horse="HANAMI 4" data-number="171"
+              data-rider="Pia Leuwer (GER)">HANAMI 4</td>
+          <td></td><td></td><td></td>
+          <td>Fri 10:25</td>
+          <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        results = parse_leaderboard_results(
+            html,
+            board=board,
+            collected_at=datetime(2026, 9, 18, 9, 6, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual(len(results), 2)
+        by_horse = {result.horse_name: result for result in results}
+        self.assertEqual(by_horse["ARMSCOTE EXPLORER"].rider_name, "Rosalind Canter (GBR)")
+        self.assertEqual(by_horse["ARMSCOTE EXPLORER"].dressage_score, 30.7)
+        self.assertEqual(by_horse["ARMSCOTE EXPLORER"].finishing_score, 30.7)
+        self.assertEqual(by_horse["SHANNONDALE ARNOLD"].dressage_score, 32.9)
+        self.assertNotIn("HANAMI 4", by_horse)
+
 
 if __name__ == "__main__":
     unittest.main()
