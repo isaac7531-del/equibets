@@ -1255,6 +1255,203 @@ class EventingScoresParseTests(unittest.TestCase):
         self.assertEqual(cci4_by_horse["LONDONLOOK TN"].dressage_score, 30.8)
         self.assertNotIn("ELECTED", cci4_by_horse)
 
+    def test_completed_friday_dressage_is_ingested_and_withdrawals_skipped(self):
+        eight_nine_board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69244.html?eventid=2990",
+            event_name="Blenheim · CCI4*-S 8/9YO",
+            level="CCI4*-S",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        eight_nine_html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>SJ</th><th>XCT</th><th>XCJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>212</td>
+          <td></td>
+          <td>Astier Nicolas (FRA)</td>
+          <td data-horse="HITCHQOTE DU COUDRAY" data-number="212"
+              data-rider="Astier Nicolas (FRA)">HITCHQOTE DU COUDRAY</td>
+          <td class="score">76.46%</td>
+          <td class="score">76.46%</td>
+          <td class="score">76.67%</td>
+          <td class="score">23.5</td>
+          <td>Sat 10:51</td><td></td><td></td><td class="score">23.5</td><td>1st</td>
+        </tr>
+        <tr>
+          <td>214</td>
+          <td></td>
+          <td>Kitty King (GBR)</td>
+          <td data-horse="KILCOLTRIM COOLEY" data-number="214"
+              data-rider="Kitty King (GBR)">KILCOLTRIM COOLEY</td>
+          <td class="score">72.29%</td>
+          <td class="score">72.08%</td>
+          <td class="score">72.29%</td>
+          <td class="score">27.8</td>
+          <td>Sat 10:55</td><td></td><td></td><td class="score">27.8</td><td></td>
+        </tr>
+        <tr>
+          <td>215</td>
+          <td></td>
+          <td>Michael Jackson (GBR)</td>
+          <td data-horse="GIRLS GAMBLE" data-number="215"
+              data-rider="Michael Jackson (GBR)">GIRLS GAMBLE</td>
+          <td class="score">69.38%</td>
+          <td class="score">69.38%</td>
+          <td class="score">69.38%</td>
+          <td class="score">30.6</td>
+          <td>Sat 10:57</td><td></td><td></td><td class="score">30.6</td><td></td>
+        </tr>
+        <tr>
+          <td>213</td>
+          <td></td>
+          <td>Lara de Liedekerke-Meier (BEL)</td>
+          <td data-horse="CALL ME SENORITA" data-number="213"
+              data-rider="Lara de Liedekerke-Meier (BEL)">CALL ME SENORITA</td>
+          <td class="score">66.04%</td>
+          <td class="score">66.04%</td>
+          <td class="score">65.83%</td>
+          <td class="score">34.0</td>
+          <td>Sat 10:53</td><td></td><td></td><td class="score">34.0</td><td></td>
+        </tr>
+        <tr>
+          <td>211</td>
+          <td></td>
+          <td>Therese Viklund (SWE)</td>
+          <td data-horse="HARDI D'EOLE" data-number="211"
+              data-rider="Therese Viklund (SWE)">HARDI D'EOLE</td>
+          <td class="score">63.13%</td>
+          <td class="score">63.13%</td>
+          <td class="score">63.13%</td>
+          <td class="score">36.9</td>
+          <td>Sat 10:49</td><td></td><td></td><td class="score">36.9</td><td></td>
+        </tr>
+        <tr>
+          <td>154</td>
+          <td></td>
+          <td>India Wishart (GBR)</td>
+          <td data-horse="BP QUINNTON" data-number="154"
+              data-rider="India Wishart (GBR)">BP QUINNTON</td>
+          <td></td><td></td><td></td>
+          <td>WD</td>
+          <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        eight_nine_results = parse_leaderboard_results(
+            eight_nine_html,
+            board=eight_nine_board,
+            collected_at=datetime(2026, 9, 18, 16, 5, tzinfo=timezone.utc),
+        )
+        eight_nine_by_horse = {result.horse_name: result for result in eight_nine_results}
+        self.assertEqual(len(eight_nine_results), 5)
+        self.assertEqual(eight_nine_by_horse["HITCHQOTE DU COUDRAY"].rider_name, "Astier Nicolas (FRA)")
+        self.assertEqual(eight_nine_by_horse["HITCHQOTE DU COUDRAY"].dressage_score, 23.5)
+        self.assertEqual(eight_nine_by_horse["HITCHQOTE DU COUDRAY"].finishing_score, 23.5)
+        self.assertEqual(eight_nine_by_horse["KILCOLTRIM COOLEY"].dressage_score, 27.8)
+        self.assertEqual(eight_nine_by_horse["GIRLS GAMBLE"].dressage_score, 30.6)
+        self.assertEqual(eight_nine_by_horse["CALL ME SENORITA"].dressage_score, 34.0)
+        self.assertEqual(eight_nine_by_horse["HARDI D'EOLE"].dressage_score, 36.9)
+        self.assertNotIn("BP QUINNTON", eight_nine_by_horse)
+
+        cci4_board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69243.html?eventid=2990",
+            event_name="Blenheim · CCI4*-L",
+            level="CCI4*-L",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        cci4_html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>XCT</th><th>XCJ</th><th>SJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>77</td>
+          <td></td>
+          <td>Sarah Hedges (GBR)</td>
+          <td data-horse="IGNA" data-number="77"
+              data-rider="Sarah Hedges (GBR)">IGNA</td>
+          <td class="score">69.79%</td>
+          <td class="score">70.00%</td>
+          <td class="score">69.79%</td>
+          <td class="score">30.1</td>
+          <td>Sat 16:16</td><td></td><td></td><td class="score">30.1</td><td>7th</td>
+        </tr>
+        <tr>
+          <td>80</td>
+          <td></td>
+          <td>Samuel Jeffree (AUS)</td>
+          <td data-horse="SANTORO" data-number="80"
+              data-rider="Samuel Jeffree (AUS)">SANTORO</td>
+          <td class="score">65.00%</td>
+          <td class="score">65.00%</td>
+          <td class="score">65.00%</td>
+          <td class="score">35.0</td>
+          <td>Sat 16:27</td><td></td><td></td><td class="score">35.0</td><td></td>
+        </tr>
+        <tr>
+          <td>78</td>
+          <td></td>
+          <td>Alice Casburn (GBR)</td>
+          <td data-horse="LSS ILE DE RE" data-number="78"
+              data-rider="Alice Casburn (GBR)">LSS ILE DE RE</td>
+          <td class="score">64.17%</td>
+          <td class="score">63.96%</td>
+          <td class="score">63.96%</td>
+          <td class="score">36.0</td>
+          <td>Sat 16:19</td><td></td><td></td><td class="score">36.0</td><td></td>
+        </tr>
+        <tr>
+          <td>79</td>
+          <td></td>
+          <td>Megan Bailey (GBR)</td>
+          <td data-horse="ELECTED" data-number="79"
+              data-rider="Megan Bailey (GBR)">ELECTED</td>
+          <td class="score">62.08%</td>
+          <td class="score">61.88%</td>
+          <td class="score">62.08%</td>
+          <td class="score">38.0</td>
+          <td>Sat 16:23</td><td></td><td></td><td class="score">38.0</td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        cci4_results = parse_leaderboard_results(
+            cci4_html,
+            board=cci4_board,
+            collected_at=datetime(2026, 9, 18, 16, 5, tzinfo=timezone.utc),
+        )
+        cci4_by_horse = {result.horse_name: result for result in cci4_results}
+        self.assertEqual(len(cci4_results), 4)
+        self.assertEqual(cci4_by_horse["IGNA"].rider_name, "Sarah Hedges (GBR)")
+        self.assertEqual(cci4_by_horse["IGNA"].dressage_score, 30.1)
+        self.assertEqual(cci4_by_horse["IGNA"].finishing_score, 30.1)
+        self.assertEqual(cci4_by_horse["SANTORO"].dressage_score, 35.0)
+        self.assertEqual(cci4_by_horse["LSS ILE DE RE"].dressage_score, 36.0)
+        self.assertEqual(cci4_by_horse["ELECTED"].dressage_score, 38.0)
+
 
 if __name__ == "__main__":
     unittest.main()
