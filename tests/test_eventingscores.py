@@ -1309,6 +1309,291 @@ class EventingScoresParseTests(unittest.TestCase):
         self.assertEqual(next_to_go.cross_country_time_penalties, 0.0)
         self.assertEqual(next_to_go.finishing_score, 39.2)
 
+    def test_saturday_15utc_cross_country_records_next_completers(self):
+        cci4_board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69243.html?eventid=2990",
+            event_name="Blenheim · CCI4*-L",
+            level="CCI4*-L",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        cci4_html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>XCT</th><th>XCJ</th><th>SJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>36</td>
+          <td></td>
+          <td>Tom McEwen (GBR)</td>
+          <td data-horse="THE FIELDMASTER" data-number="36"
+              data-rider="Tom McEwen (GBR)">THE FIELDMASTER</td>
+          <td></td><td></td><td></td>
+          <td class="score">29.2</td>
+          <td class="score">1.2 in 10.11</td>
+          <td class="score">0</td>
+          <td></td>
+          <td class="score">30.4</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>61</td>
+          <td></td>
+          <td>Tom McEwen (GBR)</td>
+          <td data-horse="BROOKFIELD QUALITY" data-number="61"
+              data-rider="Tom McEwen (GBR)">BROOKFIELD QUALITY</td>
+          <td></td><td></td><td></td>
+          <td class="score">26.5</td>
+          <td class="score">4 in 10.18</td>
+          <td class="score">0</td>
+          <td></td>
+          <td class="score">30.5</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>28</td>
+          <td></td>
+          <td>Oliver Townend (GBR)</td>
+          <td data-horse="SOMMERSBY" data-number="28"
+              data-rider="Oliver Townend (GBR)">SOMMERSBY</td>
+          <td></td><td></td><td></td>
+          <td class="score">34.0</td>
+          <td class="score">0 in 10.08</td>
+          <td class="score">0</td>
+          <td></td>
+          <td class="score">34</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>60</td>
+          <td></td>
+          <td>Jesse Campbell (NZL)</td>
+          <td data-horse="SPEEDWELL" data-number="60"
+              data-rider="Jesse Campbell (NZL)">SPEEDWELL</td>
+          <td></td><td></td><td></td>
+          <td class="score">26.2</td>
+          <td class="score">8.4 in 10.29</td>
+          <td class="score">0</td>
+          <td></td>
+          <td class="score">34.6</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>64</td>
+          <td></td>
+          <td>Zara Tindall (GBR)</td>
+          <td data-horse="CLASSICALS EURO STAR" data-number="64"
+              data-rider="Zara Tindall (GBR)">CLASSICALS EURO STAR</td>
+          <td></td><td></td><td></td>
+          <td class="score">31.5</td>
+          <td class="score">8 in 10.28</td>
+          <td class="score">0</td>
+          <td></td>
+          <td class="score">39.5</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>62</td>
+          <td></td>
+          <td>Clarke Johnstone (NZL)</td>
+          <td data-horse="SPARKY LAD" data-number="62"
+              data-rider="Clarke Johnstone (NZL)">SPARKY LAD</td>
+          <td></td><td></td><td></td>
+          <td class="score">30.0</td>
+          <td class="score">4.8 in 10.20</td>
+          <td class="score">11</td>
+          <td></td>
+          <td class="score">45.8</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>37</td>
+          <td></td>
+          <td>Tommy Greengard (USA)</td>
+          <td data-horse="THAT'S ME Z" data-number="37"
+              data-rider="Tommy Greengard (USA)">THAT'S ME Z</td>
+          <td></td><td></td><td></td>
+          <td class="score">32.1</td>
+          <td class="score">17.6 in 10.52</td>
+          <td class="score">0</td>
+          <td></td>
+          <td class="score">49.7</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>66</td>
+          <td></td>
+          <td>Jessica McKie (GBR)</td>
+          <td data-horse="JUNGLE KING" data-number="66"
+              data-rider="Jessica McKie (GBR)">JUNGLE KING</td>
+          <td></td><td></td><td></td>
+          <td class="score">40.6</td>
+          <td class="score">36.4 in 11.39</td>
+          <td class="score">0</td>
+          <td></td>
+          <td class="score">77</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>67</td>
+          <td></td>
+          <td>Nicolai Aldinger (GER)</td>
+          <td data-horse="BART 18" data-number="67"
+              data-rider="Nicolai Aldinger (GER)">BART 18</td>
+          <td></td><td></td><td></td>
+          <td class="score">33.6</td>
+          <td class="score">34.4 in 11.34</td>
+          <td class="score">20</td>
+          <td></td>
+          <td class="score">88</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>73</td>
+          <td></td>
+          <td>Rupert Batting (GBR)</td>
+          <td data-horse="COOMBELAND SEMILLY" data-number="73"
+              data-rider="Rupert Batting (GBR)">COOMBELAND SEMILLY</td>
+          <td></td><td></td><td></td>
+          <td class="score">35.6</td>
+          <td class="score">23.2 in 11.06</td>
+          <td></td>
+          <td></td>
+          <td class="score">58.8</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>70</td>
+          <td></td>
+          <td>Alicia Wilkinson (GBR)</td>
+          <td data-horse="CHILLI BILL" data-number="70"
+              data-rider="Alicia Wilkinson (GBR)">CHILLI BILL</td>
+          <td></td><td></td><td></td>
+          <td class="score">42.9</td>
+          <td class="score">32 in 11.28</td>
+          <td class="score">31</td>
+          <td></td>
+          <td class="score">105.9</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>71</td>
+          <td></td>
+          <td>Sarah Ennis (IRL)</td>
+          <td data-horse="ONCEUPONATIME" data-number="71"
+              data-rider="Sarah Ennis (IRL)">ONCEUPONATIME</td>
+          <td></td><td></td><td></td>
+          <td class="score">32.6</td>
+          <td class="score">42.4 in 11.54</td>
+          <td class="score">40</td>
+          <td></td>
+          <td class="score">115</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>29</td>
+          <td></td>
+          <td>Susie Berry (IRL)</td>
+          <td data-horse="JOHN THE BULL" data-number="29"
+              data-rider="Susie Berry (IRL)">JOHN THE BULL</td>
+          <td></td><td></td><td></td>
+          <td class="score">31.5</td>
+          <td></td>
+          <td>EL</td>
+          <td></td>
+          <td>EL (XC-FR)</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>75</td>
+          <td></td>
+          <td>Rafael Losano (BRA)</td>
+          <td data-horse="MASTER QUALITY IMP" data-number="75"
+              data-rider="Rafael Losano (BRA)">MASTER QUALITY IMP</td>
+          <td></td><td></td><td></td>
+          <td class="score">36.5</td>
+          <td>Sat 16:01</td>
+          <td></td>
+          <td></td>
+          <td class="score">36.5</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        cci4_results = parse_leaderboard_results(
+            cci4_html,
+            board=cci4_board,
+            collected_at=datetime(2026, 9, 19, 15, 4, tzinfo=timezone.utc),
+        )
+        cci4_by_horse = {result.horse_name: result for result in cci4_results}
+        self.assertEqual(len(cci4_results), 14)
+        best_completer = cci4_by_horse["THE FIELDMASTER"]
+        self.assertEqual(best_completer.cross_country_jump_penalties, 0.0)
+        self.assertEqual(best_completer.cross_country_time_penalties, 1.2)
+        self.assertEqual(best_completer.finishing_score, 30.4)
+        second_completer = cci4_by_horse["BROOKFIELD QUALITY"]
+        self.assertEqual(second_completer.cross_country_jump_penalties, 0.0)
+        self.assertEqual(second_completer.cross_country_time_penalties, 4.0)
+        self.assertEqual(second_completer.finishing_score, 30.5)
+        still_clear = cci4_by_horse["SOMMERSBY"]
+        self.assertEqual(still_clear.cross_country_jump_penalties, 0.0)
+        self.assertEqual(still_clear.cross_country_time_penalties, 0.0)
+        self.assertEqual(still_clear.finishing_score, 34.0)
+        former_leader = cci4_by_horse["SPEEDWELL"]
+        self.assertEqual(former_leader.cross_country_jump_penalties, 0.0)
+        self.assertEqual(former_leader.cross_country_time_penalties, 8.4)
+        self.assertEqual(former_leader.finishing_score, 34.6)
+        later_clear = cci4_by_horse["CLASSICALS EURO STAR"]
+        self.assertEqual(later_clear.cross_country_jump_penalties, 0.0)
+        self.assertEqual(later_clear.cross_country_time_penalties, 8.0)
+        self.assertEqual(later_clear.finishing_score, 39.5)
+        jump_faults = cci4_by_horse["SPARKY LAD"]
+        self.assertEqual(jump_faults.cross_country_jump_penalties, 11.0)
+        self.assertEqual(jump_faults.cross_country_time_penalties, 4.8)
+        self.assertEqual(jump_faults.finishing_score, 45.8)
+        corrected_jump = cci4_by_horse["THAT'S ME Z"]
+        self.assertEqual(corrected_jump.cross_country_jump_penalties, 0.0)
+        self.assertEqual(corrected_jump.cross_country_time_penalties, 17.6)
+        self.assertEqual(corrected_jump.finishing_score, 49.7)
+        later_time = cci4_by_horse["COOMBELAND SEMILLY"]
+        self.assertEqual(later_time.cross_country_jump_penalties, 0.0)
+        self.assertEqual(later_time.cross_country_time_penalties, 23.2)
+        self.assertEqual(later_time.finishing_score, 58.8)
+        heavy_time = cci4_by_horse["JUNGLE KING"]
+        self.assertEqual(heavy_time.cross_country_jump_penalties, 0.0)
+        self.assertEqual(heavy_time.cross_country_time_penalties, 36.4)
+        self.assertEqual(heavy_time.finishing_score, 77.0)
+        late_jump = cci4_by_horse["BART 18"]
+        self.assertEqual(late_jump.cross_country_jump_penalties, 20.0)
+        self.assertEqual(late_jump.cross_country_time_penalties, 34.4)
+        self.assertEqual(late_jump.finishing_score, 88.0)
+        heavy_combo = cci4_by_horse["CHILLI BILL"]
+        self.assertEqual(heavy_combo.cross_country_jump_penalties, 31.0)
+        self.assertEqual(heavy_combo.cross_country_time_penalties, 32.0)
+        self.assertEqual(heavy_combo.finishing_score, 105.9)
+        heaviest = cci4_by_horse["ONCEUPONATIME"]
+        self.assertEqual(heaviest.cross_country_jump_penalties, 40.0)
+        self.assertEqual(heaviest.cross_country_time_penalties, 42.4)
+        self.assertEqual(heaviest.finishing_score, 115.0)
+        eliminated = cci4_by_horse["JOHN THE BULL"]
+        self.assertEqual(eliminated.cross_country_jump_penalties, 0.0)
+        self.assertEqual(eliminated.cross_country_time_penalties, 0.0)
+        self.assertEqual(eliminated.finishing_score, 31.5)
+        next_to_go = cci4_by_horse["MASTER QUALITY IMP"]
+        self.assertEqual(next_to_go.cross_country_jump_penalties, 0.0)
+        self.assertEqual(next_to_go.cross_country_time_penalties, 0.0)
+        self.assertEqual(next_to_go.finishing_score, 36.5)
+
     def test_start_list_only_cci4_long_board_yields_no_results(self):
         board = EventingScoresBoard(
             url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69243.html?eventid=2990",
