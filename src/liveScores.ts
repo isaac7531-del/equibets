@@ -85,6 +85,7 @@ const sourceLabels: Record<string, string> = {
   data_fei: 'FEI Data',
   rechenstelle: 'Rechenstelle',
   eventingscores: 'EventingScores',
+  showconnect: 'ShowConnect',
 };
 
 export const formatSourceId = (sourceId: string) => sourceLabels[sourceId] ?? sourceId;

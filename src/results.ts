@@ -35,6 +35,7 @@ export const SOURCE_LABELS: Record<string, string> = {
   data_fei: 'FEI',
   rechenstelle: 'Rechenstelle',
   eventingscores: 'EventingScores',
+  showconnect: 'ShowConnect',
   british_eventing: 'British Eventing',
   equestrian_australia: 'Equestrian Australia',
   equestrian_sports_new_zealand: 'ESNZ',
