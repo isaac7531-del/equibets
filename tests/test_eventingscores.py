@@ -227,6 +227,118 @@ class EventingScoresParseTests(unittest.TestCase):
         self.assertEqual(rails_and_time.finishing_score, 35.2)
         self.assertNotIn("VANIR KAMIRA", by_horse)
 
+    def test_saturday_morning_show_jumping_wave_keeps_start_times_and_status(self):
+        board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69244.html?eventid=2990",
+            event_name="Blenheim · CCI4*-S 8/9YO",
+            level="CCI4*-S",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>SJ</th><th>XCT</th><th>XCJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>212</td>
+          <td></td>
+          <td>Astier Nicolas (FRA)</td>
+          <td data-horse="HITCHQOTE DU COUDRAY" data-number="212"
+              data-rider="Astier Nicolas (FRA)">HITCHQOTE DU COUDRAY</td>
+          <td></td><td></td><td></td>
+          <td class="score">23.5</td>
+          <td>Sat 10:51</td><td></td><td></td>
+          <td class="score">23.5</td>
+          <td>1st</td>
+        </tr>
+        <tr>
+          <td>118</td>
+          <td></td>
+          <td>Isabel English (AUS)</td>
+          <td data-horse="CIL DARA BOMBAY S" data-number="118"
+              data-rider="Isabel English (AUS)">CIL DARA BOMBAY S</td>
+          <td></td><td></td><td></td>
+          <td class="score">30.2</td>
+          <td class="score">0 + 0.4</td>
+          <td></td><td></td>
+          <td class="score">30.6</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>142</td>
+          <td></td>
+          <td>Sammi Birch (AUS)</td>
+          <td data-horse="MBF QUIDAMS TOUCH" data-number="142"
+              data-rider="Sammi Birch (AUS)">MBF QUIDAMS TOUCH</td>
+          <td></td><td></td><td></td>
+          <td class="score">34.4</td>
+          <td class="score">4 + 1.6</td>
+          <td></td><td></td>
+          <td class="score">40.0</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>151</td>
+          <td></td>
+          <td>Lara de Liedekerke-Meier (BEL)</td>
+          <td data-horse="LA LA LAND D'ARVILLE" data-number="151"
+              data-rider="Lara de Liedekerke-Meier (BEL)">LA LA LAND D'ARVILLE</td>
+          <td></td><td></td><td></td>
+          <td class="score">34.2</td>
+          <td class="score">8</td>
+          <td></td><td></td>
+          <td class="score">42.2</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>133</td>
+          <td></td>
+          <td>Max Warburton (GBR)</td>
+          <td data-horse="PRIMITIVE FUNTIME" data-number="133"
+              data-rider="Max Warburton (GBR)">PRIMITIVE FUNTIME</td>
+          <td></td><td></td><td></td>
+          <td class="score">36.1</td>
+          <td>EL</td><td></td><td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        results = parse_leaderboard_results(
+            html,
+            board=board,
+            collected_at=datetime(2026, 9, 19, 8, 2, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual(len(results), 5)
+        by_horse = {result.horse_name: result for result in results}
+        leader = by_horse["HITCHQOTE DU COUDRAY"]
+        self.assertEqual(leader.show_jumping_penalties, 0.0)
+        self.assertEqual(leader.finishing_score, 23.5)
+        time_only = by_horse["CIL DARA BOMBAY S"]
+        self.assertEqual(time_only.show_jumping_penalties, 0.4)
+        self.assertEqual(time_only.finishing_score, 30.6)
+        rails_and_time = by_horse["MBF QUIDAMS TOUCH"]
+        self.assertEqual(rails_and_time.show_jumping_penalties, 5.6)
+        self.assertEqual(rails_and_time.finishing_score, 40.0)
+        rails_only = by_horse["LA LA LAND D'ARVILLE"]
+        self.assertEqual(rails_only.show_jumping_penalties, 8.0)
+        self.assertEqual(rails_only.finishing_score, 42.2)
+        eliminated = by_horse["PRIMITIVE FUNTIME"]
+        self.assertEqual(eliminated.show_jumping_penalties, 0.0)
+        self.assertEqual(eliminated.finishing_score, 36.1)
+
     def test_start_list_only_cci4_long_board_yields_no_results(self):
         board = EventingScoresBoard(
             url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69243.html?eventid=2990",
