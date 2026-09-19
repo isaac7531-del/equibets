@@ -150,6 +150,83 @@ class EventingScoresParseTests(unittest.TestCase):
         horses = {result.horse_name for result in results}
         self.assertNotIn("CLIMATE CHANGE", horses)
 
+    def test_saturday_compound_show_jumping_penalties_are_summed(self):
+        board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69244.html?eventid=2990",
+            event_name="Blenheim · CCI4*-S 8/9YO",
+            level="CCI4*-S",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>SJ</th><th>XCT</th><th>XCJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>101</td>
+          <td></td>
+          <td>Tom McEwen (GBR)</td>
+          <td data-horse="BROOKFIELD DANNY DE MUZE" data-number="101"
+              data-rider="Tom McEwen (GBR)">BROOKFIELD DANNY DE MUZE</td>
+          <td></td><td></td><td></td>
+          <td class="score">27.2</td>
+          <td class="score">0</td>
+          <td>Sat 07:50</td><td></td>
+          <td class="score">27.2</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>105</td>
+          <td></td>
+          <td>Kirsty Chabert (GBR)</td>
+          <td data-horse="CLIMATE CHANGE" data-number="105"
+              data-rider="Kirsty Chabert (GBR)">CLIMATE CHANGE</td>
+          <td></td><td></td><td></td>
+          <td class="score">30.8</td>
+          <td class="score">4 + 0.4</td>
+          <td></td><td></td>
+          <td class="score">35.2</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>160</td>
+          <td></td>
+          <td>Piggy March (GBR)</td>
+          <td data-horse="VANIR KAMIRA" data-number="160"
+              data-rider="Piggy March (GBR)">VANIR KAMIRA</td>
+          <td></td><td></td><td></td>
+          <td>Sat 10:51</td>
+          <td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        results = parse_leaderboard_results(
+            html,
+            board=board,
+            collected_at=datetime(2026, 9, 19, 7, 0, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual(len(results), 2)
+        by_horse = {result.horse_name: result for result in results}
+        clear = by_horse["BROOKFIELD DANNY DE MUZE"]
+        self.assertEqual(clear.show_jumping_penalties, 0.0)
+        self.assertEqual(clear.finishing_score, 27.2)
+        rails_and_time = by_horse["CLIMATE CHANGE"]
+        self.assertEqual(rails_and_time.show_jumping_penalties, 4.4)
+        self.assertEqual(rails_and_time.finishing_score, 35.2)
+        self.assertNotIn("VANIR KAMIRA", by_horse)
+
     def test_start_list_only_cci4_long_board_yields_no_results(self):
         board = EventingScoresBoard(
             url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69243.html?eventid=2990",

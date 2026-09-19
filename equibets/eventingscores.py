@@ -36,6 +36,7 @@ START_DAY_RE = re.compile(
 PLACE_RE = re.compile(r"^\d+(?:st|nd|rd|th)$", re.IGNORECASE)
 PERCENT_RE = re.compile(r"%")
 LEADING_NUMBER_RE = re.compile(r"^(-?\d+(?:\.\d+)?)")
+COMPOUND_PENALTY_RE = re.compile(r"^(-?\d+(?:\.\d+)?)\s*\+\s*(-?\d+(?:\.\d+)?)$")
 
 # Agria Blenheim Palace International, 17–20 Sep 2026.
 # Public EventingScores boards: CCI4*-L (69243) and 8/9YO CCI4*-S (69244).
@@ -269,7 +270,11 @@ def _parse_penalty(value: str | None) -> float | None:
     text = _clean_text(value)
     if not text or PERCENT_RE.search(text) or START_DAY_RE.search(text) or PLACE_RE.match(text):
         return None
-    match = LEADING_NUMBER_RE.match(text.replace(",", "."))
+    normalized = text.replace(",", ".")
+    compound = COMPOUND_PENALTY_RE.match(normalized)
+    if compound:
+        return round(float(compound.group(1)) + float(compound.group(2)), 1)
+    match = LEADING_NUMBER_RE.match(normalized)
     if not match:
         return None
     return float(match.group(1))
