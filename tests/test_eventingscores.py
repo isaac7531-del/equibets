@@ -796,6 +796,147 @@ class EventingScoresParseTests(unittest.TestCase):
         self.assertEqual(waiting.cross_country_time_penalties, 0.0)
         self.assertEqual(waiting.finishing_score, 43.1)
 
+    def test_saturday_12utc_cross_country_records_next_completers(self):
+        cci4_board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69243.html?eventid=2990",
+            event_name="Blenheim · CCI4*-L",
+            level="CCI4*-L",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        cci4_html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>XCT</th><th>XCJ</th><th>SJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>18</td>
+          <td></td>
+          <td>Jesse Campbell (NZL)</td>
+          <td data-horse="SPEEDWELL" data-number="18"
+              data-rider="Jesse Campbell (NZL)">SPEEDWELL</td>
+          <td></td><td></td><td></td>
+          <td class="score">26.2</td>
+          <td>Sat 15:16</td>
+          <td></td>
+          <td></td>
+          <td class="score">26.2</td>
+          <td>1st</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td></td>
+          <td>Gemma Stevens (GBR)</td>
+          <td data-horse="CHILLI'S JESTER" data-number="4"
+              data-rider="Gemma Stevens (GBR)">CHILLI'S JESTER</td>
+          <td></td><td></td><td></td>
+          <td class="score">29.6</td>
+          <td class="score">13.2 in 10.41</td>
+          <td class="score">0</td>
+          <td></td>
+          <td class="score">42.8</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td></td>
+          <td>Oliver Barrett (AUS)</td>
+          <td data-horse="SANDHILLS BRIAR" data-number="17"
+              data-rider="Oliver Barrett (AUS)">SANDHILLS BRIAR</td>
+          <td></td><td></td><td></td>
+          <td class="score">25.6</td>
+          <td class="score">19.2 in 10.56</td>
+          <td class="score">0</td>
+          <td></td>
+          <td class="score">44.8</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td></td>
+          <td>Laura Collett (GBR)</td>
+          <td data-horse="BALANCERO" data-number="2"
+              data-rider="Laura Collett (GBR)">BALANCERO</td>
+          <td></td><td></td><td></td>
+          <td class="score">33.4</td>
+          <td class="score">16 in 10.48</td>
+          <td class="score">0</td>
+          <td></td>
+          <td class="score">49.4</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td></td>
+          <td>Rupert Batting (GBR)</td>
+          <td data-horse="COOMBELAND TALISMAN" data-number="3"
+              data-rider="Rupert Batting (GBR)">COOMBELAND TALISMAN</td>
+          <td></td><td></td><td></td>
+          <td class="score">43.1</td>
+          <td class="score">27.6 in 11.17</td>
+          <td class="score">11</td>
+          <td></td>
+          <td class="score">81.7</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td></td>
+          <td>Emily Lochore (GBR)</td>
+          <td data-horse="GULLITH" data-number="5"
+              data-rider="Emily Lochore (GBR)">GULLITH</td>
+          <td></td><td></td><td></td>
+          <td class="score">36.2</td>
+          <td>Sat 12:53</td>
+          <td></td>
+          <td></td>
+          <td class="score">36.2</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        cci4_results = parse_leaderboard_results(
+            cci4_html,
+            board=cci4_board,
+            collected_at=datetime(2026, 9, 19, 12, 4, tzinfo=timezone.utc),
+        )
+        cci4_by_horse = {result.horse_name: result for result in cci4_results}
+        self.assertEqual(len(cci4_results), 6)
+        waiting_leader = cci4_by_horse["SPEEDWELL"]
+        self.assertEqual(waiting_leader.cross_country_jump_penalties, 0.0)
+        self.assertEqual(waiting_leader.cross_country_time_penalties, 0.0)
+        self.assertEqual(waiting_leader.finishing_score, 26.2)
+        best_completer = cci4_by_horse["CHILLI'S JESTER"]
+        self.assertEqual(best_completer.cross_country_jump_penalties, 0.0)
+        self.assertEqual(best_completer.cross_country_time_penalties, 13.2)
+        self.assertEqual(best_completer.finishing_score, 42.8)
+        former_leader = cci4_by_horse["SANDHILLS BRIAR"]
+        self.assertEqual(former_leader.cross_country_jump_penalties, 0.0)
+        self.assertEqual(former_leader.cross_country_time_penalties, 19.2)
+        self.assertEqual(former_leader.finishing_score, 44.8)
+        unchanged = cci4_by_horse["BALANCERO"]
+        self.assertEqual(unchanged.cross_country_jump_penalties, 0.0)
+        self.assertEqual(unchanged.cross_country_time_penalties, 16.0)
+        self.assertEqual(unchanged.finishing_score, 49.4)
+        jump_and_time = cci4_by_horse["COOMBELAND TALISMAN"]
+        self.assertEqual(jump_and_time.cross_country_jump_penalties, 11.0)
+        self.assertEqual(jump_and_time.cross_country_time_penalties, 27.6)
+        self.assertEqual(jump_and_time.finishing_score, 81.7)
+        next_to_go = cci4_by_horse["GULLITH"]
+        self.assertEqual(next_to_go.cross_country_jump_penalties, 0.0)
+        self.assertEqual(next_to_go.cross_country_time_penalties, 0.0)
+        self.assertEqual(next_to_go.finishing_score, 36.2)
+
     def test_start_list_only_cci4_long_board_yields_no_results(self):
         board = EventingScoresBoard(
             url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69243.html?eventid=2990",
