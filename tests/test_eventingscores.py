@@ -467,6 +467,150 @@ class EventingScoresParseTests(unittest.TestCase):
         self.assertEqual(eliminated.show_jumping_penalties, 0.0)
         self.assertEqual(eliminated.finishing_score, 46.0)
 
+    def test_saturday_10utc_show_jumping_wave_keeps_late_start_times_and_status(self):
+        board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69244.html?eventid=2990",
+            event_name="Blenheim · CCI4*-S 8/9YO",
+            level="CCI4*-S",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>SJ</th><th>XCT</th><th>XCJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>101</td>
+          <td></td>
+          <td>Tom McEwen (GBR)</td>
+          <td data-horse="BROOKFIELD DANNY DE MUZE" data-number="101"
+              data-rider="Tom McEwen (GBR)">BROOKFIELD DANNY DE MUZE</td>
+          <td></td><td></td><td></td>
+          <td class="score">27.2</td>
+          <td class="score">0</td>
+          <td></td><td></td>
+          <td class="score">27.2</td>
+          <td>1st</td>
+        </tr>
+        <tr>
+          <td>210</td>
+          <td></td>
+          <td>Bubby Upton (GBR)</td>
+          <td data-horse="SANCERRE DE TIJI" data-number="210"
+              data-rider="Bubby Upton (GBR)">SANCERRE DE TIJI</td>
+          <td></td><td></td><td></td>
+          <td class="score">26.9</td>
+          <td class="score">0 + 0.4</td>
+          <td></td><td></td>
+          <td class="score">27.3</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>214</td>
+          <td></td>
+          <td>Kitty King (GBR)</td>
+          <td data-horse="KILCOLTRIM COOLEY" data-number="214"
+              data-rider="Kitty King (GBR)">KILCOLTRIM COOLEY</td>
+          <td></td><td></td><td></td>
+          <td class="score">27.8</td>
+          <td>Sat 10:55</td><td></td><td></td>
+          <td class="score">27.8</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>212</td>
+          <td></td>
+          <td>Astier Nicolas (FRA)</td>
+          <td data-horse="HITCHQOTE DU COUDRAY" data-number="212"
+              data-rider="Astier Nicolas (FRA)">HITCHQOTE DU COUDRAY</td>
+          <td></td><td></td><td></td>
+          <td class="score">23.5</td>
+          <td class="score">12</td>
+          <td></td><td></td>
+          <td class="score">35.5</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>208</td>
+          <td></td>
+          <td>Gireg Le Coz (FRA)</td>
+          <td data-horse="MILWAUKEE TCS" data-number="208"
+              data-rider="Gireg Le Coz (FRA)">MILWAUKEE TCS</td>
+          <td></td><td></td><td></td>
+          <td class="score">29.7</td>
+          <td class="score">8 + 0.8</td>
+          <td></td><td></td>
+          <td class="score">38.5</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>197</td>
+          <td></td>
+          <td>John Tilley (GBR)</td>
+          <td data-horse="COOLEY QUICKFIRE" data-number="197"
+              data-rider="John Tilley (GBR)">COOLEY QUICKFIRE</td>
+          <td></td><td></td><td></td>
+          <td class="score">36.6</td>
+          <td class="score">16 + 1.6</td>
+          <td></td><td></td>
+          <td class="score">54.2</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>177</td>
+          <td></td>
+          <td>Freddie Carden (GBR)</td>
+          <td data-horse="MBF VITAL FINESSE" data-number="177"
+              data-rider="Freddie Carden (GBR)">MBF VITAL FINESSE</td>
+          <td></td><td></td><td></td>
+          <td class="score">46.0</td>
+          <td>EL</td><td></td><td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        results = parse_leaderboard_results(
+            html,
+            board=board,
+            collected_at=datetime(2026, 9, 19, 10, 2, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual(len(results), 7)
+        by_horse = {result.horse_name: result for result in results}
+        leader = by_horse["BROOKFIELD DANNY DE MUZE"]
+        self.assertEqual(leader.show_jumping_penalties, 0.0)
+        self.assertEqual(leader.finishing_score, 27.2)
+        time_only = by_horse["SANCERRE DE TIJI"]
+        self.assertEqual(time_only.show_jumping_penalties, 0.4)
+        self.assertEqual(time_only.finishing_score, 27.3)
+        remaining_start = by_horse["KILCOLTRIM COOLEY"]
+        self.assertEqual(remaining_start.show_jumping_penalties, 0.0)
+        self.assertEqual(remaining_start.finishing_score, 27.8)
+        rails = by_horse["HITCHQOTE DU COUDRAY"]
+        self.assertEqual(rails.show_jumping_penalties, 12.0)
+        self.assertEqual(rails.finishing_score, 35.5)
+        double_rails_and_time = by_horse["MILWAUKEE TCS"]
+        self.assertEqual(double_rails_and_time.show_jumping_penalties, 8.8)
+        self.assertEqual(double_rails_and_time.finishing_score, 38.5)
+        heavy_compound = by_horse["COOLEY QUICKFIRE"]
+        self.assertEqual(heavy_compound.show_jumping_penalties, 17.6)
+        self.assertEqual(heavy_compound.finishing_score, 54.2)
+        eliminated = by_horse["MBF VITAL FINESSE"]
+        self.assertEqual(eliminated.show_jumping_penalties, 0.0)
+        self.assertEqual(eliminated.finishing_score, 46.0)
+
     def test_start_list_only_cci4_long_board_yields_no_results(self):
         board = EventingScoresBoard(
             url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69243.html?eventid=2990",
