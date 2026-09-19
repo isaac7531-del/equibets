@@ -339,6 +339,134 @@ class EventingScoresParseTests(unittest.TestCase):
         self.assertEqual(eliminated.show_jumping_penalties, 0.0)
         self.assertEqual(eliminated.finishing_score, 36.1)
 
+    def test_saturday_09utc_show_jumping_wave_keeps_start_times_and_status(self):
+        board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69244.html?eventid=2990",
+            event_name="Blenheim · CCI4*-S 8/9YO",
+            level="CCI4*-S",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>SJ</th><th>XCT</th><th>XCJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>212</td>
+          <td></td>
+          <td>Astier Nicolas (FRA)</td>
+          <td data-horse="HITCHQOTE DU COUDRAY" data-number="212"
+              data-rider="Astier Nicolas (FRA)">HITCHQOTE DU COUDRAY</td>
+          <td></td><td></td><td></td>
+          <td class="score">23.5</td>
+          <td>Sat 10:51</td><td></td><td></td>
+          <td class="score">23.5</td>
+          <td>1st</td>
+        </tr>
+        <tr>
+          <td>172</td>
+          <td></td>
+          <td>Izzy Taylor (GBR)</td>
+          <td data-horse="BARRINGTON BOY" data-number="172"
+              data-rider="Izzy Taylor (GBR)">BARRINGTON BOY</td>
+          <td></td><td></td><td></td>
+          <td class="score">27.4</td>
+          <td class="score">0</td>
+          <td></td><td></td>
+          <td class="score">27.4</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>146</td>
+          <td></td>
+          <td>Bubby Upton (GBR)</td>
+          <td data-horse="LIGHT UP E" data-number="146"
+              data-rider="Bubby Upton (GBR)">LIGHT UP E</td>
+          <td></td><td></td><td></td>
+          <td class="score">32.6</td>
+          <td class="score">0 + 0.8</td>
+          <td></td><td></td>
+          <td class="score">33.4</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>178</td>
+          <td></td>
+          <td>Bubby Upton (GBR)</td>
+          <td data-horse="AUCKLAND 7" data-number="178"
+              data-rider="Bubby Upton (GBR)">AUCKLAND 7</td>
+          <td></td><td></td><td></td>
+          <td class="score">26.9</td>
+          <td class="score">8 + 0.8</td>
+          <td></td><td></td>
+          <td class="score">35.7</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>148</td>
+          <td></td>
+          <td>Alicia Hawker (GBR)</td>
+          <td data-horse="CHOCOTOFFRETTO Z" data-number="148"
+              data-rider="Alicia Hawker (GBR)">CHOCOTOFFRETTO Z</td>
+          <td></td><td></td><td></td>
+          <td class="score">34.4</td>
+          <td class="score">12 + 0.8</td>
+          <td></td><td></td>
+          <td class="score">47.2</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>177</td>
+          <td></td>
+          <td>Freddie Carden (GBR)</td>
+          <td data-horse="MBF VITAL FINESSE" data-number="177"
+              data-rider="Freddie Carden (GBR)">MBF VITAL FINESSE</td>
+          <td></td><td></td><td></td>
+          <td class="score">46.0</td>
+          <td>EL</td><td></td><td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        results = parse_leaderboard_results(
+            html,
+            board=board,
+            collected_at=datetime(2026, 9, 19, 9, 2, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual(len(results), 6)
+        by_horse = {result.horse_name: result for result in results}
+        leader = by_horse["HITCHQOTE DU COUDRAY"]
+        self.assertEqual(leader.show_jumping_penalties, 0.0)
+        self.assertEqual(leader.finishing_score, 23.5)
+        clear = by_horse["BARRINGTON BOY"]
+        self.assertEqual(clear.show_jumping_penalties, 0.0)
+        self.assertEqual(clear.finishing_score, 27.4)
+        time_only = by_horse["LIGHT UP E"]
+        self.assertEqual(time_only.show_jumping_penalties, 0.8)
+        self.assertEqual(time_only.finishing_score, 33.4)
+        double_rails_and_time = by_horse["AUCKLAND 7"]
+        self.assertEqual(double_rails_and_time.show_jumping_penalties, 8.8)
+        self.assertEqual(double_rails_and_time.finishing_score, 35.7)
+        triple_rails_and_time = by_horse["CHOCOTOFFRETTO Z"]
+        self.assertEqual(triple_rails_and_time.show_jumping_penalties, 12.8)
+        self.assertEqual(triple_rails_and_time.finishing_score, 47.2)
+        eliminated = by_horse["MBF VITAL FINESSE"]
+        self.assertEqual(eliminated.show_jumping_penalties, 0.0)
+        self.assertEqual(eliminated.finishing_score, 46.0)
+
     def test_start_list_only_cci4_long_board_yields_no_results(self):
         board = EventingScoresBoard(
             url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69243.html?eventid=2990",
