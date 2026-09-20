@@ -4334,6 +4334,200 @@ class EventingScoresParseTests(unittest.TestCase):
         self.assertEqual(rails_only.cross_country_time_penalties, 16.0)
         self.assertEqual(rails_only.finishing_score, 53.4)
 
+    def test_sunday_15utc_cci4_long_records_final_show_jumping(self):
+        cci4_board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69243.html?eventid=2990",
+            event_name="Blenheim · CCI4*-L",
+            level="CCI4*-L",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        cci4_html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>Dressage</th><th>XCT</th><th>XCJ</th><th>SJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>36</td>
+          <td></td>
+          <td>Tom McEwen (GBR)</td>
+          <td data-horse="THE FIELDMASTER" data-number="36"
+              data-rider="Tom McEwen (GBR)">THE FIELDMASTER</td>
+          <td class="score">29.2</td>
+          <td class="score">1.2 in 10.11</td>
+          <td class="score">0</td>
+          <td class="score">4</td>
+          <td class="score">34.4</td>
+          <td>1st</td>
+        </tr>
+        <tr>
+          <td>66</td>
+          <td></td>
+          <td>Tom McEwen (GBR)</td>
+          <td data-horse="BROOKFIELD QUALITY" data-number="66"
+              data-rider="Tom McEwen (GBR)">BROOKFIELD QUALITY</td>
+          <td class="score">26.5</td>
+          <td class="score">4 in 10.18</td>
+          <td class="score">0</td>
+          <td class="score">4</td>
+          <td class="score">34.5</td>
+          <td>2nd</td>
+        </tr>
+        <tr>
+          <td>60</td>
+          <td></td>
+          <td>Jesse Campbell (NZL)</td>
+          <td data-horse="SPEEDWELL" data-number="60"
+              data-rider="Jesse Campbell (NZL)">SPEEDWELL</td>
+          <td class="score">26.2</td>
+          <td class="score">8.4 in 10.29</td>
+          <td class="score">0</td>
+          <td class="score">4</td>
+          <td class="score">38.6</td>
+          <td>4th</td>
+        </tr>
+        <tr>
+          <td>38</td>
+          <td></td>
+          <td>Sam Ecroyd (GBR)</td>
+          <td data-horse="BLOOMFIELD MANUSCRIPT" data-number="38"
+              data-rider="Sam Ecroyd (GBR)">BLOOMFIELD MANUSCRIPT</td>
+          <td class="score">32.1</td>
+          <td class="score">3.6 in 10.17</td>
+          <td class="score">0</td>
+          <td class="score">4</td>
+          <td class="score">39.7</td>
+          <td>5th</td>
+        </tr>
+        <tr>
+          <td>28</td>
+          <td></td>
+          <td>Oliver Townend (GBR)</td>
+          <td data-horse="SOMMERSBY" data-number="28"
+              data-rider="Oliver Townend (GBR)">SOMMERSBY</td>
+          <td class="score">34.0</td>
+          <td class="score">0 in 10.08</td>
+          <td class="score">0</td>
+          <td class="score">12</td>
+          <td class="score">46</td>
+          <td>11th</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td></td>
+          <td>Alexander Bragg (GBR)</td>
+          <td data-horse="ARDEO PREMIER" data-number="7"
+              data-rider="Alexander Bragg (GBR)">ARDEO PREMIER</td>
+          <td class="score">32.6</td>
+          <td class="score">13.2 in 10.41</td>
+          <td class="score">0</td>
+          <td class="score">4</td>
+          <td class="score">49.8</td>
+          <td>16th</td>
+        </tr>
+        <tr>
+          <td>63</td>
+          <td></td>
+          <td>Zara Tindall (GBR)</td>
+          <td data-horse="CLASSICALS EURO STAR" data-number="63"
+              data-rider="Zara Tindall (GBR)">CLASSICALS EURO STAR</td>
+          <td class="score">31.5</td>
+          <td class="score">8 in 10.28</td>
+          <td class="score">0</td>
+          <td class="score">12 + 4</td>
+          <td class="score">55.5</td>
+          <td>21st</td>
+        </tr>
+        <tr>
+          <td>24</td>
+          <td></td>
+          <td>Isabelle Cook (GBR)</td>
+          <td data-horse="CYMOON ''F'' Z" data-number="24"
+              data-rider="Isabelle Cook (GBR)">CYMOON ''F'' Z</td>
+          <td class="score">33.7</td>
+          <td class="score">11.2 in 10.36</td>
+          <td class="score">0</td>
+          <td class="score">12</td>
+          <td class="score">56.9</td>
+          <td>22nd</td>
+        </tr>
+        <tr>
+          <td>46</td>
+          <td></td>
+          <td>Jack Pinkney (GBR)</td>
+          <td data-horse="MONBEG STONE TOWN" data-number="46"
+              data-rider="Jack Pinkney (GBR)">MONBEG STONE TOWN</td>
+          <td class="score">33.5</td>
+          <td class="score">8.4 in 10.29</td>
+          <td class="score">0</td>
+          <td class="score">16</td>
+          <td class="score">57.9</td>
+          <td>23rd</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        cci4_results = parse_leaderboard_results(
+            cci4_html,
+            board=cci4_board,
+            collected_at=datetime(2026, 9, 20, 15, 4, tzinfo=timezone.utc),
+        )
+        cci4_by_horse = {result.horse_name: result for result in cci4_results}
+        self.assertEqual(len(cci4_results), 9)
+        official_leader = cci4_by_horse["THE FIELDMASTER"]
+        self.assertEqual(official_leader.show_jumping_penalties, 4.0)
+        self.assertEqual(official_leader.cross_country_jump_penalties, 0.0)
+        self.assertEqual(official_leader.cross_country_time_penalties, 1.2)
+        self.assertEqual(official_leader.finishing_score, 34.4)
+        overnight_second = cci4_by_horse["BROOKFIELD QUALITY"]
+        self.assertEqual(overnight_second.show_jumping_penalties, 4.0)
+        self.assertEqual(overnight_second.cross_country_jump_penalties, 0.0)
+        self.assertEqual(overnight_second.cross_country_time_penalties, 4.0)
+        self.assertEqual(overnight_second.finishing_score, 34.5)
+        later_rail = cci4_by_horse["SPEEDWELL"]
+        self.assertEqual(later_rail.show_jumping_penalties, 4.0)
+        self.assertEqual(later_rail.cross_country_jump_penalties, 0.0)
+        self.assertEqual(later_rail.cross_country_time_penalties, 8.4)
+        self.assertEqual(later_rail.finishing_score, 38.6)
+        later_manuscript = cci4_by_horse["BLOOMFIELD MANUSCRIPT"]
+        self.assertEqual(later_manuscript.show_jumping_penalties, 4.0)
+        self.assertEqual(later_manuscript.cross_country_jump_penalties, 0.0)
+        self.assertEqual(later_manuscript.cross_country_time_penalties, 3.6)
+        self.assertEqual(later_manuscript.finishing_score, 39.7)
+        three_rails = cci4_by_horse["SOMMERSBY"]
+        self.assertEqual(three_rails.show_jumping_penalties, 12.0)
+        self.assertEqual(three_rails.cross_country_jump_penalties, 0.0)
+        self.assertEqual(three_rails.cross_country_time_penalties, 0.0)
+        self.assertEqual(three_rails.finishing_score, 46.0)
+        later_ardeo = cci4_by_horse["ARDEO PREMIER"]
+        self.assertEqual(later_ardeo.show_jumping_penalties, 4.0)
+        self.assertEqual(later_ardeo.cross_country_jump_penalties, 0.0)
+        self.assertEqual(later_ardeo.cross_country_time_penalties, 13.2)
+        self.assertEqual(later_ardeo.finishing_score, 49.8)
+        rails_and_time = cci4_by_horse["CLASSICALS EURO STAR"]
+        self.assertEqual(rails_and_time.show_jumping_penalties, 16.0)
+        self.assertEqual(rails_and_time.cross_country_jump_penalties, 0.0)
+        self.assertEqual(rails_and_time.cross_country_time_penalties, 8.0)
+        self.assertEqual(rails_and_time.finishing_score, 55.5)
+        later_three_rails = cci4_by_horse["CYMOON ''F'' Z"]
+        self.assertEqual(later_three_rails.show_jumping_penalties, 12.0)
+        self.assertEqual(later_three_rails.cross_country_jump_penalties, 0.0)
+        self.assertEqual(later_three_rails.cross_country_time_penalties, 11.2)
+        self.assertEqual(later_three_rails.finishing_score, 56.9)
+        four_rails = cci4_by_horse["MONBEG STONE TOWN"]
+        self.assertEqual(four_rails.show_jumping_penalties, 16.0)
+        self.assertEqual(four_rails.cross_country_jump_penalties, 0.0)
+        self.assertEqual(four_rails.cross_country_time_penalties, 8.4)
+        self.assertEqual(four_rails.finishing_score, 57.9)
+
 
 if __name__ == "__main__":
     unittest.main()
