@@ -3250,6 +3250,128 @@ class EventingScoresParseTests(unittest.TestCase):
         self.assertEqual(still_waiting.cross_country_time_penalties, 0.0)
         self.assertEqual(still_waiting.finishing_score, 31.1)
 
+    def test_sunday_10utc_eight_nine_yo_cross_country_records_later_completers(self):
+        eight_nine_board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69244.html?eventid=2990",
+            event_name="Blenheim · CCI4*-S 8/9YO",
+            level="CCI4*-S",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        eight_nine_html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>Dressage</th><th>SJ</th><th>XCT</th><th>XCJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>101</td>
+          <td></td>
+          <td>Tom McEwen (GBR)</td>
+          <td data-horse="BROOKFIELD DANNY DE MUZE" data-number="101"
+              data-rider="Tom McEwen (GBR)">BROOKFIELD DANNY DE MUZE</td>
+          <td class="score">27.2</td>
+          <td class="score">0</td>
+          <td>Sun 14:18</td>
+          <td></td>
+          <td class="score">27.2</td>
+          <td>1st</td>
+        </tr>
+        <tr>
+          <td>130</td>
+          <td></td>
+          <td>Finn Healy (GBR)</td>
+          <td data-horse="GREANNANSTOWN MONBEG JOE" data-number="130"
+              data-rider="Finn Healy (GBR)">GREANNANSTOWN MONBEG JOE</td>
+          <td class="score">34.2</td>
+          <td class="score">0</td>
+          <td class="score">8.4 in 7.15</td>
+          <td class="score">0</td>
+          <td class="score">42.6</td>
+          <td>49th</td>
+        </tr>
+        <tr>
+          <td>126</td>
+          <td></td>
+          <td>Lara de Liedekerke-Meier (BEL)</td>
+          <td data-horse="LA LA LAND D'ARVILLE" data-number="126"
+              data-rider="Lara de Liedekerke-Meier (BEL)">LA LA LAND D'ARVILLE</td>
+          <td class="score">34.2</td>
+          <td class="score">8</td>
+          <td class="score">11.6 in 7.23</td>
+          <td class="score">0</td>
+          <td class="score">53.8</td>
+          <td>69th</td>
+        </tr>
+        <tr>
+          <td>121</td>
+          <td></td>
+          <td>Jonelle Price (NZL)</td>
+          <td data-horse="INDIAN TONIC" data-number="121"
+              data-rider="Jonelle Price (NZL)">INDIAN TONIC</td>
+          <td class="score">35.9</td>
+          <td class="score">0</td>
+          <td class="score">26.8 in 8.01</td>
+          <td class="score">20</td>
+          <td class="score">82.7</td>
+          <td>86th</td>
+        </tr>
+        <tr>
+          <td>207</td>
+          <td></td>
+          <td>Padraig Mccarthy (IRL)</td>
+          <td data-horse="KILROE TIGER" data-number="207"
+              data-rider="Padraig Mccarthy (IRL)">KILROE TIGER</td>
+          <td class="score">31.1</td>
+          <td class="score">4</td>
+          <td>Sun 13:06</td>
+          <td></td>
+          <td class="score">35.1</td>
+          <td>24th</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        eight_nine_results = parse_leaderboard_results(
+            eight_nine_html,
+            board=eight_nine_board,
+            collected_at=datetime(2026, 9, 20, 10, 4, tzinfo=timezone.utc),
+        )
+        eight_nine_by_horse = {result.horse_name: result for result in eight_nine_results}
+        self.assertEqual(len(eight_nine_results), 5)
+        waiting_leader = eight_nine_by_horse["BROOKFIELD DANNY DE MUZE"]
+        self.assertEqual(waiting_leader.show_jumping_penalties, 0.0)
+        self.assertEqual(waiting_leader.cross_country_jump_penalties, 0.0)
+        self.assertEqual(waiting_leader.cross_country_time_penalties, 0.0)
+        self.assertEqual(waiting_leader.finishing_score, 27.2)
+        time_only = eight_nine_by_horse["GREANNANSTOWN MONBEG JOE"]
+        self.assertEqual(time_only.show_jumping_penalties, 0.0)
+        self.assertEqual(time_only.cross_country_jump_penalties, 0.0)
+        self.assertEqual(time_only.cross_country_time_penalties, 8.4)
+        self.assertEqual(time_only.finishing_score, 42.6)
+        rails_and_time = eight_nine_by_horse["LA LA LAND D'ARVILLE"]
+        self.assertEqual(rails_and_time.show_jumping_penalties, 8.0)
+        self.assertEqual(rails_and_time.cross_country_jump_penalties, 0.0)
+        self.assertEqual(rails_and_time.cross_country_time_penalties, 11.6)
+        self.assertEqual(rails_and_time.finishing_score, 53.8)
+        jump_and_time = eight_nine_by_horse["INDIAN TONIC"]
+        self.assertEqual(jump_and_time.show_jumping_penalties, 0.0)
+        self.assertEqual(jump_and_time.cross_country_jump_penalties, 20.0)
+        self.assertEqual(jump_and_time.cross_country_time_penalties, 26.8)
+        self.assertEqual(jump_and_time.finishing_score, 82.7)
+        still_waiting = eight_nine_by_horse["KILROE TIGER"]
+        self.assertEqual(still_waiting.show_jumping_penalties, 4.0)
+        self.assertEqual(still_waiting.cross_country_jump_penalties, 0.0)
+        self.assertEqual(still_waiting.cross_country_time_penalties, 0.0)
+        self.assertEqual(still_waiting.finishing_score, 35.1)
+
 
 if __name__ == "__main__":
     unittest.main()
