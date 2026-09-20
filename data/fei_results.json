@@ -47261,7 +47261,7 @@
       "source_record_id": "rechenstelle:fb131959e28a3b88"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47278,7 +47278,7 @@
       "source_record_id": "eventingscores:58de7783dd0a3ecd"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 13.2,
@@ -47295,7 +47295,7 @@
       "source_record_id": "eventingscores:2f49778caff553c7"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 40.0,
       "cross_country_time_penalties": 24.8,
@@ -47312,7 +47312,7 @@
       "source_record_id": "eventingscores:d9e49f6bdc30fcc6"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 22.4,
@@ -47329,7 +47329,7 @@
       "source_record_id": "eventingscores:44866e976c4bd4e1"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47346,7 +47346,7 @@
       "source_record_id": "eventingscores:1dfbdc0035ec1625"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47363,7 +47363,7 @@
       "source_record_id": "eventingscores:be77c7f75e8e0d0d"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47380,7 +47380,7 @@
       "source_record_id": "eventingscores:8dbd6ad28680a37e"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 40.0,
       "cross_country_time_penalties": 56.0,
@@ -47391,13 +47391,13 @@
       "is_user_entered": false,
       "level": "CCI4*-L",
       "rider_name": "Alexandre D\u2019Orso (FRA)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 10.8,
       "source_id": "eventingscores",
       "source_priority": 8,
       "source_record_id": "eventingscores:b026dacff9836270"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 11.2,
@@ -47414,10 +47414,10 @@
       "source_record_id": "eventingscores:bd2c82d1566ba2e5"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_time_penalties": 37.6,
       "dressage_score": 34.4,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -47431,7 +47431,7 @@
       "source_record_id": "eventingscores:673f72d81cca6865"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 32.0,
@@ -47442,7 +47442,7 @@
       "is_user_entered": false,
       "level": "CCI4*-L",
       "rider_name": "Alicia Wilkinson (GBR)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 19.6,
       "source_id": "eventingscores",
       "source_priority": 8,
       "source_record_id": "eventingscores:37f4068b2f114557"
@@ -47567,7 +47567,7 @@
       "source_record_id": "showconnect:bbc87605507ac01d"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47601,10 +47601,10 @@
       "source_record_id": "showconnect:ffc4aa92c2ea977b"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_time_penalties": 16.8,
       "dressage_score": 36.4,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -47618,7 +47618,7 @@
       "source_record_id": "eventingscores:b7c7d8ed4d2a9932"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47635,7 +47635,7 @@
       "source_record_id": "eventingscores:2a0f1e9d8cb75a4d"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47652,7 +47652,7 @@
       "source_record_id": "eventingscores:4abfc52843691232"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47669,7 +47669,7 @@
       "source_record_id": "eventingscores:6d1610821c7dcbd0"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 23.2,
@@ -47686,7 +47686,7 @@
       "source_record_id": "eventingscores:bb317291bb8442d9"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 32.4,
@@ -47720,10 +47720,10 @@
       "source_record_id": "showconnect:b9671d36a85b94b6"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_time_penalties": 14.0,
       "dressage_score": 26.9,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -47737,7 +47737,7 @@
       "source_record_id": "eventingscores:1fae9700e682b6ae"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47754,7 +47754,7 @@
       "source_record_id": "eventingscores:5dcf3c0da1c46f9f"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47771,7 +47771,7 @@
       "source_record_id": "eventingscores:241b2830cd1f5ef0"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47788,10 +47788,10 @@
       "source_record_id": "eventingscores:20ac7d45e916df71"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_time_penalties": 16.0,
       "dressage_score": 35.4,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -47839,7 +47839,7 @@
       "source_record_id": "showconnect:1dd48c6425407a94"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47856,7 +47856,7 @@
       "source_record_id": "eventingscores:1167ef687f01e75e"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 11.0,
       "cross_country_time_penalties": 8.4,
@@ -47873,7 +47873,7 @@
       "source_record_id": "eventingscores:0d2670ff1eb28fbf"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 11.0,
       "cross_country_time_penalties": 4.8,
@@ -47890,7 +47890,7 @@
       "source_record_id": "eventingscores:14f789ba7617cdff"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47907,7 +47907,7 @@
       "source_record_id": "eventingscores:49b2b98b6863328d"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 14.8,
@@ -47924,7 +47924,7 @@
       "source_record_id": "eventingscores:56e5e9c3336685cc"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 23.2,
@@ -47941,7 +47941,7 @@
       "source_record_id": "eventingscores:7fa74801d09a96a8"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47958,7 +47958,7 @@
       "source_record_id": "eventingscores:1b2063f641dcb8ac"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -47975,7 +47975,7 @@
       "source_record_id": "eventingscores:1a7d4950c429aea7"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 22.8,
@@ -47992,7 +47992,7 @@
       "source_record_id": "eventingscores:e265333de79d91e0"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48009,7 +48009,7 @@
       "source_record_id": "eventingscores:828460ad09686ae2"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48026,7 +48026,7 @@
       "source_record_id": "eventingscores:893f04364da620a3"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 10.0,
@@ -48043,10 +48043,10 @@
       "source_record_id": "eventingscores:ae614021b8414975"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_time_penalties": 16.4,
       "dressage_score": 44.8,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -48060,7 +48060,7 @@
       "source_record_id": "eventingscores:1c2c4f609df8c5dd"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48077,7 +48077,7 @@
       "source_record_id": "eventingscores:9ec2c62b3e8c9eb3"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 32.4,
@@ -48094,7 +48094,7 @@
       "source_record_id": "eventingscores:1171f50c34f98f0c"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 30.8,
@@ -48105,13 +48105,13 @@
       "is_user_entered": false,
       "level": "CCI4*-L",
       "rider_name": "Elizabeth Power (IRL)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 5.2,
       "source_id": "eventingscores",
       "source_priority": 8,
       "source_record_id": "eventingscores:f622b097f635880f"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48128,10 +48128,10 @@
       "source_record_id": "eventingscores:58b73e8ae8a3d510"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
-      "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_jump_penalties": 40.0,
+      "cross_country_time_penalties": 51.2,
       "dressage_score": 47.9,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -48145,7 +48145,7 @@
       "source_record_id": "eventingscores:9c26190e0f76e613"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48162,7 +48162,7 @@
       "source_record_id": "eventingscores:ed47c86c9a356f3e"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48179,10 +48179,10 @@
       "source_record_id": "eventingscores:6d0440ba35fb1116"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_time_penalties": 9.6,
       "dressage_score": 42.6,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -48196,7 +48196,7 @@
       "source_record_id": "eventingscores:35a5605e6efc75b9"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 17.6,
@@ -48213,7 +48213,7 @@
       "source_record_id": "eventingscores:8d5f93927fa0d0dd"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48230,7 +48230,7 @@
       "source_record_id": "eventingscores:9ae9fa62266c887a"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 8.4,
@@ -48247,7 +48247,7 @@
       "source_record_id": "eventingscores:614e292acb108556"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 34.0,
@@ -48281,7 +48281,7 @@
       "source_record_id": "showconnect:cbc778ae537f1a34"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48315,7 +48315,7 @@
       "source_record_id": "showconnect:bbad7a4ebf5c95b3"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48332,7 +48332,7 @@
       "source_record_id": "eventingscores:c72b8d68c204251c"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48349,7 +48349,7 @@
       "source_record_id": "eventingscores:78cd1b21ce7bbe7b"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 13.2,
@@ -48366,7 +48366,7 @@
       "source_record_id": "eventingscores:0216b08520677cf4"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 30.0,
@@ -48383,10 +48383,10 @@
       "source_record_id": "eventingscores:b61b93a37a8df0e9"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
-      "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_jump_penalties": 20.0,
+      "cross_country_time_penalties": 50.8,
       "dressage_score": 41.7,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -48400,7 +48400,7 @@
       "source_record_id": "eventingscores:c47c909ea349a094"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 18.0,
@@ -48417,7 +48417,7 @@
       "source_record_id": "eventingscores:a8b6eb03b0260961"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48434,7 +48434,7 @@
       "source_record_id": "eventingscores:6fc5a6d8b70ae2cf"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 17.2,
@@ -48451,7 +48451,7 @@
       "source_record_id": "eventingscores:d8ad63b01b10f276"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48468,7 +48468,7 @@
       "source_record_id": "eventingscores:5ecbe4e9dd707f91"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 37.6,
@@ -48485,7 +48485,7 @@
       "source_record_id": "eventingscores:c2ecf526b4c8a201"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48502,7 +48502,7 @@
       "source_record_id": "eventingscores:7c8ec304713cdb66"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 17.6,
@@ -48519,7 +48519,7 @@
       "source_record_id": "eventingscores:cb9b9f4338de18c7"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 14.0,
@@ -48536,7 +48536,7 @@
       "source_record_id": "eventingscores:49cda4766857f619"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48553,7 +48553,7 @@
       "source_record_id": "eventingscores:d2996c466b2b3cd8"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 9.0,
       "cross_country_time_penalties": 20.4,
@@ -48587,7 +48587,7 @@
       "source_record_id": "showconnect:2d0eabb1a38b19ed"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48604,7 +48604,7 @@
       "source_record_id": "eventingscores:d0a8876f5f1a24e5"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48621,7 +48621,7 @@
       "source_record_id": "eventingscores:30e89698077d34bc"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48638,7 +48638,7 @@
       "source_record_id": "eventingscores:5a7d044d7d84622f"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48655,7 +48655,7 @@
       "source_record_id": "eventingscores:8856280a0c08ddc5"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48672,7 +48672,7 @@
       "source_record_id": "eventingscores:91a43f6b54d0951d"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 56.4,
@@ -48683,7 +48683,7 @@
       "is_user_entered": false,
       "level": "CCI4*-L",
       "rider_name": "Ibby Macpherson (GBR)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 1.6,
       "source_id": "eventingscores",
       "source_priority": 8,
       "source_record_id": "eventingscores:25818763dd534f87"
@@ -48706,7 +48706,7 @@
       "source_record_id": "showconnect:a3db1f68a7692a49"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48723,7 +48723,7 @@
       "source_record_id": "eventingscores:771eb9843f1ead78"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48740,7 +48740,7 @@
       "source_record_id": "eventingscores:8e99a90cd0bfdf61"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48757,7 +48757,7 @@
       "source_record_id": "eventingscores:3ec6755239cb4be7"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 11.2,
@@ -48774,7 +48774,7 @@
       "source_record_id": "eventingscores:5872e638e22ce0ef"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48791,7 +48791,7 @@
       "source_record_id": "eventingscores:5b1b453469c22c66"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 8.0,
@@ -48808,7 +48808,7 @@
       "source_record_id": "eventingscores:0d889a9ec6e7fa11"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48825,7 +48825,7 @@
       "source_record_id": "eventingscores:21d38a9af0733b1a"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 22.4,
@@ -48842,7 +48842,7 @@
       "source_record_id": "eventingscores:4607f2040325a514"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 8.4,
@@ -48876,7 +48876,7 @@
       "source_record_id": "showconnect:27450ef09b11c0f2"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 28.0,
@@ -48893,7 +48893,7 @@
       "source_record_id": "eventingscores:9185757083d26f4d"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 26.8,
@@ -48910,7 +48910,7 @@
       "source_record_id": "eventingscores:a84f19b2addab301"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48927,7 +48927,7 @@
       "source_record_id": "eventingscores:1a97b615e46cbf6d"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48961,7 +48961,7 @@
       "source_record_id": "showconnect:0213918e7b234061"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -48978,7 +48978,7 @@
       "source_record_id": "eventingscores:4f10cb537778dd4c"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 44.4,
@@ -48989,13 +48989,13 @@
       "is_user_entered": false,
       "level": "CCI4*-L",
       "rider_name": "Jess Rimmer (GBR)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 0.4,
       "source_id": "eventingscores",
       "source_priority": 8,
       "source_record_id": "eventingscores:4f923322d3ef7f77"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 8.4,
@@ -49029,7 +49029,7 @@
       "source_record_id": "showconnect:6826628ad36ddd15"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 36.4,
@@ -49046,7 +49046,7 @@
       "source_record_id": "eventingscores:37a1df6720b2d321"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49063,7 +49063,7 @@
       "source_record_id": "eventingscores:a2ffce80d2c25307"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49080,7 +49080,7 @@
       "source_record_id": "eventingscores:181c47e7d13beda7"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49097,7 +49097,7 @@
       "source_record_id": "eventingscores:505b650e83a3da70"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49114,7 +49114,7 @@
       "source_record_id": "eventingscores:ccc80ae93f3386ef"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49131,7 +49131,7 @@
       "source_record_id": "eventingscores:92282da408193183"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49148,7 +49148,7 @@
       "source_record_id": "eventingscores:9f5df0e19c472125"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 26.8,
@@ -49165,7 +49165,7 @@
       "source_record_id": "eventingscores:1511f35722c7d3bd"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 22.8,
@@ -49182,7 +49182,7 @@
       "source_record_id": "eventingscores:f8c791e18e841992"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49199,10 +49199,10 @@
       "source_record_id": "eventingscores:98beccdd6df8eaf4"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
-      "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_jump_penalties": 20.0,
+      "cross_country_time_penalties": 32.4,
       "dressage_score": 48.3,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -49216,7 +49216,7 @@
       "source_record_id": "eventingscores:c817b948e3b1ab4d"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 31.0,
       "cross_country_time_penalties": 51.6,
@@ -49227,13 +49227,13 @@
       "is_user_entered": false,
       "level": "CCI4*-L",
       "rider_name": "Katey Cuthbertson (GBR)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 25.2,
       "source_id": "eventingscores",
       "source_priority": 8,
       "source_record_id": "eventingscores:195533833ff46f58"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49250,7 +49250,7 @@
       "source_record_id": "eventingscores:0452b68737df18de"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 34.4,
@@ -49267,7 +49267,7 @@
       "source_record_id": "eventingscores:8cd1782783da0dd4"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49369,7 +49369,7 @@
       "source_record_id": "showconnect:0a61ac5709edc179"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49420,7 +49420,7 @@
       "source_record_id": "showconnect:429956a60847693c"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 18.0,
@@ -49437,7 +49437,7 @@
       "source_record_id": "eventingscores:657c7a8399a05f37"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49454,7 +49454,7 @@
       "source_record_id": "eventingscores:8a3c08dcd5021e10"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49471,7 +49471,7 @@
       "source_record_id": "eventingscores:65972963eaf33656"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 20.0,
@@ -49488,7 +49488,7 @@
       "source_record_id": "eventingscores:d8ee9fde667f924e"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49505,7 +49505,7 @@
       "source_record_id": "eventingscores:5d98c2530d8b399c"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 11.6,
@@ -49522,7 +49522,7 @@
       "source_record_id": "eventingscores:097d75c3b693f9ab"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 16.0,
@@ -49539,7 +49539,7 @@
       "source_record_id": "eventingscores:5e5d2a31db9b761d"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49624,7 +49624,7 @@
       "source_record_id": "showconnect:6489b28007939a64"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49641,7 +49641,7 @@
       "source_record_id": "eventingscores:7cab649de094cf9d"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49658,7 +49658,7 @@
       "source_record_id": "eventingscores:e6f8b48a41322134"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 11.0,
       "cross_country_time_penalties": 30.8,
@@ -49669,7 +49669,7 @@
       "is_user_entered": false,
       "level": "CCI4*-L",
       "rider_name": "Lucy Robinson (GBR)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 21.6,
       "source_id": "eventingscores",
       "source_priority": 8,
       "source_record_id": "eventingscores:6e158e11da93986e"
@@ -49692,10 +49692,10 @@
       "source_record_id": "showconnect:8b03c1d8b9e92d3a"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_time_penalties": 24.4,
       "dressage_score": 34.1,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -49709,7 +49709,7 @@
       "source_record_id": "eventingscores:c427df4a26cdb483"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49726,7 +49726,7 @@
       "source_record_id": "eventingscores:3810cf68dfcca7b9"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49760,7 +49760,7 @@
       "source_record_id": "showconnect:9fd757aac1acaa52"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49794,10 +49794,10 @@
       "source_record_id": "showconnect:6b0c86711107fca7"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
-      "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_jump_penalties": 20.0,
+      "cross_country_time_penalties": 21.2,
       "dressage_score": 33.3,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -49811,7 +49811,7 @@
       "source_record_id": "eventingscores:45f4834fb13f086c"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49828,7 +49828,7 @@
       "source_record_id": "eventingscores:91a19f9ed964c61f"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 34.4,
@@ -49845,7 +49845,7 @@
       "source_record_id": "eventingscores:8242ea90bc6510a7"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 19.2,
@@ -49862,7 +49862,7 @@
       "source_record_id": "eventingscores:7c1616e721857978"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49879,7 +49879,7 @@
       "source_record_id": "eventingscores:7d55983e0f49b497"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49896,7 +49896,7 @@
       "source_record_id": "eventingscores:badf01c6ca919b59"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 13.6,
@@ -49913,7 +49913,7 @@
       "source_record_id": "eventingscores:91604ce660a1a629"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -49930,7 +49930,7 @@
       "source_record_id": "eventingscores:06810211e08c26fb"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 24.4,
@@ -49947,7 +49947,7 @@
       "source_record_id": "eventingscores:ba5701a876b6cdaf"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 48.8,
@@ -49958,16 +49958,16 @@
       "is_user_entered": false,
       "level": "CCI4*-L",
       "rider_name": "Panda Christie (GBR)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 8.0,
       "source_id": "eventingscores",
       "source_priority": 8,
       "source_record_id": "eventingscores:52c8d5abae21aab0"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_time_penalties": 20.8,
       "dressage_score": 38.3,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -49981,7 +49981,7 @@
       "source_record_id": "eventingscores:8b90025b6ed6f61a"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 19.2,
@@ -49998,7 +49998,7 @@
       "source_record_id": "eventingscores:f3311fdecede08cb"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50015,7 +50015,7 @@
       "source_record_id": "eventingscores:99a28d4bd2ed48f7"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 14.8,
@@ -50032,7 +50032,7 @@
       "source_record_id": "eventingscores:176f0a81332a3e65"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 23.2,
@@ -50049,10 +50049,10 @@
       "source_record_id": "eventingscores:9c7eaa25eef88150"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_time_penalties": 20.0,
       "dressage_score": 33.1,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -50066,7 +50066,7 @@
       "source_record_id": "eventingscores:6df9ef4895ede218"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50083,7 +50083,7 @@
       "source_record_id": "eventingscores:8ce10f0edef8f29e"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 11.0,
       "cross_country_time_penalties": 20.8,
@@ -50100,7 +50100,7 @@
       "source_record_id": "eventingscores:24038d0d9d0f752e"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 27.6,
@@ -50111,13 +50111,13 @@
       "is_user_entered": false,
       "level": "CCI4*-L",
       "rider_name": "Rafael Losano (BRA)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 0.4,
       "source_id": "eventingscores",
       "source_priority": 8,
       "source_record_id": "eventingscores:b9b195ac0400ee0b"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50134,7 +50134,7 @@
       "source_record_id": "eventingscores:e12a26ea2236b49d"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50151,7 +50151,7 @@
       "source_record_id": "eventingscores:0417e1f461ea8a04"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50168,10 +50168,10 @@
       "source_record_id": "eventingscores:230112f1d5830980"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_time_penalties": 18.0,
       "dressage_score": 30.7,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -50185,7 +50185,7 @@
       "source_record_id": "eventingscores:b235e8fcd621968d"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 23.2,
@@ -50202,7 +50202,7 @@
       "source_record_id": "eventingscores:000d2ca980783239"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 11.0,
       "cross_country_time_penalties": 27.6,
@@ -50213,13 +50213,13 @@
       "is_user_entered": false,
       "level": "CCI4*-L",
       "rider_name": "Rupert Batting (GBR)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 16.0,
       "source_id": "eventingscores",
       "source_priority": 8,
       "source_record_id": "eventingscores:99033e6c13125c92"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 10.8,
@@ -50253,7 +50253,7 @@
       "source_record_id": "showconnect:99d38bb296f89480"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 3.6,
@@ -50270,7 +50270,7 @@
       "source_record_id": "eventingscores:da426bd6b90a843d"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 5.2,
@@ -50287,7 +50287,7 @@
       "source_record_id": "eventingscores:65685cc2a29f2895"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 18.4,
@@ -50304,7 +50304,7 @@
       "source_record_id": "eventingscores:3bc2aadb04c8126e"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50321,7 +50321,7 @@
       "source_record_id": "eventingscores:75395672e116b9eb"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50338,7 +50338,7 @@
       "source_record_id": "eventingscores:e7846496b07055bb"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 13.2,
@@ -50355,7 +50355,7 @@
       "source_record_id": "eventingscores:4a00993bf2d35c6c"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50372,7 +50372,7 @@
       "source_record_id": "eventingscores:ba65644531e7bd16"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 11.2,
@@ -50389,7 +50389,7 @@
       "source_record_id": "eventingscores:ae3c15501bf1156d"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50406,7 +50406,7 @@
       "source_record_id": "eventingscores:75e40f31d55b542f"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 18.0,
@@ -50423,7 +50423,7 @@
       "source_record_id": "eventingscores:52d5ffab9d779fd4"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50440,7 +50440,7 @@
       "source_record_id": "eventingscores:4177a253275bf117"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 40.0,
       "cross_country_time_penalties": 42.4,
@@ -50451,13 +50451,13 @@
       "is_user_entered": false,
       "level": "CCI4*-L",
       "rider_name": "Sarah Ennis (IRL)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 12.4,
       "source_id": "eventingscores",
       "source_priority": 8,
       "source_record_id": "eventingscores:37d24073e76ff121"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 44.8,
@@ -50474,10 +50474,10 @@
       "source_record_id": "eventingscores:c9a861300f0cee43"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_time_penalties": 34.4,
       "dressage_score": 37.8,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -50491,7 +50491,7 @@
       "source_record_id": "eventingscores:78a356bdcd86a685"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50508,7 +50508,7 @@
       "source_record_id": "eventingscores:59ab171907e337c5"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 32.4,
@@ -50525,7 +50525,7 @@
       "source_record_id": "eventingscores:8c748c11bed28290"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50542,7 +50542,7 @@
       "source_record_id": "eventingscores:4b852d57a4c030c9"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 43.2,
@@ -50553,7 +50553,7 @@
       "is_user_entered": false,
       "level": "CCI4*-L",
       "rider_name": "Sophie Pedlar (GBR)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 6.8,
       "source_id": "eventingscores",
       "source_priority": 8,
       "source_record_id": "eventingscores:36da04552ca195bd"
@@ -50576,7 +50576,7 @@
       "source_record_id": "showconnect:51b2b7492a392c46"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50593,10 +50593,10 @@
       "source_record_id": "eventingscores:da9ba46bddf90eeb"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_time_penalties": 26.8,
       "dressage_score": 32.9,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -50729,7 +50729,7 @@
       "source_record_id": "showconnect:a9ae3f71726f2625"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 5.2,
@@ -50746,7 +50746,7 @@
       "source_record_id": "eventingscores:d12e7f6bd36ced70"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50763,7 +50763,7 @@
       "source_record_id": "eventingscores:af34a2eff9cac8cb"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50780,7 +50780,7 @@
       "source_record_id": "eventingscores:9205d7f85828c6fc"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50797,7 +50797,7 @@
       "source_record_id": "eventingscores:e6a9c30badb1bf0a"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50814,7 +50814,7 @@
       "source_record_id": "eventingscores:d2f7c5d0e5bee4a0"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50831,7 +50831,7 @@
       "source_record_id": "eventingscores:1f83617d639cec9a"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 23.6,
@@ -50848,7 +50848,7 @@
       "source_record_id": "eventingscores:3cb1ea8d269fcbdc"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 13.2,
@@ -50865,7 +50865,7 @@
       "source_record_id": "eventingscores:3147b83af152f849"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50882,7 +50882,7 @@
       "source_record_id": "eventingscores:9f9f1de543efe9b9"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50899,7 +50899,7 @@
       "source_record_id": "eventingscores:12ef34d0b6d3fe36"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 4.0,
@@ -50916,7 +50916,7 @@
       "source_record_id": "eventingscores:0e192114875fd61f"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50933,10 +50933,10 @@
       "source_record_id": "eventingscores:0304674839edcbe5"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_time_penalties": 9.6,
       "dressage_score": 32.9,
       "event_date": "2026-09-17",
       "event_name": "Blenheim \u00b7 CCI4*-S 8/9YO",
@@ -50950,7 +50950,7 @@
       "source_record_id": "eventingscores:7acad57042f1aec0"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 1.2,
@@ -50967,7 +50967,7 @@
       "source_record_id": "eventingscores:d127905782186fa4"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -50984,7 +50984,7 @@
       "source_record_id": "eventingscores:60ef3bf6420ce7e9"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 17.6,
@@ -51001,7 +51001,7 @@
       "source_record_id": "eventingscores:98b042b8375e19b5"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -51018,7 +51018,7 @@
       "source_record_id": "eventingscores:dd9149254a0b6bd7"
     },
     {
-      "collected_at": "2026-09-20T10:04:12+00:00",
+      "collected_at": "2026-09-20T11:04:09+00:00",
       "country": "GBR",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 8.0,
@@ -51036,6 +51036,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-20T10:04:14+00:00",
+  "updated_at": "2026-09-20T11:04:11+00:00",
   "version": 1
 }
