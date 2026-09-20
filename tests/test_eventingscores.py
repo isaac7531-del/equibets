@@ -3896,6 +3896,164 @@ class EventingScoresParseTests(unittest.TestCase):
         self.assertEqual(compound.cross_country_time_penalties, 20.8)
         self.assertEqual(compound.finishing_score, 77.4)
 
+    def test_sunday_13utc_eight_nine_yo_cross_country_records_later_completers(self):
+        eight_nine_board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69244.html?eventid=2990",
+            event_name="Blenheim · CCI4*-S 8/9YO",
+            level="CCI4*-S",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        eight_nine_html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>Dressage</th><th>SJ</th><th>XCT</th><th>XCJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>101</td>
+          <td></td>
+          <td>Tom McEwen (GBR)</td>
+          <td data-horse="BROOKFIELD DANNY DE MUZE" data-number="101"
+              data-rider="Tom McEwen (GBR)">BROOKFIELD DANNY DE MUZE</td>
+          <td class="score">27.2</td>
+          <td class="score">0</td>
+          <td>Sun 14:18</td>
+          <td></td>
+          <td class="score">27.2</td>
+          <td>1st</td>
+        </tr>
+        <tr>
+          <td>193</td>
+          <td></td>
+          <td>Tom Jackson (GBR)</td>
+          <td data-horse="MY STAR TURN" data-number="193"
+              data-rider="Tom Jackson (GBR)">MY STAR TURN</td>
+          <td class="score">29.2</td>
+          <td class="score">0</td>
+          <td class="score">4.8 in 7.06</td>
+          <td class="score">0</td>
+          <td class="score">34</td>
+          <td>8th</td>
+        </tr>
+        <tr>
+          <td>133</td>
+          <td></td>
+          <td>Yasmin Ingham (GBR)</td>
+          <td data-horse="KINDA CORVETTE" data-number="133"
+              data-rider="Yasmin Ingham (GBR)">KINDA CORVETTE</td>
+          <td class="score">30.6</td>
+          <td class="score">0</td>
+          <td class="score">5.6 in 7.08</td>
+          <td class="score">0</td>
+          <td class="score">36.2</td>
+          <td>9th</td>
+        </tr>
+        <tr>
+          <td>207</td>
+          <td></td>
+          <td>Padraig Mccarthy (IRL)</td>
+          <td data-horse="KILROE TIGER" data-number="207"
+              data-rider="Padraig Mccarthy (IRL)">KILROE TIGER</td>
+          <td class="score">31.1</td>
+          <td class="score">4</td>
+          <td class="score">1.2 in 6.57</td>
+          <td class="score">0</td>
+          <td class="score">36.3</td>
+          <td>10th</td>
+        </tr>
+        <tr>
+          <td>213</td>
+          <td></td>
+          <td>Lara de Liedekerke-Meier (BEL)</td>
+          <td data-horse="CALL ME SENORITA" data-number="213"
+              data-rider="Lara de Liedekerke-Meier (BEL)">CALL ME SENORITA</td>
+          <td class="score">34.0</td>
+          <td class="score">4</td>
+          <td class="score">17.6 in 7.38</td>
+          <td class="score">20</td>
+          <td class="score">75.6</td>
+          <td>67th</td>
+        </tr>
+        <tr>
+          <td>199</td>
+          <td></td>
+          <td>Katey Cuthbertson (GBR)</td>
+          <td data-horse="PERCIVALE" data-number="199"
+              data-rider="Katey Cuthbertson (GBR)">PERCIVALE</td>
+          <td class="score">43.3</td>
+          <td class="score">0 + 1.2</td>
+          <td class="score">43.2 in 8.42</td>
+          <td class="score">0</td>
+          <td class="score">87.7</td>
+          <td>78th</td>
+        </tr>
+        <tr>
+          <td>210</td>
+          <td></td>
+          <td>Bubby Upton (GBR)</td>
+          <td data-horse="SANCERRE DE TIJI" data-number="210"
+              data-rider="Bubby Upton (GBR)">SANCERRE DE TIJI</td>
+          <td class="score">26.9</td>
+          <td class="score">0 + 0.4</td>
+          <td>Sun 14:15</td>
+          <td></td>
+          <td class="score">27.3</td>
+          <td>2nd</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        eight_nine_results = parse_leaderboard_results(
+            eight_nine_html,
+            board=eight_nine_board,
+            collected_at=datetime(2026, 9, 20, 13, 4, tzinfo=timezone.utc),
+        )
+        eight_nine_by_horse = {result.horse_name: result for result in eight_nine_results}
+        self.assertEqual(len(eight_nine_results), 7)
+        waiting_leader = eight_nine_by_horse["BROOKFIELD DANNY DE MUZE"]
+        self.assertEqual(waiting_leader.show_jumping_penalties, 0.0)
+        self.assertEqual(waiting_leader.cross_country_jump_penalties, 0.0)
+        self.assertEqual(waiting_leader.cross_country_time_penalties, 0.0)
+        self.assertEqual(waiting_leader.finishing_score, 27.2)
+        time_only = eight_nine_by_horse["MY STAR TURN"]
+        self.assertEqual(time_only.show_jumping_penalties, 0.0)
+        self.assertEqual(time_only.cross_country_jump_penalties, 0.0)
+        self.assertEqual(time_only.cross_country_time_penalties, 4.8)
+        self.assertEqual(time_only.finishing_score, 34.0)
+        later_time_only = eight_nine_by_horse["KINDA CORVETTE"]
+        self.assertEqual(later_time_only.show_jumping_penalties, 0.0)
+        self.assertEqual(later_time_only.cross_country_jump_penalties, 0.0)
+        self.assertEqual(later_time_only.cross_country_time_penalties, 5.6)
+        self.assertEqual(later_time_only.finishing_score, 36.2)
+        rails_then_time = eight_nine_by_horse["KILROE TIGER"]
+        self.assertEqual(rails_then_time.show_jumping_penalties, 4.0)
+        self.assertEqual(rails_then_time.cross_country_jump_penalties, 0.0)
+        self.assertEqual(rails_then_time.cross_country_time_penalties, 1.2)
+        self.assertEqual(rails_then_time.finishing_score, 36.3)
+        jump_and_time = eight_nine_by_horse["CALL ME SENORITA"]
+        self.assertEqual(jump_and_time.show_jumping_penalties, 4.0)
+        self.assertEqual(jump_and_time.cross_country_jump_penalties, 20.0)
+        self.assertEqual(jump_and_time.cross_country_time_penalties, 17.6)
+        self.assertEqual(jump_and_time.finishing_score, 75.6)
+        heavy_time = eight_nine_by_horse["PERCIVALE"]
+        self.assertEqual(heavy_time.show_jumping_penalties, 1.2)
+        self.assertEqual(heavy_time.cross_country_jump_penalties, 0.0)
+        self.assertEqual(heavy_time.cross_country_time_penalties, 43.2)
+        self.assertEqual(heavy_time.finishing_score, 87.7)
+        still_waiting = eight_nine_by_horse["SANCERRE DE TIJI"]
+        self.assertEqual(still_waiting.show_jumping_penalties, 0.4)
+        self.assertEqual(still_waiting.cross_country_jump_penalties, 0.0)
+        self.assertEqual(still_waiting.cross_country_time_penalties, 0.0)
+        self.assertEqual(still_waiting.finishing_score, 27.3)
+
 
 if __name__ == "__main__":
     unittest.main()
