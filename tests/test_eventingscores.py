@@ -3123,6 +3123,133 @@ class EventingScoresParseTests(unittest.TestCase):
         self.assertEqual(cci4_by_horse["LSS ILE DE RE"].dressage_score, 36.0)
         self.assertEqual(cci4_by_horse["ELECTED"].dressage_score, 38.0)
 
+    def test_sunday_09utc_eight_nine_yo_cross_country_records_first_completers(self):
+        eight_nine_board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69244.html?eventid=2990",
+            event_name="Blenheim · CCI4*-S 8/9YO",
+            level="CCI4*-S",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        eight_nine_html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>M %</th><th>C %</th><th>E %</th><th>Dressage</th>
+          <th>SJ</th><th>XCT</th><th>XCJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>101</td>
+          <td></td>
+          <td>Tom McEwen (GBR)</td>
+          <td data-horse="BROOKFIELD DANNY DE MUZE" data-number="101"
+              data-rider="Tom McEwen (GBR)">BROOKFIELD DANNY DE MUZE</td>
+          <td></td><td></td><td></td>
+          <td class="score">27.2</td>
+          <td class="score">0</td>
+          <td>Sun 14:18</td>
+          <td></td>
+          <td class="score">27.2</td>
+          <td>1st</td>
+        </tr>
+        <tr>
+          <td>108</td>
+          <td></td>
+          <td>Sammi Birch (AUS)</td>
+          <td data-horse="MBF QUIDAMS TOUCH" data-number="108"
+              data-rider="Sammi Birch (AUS)">MBF QUIDAMS TOUCH</td>
+          <td></td><td></td><td></td>
+          <td class="score">34.4</td>
+          <td class="score">4 + 1.6</td>
+          <td class="score">13.2 in 7.27</td>
+          <td class="score">0</td>
+          <td class="score">53.2</td>
+          <td>86th</td>
+        </tr>
+        <tr>
+          <td>105</td>
+          <td></td>
+          <td>Kirsty Chabert (GBR)</td>
+          <td data-horse="CLIMATE CHANGE" data-number="105"
+              data-rider="Kirsty Chabert (GBR)">CLIMATE CHANGE</td>
+          <td></td><td></td><td></td>
+          <td class="score">37.9</td>
+          <td class="score">4 + 0.4</td>
+          <td class="score">18 in 7.39</td>
+          <td class="score">0</td>
+          <td class="score">60.3</td>
+          <td>88th</td>
+        </tr>
+        <tr>
+          <td>109</td>
+          <td></td>
+          <td>Simon Grieve (GBR)</td>
+          <td data-horse="BEST ESCAPADE" data-number="109"
+              data-rider="Simon Grieve (GBR)">BEST ESCAPADE</td>
+          <td></td><td></td><td></td>
+          <td class="score">41.0</td>
+          <td class="score">4 + 0.8</td>
+          <td class="score">32.4 in 8.15</td>
+          <td class="score">20</td>
+          <td class="score">98.2</td>
+          <td>93rd</td>
+        </tr>
+        <tr>
+          <td>150</td>
+          <td></td>
+          <td>Padraig Mccarthy (IRL)</td>
+          <td data-horse="KILROE TIGER" data-number="150"
+              data-rider="Padraig Mccarthy (IRL)">KILROE TIGER</td>
+          <td></td><td></td><td></td>
+          <td class="score">31.1</td>
+          <td class="score">0</td>
+          <td>Sun 09:57</td>
+          <td></td>
+          <td class="score">31.1</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        eight_nine_results = parse_leaderboard_results(
+            eight_nine_html,
+            board=eight_nine_board,
+            collected_at=datetime(2026, 9, 20, 9, 8, tzinfo=timezone.utc),
+        )
+        eight_nine_by_horse = {result.horse_name: result for result in eight_nine_results}
+        self.assertEqual(len(eight_nine_results), 5)
+        waiting_leader = eight_nine_by_horse["BROOKFIELD DANNY DE MUZE"]
+        self.assertEqual(waiting_leader.show_jumping_penalties, 0.0)
+        self.assertEqual(waiting_leader.cross_country_jump_penalties, 0.0)
+        self.assertEqual(waiting_leader.cross_country_time_penalties, 0.0)
+        self.assertEqual(waiting_leader.finishing_score, 27.2)
+        first_completer = eight_nine_by_horse["MBF QUIDAMS TOUCH"]
+        self.assertEqual(first_completer.show_jumping_penalties, 5.6)
+        self.assertEqual(first_completer.cross_country_jump_penalties, 0.0)
+        self.assertEqual(first_completer.cross_country_time_penalties, 13.2)
+        self.assertEqual(first_completer.finishing_score, 53.2)
+        time_faults = eight_nine_by_horse["CLIMATE CHANGE"]
+        self.assertEqual(time_faults.show_jumping_penalties, 4.4)
+        self.assertEqual(time_faults.cross_country_jump_penalties, 0.0)
+        self.assertEqual(time_faults.cross_country_time_penalties, 18.0)
+        self.assertEqual(time_faults.finishing_score, 60.3)
+        jump_and_time = eight_nine_by_horse["BEST ESCAPADE"]
+        self.assertEqual(jump_and_time.show_jumping_penalties, 4.8)
+        self.assertEqual(jump_and_time.cross_country_jump_penalties, 20.0)
+        self.assertEqual(jump_and_time.cross_country_time_penalties, 32.4)
+        self.assertEqual(jump_and_time.finishing_score, 98.2)
+        still_waiting = eight_nine_by_horse["KILROE TIGER"]
+        self.assertEqual(still_waiting.cross_country_jump_penalties, 0.0)
+        self.assertEqual(still_waiting.cross_country_time_penalties, 0.0)
+        self.assertEqual(still_waiting.finishing_score, 31.1)
+
 
 if __name__ == "__main__":
     unittest.main()
