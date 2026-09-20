@@ -3634,6 +3634,268 @@ class EventingScoresParseTests(unittest.TestCase):
         self.assertEqual(heavy_compound.cross_country_time_penalties, 51.6)
         self.assertEqual(heavy_compound.finishing_score, 146.2)
 
+    def test_sunday_12utc_eight_nine_yo_cross_country_records_later_completers(self):
+        eight_nine_board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69244.html?eventid=2990",
+            event_name="Blenheim · CCI4*-S 8/9YO",
+            level="CCI4*-S",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        eight_nine_html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>Dressage</th><th>SJ</th><th>XCT</th><th>XCJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>101</td>
+          <td></td>
+          <td>Tom McEwen (GBR)</td>
+          <td data-horse="BROOKFIELD DANNY DE MUZE" data-number="101"
+              data-rider="Tom McEwen (GBR)">BROOKFIELD DANNY DE MUZE</td>
+          <td class="score">27.2</td>
+          <td class="score">0</td>
+          <td>Sun 14:18</td>
+          <td></td>
+          <td class="score">27.2</td>
+          <td>1st</td>
+        </tr>
+        <tr>
+          <td>203</td>
+          <td></td>
+          <td>Kaitlyn Freeman (NZL)</td>
+          <td data-horse="NEVER KNOW MB" data-number="203"
+              data-rider="Kaitlyn Freeman (NZL)">NEVER KNOW MB</td>
+          <td class="score">39.6</td>
+          <td class="score">0 + 0.4</td>
+          <td class="score">7.2 in 7.12</td>
+          <td class="score">0</td>
+          <td class="score">47.2</td>
+          <td>47th</td>
+        </tr>
+        <tr>
+          <td>192</td>
+          <td></td>
+          <td>Cosby Green (USA)</td>
+          <td data-horse="MBF PARTY TIME" data-number="192"
+              data-rider="Cosby Green (USA)">MBF PARTY TIME</td>
+          <td class="score">38.1</td>
+          <td class="score">0 + 1.2</td>
+          <td class="score">13.2 in 7.27</td>
+          <td class="score">0</td>
+          <td class="score">52.5</td>
+          <td>52nd</td>
+        </tr>
+        <tr>
+          <td>204</td>
+          <td></td>
+          <td>Ricardo Montalvo (ESP)</td>
+          <td data-horse="HK DOMINATE" data-number="204"
+              data-rider="Ricardo Montalvo (ESP)">HK DOMINATE</td>
+          <td class="score">39.2</td>
+          <td class="score">8</td>
+          <td class="score">32 in 8.14</td>
+          <td class="score">0</td>
+          <td class="score">79.2</td>
+          <td>79th</td>
+        </tr>
+        <tr>
+          <td>196</td>
+          <td></td>
+          <td>Regis Prudhon (FRA)</td>
+          <td data-horse="BLACK SWAN DECANDIE Z" data-number="196"
+              data-rider="Regis Prudhon (FRA)">BLACK SWAN DECANDIE Z</td>
+          <td class="score">30.1</td>
+          <td class="score">16</td>
+          <td class="score">29.6 in 8.08</td>
+          <td class="score">11</td>
+          <td class="score">86.7</td>
+          <td>86th</td>
+        </tr>
+        <tr>
+          <td>207</td>
+          <td></td>
+          <td>Padraig Mccarthy (IRL)</td>
+          <td data-horse="KILROE TIGER" data-number="207"
+              data-rider="Padraig Mccarthy (IRL)">KILROE TIGER</td>
+          <td class="score">31.1</td>
+          <td class="score">4</td>
+          <td>Sun 13:06</td>
+          <td></td>
+          <td class="score">35.1</td>
+          <td>23rd</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        eight_nine_results = parse_leaderboard_results(
+            eight_nine_html,
+            board=eight_nine_board,
+            collected_at=datetime(2026, 9, 20, 12, 4, tzinfo=timezone.utc),
+        )
+        eight_nine_by_horse = {result.horse_name: result for result in eight_nine_results}
+        self.assertEqual(len(eight_nine_results), 6)
+        waiting_leader = eight_nine_by_horse["BROOKFIELD DANNY DE MUZE"]
+        self.assertEqual(waiting_leader.show_jumping_penalties, 0.0)
+        self.assertEqual(waiting_leader.cross_country_jump_penalties, 0.0)
+        self.assertEqual(waiting_leader.cross_country_time_penalties, 0.0)
+        self.assertEqual(waiting_leader.finishing_score, 27.2)
+        time_only = eight_nine_by_horse["NEVER KNOW MB"]
+        self.assertEqual(time_only.show_jumping_penalties, 0.4)
+        self.assertEqual(time_only.cross_country_jump_penalties, 0.0)
+        self.assertEqual(time_only.cross_country_time_penalties, 7.2)
+        self.assertEqual(time_only.finishing_score, 47.2)
+        rails_and_time = eight_nine_by_horse["MBF PARTY TIME"]
+        self.assertEqual(rails_and_time.show_jumping_penalties, 1.2)
+        self.assertEqual(rails_and_time.cross_country_jump_penalties, 0.0)
+        self.assertEqual(rails_and_time.cross_country_time_penalties, 13.2)
+        self.assertEqual(rails_and_time.finishing_score, 52.5)
+        heavy_time = eight_nine_by_horse["HK DOMINATE"]
+        self.assertEqual(heavy_time.show_jumping_penalties, 8.0)
+        self.assertEqual(heavy_time.cross_country_jump_penalties, 0.0)
+        self.assertEqual(heavy_time.cross_country_time_penalties, 32.0)
+        self.assertEqual(heavy_time.finishing_score, 79.2)
+        jump_and_time = eight_nine_by_horse["BLACK SWAN DECANDIE Z"]
+        self.assertEqual(jump_and_time.show_jumping_penalties, 16.0)
+        self.assertEqual(jump_and_time.cross_country_jump_penalties, 11.0)
+        self.assertEqual(jump_and_time.cross_country_time_penalties, 29.6)
+        self.assertEqual(jump_and_time.finishing_score, 86.7)
+        still_waiting = eight_nine_by_horse["KILROE TIGER"]
+        self.assertEqual(still_waiting.show_jumping_penalties, 4.0)
+        self.assertEqual(still_waiting.cross_country_jump_penalties, 0.0)
+        self.assertEqual(still_waiting.cross_country_time_penalties, 0.0)
+        self.assertEqual(still_waiting.finishing_score, 35.1)
+
+    def test_sunday_12utc_cci4_long_records_later_show_jumping(self):
+        cci4_board = EventingScoresBoard(
+            url="https://www.eventingscores.co.uk/uploads/events/2990/results_2990_69243.html?eventid=2990",
+            event_name="Blenheim · CCI4*-L",
+            level="CCI4*-L",
+            event_date=date(2026, 9, 17),
+            country="GBR",
+        )
+        cci4_html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>Dressage</th><th>XCT</th><th>XCJ</th><th>SJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>36</td>
+          <td></td>
+          <td>Tom McEwen (GBR)</td>
+          <td data-horse="THE FIELDMASTER" data-number="36"
+              data-rider="Tom McEwen (GBR)">THE FIELDMASTER</td>
+          <td class="score">29.2</td>
+          <td class="score">1.2 in 10.11</td>
+          <td class="score">0</td>
+          <td>Sun 15:36</td>
+          <td class="score">30.4</td>
+          <td>1st</td>
+        </tr>
+        <tr>
+          <td>69</td>
+          <td></td>
+          <td>Izzy Taylor (GBR)</td>
+          <td data-horse="BARRINGTON REVELATION" data-number="69"
+              data-rider="Izzy Taylor (GBR)">BARRINGTON REVELATION</td>
+          <td class="score">39.9</td>
+          <td class="score">8 in 10.28</td>
+          <td class="score">0</td>
+          <td class="score">4</td>
+          <td class="score">51.9</td>
+          <td>19th</td>
+        </tr>
+        <tr>
+          <td>42</td>
+          <td></td>
+          <td>Grace Taylor (USA)</td>
+          <td data-horse="BANDITO VAN POLDERZICHT" data-number="42"
+              data-rider="Grace Taylor (USA)">BANDITO VAN POLDERZICHT</td>
+          <td class="score">40.2</td>
+          <td class="score">17.6 in 10.52</td>
+          <td class="score">0</td>
+          <td class="score">0 + 1.2</td>
+          <td class="score">59.0</td>
+          <td>22nd</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td></td>
+          <td>Clarke Johnstone (NZL)</td>
+          <td data-horse="COOLEY STIRLING" data-number="1"
+              data-rider="Clarke Johnstone (NZL)">COOLEY STIRLING</td>
+          <td class="score">37.4</td>
+          <td class="score">8.4 in 10.29</td>
+          <td class="score">11</td>
+          <td class="score">4</td>
+          <td class="score">60.8</td>
+          <td>24th</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td></td>
+          <td>Rafael Losano (BRA)</td>
+          <td data-horse="BRINDLEY'S FINALE" data-number="4"
+              data-rider="Rafael Losano (BRA)">BRINDLEY'S FINALE</td>
+          <td class="score">40.8</td>
+          <td class="score">20.8 in 11.00</td>
+          <td class="score">11</td>
+          <td class="score">4 + 0.8</td>
+          <td class="score">77.4</td>
+          <td>32nd</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        cci4_results = parse_leaderboard_results(
+            cci4_html,
+            board=cci4_board,
+            collected_at=datetime(2026, 9, 20, 12, 4, tzinfo=timezone.utc),
+        )
+        cci4_by_horse = {result.horse_name: result for result in cci4_results}
+        self.assertEqual(len(cci4_results), 5)
+        waiting_leader = cci4_by_horse["THE FIELDMASTER"]
+        self.assertEqual(waiting_leader.show_jumping_penalties, 0.0)
+        self.assertEqual(waiting_leader.cross_country_jump_penalties, 0.0)
+        self.assertEqual(waiting_leader.cross_country_time_penalties, 1.2)
+        self.assertEqual(waiting_leader.finishing_score, 30.4)
+        rails_only = cci4_by_horse["BARRINGTON REVELATION"]
+        self.assertEqual(rails_only.show_jumping_penalties, 4.0)
+        self.assertEqual(rails_only.cross_country_jump_penalties, 0.0)
+        self.assertEqual(rails_only.cross_country_time_penalties, 8.0)
+        self.assertEqual(rails_only.finishing_score, 51.9)
+        time_only = cci4_by_horse["BANDITO VAN POLDERZICHT"]
+        self.assertEqual(time_only.show_jumping_penalties, 1.2)
+        self.assertEqual(time_only.cross_country_jump_penalties, 0.0)
+        self.assertEqual(time_only.cross_country_time_penalties, 17.6)
+        self.assertEqual(time_only.finishing_score, 59.0)
+        rails_and_xc = cci4_by_horse["COOLEY STIRLING"]
+        self.assertEqual(rails_and_xc.show_jumping_penalties, 4.0)
+        self.assertEqual(rails_and_xc.cross_country_jump_penalties, 11.0)
+        self.assertEqual(rails_and_xc.cross_country_time_penalties, 8.4)
+        self.assertEqual(rails_and_xc.finishing_score, 60.8)
+        compound = cci4_by_horse["BRINDLEY'S FINALE"]
+        self.assertEqual(compound.show_jumping_penalties, 4.8)
+        self.assertEqual(compound.cross_country_jump_penalties, 11.0)
+        self.assertEqual(compound.cross_country_time_penalties, 20.8)
+        self.assertEqual(compound.finishing_score, 77.4)
+
 
 if __name__ == "__main__":
     unittest.main()
