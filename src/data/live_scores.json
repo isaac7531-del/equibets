@@ -5,7 +5,7 @@
       "country": "USA",
       "event_date": "2026-09-17",
       "event_name": "Twin Rivers \u00b7 CCI4*-S",
-      "latest_collected_at": "2026-09-19T21:09:17+00:00",
+      "latest_collected_at": "2026-09-22T05:23:17+00:00",
       "level": "CCI4*-S",
       "result_count": 6,
       "source_ids": [
@@ -13,7 +13,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 11.2,
           "dressage_score": 26.3,
           "finishing_score": 46.3,
@@ -24,7 +24,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 47.4,
           "finishing_score": 47.4,
@@ -35,7 +35,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 12.8,
           "dressage_score": 33.5,
           "finishing_score": 51.1,
@@ -46,7 +46,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 20.0,
           "dressage_score": 33.3,
           "finishing_score": 53.7,
@@ -57,7 +57,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 44.0,
           "finishing_score": 55.6,
@@ -68,7 +68,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 60.0,
           "dressage_score": 32.9,
           "finishing_score": 93.7,
@@ -84,7 +84,7 @@
       "country": "USA",
       "event_date": "2026-09-17",
       "event_name": "Twin Rivers \u00b7 CCI3*-S",
-      "latest_collected_at": "2026-09-19T21:09:17+00:00",
+      "latest_collected_at": "2026-09-22T05:23:17+00:00",
       "level": "CCI3*-S",
       "result_count": 15,
       "source_ids": [
@@ -92,7 +92,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.8,
           "finishing_score": 30.8,
@@ -103,7 +103,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 9.2,
           "dressage_score": 29.1,
           "finishing_score": 38.3,
@@ -114,7 +114,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 6.4,
           "dressage_score": 34.8,
           "finishing_score": 45.2,
@@ -125,7 +125,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 6.8,
           "dressage_score": 36.1,
           "finishing_score": 46.9,
@@ -136,7 +136,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 18.4,
           "dressage_score": 28.9,
           "finishing_score": 47.3,
@@ -147,7 +147,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 13.6,
           "dressage_score": 33.6,
           "finishing_score": 52.0,
@@ -158,7 +158,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 12.4,
           "dressage_score": 30.2,
           "finishing_score": 52.6,
@@ -169,7 +169,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 14.8,
           "dressage_score": 35.0,
           "finishing_score": 53.8,
@@ -180,7 +180,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 8.8,
           "dressage_score": 33.5,
           "finishing_score": 54.3,
@@ -191,7 +191,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 12.8,
           "dressage_score": 34.7,
           "finishing_score": 55.5,
@@ -202,7 +202,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 16.8,
           "dressage_score": 32.0,
           "finishing_score": 56.8,
@@ -213,7 +213,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 12.0,
           "dressage_score": 37.0,
           "finishing_score": 57.0,
@@ -224,7 +224,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 22.8,
           "dressage_score": 31.4,
           "finishing_score": 63.4,
@@ -235,7 +235,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 28.4,
           "dressage_score": 39.0,
           "finishing_score": 67.4,
@@ -246,7 +246,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 60.0,
           "dressage_score": 33.7,
           "finishing_score": 105.7,
@@ -262,7 +262,7 @@
       "country": "USA",
       "event_date": "2026-09-17",
       "event_name": "Twin Rivers \u00b7 CCI2*-S",
-      "latest_collected_at": "2026-09-19T21:09:17+00:00",
+      "latest_collected_at": "2026-09-22T05:23:17+00:00",
       "level": "CCI2*-S",
       "result_count": 14,
       "source_ids": [
@@ -270,7 +270,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.1,
           "finishing_score": 29.1,
@@ -281,7 +281,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.1,
           "finishing_score": 34.1,
@@ -292,7 +292,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 7.2,
           "dressage_score": 29.5,
           "finishing_score": 36.7,
@@ -303,7 +303,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.4,
           "finishing_score": 38.4,
@@ -314,7 +314,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.6,
           "finishing_score": 39.6,
@@ -325,7 +325,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.7,
           "finishing_score": 39.7,
@@ -336,7 +336,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 8.8,
           "dressage_score": 30.5,
           "finishing_score": 40.1,
@@ -347,7 +347,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 12.4,
           "dressage_score": 32.5,
           "finishing_score": 44.9,
@@ -358,7 +358,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 2.8,
           "dressage_score": 31.7,
           "finishing_score": 46.5,
@@ -369,7 +369,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 49.0,
           "finishing_score": 49.0,
@@ -380,7 +380,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 29.2,
           "dressage_score": 26.5,
           "finishing_score": 63.7,
@@ -391,7 +391,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 17.2,
           "dressage_score": 39.9,
           "finishing_score": 69.9,
@@ -402,25 +402,25 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
+          "cross_country_penalties": 40.0,
+          "dressage_score": 30.0,
+          "finishing_score": 74.0,
+          "horse_name": "High Five DF",
+          "rank": 13,
+          "rider_name": "Jennifer McFall",
+          "show_jumping_penalties": 4.0,
+          "source_id": "showconnect"
+        },
+        {
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 34.4,
           "dressage_score": 38.4,
           "finishing_score": 80.8,
           "horse_name": "Ixxe Hedoniste",
-          "rank": 13,
+          "rank": 14,
           "rider_name": "Leah Forquer",
           "show_jumping_penalties": 8.0,
-          "source_id": "showconnect"
-        },
-        {
-          "collected_at": "2026-09-19T21:09:17+00:00",
-          "cross_country_penalties": 80.0,
-          "dressage_score": 30.0,
-          "finishing_score": 114.0,
-          "horse_name": "High Five DF",
-          "rank": 14,
-          "rider_name": "Jennifer McFall",
-          "show_jumping_penalties": 4.0,
           "source_id": "showconnect"
         }
       ]
@@ -429,7 +429,7 @@
       "country": "USA",
       "event_date": "2026-09-17",
       "event_name": "Twin Rivers \u00b7 CCI1*-S",
-      "latest_collected_at": "2026-09-19T21:09:17+00:00",
+      "latest_collected_at": "2026-09-22T05:23:17+00:00",
       "level": "CCI1*-S",
       "result_count": 6,
       "source_ids": [
@@ -437,7 +437,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 2.8,
           "dressage_score": 27.7,
           "finishing_score": 30.5,
@@ -448,7 +448,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.6,
           "finishing_score": 36.6,
@@ -459,7 +459,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 2.4,
           "dressage_score": 29.1,
           "finishing_score": 39.5,
@@ -470,7 +470,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 2.0,
           "dressage_score": 36.3,
           "finishing_score": 46.3,
@@ -481,18 +481,18 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.0,
-          "finishing_score": 61.0,
+          "finishing_score": 53.0,
           "horse_name": "Willis",
           "rank": 5,
           "rider_name": "Jessica DiCostanzo",
-          "show_jumping_penalties": 20.0,
+          "show_jumping_penalties": 12.0,
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-19T21:09:17+00:00",
+          "collected_at": "2026-09-22T05:23:17+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.3,
           "finishing_score": 61.3,
@@ -8523,8 +8523,8 @@
       ]
     }
   ],
-  "generated_at": "2026-09-22T03:13:46+00:00",
-  "latest_collected_at": "2026-09-22T03:13:45+00:00",
+  "generated_at": "2026-09-22T05:23:17+00:00",
+  "latest_collected_at": "2026-09-22T05:23:17+00:00",
   "result_count": 751,
   "source_ids": [
     "eventingscores",
