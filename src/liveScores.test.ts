@@ -65,6 +65,7 @@ describe('live score helpers', () => {
     expect(formatSourceList(['rechenstelle'])).toBe('Rechenstelle');
     expect(formatSourceList(['eventingscores'])).toBe('EventingScores');
     expect(formatSourceList(['showconnect'])).toBe('ShowConnect');
+    expect(formatSourceList(['usea'])).toBe('USEA');
   });
 
   it('formats missing live phase values as explicit dashes', () => {

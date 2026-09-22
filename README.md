@@ -155,6 +155,16 @@ python3 -m equibets.fei_bot \
 ```
 
 The default current-event window is fourteen days back through two days forward.
+Published USEA CCI finals, when the public results board has numeric phase
+scores, can be merged with:
+
+```bash
+python3 -m equibets.usea \
+  --plantation-2026 \
+  --output data/fei_results.json \
+  --live-output src/data/live_scores.json
+```
+
 If results were collected separately, rebuild only the frontend snapshot with:
 
 ```bash

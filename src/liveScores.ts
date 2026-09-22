@@ -86,6 +86,7 @@ const sourceLabels: Record<string, string> = {
   rechenstelle: 'Rechenstelle',
   eventingscores: 'EventingScores',
   showconnect: 'ShowConnect',
+  usea: 'USEA',
 };
 
 export const formatSourceId = (sourceId: string) => sourceLabels[sourceId] ?? sourceId;
