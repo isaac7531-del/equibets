@@ -86,6 +86,7 @@ const sourceLabels: Record<string, string> = {
   rechenstelle: 'Rechenstelle',
   eventingscores: 'EventingScores',
   showconnect: 'ShowConnect',
+  asiangames: 'Asian Games',
   usea: 'USEA',
 };
 
