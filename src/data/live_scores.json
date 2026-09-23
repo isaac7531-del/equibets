@@ -1,6 +1,228 @@
 {
-  "event_count": 21,
+  "event_count": 22,
   "events": [
+    {
+      "country": "FRA",
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI2*-L",
+      "latest_collected_at": "2026-09-23T14:22:57+00:00",
+      "level": "CCI2*-L",
+      "result_count": 19,
+      "source_ids": [
+        "horses_competitions"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 25.8,
+          "finishing_score": 25.8,
+          "horse_name": "TENDRESSE VAN DE MEYHOEVE",
+          "rank": 1,
+          "rider_name": "Jillian GIESSEN (NED)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 27.0,
+          "finishing_score": 27.0,
+          "horse_name": "ORANGE SWITCH",
+          "rank": 2,
+          "rider_name": "Brandon SCH\u00c4FER-GEHRAU (GER)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 27.3,
+          "finishing_score": 27.3,
+          "horse_name": "CHANCE MESSIPIERRE Z",
+          "rank": 3,
+          "rider_name": "Thomas CARLILE (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 27.6,
+          "finishing_score": 27.6,
+          "horse_name": "JALIS AMOR",
+          "rank": 4,
+          "rider_name": "Benjamin MASSIE (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 28.9,
+          "finishing_score": 28.9,
+          "horse_name": "GERIKO MARIN",
+          "rank": 5,
+          "rider_name": "Paul BARRET (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 29.0,
+          "finishing_score": 29.0,
+          "horse_name": "MILKY CHANCE",
+          "rank": 6,
+          "rider_name": "Felix VOGG (SUI)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 29.2,
+          "finishing_score": 29.2,
+          "horse_name": "GADJO TARDONNE",
+          "rank": 7,
+          "rider_name": "Maxime GILOT (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 29.9,
+          "finishing_score": 29.9,
+          "horse_name": "IRONIE DU SORRE",
+          "rank": 8,
+          "rider_name": "Luc CHATEAU (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 30.4,
+          "finishing_score": 30.4,
+          "horse_name": "HELDORADO DU LOIR",
+          "rank": 9,
+          "rider_name": "Alice MESNARD (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 30.8,
+          "finishing_score": 30.8,
+          "horse_name": "IPSO FACTO LB",
+          "rank": 10,
+          "rider_name": "Thomas CARLILE (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 31.3,
+          "finishing_score": 31.3,
+          "horse_name": "DOLLAR DU VINNEBUS",
+          "rank": 11,
+          "rider_name": "Frederic VERGE (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 31.4,
+          "finishing_score": 31.4,
+          "horse_name": "IGAR' COTE ROUSSE AA",
+          "rank": 12,
+          "rider_name": "Karim Florent LAGHOUAG (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 31.9,
+          "finishing_score": 31.9,
+          "horse_name": "QUASAR DE THIEUSIES Z",
+          "rank": 13,
+          "rider_name": "Bruno PUPIER (BEL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.0,
+          "finishing_score": 32.0,
+          "horse_name": "CHELLY BABY Z",
+          "rank": 14,
+          "rider_name": "Valentine EMSENS (BEL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 33.0,
+          "finishing_score": 33.0,
+          "horse_name": "SWALLOW SPRINGS",
+          "rank": 15,
+          "rider_name": "Isabella OWERS (ITA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 33.0,
+          "finishing_score": 33.0,
+          "horse_name": "EXCEPTIO DU PY AA",
+          "rank": 15,
+          "rider_name": "Jean Charles CHEVREAU (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.3,
+          "finishing_score": 34.3,
+          "horse_name": "DEALER OF LOVE",
+          "rank": 17,
+          "rider_name": "Mathilde MEJEAN (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.5,
+          "finishing_score": 34.5,
+          "horse_name": "OUVREUR",
+          "rank": 18,
+          "rider_name": "Ouvreur OUVREUR (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-23T14:22:57+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 36.3,
+          "finishing_score": 36.3,
+          "horse_name": "TIGO VAN HET HOF VAN MULDERS",
+          "rank": 19,
+          "rider_name": "Nina VAN DEN BERGH (BEL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        }
+      ]
+    },
     {
       "country": "JPN",
       "event_date": "2026-09-22",
@@ -8800,12 +9022,13 @@
       ]
     }
   ],
-  "generated_at": "2026-09-23T05:06:05+00:00",
-  "latest_collected_at": "2026-09-23T05:06:04+00:00",
-  "result_count": 775,
+  "generated_at": "2026-09-23T14:22:57+00:00",
+  "latest_collected_at": "2026-09-23T14:22:57+00:00",
+  "result_count": 794,
   "source_ids": [
     "asiangames",
     "eventingscores",
+    "horses_competitions",
     "rechenstelle",
     "showconnect",
     "usea"

@@ -65,6 +65,7 @@ describe('live score helpers', () => {
     expect(formatSourceList(['rechenstelle'])).toBe('Rechenstelle');
     expect(formatSourceList(['eventingscores'])).toBe('EventingScores');
     expect(formatSourceList(['showconnect'])).toBe('ShowConnect');
+    expect(formatSourceList(['horses_competitions'])).toBe('Horses & Competitions');
     expect(formatSourceList(['asiangames'])).toBe('Asian Games');
     expect(formatSourceList(['usea'])).toBe('USEA');
   });
