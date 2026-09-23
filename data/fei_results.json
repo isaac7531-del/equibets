@@ -52735,9 +52735,9 @@
       "source_record_id": "eventingscores:16468998cd5d3f21"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
-      "cross_country_jump_penalties": 20.0,
+      "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 20.4,
       "dressage_score": 37.7,
       "event_date": "2026-09-22",
@@ -52752,7 +52752,7 @@
       "source_record_id": "asiangames:8f157d697d292a42"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 11.2,
@@ -52769,7 +52769,7 @@
       "source_record_id": "asiangames:09ab832965cc7512"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 60.0,
       "cross_country_time_penalties": 20.0,
@@ -52786,7 +52786,7 @@
       "source_record_id": "asiangames:57ee3fd892408bfa"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 3.2,
@@ -52803,7 +52803,7 @@
       "source_record_id": "asiangames:6b5921e9e2d1c9bf"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 2.0,
@@ -52820,7 +52820,41 @@
       "source_record_id": "asiangames:aa39c4f8adbe4897"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
+      "country": "JPN",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 31.1,
+      "event_date": "2026-09-22",
+      "event_name": "Asian Games \u00b7 Eventing Individual",
+      "horse_name": "EVITA AP",
+      "is_user_entered": false,
+      "level": "Eventing Individual",
+      "rider_name": "HO Annie",
+      "show_jumping_penalties": 4.0,
+      "source_id": "asiangames",
+      "source_priority": 6,
+      "source_record_id": "asiangames:7c074cb71fbcdd39"
+    },
+    {
+      "collected_at": "2026-09-23T05:06:04+00:00",
+      "country": "JPN",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 26.9,
+      "event_date": "2026-09-22",
+      "event_name": "Asian Games \u00b7 Eventing Individual",
+      "horse_name": "MANJUSHRI",
+      "is_user_entered": false,
+      "level": "Eventing Individual",
+      "rider_name": "HUA Tian",
+      "show_jumping_penalties": 0.0,
+      "source_id": "asiangames",
+      "source_priority": 6,
+      "source_record_id": "asiangames:62271f2ec5b0370c"
+    },
+    {
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 11.2,
@@ -52837,7 +52871,7 @@
       "source_record_id": "asiangames:41d7c0522ac1b1e5"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 26.4,
@@ -52854,7 +52888,7 @@
       "source_record_id": "asiangames:3797540991eefe64"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 2.8,
@@ -52871,7 +52905,7 @@
       "source_record_id": "asiangames:cf13c704627465fe"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 10.8,
@@ -52888,7 +52922,7 @@
       "source_record_id": "asiangames:d0dbc667fdc7e078"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -52905,7 +52939,24 @@
       "source_record_id": "asiangames:44e8102fa2fdde3c"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
+      "country": "JPN",
+      "cross_country_jump_penalties": 9.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 35.5,
+      "event_date": "2026-09-22",
+      "event_name": "Asian Games \u00b7 Eventing Individual",
+      "horse_name": "WILLY BE DUN",
+      "is_user_entered": false,
+      "level": "Eventing Individual",
+      "rider_name": "LIMAYE Ashish",
+      "show_jumping_penalties": 0.0,
+      "source_id": "asiangames",
+      "source_priority": 6,
+      "source_record_id": "asiangames:1e8f808739cdb82b"
+    },
+    {
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 60.0,
       "cross_country_time_penalties": 32.0,
@@ -52922,7 +52973,7 @@
       "source_record_id": "asiangames:dc354f8f424d1a77"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 10.8,
@@ -52939,7 +52990,24 @@
       "source_record_id": "asiangames:0a971fbeded5734f"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
+      "country": "JPN",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.4,
+      "dressage_score": 31.3,
+      "event_date": "2026-09-22",
+      "event_name": "Asian Games \u00b7 Eventing Individual",
+      "horse_name": "OTTAWA DES DESIG",
+      "is_user_entered": false,
+      "level": "Eventing Individual",
+      "rider_name": "OIWA Yoshiaki",
+      "show_jumping_penalties": 0.0,
+      "source_id": "asiangames",
+      "source_priority": 6,
+      "source_record_id": "asiangames:35ea231c65154d49"
+    },
+    {
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 3.2,
@@ -52956,7 +53024,7 @@
       "source_record_id": "asiangames:a3ea8889ba53fe9a"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -52973,7 +53041,7 @@
       "source_record_id": "asiangames:6f2fd7a07eafb9fd"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -52990,7 +53058,7 @@
       "source_record_id": "asiangames:3decd1dc4d811b98"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 5.2,
@@ -53007,7 +53075,7 @@
       "source_record_id": "asiangames:d19ecbf99a41dd46"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53024,7 +53092,7 @@
       "source_record_id": "asiangames:8b23ddcff9d24b33"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 2.0,
@@ -53041,7 +53109,7 @@
       "source_record_id": "asiangames:f3d178b76e147f70"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 5.6,
@@ -53058,7 +53126,7 @@
       "source_record_id": "asiangames:7c5dded3a4becf4e"
     },
     {
-      "collected_at": "2026-09-23T04:09:33+00:00",
+      "collected_at": "2026-09-23T05:06:04+00:00",
       "country": "JPN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53076,6 +53144,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-23T04:09:33+00:00",
+  "updated_at": "2026-09-23T05:06:05+00:00",
   "version": 1
 }
