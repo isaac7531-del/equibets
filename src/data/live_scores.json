@@ -1,5 +1,5 @@
 {
-  "event_count": 22,
+  "event_count": 28,
   "events": [
     {
       "country": "FRA",
@@ -1634,6 +1634,788 @@
           "rider_name": "Nina VAN DEN BERGH (BEL)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
+        }
+      ]
+    },
+    {
+      "country": "IRL",
+      "event_date": "2026-09-23",
+      "event_name": "Ballindenisk \u00b7 CCI4*-S",
+      "latest_collected_at": "2026-09-24T19:14:03+00:00",
+      "level": "CCI4*-S",
+      "result_count": 3,
+      "source_ids": [
+        "eventing_ireland"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 30.3,
+          "finishing_score": 30.3,
+          "horse_name": "PSH Encore (AES)",
+          "rank": 1,
+          "rider_name": "Izzy Taylor (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 36.9,
+          "finishing_score": 36.9,
+          "horse_name": "Teachers Pet (SHB)",
+          "rank": 2,
+          "rider_name": "Daragh Byrne (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 49.0,
+          "finishing_score": 49.0,
+          "horse_name": "Knocka Drom Doreen (ISH)",
+          "rank": 3,
+          "rider_name": "David Raeburn (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        }
+      ]
+    },
+    {
+      "country": "IRL",
+      "event_date": "2026-09-23",
+      "event_name": "Ballindenisk \u00b7 CCI4*-L",
+      "latest_collected_at": "2026-09-24T19:14:03+00:00",
+      "level": "CCI4*-L",
+      "result_count": 8,
+      "source_ids": [
+        "eventing_ireland"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.6,
+          "finishing_score": 34.6,
+          "horse_name": "Jarson (KWPN)",
+          "rank": 1,
+          "rider_name": "Louisa Lockwood (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 36.0,
+          "finishing_score": 36.0,
+          "horse_name": "Class Romance (ISH)",
+          "rank": 2,
+          "rider_name": "Tom McEwen (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 36.7,
+          "finishing_score": 36.7,
+          "horse_name": "C Why (ISH)",
+          "rank": 3,
+          "rider_name": "Toots Bartlett (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 39.2,
+          "finishing_score": 39.2,
+          "horse_name": "Lenny (CZEWB)",
+          "rank": 4,
+          "rider_name": "Tom Bird (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 40.8,
+          "finishing_score": 40.8,
+          "horse_name": "Ballyvally Bay (ISH)",
+          "rank": 5,
+          "rider_name": "Rachel Rendle (NED)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 41.0,
+          "finishing_score": 41.0,
+          "horse_name": "Chrysanthos (AES)",
+          "rank": 6,
+          "rider_name": "Rosie Alcorn (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 41.5,
+          "finishing_score": 41.5,
+          "horse_name": "Cobalt De Dugny (SF)",
+          "rank": 7,
+          "rider_name": "David Doel (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 41.7,
+          "finishing_score": 41.7,
+          "horse_name": "Global Narco (ISH)",
+          "rank": 8,
+          "rider_name": "Tara Dixon (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        }
+      ]
+    },
+    {
+      "country": "IRL",
+      "event_date": "2026-09-23",
+      "event_name": "Ballindenisk \u00b7 CCI3*-S",
+      "latest_collected_at": "2026-09-24T19:14:03+00:00",
+      "level": "CCI3*-S",
+      "result_count": 11,
+      "source_ids": [
+        "eventing_ireland"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 28.5,
+          "finishing_score": 28.5,
+          "horse_name": "One True Barrington (KWPN)",
+          "rank": 1,
+          "rider_name": "Izzy Taylor (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 29.5,
+          "finishing_score": 29.5,
+          "horse_name": "PSH Serenade (SHB)",
+          "rank": 2,
+          "rider_name": "Izzy Taylor (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 30.5,
+          "finishing_score": 30.5,
+          "horse_name": "Bayaanaat",
+          "rank": 3,
+          "rider_name": "Izzy Taylor (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 33.1,
+          "finishing_score": 33.1,
+          "horse_name": "Devils Cape (TB)(GB)",
+          "rank": 4,
+          "rider_name": "Nicola Ennis (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.9,
+          "finishing_score": 35.9,
+          "horse_name": "Kilballyboy Surprise",
+          "rank": 5,
+          "rider_name": "David Doel (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 36.4,
+          "finishing_score": 36.4,
+          "horse_name": "Lux Dam Good (ISH)",
+          "rank": 6,
+          "rider_name": "Michael Ryan (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 37.4,
+          "finishing_score": 37.4,
+          "horse_name": "Pulpit Rock (HANN)",
+          "rank": 7,
+          "rider_name": "David Doel (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 37.8,
+          "finishing_score": 37.8,
+          "horse_name": "Ashwood Iron Lady (ISH)",
+          "rank": 8,
+          "rider_name": "Patrick Whelan (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 42.2,
+          "finishing_score": 42.2,
+          "horse_name": "Lenamore Lincoln (ISH)",
+          "rank": 9,
+          "rider_name": "Tara Dixon (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 46.7,
+          "finishing_score": 46.7,
+          "horse_name": "Cruising Good Quality (ISH)",
+          "rank": 10,
+          "rider_name": "Dorothy Good (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 47.1,
+          "finishing_score": 47.1,
+          "horse_name": "Fort Arthur Little Dolly (ISH)",
+          "rank": 11,
+          "rider_name": "Alice Copithorne (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        }
+      ]
+    },
+    {
+      "country": "IRL",
+      "event_date": "2026-09-23",
+      "event_name": "Ballindenisk \u00b7 CCI3*-L",
+      "latest_collected_at": "2026-09-24T19:14:03+00:00",
+      "level": "CCI3*-L",
+      "result_count": 16,
+      "source_ids": [
+        "eventing_ireland"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 29.3,
+          "finishing_score": 29.3,
+          "horse_name": "Powers (ISH)",
+          "rank": 1,
+          "rider_name": "Carla Williamson (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 30.7,
+          "finishing_score": 30.7,
+          "horse_name": "Da Vinci (HOLST)",
+          "rank": 2,
+          "rider_name": "Momo Sheehy (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 31.2,
+          "finishing_score": 31.2,
+          "horse_name": "Rathnageera River (ISH)",
+          "rank": 3,
+          "rider_name": "Caroline Powell (NZL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.2,
+          "finishing_score": 32.2,
+          "horse_name": "Belline Thistle Bethelasttime (ISH)",
+          "rank": 4,
+          "rider_name": "Godfrey Gibbons (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.3,
+          "finishing_score": 32.3,
+          "horse_name": "Chantilly Amatullah (ISH)",
+          "rank": 5,
+          "rider_name": "Ella Dalton (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 33.5,
+          "finishing_score": 33.5,
+          "horse_name": "Greenacres Special Touch (ISH)",
+          "rank": 6,
+          "rider_name": "Caroline Powell (NZL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 33.6,
+          "finishing_score": 33.6,
+          "horse_name": "DHI Purple Rain",
+          "rank": 7,
+          "rider_name": "Zara Head (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.4,
+          "finishing_score": 35.4,
+          "horse_name": "The Diplomat (ISH)(TIH)",
+          "rank": 8,
+          "rider_name": "Michael Ryan (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.7,
+          "finishing_score": 35.7,
+          "horse_name": "JVK Eclipse (ISH)(TIH)",
+          "rank": 9,
+          "rider_name": "Michael Ryan (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.4,
+          "finishing_score": 38.4,
+          "horse_name": "Mr Poker Face (ISH)",
+          "rank": 10,
+          "rider_name": "Olivia Leyland (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.5,
+          "finishing_score": 38.5,
+          "horse_name": "Cohiba by Picobello Z (ZANG)",
+          "rank": 11,
+          "rider_name": "Godfrey Gibbons (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 39.3,
+          "finishing_score": 39.3,
+          "horse_name": "Seafield Celt (ISH)",
+          "rank": 12,
+          "rider_name": "Daniel Alderson (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 39.7,
+          "finishing_score": 39.7,
+          "horse_name": "CFH Grand Vivendi (ISH)",
+          "rank": 13,
+          "rider_name": "Mark Houlihan (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 40.5,
+          "finishing_score": 40.5,
+          "horse_name": "Ardagh Mayday (ISH)",
+          "rank": 14,
+          "rider_name": "Emily Brooks (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 43.8,
+          "finishing_score": 43.8,
+          "horse_name": "Ballyorney Bubbles",
+          "rank": 15,
+          "rider_name": "Jessica Reid (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 43.9,
+          "finishing_score": 43.9,
+          "horse_name": "Shenandoah's Cachassini (DSP)",
+          "rank": 16,
+          "rider_name": "Hannah Willis (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        }
+      ]
+    },
+    {
+      "country": "IRL",
+      "event_date": "2026-09-23",
+      "event_name": "Ballindenisk \u00b7 CCI2*-S",
+      "latest_collected_at": "2026-09-24T19:14:03+00:00",
+      "level": "CCI2*-S",
+      "result_count": 6,
+      "source_ids": [
+        "eventing_ireland"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 26.7,
+          "finishing_score": 26.7,
+          "horse_name": "MGH Rioja (ISH)",
+          "rank": 1,
+          "rider_name": "Ian Cassells (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 27.3,
+          "finishing_score": 27.3,
+          "horse_name": "TMX Herby",
+          "rank": 2,
+          "rider_name": "Momo Sheehy (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 29.4,
+          "finishing_score": 29.4,
+          "horse_name": "Coolaw Mr Duke (ISH)",
+          "rank": 3,
+          "rider_name": "Patrick Whelan (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 29.5,
+          "finishing_score": 29.5,
+          "horse_name": "JL Candy Mac (ISH)",
+          "rank": 4,
+          "rider_name": "Tom McEwen (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.6,
+          "finishing_score": 32.6,
+          "horse_name": "WLS Ravenscourt (ISH)",
+          "rank": 5,
+          "rider_name": "Caroline Powell (NZL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.6,
+          "finishing_score": 35.6,
+          "horse_name": "Cil Dara Diaz",
+          "rank": 6,
+          "rider_name": "Olivia Lalak (AUS)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        }
+      ]
+    },
+    {
+      "country": "IRL",
+      "event_date": "2026-09-23",
+      "event_name": "Ballindenisk \u00b7 CCI2*-L",
+      "latest_collected_at": "2026-09-24T19:14:03+00:00",
+      "level": "CCI2*-L",
+      "result_count": 20,
+      "source_ids": [
+        "eventing_ireland"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 24.6,
+          "finishing_score": 24.6,
+          "horse_name": "GHS Diamanta (ISH)",
+          "rank": 1,
+          "rider_name": "Tom McEwen (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 27.5,
+          "finishing_score": 27.5,
+          "horse_name": "Essenar Double Dutch (ISH)",
+          "rank": 2,
+          "rider_name": "Anna Radford (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 28.2,
+          "finishing_score": 28.2,
+          "horse_name": "Alltogether Cooley (ISH)",
+          "rank": 3,
+          "rider_name": "Amanda Goldsbury (NZL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 30.1,
+          "finishing_score": 30.1,
+          "horse_name": "Carrigshawn Ebony (ISH)",
+          "rank": 4,
+          "rider_name": "Nicky Roncoroni (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 30.7,
+          "finishing_score": 30.7,
+          "horse_name": "Borris Cornet Coole (ISH)",
+          "rank": 5,
+          "rider_name": "John Tilley (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 31.5,
+          "finishing_score": 31.5,
+          "horse_name": "Ninian Park (HANN)",
+          "rank": 6,
+          "rider_name": "Izzy Taylor (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.7,
+          "finishing_score": 32.7,
+          "horse_name": "Bluestone Pharaoh (ISH)",
+          "rank": 7,
+          "rider_name": "Casey Webb (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.9,
+          "finishing_score": 32.9,
+          "horse_name": "Belline JM Golden Legacy (ISH)",
+          "rank": 8,
+          "rider_name": "Godfrey Gibbons (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 33.5,
+          "finishing_score": 33.5,
+          "horse_name": "Sportsfield Supreme (ISH)",
+          "rank": 9,
+          "rider_name": "Nadia Sabot (CAN)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.2,
+          "finishing_score": 34.2,
+          "horse_name": "Whydah (TB)(GB)",
+          "rank": 10,
+          "rider_name": "Phonsie Wardell (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.4,
+          "finishing_score": 34.4,
+          "horse_name": "Punch Lion (ISH)",
+          "rank": 11,
+          "rider_name": "Jonathan Steele (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.5,
+          "finishing_score": 34.5,
+          "horse_name": "Manhatton 19 (ISH)(TIH)",
+          "rank": 12,
+          "rider_name": "Sarah Dowley (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.8,
+          "finishing_score": 34.8,
+          "horse_name": "Jj Big Red (ISH)",
+          "rank": 13,
+          "rider_name": "David Raeburn (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.9,
+          "finishing_score": 34.9,
+          "horse_name": "Ophelia Cruise (ISH)",
+          "rank": 14,
+          "rider_name": "Katie Robinson (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.0,
+          "finishing_score": 35.0,
+          "horse_name": "Oxview Jasper (CP)",
+          "rank": 15,
+          "rider_name": "Phonsie Wardell (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.4,
+          "finishing_score": 35.4,
+          "horse_name": "Silver Reflection MPS (AES)",
+          "rank": 16,
+          "rider_name": "Freya Kennedy (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 36.3,
+          "finishing_score": 36.3,
+          "horse_name": "Fourfields X Faktor DUPLICATE",
+          "rank": 17,
+          "rider_name": "Zara Head (GBR)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 37.0,
+          "finishing_score": 37.0,
+          "horse_name": "Happy Bo Lucky (ISH)(TIH)",
+          "rank": 18,
+          "rider_name": "Casey Webb (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 37.4,
+          "finishing_score": 37.4,
+          "horse_name": "Isington Girl Power (AES)",
+          "rank": 19,
+          "rider_name": "Isabelle Walsh (IRL)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
+        },
+        {
+          "collected_at": "2026-09-24T19:14:03+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 43.3,
+          "finishing_score": 43.3,
+          "horse_name": "MHS Baracouda (ISH)",
+          "rank": 20,
+          "rider_name": "Laur\u00e8ne Yviquel (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "eventing_ireland"
         }
       ]
     },
@@ -9319,11 +10101,12 @@
       ]
     }
   ],
-  "generated_at": "2026-09-24T18:23:18+00:00",
-  "latest_collected_at": "2026-09-24T18:23:17+00:00",
-  "result_count": 821,
+  "generated_at": "2026-09-24T19:14:07+00:00",
+  "latest_collected_at": "2026-09-24T19:14:03+00:00",
+  "result_count": 885,
   "source_ids": [
     "asiangames",
+    "eventing_ireland",
     "eventingscores",
     "horses_competitions",
     "rechenstelle",
