@@ -5,15 +5,15 @@
       "country": "FRA",
       "event_date": "2026-09-24",
       "event_name": "Ligni\u00e8res \u00b7 CCI2*-S",
-      "latest_collected_at": "2026-09-24T13:23:40+00:00",
+      "latest_collected_at": "2026-09-24T14:12:14+00:00",
       "level": "CCI2*-S",
-      "result_count": 11,
+      "result_count": 19,
       "source_ids": [
         "horses_competitions"
       ],
       "standings": [
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 23.8,
           "finishing_score": 23.8,
@@ -24,7 +24,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 27.4,
           "finishing_score": 27.4,
@@ -35,7 +35,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 28.8,
           "finishing_score": 28.8,
@@ -46,90 +46,178 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 29.0,
+          "finishing_score": 29.0,
+          "horse_name": "CANDAME DE LYR",
+          "rank": 4,
+          "rider_name": "Melis MASSIE (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.4,
           "finishing_score": 29.4,
           "horse_name": "CHAT BOTTE DU PERCHET",
-          "rank": 4,
+          "rank": 5,
           "rider_name": "Cyrielle REBETEZ (SUI)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.4,
           "finishing_score": 29.4,
           "horse_name": "FENDI P",
-          "rank": 4,
+          "rank": 5,
           "rider_name": "Elodie SAUTENET (FRA)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 30.8,
+          "finishing_score": 30.8,
+          "horse_name": "INDIANA JONES DU FEUILLAR",
+          "rank": 7,
+          "rider_name": "Raphael SALLAUD (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.3,
           "finishing_score": 31.3,
           "horse_name": "IWEN D 'ALROBEN",
-          "rank": 6,
+          "rank": 8,
           "rider_name": "Nina ROBIN (FRA)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 31.5,
+          "finishing_score": 31.5,
+          "horse_name": "IRONMAN DU MONTCEAU",
+          "rank": 9,
+          "rider_name": "Emma LEMAITRE (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.1,
+          "finishing_score": 32.1,
+          "horse_name": "LUGANO Z",
+          "rank": 10,
+          "rider_name": "Maxime PASCAL (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.3,
+          "finishing_score": 32.3,
+          "horse_name": "HERO DE RIVENDEL",
+          "rank": 11,
+          "rider_name": "Joscelyn GIRARD (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.3,
           "finishing_score": 32.3,
           "horse_name": "JUNGLE TONIC D'AURY",
-          "rank": 7,
+          "rank": 11,
           "rider_name": "Verane NICAUD (FRA)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.5,
           "finishing_score": 32.5,
           "horse_name": "CONCERT MARCH",
-          "rank": 8,
+          "rank": 13,
           "rider_name": "Nadja MINDER (SUI)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.7,
           "finishing_score": 33.7,
           "horse_name": "PEAK FREESTYLER",
-          "rank": 9,
+          "rank": 14,
           "rider_name": "Carla BRUNNER (SUI)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.0,
+          "finishing_score": 34.0,
+          "horse_name": "CALVIN DE SUZAN",
+          "rank": 15,
+          "rider_name": "Loise SCHMITT (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.9,
+          "finishing_score": 34.9,
+          "horse_name": "JASPER DE LEVAUX",
+          "rank": 16,
+          "rider_name": "Felix GIRERD CRENN (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 35.6,
           "finishing_score": 35.6,
           "horse_name": "VERA DEL TALAVE 1.13",
-          "rank": 10,
+          "rank": 17,
           "rider_name": "Marcel\u00b7l\u00ed PARRAMON MORENO (ESP)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 35.6,
           "finishing_score": 35.6,
           "horse_name": "HAUXER BLUES AA",
-          "rank": 10,
+          "rank": 17,
           "rider_name": "Ninon SIGAUD (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 37.4,
+          "finishing_score": 37.4,
+          "horse_name": "KARBONE BOIS BLANC",
+          "rank": 19,
+          "rider_name": "Mazarine SARRAZIN (FRA)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         }
@@ -139,130 +227,218 @@
       "country": "FRA",
       "event_date": "2026-09-23",
       "event_name": "Ligni\u00e8res \u00b7 CCIO4*-NC-S",
-      "latest_collected_at": "2026-09-24T13:23:40+00:00",
+      "latest_collected_at": "2026-09-24T14:12:14+00:00",
       "level": "CCIO4*-NC-S",
-      "result_count": 11,
+      "result_count": 19,
       "source_ids": [
         "horses_competitions"
       ],
       "standings": [
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 28.1,
+          "finishing_score": 28.1,
+          "horse_name": "READY TO GO NRW",
+          "rank": 1,
+          "rider_name": "Vanessa B\u00d6LTING (GER)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 30.8,
+          "finishing_score": 30.8,
+          "horse_name": "CANAKINE DU SUDRE Z",
+          "rank": 2,
+          "rider_name": "Heloise LE GUERN (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.4,
           "finishing_score": 32.4,
           "horse_name": "CONRAD P",
-          "rank": 1,
+          "rank": 3,
           "rider_name": "Lea SIEGL (AUT)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 33.8,
+          "finishing_score": 33.8,
+          "horse_name": "EAU VIVE DE BRENNE AA",
+          "rank": 4,
+          "rider_name": "Verane NICAUD (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 36.6,
           "finishing_score": 36.6,
           "horse_name": "GROOVE ARMADA",
-          "rank": 2,
+          "rank": 5,
           "rider_name": "Enrico ZEPPEGNO (ITA)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 37.6,
           "finishing_score": 37.6,
           "horse_name": "BALLYCOSKERRY REGAL DIAMOND",
-          "rank": 3,
+          "rank": 6,
           "rider_name": "Hollie FIELD (NZL)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 37.7,
+          "finishing_score": 37.7,
+          "horse_name": "EL MACHO DU LESME",
+          "rank": 7,
+          "rider_name": "Thomas PIEJOS (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 37.8,
+          "finishing_score": 37.8,
+          "horse_name": "TCHIN DE BARBEREAU Z",
+          "rank": 8,
+          "rider_name": "Alvaro BLANCO- TRABA CENTENERA (ESP)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.3,
+          "finishing_score": 38.3,
+          "horse_name": "DON'T EXPLAIN",
+          "rank": 9,
+          "rider_name": "Timothee HURET (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.8,
+          "finishing_score": 38.8,
+          "horse_name": "GRAINE DE B'NEVILLE",
+          "rank": 10,
+          "rider_name": "Melanie AUGEROLLE (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 39.2,
           "finishing_score": 39.2,
           "horse_name": "EUREKA DE BRENNE",
-          "rank": 4,
+          "rank": 11,
           "rider_name": "Anne Sophie BRULE (FRA)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 40.8,
           "finishing_score": 40.8,
           "horse_name": "GRAND QUARTIER",
-          "rank": 5,
+          "rank": 12,
           "rider_name": "Jonas DE VERICOURT (FRA)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.2,
           "finishing_score": 41.2,
           "horse_name": "GRAFFITI DES LOUPS",
-          "rank": 6,
+          "rank": 13,
           "rider_name": "Bastien COMMECY (FRA)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.2,
           "finishing_score": 41.2,
           "horse_name": "BRIN D'OR DES SOURCES",
-          "rank": 6,
+          "rank": 13,
           "rider_name": "Julie BILQUEZ (FRA)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.6,
           "finishing_score": 41.6,
           "horse_name": "HATIKA CHATELIER",
-          "rank": 8,
+          "rank": 15,
           "rider_name": "Luc CHATEAU (FRA)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 42.3,
           "finishing_score": 42.3,
           "horse_name": "ULISES 9 5",
-          "rank": 9,
+          "rank": 16,
           "rider_name": "Valentine EMSENS (BEL)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 43.8,
+          "finishing_score": 43.8,
+          "horse_name": "HELLO SIR",
+          "rank": 17,
+          "rider_name": "Christophe LEMAITRE (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "horses_competitions"
+        },
+        {
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 45.3,
           "finishing_score": 45.3,
           "horse_name": "GALWAY DU BIOLAY",
-          "rank": 10,
+          "rank": 18,
           "rider_name": "Gwendolen FER (FRA)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 49.3,
           "finishing_score": 49.3,
           "horse_name": "HAVALL RYAL K",
-          "rank": 11,
+          "rank": 19,
           "rider_name": "Simon GISCLARD (FRA)",
           "show_jumping_penalties": 0.0,
           "source_id": "horses_competitions"
@@ -273,7 +449,7 @@
       "country": "FRA",
       "event_date": "2026-09-23",
       "event_name": "Ligni\u00e8res \u00b7 CCI3*-L",
-      "latest_collected_at": "2026-09-24T13:23:40+00:00",
+      "latest_collected_at": "2026-09-24T14:12:14+00:00",
       "level": "CCI3*-L",
       "result_count": 35,
       "source_ids": [
@@ -281,7 +457,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 28.5,
           "finishing_score": 28.5,
@@ -292,7 +468,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.2,
           "finishing_score": 29.2,
@@ -303,7 +479,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.4,
           "finishing_score": 30.4,
@@ -314,7 +490,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.8,
           "finishing_score": 30.8,
@@ -325,7 +501,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.8,
           "finishing_score": 30.8,
@@ -336,7 +512,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.9,
           "finishing_score": 30.9,
@@ -347,7 +523,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.0,
           "finishing_score": 31.0,
@@ -358,7 +534,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.5,
           "finishing_score": 31.5,
@@ -369,7 +545,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.6,
           "finishing_score": 31.6,
@@ -380,7 +556,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.8,
           "finishing_score": 31.8,
@@ -391,7 +567,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.3,
           "finishing_score": 32.3,
@@ -402,7 +578,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.4,
           "finishing_score": 32.4,
@@ -413,7 +589,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.4,
           "finishing_score": 32.4,
@@ -424,7 +600,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.9,
           "finishing_score": 32.9,
@@ -435,7 +611,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.9,
           "finishing_score": 32.9,
@@ -446,7 +622,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.7,
           "finishing_score": 33.7,
@@ -457,7 +633,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.9,
           "finishing_score": 33.9,
@@ -468,7 +644,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.3,
           "finishing_score": 34.3,
@@ -479,7 +655,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.5,
           "finishing_score": 34.5,
@@ -490,7 +666,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.5,
           "finishing_score": 34.5,
@@ -501,7 +677,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.5,
           "finishing_score": 34.5,
@@ -512,7 +688,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 35.1,
           "finishing_score": 35.1,
@@ -523,7 +699,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 35.5,
           "finishing_score": 35.5,
@@ -534,7 +710,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 35.5,
           "finishing_score": 35.5,
@@ -545,7 +721,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 37.0,
           "finishing_score": 37.0,
@@ -556,7 +732,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 37.0,
           "finishing_score": 37.0,
@@ -567,7 +743,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 38.2,
           "finishing_score": 38.2,
@@ -578,7 +754,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 38.3,
           "finishing_score": 38.3,
@@ -589,7 +765,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 38.5,
           "finishing_score": 38.5,
@@ -600,7 +776,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 39.1,
           "finishing_score": 39.1,
@@ -611,7 +787,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 39.3,
           "finishing_score": 39.3,
@@ -622,7 +798,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 40.3,
           "finishing_score": 40.3,
@@ -633,7 +809,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 40.5,
           "finishing_score": 40.5,
@@ -644,7 +820,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 42.3,
           "finishing_score": 42.3,
@@ -655,7 +831,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 43.3,
           "finishing_score": 43.3,
@@ -671,7 +847,7 @@
       "country": "FRA",
       "event_date": "2026-09-23",
       "event_name": "Ligni\u00e8res \u00b7 CCI2*-L",
-      "latest_collected_at": "2026-09-24T13:23:40+00:00",
+      "latest_collected_at": "2026-09-24T14:12:14+00:00",
       "level": "CCI2*-L",
       "result_count": 50,
       "source_ids": [
@@ -679,7 +855,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 25.7,
           "finishing_score": 25.7,
@@ -690,7 +866,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 25.8,
           "finishing_score": 25.8,
@@ -701,7 +877,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 25.8,
           "finishing_score": 25.8,
@@ -712,7 +888,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 26.5,
           "finishing_score": 26.5,
@@ -723,7 +899,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 26.7,
           "finishing_score": 26.7,
@@ -734,7 +910,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 27.0,
           "finishing_score": 27.0,
@@ -745,7 +921,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 27.3,
           "finishing_score": 27.3,
@@ -756,7 +932,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 27.6,
           "finishing_score": 27.6,
@@ -767,7 +943,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 27.6,
           "finishing_score": 27.6,
@@ -778,7 +954,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 27.7,
           "finishing_score": 27.7,
@@ -789,7 +965,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 27.8,
           "finishing_score": 27.8,
@@ -800,7 +976,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 28.5,
           "finishing_score": 28.5,
@@ -811,7 +987,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 28.6,
           "finishing_score": 28.6,
@@ -822,7 +998,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 28.7,
           "finishing_score": 28.7,
@@ -833,7 +1009,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 28.9,
           "finishing_score": 28.9,
@@ -844,7 +1020,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 28.9,
           "finishing_score": 28.9,
@@ -855,7 +1031,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.0,
           "finishing_score": 29.0,
@@ -866,7 +1042,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.2,
           "finishing_score": 29.2,
@@ -877,7 +1053,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.8,
           "finishing_score": 29.8,
@@ -888,7 +1064,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 29.9,
           "finishing_score": 29.9,
@@ -899,7 +1075,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.3,
           "finishing_score": 30.3,
@@ -910,7 +1086,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.4,
           "finishing_score": 30.4,
@@ -921,7 +1097,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.4,
           "finishing_score": 30.4,
@@ -932,7 +1108,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.7,
           "finishing_score": 30.7,
@@ -943,7 +1119,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.8,
           "finishing_score": 30.8,
@@ -954,7 +1130,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.8,
           "finishing_score": 30.8,
@@ -965,7 +1141,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.1,
           "finishing_score": 31.1,
@@ -976,7 +1152,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.1,
           "finishing_score": 31.1,
@@ -987,7 +1163,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.2,
           "finishing_score": 31.2,
@@ -998,7 +1174,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.3,
           "finishing_score": 31.3,
@@ -1009,7 +1185,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.4,
           "finishing_score": 31.4,
@@ -1020,7 +1196,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.9,
           "finishing_score": 31.9,
@@ -1031,7 +1207,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.9,
           "finishing_score": 31.9,
@@ -1042,7 +1218,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.0,
           "finishing_score": 32.0,
@@ -1053,7 +1229,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.6,
           "finishing_score": 32.6,
@@ -1064,7 +1240,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.6,
           "finishing_score": 32.6,
@@ -1075,7 +1251,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.7,
           "finishing_score": 32.7,
@@ -1086,7 +1262,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.7,
           "finishing_score": 32.7,
@@ -1097,7 +1273,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.7,
           "finishing_score": 32.7,
@@ -1108,7 +1284,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.0,
           "finishing_score": 33.0,
@@ -1119,7 +1295,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.0,
           "finishing_score": 33.0,
@@ -1130,7 +1306,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.0,
           "finishing_score": 33.0,
@@ -1141,7 +1317,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.3,
           "finishing_score": 34.3,
@@ -1152,7 +1328,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.4,
           "finishing_score": 34.4,
@@ -1163,7 +1339,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.5,
           "finishing_score": 34.5,
@@ -1174,7 +1350,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 34.8,
           "finishing_score": 34.8,
@@ -1185,7 +1361,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 35.0,
           "finishing_score": 35.0,
@@ -1196,7 +1372,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 35.2,
           "finishing_score": 35.2,
@@ -1207,7 +1383,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 35.6,
           "finishing_score": 35.6,
@@ -1218,7 +1394,7 @@
           "source_id": "horses_competitions"
         },
         {
-          "collected_at": "2026-09-24T13:23:40+00:00",
+          "collected_at": "2026-09-24T14:12:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 36.3,
           "finishing_score": 36.3,
@@ -8912,9 +9088,9 @@
       ]
     }
   ],
-  "generated_at": "2026-09-24T13:23:40+00:00",
-  "latest_collected_at": "2026-09-24T13:23:40+00:00",
-  "result_count": 784,
+  "generated_at": "2026-09-24T14:12:14+00:00",
+  "latest_collected_at": "2026-09-24T14:12:14+00:00",
+  "result_count": 800,
   "source_ids": [
     "asiangames",
     "eventingscores",
