@@ -53143,7 +53143,7 @@
       "source_record_id": "asiangames:dcab1deb14aca8e6"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53160,7 +53160,7 @@
       "source_record_id": "horses_competitions:fc3653d5c794acba"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53177,7 +53177,7 @@
       "source_record_id": "horses_competitions:b3a7a21c88c82fcb"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53194,7 +53194,41 @@
       "source_record_id": "horses_competitions:fd8bcee61463c097"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 28.5,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI3*-L",
+      "horse_name": "IDA",
+      "is_user_entered": false,
+      "level": "CCI3*-L",
+      "rider_name": "Anna-Maria TRISKATIS (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:dbe7cb008e1881ce"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 34.5,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI3*-L",
+      "horse_name": "FIRST LADY DE BELHEME",
+      "is_user_entered": false,
+      "level": "CCI3*-L",
+      "rider_name": "Arianna SCHIVO (ITA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:8effa6aa9d78a9ab"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53211,7 +53245,7 @@
       "source_record_id": "horses_competitions:d946b367567c3cb0"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53228,7 +53262,7 @@
       "source_record_id": "horses_competitions:5129d74e7c0f0f4c"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53245,7 +53279,24 @@
       "source_record_id": "horses_competitions:d3ce2081d767cca2"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 26.7,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI2*-L",
+      "horse_name": "OPPORTUNITY",
+      "is_user_entered": false,
+      "level": "CCI2*-L",
+      "rider_name": "Brandon SCH\u00c4FER-GEHRAU (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:87b019aea621d217"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53262,7 +53313,7 @@
       "source_record_id": "horses_competitions:66132a244816d4af"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53279,7 +53330,7 @@
       "source_record_id": "horses_competitions:52ab3c548f0aa181"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53296,7 +53347,24 @@
       "source_record_id": "horses_competitions:5b0eef5406215913"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 35.5,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI3*-L",
+      "horse_name": "HEAVEN FOR GAME",
+      "is_user_entered": false,
+      "level": "CCI3*-L",
+      "rider_name": "Camille GUYOT (SUI)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:116c55bc81caad00"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53313,7 +53381,24 @@
       "source_record_id": "horses_competitions:bd09873376ed3b7f"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 32.7,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI2*-L",
+      "horse_name": "GATSBY DU LOIR",
+      "is_user_entered": false,
+      "level": "CCI2*-L",
+      "rider_name": "Clothilde LEGLISE (FRA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:d3a92e5f9b4492bd"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53330,7 +53415,24 @@
       "source_record_id": "horses_competitions:f4669b072d58e945"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 34.8,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI2*-L",
+      "horse_name": "CASINO GRANDE",
+      "is_user_entered": false,
+      "level": "CCI2*-L",
+      "rider_name": "Elodie HANSELMANN (SUI)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:fa82076a6449840c"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53347,7 +53449,24 @@
       "source_record_id": "horses_competitions:32ffb691cad619b8"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 27.8,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI2*-L",
+      "horse_name": "FACEBOOK DU VINNEBUS",
+      "is_user_entered": false,
+      "level": "CCI2*-L",
+      "rider_name": "Fabrice LUCAS (FRA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:b2589cfa15238290"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53364,7 +53483,24 @@
       "source_record_id": "horses_competitions:23ad6795d4747419"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 29.2,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI3*-L",
+      "horse_name": "ISSIS DU BOTTRAY",
+      "is_user_entered": false,
+      "level": "CCI3*-L",
+      "rider_name": "Felix VOGG (SUI)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:190a2fcd139fb84b"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53381,7 +53517,7 @@
       "source_record_id": "horses_competitions:2b534c18b270c516"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53398,7 +53534,7 @@
       "source_record_id": "horses_competitions:62af40da9815d1d1"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53415,7 +53551,24 @@
       "source_record_id": "horses_competitions:cd336d88cc7c7f1a"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 34.3,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI3*-L",
+      "horse_name": "BRIGADA SDN",
+      "is_user_entered": false,
+      "level": "CCI3*-L",
+      "rider_name": "Gerardo PARROQUIN DELFIN (MEX)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:1d840bc8cf2492ed"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53432,7 +53585,7 @@
       "source_record_id": "horses_competitions:2f3f9a4f02b256cd"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53449,7 +53602,7 @@
       "source_record_id": "horses_competitions:25de2bb1aecfdd3b"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53466,7 +53619,7 @@
       "source_record_id": "horses_competitions:34661fa8aa9de667"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53483,7 +53636,7 @@
       "source_record_id": "horses_competitions:13b048cbf7d9215e"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53500,7 +53653,7 @@
       "source_record_id": "horses_competitions:787fb0c28601e98f"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53517,7 +53670,7 @@
       "source_record_id": "horses_competitions:c189f79cd8206a54"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53534,7 +53687,24 @@
       "source_record_id": "horses_competitions:90c5afcc8fb7eda8"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 32.9,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI3*-L",
+      "horse_name": "JOYA DU GUERNY",
+      "is_user_entered": false,
+      "level": "CCI3*-L",
+      "rider_name": "Josephine HETEAU (FRA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:f71adc865552ca3f"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53551,7 +53721,7 @@
       "source_record_id": "horses_competitions:ab7f88221b9ef028"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53568,7 +53738,24 @@
       "source_record_id": "horses_competitions:879435277b370d4a"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 31.9,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI2*-L",
+      "horse_name": "INDOOR MOUSSARDIERE",
+      "is_user_entered": false,
+      "level": "CCI2*-L",
+      "rider_name": "Karim Florent LAGHOUAG (FRA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:22963544c45d3ab9"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53585,7 +53772,7 @@
       "source_record_id": "horses_competitions:7d9fc5e7b7d73723"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53602,7 +53789,7 @@
       "source_record_id": "horses_competitions:b5a5ac9fa298523f"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53619,7 +53806,7 @@
       "source_record_id": "horses_competitions:c97b6877fafe43b1"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53636,7 +53823,7 @@
       "source_record_id": "horses_competitions:a133e3179a679b40"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53653,7 +53840,7 @@
       "source_record_id": "horses_competitions:0ebe0c7f3e248a79"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53670,7 +53857,24 @@
       "source_record_id": "horses_competitions:481642bdc484ba20"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 42.3,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI3*-L",
+      "horse_name": "HORACIO PERELLE",
+      "is_user_entered": false,
+      "level": "CCI3*-L",
+      "rider_name": "Matthieu NADOT (FRA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:6faf87f9e1ce6af3"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53687,7 +53891,24 @@
       "source_record_id": "horses_competitions:3ead9ba988f0340f"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 39.1,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI3*-L",
+      "horse_name": "VINTY DU MONT",
+      "is_user_entered": false,
+      "level": "CCI3*-L",
+      "rider_name": "Nicolas BRECHET (FRA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:b4ffa4261fa89148"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53704,7 +53925,7 @@
       "source_record_id": "horses_competitions:b150d582b5eeb2c4"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53721,7 +53942,7 @@
       "source_record_id": "horses_competitions:9d7915a2a469eb0b"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53738,7 +53959,7 @@
       "source_record_id": "horses_competitions:f54bb0d96cb6ec5f"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53755,7 +53976,7 @@
       "source_record_id": "horses_competitions:d162c955273c8669"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53772,7 +53993,7 @@
       "source_record_id": "horses_competitions:620ce90538c6fc30"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53789,7 +54010,24 @@
       "source_record_id": "horses_competitions:9810b7957d155720"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 28.6,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI2*-L",
+      "horse_name": "JUMP DE L'AIROU",
+      "is_user_entered": false,
+      "level": "CCI2*-L",
+      "rider_name": "Paul BARRET (FRA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:a2010b377fbe06a1"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53806,7 +54044,7 @@
       "source_record_id": "horses_competitions:a853387443fd6a05"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53823,7 +54061,24 @@
       "source_record_id": "horses_competitions:01a22cf261fa0bb9"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 33.0,
+      "event_date": "2026-09-23",
+      "event_name": "Ligni\u00e8res \u00b7 CCI2*-L",
+      "horse_name": "INTERLUDE DU FEUGRE",
+      "is_user_entered": false,
+      "level": "CCI2*-L",
+      "rider_name": "Thibault FOURNIER (FRA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "horses_competitions",
+      "source_priority": 7,
+      "source_record_id": "horses_competitions:81c88cae05ddea11"
+    },
+    {
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53840,7 +54095,7 @@
       "source_record_id": "horses_competitions:9c16e3b1c48e6bab"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53857,7 +54112,7 @@
       "source_record_id": "horses_competitions:95e3d09f42f13455"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53874,7 +54129,7 @@
       "source_record_id": "horses_competitions:41bb2f3230a57153"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53891,7 +54146,7 @@
       "source_record_id": "horses_competitions:987c6212ea3d8665"
     },
     {
-      "collected_at": "2026-09-24T07:20:16+00:00",
+      "collected_at": "2026-09-24T08:16:58+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -53909,6 +54164,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-24T07:20:18+00:00",
+  "updated_at": "2026-09-24T08:16:58+00:00",
   "version": 1
 }
