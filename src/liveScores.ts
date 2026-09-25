@@ -89,6 +89,7 @@ const sourceLabels: Record<string, string> = {
   horses_competitions: 'Horses & Competitions',
   asiangames: 'Asian Games',
   eventing_ireland: 'Eventing Ireland',
+  evententries: 'Event Entries',
   usea: 'USEA',
 };
 
