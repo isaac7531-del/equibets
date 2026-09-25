@@ -202,6 +202,33 @@ LANGENHAGEN_SEP_2026 = (
     },
 )
 
+# Mechtersen (GER) CCI2*-S / CCI1*-Intro, 26–27 Sep 2026.
+# Dressage opened on 25 Sep. National Kl.L and Kl.A boards, and the CCIP2*-L
+# pony class, are not ingested. Rows without a dressage penalty are skipped.
+MECHTERSEN_SEP_2026 = (
+    {
+        "url": "https://live.rechenstelle.de/2026/mechtersen/leaderboard01.html",
+        "event_name": "Mechtersen · CCI2*-S",
+        "level": "CCI2*-S",
+        "event_date": date(2026, 9, 26),
+        "country": "GER",
+    },
+    {
+        "url": "https://live.rechenstelle.de/2026/mechtersen/leaderboard021.html",
+        "event_name": "Mechtersen · CCI1*-Intro RLP 1-75",
+        "level": "CCI1*-Intro",
+        "event_date": date(2026, 9, 26),
+        "country": "GER",
+    },
+    {
+        "url": "https://live.rechenstelle.de/2026/mechtersen/leaderboard022.html",
+        "event_name": "Mechtersen · CCI1*-Intro RLP >76",
+        "level": "CCI1*-Intro",
+        "event_date": date(2026, 9, 26),
+        "country": "GER",
+    },
+)
+
 
 @dataclass(frozen=True)
 class RechenstelleBoard:
@@ -489,6 +516,12 @@ def langenhagen_sep_2026_boards() -> list[RechenstelleBoard]:
     return [RechenstelleBoard(**item) for item in LANGENHAGEN_SEP_2026]
 
 
+def mechtersen_sep_2026_boards() -> list[RechenstelleBoard]:
+    """Return the Mechtersen September 2026 public CCI leaderboards."""
+
+    return [RechenstelleBoard(**item) for item in MECHTERSEN_SEP_2026]
+
+
 def merge_into_store(store_path: Path, new_results: Iterable[EventingResult]) -> list[EventingResult]:
     """Merge Rechenstelle rows into the shared results store.
 
@@ -588,6 +621,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull the Langenhagen September 2026 public class leaderboards",
     )
+    parser.add_argument(
+        "--mechtersen-2026",
+        action="store_true",
+        help="Pull the Mechtersen September 2026 public CCI leaderboards",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--dry-run", action="store_true")
@@ -606,10 +644,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         boards.extend(burghley_sep_2026_boards())
     if args.langenhagen_2026:
         boards.extend(langenhagen_sep_2026_boards())
+    if args.mechtersen_2026:
+        boards.extend(mechtersen_sep_2026_boards())
     if not boards:
         raise SystemExit(
             "Specify --millstreet-july-2026, --aachen-ch-m-c-2026, --hambach-2026, "
-            "--segersjo-2026, --burghley-2026, and/or --langenhagen-2026"
+            "--segersjo-2026, --burghley-2026, --langenhagen-2026, and/or --mechtersen-2026"
         )
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)

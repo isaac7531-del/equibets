@@ -128,6 +128,7 @@ def parse_ranking(
     event_date = _parse_date(show.get("date"))
     if event_date is None:
         return []
+    event_date = _stored_event_date(event, level, event_date)
 
     collected = collected_at or datetime.now(timezone.utc)
     results: list[EventingResult] = []
@@ -156,6 +157,23 @@ def collect_lignieres_2026(*, collected_at: datetime | None = None) -> list[Even
         payload = fetch_ranking(event.event_id, show_number)
         results.extend(parse_ranking(payload, event=event, collected_at=collected))
     return results
+
+
+def _stored_event_date(
+    event: HorsesCompetitionEvent,
+    level: str,
+    event_date: date,
+) -> date:
+    """Keep a class on the competition day already stored for that event.
+
+    Lignières CCI2*-S rankings advertise ``2026-09-23`` while the class was
+    published and stored on ``2026-09-24``. Writing the advertised date would
+    add a second copy of the class instead of updating the existing rows.
+    """
+
+    if event.event_id == 4640 and level == "CCI2*-S":
+        return date(2026, 9, 24)
+    return event_date
 
 
 def lignieres_sep_2026_event() -> HorsesCompetitionEvent:

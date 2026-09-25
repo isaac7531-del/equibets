@@ -111,6 +111,17 @@ class HorsesCompetitionsParseTests(unittest.TestCase):
         self.assertEqual(scored.cross_country_time_penalties, 0.0)
         self.assertEqual(scored.finishing_score, 25.8)
 
+    def test_cci2_s_stays_on_the_stored_competition_day(self):
+        results = parse_ranking(
+            _payload(_row(), name="CCI2*-S", event_date="2026-09-23"),
+            event=lignieres_sep_2026_event(),
+            collected_at=datetime(2026, 9, 25, 7, 20, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual(len(results), 1)
+        self.assertEqual(results[0].event_date, date(2026, 9, 24))
+        self.assertEqual(results[0].event_name, "Lignières · CCI2*-S")
+
     def test_later_phase_penalties_are_added_to_the_finishing_score(self):
         results = parse_ranking(
             _payload(
