@@ -6,6 +6,11 @@ judge movement marks are not penalties. A row is ingested only after the board
 publishes a one-decimal dressage penalty that follows the judge percentages.
 Repeated rider names are read from the GWT index stream, because the string
 table stores each distinct rider only once.
+
+Show jumping is read only when the four numbers before that dressage penalty
+are stadium faults, the elapsed round time, the time penalty, and a to-date
+total that equals dressage plus those two penalties. Cross-country columns
+stay at zero until their own jump and time cells publish.
 """
 
 from __future__ import annotations
@@ -299,10 +304,8 @@ def _parse_block(
     dressage = penalties[0]
     if dressage <= 0:
         return None
-    # Later one-decimal tokens are show jumping and cross-country once those
-    # columns publish. They are not mapped yet: the first live boards only
-    # carry dressage, and a guessed column order would file time faults on
-    # the wrong phase.
+    # The string-table walk is the dressage-only fallback. Live boards are
+    # parsed from the value stream, which can also see show jumping.
     return EventingResult(
         source_id=SOURCE_ID,
         source_record_id=_record_id(event.token, level, rider_name, horse_name),
@@ -341,6 +344,7 @@ def _parse_stream_entry(
     rider_name = ""
     seen_percentage = False
     dressage: float | None = None
+    dressage_index: int | None = None
     window_start = max(0, bio_index - 40)
     for index in range(bio_index - 1, window_start - 1, -1):
         token = values[index]
@@ -358,9 +362,11 @@ def _parse_stream_entry(
             continue
         if seen_percentage and dressage is None and PENALTY_RE.match(text):
             dressage = round(float(text), 1)
+            dressage_index = index
             break
-    if not horse_name or not rider_name or dressage is None or dressage <= 0:
+    if not horse_name or not rider_name or dressage is None or dressage <= 0 or dressage_index is None:
         return None
+    show_jumping = _show_jumping_penalties(values, dressage_index, dressage)
     return EventingResult(
         source_id=SOURCE_ID,
         source_record_id=_record_id(event.token, level, rider_name, horse_name),
@@ -372,12 +378,78 @@ def _parse_stream_entry(
         level=level,
         country=event.country,
         dressage_score=dressage,
-        show_jumping_penalties=0.0,
+        show_jumping_penalties=show_jumping,
         cross_country_jump_penalties=0.0,
         cross_country_time_penalties=0.0,
         collected_at=collected_at,
         is_user_entered=False,
     )
+
+
+def _show_jumping_penalties(values: Sequence[str], dressage_index: int, dressage: float) -> float:
+    """Return stadium faults plus time penalties when the to-date total matches.
+
+    Walking away from the dressage penalty, a published show-jumping row is
+    an optional dressage rank, stadium faults, elapsed seconds, the time
+    penalty, and the to-date score. Dressage-only rows do not have that total,
+    so they stay at zero jumping penalties.
+    """
+
+    numbers: list[str] = []
+    for index in range(dressage_index - 1, max(-1, dressage_index - 40), -1):
+        token = values[index]
+        if token.startswith("com.kyler.ee.shared.ScoringBoardEntry"):
+            break
+        if "\n" in token and HORSE_BIO_RE.search(token):
+            break
+        text = _clean_text(token)
+        if not text or token.startswith("com.kyler.ee.shared.") or token.startswith("java."):
+            continue
+        if PERCENT_RE.match(text) or RIDER_RE.match(text):
+            break
+        if PENALTY_RE.match(text) or re.fullmatch(r"\d{1,3}", text):
+            numbers.append(text)
+            if len(numbers) >= 6:
+                break
+            continue
+        # Rail-by-rail notes sit between the dressage rank and stadium faults.
+        continue
+    cursor = 0
+    if (
+        cursor + 1 < len(numbers)
+        and re.fullmatch(r"\d{1,3}", numbers[cursor])
+        and PENALTY_RE.match(numbers[cursor + 1])
+    ):
+        cursor += 1
+    if cursor + 3 >= len(numbers):
+        return 0.0
+    jump = _one_decimal(numbers[cursor])
+    elapsed = _whole_number(numbers[cursor + 1])
+    time_penalties = _one_decimal(numbers[cursor + 2])
+    to_date = _one_decimal(numbers[cursor + 3])
+    if None in {jump, elapsed, time_penalties, to_date}:
+        return 0.0
+    assert jump is not None
+    assert elapsed is not None
+    assert time_penalties is not None
+    assert to_date is not None
+    if not 40 <= elapsed <= 200:
+        return 0.0
+    if round(dressage + jump + time_penalties, 1) != round(to_date, 1):
+        return 0.0
+    return round(jump + time_penalties, 1)
+
+
+def _one_decimal(value: str) -> float | None:
+    if PENALTY_RE.match(value) is None:
+        return None
+    return round(float(value), 1)
+
+
+def _whole_number(value: str) -> int | None:
+    if re.fullmatch(r"\d{1,3}", value) is None:
+        return None
+    return int(value)
 
 
 def _level_from_strings(strings: Sequence[str]) -> str | None:
