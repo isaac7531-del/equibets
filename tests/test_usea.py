@@ -7,6 +7,7 @@ from datetime import date, datetime, timezone
 
 from equibets.usea import (
     UseaEvent,
+    fork_tryon_sep_2026_event,
     parse_results_html,
     plantation_sep_2026_event,
     results_url,
@@ -90,6 +91,15 @@ class UseaResultsTests(unittest.TestCase):
             "https://useventing.com/events-competitions/resources/results/item?event=19088",
         )
         self.assertEqual(plantation_sep_2026_event().event_id, "19088")
+        fork = fork_tryon_sep_2026_event()
+        self.assertEqual(fork.event_id, "19081")
+        self.assertEqual(fork.event_title, "The Fork at Tryon")
+        self.assertEqual(fork.event_date, date(2026, 9, 10))
+        self.assertEqual(fork.country, "USA")
+        self.assertEqual(
+            fork.url,
+            "https://useventing.com/events-competitions/resources/results/item?event=19081",
+        )
 
     def test_parse_keeps_numeric_cci_rows_and_skips_status_and_national(self) -> None:
         event = UseaEvent(
