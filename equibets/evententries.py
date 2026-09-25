@@ -4,6 +4,8 @@ Stable View and similar shows publish dressage through a GWT scoring board
 before USEA posts final results. Horse-detail text still contains heights, and
 judge movement marks are not penalties. A row is ingested only after the board
 publishes a one-decimal dressage penalty that follows the judge percentages.
+Repeated rider names are read from the GWT index stream, because the string
+table stores each distinct rider only once.
 """
 
 from __future__ import annotations
@@ -134,6 +136,32 @@ def gwt_string_table(body: bytes) -> list[str]:
     return payload
 
 
+def gwt_decoded_values(body: bytes) -> list[str]:
+    """Resolve the GWT value stream, including repeated string-table indexes.
+
+    The string table lists each distinct value once. A rider with two horses
+    is stored as two indexes to the same rider string, so walking the table
+    itself drops the second horse.
+    """
+
+    text = body.decode("utf-8", errors="replace")
+    if not text.startswith("//OK["):
+        raise RuntimeError("Event Entries payload is not a GWT-RPC response")
+    marker = text.rfind(',["')
+    if marker < 0:
+        raise RuntimeError("Event Entries payload has no string table")
+    strings = gwt_string_table(body)
+    decoded: list[str] = []
+    for token in text[5:marker].split(","):
+        if re.fullmatch(r"-?\d+", token):
+            index = int(token) - 1
+            if 0 <= index < len(strings):
+                decoded.append(strings[index])
+                continue
+        decoded.append(token)
+    return decoded
+
+
 def parse_scoring_board(
     body: bytes,
     *,
@@ -142,8 +170,8 @@ def parse_scoring_board(
 ) -> list[EventingResult]:
     """Parse a scoring board into rows that already have a dressage penalty."""
 
-    return parse_scoring_strings(
-        gwt_string_table(body),
+    return parse_scoring_values(
+        gwt_decoded_values(body),
         event=event,
         collected_at=collected_at,
     )
@@ -164,6 +192,34 @@ def parse_scoring_strings(
     results: list[EventingResult] = []
     for block in _horse_blocks(strings):
         parsed = _parse_block(block, event=event, level=level, collected_at=collected)
+        if parsed is not None:
+            results.append(parsed)
+    return results
+
+
+def parse_scoring_values(
+    values: Sequence[str],
+    *,
+    event: EventEntriesClass,
+    collected_at: datetime | None = None,
+) -> list[EventingResult]:
+    """Parse a decoded GWT value stream into scored eventing rows."""
+
+    level = _level_from_strings(values) or event.level
+    if not level.startswith("CCI"):
+        return []
+    collected = collected_at or datetime.now(timezone.utc)
+    results: list[EventingResult] = []
+    for index, value in enumerate(values):
+        if "\n" not in value or not HORSE_BIO_RE.search(value):
+            continue
+        parsed = _parse_stream_entry(
+            values,
+            index,
+            event=event,
+            level=level,
+            collected_at=collected,
+        )
         if parsed is not None:
             results.append(parsed)
     return results
@@ -247,6 +303,64 @@ def _parse_block(
     # columns publish. They are not mapped yet: the first live boards only
     # carry dressage, and a guessed column order would file time faults on
     # the wrong phase.
+    return EventingResult(
+        source_id=SOURCE_ID,
+        source_record_id=_record_id(event.token, level, rider_name, horse_name),
+        source_priority=SOURCE_PRIORITY,
+        rider_name=rider_name,
+        horse_name=horse_name,
+        event_name=f"{event.event_title} · {level}",
+        event_date=event.event_date,
+        level=level,
+        country=event.country,
+        dressage_score=dressage,
+        show_jumping_penalties=0.0,
+        cross_country_jump_penalties=0.0,
+        cross_country_time_penalties=0.0,
+        collected_at=collected_at,
+        is_user_entered=False,
+    )
+
+
+def _parse_stream_entry(
+    values: Sequence[str],
+    bio_index: int,
+    *,
+    event: EventEntriesClass,
+    level: str,
+    collected_at: datetime,
+) -> EventingResult | None:
+    """Read one horse from the value stream immediately before its bio string."""
+
+    horse_name = ""
+    if bio_index > 0 and "\n" not in values[bio_index - 1]:
+        horse_name = _clean_text(values[bio_index - 1])
+    if not horse_name:
+        horse_name = _clean_text(values[bio_index].split("\n", 1)[0])
+
+    rider_name = ""
+    seen_percentage = False
+    dressage: float | None = None
+    window_start = max(0, bio_index - 40)
+    for index in range(bio_index - 1, window_start - 1, -1):
+        token = values[index]
+        if token.startswith("com.kyler.ee.shared.ScoringBoardEntry"):
+            break
+        if STATUS_RE.match(_clean_text(token)):
+            return None
+        if not rider_name and token.startswith("java.util.ArrayList/") and index + 1 < bio_index:
+            candidate = _clean_text(values[index + 1])
+            if RIDER_RE.match(candidate):
+                rider_name = candidate
+        text = _clean_text(token)
+        if PERCENT_RE.match(text):
+            seen_percentage = True
+            continue
+        if seen_percentage and dressage is None and PENALTY_RE.match(text):
+            dressage = round(float(text), 1)
+            break
+    if not horse_name or not rider_name or dressage is None or dressage <= 0:
+        return None
     return EventingResult(
         source_id=SOURCE_ID,
         source_record_id=_record_id(event.token, level, rider_name, horse_name),

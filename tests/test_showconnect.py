@@ -9,6 +9,7 @@ from equibets.showconnect import (
     ShowConnectEvent,
     parse_scoring_live,
     scoring_live_url,
+    spokane_fall_2026_event,
     twin_rivers_fall_2026_event,
 )
 
@@ -144,6 +145,14 @@ class ShowConnectParseTests(unittest.TestCase):
         self.assertEqual(event.event_date, date(2026, 9, 17))
         self.assertEqual(event.country, "USA")
         self.assertIn("/event/1193/scoringLive", scoring_live_url(event.show_connect_id))
+
+    def test_spokane_event_uses_showconnect_1194(self):
+        event = spokane_fall_2026_event()
+        self.assertEqual(event.show_connect_id, 1194)
+        self.assertEqual(event.event_title, "Spokane")
+        self.assertEqual(event.event_date, date(2026, 9, 24))
+        self.assertEqual(event.country, "USA")
+        self.assertIn("/event/1194/scoringLive", scoring_live_url(event.show_connect_id))
 
     def test_numeric_phase_cells_are_ingested_and_placeholders_skipped(self):
         event = ShowConnectEvent(

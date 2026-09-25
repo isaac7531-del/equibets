@@ -38,11 +38,20 @@ FEI_LEVEL_RE = re.compile(r"^CCI", re.IGNORECASE)
 
 # Twin Rivers Fall International, 17–20 Sep 2026.
 # HTML scoring pages are Squarespace shells; numeric scores come from the
-# public scoringLive JSON. ShowConnectId 1194 is Spokane (24–27 Sep), not this event.
+# public scoringLive JSON.
 TWIN_RIVERS_FALL_2026 = {
     "show_connect_id": 1193,
     "event_title": "Twin Rivers",
     "event_date": date(2026, 9, 17),
+    "country": "USA",
+}
+
+# Spokane Sport Horse Fall Horse Trials, 24–27 Sep 2026 (USEA 19091).
+# National horse-trial divisions on the same scoringLive document are skipped.
+SPOKANE_FALL_2026 = {
+    "show_connect_id": 1194,
+    "event_title": "Spokane",
+    "event_date": date(2026, 9, 24),
     "country": "USA",
 }
 
@@ -111,6 +120,12 @@ def twin_rivers_fall_2026_event() -> ShowConnectEvent:
     """Return the Twin Rivers Fall 2026 ShowConnect event."""
 
     return ShowConnectEvent(**TWIN_RIVERS_FALL_2026)
+
+
+def spokane_fall_2026_event() -> ShowConnectEvent:
+    """Return the Spokane Fall 2026 ShowConnect event."""
+
+    return ShowConnectEvent(**SPOKANE_FALL_2026)
 
 
 def collect_events(
@@ -221,6 +236,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull Twin Rivers Fall 2026 scores from the public scoringLive API",
     )
+    parser.add_argument(
+        "--spokane-2026",
+        action="store_true",
+        help="Pull Spokane Fall 2026 CCI scores from the public scoringLive API",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--dry-run", action="store_true")
@@ -229,8 +249,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     events: list[ShowConnectEvent] = []
     if args.twin_rivers_2026:
         events.append(twin_rivers_fall_2026_event())
+    if args.spokane_2026:
+        events.append(spokane_fall_2026_event())
     if not events:
-        raise SystemExit("Specify --twin-rivers-2026")
+        raise SystemExit("Specify --twin-rivers-2026 and/or --spokane-2026")
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)
     results = collect_events(events, collected_at=collected_at)
