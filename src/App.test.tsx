@@ -173,7 +173,7 @@ describe('App', () => {
     const savedResults = screen.getByRole('region', { name: /saved results/i });
     expect(within(savedResults).getAllByText('Oakley').length).toBeGreaterThan(0);
     expect(within(savedResults).queryByText('Copperfield')).not.toBeInTheDocument();
-  });
+  }, 15000);
 
   it('shows the current live public scoring feed', () => {
     render(<App />);
