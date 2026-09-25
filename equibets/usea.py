@@ -43,6 +43,16 @@ PLANTATION_SEP_2026 = {
     "country": "USA",
 }
 
+# The Fork at Tryon, Mill Spring, 10–13 Sep 2026 (USEA 19081).
+# Final CCI penalties are on the public results board. National horse-trial
+# classes on the same page are skipped.
+FORK_TRYON_SEP_2026 = {
+    "event_id": "19081",
+    "event_title": "The Fork at Tryon",
+    "event_date": date(2026, 9, 10),
+    "country": "USA",
+}
+
 
 @dataclass(frozen=True)
 class UseaEvent:
@@ -198,6 +208,12 @@ def plantation_sep_2026_event() -> UseaEvent:
     return UseaEvent(**PLANTATION_SEP_2026)
 
 
+def fork_tryon_sep_2026_event() -> UseaEvent:
+    """Return The Fork at Tryon September 2026 USEA results event."""
+
+    return UseaEvent(**FORK_TRYON_SEP_2026)
+
+
 def collect_events(
     events: Sequence[UseaEvent],
     *,
@@ -305,6 +321,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull Plantation Field September 2026 CCI results",
     )
+    parser.add_argument(
+        "--fork-tryon-2026",
+        action="store_true",
+        help="Pull The Fork at Tryon September 2026 CCI results",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--dry-run", action="store_true")
@@ -313,8 +334,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     events: list[UseaEvent] = []
     if args.plantation_2026:
         events.append(plantation_sep_2026_event())
+    if args.fork_tryon_2026:
+        events.append(fork_tryon_sep_2026_event())
     if not events:
-        raise SystemExit("Specify --plantation-2026")
+        raise SystemExit("Specify --plantation-2026 or --fork-tryon-2026")
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)
     results = collect_events(events, collected_at=collected_at)
