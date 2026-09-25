@@ -193,8 +193,12 @@ describe('App', () => {
     });
     expect(screen.getAllByText(leader.horse_name).length).toBeGreaterThan(0);
     if (firstEvent.result_count > 8) {
-      expect(liveFeed).toHaveTextContent(`Showing top 8 of ${firstEvent.result_count} public results.`);
-      expect(within(liveFeed).queryByText(firstEvent.standings[8].horse_name)).not.toBeInTheDocument();
+      const firstEventCard = within(liveFeed)
+        .getByRole('heading', { name: formatLiveEventTitle(firstEvent) })
+        .closest('article');
+      expect(firstEventCard).not.toBeNull();
+      expect(firstEventCard).toHaveTextContent(`Showing top 8 of ${firstEvent.result_count} public results.`);
+      expect(within(firstEventCard as HTMLElement).queryByText(firstEvent.standings[8].horse_name)).not.toBeInTheDocument();
     }
   });
 });
