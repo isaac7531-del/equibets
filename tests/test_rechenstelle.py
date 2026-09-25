@@ -11,6 +11,7 @@ from equibets.rechenstelle import (
     burghley_sep_2026_boards,
     hambach_aug_2026_boards,
     langenhagen_sep_2026_boards,
+    mechtersen_sep_2026_boards,
     parse_leaderboard_results,
     segersjo_aug_2026_boards,
 )
@@ -10393,6 +10394,32 @@ class RechenstelleTests(unittest.TestCase):
         self.assertTrue(all(board.event_date == date(2026, 9, 11) for board in boards))
         self.assertTrue(all(board.country == "GER" for board in boards))
 
+    def test_mechtersen_boards_cover_september_cci_sections(self):
+        boards = mechtersen_sep_2026_boards()
+        self.assertEqual(
+            [board.url.rsplit("/", 1)[-1] for board in boards],
+            ["leaderboard01.html", "leaderboard021.html", "leaderboard022.html"],
+        )
+        self.assertEqual([board.level for board in boards], ["CCI2*-S", "CCI1*-Intro", "CCI1*-Intro"])
+        self.assertTrue(all(board.event_date == date(2026, 9, 26) for board in boards))
+        self.assertTrue(all(board.country == "GER" for board in boards))
+        self.assertTrue(all("CCIP" not in board.level for board in boards))
+
+    def test_mechtersen_comma_dressage_penalty_is_parsed(self):
+        board = mechtersen_sep_2026_boards()[0]
+        results = parse_leaderboard_results(MECHTERSEN_CCI2_DRESSAGE_HTML, board=board)
+        self.assertEqual(len(results), 1)
+        scored = results[0]
+        self.assertEqual(scored.rider_name, "Christoffer FORSBERG (SWE)")
+        self.assertEqual(scored.horse_name, "Hot Diamond Z")
+        self.assertEqual(scored.dressage_score, 29.9)
+        self.assertEqual(scored.show_jumping_penalties, 0.0)
+        self.assertEqual(scored.cross_country_jump_penalties, 0.0)
+        self.assertEqual(scored.cross_country_time_penalties, 0.0)
+        self.assertEqual(scored.event_name, "Mechtersen · CCI2*-S")
+        self.assertEqual(scored.event_date, date(2026, 9, 26))
+        self.assertEqual(scored.country, "GER")
+
     def test_langenhagen_cci3_older_dressage_scores_are_parsed(self):
         board = RechenstelleBoard(
             url="https://live.rechenstelle.de/2026/langenhagen/leaderboard012.html",
@@ -10557,6 +10584,40 @@ LANGENHAGEN_INTRO_START_LIST_HTML = """
           <td></td>
           <td></td>
           <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
+MECHTERSEN_CCI2_DRESSAGE_HTML = """
+<html>
+  <head><title>LeaderBoard · Mechtersen · CCI 2*-S</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep 25 2026  9:15AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Jumping</th><th>Rank after Jumping</th>
+          <th>Cross-Country</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>296</td>
+          <td class="riderCell"><span class="riderName">Christoffer FORSBERG</span></td>
+          <td><img src="../../../../flags/SWE.PNG" alt="SWE"></td>
+          <td class="horseCell"><span class="horseName">Hot Diamond Z</span></td>
+          <td>294,5</td>
+          <td>70,12</td>
+          <td>29,9</td>
+          <td>1.</td>
           <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
         </tr>
       </tbody>
