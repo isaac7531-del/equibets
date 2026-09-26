@@ -5,15 +5,15 @@
       "country": "GER",
       "event_date": "2026-09-26",
       "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
-      "latest_collected_at": "2026-09-26T07:20:26+00:00",
+      "latest_collected_at": "2026-09-26T08:16:49+00:00",
       "level": "CCI2*-S",
-      "result_count": 10,
+      "result_count": 15,
       "source_ids": [
         "rechenstelle"
       ],
       "standings": [
         {
-          "collected_at": "2026-09-26T07:20:26+00:00",
+          "collected_at": "2026-09-26T08:16:49+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 27.1,
           "finishing_score": 27.1,
@@ -24,7 +24,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-26T07:20:26+00:00",
+          "collected_at": "2026-09-26T08:16:49+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 30.2,
           "finishing_score": 30.2,
@@ -35,89 +35,144 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-26T07:20:26+00:00",
+          "collected_at": "2026-09-26T08:16:49+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 30.7,
+          "finishing_score": 30.7,
+          "horse_name": "Tillmann 8",
+          "rank": 3,
+          "rider_name": "Lukas Wilhelm S\u00dcHLING (GER)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-09-26T08:16:49+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.1,
           "finishing_score": 31.1,
           "horse_name": "Amiros Amigo",
-          "rank": 3,
+          "rank": 4,
           "rider_name": "Arne BERGENDAHL (GER)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-26T07:20:26+00:00",
+          "collected_at": "2026-09-26T08:16:49+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.3,
           "finishing_score": 31.3,
           "horse_name": "Abba Forever",
-          "rank": 4,
+          "rank": 5,
           "rider_name": "Anna Lena SCHAAF (GER)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-26T07:20:26+00:00",
+          "collected_at": "2026-09-26T08:16:49+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.5,
           "finishing_score": 31.5,
           "horse_name": "Dukershoeve Perfect For Me",
-          "rank": 5,
+          "rank": 6,
           "rider_name": "Lo\u00efs JOOSSE (NED)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-26T07:20:26+00:00",
+          "collected_at": "2026-09-26T08:16:49+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 31.6,
           "finishing_score": 31.6,
           "horse_name": "K\u00f6nigswinter 2",
-          "rank": 6,
+          "rank": 7,
           "rider_name": "Paulina BOROWITZA (GER)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-26T07:20:26+00:00",
+          "collected_at": "2026-09-26T08:16:49+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 33.2,
           "finishing_score": 33.2,
           "horse_name": "Lord Levistano",
-          "rank": 7,
+          "rank": 8,
           "rider_name": "Carina KOCH (GER)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-26T07:20:26+00:00",
+          "collected_at": "2026-09-26T08:16:49+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.8,
+          "finishing_score": 35.8,
+          "horse_name": "Santa Ilaria",
+          "rank": 9,
+          "rider_name": "Neva HEMKEN (GER)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-09-26T08:16:49+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 36.0,
           "finishing_score": 36.0,
           "horse_name": "Augustin 19",
-          "rank": 8,
+          "rank": 10,
           "rider_name": "Antonia FERNAU (GER)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-26T07:20:26+00:00",
+          "collected_at": "2026-09-26T08:16:49+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 39.0,
+          "finishing_score": 39.0,
+          "horse_name": "Carrick Penny Moon",
+          "rank": 11,
+          "rider_name": "Leni LEHNARD (GER)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-09-26T08:16:49+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 39.1,
           "finishing_score": 39.1,
           "horse_name": "Pur la Rubin",
-          "rank": 9,
+          "rank": 12,
           "rider_name": "Luisa Sophie WELSCH (GER)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-09-26T07:20:26+00:00",
+          "collected_at": "2026-09-26T08:16:49+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 40.8,
+          "finishing_score": 40.8,
+          "horse_name": "Lakritz 25",
+          "rank": 13,
+          "rider_name": "Jurij BOBKE (GER)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-09-26T08:16:49+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 41.6,
+          "finishing_score": 41.6,
+          "horse_name": "Cadivista",
+          "rank": 14,
+          "rider_name": "Flora ENDRES (GER)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-09-26T08:16:49+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 42.8,
           "finishing_score": 42.8,
           "horse_name": "Lohengrin 90",
-          "rank": 10,
+          "rank": 15,
           "rider_name": "Lorelotte WELLER (GER)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
@@ -16011,9 +16066,9 @@
       ]
     }
   ],
-  "generated_at": "2026-09-26T08:16:22+00:00",
-  "latest_collected_at": "2026-09-26T08:16:21+00:00",
-  "result_count": 1401,
+  "generated_at": "2026-09-26T08:16:50+00:00",
+  "latest_collected_at": "2026-09-26T08:16:49+00:00",
+  "result_count": 1406,
   "source_ids": [
     "asiangames",
     "evententries",

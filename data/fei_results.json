@@ -63632,7 +63632,7 @@
       "source_record_id": "rechenstelle:a88ffa09ffa9e242"
     },
     {
-      "collected_at": "2026-09-26T07:20:26+00:00",
+      "collected_at": "2026-09-26T08:16:49+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63700,7 +63700,7 @@
       "source_record_id": "rechenstelle:76b76b4c0179d7e2"
     },
     {
-      "collected_at": "2026-09-26T07:20:26+00:00",
+      "collected_at": "2026-09-26T08:16:49+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63802,7 +63802,7 @@
       "source_record_id": "rechenstelle:e0b027c394cf7db2"
     },
     {
-      "collected_at": "2026-09-26T07:20:26+00:00",
+      "collected_at": "2026-09-26T08:16:49+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63819,7 +63819,7 @@
       "source_record_id": "rechenstelle:4b8773be6dde88f6"
     },
     {
-      "collected_at": "2026-09-26T07:20:26+00:00",
+      "collected_at": "2026-09-26T08:16:49+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63853,7 +63853,7 @@
       "source_record_id": "rechenstelle:a564a926d7fc0f50"
     },
     {
-      "collected_at": "2026-09-26T07:20:26+00:00",
+      "collected_at": "2026-09-26T08:16:49+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64176,6 +64176,23 @@
       "source_record_id": "rechenstelle:5185376d4da4a87e"
     },
     {
+      "collected_at": "2026-09-26T08:16:49+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 41.6,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Cadivista",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Flora ENDRES (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:94e71ca386e29e21"
+    },
+    {
       "collected_at": "2026-09-25T16:24:39+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
@@ -64431,6 +64448,23 @@
       "source_record_id": "rechenstelle:239400c764747129"
     },
     {
+      "collected_at": "2026-09-26T08:16:49+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 40.8,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Lakritz 25",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Jurij BOBKE (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:769457322277c70f"
+    },
+    {
       "collected_at": "2026-09-25T16:24:39+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
@@ -64669,6 +64703,23 @@
       "source_record_id": "rechenstelle:de297640d3a06a5e"
     },
     {
+      "collected_at": "2026-09-26T08:16:49+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 39.0,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Carrick Penny Moon",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Leni LEHNARD (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:d5c12c847bcd1f7b"
+    },
+    {
       "collected_at": "2026-09-25T16:24:39+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
@@ -64737,7 +64788,7 @@
       "source_record_id": "rechenstelle:602afab2fc77130b"
     },
     {
-      "collected_at": "2026-09-26T07:20:26+00:00",
+      "collected_at": "2026-09-26T08:16:49+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64805,7 +64856,7 @@
       "source_record_id": "rechenstelle:651fd0486dd66358"
     },
     {
-      "collected_at": "2026-09-26T07:20:26+00:00",
+      "collected_at": "2026-09-26T08:16:49+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64822,7 +64873,7 @@
       "source_record_id": "rechenstelle:55424c5bfd8720d6"
     },
     {
-      "collected_at": "2026-09-26T07:20:26+00:00",
+      "collected_at": "2026-09-26T08:16:49+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64837,6 +64888,23 @@
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:5c5119f8e684a735"
+    },
+    {
+      "collected_at": "2026-09-26T08:16:49+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 30.7,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Tillmann 8",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Lukas Wilhelm S\u00dcHLING (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:13869e516a793ab0"
     },
     {
       "collected_at": "2026-09-25T16:24:39+00:00",
@@ -65111,6 +65179,23 @@
       "source_record_id": "rechenstelle:b3c8c0a5cfac9840"
     },
     {
+      "collected_at": "2026-09-26T08:16:49+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 35.8,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Santa Ilaria",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Neva HEMKEN (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:25da1bed2137fcbd"
+    },
+    {
       "collected_at": "2026-09-25T16:24:39+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
@@ -65247,7 +65332,7 @@
       "source_record_id": "rechenstelle:5361f845678044f4"
     },
     {
-      "collected_at": "2026-09-26T07:20:26+00:00",
+      "collected_at": "2026-09-26T08:16:49+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65434,7 +65519,7 @@
       "source_record_id": "rechenstelle:d49e70a6638c7c60"
     },
     {
-      "collected_at": "2026-09-26T07:20:26+00:00",
+      "collected_at": "2026-09-26T08:16:49+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65452,6 +65537,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-26T08:16:22+00:00",
+  "updated_at": "2026-09-26T08:16:50+00:00",
   "version": 1
 }
