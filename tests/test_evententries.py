@@ -9,6 +9,7 @@ import json
 
 from equibets.evententries import (
     EventEntriesClass,
+    parks_sep_2026_classes,
     parse_scoring_board,
     parse_scoring_strings,
 )
@@ -25,6 +26,15 @@ EVENT = EventEntriesClass(
 
 
 class EventEntriesParserTests(unittest.TestCase):
+    def test_parks_classes_cover_the_cci_boards(self) -> None:
+        classes = parks_sep_2026_classes()
+
+        self.assertEqual([item.level for item in classes], ["CCI2*-S", "CCI1*-S"])
+        self.assertTrue(all(item.event_title == "Eventing at the Parks" for item in classes))
+        self.assertTrue(all(item.country == "CAN" for item in classes))
+        self.assertTrue(all(item.event_date == date(2026, 9, 25) for item in classes))
+        self.assertTrue(all(item.token for item in classes))
+
     def test_reads_dressage_penalties_and_skips_unfinished_rows(self) -> None:
         strings = [
             "CCI4-S",

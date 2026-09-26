@@ -83,6 +83,25 @@ STABLE_VIEW_SEP_2026 = {
     ),
 }
 
+# Eventing at the Parks, Ottawa, 25–27 Sep 2026.
+# CCI2*-S dressage penalties opened on 26 Sep. CCI1*-S is included so a later
+# dressage update is picked up; rows without a dressage penalty are skipped.
+PARKS_SEP_2026 = {
+    "event_title": "Eventing at the Parks",
+    "event_date": date(2026, 9, 25),
+    "country": "CAN",
+    "classes": (
+        {
+            "level": "CCI2*-S",
+            "token": "Gv1C$nI5s4ADbSlLDVL0HAKy1rFMfP00k81oqduAs9A=",
+        },
+        {
+            "level": "CCI1*-S",
+            "token": "NO3PjvMXtGd6h8s8qVdSUiILxS9ji8aiTpqphLeRmYA=",
+        },
+    ),
+}
+
 
 @dataclass(frozen=True)
 class EventEntriesClass:
@@ -248,9 +267,38 @@ def stable_view_sep_2026_classes() -> list[EventEntriesClass]:
 def collect_stable_view_2026(*, collected_at: datetime | None = None) -> list[EventingResult]:
     """Fetch and parse scored CCI classes at Stable View Oktoberfest."""
 
+    return _collect_classes(stable_view_sep_2026_classes(), collected_at=collected_at)
+
+
+def parks_sep_2026_classes() -> list[EventEntriesClass]:
+    """Return the Eventing at the Parks 2026 CCI scoring boards."""
+
+    return [
+        EventEntriesClass(
+            token=str(item["token"]),
+            level=str(item["level"]),
+            event_title=str(PARKS_SEP_2026["event_title"]),
+            event_date=PARKS_SEP_2026["event_date"],
+            country=str(PARKS_SEP_2026["country"]),
+        )
+        for item in PARKS_SEP_2026["classes"]
+    ]
+
+
+def collect_parks_2026(*, collected_at: datetime | None = None) -> list[EventingResult]:
+    """Fetch and parse scored CCI classes at Eventing at the Parks."""
+
+    return _collect_classes(parks_sep_2026_classes(), collected_at=collected_at)
+
+
+def _collect_classes(
+    classes: Sequence[EventEntriesClass],
+    *,
+    collected_at: datetime | None = None,
+) -> list[EventingResult]:
     collected = collected_at or datetime.now(timezone.utc).replace(microsecond=0)
     results: list[EventingResult] = []
-    for event in stable_view_sep_2026_classes():
+    for event in classes:
         body = fetch_scoring_board(event.token)
         results.extend(parse_scoring_board(body, event=event, collected_at=collected))
     return results
@@ -478,16 +526,25 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull Stable View Oktoberfest 2026 scores from the public scoring boards",
     )
+    parser.add_argument(
+        "--parks-2026",
+        action="store_true",
+        help="Pull Eventing at the Parks 2026 scores from the public scoring boards",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
 
-    if not args.stable_view_2026:
-        raise SystemExit("Specify --stable-view-2026")
+    if not args.stable_view_2026 and not args.parks_2026:
+        raise SystemExit("Specify --stable-view-2026 and/or --parks-2026")
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)
-    results = collect_stable_view_2026(collected_at=collected_at)
+    results: list[EventingResult] = []
+    if args.stable_view_2026:
+        results.extend(collect_stable_view_2026(collected_at=collected_at))
+    if args.parks_2026:
+        results.extend(collect_parks_2026(collected_at=collected_at))
     print(f"Event Entries collect complete: results_collected={len(results)}")
     if args.dry_run:
         for result in sorted(results, key=lambda item: (item.level, item.finishing_score, item.rider_name)):
