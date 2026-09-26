@@ -2162,7 +2162,7 @@
       "country": "USA",
       "event_date": "2026-09-25",
       "event_name": "Stable View \u00b7 CCI2*-S",
-      "latest_collected_at": "2026-09-26T15:15:32+00:00",
+      "latest_collected_at": "2026-09-26T19:15:59+00:00",
       "level": "CCI2*-S",
       "result_count": 30,
       "source_ids": [
@@ -2326,21 +2326,10 @@
         {
           "collected_at": "2026-09-26T15:15:32+00:00",
           "cross_country_penalties": 0.0,
-          "dressage_score": 35.7,
-          "finishing_score": 35.7,
-          "horse_name": "Killossery Kitten",
-          "rank": 15,
-          "rider_name": "Laura Sparks (USA)",
-          "show_jumping_penalties": 0.0,
-          "source_id": "evententries"
-        },
-        {
-          "collected_at": "2026-09-26T15:15:32+00:00",
-          "cross_country_penalties": 0.0,
           "dressage_score": 32.1,
           "finishing_score": 36.1,
           "horse_name": "NK Mirabeau",
-          "rank": 16,
+          "rank": 15,
           "rider_name": "Caitlin Silliman (USA)",
           "show_jumping_penalties": 4.0,
           "source_id": "evententries"
@@ -2351,7 +2340,7 @@
           "dressage_score": 36.1,
           "finishing_score": 36.1,
           "horse_name": "FE Speakeasy",
-          "rank": 16,
+          "rank": 15,
           "rider_name": "Madeleine Scott (CAN)",
           "show_jumping_penalties": 0.0,
           "source_id": "evententries"
@@ -2362,7 +2351,7 @@
           "dressage_score": 36.6,
           "finishing_score": 36.6,
           "horse_name": "Vivero",
-          "rank": 18,
+          "rank": 17,
           "rider_name": "Lindsey Lanier (USA)",
           "show_jumping_penalties": 0.0,
           "source_id": "evententries"
@@ -2373,7 +2362,7 @@
           "dressage_score": 33.2,
           "finishing_score": 37.2,
           "horse_name": "DHI Nala",
-          "rank": 19,
+          "rank": 18,
           "rider_name": "Danielle Busbee (USA)",
           "show_jumping_penalties": 4.0,
           "source_id": "evententries"
@@ -2384,9 +2373,20 @@
           "dressage_score": 37.6,
           "finishing_score": 37.6,
           "horse_name": "Slieve Callan Gael",
-          "rank": 20,
+          "rank": 19,
           "rider_name": "Lindsey Lanier (USA)",
           "show_jumping_penalties": 0.0,
+          "source_id": "evententries"
+        },
+        {
+          "collected_at": "2026-09-26T19:15:59+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.7,
+          "finishing_score": 39.7,
+          "horse_name": "Killossery Kitten",
+          "rank": 20,
+          "rider_name": "Laura Sparks (USA)",
+          "show_jumping_penalties": 4.0,
           "source_id": "evententries"
         },
         {
@@ -2403,21 +2403,10 @@
         {
           "collected_at": "2026-09-26T15:15:32+00:00",
           "cross_country_penalties": 0.0,
-          "dressage_score": 40.9,
-          "finishing_score": 40.9,
-          "horse_name": "CSI Global",
-          "rank": 22,
-          "rider_name": "Madison Chisholm (USA)",
-          "show_jumping_penalties": 0.0,
-          "source_id": "evententries"
-        },
-        {
-          "collected_at": "2026-09-26T15:15:32+00:00",
-          "cross_country_penalties": 0.0,
           "dressage_score": 33.8,
           "finishing_score": 42.2,
           "horse_name": "You're Electric",
-          "rank": 23,
+          "rank": 22,
           "rider_name": "Heidi Jones (USA)",
           "show_jumping_penalties": 8.4,
           "source_id": "evententries"
@@ -2428,7 +2417,7 @@
           "dressage_score": 36.7,
           "finishing_score": 44.7,
           "horse_name": "Maccan DDH HVF",
-          "rank": 24,
+          "rank": 23,
           "rider_name": "Bethany Hutchins-Kristen (USA)",
           "show_jumping_penalties": 8.0,
           "source_id": "evententries"
@@ -2439,7 +2428,7 @@
           "dressage_score": 37.3,
           "finishing_score": 45.3,
           "horse_name": "Springtime ETC",
-          "rank": 25,
+          "rank": 24,
           "rider_name": "Abby Wilberding (USA)",
           "show_jumping_penalties": 8.0,
           "source_id": "evententries"
@@ -2450,7 +2439,7 @@
           "dressage_score": 38.9,
           "finishing_score": 46.1,
           "horse_name": "Get Ready",
-          "rank": 26,
+          "rank": 25,
           "rider_name": "Laura Sparks (USA)",
           "show_jumping_penalties": 7.2,
           "source_id": "evententries"
@@ -2461,7 +2450,7 @@
           "dressage_score": 36.7,
           "finishing_score": 46.3,
           "horse_name": "Bugatti",
-          "rank": 27,
+          "rank": 26,
           "rider_name": "Elisa Wallace (USA)",
           "show_jumping_penalties": 9.6,
           "source_id": "evententries"
@@ -2472,9 +2461,20 @@
           "dressage_score": 39.1,
           "finishing_score": 47.1,
           "horse_name": "Golden Wonder",
-          "rank": 28,
+          "rank": 27,
           "rider_name": "Megan Roswech (USA)",
           "show_jumping_penalties": 8.0,
+          "source_id": "evententries"
+        },
+        {
+          "collected_at": "2026-09-26T19:15:59+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 40.9,
+          "finishing_score": 49.7,
+          "horse_name": "CSI Global",
+          "rank": 28,
+          "rider_name": "Madison Chisholm (USA)",
+          "show_jumping_penalties": 8.8,
           "source_id": "evententries"
         },
         {
@@ -16312,8 +16312,8 @@
       ]
     }
   ],
-  "generated_at": "2026-09-26T18:20:56+00:00",
-  "latest_collected_at": "2026-09-26T18:20:56+00:00",
+  "generated_at": "2026-09-26T19:15:59+00:00",
+  "latest_collected_at": "2026-09-26T19:15:59+00:00",
   "result_count": 1426,
   "source_ids": [
     "asiangames",

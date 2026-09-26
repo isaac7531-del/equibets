@@ -62901,7 +62901,7 @@
       "source_record_id": "evententries:fbec25c6c3dae812"
     },
     {
-      "collected_at": "2026-09-26T15:15:32+00:00",
+      "collected_at": "2026-09-26T19:15:59+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -62912,7 +62912,7 @@
       "is_user_entered": false,
       "level": "CCI2*-S",
       "rider_name": "Laura Sparks (USA)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.0,
       "source_id": "evententries",
       "source_priority": 55,
       "source_record_id": "evententries:b194fa27982f19de"
@@ -63088,7 +63088,7 @@
       "source_record_id": "evententries:08dcd80cd7195b58"
     },
     {
-      "collected_at": "2026-09-26T15:15:32+00:00",
+      "collected_at": "2026-09-26T19:15:59+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63099,7 +63099,7 @@
       "is_user_entered": false,
       "level": "CCI2*-S",
       "rider_name": "Madison Chisholm (USA)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 8.8,
       "source_id": "evententries",
       "source_priority": 55,
       "source_record_id": "evententries:bdb1f2013f2171ff"
@@ -65877,6 +65877,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-26T18:20:56+00:00",
+  "updated_at": "2026-09-26T19:16:00+00:00",
   "version": 1
 }
