@@ -60215,7 +60215,7 @@
       "source_record_id": "eventing_ireland:a5363302c07278bb"
     },
     {
-      "collected_at": "2026-09-25T18:19:29+00:00",
+      "collected_at": "2026-09-26T18:20:56+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -60226,7 +60226,7 @@
       "is_user_entered": false,
       "level": "CCI3*-S",
       "rider_name": "Alessandra Allen-Shinn",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 8.0,
       "source_id": "showconnect",
       "source_priority": 12,
       "source_record_id": "showconnect:2245494d712e733f"
@@ -60283,7 +60283,7 @@
       "source_record_id": "horses_competitions:330e0ad92e1fcb7c"
     },
     {
-      "collected_at": "2026-09-25T18:19:29+00:00",
+      "collected_at": "2026-09-26T18:20:56+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -60294,7 +60294,7 @@
       "is_user_entered": false,
       "level": "CCI2*-S",
       "rider_name": "Avery Jacob",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.0,
       "source_id": "showconnect",
       "source_priority": 12,
       "source_record_id": "showconnect:c8fa30d50d852fd3"
@@ -60334,7 +60334,7 @@
       "source_record_id": "horses_competitions:75c8204639d4a214"
     },
     {
-      "collected_at": "2026-09-25T18:19:29+00:00",
+      "collected_at": "2026-09-26T18:20:56+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -60345,7 +60345,7 @@
       "is_user_entered": false,
       "level": "CCI2*-S",
       "rider_name": "Brynn Josey",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.0,
       "source_id": "showconnect",
       "source_priority": 12,
       "source_record_id": "showconnect:0565cbca607af6f9"
@@ -60402,7 +60402,7 @@
       "source_record_id": "horses_competitions:a8601540b33c3f51"
     },
     {
-      "collected_at": "2026-09-25T18:19:29+00:00",
+      "collected_at": "2026-09-26T18:20:56+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -60419,7 +60419,7 @@
       "source_record_id": "showconnect:636607d4e4e8be61"
     },
     {
-      "collected_at": "2026-09-25T18:19:29+00:00",
+      "collected_at": "2026-09-26T18:20:56+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -60430,7 +60430,7 @@
       "is_user_entered": false,
       "level": "CCI3*-S",
       "rider_name": "Catie Cejka",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 17.6,
       "source_id": "showconnect",
       "source_priority": 12,
       "source_record_id": "showconnect:22e642118816b6b3"
@@ -60555,7 +60555,7 @@
       "source_record_id": "horses_competitions:19dbdf5fabf0ac70"
     },
     {
-      "collected_at": "2026-09-25T18:19:29+00:00",
+      "collected_at": "2026-09-26T18:20:56+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -60566,7 +60566,7 @@
       "is_user_entered": false,
       "level": "CCI3*-S",
       "rider_name": "Emily Pestl-Dimmitt",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 8.0,
       "source_id": "showconnect",
       "source_priority": 12,
       "source_record_id": "showconnect:21a6278419b63374"
@@ -60640,7 +60640,7 @@
       "source_record_id": "horses_competitions:facfa3b28b181fe9"
     },
     {
-      "collected_at": "2026-09-25T18:19:29+00:00",
+      "collected_at": "2026-09-26T18:20:56+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -60776,7 +60776,7 @@
       "source_record_id": "showconnect:5a379bbada597bfb"
     },
     {
-      "collected_at": "2026-09-25T18:19:29+00:00",
+      "collected_at": "2026-09-26T18:20:56+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -61337,7 +61337,7 @@
       "source_record_id": "horses_competitions:f31054dc699f4995"
     },
     {
-      "collected_at": "2026-09-25T18:19:29+00:00",
+      "collected_at": "2026-09-26T18:20:56+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -61388,7 +61388,7 @@
       "source_record_id": "horses_competitions:ce4da361e5376df1"
     },
     {
-      "collected_at": "2026-09-25T18:19:29+00:00",
+      "collected_at": "2026-09-26T18:20:56+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -61399,7 +61399,7 @@
       "is_user_entered": false,
       "level": "CCI3*-S",
       "rider_name": "Renee Kalkman",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.0,
       "source_id": "showconnect",
       "source_priority": 12,
       "source_record_id": "showconnect:d823ac4ee65a7239"
@@ -61422,7 +61422,7 @@
       "source_record_id": "horses_competitions:838dd5279787f9d2"
     },
     {
-      "collected_at": "2026-09-25T18:19:29+00:00",
+      "collected_at": "2026-09-26T18:20:56+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -61433,7 +61433,7 @@
       "is_user_entered": false,
       "level": "CCI2*-S",
       "rider_name": "Sara Sellmer",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.0,
       "source_id": "showconnect",
       "source_priority": 12,
       "source_record_id": "showconnect:577e2523e7e531d1"
@@ -65877,6 +65877,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-26T17:14:35+00:00",
+  "updated_at": "2026-09-26T18:20:56+00:00",
   "version": 1
 }
