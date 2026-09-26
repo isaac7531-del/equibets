@@ -63632,7 +63632,7 @@
       "source_record_id": "rechenstelle:a88ffa09ffa9e242"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63700,7 +63700,7 @@
       "source_record_id": "rechenstelle:76b76b4c0179d7e2"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63715,6 +63715,23 @@
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:021ca694dfe3620e"
+    },
+    {
+      "collected_at": "2026-09-26T09:10:31+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 28.6,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Barcley FRH",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Anna Lena SCHAAF (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:bd46149e84f6afc3"
     },
     {
       "collected_at": "2026-09-25T16:24:39+00:00",
@@ -63802,7 +63819,7 @@
       "source_record_id": "rechenstelle:e0b027c394cf7db2"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63819,7 +63836,7 @@
       "source_record_id": "rechenstelle:4b8773be6dde88f6"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63853,7 +63870,7 @@
       "source_record_id": "rechenstelle:a564a926d7fc0f50"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64176,7 +64193,7 @@
       "source_record_id": "rechenstelle:5185376d4da4a87e"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64380,6 +64397,23 @@
       "source_record_id": "rechenstelle:93d7e5e9452d9cf7"
     },
     {
+      "collected_at": "2026-09-26T09:10:31+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 36.4,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Grey Boss",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Janne KLEINBUNTEMEYER (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:8fdea1d1af06cf8f"
+    },
+    {
       "collected_at": "2026-09-25T16:24:39+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
@@ -64412,6 +64446,23 @@
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:e70fd324bedbabfa"
+    },
+    {
+      "collected_at": "2026-09-26T09:10:31+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 35.0,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Contial",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Josephine SCHNAUFER-V\u00d6LKEL (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:4c58e6c569c3187d"
     },
     {
       "collected_at": "2026-09-25T16:24:39+00:00",
@@ -64448,7 +64499,7 @@
       "source_record_id": "rechenstelle:239400c764747129"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64514,6 +64565,23 @@
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:6b0eb07365c90883"
+    },
+    {
+      "collected_at": "2026-09-26T09:10:31+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 31.8,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Voila Esprit",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Katharina SCH\u00dcTTE (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:e9d6d4b6ddc2127d"
     },
     {
       "collected_at": "2026-09-25T16:24:39+00:00",
@@ -64703,7 +64771,7 @@
       "source_record_id": "rechenstelle:de297640d3a06a5e"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64788,7 +64856,7 @@
       "source_record_id": "rechenstelle:602afab2fc77130b"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64856,7 +64924,7 @@
       "source_record_id": "rechenstelle:651fd0486dd66358"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64873,7 +64941,7 @@
       "source_record_id": "rechenstelle:55424c5bfd8720d6"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64890,7 +64958,7 @@
       "source_record_id": "rechenstelle:5c5119f8e684a735"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65162,6 +65230,23 @@
       "source_record_id": "rechenstelle:6219d947d1a719f1"
     },
     {
+      "collected_at": "2026-09-26T09:10:31+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 34.9,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Lynnlane",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Neil HOFFMANN (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:69bf1a2d9ca67247"
+    },
+    {
       "collected_at": "2026-09-25T16:24:39+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
@@ -65179,7 +65264,7 @@
       "source_record_id": "rechenstelle:b3c8c0a5cfac9840"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65332,7 +65417,7 @@
       "source_record_id": "rechenstelle:5361f845678044f4"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65364,6 +65449,23 @@
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:66efbe58c1d6e7e4"
+    },
+    {
+      "collected_at": "2026-09-26T09:10:31+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 36.4,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Campina G.",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Rosanna BIRKMANN (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:1e2bdc17151791fa"
     },
     {
       "collected_at": "2026-09-25T16:24:39+00:00",
@@ -65519,7 +65621,7 @@
       "source_record_id": "rechenstelle:d49e70a6638c7c60"
     },
     {
-      "collected_at": "2026-09-26T08:16:49+00:00",
+      "collected_at": "2026-09-26T09:10:31+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65537,6 +65639,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-26T09:10:17+00:00",
+  "updated_at": "2026-09-26T09:10:32+00:00",
   "version": 1
 }
