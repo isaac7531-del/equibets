@@ -9,6 +9,7 @@ from equibets.eventingscores import (
     EventingScoresBoard,
     blenheim_sep_2026_boards,
     parse_leaderboard_results,
+    south_of_england_sep_2026_boards,
 )
 
 
@@ -112,6 +113,78 @@ class EventingScoresParseTests(unittest.TestCase):
         )
         self.assertTrue(boards[0].url.endswith("69244.html?eventid=2990"))
         self.assertTrue(boards[1].url.endswith("69243.html?eventid=2990"))
+
+    def test_south_of_england_boards_are_the_cci_sections(self):
+        boards = south_of_england_sep_2026_boards()
+        self.assertEqual(
+            [(board.level, board.event_date, board.event_name) for board in boards],
+            [
+                ("CCI2*-S", date(2026, 9, 27), "South of England · CCI2*-S"),
+                ("CCI3*-S", date(2026, 9, 27), "South of England · CCI3*-S"),
+            ],
+        )
+        self.assertTrue(boards[0].url.endswith("results_2996_69573.html?eventid=2996"))
+        self.assertTrue(boards[1].url.endswith("results_2996_69577.html?eventid=2996"))
+
+    def test_sunday_start_times_are_not_show_jumping_penalties(self):
+        board = south_of_england_sep_2026_boards()[0]
+        html = """
+<html>
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th><th></th><th>Rider</th><th>Horse</th>
+          <th>C %</th><th>M %</th><th>Dressage</th>
+          <th>SJ</th><th>XCT</th><th>XCJ</th><th>Total</th><th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>413</td>
+          <td class="flag"><img alt="GBR" /></td>
+          <td>Laura Schroter (GBR)</td>
+          <td data-horse="MARENGO BONAPARTE" data-number="413"
+              data-rider="Laura Schroter (GBR)">MARENGO BONAPARTE</td>
+          <td>73.57%</td><td>75.48%</td>
+          <td class="score">25.5</td>
+          <td>Sun 09:07</td>
+          <td>Sun 09:48</td>
+          <td></td>
+          <td class="score">25.5</td>
+          <td>1st</td>
+        </tr>
+        <tr>
+          <td>428</td>
+          <td></td>
+          <td>Ellie Bierton (GBR)</td>
+          <td data-horse="MY ATLANTIC MARIO" data-number="428"
+              data-rider="Ellie Bierton (GBR)">MY ATLANTIC MARIO</td>
+          <td>W</td><td></td>
+          <td>WD</td>
+          <td></td><td></td><td></td><td>WD</td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+        results = parse_leaderboard_results(
+            html,
+            board=board,
+            collected_at=datetime(2026, 9, 26, 22, 20, tzinfo=timezone.utc),
+        )
+
+        self.assertEqual(len(results), 1)
+        leader = results[0]
+        self.assertEqual(leader.rider_name, "Laura Schroter (GBR)")
+        self.assertEqual(leader.horse_name, "MARENGO BONAPARTE")
+        self.assertEqual(leader.dressage_score, 25.5)
+        self.assertEqual(leader.show_jumping_penalties, 0.0)
+        self.assertEqual(leader.cross_country_jump_penalties, 0.0)
+        self.assertEqual(leader.cross_country_time_penalties, 0.0)
+        self.assertEqual(leader.finishing_score, 25.5)
+        self.assertEqual(leader.event_date, date(2026, 9, 27))
 
     def test_numeric_dressage_rows_are_ingested_and_start_times_skipped(self):
         board = EventingScoresBoard(

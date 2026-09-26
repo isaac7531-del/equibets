@@ -59,6 +59,28 @@ BLENHEIM_SEP_2026 = (
     },
 )
 
+# South of England International, Ardingly, 26–28 Sep 2026.
+# EventingScores event 2996. CCI2*-S is section 69573 and CCI3*-S is section
+# 69577. Both sections list class_date 2026-09-27. Dressage penalties are
+# already numeric; Sunday show-jumping and cross-country cells are start
+# times until those phases publish. National BE sections are not ingested.
+SOUTH_OF_ENGLAND_SEP_2026 = (
+    {
+        "url": "https://www.eventingscores.co.uk/uploads/events/2996/results_2996_69573.html?eventid=2996",
+        "event_name": "South of England · CCI2*-S",
+        "level": "CCI2*-S",
+        "event_date": date(2026, 9, 27),
+        "country": "GBR",
+    },
+    {
+        "url": "https://www.eventingscores.co.uk/uploads/events/2996/results_2996_69577.html?eventid=2996",
+        "event_name": "South of England · CCI3*-S",
+        "level": "CCI3*-S",
+        "event_date": date(2026, 9, 27),
+        "country": "GBR",
+    },
+)
+
 
 @dataclass(frozen=True)
 class EventingScoresBoard:
@@ -215,6 +237,12 @@ def blenheim_sep_2026_boards() -> list[EventingScoresBoard]:
     return [EventingScoresBoard(**item) for item in BLENHEIM_SEP_2026]
 
 
+def south_of_england_sep_2026_boards() -> list[EventingScoresBoard]:
+    """Return the South of England September 2026 CCI boards."""
+
+    return [EventingScoresBoard(**item) for item in SOUTH_OF_ENGLAND_SEP_2026]
+
+
 def collect_boards(
     boards: Sequence[EventingScoresBoard],
     *,
@@ -298,6 +326,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull the Blenheim September 2026 EventingScores boards",
     )
+    parser.add_argument(
+        "--south-of-england-2026",
+        action="store_true",
+        help="Pull the South of England September 2026 CCI boards",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--dry-run", action="store_true")
@@ -306,8 +339,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     boards: list[EventingScoresBoard] = []
     if args.blenheim_2026:
         boards.extend(blenheim_sep_2026_boards())
+    if args.south_of_england_2026:
+        boards.extend(south_of_england_sep_2026_boards())
     if not boards:
-        raise SystemExit("Specify --blenheim-2026")
+        raise SystemExit("Specify --blenheim-2026 and/or --south-of-england-2026")
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)
     results = collect_boards(boards, collected_at=collected_at)
