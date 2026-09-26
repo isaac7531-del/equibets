@@ -13,6 +13,7 @@ from equibets.rechenstelle import (
     langenhagen_sep_2026_boards,
     mechtersen_sep_2026_boards,
     parse_leaderboard_results,
+    wesel_obrighoven_sep_2026_boards,
     segersjo_aug_2026_boards,
 )
 
@@ -10420,6 +10421,31 @@ class RechenstelleTests(unittest.TestCase):
         self.assertEqual(scored.event_date, date(2026, 9, 26))
         self.assertEqual(scored.country, "GER")
 
+    def test_wesel_obrighoven_board_is_the_cci2_leaderboard(self):
+        boards = wesel_obrighoven_sep_2026_boards()
+        self.assertEqual(len(boards), 1)
+        board = boards[0]
+        self.assertTrue(board.url.endswith("/2026/obrighoven/leaderboard01.html"))
+        self.assertEqual(board.event_name, "Wesel-Obrighoven · CCI2*-S")
+        self.assertEqual(board.level, "CCI2*-S")
+        self.assertEqual(board.event_date, date(2026, 9, 26))
+        self.assertEqual(board.country, "GER")
+
+    def test_wesel_dressage_penalty_is_not_the_percentage_or_marks(self):
+        board = wesel_obrighoven_sep_2026_boards()[0]
+        results = parse_leaderboard_results(WESEL_CCI2_DRESSAGE_HTML, board=board)
+        self.assertEqual(len(results), 1)
+        scored = results[0]
+        self.assertEqual(scored.rider_name, "Andreas OSTHOLT (GER)")
+        self.assertEqual(scored.horse_name, "Ivan 127")
+        self.assertEqual(scored.dressage_score, 27.1)
+        self.assertEqual(scored.show_jumping_penalties, 0.0)
+        self.assertEqual(scored.cross_country_jump_penalties, 0.0)
+        self.assertEqual(scored.cross_country_time_penalties, 0.0)
+        self.assertEqual(scored.finishing_score, 27.1)
+        self.assertEqual(scored.event_name, "Wesel-Obrighoven · CCI2*-S")
+        self.assertEqual(scored.country, "GER")
+
     def test_langenhagen_cci3_older_dressage_scores_are_parsed(self):
         board = RechenstelleBoard(
             url="https://live.rechenstelle.de/2026/langenhagen/leaderboard012.html",
@@ -10584,6 +10610,40 @@ LANGENHAGEN_INTRO_START_LIST_HTML = """
           <td></td>
           <td></td>
           <td></td>
+          <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
+WESEL_CCI2_DRESSAGE_HTML = """
+<html>
+  <head><title>LeaderBoard · Wesel-Obrighoven 2026 · CCI 2*-S</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Sep 26 2026  9:00AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Start Time Dressage/ Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Jumping</th><th>Rank after Jumping</th>
+          <th>Cross-Country</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td><strong>1.</strong></td>
+          <td>259</td>
+          <td class="riderCell"><span class="riderName">Andreas OSTHOLT</span></td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td class="horseCell"><span class="horseName">Ivan 127</span></td>
+          <td>481,5</td>
+          <td>72,95</td>
+          <td>27,1</td>
+          <td>1.</td>
           <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
         </tr>
       </tbody>
