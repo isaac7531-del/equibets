@@ -63615,7 +63615,24 @@
       "source_record_id": "rechenstelle:a88ffa09ffa9e242"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 36.4,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Fly High 22",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Andreas OSTHOLT (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:29d988100d8d0776"
+    },
+    {
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63683,7 +63700,7 @@
       "source_record_id": "rechenstelle:76b76b4c0179d7e2"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63700,7 +63717,7 @@
       "source_record_id": "rechenstelle:021ca694dfe3620e"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63802,7 +63819,7 @@
       "source_record_id": "rechenstelle:e0b027c394cf7db2"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63819,7 +63836,7 @@
       "source_record_id": "rechenstelle:4b8773be6dde88f6"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63836,7 +63853,7 @@
       "source_record_id": "rechenstelle:e5971bc9c383d074"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63870,7 +63887,7 @@
       "source_record_id": "rechenstelle:a564a926d7fc0f50"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63885,6 +63902,23 @@
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:325ea88d7991fb3d"
+    },
+    {
+      "collected_at": "2026-09-26T10:20:33+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 38.8,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Wernisaz M 2",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Carina KOCH (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:084e1b3edf93b9e0"
     },
     {
       "collected_at": "2026-09-25T16:24:39+00:00",
@@ -64193,7 +64227,7 @@
       "source_record_id": "rechenstelle:5185376d4da4a87e"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64380,6 +64414,23 @@
       "source_record_id": "rechenstelle:2363ff520d523c91"
     },
     {
+      "collected_at": "2026-09-26T10:20:33+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 36.4,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Dino 468",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Jana LEHMKUHL (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:f7037d12a288d5ec"
+    },
+    {
       "collected_at": "2026-09-25T16:24:39+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
@@ -64397,7 +64448,7 @@
       "source_record_id": "rechenstelle:93d7e5e9452d9cf7"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64448,7 +64499,7 @@
       "source_record_id": "rechenstelle:e70fd324bedbabfa"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64499,7 +64550,7 @@
       "source_record_id": "rechenstelle:239400c764747129"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64567,7 +64618,7 @@
       "source_record_id": "rechenstelle:6b0eb07365c90883"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64771,7 +64822,7 @@
       "source_record_id": "rechenstelle:de297640d3a06a5e"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64856,7 +64907,7 @@
       "source_record_id": "rechenstelle:602afab2fc77130b"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64873,7 +64924,7 @@
       "source_record_id": "rechenstelle:b72191d1bd947459"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64941,7 +64992,7 @@
       "source_record_id": "rechenstelle:651fd0486dd66358"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64958,7 +65009,41 @@
       "source_record_id": "rechenstelle:55424c5bfd8720d6"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 36.1,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Monash van de Groote Kamps",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Lo\u00efs JOOSSE (NED)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:275165fcc1680e85"
+    },
+    {
+      "collected_at": "2026-09-26T10:20:33+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 39.1,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Nonetta vd Watermoelen",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Luisa Sophie WELSCH (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:c3b72cd8a5a5117c"
+    },
+    {
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64975,7 +65060,7 @@
       "source_record_id": "rechenstelle:5c5119f8e684a735"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64990,6 +65075,23 @@
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:13869e516a793ab0"
+    },
+    {
+      "collected_at": "2026-09-26T10:20:33+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 37.0,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Cool And Easy 12",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Lutz BERGENDAHL (GER)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:a8f77e6a3849e82c"
     },
     {
       "collected_at": "2026-09-25T16:24:39+00:00",
@@ -65247,7 +65349,7 @@
       "source_record_id": "rechenstelle:6219d947d1a719f1"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65281,7 +65383,7 @@
       "source_record_id": "rechenstelle:b3c8c0a5cfac9840"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65434,7 +65536,7 @@
       "source_record_id": "rechenstelle:5361f845678044f4"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65468,7 +65570,7 @@
       "source_record_id": "rechenstelle:66efbe58c1d6e7e4"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65519,7 +65621,7 @@
       "source_record_id": "rechenstelle:d3d004244447c541"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65655,7 +65757,24 @@
       "source_record_id": "rechenstelle:d49e70a6638c7c60"
     },
     {
-      "collected_at": "2026-09-26T09:16:09+00:00",
+      "collected_at": "2026-09-26T10:20:33+00:00",
+      "country": "GER",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 31.7,
+      "event_date": "2026-09-26",
+      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
+      "horse_name": "Ekino",
+      "is_user_entered": false,
+      "level": "CCI2*-S",
+      "rider_name": "Willemina VAN DER GOES-PETTER (NED)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "rechenstelle",
+      "source_priority": 5,
+      "source_record_id": "rechenstelle:91aedc1bbfc150c3"
+    },
+    {
+      "collected_at": "2026-09-26T10:20:33+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65673,6 +65792,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-26T09:17:06+00:00",
+  "updated_at": "2026-09-26T10:20:33+00:00",
   "version": 1
 }
