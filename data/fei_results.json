@@ -60079,7 +60079,7 @@
       "source_record_id": "horses_competitions:330e0ad92e1fcb7c"
     },
     {
-      "collected_at": "2026-09-27T17:05:17+00:00",
+      "collected_at": "2026-09-27T19:06:39+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -60130,7 +60130,7 @@
       "source_record_id": "horses_competitions:75c8204639d4a214"
     },
     {
-      "collected_at": "2026-09-27T17:05:17+00:00",
+      "collected_at": "2026-09-27T19:06:39+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 9.2,
@@ -60198,7 +60198,7 @@
       "source_record_id": "horses_competitions:a8601540b33c3f51"
     },
     {
-      "collected_at": "2026-09-27T17:05:17+00:00",
+      "collected_at": "2026-09-27T19:06:39+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -60436,10 +60436,10 @@
       "source_record_id": "horses_competitions:facfa3b28b181fe9"
     },
     {
-      "collected_at": "2026-09-27T17:05:17+00:00",
+      "collected_at": "2026-09-27T19:06:39+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 8.4,
+      "cross_country_time_penalties": 6.8,
       "dressage_score": 39.1,
       "event_date": "2026-09-24",
       "event_name": "Spokane \u00b7 CCI2*-S",
@@ -60555,10 +60555,10 @@
       "source_record_id": "horses_competitions:4100fd504133256a"
     },
     {
-      "collected_at": "2026-09-26T20:23:40+00:00",
+      "collected_at": "2026-09-27T19:06:39+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_time_penalties": 2.0,
       "dressage_score": 36.8,
       "event_date": "2026-09-24",
       "event_name": "Spokane \u00b7 CCI1*-S",
@@ -60572,7 +60572,7 @@
       "source_record_id": "showconnect:5a379bbada597bfb"
     },
     {
-      "collected_at": "2026-09-27T17:05:17+00:00",
+      "collected_at": "2026-09-27T19:06:39+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 1.2,
@@ -60827,10 +60827,10 @@
       "source_record_id": "horses_competitions:b8768cea5c19698e"
     },
     {
-      "collected_at": "2026-09-26T20:23:40+00:00",
+      "collected_at": "2026-09-27T19:06:39+00:00",
       "country": "USA",
-      "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
+      "cross_country_jump_penalties": 40.0,
+      "cross_country_time_penalties": 13.2,
       "dressage_score": 42.5,
       "event_date": "2026-09-24",
       "event_name": "Spokane \u00b7 CCI1*-S",
@@ -61082,7 +61082,7 @@
       "source_record_id": "horses_competitions:c48c182ed00e9208"
     },
     {
-      "collected_at": "2026-09-27T17:05:17+00:00",
+      "collected_at": "2026-09-27T19:06:39+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -61167,7 +61167,7 @@
       "source_record_id": "horses_competitions:838dd5279787f9d2"
     },
     {
-      "collected_at": "2026-09-27T17:05:17+00:00",
+      "collected_at": "2026-09-27T19:06:39+00:00",
       "country": "USA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -66540,6 +66540,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-27T18:07:49+00:00",
+  "updated_at": "2026-09-27T19:07:16+00:00",
   "version": 1
 }
