@@ -55268,7 +55268,7 @@
       "source_record_id": "horses_competitions:fc3653d5c794acba"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -55387,7 +55387,7 @@
       "source_record_id": "horses_competitions:72cfce73928c8127"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 16.4,
@@ -55574,7 +55574,7 @@
       "source_record_id": "eventing_ireland:8d8c49011a9f362b"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 3.6,
@@ -55591,24 +55591,7 @@
       "source_record_id": "horses_competitions:336aa60e03d56b85"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
-      "country": "FRA",
-      "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 11.2,
-      "dressage_score": 50.0,
-      "event_date": "2026-09-23",
-      "event_name": "Ligni\u00e8res \u00b7 CCI3*-L",
-      "horse_name": "JIMINY CRICKET",
-      "is_user_entered": false,
-      "level": "CCI3*-L",
-      "rider_name": "Arianna SCHIVO (ITA)",
-      "show_jumping_penalties": 0.0,
-      "source_id": "horses_competitions",
-      "source_priority": 7,
-      "source_record_id": "horses_competitions:3285ce2be8b477b6"
-    },
-    {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 17.6,
@@ -55625,7 +55608,7 @@
       "source_record_id": "horses_competitions:5eefff3e9abda1f2"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -55693,7 +55676,7 @@
       "source_record_id": "horses_competitions:906c7959a2ddd430"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -55931,24 +55914,7 @@
       "source_record_id": "horses_competitions:cb3385eff107d97b"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
-      "country": "FRA",
-      "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
-      "dressage_score": 32.2,
-      "event_date": "2026-09-23",
-      "event_name": "Ligni\u00e8res \u00b7 CCI3*-L",
-      "horse_name": "NERO V VEECATEN",
-      "is_user_entered": false,
-      "level": "CCI3*-L",
-      "rider_name": "Camille DELVAUX (BEL)",
-      "show_jumping_penalties": 0.0,
-      "source_id": "horses_competitions",
-      "source_priority": 7,
-      "source_record_id": "horses_competitions:c173cb5f437cd4ee"
-    },
-    {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 8.8,
@@ -56118,7 +56084,7 @@
       "source_record_id": "eventing_ireland:29ce2fb42c1ece42"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 11.6,
@@ -56526,7 +56492,7 @@
       "source_record_id": "eventing_ireland:ef9e21a8ce824cf2"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 29.2,
@@ -56541,23 +56507,6 @@
       "source_id": "horses_competitions",
       "source_priority": 7,
       "source_record_id": "horses_competitions:3fa92886a18ef5c1"
-    },
-    {
-      "collected_at": "2026-09-26T11:12:53+00:00",
-      "country": "FRA",
-      "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 21.2,
-      "dressage_score": 37.7,
-      "event_date": "2026-09-23",
-      "event_name": "Ligni\u00e8res \u00b7 CCI3*-L",
-      "horse_name": "SARCENIT POMES 32 2",
-      "is_user_entered": false,
-      "level": "CCI3*-L",
-      "rider_name": "Eduardo VIA-DUFRESNE (ESP)",
-      "show_jumping_penalties": 0.0,
-      "source_id": "horses_competitions",
-      "source_priority": 7,
-      "source_record_id": "horses_competitions:a6f230b35dfaf9cc"
     },
     {
       "collected_at": "2026-09-26T12:21:49+00:00",
@@ -56781,7 +56730,7 @@
       "source_record_id": "horses_competitions:bc5b6fc5f773d993"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 8.4,
@@ -56798,7 +56747,7 @@
       "source_record_id": "horses_competitions:9abeea72905cdb8b"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 36.0,
@@ -56849,7 +56798,7 @@
       "source_record_id": "horses_competitions:99f382c5b9d5792c"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 20.0,
@@ -56866,7 +56815,7 @@
       "source_record_id": "horses_competitions:5787b0a9b0f3ab2c"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -56898,23 +56847,6 @@
       "source_id": "horses_competitions",
       "source_priority": 7,
       "source_record_id": "horses_competitions:2b534c18b270c516"
-    },
-    {
-      "collected_at": "2026-09-26T11:12:53+00:00",
-      "country": "FRA",
-      "cross_country_jump_penalties": 20.0,
-      "cross_country_time_penalties": 9.6,
-      "dressage_score": 43.3,
-      "event_date": "2026-09-23",
-      "event_name": "Ligni\u00e8res \u00b7 CCI3*-L",
-      "horse_name": "IMPERATOR FILMSTAR",
-      "is_user_entered": false,
-      "level": "CCI3*-L",
-      "rider_name": "Fran\u00e7ois PONS (FRA)",
-      "show_jumping_penalties": 0.0,
-      "source_id": "horses_competitions",
-      "source_priority": 7,
-      "source_record_id": "horses_competitions:8242b3a172dc8654"
     },
     {
       "collected_at": "2026-09-26T12:21:49+00:00",
@@ -56968,7 +56900,7 @@
       "source_record_id": "eventing_ireland:d430b21be09455e5"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 12.8,
@@ -57087,7 +57019,7 @@
       "source_record_id": "horses_competitions:170964a50ad7c686"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -57121,7 +57053,7 @@
       "source_record_id": "eventing_ireland:0b7187445801be58"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -57461,7 +57393,7 @@
       "source_record_id": "horses_competitions:34661fa8aa9de667"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -57546,7 +57478,7 @@
       "source_record_id": "horses_competitions:367072818fab323a"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -57580,7 +57512,7 @@
       "source_record_id": "eventing_ireland:2ba14412133cff3c"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 9.2,
@@ -57903,7 +57835,7 @@
       "source_record_id": "horses_competitions:dafe4c4075b768f1"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 23.2,
@@ -58005,7 +57937,7 @@
       "source_record_id": "horses_competitions:fe613261fefe24f0"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 9.2,
@@ -58056,7 +57988,7 @@
       "source_record_id": "eventing_ireland:9de3f0ac6f420392"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -58107,7 +58039,7 @@
       "source_record_id": "eventing_ireland:5475dbbc653c3c78"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 27.6,
@@ -58175,7 +58107,7 @@
       "source_record_id": "eventing_ireland:8185411079289eae"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 6.8,
@@ -58209,7 +58141,7 @@
       "source_record_id": "horses_competitions:b06b9fd2d7bba500"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 6.8,
@@ -58260,7 +58192,7 @@
       "source_record_id": "horses_competitions:a133e3179a679b40"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 1.2,
@@ -58294,7 +58226,7 @@
       "source_record_id": "horses_competitions:fdee0c96c1dd4b00"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 3.6,
@@ -58328,7 +58260,7 @@
       "source_record_id": "horses_competitions:0ebe0c7f3e248a79"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 6.0,
@@ -58464,7 +58396,7 @@
       "source_record_id": "horses_competitions:ba202f30818ed395"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 7.6,
@@ -58889,7 +58821,7 @@
       "source_record_id": "horses_competitions:b150d582b5eeb2c4"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -58991,7 +58923,7 @@
       "source_record_id": "eventing_ireland:14f3cfa1780971a8"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -59416,7 +59348,7 @@
       "source_record_id": "eventing_ireland:cadc3171c28c9714"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 21.2,
@@ -59501,7 +59433,7 @@
       "source_record_id": "eventing_ireland:b7d60409e1167c1a"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 7.6,
@@ -59535,7 +59467,7 @@
       "source_record_id": "horses_competitions:f6e8f22d4dae1ecf"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -59569,7 +59501,7 @@
       "source_record_id": "horses_competitions:0c03ba40ccb7188b"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -59603,7 +59535,7 @@
       "source_record_id": "horses_competitions:bb6f4bad6423ceb2"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -59756,23 +59688,6 @@
       "source_record_id": "horses_competitions:41bb2f3230a57153"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
-      "country": "FRA",
-      "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
-      "dressage_score": 37.0,
-      "event_date": "2026-09-23",
-      "event_name": "Ligni\u00e8res \u00b7 CCI3*-L",
-      "horse_name": "TORONTO",
-      "is_user_entered": false,
-      "level": "CCI3*-L",
-      "rider_name": "Thomas PIEJOS (FRA)",
-      "show_jumping_penalties": 0.0,
-      "source_id": "horses_competitions",
-      "source_priority": 7,
-      "source_record_id": "horses_competitions:fe8b09ff35394d6e"
-    },
-    {
       "collected_at": "2026-09-26T15:15:27+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
@@ -59790,7 +59705,7 @@
       "source_record_id": "horses_competitions:ea4ebbbe4fd95011"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 13.2,
@@ -59892,7 +59807,7 @@
       "source_record_id": "eventing_ireland:90da73a02013ada9"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -59943,7 +59858,7 @@
       "source_record_id": "horses_competitions:227f444e09b9b594"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 6.4,
@@ -59960,7 +59875,7 @@
       "source_record_id": "horses_competitions:f528cfca6bebb6aa"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 2.4,
@@ -59994,7 +59909,7 @@
       "source_record_id": "horses_competitions:b8e51831eed6abf0"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 6.0,
@@ -60062,7 +59977,7 @@
       "source_record_id": "horses_competitions:7f83d8a29efedb7c"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 12.0,
@@ -60079,7 +59994,7 @@
       "source_record_id": "horses_competitions:43c113073681a3cb"
     },
     {
-      "collected_at": "2026-09-26T11:12:53+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "FRA",
       "cross_country_jump_penalties": 20.0,
       "cross_country_time_penalties": 19.2,
@@ -63734,7 +63649,7 @@
       "source_record_id": "rechenstelle:a88ffa09ffa9e242"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63751,7 +63666,7 @@
       "source_record_id": "rechenstelle:29d988100d8d0776"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63802,7 +63717,7 @@
       "source_record_id": "rechenstelle:76b76b4c0179d7e2"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63819,7 +63734,7 @@
       "source_record_id": "rechenstelle:021ca694dfe3620e"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63836,7 +63751,7 @@
       "source_record_id": "rechenstelle:bd46149e84f6afc3"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63904,7 +63819,7 @@
       "source_record_id": "rechenstelle:e0b027c394cf7db2"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63921,7 +63836,7 @@
       "source_record_id": "rechenstelle:037e5dc437d70471"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63938,7 +63853,7 @@
       "source_record_id": "rechenstelle:ff68ba611fb07b13"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63955,7 +63870,7 @@
       "source_record_id": "rechenstelle:4b8773be6dde88f6"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -63972,7 +63887,7 @@
       "source_record_id": "rechenstelle:e5971bc9c383d074"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64006,7 +63921,7 @@
       "source_record_id": "rechenstelle:a564a926d7fc0f50"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64023,7 +63938,7 @@
       "source_record_id": "rechenstelle:01dad126affccd2c"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64040,7 +63955,7 @@
       "source_record_id": "rechenstelle:325ea88d7991fb3d"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64210,7 +64125,7 @@
       "source_record_id": "rechenstelle:51d46d2dc394bf75"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64363,7 +64278,7 @@
       "source_record_id": "rechenstelle:a1397e382483a32c"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64516,7 +64431,7 @@
       "source_record_id": "rechenstelle:2363ff520d523c91"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64527,13 +64442,13 @@
       "is_user_entered": false,
       "level": "CCI2*-S",
       "rider_name": "Jana LEHMKUHL (GER)",
-      "show_jumping_penalties": 8.0,
+      "show_jumping_penalties": 5.2,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:f7037d12a288d5ec"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64550,7 +64465,7 @@
       "source_record_id": "rechenstelle:804daaa60cbb423a"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64567,7 +64482,7 @@
       "source_record_id": "rechenstelle:ec7e427d02f2fa4b"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64601,7 +64516,7 @@
       "source_record_id": "rechenstelle:93d7e5e9452d9cf7"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64635,7 +64550,7 @@
       "source_record_id": "rechenstelle:e70fd324bedbabfa"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64652,7 +64567,7 @@
       "source_record_id": "rechenstelle:4c58e6c569c3187d"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64669,7 +64584,7 @@
       "source_record_id": "rechenstelle:06e36ecacd49a2ea"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64703,7 +64618,7 @@
       "source_record_id": "rechenstelle:4f9833f65bc0a995"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64754,7 +64669,7 @@
       "source_record_id": "rechenstelle:b753435a3ce999aa"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64907,24 +64822,7 @@
       "source_record_id": "rechenstelle:bea2f2084f6732a4"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
-      "country": "GER",
-      "cross_country_jump_penalties": 0.0,
-      "cross_country_time_penalties": 0.0,
-      "dressage_score": 33.6,
-      "event_date": "2026-09-26",
-      "event_name": "Wesel-Obrighoven \u00b7 CCI2*-S",
-      "horse_name": "Balvino",
-      "is_user_entered": false,
-      "level": "CCI2*-S",
-      "rider_name": "Lena PECHEUR (GER)",
-      "show_jumping_penalties": 14.4,
-      "source_id": "rechenstelle",
-      "source_priority": 5,
-      "source_record_id": "rechenstelle:3b01a5feb2a0ae5d"
-    },
-    {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -64958,7 +64856,7 @@
       "source_record_id": "rechenstelle:de297640d3a06a5e"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65026,7 +64924,7 @@
       "source_record_id": "rechenstelle:602afab2fc77130b"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65094,7 +64992,7 @@
       "source_record_id": "rechenstelle:651fd0486dd66358"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65111,7 +65009,7 @@
       "source_record_id": "rechenstelle:55424c5bfd8720d6"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65128,7 +65026,7 @@
       "source_record_id": "rechenstelle:275165fcc1680e85"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65145,7 +65043,7 @@
       "source_record_id": "rechenstelle:c3b72cd8a5a5117c"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65162,7 +65060,7 @@
       "source_record_id": "rechenstelle:5c5119f8e684a735"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65179,7 +65077,7 @@
       "source_record_id": "rechenstelle:13869e516a793ab0"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65281,7 +65179,7 @@
       "source_record_id": "rechenstelle:34707c87a7451e7a"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65366,7 +65264,7 @@
       "source_record_id": "rechenstelle:39ec6c7569cc02f7"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65434,7 +65332,7 @@
       "source_record_id": "rechenstelle:7dea63b48eb35123"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65468,7 +65366,7 @@
       "source_record_id": "rechenstelle:6219d947d1a719f1"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65502,7 +65400,7 @@
       "source_record_id": "rechenstelle:b3c8c0a5cfac9840"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65570,7 +65468,7 @@
       "source_record_id": "rechenstelle:dbdec255c79d18a6"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65672,7 +65570,7 @@
       "source_record_id": "rechenstelle:5361f845678044f4"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65689,7 +65587,7 @@
       "source_record_id": "rechenstelle:207e01195396b5be"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65740,7 +65638,7 @@
       "source_record_id": "rechenstelle:d3d004244447c541"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65757,7 +65655,7 @@
       "source_record_id": "rechenstelle:8ef0bc2dfc44d0de"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65842,7 +65740,7 @@
       "source_record_id": "rechenstelle:50331c35c3f6621d"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65859,7 +65757,7 @@
       "source_record_id": "rechenstelle:91aedc1bbfc150c3"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -65876,7 +65774,7 @@
       "source_record_id": "rechenstelle:0f3f9be4e823e0fe"
     },
     {
-      "collected_at": "2026-09-26T14:23:55+00:00",
+      "collected_at": "2026-09-27T07:25:28+00:00",
       "country": "GER",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -67067,6 +66965,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-09-26T23:14:24+00:00",
+  "updated_at": "2026-09-27T07:25:28+00:00",
   "version": 1
 }
