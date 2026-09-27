@@ -3461,7 +3461,7 @@
       "country": "USA",
       "event_date": "2026-09-24",
       "event_name": "Spokane \u00b7 CCI3*-S",
-      "latest_collected_at": "2026-09-26T18:20:56+00:00",
+      "latest_collected_at": "2026-09-27T18:07:14+00:00",
       "level": "CCI3*-S",
       "result_count": 4,
       "source_ids": [
@@ -3469,32 +3469,32 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-09-26T18:20:56+00:00",
-          "cross_country_penalties": 0.0,
-          "dressage_score": 34.1,
-          "finishing_score": 42.1,
-          "horse_name": "Aventinus",
-          "rank": 1,
-          "rider_name": "Emily Pestl-Dimmitt",
-          "show_jumping_penalties": 8.0,
-          "source_id": "showconnect"
-        },
-        {
-          "collected_at": "2026-09-26T18:20:56+00:00",
+          "collected_at": "2026-09-27T18:07:14+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 41.3,
           "finishing_score": 45.3,
           "horse_name": "Flame Eternal",
-          "rank": 2,
+          "rank": 1,
           "rider_name": "Renee Kalkman",
           "show_jumping_penalties": 4.0,
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-26T18:20:56+00:00",
-          "cross_country_penalties": 0.0,
+          "collected_at": "2026-09-27T18:07:14+00:00",
+          "cross_country_penalties": 7.2,
+          "dressage_score": 34.1,
+          "finishing_score": 49.3,
+          "horse_name": "Aventinus",
+          "rank": 2,
+          "rider_name": "Emily Pestl-Dimmitt",
+          "show_jumping_penalties": 8.0,
+          "source_id": "showconnect"
+        },
+        {
+          "collected_at": "2026-09-27T18:07:14+00:00",
+          "cross_country_penalties": 1.2,
           "dressage_score": 44.7,
-          "finishing_score": 52.7,
+          "finishing_score": 53.9,
           "horse_name": "Bankseigh",
           "rank": 3,
           "rider_name": "Alessandra Allen-Shinn",
@@ -3502,10 +3502,10 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-26T18:20:56+00:00",
-          "cross_country_penalties": 0.0,
+          "collected_at": "2026-09-27T18:07:14+00:00",
+          "cross_country_penalties": 50.8,
           "dressage_score": 37.5,
-          "finishing_score": 55.1,
+          "finishing_score": 105.9,
           "horse_name": "Victory Gallop",
           "rank": 4,
           "rider_name": "Catie Cejka",
@@ -16767,8 +16767,8 @@
       ]
     }
   ],
-  "generated_at": "2026-09-27T17:05:17+00:00",
-  "latest_collected_at": "2026-09-27T17:05:17+00:00",
+  "generated_at": "2026-09-27T18:07:14+00:00",
+  "latest_collected_at": "2026-09-27T18:07:14+00:00",
   "result_count": 1465,
   "source_ids": [
     "asiangames",
