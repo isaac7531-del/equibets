@@ -3518,7 +3518,7 @@
       "country": "USA",
       "event_date": "2026-09-24",
       "event_name": "Spokane \u00b7 CCI2*-S",
-      "latest_collected_at": "2026-09-27T17:05:17+00:00",
+      "latest_collected_at": "2026-09-27T19:06:39+00:00",
       "level": "CCI2*-S",
       "result_count": 7,
       "source_ids": [
@@ -3526,7 +3526,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-09-27T17:05:17+00:00",
+          "collected_at": "2026-09-27T19:06:39+00:00",
           "cross_country_penalties": 1.2,
           "dressage_score": 31.1,
           "finishing_score": 32.3,
@@ -3537,7 +3537,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-27T17:05:17+00:00",
+          "collected_at": "2026-09-27T19:06:39+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.4,
           "finishing_score": 32.4,
@@ -3548,7 +3548,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-27T17:05:17+00:00",
+          "collected_at": "2026-09-27T19:06:39+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 37.5,
           "finishing_score": 37.5,
@@ -3559,7 +3559,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-27T17:05:17+00:00",
+          "collected_at": "2026-09-27T19:06:39+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 36.4,
           "finishing_score": 40.4,
@@ -3570,7 +3570,7 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-27T17:05:17+00:00",
+          "collected_at": "2026-09-27T19:06:39+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 36.8,
           "finishing_score": 40.8,
@@ -3581,25 +3581,25 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-27T17:05:17+00:00",
+          "collected_at": "2026-09-27T19:06:39+00:00",
+          "cross_country_penalties": 6.8,
+          "dressage_score": 39.1,
+          "finishing_score": 45.9,
+          "horse_name": "Black Cape Hero",
+          "rank": 6,
+          "rider_name": "Flynn Patinkin",
+          "show_jumping_penalties": 0.0,
+          "source_id": "showconnect"
+        },
+        {
+          "collected_at": "2026-09-27T19:06:39+00:00",
           "cross_country_penalties": 9.2,
           "dressage_score": 33.4,
           "finishing_score": 46.6,
           "horse_name": "Gentle Gallucci",
-          "rank": 6,
+          "rank": 7,
           "rider_name": "Brynn Josey",
           "show_jumping_penalties": 4.0,
-          "source_id": "showconnect"
-        },
-        {
-          "collected_at": "2026-09-27T17:05:17+00:00",
-          "cross_country_penalties": 8.4,
-          "dressage_score": 39.1,
-          "finishing_score": 47.5,
-          "horse_name": "Black Cape Hero",
-          "rank": 7,
-          "rider_name": "Flynn Patinkin",
-          "show_jumping_penalties": 0.0,
           "source_id": "showconnect"
         }
       ]
@@ -3608,7 +3608,7 @@
       "country": "USA",
       "event_date": "2026-09-24",
       "event_name": "Spokane \u00b7 CCI1*-S",
-      "latest_collected_at": "2026-09-26T20:23:40+00:00",
+      "latest_collected_at": "2026-09-27T19:06:39+00:00",
       "level": "CCI1*-S",
       "result_count": 2,
       "source_ids": [
@@ -3616,10 +3616,10 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-09-26T20:23:40+00:00",
-          "cross_country_penalties": 0.0,
+          "collected_at": "2026-09-27T19:06:39+00:00",
+          "cross_country_penalties": 2.0,
           "dressage_score": 36.8,
-          "finishing_score": 44.8,
+          "finishing_score": 46.8,
           "horse_name": "Damanio L",
           "rank": 1,
           "rider_name": "Jennifer Plassmeier",
@@ -3627,10 +3627,10 @@
           "source_id": "showconnect"
         },
         {
-          "collected_at": "2026-09-26T20:23:40+00:00",
-          "cross_country_penalties": 0.0,
+          "collected_at": "2026-09-27T19:06:39+00:00",
+          "cross_country_penalties": 53.2,
           "dressage_score": 42.5,
-          "finishing_score": 46.5,
+          "finishing_score": 99.7,
           "horse_name": "You Ain't Lyin",
           "rank": 2,
           "rider_name": "Martha Wehling",
@@ -16767,8 +16767,8 @@
       ]
     }
   ],
-  "generated_at": "2026-09-27T18:07:14+00:00",
-  "latest_collected_at": "2026-09-27T18:07:14+00:00",
+  "generated_at": "2026-09-27T19:07:16+00:00",
+  "latest_collected_at": "2026-09-27T19:06:39+00:00",
   "result_count": 1465,
   "source_ids": [
     "asiangames",
