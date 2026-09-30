@@ -2,6 +2,10 @@ import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { beforeEach, describe, expect, it } from 'vitest';
 import App from './App';
+import liveScoresData from './data/live_scores.json';
+import { formatLiveEventTitle, type LiveScorePayload } from './liveScores';
+
+const liveScores = liveScoresData as LiveScorePayload;
 
 describe('App', () => {
   beforeEach(() => {
@@ -169,5 +173,32 @@ describe('App', () => {
     const savedResults = screen.getByRole('region', { name: /saved results/i });
     expect(within(savedResults).getAllByText('Oakley').length).toBeGreaterThan(0);
     expect(within(savedResults).queryByText('Copperfield')).not.toBeInTheDocument();
+  }, 15000);
+
+  it('shows the current live public scoring feed', () => {
+    render(<App />);
+
+    expect(screen.getByRole('heading', { name: /live public scoring/i })).toBeInTheDocument();
+    if (liveScores.result_count === 0) {
+      expect(screen.getByText(/no live public results in the current window/i)).toBeInTheDocument();
+      return;
+    }
+
+    const liveFeed = screen.getByRole('region', { name: /live public scoring/i });
+    const firstEvent = liveScores.events[0];
+    const leader = firstEvent.standings[0];
+    expect(screen.getByText(liveScores.result_count.toString())).toBeInTheDocument();
+    liveScores.events.forEach((event) => {
+      expect(screen.getByRole('heading', { name: formatLiveEventTitle(event) })).toBeInTheDocument();
+    });
+    expect(screen.getAllByText(leader.horse_name).length).toBeGreaterThan(0);
+    if (firstEvent.result_count > 8) {
+      const firstEventCard = within(liveFeed)
+        .getByRole('heading', { name: formatLiveEventTitle(firstEvent) })
+        .closest('article');
+      expect(firstEventCard).not.toBeNull();
+      expect(firstEventCard).toHaveTextContent(`Showing top 8 of ${firstEvent.result_count} public results.`);
+      expect(within(firstEventCard as HTMLElement).queryByText(firstEvent.standings[8].horse_name)).not.toBeInTheDocument();
+    }
   });
 });
