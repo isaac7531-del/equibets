@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import json
 import re
 from collections.abc import Sequence
 from dataclasses import dataclass
@@ -19,7 +20,7 @@ from equibets.live_scores import (
     write_live_score_payload,
 )
 from equibets.rechenstelle import merge_into_store
-from equibets.results import EventingResult
+from equibets.results import EventingResult, consolidate_results
 
 
 SOURCE_ID = "usea"
@@ -52,6 +53,18 @@ FORK_TRYON_SEP_2026 = {
     "event_date": date(2026, 9, 10),
     "country": "USA",
 }
+
+# Stable View Oktoberfest, Aiken, 25–27 Sep 2026 (USEA 19093).
+# Event Entries holds the provisional dressage and show-jumping board. Once
+# this results page publishes numeric CCI totals, those finals replace the
+# provisional rows for the same class.
+STABLE_VIEW_SEP_2026 = {
+    "event_id": "19093",
+    "event_title": "Stable View",
+    "event_date": date(2026, 9, 25),
+    "country": "USA",
+}
+PROVISIONAL_SOURCE_ID = "evententries"
 
 
 @dataclass(frozen=True)
@@ -214,6 +227,50 @@ def fork_tryon_sep_2026_event() -> UseaEvent:
     return UseaEvent(**FORK_TRYON_SEP_2026)
 
 
+def stable_view_sep_2026_event() -> UseaEvent:
+    """Return the Stable View Oktoberfest 2026 USEA results event."""
+
+    return UseaEvent(**STABLE_VIEW_SEP_2026)
+
+
+def merge_published_finals(store_path: Path, final_results: Sequence[EventingResult]) -> list[EventingResult]:
+    """Merge USEA finals and drop provisional rows for those same classes.
+
+    Event Entries rider names keep a country suffix, so they do not share a
+    combination key with the USEA finals. Leaving both in the store would show
+    the pre-cross-country score beside the final score.
+    """
+
+    from equibets.fei_bot import result_to_mapping
+
+    merged = merge_into_store(Path(store_path), list(final_results))
+    final_classes = {_class_key(result) for result in final_results}
+    retained = [
+        result
+        for result in merged
+        if not (result.source_id == PROVISIONAL_SOURCE_ID and _class_key(result) in final_classes)
+    ]
+    if len(retained) == len(merged):
+        return merged
+
+    retained = consolidate_results(retained)
+    payload = {
+        "version": 1,
+        "source_id": "mixed",
+        "updated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat(),
+        "results": [result_to_mapping(result) for result in retained],
+    }
+    path = Path(store_path)
+    with path.open("w", encoding="utf-8") as results_file:
+        json.dump(payload, results_file, indent=2, sort_keys=True)
+        results_file.write("\n")
+    return retained
+
+
+def _class_key(result: EventingResult) -> tuple[str, date, str]:
+    return (result.event_name, result.event_date, result.level)
+
+
 def collect_events(
     events: Sequence[UseaEvent],
     *,
@@ -326,6 +383,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull The Fork at Tryon September 2026 CCI results",
     )
+    parser.add_argument(
+        "--stable-view-2026",
+        action="store_true",
+        help="Pull Stable View Oktoberfest 2026 CCI finals",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--dry-run", action="store_true")
@@ -336,8 +398,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         events.append(plantation_sep_2026_event())
     if args.fork_tryon_2026:
         events.append(fork_tryon_sep_2026_event())
+    if args.stable_view_2026:
+        events.append(stable_view_sep_2026_event())
     if not events:
-        raise SystemExit("Specify --plantation-2026 or --fork-tryon-2026")
+        raise SystemExit("Specify --plantation-2026, --fork-tryon-2026, or --stable-view-2026")
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)
     results = collect_events(events, collected_at=collected_at)
@@ -345,7 +409,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.dry_run:
         return 0
 
-    merged = merge_into_store(args.output, results)
+    if args.stable_view_2026:
+        merged = merge_published_finals(args.output, results)
+    else:
+        merged = merge_into_store(args.output, results)
     start_date, end_date = current_event_window()
     live_payload = build_live_score_payload(merged, start_date=start_date, end_date=end_date)
     write_live_score_payload(live_payload, args.live_output)

@@ -2,15 +2,20 @@
 
 from __future__ import annotations
 
+import json
 import unittest
 from datetime import date, datetime, timezone
+from pathlib import Path
 
+from equibets.results import EventingResult, load_results
 from equibets.usea import (
     UseaEvent,
     fork_tryon_sep_2026_event,
+    merge_published_finals,
     parse_results_html,
     plantation_sep_2026_event,
     results_url,
+    stable_view_sep_2026_event,
 )
 
 
@@ -127,6 +132,96 @@ class UseaResultsTests(unittest.TestCase):
         self.assertEqual(lovedance.country, "USA")
         self.assertEqual(lovedance.source_id, "usea")
         self.assertTrue(lovedance.source_record_id.startswith("usea:"))
+
+    def test_stable_view_event_uses_the_oktoberfest_results_page(self) -> None:
+        event = stable_view_sep_2026_event()
+        self.assertEqual(event.event_id, "19093")
+        self.assertEqual(event.event_title, "Stable View")
+        self.assertEqual(event.event_date, date(2026, 9, 25))
+        self.assertEqual(event.country, "USA")
+        self.assertEqual(
+            event.url,
+            "https://useventing.com/events-competitions/resources/results/item?event=19093",
+        )
+
+    def test_published_finals_replace_provisional_rows_for_the_same_class(self) -> None:
+        collected_at = datetime(2026, 9, 30, 8, 0, tzinfo=timezone.utc)
+        provisional = EventingResult(
+            source_id="evententries",
+            source_record_id="evententries:provisional",
+            source_priority=55,
+            rider_name="Candace Elizabeth Bell (USA)",
+            horse_name="Oscar",
+            event_name="Stable View · CCI1*-S",
+            event_date=date(2026, 9, 25),
+            level="CCI1*-S",
+            country="USA",
+            dressage_score=26.7,
+            show_jumping_penalties=0,
+            cross_country_jump_penalties=0,
+            cross_country_time_penalties=0,
+            collected_at=collected_at,
+        )
+        other = EventingResult(
+            source_id="evententries",
+            source_record_id="evententries:other",
+            source_priority=55,
+            rider_name="Anna Zakrevska (CAN)",
+            horse_name="Lakeside Park",
+            event_name="Eventing at the Parks · CCI2*-S",
+            event_date=date(2026, 9, 25),
+            level="CCI2*-S",
+            country="CAN",
+            dressage_score=25.7,
+            show_jumping_penalties=4,
+            cross_country_jump_penalties=0,
+            cross_country_time_penalties=0,
+            collected_at=collected_at,
+        )
+        final = EventingResult(
+            source_id="usea",
+            source_record_id="usea:final",
+            source_priority=50,
+            rider_name="Candace Elizabeth Bell",
+            horse_name="Oscar",
+            event_name="Stable View · CCI1*-S",
+            event_date=date(2026, 9, 25),
+            level="CCI1*-S",
+            country="USA",
+            dressage_score=26.7,
+            show_jumping_penalties=0,
+            cross_country_jump_penalties=0,
+            cross_country_time_penalties=2.8,
+            collected_at=collected_at,
+        )
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            store = Path(tmp) / "fei_results.json"
+            store.write_text(
+                json.dumps(
+                    {
+                        "version": 1,
+                        "source_id": "mixed",
+                        "updated_at": "2026-09-27T19:07:16+00:00",
+                        "results": [],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            from equibets.rechenstelle import merge_into_store
+
+            merge_into_store(store, [provisional, other])
+            merge_published_finals(store, [final])
+            stored = load_results(store)
+
+        self.assertEqual(
+            [(result.source_id, result.event_name, result.rider_name, result.finishing_score) for result in stored],
+            [
+                ("evententries", "Eventing at the Parks · CCI2*-S", "Anna Zakrevska (CAN)", 29.7),
+                ("usea", "Stable View · CCI1*-S", "Candace Elizabeth Bell", 29.5),
+            ],
+        )
 
 
 if __name__ == "__main__":
