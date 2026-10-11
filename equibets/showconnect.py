@@ -55,6 +55,16 @@ SPOKANE_FALL_2026 = {
     "country": "USA",
 }
 
+# Woodside Fall International, 2–4 Oct 2026 (ShowConnect 1195).
+# National horse-trial divisions on the same scoringLive document are skipped.
+# Dressage cells stay "--" until a numeric penalty is published.
+WOODSIDE_FALL_2026 = {
+    "show_connect_id": 1195,
+    "event_title": "Woodside",
+    "event_date": date(2026, 10, 2),
+    "country": "USA",
+}
+
 
 @dataclass(frozen=True)
 class ShowConnectEvent:
@@ -126,6 +136,12 @@ def spokane_fall_2026_event() -> ShowConnectEvent:
     """Return the Spokane Fall 2026 ShowConnect event."""
 
     return ShowConnectEvent(**SPOKANE_FALL_2026)
+
+
+def woodside_fall_2026_event() -> ShowConnectEvent:
+    """Return the Woodside Fall 2026 ShowConnect event."""
+
+    return ShowConnectEvent(**WOODSIDE_FALL_2026)
 
 
 def collect_events(
@@ -241,6 +257,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull Spokane Fall 2026 CCI scores from the public scoringLive API",
     )
+    parser.add_argument(
+        "--woodside-2026",
+        action="store_true",
+        help="Pull Woodside Fall 2026 CCI scores from the public scoringLive API",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--dry-run", action="store_true")
@@ -251,8 +272,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         events.append(twin_rivers_fall_2026_event())
     if args.spokane_2026:
         events.append(spokane_fall_2026_event())
+    if args.woodside_2026:
+        events.append(woodside_fall_2026_event())
     if not events:
-        raise SystemExit("Specify --twin-rivers-2026 and/or --spokane-2026")
+        raise SystemExit("Specify --twin-rivers-2026, --spokane-2026, and/or --woodside-2026")
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)
     results = collect_events(events, collected_at=collected_at)

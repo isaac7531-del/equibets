@@ -11,6 +11,7 @@ from equibets.showconnect import (
     scoring_live_url,
     spokane_fall_2026_event,
     twin_rivers_fall_2026_event,
+    woodside_fall_2026_event,
 )
 
 
@@ -196,3 +197,68 @@ class ShowConnectParseTests(unittest.TestCase):
         clear = by_horse["Made by Leontine EB"]
         self.assertEqual(clear.event_name, "Twin Rivers · CCI3*-S")
         self.assertEqual(clear.finishing_score, 30.8)
+
+    def test_woodside_event_uses_showconnect_1195(self):
+        event = woodside_fall_2026_event()
+        self.assertEqual(event.show_connect_id, 1195)
+        self.assertEqual(event.event_title, "Woodside")
+        self.assertEqual(event.event_date, date(2026, 10, 2))
+        self.assertEqual(event.country, "USA")
+        self.assertIn("/event/1195/scoringLive", scoring_live_url(event.show_connect_id))
+
+    def test_woodside_numeric_dressage_is_ingested_and_placeholders_skipped(self):
+        event = woodside_fall_2026_event()
+        results = parse_scoring_live(
+            {
+                "DivisionsList": [
+                    {"DivisionId": 1, "DivisionName": "CCI4*-Short", "DivisionStatus": "FINAL"},
+                    {"DivisionId": 2, "DivisionName": "Open Preliminary"},
+                ],
+                "ScoringList": [
+                    {
+                        "DivisionId": 1,
+                        "Pinny": 8,
+                        "HorseName": "Bon Vivant GWF",
+                        "RiderName": "Erin Kellerhouse",
+                        "DressageScore": "32.4",
+                        "SJJumpPenalty": "0",
+                        "SJTimePenalty": "0",
+                        "XCJumpPenalty": "0",
+                        "XCTimePenalty": "3.6",
+                    },
+                    {
+                        "DivisionId": 1,
+                        "Pinny": 9,
+                        "HorseName": "Not Started",
+                        "RiderName": "Later Rider",
+                        "DressageScore": "--",
+                        "SJJumpPenalty": "--",
+                        "SJTimePenalty": "--",
+                        "XCJumpPenalty": "--",
+                        "XCTimePenalty": "--",
+                    },
+                    {
+                        "DivisionId": 2,
+                        "Pinny": 40,
+                        "HorseName": "National Horse",
+                        "RiderName": "National Rider",
+                        "DressageScore": "28.0",
+                        "SJJumpPenalty": "0",
+                        "SJTimePenalty": "0",
+                        "XCJumpPenalty": "0",
+                        "XCTimePenalty": "0",
+                    },
+                ],
+            },
+            event=event,
+            collected_at=datetime(2026, 10, 5, 18, 0, tzinfo=timezone.utc),
+        )
+        self.assertEqual(len(results), 1)
+        leader = results[0]
+        self.assertEqual(leader.event_name, "Woodside · CCI4*-S")
+        self.assertEqual(leader.level, "CCI4*-S")
+        self.assertEqual(leader.horse_name, "Bon Vivant GWF")
+        self.assertEqual(leader.dressage_score, 32.4)
+        self.assertEqual(leader.cross_country_time_penalties, 3.6)
+        self.assertEqual(leader.finishing_score, 36.0)
+        self.assertEqual(leader.event_date, date(2026, 10, 2))

@@ -243,6 +243,55 @@ WESEL_OBRIGHOVEN_SEP_2026 = (
     },
 )
 
+# Military Boekelo CCIO4*-NC-L, 1–4 Oct 2026.
+# leaderboard01 is the individual class. leaderboard901 (U25) and
+# leaderboard902 (Dutch championship) repeat riders already on 01.
+# nationcup01 is the team table and is not ingested.
+BOEKELO_OCT_2026 = (
+    {
+        "url": "https://live.rechenstelle.de/2026/boekelo/leaderboard01.html",
+        "event_name": "Boekelo · CCIO4*-NC-L",
+        "level": "CCIO4*-NC-L",
+        "event_date": date(2026, 10, 1),
+        "country": "NED",
+    },
+)
+
+# Bábolna (HUN), 8–11 Oct 2026.
+# Individual CCI boards are 01 (CCI1*-Intro), 02 (CCI2*-S), 05 (CCI3*-S),
+# and 04 (CCI4*-S). Championship filters 901/902/903 repeat those riders.
+# Nation cup pages are team tables and are not ingested.
+BABOLNA_OCT_2026 = (
+    {
+        "url": "https://live.rechenstelle.de/2026/babolna/leaderboard01.html",
+        "event_name": "Bábolna · CCI1*-Intro",
+        "level": "CCI1*-Intro",
+        "event_date": date(2026, 10, 8),
+        "country": "HUN",
+    },
+    {
+        "url": "https://live.rechenstelle.de/2026/babolna/leaderboard02.html",
+        "event_name": "Bábolna · CCI2*-S",
+        "level": "CCI2*-S",
+        "event_date": date(2026, 10, 8),
+        "country": "HUN",
+    },
+    {
+        "url": "https://live.rechenstelle.de/2026/babolna/leaderboard05.html",
+        "event_name": "Bábolna · CCI3*-S",
+        "level": "CCI3*-S",
+        "event_date": date(2026, 10, 8),
+        "country": "HUN",
+    },
+    {
+        "url": "https://live.rechenstelle.de/2026/babolna/leaderboard04.html",
+        "event_name": "Bábolna · CCI4*-S",
+        "level": "CCI4*-S",
+        "event_date": date(2026, 10, 8),
+        "country": "HUN",
+    },
+)
+
 
 @dataclass(frozen=True)
 class RechenstelleBoard:
@@ -542,6 +591,18 @@ def wesel_obrighoven_sep_2026_boards() -> list[RechenstelleBoard]:
     return [RechenstelleBoard(**item) for item in WESEL_OBRIGHOVEN_SEP_2026]
 
 
+def boekelo_oct_2026_boards() -> list[RechenstelleBoard]:
+    """Return the Boekelo October 2026 individual CCIO4*-NC-L leaderboard."""
+
+    return [RechenstelleBoard(**item) for item in BOEKELO_OCT_2026]
+
+
+def babolna_oct_2026_boards() -> list[RechenstelleBoard]:
+    """Return the Bábolna October 2026 individual CCI leaderboards."""
+
+    return [RechenstelleBoard(**item) for item in BABOLNA_OCT_2026]
+
+
 def merge_into_store(store_path: Path, new_results: Iterable[EventingResult]) -> list[EventingResult]:
     """Merge Rechenstelle rows into the shared results store.
 
@@ -651,6 +712,16 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull the Wesel-Obrighoven September 2026 public CCI leaderboard",
     )
+    parser.add_argument(
+        "--boekelo-2026",
+        action="store_true",
+        help="Pull the Boekelo October 2026 CCIO4*-NC-L individual leaderboard",
+    )
+    parser.add_argument(
+        "--babolna-2026",
+        action="store_true",
+        help="Pull the Bábolna October 2026 individual CCI leaderboards",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--dry-run", action="store_true")
@@ -673,11 +744,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         boards.extend(mechtersen_sep_2026_boards())
     if args.wesel_2026:
         boards.extend(wesel_obrighoven_sep_2026_boards())
+    if args.boekelo_2026:
+        boards.extend(boekelo_oct_2026_boards())
+    if args.babolna_2026:
+        boards.extend(babolna_oct_2026_boards())
     if not boards:
         raise SystemExit(
             "Specify --millstreet-july-2026, --aachen-ch-m-c-2026, --hambach-2026, "
             "--segersjo-2026, --burghley-2026, --langenhagen-2026, --mechtersen-2026, "
-            "and/or --wesel-2026"
+            "--wesel-2026, --boekelo-2026, and/or --babolna-2026"
         )
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)

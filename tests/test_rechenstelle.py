@@ -8,6 +8,8 @@ from datetime import date, datetime, timezone
 from equibets.rechenstelle import (
     RechenstelleBoard,
     _LeaderboardParser,
+    babolna_oct_2026_boards,
+    boekelo_oct_2026_boards,
     burghley_sep_2026_boards,
     hambach_aug_2026_boards,
     langenhagen_sep_2026_boards,
@@ -10494,6 +10496,67 @@ class RechenstelleTests(unittest.TestCase):
         results = parse_leaderboard_results(LANGENHAGEN_INTRO_START_LIST_HTML, board=board)
         self.assertEqual(results, [])
 
+    def test_boekelo_board_is_the_individual_ccio4_leaderboard(self):
+        boards = boekelo_oct_2026_boards()
+        self.assertEqual(len(boards), 1)
+        board = boards[0]
+        self.assertTrue(board.url.endswith("/2026/boekelo/leaderboard01.html"))
+        self.assertEqual(board.event_name, "Boekelo · CCIO4*-NC-L")
+        self.assertEqual(board.level, "CCIO4*-NC-L")
+        self.assertEqual(board.event_date, date(2026, 10, 1))
+        self.assertEqual(board.country, "NED")
+
+    def test_boekelo_final_uses_dressage_penalty_and_skips_xc_retirement(self):
+        board = boekelo_oct_2026_boards()[0]
+        results = parse_leaderboard_results(BOEKELO_CCIO4_FINAL_HTML, board=board)
+        self.assertEqual(len(results), 1)
+        leader = results[0]
+        self.assertEqual(leader.rider_name, "Julia KRAJEWSKI (GER)")
+        self.assertEqual(leader.horse_name, "Ero de Cantraie")
+        self.assertEqual(leader.dressage_score, 23.9)
+        self.assertEqual(leader.cross_country_jump_penalties, 0.4)
+        self.assertEqual(leader.cross_country_time_penalties, 0.0)
+        self.assertEqual(leader.show_jumping_penalties, 0.0)
+        self.assertEqual(leader.finishing_score, 24.3)
+        self.assertEqual(leader.event_date, date(2026, 10, 1))
+        horses = {result.horse_name for result in results}
+        self.assertNotIn("Withdrawn Horse", horses)
+
+    def test_babolna_boards_are_the_individual_cci_classes(self):
+        boards = babolna_oct_2026_boards()
+        self.assertEqual(
+            [board.url.rsplit("/", 1)[-1] for board in boards],
+            [
+                "leaderboard01.html",
+                "leaderboard02.html",
+                "leaderboard05.html",
+                "leaderboard04.html",
+            ],
+        )
+        self.assertEqual(
+            [board.level for board in boards],
+            ["CCI1*-Intro", "CCI2*-S", "CCI3*-S", "CCI4*-S"],
+        )
+        self.assertTrue(all(board.event_date == date(2026, 10, 8) for board in boards))
+        self.assertTrue(all(board.country == "HUN" for board in boards))
+        self.assertTrue(all("nationcup" not in board.url for board in boards))
+
+    def test_babolna_cci4_final_skips_cross_country_elimination(self):
+        board = babolna_oct_2026_boards()[-1]
+        results = parse_leaderboard_results(BABOLNA_CCI4_FINAL_HTML, board=board)
+        self.assertEqual(len(results), 1)
+        leader = results[0]
+        self.assertEqual(leader.rider_name, "Noémi Viola DOERFER (HUN)")
+        self.assertEqual(leader.horse_name, "Piltown Harry")
+        self.assertEqual(leader.level, "CCI4*-S")
+        self.assertEqual(leader.dressage_score, 34.6)
+        self.assertEqual(leader.cross_country_jump_penalties, 18.8)
+        self.assertEqual(leader.show_jumping_penalties, 4.0)
+        self.assertEqual(leader.finishing_score, 57.4)
+        self.assertEqual(leader.event_name, "Bábolna · CCI4*-S")
+        horses = {result.horse_name for result in results}
+        self.assertNotIn("Monroe de Hus", horses)
+
 
 LANGENHAGEN_CCI3_OLDER_DRESSAGE_HTML = """
 <html>
@@ -10679,6 +10742,122 @@ MECHTERSEN_CCI2_DRESSAGE_HTML = """
           <td>29,9</td>
           <td>1.</td>
           <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
+BOEKELO_CCIO4_FINAL_HTML = """
+<html>
+  <head><title>LeaderBoard · Boekelo 2026 · CCIO4*-NC-L</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Okt  4 2026  3:34PM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td>1.</td>
+          <td>460</td>
+          <td>Julia KRAJEWSKI</td>
+          <td><img src="../../../../flags/GER.PNG" alt="GER"></td>
+          <td>Ero de Cantraie</td>
+          <td>479,5</td>
+          <td>76,11</td>
+          <td>23,9</td>
+          <td>1.</td>
+          <td>0,4</td>
+          <td>10:01</td>
+          <td>24,3</td>
+          <td>1.</td>
+          <td>0,0</td>
+          <td>81,00</td>
+          <td>24,3</td>
+        </tr>
+        <tr class="parent1">
+          <td></td>
+          <td>449</td>
+          <td>Example RIDER</td>
+          <td><img src="../../../../flags/GBR.PNG" alt="GBR"></td>
+          <td>Withdrawn Horse</td>
+          <td>400,0</td>
+          <td>60,00</td>
+          <td>40,0</td>
+          <td></td>
+          <td></td>
+          <td>RT XC</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+"""
+
+
+BABOLNA_CCI4_FINAL_HTML = """
+<html>
+  <head><title>LeaderBoard · Bábolna 2026 · CCI4*-S</title></head>
+  <body>
+    <p class="lastupdate">Last Update: Okt 11 2026  9:37AM</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th><th>No.</th><th>Rider</th><th>&nbsp;</th><th>Horse</th>
+          <th>Dressage</th><th>Rank after Dressage</th>
+          <th>Cross-Country</th><th>Rank after Cross-Country</th>
+          <th>Jumping</th><th>Final Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="parent0">
+          <td>1.</td>
+          <td>33</td>
+          <td>Noémi Viola DOERFER</td>
+          <td><img src="../../../../flags/HUN.PNG" alt="HUN"></td>
+          <td>Piltown Harry</td>
+          <td>471,0</td>
+          <td>65,42</td>
+          <td>34,6</td>
+          <td>1.</td>
+          <td>18,8</td>
+          <td>07:09</td>
+          <td>53,4</td>
+          <td>1.</td>
+          <td>4,0</td>
+          <td>85,86</td>
+          <td>57,4</td>
+        </tr>
+        <tr class="parent1">
+          <td></td>
+          <td>27</td>
+          <td>Harald SIEGL</td>
+          <td><img src="../../../../flags/AUT.PNG" alt="AUT"></td>
+          <td>Monroe de Hus</td>
+          <td>460,0</td>
+          <td>63,89</td>
+          <td>36,1</td>
+          <td>3.</td>
+          <td></td>
+          <td>EL XC</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
         </tr>
       </tbody>
     </table>
