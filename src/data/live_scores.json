@@ -429,7 +429,7 @@
       "country": "HUN",
       "event_date": "2026-10-08",
       "event_name": "B\u00e1bolna \u00b7 CCI1*-Intro",
-      "latest_collected_at": "2026-10-11T10:13:53+00:00",
+      "latest_collected_at": "2026-10-11T11:11:51+00:00",
       "level": "CCI1*-Intro",
       "result_count": 28,
       "source_ids": [
@@ -437,7 +437,7 @@
       ],
       "standings": [
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.2,
           "finishing_score": 32.2,
@@ -448,7 +448,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 32.4,
           "finishing_score": 32.4,
@@ -459,7 +459,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 7.2,
           "dressage_score": 28.0,
           "finishing_score": 35.2,
@@ -470,7 +470,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 0.8,
           "dressage_score": 36.0,
           "finishing_score": 36.8,
@@ -481,7 +481,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 6.8,
           "dressage_score": 31.2,
           "finishing_score": 38.0,
@@ -492,7 +492,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 1.6,
           "dressage_score": 37.0,
           "finishing_score": 38.6,
@@ -503,7 +503,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 0.8,
           "dressage_score": 38.7,
           "finishing_score": 39.5,
@@ -514,7 +514,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 40.2,
           "finishing_score": 40.2,
@@ -525,7 +525,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 8.4,
           "dressage_score": 32.4,
           "finishing_score": 40.8,
@@ -536,7 +536,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 1.2,
           "dressage_score": 41.7,
           "finishing_score": 42.9,
@@ -547,7 +547,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 1.2,
           "dressage_score": 41.9,
           "finishing_score": 43.1,
@@ -558,7 +558,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 0.0,
           "dressage_score": 44.5,
           "finishing_score": 44.5,
@@ -569,7 +569,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 11.2,
           "dressage_score": 33.9,
           "finishing_score": 45.1,
@@ -580,7 +580,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 6.8,
           "dressage_score": 40.7,
           "finishing_score": 47.5,
@@ -591,7 +591,7 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 2.8,
           "dressage_score": 44.7,
           "finishing_score": 47.5,
@@ -602,139 +602,139 @@
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
-          "cross_country_penalties": 0.0,
-          "dressage_score": 48.9,
-          "finishing_score": 48.9,
-          "horse_name": "Sugo",
-          "rank": 16,
-          "rider_name": "Zita Emma SZERDAHELYI (HUN)",
-          "show_jumping_penalties": 0.0,
-          "source_id": "rechenstelle"
-        },
-        {
-          "collected_at": "2026-10-11T10:13:53+00:00",
-          "cross_country_penalties": 9.6,
-          "dressage_score": 41.3,
-          "finishing_score": 50.9,
-          "horse_name": "Sleipnir",
-          "rank": 17,
-          "rider_name": "Lilla V\u00c1MOSI (HUN)",
-          "show_jumping_penalties": 0.0,
-          "source_id": "rechenstelle"
-        },
-        {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 15.2,
           "dressage_score": 36.6,
-          "finishing_score": 51.8,
+          "finishing_score": 53.0,
           "horse_name": "Verano Z",
-          "rank": 18,
+          "rank": 16,
           "rider_name": "No\u00e9mi BAKONYI (HUN)",
-          "show_jumping_penalties": 0.0,
+          "show_jumping_penalties": 1.2,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
-          "cross_country_penalties": 21.6,
-          "dressage_score": 30.3,
-          "finishing_score": 51.9,
-          "horse_name": "High Destiny",
-          "rank": 19,
-          "rider_name": "Ines DOLLENZ (AUT)",
-          "show_jumping_penalties": 0.0,
+          "collected_at": "2026-10-11T11:11:51+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 48.9,
+          "finishing_score": 58.1,
+          "horse_name": "Sugo",
+          "rank": 17,
+          "rider_name": "Zita Emma SZERDAHELYI (HUN)",
+          "show_jumping_penalties": 9.2,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
-          "cross_country_penalties": 20.8,
-          "dressage_score": 36.0,
-          "finishing_score": 56.8,
-          "horse_name": "DSP Cortona",
-          "rank": 20,
-          "rider_name": "Eszter K\u00c1TAI (HUN)",
-          "show_jumping_penalties": 0.0,
-          "source_id": "rechenstelle"
-        },
-        {
-          "collected_at": "2026-10-11T10:13:53+00:00",
-          "cross_country_penalties": 16.0,
-          "dressage_score": 41.1,
-          "finishing_score": 57.1,
-          "horse_name": "Spero",
-          "rank": 21,
-          "rider_name": "Lili DOBOS (HUN)",
-          "show_jumping_penalties": 0.0,
-          "source_id": "rechenstelle"
-        },
-        {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 25.6,
           "dressage_score": 34.8,
           "finishing_score": 60.4,
           "horse_name": "Flynn",
-          "rank": 22,
+          "rank": 18,
           "rider_name": "Petra KULCS\u00c1R (HUN)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 22.4,
           "dressage_score": 39.5,
           "finishing_score": 61.9,
           "horse_name": "Vincenzo 24",
-          "rank": 23,
+          "rank": 19,
           "rider_name": "Karolina SZ\u00c1SZ (HUN)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
+          "cross_country_penalties": 20.8,
+          "dressage_score": 36.0,
+          "finishing_score": 64.8,
+          "horse_name": "DSP Cortona",
+          "rank": 20,
+          "rider_name": "Eszter K\u00c1TAI (HUN)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-10-11T11:11:51+00:00",
+          "cross_country_penalties": 16.0,
+          "dressage_score": 41.1,
+          "finishing_score": 65.1,
+          "horse_name": "Spero",
+          "rank": 21,
+          "rider_name": "Lili DOBOS (HUN)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 28.8,
           "dressage_score": 36.4,
           "finishing_score": 65.2,
           "horse_name": "Miss Twinni",
-          "rank": 24,
+          "rank": 22,
           "rider_name": "Kata TORM\u00c1SI (HUN)",
           "show_jumping_penalties": 0.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
-          "cross_country_penalties": 37.2,
-          "dressage_score": 30.4,
-          "finishing_score": 67.6,
-          "horse_name": "Estella Rcf",
-          "rank": 25,
-          "rider_name": "Petra RADNER (AUT)",
-          "show_jumping_penalties": 0.0,
+          "collected_at": "2026-10-11T11:11:51+00:00",
+          "cross_country_penalties": 21.6,
+          "dressage_score": 30.3,
+          "finishing_score": 70.7,
+          "horse_name": "High Destiny",
+          "rank": 23,
+          "rider_name": "Ines DOLLENZ (AUT)",
+          "show_jumping_penalties": 18.8,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
+          "cross_country_penalties": 9.6,
+          "dressage_score": 41.3,
+          "finishing_score": 70.9,
+          "horse_name": "Sleipnir",
+          "rank": 24,
+          "rider_name": "Lilla V\u00c1MOSI (HUN)",
+          "show_jumping_penalties": 20.0,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 34.8,
           "dressage_score": 34.2,
-          "finishing_score": 69.0,
+          "finishing_score": 71.0,
           "horse_name": "Castro",
-          "rank": 26,
+          "rank": 25,
           "rider_name": "Gabriella L\u00c1SZL\u00d3 (HUN)",
-          "show_jumping_penalties": 0.0,
+          "show_jumping_penalties": 2.0,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
+          "cross_country_penalties": 37.2,
+          "dressage_score": 30.4,
+          "finishing_score": 82.0,
+          "horse_name": "Estella Rcf",
+          "rank": 26,
+          "rider_name": "Petra RADNER (AUT)",
+          "show_jumping_penalties": 14.4,
+          "source_id": "rechenstelle"
+        },
+        {
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 38.4,
           "dressage_score": 36.1,
-          "finishing_score": 74.5,
+          "finishing_score": 84.9,
           "horse_name": "Atlasz",
           "rank": 27,
           "rider_name": "Rego CSEPPENTO (HUN)",
-          "show_jumping_penalties": 0.0,
+          "show_jumping_penalties": 10.4,
           "source_id": "rechenstelle"
         },
         {
-          "collected_at": "2026-10-11T10:13:53+00:00",
+          "collected_at": "2026-10-11T11:11:51+00:00",
           "cross_country_penalties": 83.6,
           "dressage_score": 36.0,
           "finishing_score": 119.6,
@@ -18655,8 +18655,8 @@
       ]
     }
   ],
-  "generated_at": "2026-10-11T10:13:53+00:00",
-  "latest_collected_at": "2026-10-11T10:13:53+00:00",
+  "generated_at": "2026-10-11T11:11:51+00:00",
+  "latest_collected_at": "2026-10-11T11:11:51+00:00",
   "result_count": 1626,
   "source_ids": [
     "asiangames",
