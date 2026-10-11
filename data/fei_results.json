@@ -68341,7 +68341,7 @@
       "source_record_id": "rechenstelle:ffe275995f6c807d"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 6.8,
       "cross_country_time_penalties": 0.0,
@@ -68352,27 +68352,10 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Daniel DUNST (AUT)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.4,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:26c25cba37c9cb89"
-    },
-    {
-      "collected_at": "2026-10-11T11:11:51+00:00",
-      "country": "HUN",
-      "cross_country_jump_penalties": 1.2,
-      "cross_country_time_penalties": 0.0,
-      "dressage_score": 41.7,
-      "event_date": "2026-10-08",
-      "event_name": "B\u00e1bolna \u00b7 CCI1*-Intro",
-      "horse_name": "Valencia",
-      "is_user_entered": false,
-      "level": "CCI1*-Intro",
-      "rider_name": "Eliza Beatrix HOCK (HUN)",
-      "show_jumping_penalties": 0.0,
-      "source_id": "rechenstelle",
-      "source_priority": 5,
-      "source_record_id": "rechenstelle:3b2505d5d0103745"
     },
     {
       "collected_at": "2026-10-11T10:13:53+00:00",
@@ -68392,7 +68375,7 @@
       "source_record_id": "rechenstelle:7bcc398bb24dc922"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 20.8,
       "cross_country_time_penalties": 0.0,
@@ -68409,7 +68392,7 @@
       "source_record_id": "rechenstelle:84ffea3447911ac7"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 34.8,
       "cross_country_time_penalties": 0.0,
@@ -68494,7 +68477,7 @@
       "source_record_id": "rechenstelle:c221bfbbd89a9584"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 21.6,
       "cross_country_time_penalties": 0.0,
@@ -68528,7 +68511,7 @@
       "source_record_id": "rechenstelle:274fa837b837ac32"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 0.8,
       "cross_country_time_penalties": 0.0,
@@ -68539,13 +68522,13 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Josefine FRAUSCHER (AUT)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:25931a236bd985d5"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -68556,13 +68539,13 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "J\u00falia N\u00c9METH (HUN)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 8.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:5a0605bde84392da"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 83.6,
       "cross_country_time_penalties": 0.0,
@@ -68579,7 +68562,7 @@
       "source_record_id": "rechenstelle:9d1c30b7a20bcaeb"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 22.4,
       "cross_country_time_penalties": 0.0,
@@ -68590,13 +68573,13 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Karolina SZ\u00c1SZ (HUN)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 10.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:c46e32135e9cd06a"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 28.8,
       "cross_country_time_penalties": 0.0,
@@ -68664,7 +68647,7 @@
       "source_record_id": "rechenstelle:341216afc452cd2a"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 0.8,
       "cross_country_time_penalties": 0.0,
@@ -68675,13 +68658,13 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Laura LIENHART (AUT)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 12.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:836b0bf81ecdc0c2"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 16.0,
       "cross_country_time_penalties": 0.0,
@@ -68698,7 +68681,7 @@
       "source_record_id": "rechenstelle:c510cdefec0ed718"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 9.6,
       "cross_country_time_penalties": 0.0,
@@ -68732,7 +68715,7 @@
       "source_record_id": "rechenstelle:ec233d7575496603"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 7.2,
       "cross_country_time_penalties": 0.0,
@@ -68743,7 +68726,7 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Lisa HELD-DUNST (AUT)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 8.4,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:07e4432f29a5613a"
@@ -68766,7 +68749,7 @@
       "source_record_id": "rechenstelle:965598529f56e3fd"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -68777,7 +68760,7 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Liza TAMASI (HUN)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 33.2,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:dd60e87935679fa0"
@@ -68851,7 +68834,7 @@
       "source_record_id": "rechenstelle:e6860f0125fb50f5"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 11.2,
       "cross_country_time_penalties": 0.0,
@@ -68862,7 +68845,7 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Nadine HOFMANN (GER)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 16.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:09539154f770a5c9"
@@ -68953,7 +68936,7 @@
       "source_record_id": "rechenstelle:952a0896259f610b"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -68964,13 +68947,13 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Norina JAKLI (HUN)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 0.8,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:e02324498f77a780"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 15.2,
       "cross_country_time_penalties": 0.0,
@@ -69021,7 +69004,7 @@
       "source_record_id": "rechenstelle:857ce12f967b240c"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 25.6,
       "cross_country_time_penalties": 0.0,
@@ -69038,7 +69021,7 @@
       "source_record_id": "rechenstelle:7c73afc4243df5eb"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 6.8,
       "cross_country_time_penalties": 0.0,
@@ -69049,13 +69032,13 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Petra PETER (ROU)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:7091ac851c9a64ee"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 37.2,
       "cross_country_time_penalties": 0.0,
@@ -69106,7 +69089,7 @@
       "source_record_id": "rechenstelle:3f5f60c68d3d0800"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 1.2,
       "cross_country_time_penalties": 0.0,
@@ -69117,13 +69100,13 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "P\u00e9ter TUSKA (HUN)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 24.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:4d7f846dcc92498b"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 38.4,
       "cross_country_time_penalties": 0.0,
@@ -69157,7 +69140,7 @@
       "source_record_id": "rechenstelle:ca6e2f660bbfa366"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -69168,13 +69151,13 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Tibor L\u00e1szl\u00f3 PALKOVICS (HUN)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 20.4,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:f22ed137b9a42742"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 1.6,
       "cross_country_time_penalties": 0.0,
@@ -69185,13 +69168,13 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Valentina BENITEZ VALLE (GER)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.4,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:185384e7d4606faa"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 8.4,
       "cross_country_time_penalties": 0.0,
@@ -69202,7 +69185,7 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "Vanda PINT\u00c9R (HUN)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 4.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:434796db99ba13a4"
@@ -69225,7 +69208,7 @@
       "source_record_id": "rechenstelle:37ac1e06b19b8d0e"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -69259,7 +69242,7 @@
       "source_record_id": "rechenstelle:fe73ebcaca7f3497"
     },
     {
-      "collected_at": "2026-10-11T11:11:51+00:00",
+      "collected_at": "2026-10-11T12:09:29+00:00",
       "country": "HUN",
       "cross_country_jump_penalties": 2.8,
       "cross_country_time_penalties": 0.0,
@@ -69270,13 +69253,13 @@
       "is_user_entered": false,
       "level": "CCI1*-Intro",
       "rider_name": "\u00d6rs HATVANI (HUN)",
-      "show_jumping_penalties": 0.0,
+      "show_jumping_penalties": 6.0,
       "source_id": "rechenstelle",
       "source_priority": 5,
       "source_record_id": "rechenstelle:6504d4740c05d134"
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-10-11T11:11:51+00:00",
+  "updated_at": "2026-10-11T12:09:29+00:00",
   "version": 1
 }
