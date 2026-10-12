@@ -70,6 +70,7 @@ describe('live score helpers', () => {
     expect(formatSourceList(['eventing_ireland'])).toBe('Eventing Ireland');
     expect(formatSourceList(['evententries'])).toBe('Event Entries');
     expect(formatSourceList(['usea'])).toBe('USEA');
+    expect(formatSourceList(['worldsporttiming'])).toBe('World Sport Timing');
   });
 
   it('formats missing live phase values as explicit dashes', () => {
