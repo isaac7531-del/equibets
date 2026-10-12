@@ -91,6 +91,7 @@ const sourceLabels: Record<string, string> = {
   eventing_ireland: 'Eventing Ireland',
   evententries: 'Event Entries',
   usea: 'USEA',
+  worldsporttiming: 'World Sport Timing',
 };
 
 export const formatSourceId = (sourceId: string) => sourceLabels[sourceId] ?? sourceId;

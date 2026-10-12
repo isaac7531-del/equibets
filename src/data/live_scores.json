@@ -1,6 +1,395 @@
 {
-  "event_count": 59,
+  "event_count": 61,
   "events": [
+    {
+      "country": "USA",
+      "event_date": "2026-10-08",
+      "event_name": "Morven Park \u00b7 CCI4*-S",
+      "latest_collected_at": "2026-10-12T02:12:46+00:00",
+      "level": "CCI4*-S",
+      "result_count": 12,
+      "source_ids": [
+        "worldsporttiming"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 13.2,
+          "dressage_score": 28.7,
+          "finishing_score": 41.9,
+          "horse_name": "COMMANDO 3",
+          "rank": 1,
+          "rider_name": "Boyd MARTIN (USA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 8.8,
+          "dressage_score": 33.5,
+          "finishing_score": 42.3,
+          "horse_name": "RF REDFERN",
+          "rank": 2,
+          "rider_name": "Ema KLUGMAN (AUS)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 8.4,
+          "dressage_score": 35.0,
+          "finishing_score": 47.8,
+          "horse_name": "BOX COMO",
+          "rank": 3,
+          "rider_name": "William COLEMAN (USA)",
+          "show_jumping_penalties": 4.4,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 25.6,
+          "dressage_score": 27.2,
+          "finishing_score": 54.8,
+          "horse_name": "FALCON CROWN Z",
+          "rank": 4,
+          "rider_name": "Meg PELLEGRINI (USA)",
+          "show_jumping_penalties": 2.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 18.0,
+          "dressage_score": 36.3,
+          "finishing_score": 58.7,
+          "horse_name": "MBF STARBURST",
+          "rank": 5,
+          "rider_name": "Alexandra KNOWLES (USA)",
+          "show_jumping_penalties": 4.4,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 18.0,
+          "dressage_score": 35.5,
+          "finishing_score": 59.1,
+          "horse_name": "DONDANTE",
+          "rank": 6,
+          "rider_name": "Meg PELLEGRINI (USA)",
+          "show_jumping_penalties": 5.6,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 26.4,
+          "dressage_score": 35.0,
+          "finishing_score": 69.8,
+          "horse_name": "CRYSTAL CRESCENT MOON",
+          "rank": 7,
+          "rider_name": "Allison SPRINGER (USA)",
+          "show_jumping_penalties": 8.4,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 20.0,
+          "dressage_score": 38.9,
+          "finishing_score": 76.5,
+          "horse_name": "PEACE OUT MAN",
+          "rank": 8,
+          "rider_name": "Sarah WYSSEN (CAN)",
+          "show_jumping_penalties": 17.6,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 32.4,
+          "dressage_score": 39.9,
+          "finishing_score": 76.7,
+          "horse_name": "D.A. NIXON",
+          "rank": 9,
+          "rider_name": "Mia FARLEY (USA)",
+          "show_jumping_penalties": 4.4,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 21.2,
+          "dressage_score": 40.8,
+          "finishing_score": 84.4,
+          "horse_name": "MGH MR MESSACK",
+          "rank": 10,
+          "rider_name": "Lucia STRINI (USA)",
+          "show_jumping_penalties": 22.4,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 50.8,
+          "dressage_score": 43.9,
+          "finishing_score": 94.7,
+          "horse_name": "COOLEY SPACE GREY",
+          "rank": 11,
+          "rider_name": "Brooke BURCHIANTI (USA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 68.8,
+          "dressage_score": 38.5,
+          "finishing_score": 120.9,
+          "horse_name": "RIDGETOP PIRATE BLUE",
+          "rank": 12,
+          "rider_name": "Margo GOLDFARB (USA)",
+          "show_jumping_penalties": 13.6,
+          "source_id": "worldsporttiming"
+        }
+      ]
+    },
+    {
+      "country": "USA",
+      "event_date": "2026-10-08",
+      "event_name": "Morven Park \u00b7 CCI4*-L",
+      "latest_collected_at": "2026-10-12T02:12:46+00:00",
+      "level": "CCI4*-L",
+      "result_count": 21,
+      "source_ids": [
+        "worldsporttiming"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 4.8,
+          "dressage_score": 26.0,
+          "finishing_score": 30.8,
+          "horse_name": "CLAUS 63",
+          "rank": 1,
+          "rider_name": "Sharon WHITE (USA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 28.6,
+          "finishing_score": 36.6,
+          "horse_name": "OFF THE RECORD",
+          "rank": 2,
+          "rider_name": "William COLEMAN (USA)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 8.4,
+          "dressage_score": 31.4,
+          "finishing_score": 39.8,
+          "horse_name": "INVICTUS",
+          "rank": 3,
+          "rider_name": "Mia FARLEY (USA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 4.0,
+          "dressage_score": 36.0,
+          "finishing_score": 40.0,
+          "horse_name": "EINDHOVEN GARETTE",
+          "rank": 4,
+          "rider_name": "Shannon LILLEY (USA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 12.8,
+          "dressage_score": 26.9,
+          "finishing_score": 40.5,
+          "horse_name": "LOVEDANCE",
+          "rank": 5,
+          "rider_name": "Laine ASHKER (USA)",
+          "show_jumping_penalties": 0.8,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 6.4,
+          "dressage_score": 35.6,
+          "finishing_score": 42.0,
+          "horse_name": "COOLEY BALTIC SEA",
+          "rank": 6,
+          "rider_name": "Arielle AHARONI (USA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 28.9,
+          "finishing_score": 42.5,
+          "horse_name": "CONNER",
+          "rank": 7,
+          "rider_name": "Isabelle BOSLEY (USA)",
+          "show_jumping_penalties": 13.6,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 8.4,
+          "dressage_score": 34.9,
+          "finishing_score": 43.3,
+          "horse_name": "LEO SANTOS",
+          "rank": 8,
+          "rider_name": "Alexandra KNOWLES (USA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 8.8,
+          "dressage_score": 34.8,
+          "finishing_score": 43.6,
+          "horse_name": "CASH POINT",
+          "rank": 9,
+          "rider_name": "Savannah FULTON (USA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 20.0,
+          "dressage_score": 28.8,
+          "finishing_score": 48.8,
+          "horse_name": "HSH CONNOR",
+          "rank": 10,
+          "rider_name": "Caroline PAMUKCU (USA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 8.4,
+          "dressage_score": 37.3,
+          "finishing_score": 58.1,
+          "horse_name": "LITTLE HAIL",
+          "rank": 11,
+          "rider_name": "Alexandra KUHN (USA)",
+          "show_jumping_penalties": 12.4,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 19.2,
+          "dressage_score": 39.4,
+          "finishing_score": 60.2,
+          "horse_name": "SHANACLOUGH QUALITY CLOVER",
+          "rank": 12,
+          "rider_name": "Moriah ORMS (USA)",
+          "show_jumping_penalties": 1.6,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 22.8,
+          "dressage_score": 32.1,
+          "finishing_score": 62.9,
+          "horse_name": "HOPAK DE GREENBAY Z",
+          "rank": 13,
+          "rider_name": "Woods BAUGHMAN (USA)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 16.4,
+          "dressage_score": 35.6,
+          "finishing_score": 68.8,
+          "horse_name": "TRADITIONALLY FERNHILL",
+          "rank": 14,
+          "rider_name": "Gabby DICKERSON (USA)",
+          "show_jumping_penalties": 16.8,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 15.2,
+          "dressage_score": 40.4,
+          "finishing_score": 68.8,
+          "horse_name": "GO GO",
+          "rank": 14,
+          "rider_name": "Sara Beth ANTON (USA)",
+          "show_jumping_penalties": 13.2,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 21.6,
+          "dressage_score": 34.2,
+          "finishing_score": 69.4,
+          "horse_name": "HSH SEBASTIAN",
+          "rank": 16,
+          "rider_name": "Caroline PAMUKCU (USA)",
+          "show_jumping_penalties": 13.6,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 42.8,
+          "dressage_score": 28.3,
+          "finishing_score": 71.1,
+          "horse_name": "LUKE 140",
+          "rank": 17,
+          "rider_name": "Boyd MARTIN (USA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 41.6,
+          "dressage_score": 29.8,
+          "finishing_score": 75.4,
+          "horse_name": "COOLEY CORRAGHY DIAMOND",
+          "rank": 18,
+          "rider_name": "Kimberly SEVERSON (USA)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 21.0,
+          "dressage_score": 38.7,
+          "finishing_score": 75.7,
+          "horse_name": "VENEZUELAN RIVER",
+          "rank": 19,
+          "rider_name": "Tracey BIENEMANN (USA)",
+          "show_jumping_penalties": 16.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 41.2,
+          "dressage_score": 36.6,
+          "finishing_score": 99.8,
+          "horse_name": "CASALTO",
+          "rank": 20,
+          "rider_name": "Gabby DICKERSON (USA)",
+          "show_jumping_penalties": 22.0,
+          "source_id": "worldsporttiming"
+        },
+        {
+          "collected_at": "2026-10-12T02:12:46+00:00",
+          "cross_country_penalties": 69.6,
+          "dressage_score": 32.6,
+          "finishing_score": 111.8,
+          "horse_name": "HSH TOLAN KING",
+          "rank": 21,
+          "rider_name": "Caroline PAMUKCU (USA)",
+          "show_jumping_penalties": 9.6,
+          "source_id": "worldsporttiming"
+        }
+      ]
+    },
     {
       "country": "HUN",
       "event_date": "2026-10-08",
@@ -18644,9 +19033,9 @@
       ]
     }
   ],
-  "generated_at": "2026-10-11T12:09:29+00:00",
-  "latest_collected_at": "2026-10-11T12:09:29+00:00",
-  "result_count": 1625,
+  "generated_at": "2026-10-12T02:12:46+00:00",
+  "latest_collected_at": "2026-10-12T02:12:46+00:00",
+  "result_count": 1658,
   "source_ids": [
     "asiangames",
     "evententries",
@@ -18655,7 +19044,8 @@
     "horses_competitions",
     "rechenstelle",
     "showconnect",
-    "usea"
+    "usea",
+    "worldsporttiming"
   ],
   "version": 1,
   "window": {
