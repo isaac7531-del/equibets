@@ -16,8 +16,6 @@ from dataclasses import dataclass
 from datetime import date, datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
-from urllib.error import HTTPError, URLError
-from urllib.request import Request, urlopen
 
 from equibets.live_scores import build_live_score_payload, write_live_score_payload
 from equibets.rechenstelle import merge_into_store
@@ -26,10 +24,6 @@ from equibets.results import EventingResult
 
 SOURCE_ID = "worldsporttiming"
 SOURCE_PRIORITY = 6
-DEFAULT_USER_AGENT = (
-    "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-    "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
-)
 PAIR_RE = re.compile(r"^\s*(-?\d+(?:\.\d+)?)\s*/\s*(-?\d+(?:\.\d+)?)\s*$")
 NUMBER_RE = re.compile(r"^(-?\d+(?:\.\d+)?)")
 STATUS_RE = re.compile(r"[A-Za-z]")
@@ -51,6 +45,20 @@ MORVEN_PARK_OCT_2026 = (
         "level": "CCI4*-S",
         "event_date": date(2026, 10, 8),
         "country": "USA",
+    },
+)
+
+# Mondial du Lion, Le Lion d'Angers, 15–18 Oct 2026.
+# The stored show date is the first day of the meeting. Only the finished
+# 6-year-old show-jumping classification is included. The 7-year-old class
+# stays out until its result page has a show-jumping cell for every starter.
+MONDIAL_DU_LION_OCT_2026 = (
+    {
+        "url": "https://results.worldsporttiming.com/2026/mondial-du-lion/competition/6YO-SJ/result",
+        "event_name": "Mondial du Lion · 6-year-old",
+        "level": "6-year-old",
+        "event_date": date(2026, 10, 15),
+        "country": "FRA",
     },
 )
 
@@ -145,17 +153,25 @@ class _ResultParser(HTMLParser):
 
 
 def fetch_result_html(url: str, *, timeout: float = 45.0) -> str:
-    """Fetch a World Sport Timing result page as text."""
+    """Fetch a World Sport Timing result page as text.
 
-    request = Request(url, headers={"User-Agent": DEFAULT_USER_AGENT, "Accept": "text/html"})
+    Direct urllib receives a Cloudflare challenge. One fresh browser-impersonation
+    session per URL returns the raw result document.
+    """
+
+    from curl_cffi import requests
+
+    session = requests.Session(impersonate="chrome136")
     try:
-        with urlopen(request, timeout=timeout) as response:
-            charset = response.headers.get_content_charset() or "utf-8"
-            return response.read().decode(charset, errors="replace")
-    except HTTPError as exc:
-        raise RuntimeError(f"Failed to fetch {url}: HTTP {exc.code}") from exc
-    except URLError as exc:
-        raise RuntimeError(f"Failed to fetch {url}: {exc.reason}") from exc
+        response = session.get(url, timeout=timeout)
+    except Exception as exc:
+        raise RuntimeError(f"Failed to fetch {url}: {exc}") from exc
+    finally:
+        session.close()
+    if response.status_code != 200:
+        raise RuntimeError(f"Failed to fetch {url}: HTTP {response.status_code}")
+    charset = response.encoding or "utf-8"
+    return response.content.decode(charset, errors="replace")
 
 
 def parse_result_page(
@@ -183,6 +199,12 @@ def morven_park_oct_2026_boards() -> list[WorldSportTimingBoard]:
     """Return the Morven Park October 2026 CCI final pages."""
 
     return [WorldSportTimingBoard(**item) for item in MORVEN_PARK_OCT_2026]
+
+
+def mondial_du_lion_oct_2026_boards() -> list[WorldSportTimingBoard]:
+    """Return the finished Mondial du Lion October 2026 6-year-old final."""
+
+    return [WorldSportTimingBoard(**item) for item in MONDIAL_DU_LION_OCT_2026]
 
 
 def collect_boards(
@@ -297,6 +319,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull the Morven Park October 2026 CCI4*-L and CCI4*-S finals",
     )
+    parser.add_argument(
+        "--mondial-du-lion-2026",
+        action="store_true",
+        help="Pull the finished Mondial du Lion October 2026 6-year-old final",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--start-date", type=_date_arg, help="Live snapshot window start, YYYY-MM-DD")
@@ -307,8 +334,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     boards: list[WorldSportTimingBoard] = []
     if args.morven_park_2026:
         boards.extend(morven_park_oct_2026_boards())
+    if args.mondial_du_lion_2026:
+        boards.extend(mondial_du_lion_oct_2026_boards())
     if not boards:
-        raise SystemExit("Specify --morven-park-2026")
+        raise SystemExit("Specify --morven-park-2026 or --mondial-du-lion-2026")
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)
     results = collect_boards(boards, collected_at=collected_at)

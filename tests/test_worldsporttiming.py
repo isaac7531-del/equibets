@@ -7,6 +7,7 @@ from datetime import date, datetime, timezone
 
 from equibets.worldsporttiming import (
     WorldSportTimingBoard,
+    mondial_du_lion_oct_2026_boards,
     morven_park_oct_2026_boards,
     parse_result_page,
 )
@@ -153,6 +154,16 @@ class WorldSportTimingTests(unittest.TestCase):
         self.assertTrue(all(board.event_date == date(2026, 10, 8) for board in boards))
         self.assertTrue(all(board.country == "USA" for board in boards))
         self.assertTrue(all(board.url.startswith("https://results.worldsporttiming.com/") for board in boards))
+
+    def test_mondial_du_lion_board_is_the_finished_six_year_old_final(self) -> None:
+        boards = mondial_du_lion_oct_2026_boards()
+        self.assertEqual(len(boards), 1)
+        board = boards[0]
+        self.assertEqual(board.event_name, "Mondial du Lion · 6-year-old")
+        self.assertEqual(board.level, "6-year-old")
+        self.assertEqual(board.event_date, date(2026, 10, 15))
+        self.assertEqual(board.country, "FRA")
+        self.assertTrue(board.url.endswith("/6YO-SJ/result"))
 
 
 if __name__ == "__main__":
