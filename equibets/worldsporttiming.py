@@ -49,14 +49,21 @@ MORVEN_PARK_OCT_2026 = (
 )
 
 # Mondial du Lion, Le Lion d'Angers, 15–18 Oct 2026.
-# The stored show date is the first day of the meeting. Only the finished
-# 6-year-old show-jumping classification is included. The 7-year-old class
-# stays out until its result page has a show-jumping cell for every starter.
+# The stored show date is the first day of the meeting. Both finished
+# show-jumping classifications are included. A class stays out while its
+# overview control is Live or any starter still lacks a show-jumping cell.
 MONDIAL_DU_LION_OCT_2026 = (
     {
         "url": "https://results.worldsporttiming.com/2026/mondial-du-lion/competition/6YO-SJ/result",
         "event_name": "Mondial du Lion · 6-year-old",
         "level": "6-year-old",
+        "event_date": date(2026, 10, 15),
+        "country": "FRA",
+    },
+    {
+        "url": "https://results.worldsporttiming.com/2026/mondial-du-lion/competition/7YO-SJ/result",
+        "event_name": "Mondial du Lion · 7-year-old",
+        "level": "7-year-old",
         "event_date": date(2026, 10, 15),
         "country": "FRA",
     },
@@ -202,7 +209,7 @@ def morven_park_oct_2026_boards() -> list[WorldSportTimingBoard]:
 
 
 def mondial_du_lion_oct_2026_boards() -> list[WorldSportTimingBoard]:
-    """Return the finished Mondial du Lion October 2026 6-year-old final."""
+    """Return the finished Mondial du Lion October 2026 show-jumping finals."""
 
     return [WorldSportTimingBoard(**item) for item in MONDIAL_DU_LION_OCT_2026]
 
@@ -322,7 +329,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument(
         "--mondial-du-lion-2026",
         action="store_true",
-        help="Pull the finished Mondial du Lion October 2026 6-year-old final",
+        help="Pull the finished Mondial du Lion October 2026 6- and 7-year-old finals",
     )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
