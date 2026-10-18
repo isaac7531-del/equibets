@@ -155,15 +155,19 @@ class WorldSportTimingTests(unittest.TestCase):
         self.assertTrue(all(board.country == "USA" for board in boards))
         self.assertTrue(all(board.url.startswith("https://results.worldsporttiming.com/") for board in boards))
 
-    def test_mondial_du_lion_board_is_the_finished_six_year_old_final(self) -> None:
+    def test_mondial_du_lion_boards_are_the_finished_finals(self) -> None:
         boards = mondial_du_lion_oct_2026_boards()
-        self.assertEqual(len(boards), 1)
-        board = boards[0]
-        self.assertEqual(board.event_name, "Mondial du Lion · 6-year-old")
-        self.assertEqual(board.level, "6-year-old")
-        self.assertEqual(board.event_date, date(2026, 10, 15))
-        self.assertEqual(board.country, "FRA")
-        self.assertTrue(board.url.endswith("/6YO-SJ/result"))
+        self.assertEqual(
+            [(board.level, board.event_name) for board in boards],
+            [
+                ("6-year-old", "Mondial du Lion · 6-year-old"),
+                ("7-year-old", "Mondial du Lion · 7-year-old"),
+            ],
+        )
+        self.assertTrue(all(board.event_date == date(2026, 10, 15) for board in boards))
+        self.assertTrue(all(board.country == "FRA" for board in boards))
+        self.assertTrue(boards[0].url.endswith("/6YO-SJ/result"))
+        self.assertTrue(boards[1].url.endswith("/7YO-SJ/result"))
 
 
 if __name__ == "__main__":
