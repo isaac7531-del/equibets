@@ -64,6 +64,17 @@ STABLE_VIEW_SEP_2026 = {
     "event_date": date(2026, 9, 25),
     "country": "USA",
 }
+
+# Hagyard Midsouth Three-day Event, 14–18 Oct 2026 (USEA 19108).
+# The public results board is the finished classification. National horse-trial
+# sections on the same page are skipped. A blank horse profile link has no
+# horse name on the board, so that row stays out until USEA publishes one.
+HAGYARD_MIDSOUTH_OCT_2026 = {
+    "event_id": "19108",
+    "event_title": "Hagyard Midsouth",
+    "event_date": date(2026, 10, 14),
+    "country": "USA",
+}
 PROVISIONAL_SOURCE_ID = "evententries"
 
 
@@ -233,6 +244,12 @@ def stable_view_sep_2026_event() -> UseaEvent:
     return UseaEvent(**STABLE_VIEW_SEP_2026)
 
 
+def hagyard_midsouth_oct_2026_event() -> UseaEvent:
+    """Return the Hagyard Midsouth October 2026 USEA results event."""
+
+    return UseaEvent(**HAGYARD_MIDSOUTH_OCT_2026)
+
+
 def merge_published_finals(store_path: Path, final_results: Sequence[EventingResult]) -> list[EventingResult]:
     """Merge USEA finals and drop provisional rows for those same classes.
 
@@ -388,6 +405,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull Stable View Oktoberfest 2026 CCI finals",
     )
+    parser.add_argument(
+        "--hagyard-2026",
+        action="store_true",
+        help="Pull Hagyard Midsouth October 2026 CCI finals",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--dry-run", action="store_true")
@@ -400,8 +422,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         events.append(fork_tryon_sep_2026_event())
     if args.stable_view_2026:
         events.append(stable_view_sep_2026_event())
+    if args.hagyard_2026:
+        events.append(hagyard_midsouth_oct_2026_event())
     if not events:
-        raise SystemExit("Specify --plantation-2026, --fork-tryon-2026, or --stable-view-2026")
+        raise SystemExit(
+            "Specify --plantation-2026, --fork-tryon-2026, --stable-view-2026, or --hagyard-2026"
+        )
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)
     results = collect_events(events, collected_at=collected_at)

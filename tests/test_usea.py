@@ -15,6 +15,7 @@ from equibets.usea import (
     parse_results_html,
     plantation_sep_2026_event,
     results_url,
+    hagyard_midsouth_oct_2026_event,
     stable_view_sep_2026_event,
 )
 
@@ -132,6 +133,17 @@ class UseaResultsTests(unittest.TestCase):
         self.assertEqual(lovedance.country, "USA")
         self.assertEqual(lovedance.source_id, "usea")
         self.assertTrue(lovedance.source_record_id.startswith("usea:"))
+
+    def test_hagyard_midsouth_event_uses_the_october_results_page(self) -> None:
+        event = hagyard_midsouth_oct_2026_event()
+        self.assertEqual(event.event_id, "19108")
+        self.assertEqual(event.event_title, "Hagyard Midsouth")
+        self.assertEqual(event.event_date, date(2026, 10, 14))
+        self.assertEqual(event.country, "USA")
+        self.assertEqual(
+            event.url,
+            "https://useventing.com/events-competitions/resources/results/item?event=19108",
+        )
 
     def test_stable_view_event_uses_the_oktoberfest_results_page(self) -> None:
         event = stable_view_sep_2026_event()
