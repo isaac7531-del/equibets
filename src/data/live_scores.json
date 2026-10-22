@@ -1,5 +1,5 @@
 {
-  "event_count": 66,
+  "event_count": 67,
   "events": [
     {
       "country": "FRA",
@@ -948,6 +948,338 @@
           "rider_name": "Miroslav TRUNDA (CZE)",
           "show_jumping_penalties": 2.0,
           "source_id": "worldsporttiming"
+        }
+      ]
+    },
+    {
+      "country": "USA",
+      "event_date": "2026-10-15",
+      "event_name": "Maryland \u00b7 CCI3*-L",
+      "latest_collected_at": "2026-10-22T08:09:00+00:00",
+      "level": "CCI3*-L",
+      "result_count": 29,
+      "source_ids": [
+        "usea"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 31.3,
+          "finishing_score": 31.3,
+          "horse_name": "Valkyrie",
+          "rank": 1,
+          "rider_name": "Monica Spencer",
+          "show_jumping_penalties": 0.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 28.1,
+          "finishing_score": 32.1,
+          "horse_name": "Arden Augustus",
+          "rank": 2,
+          "rider_name": "Sharon L. White",
+          "show_jumping_penalties": 4.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 3.6,
+          "dressage_score": 28.6,
+          "finishing_score": 32.6,
+          "horse_name": "HSH Talbots Hill",
+          "rank": 3,
+          "rider_name": "Caroline Pamukcu",
+          "show_jumping_penalties": 0.4,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 2.4,
+          "dressage_score": 29.9,
+          "finishing_score": 36.3,
+          "horse_name": "Cashflow GS",
+          "rank": 4,
+          "rider_name": "Holly Payne Caravella",
+          "show_jumping_penalties": 4.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 10.8,
+          "dressage_score": 27.8,
+          "finishing_score": 38.6,
+          "horse_name": "Adagio's Nobility",
+          "rank": 5,
+          "rider_name": "Ariel Grald",
+          "show_jumping_penalties": 0.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 0.4,
+          "dressage_score": 31.3,
+          "finishing_score": 40.5,
+          "horse_name": "Fernhill Melody",
+          "rank": 6,
+          "rider_name": "Savannah Kilpatrick",
+          "show_jumping_penalties": 8.8,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 1.2,
+          "dressage_score": 35.1,
+          "finishing_score": 41.1,
+          "horse_name": "The Naughty Vicar",
+          "rank": 7,
+          "rider_name": "Gabby Dickerson",
+          "show_jumping_penalties": 4.8,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 11.6,
+          "dressage_score": 29.6,
+          "finishing_score": 41.6,
+          "horse_name": "Captain\u2019s Lady",
+          "rank": 8,
+          "rider_name": "Erin M. Kanara",
+          "show_jumping_penalties": 0.4,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 10.4,
+          "dressage_score": 31.8,
+          "finishing_score": 42.2,
+          "horse_name": "Hello King WD Z",
+          "rank": 9,
+          "rider_name": "Dan Kreitl",
+          "show_jumping_penalties": 0.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 3.6,
+          "dressage_score": 41.2,
+          "finishing_score": 44.8,
+          "horse_name": "Notorious",
+          "rank": 10,
+          "rider_name": "Arielle Aharoni",
+          "show_jumping_penalties": 0.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 11.0,
+          "dressage_score": 30.2,
+          "finishing_score": 45.2,
+          "horse_name": "Constanzehof\u2019s Stitch",
+          "rank": 11,
+          "rider_name": "Isabelle Bosley",
+          "show_jumping_penalties": 4.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 16.4,
+          "dressage_score": 30.2,
+          "finishing_score": 46.6,
+          "horse_name": "Aviator",
+          "rank": 12,
+          "rider_name": "Monica Spencer",
+          "show_jumping_penalties": 0.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 16.0,
+          "dressage_score": 30.7,
+          "finishing_score": 46.7,
+          "horse_name": "Undertaker 7",
+          "rank": 13,
+          "rider_name": "Lexi Scovil",
+          "show_jumping_penalties": 0.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 11.2,
+          "dressage_score": 31.4,
+          "finishing_score": 48.6,
+          "horse_name": "Posh Quality",
+          "rank": 14,
+          "rider_name": "Emily M. Mastervich (ecp)",
+          "show_jumping_penalties": 6.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 18.8,
+          "dressage_score": 30.3,
+          "finishing_score": 49.1,
+          "horse_name": "Cosmo GS",
+          "rank": 15,
+          "rider_name": "Jessica Phoenix",
+          "show_jumping_penalties": 0.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 18.4,
+          "dressage_score": 33.3,
+          "finishing_score": 51.7,
+          "horse_name": "FE Ducatti",
+          "rank": 16,
+          "rider_name": "Leila Saxe",
+          "show_jumping_penalties": 0.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 22.0,
+          "dressage_score": 30.7,
+          "finishing_score": 52.7,
+          "horse_name": "Hicks de Lyse",
+          "rank": 17,
+          "rider_name": "Ryan Wood",
+          "show_jumping_penalties": 0.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 18.0,
+          "dressage_score": 35.6,
+          "finishing_score": 57.6,
+          "horse_name": "Carsontown Basil",
+          "rank": 18,
+          "rider_name": "Elinor Macphail O'neal",
+          "show_jumping_penalties": 4.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 15.6,
+          "dressage_score": 39.4,
+          "finishing_score": 59.8,
+          "horse_name": "Tanimo Proosthof Z",
+          "rank": 19,
+          "rider_name": "Margaret M. Ragan",
+          "show_jumping_penalties": 4.8,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 10.0,
+          "dressage_score": 26.8,
+          "finishing_score": 65.6,
+          "horse_name": "Clarimilo",
+          "rank": 20,
+          "rider_name": "Sophia Middlebrook",
+          "show_jumping_penalties": 28.8,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 39.2,
+          "dressage_score": 27.6,
+          "finishing_score": 67.2,
+          "horse_name": "FE Damascus",
+          "rank": 21,
+          "rider_name": "Dana D. Cooke",
+          "show_jumping_penalties": 0.4,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 44.8,
+          "dressage_score": 34.4,
+          "finishing_score": 79.6,
+          "horse_name": "Fixin de Conde",
+          "rank": 22,
+          "rider_name": "Jen Moody",
+          "show_jumping_penalties": 0.4,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 41.6,
+          "dressage_score": 26.8,
+          "finishing_score": 81.2,
+          "horse_name": "Obalix",
+          "rank": 23,
+          "rider_name": "Ariel Grald",
+          "show_jumping_penalties": 12.8,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 49.0,
+          "dressage_score": 33.2,
+          "finishing_score": 83.4,
+          "horse_name": "Woodstock Indy",
+          "rank": 24,
+          "rider_name": "Ryan Wood",
+          "show_jumping_penalties": 1.2,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 28.0,
+          "dressage_score": 37.7,
+          "finishing_score": 94.5,
+          "horse_name": "JustIceTheBeast",
+          "rank": 25,
+          "rider_name": "Caitlin O'roark",
+          "show_jumping_penalties": 28.8,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 61.6,
+          "dressage_score": 42.6,
+          "finishing_score": 104.6,
+          "horse_name": "Lissabon VDL",
+          "rank": 26,
+          "rider_name": "Kimmy Cecere",
+          "show_jumping_penalties": 0.4,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 68.8,
+          "dressage_score": 40.7,
+          "finishing_score": 119.9,
+          "horse_name": "Cooley Constellation",
+          "rank": 27,
+          "rider_name": "Brooke Burchianti",
+          "show_jumping_penalties": 10.4,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 79.4,
+          "dressage_score": 31.4,
+          "finishing_score": 120.8,
+          "horse_name": "KHH Cooley",
+          "rank": 28,
+          "rider_name": "Lillian Heard Wood",
+          "show_jumping_penalties": 10.0,
+          "source_id": "usea"
+        },
+        {
+          "collected_at": "2026-10-22T08:09:00+00:00",
+          "cross_country_penalties": 79.0,
+          "dressage_score": 40.4,
+          "finishing_score": 125.4,
+          "horse_name": "Cinderella 741",
+          "rank": 29,
+          "rider_name": "Lea Adams-blackmore",
+          "show_jumping_penalties": 6.0,
+          "source_id": "usea"
         }
       ]
     },
@@ -20583,9 +20915,9 @@
       ]
     }
   ],
-  "generated_at": "2026-10-21T08:08:56+00:00",
-  "latest_collected_at": "2026-10-21T08:08:56+00:00",
-  "result_count": 1793,
+  "generated_at": "2026-10-22T08:09:00+00:00",
+  "latest_collected_at": "2026-10-22T08:09:00+00:00",
+  "result_count": 1822,
   "source_ids": [
     "asiangames",
     "evententries",
