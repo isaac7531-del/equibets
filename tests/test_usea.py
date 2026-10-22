@@ -16,6 +16,7 @@ from equibets.usea import (
     plantation_sep_2026_event,
     results_url,
     hagyard_midsouth_oct_2026_event,
+    maryland_oct_2026_event,
     stable_view_sep_2026_event,
 )
 
@@ -143,6 +144,17 @@ class UseaResultsTests(unittest.TestCase):
         self.assertEqual(
             event.url,
             "https://useventing.com/events-competitions/resources/results/item?event=19108",
+        )
+
+    def test_maryland_event_uses_the_fair_hill_results_page(self) -> None:
+        event = maryland_oct_2026_event()
+        self.assertEqual(event.event_id, "19110")
+        self.assertEqual(event.event_title, "Maryland")
+        self.assertEqual(event.event_date, date(2026, 10, 15))
+        self.assertEqual(event.country, "USA")
+        self.assertEqual(
+            event.url,
+            "https://useventing.com/events-competitions/resources/results/item?event=19110",
         )
 
     def test_stable_view_event_uses_the_oktoberfest_results_page(self) -> None:
