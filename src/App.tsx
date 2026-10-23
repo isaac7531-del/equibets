@@ -9,14 +9,34 @@ import {
   type EventingScoreInput,
   type StoredResult,
 } from './scoring';
+import { publicResults } from './publicResults';
+import {
+  combinationOptions,
+  consolidateResults,
+  filterResults,
+  finishingScore,
+  latestCollectedAt,
+  predictFinishingScore,
+  resultFromStoredResult,
+  SOURCE_LABELS,
+} from './results';
 import { loadResults, saveResults } from './storage';
+import {
+  createDefaultHorseProfileForm,
+  horseProfileFromForm,
+  sortHorseProfiles,
+  type HorseProfileFormState,
+} from './horseProfiles';
+import { loadHorseProfiles, saveHorseProfiles } from './storage';
+import { latestUpcomingEventRefresh, upcomingEvents } from './upcomingEvents';
 
 type FormState = {
   rider: string;
   horse: string;
   eventName: string;
-  level: string;
   date: string;
+  level: string;
+  country: string;
   dressagePercentage: string;
   showJumpingPenalties: string;
   crossCountryJumpPenalties: string;
@@ -31,8 +51,9 @@ const createDefaultFormState = (): FormState => ({
   rider: '',
   horse: '',
   eventName: '',
-  level: 'Starter',
   date: new Date().toISOString().slice(0, 10),
+  level: 'CCI2-S',
+  country: 'GBR',
   dressagePercentage: '68.5',
   showJumpingPenalties: '0',
   crossCountryJumpPenalties: '0',
@@ -44,6 +65,12 @@ const createDefaultFormState = (): FormState => ({
 });
 
 const numberValue = (value: string) => Number.parseFloat(value || '0');
+const sourceLabel = (sourceId: string) => SOURCE_LABELS[sourceId] ?? sourceId;
+const formatDate = (value: string) => new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(value));
+const formatDateTime = (value: string | null) =>
+  value
+    ? new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date(value))
+    : 'No public data yet';
 const levelOptions = [
   'Starter',
   'Beginner Novice',
@@ -53,6 +80,33 @@ const levelOptions = [
   'Preliminary',
   'Intermediate',
   'Advanced',
+  'CCI1-S',
+  'CCI2-S',
+  'CCI3-S',
+  'CCI4-S',
+  'CCI5-L',
+];
+const freePlayMarkets = [
+  'Win market',
+  'Top 3',
+  'Top 10',
+  'Best dressage',
+  'Clear show jumping',
+  'Clear cross-country',
+  'Head-to-head matchups',
+  'Final score over/under',
+];
+const platformFormats = [
+  {
+    title: 'Web dashboard',
+    status: 'Ready now',
+    copy: 'Responsive analytics, score entry, form guide search, and free prediction roadmap in the browser.',
+  },
+  {
+    title: 'Installable app',
+    status: 'PWA shell',
+    copy: 'Manifest, app icon, standalone display mode, and offline app-shell caching for mobile and desktop installs.',
+  },
 ];
 
 const createScoreInput = (form: FormState): EventingScoreInput => ({
@@ -66,11 +120,32 @@ const createScoreInput = (form: FormState): EventingScoreInput => ({
 export default function App() {
   const [form, setForm] = useState<FormState>(() => createDefaultFormState());
   const [results, setResults] = useState<StoredResult[]>(() => loadResults());
+  const [horseProfileForm, setHorseProfileForm] = useState<HorseProfileFormState>(() => createDefaultHorseProfileForm());
+  const [horseProfiles, setHorseProfiles] = useState(() => loadHorseProfiles());
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCombination, setSelectedCombination] = useState('');
   const [selectedRider, setSelectedRider] = useState('all');
   const scoreInput = useMemo(() => createScoreInput(form), [form]);
   const currentScore = useMemo(() => calculateScore(scoreInput), [scoreInput]);
   const sortedResults = useMemo(() => sortByBestScore(results), [results]);
+  const sortedHorseProfiles = useMemo(() => sortHorseProfiles(horseProfiles), [horseProfiles]);
   const bestResult = sortedResults[0];
+  const savedResultRecords = useMemo(() => results.map(resultFromStoredResult), [results]);
+  const allResultRecords = useMemo(() => [...publicResults, ...savedResultRecords], [savedResultRecords]);
+  const consolidatedResults = useMemo(() => consolidateResults(allResultRecords), [allResultRecords]);
+  const filteredConsolidatedResults = useMemo(
+    () => filterResults(consolidatedResults, searchQuery),
+    [consolidatedResults, searchQuery],
+  );
+  const publicSourceCount = new Set(publicResults.map((result) => result.sourceId)).size;
+  const latestRefresh = latestCollectedAt(publicResults);
+  const latestUpcomingRefresh = latestUpcomingEventRefresh(upcomingEvents);
+  const options = combinationOptions(consolidatedResults);
+  const activeCombination = selectedCombination || options[0]?.key || '';
+  const prediction = useMemo(
+    () => predictFinishingScore(consolidatedResults, activeCombination),
+    [consolidatedResults, activeCombination],
+  );
   const riderOptions = useMemo(
     () => [...new Set(results.map((result) => result.rider))].sort((a, b) => a.localeCompare(b)),
     [results],
@@ -97,6 +172,10 @@ export default function App() {
     setForm((current) => ({ ...current, [field]: value }));
   };
 
+  const updateHorseProfileField = (field: keyof HorseProfileFormState, value: string) => {
+    setHorseProfileForm((current) => ({ ...current, [field]: value }));
+  };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -106,8 +185,9 @@ export default function App() {
       rider: form.rider.trim(),
       horse: form.horse.trim(),
       eventName: form.eventName.trim(),
-      level: form.level,
       date: form.date,
+      level: form.level.trim(),
+      country: form.country.trim().toUpperCase(),
       notes: form.notes.trim(),
       createdAt: new Date().toISOString(),
       score: currentScore,
@@ -130,15 +210,31 @@ export default function App() {
     saveResults([]);
   };
 
+  const handleHorseProfileSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const profile = horseProfileFromForm(horseProfileForm, crypto.randomUUID(), new Date().toISOString());
+    const nextProfiles = [profile, ...horseProfiles.filter((existing) => existing.name !== profile.name)];
+    setHorseProfiles(nextProfiles);
+    saveHorseProfiles(nextProfiles);
+    setHorseProfileForm(createDefaultHorseProfileForm());
+  };
+
+  const removeHorseProfile = (id: string) => {
+    const nextProfiles = horseProfiles.filter((profile) => profile.id !== id);
+    setHorseProfiles(nextProfiles);
+    saveHorseProfiles(nextProfiles);
+  };
+
   return (
     <main className="app-shell">
       <section className="hero">
         <div>
           <p className="eyebrow">Equibets</p>
-          <h1>Eventing score calculator and results tracker</h1>
+          <h1>Eventing form guide and score tracker</h1>
           <p className="hero-copy">
-            Capture dressage, show jumping, and cross-country penalties in one place, then keep a local record of
-            horse-and-rider results.
+            Capture your own scores, combine them with public eventing results, and estimate a horse-and-rider
+            combination's likely finishing score.
           </p>
         </div>
         <div className="hero-card" aria-live="polite">
@@ -171,6 +267,219 @@ export default function App() {
           <strong>{bestResult ? bestResult.score.totalPenalties.toFixed(1) : '--'}</strong>
           <p>{bestResult ? `${bestResult.horse} at ${bestResult.eventName}` : 'Save a round to start tracking'}</p>
         </article>
+        <article>
+          <span>Public data</span>
+          <strong>{publicResults.length}</strong>
+          <p>{publicSourceCount} sources, refreshed {formatDateTime(latestRefresh)}</p>
+        </article>
+        <article>
+          <span>Upcoming</span>
+          <strong>{upcomingEvents.length}</strong>
+          <p>sample rows, refresh pipeline ready {formatDateTime(latestUpcomingRefresh)}</p>
+        </article>
+      </section>
+
+      <section className="platform-strip" aria-labelledby="platform-formats-heading">
+        <div>
+          <p className="eyebrow">App and web</p>
+          <h2 id="platform-formats-heading">Built for browser use and installable app workflows</h2>
+        </div>
+        <div className="platform-cards">
+          {platformFormats.map((format) => (
+            <article key={format.title}>
+              <span>{format.status}</span>
+              <h3>{format.title}</h3>
+              <p>{format.copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="horse-data-card" aria-labelledby="horse-data-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Horse data</p>
+            <h2 id="horse-data-heading">Add horse profile data</h2>
+          </div>
+          <span className="data-pill">{sortedHorseProfiles.length} saved</span>
+        </div>
+
+        <form className="horse-profile-form" onSubmit={handleHorseProfileSubmit}>
+          <div className="form-grid horse-profile-grid">
+            <label>
+              Horse name
+              <input
+                required
+                value={horseProfileForm.name}
+                onChange={(event) => updateHorseProfileField('name', event.target.value)}
+                placeholder="Competition name"
+              />
+            </label>
+            <label>
+              Registered name
+              <input
+                value={horseProfileForm.registeredName}
+                onChange={(event) => updateHorseProfileField('registeredName', event.target.value)}
+                placeholder="Official registry name"
+              />
+            </label>
+            <label>
+              FEI ID
+              <input
+                value={horseProfileForm.feiId}
+                onChange={(event) => updateHorseProfileField('feiId', event.target.value)}
+                placeholder="e.g. 107BH10"
+              />
+            </label>
+            <label>
+              Country
+              <input
+                required
+                value={horseProfileForm.country}
+                onChange={(event) => updateHorseProfileField('country', event.target.value)}
+                maxLength={3}
+                placeholder="GBR"
+              />
+            </label>
+            <label>
+              Sex
+              <input
+                value={horseProfileForm.sex}
+                onChange={(event) => updateHorseProfileField('sex', event.target.value)}
+                placeholder="Mare, gelding, stallion"
+              />
+            </label>
+            <label>
+              Birth year
+              <input
+                inputMode="numeric"
+                value={horseProfileForm.birthYear}
+                onChange={(event) => updateHorseProfileField('birthYear', event.target.value)}
+                placeholder="2014"
+              />
+            </label>
+            <label>
+              Color
+              <input
+                value={horseProfileForm.color}
+                onChange={(event) => updateHorseProfileField('color', event.target.value)}
+                placeholder="Bay"
+              />
+            </label>
+            <label>
+              Owner
+              <input
+                value={horseProfileForm.owner}
+                onChange={(event) => updateHorseProfileField('owner', event.target.value)}
+                placeholder="Owner or syndicate"
+              />
+            </label>
+          </div>
+          <label>
+            Notes
+            <textarea
+              value={horseProfileForm.notes}
+              onChange={(event) => updateHorseProfileField('notes', event.target.value)}
+              placeholder="Pedigree notes, previous rider, quirks, or source links"
+            />
+          </label>
+          <button type="submit">Save horse profile</button>
+        </form>
+
+        {sortedHorseProfiles.length === 0 ? (
+          <div className="empty-state">
+            <strong>No horse profiles yet.</strong>
+            <p>Add horse records here, then connect them to public results and predictions as the backend comes online.</p>
+          </div>
+        ) : (
+          <div className="table-wrap">
+            <table className="horse-profile-table">
+              <thead>
+                <tr>
+                  <th>Horse</th>
+                  <th>Registry</th>
+                  <th>Profile</th>
+                  <th>Owner</th>
+                  <th aria-label="Actions" />
+                </tr>
+              </thead>
+              <tbody>
+                {sortedHorseProfiles.map((profile) => (
+                  <tr key={profile.id}>
+                    <td>
+                      <strong>{profile.name}</strong>
+                      <span>{profile.country}</span>
+                    </td>
+                    <td>
+                      <strong>{profile.feiId || 'No FEI ID'}</strong>
+                      <span>{profile.registeredName || 'No registered name yet'}</span>
+                    </td>
+                    <td>
+                      <strong>{[profile.sex, profile.birthYear].filter(Boolean).join(' / ') || 'Profile pending'}</strong>
+                      <span>{profile.color || 'Color pending'}</span>
+                    </td>
+                    <td>
+                      <strong>{profile.owner || 'Owner pending'}</strong>
+                      <span>{profile.notes || 'No notes'}</span>
+                    </td>
+                    <td>
+                      <button className="link-button" type="button" onClick={() => removeHorseProfile(profile.id)}>
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      <section className="results-card upcoming-events-card" aria-labelledby="upcoming-events-heading">
+        <div className="results-header">
+          <div>
+            <p className="eyebrow">Worldwide calendar</p>
+            <h2 id="upcoming-events-heading">Upcoming event feed</h2>
+          </div>
+          <span className="data-pill">Daily FEI refresh ready</span>
+        </div>
+        <p className="supporting-copy">
+          These are seed rows for the frontend contract. The scheduled refresh writes the full FEI calendar feed to
+          `data/upcoming_events.json` and builds `data/horse_index.json` from every collected result before production
+          promotion.
+        </p>
+        <div className="table-wrap">
+          <table className="upcoming-events-table">
+            <thead>
+              <tr>
+                <th>Event</th>
+                <th>Dates</th>
+                <th>Country</th>
+                <th>Level</th>
+                <th>Source</th>
+              </tr>
+            </thead>
+            <tbody>
+              {upcomingEvents.map((event) => (
+                <tr key={event.sourceEventId}>
+                  <td>
+                    <strong>{event.name}</strong>
+                    <span>{event.discipline}</span>
+                  </td>
+                  <td>
+                    <strong>{formatDate(event.startDate)}</strong>
+                    <span>{event.endDate ? `to ${formatDate(event.endDate)}` : 'single day'}</span>
+                  </td>
+                  <td>{event.country}</td>
+                  <td>{event.level}</td>
+                  <td>
+                    <span className="source-badge">{sourceLabel(event.sourceId)}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <section className="workspace-grid">
@@ -221,6 +530,16 @@ export default function App() {
             <label>
               Date
               <input type="date" required value={form.date} onChange={(event) => updateField('date', event.target.value)} />
+            </label>
+            <label>
+              Country
+              <input
+                required
+                value={form.country}
+                onChange={(event) => updateField('country', event.target.value)}
+                placeholder="GBR"
+                maxLength={3}
+              />
             </label>
           </div>
 
@@ -375,7 +694,7 @@ export default function App() {
               </section>
 
               <div className="table-wrap">
-                <table>
+                <table className="saved-results-table">
                   <thead>
                     <tr>
                       <th>Rank</th>
@@ -397,7 +716,7 @@ export default function App() {
                         <td className="event-cell">
                           <strong>{result.eventName}</strong>
                           <span>
-                            {resultLevel(result)} · {result.date}
+                            {resultLevel(result)} - {result.country || 'N/A'} - {result.date}
                           </span>
                         </td>
                         <td className="total-cell">{result.score.totalPenalties.toFixed(1)}</td>
@@ -419,6 +738,145 @@ export default function App() {
             </>
           )}
         </section>
+      </section>
+
+      <section className="form-guide-grid" aria-label="Consolidated form guide">
+        <section className="prediction-card" aria-labelledby="prediction-heading">
+          <div className="section-heading">
+            <p className="eyebrow">Prediction</p>
+            <h2 id="prediction-heading">Likely finishing score</h2>
+          </div>
+
+          <label>
+            Combination
+            <select
+              value={activeCombination}
+              onChange={(event) => setSelectedCombination(event.target.value)}
+              disabled={options.length === 0}
+            >
+              {options.map((option) => (
+                <option key={option.key} value={option.key}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          {prediction ? (
+            <div className="prediction-summary">
+              <span className={`confidence-pill confidence-${prediction.confidence}`}>{prediction.confidence} confidence</span>
+              <strong>{prediction.likelyFinishingScore.toFixed(1)}</strong>
+              <p>
+                Based on {prediction.recentResultCount} recent consolidated starts for {prediction.horseName} and{' '}
+                {prediction.riderName}.
+              </p>
+              <dl>
+                <div>
+                  <dt>Best recent</dt>
+                  <dd>{prediction.bestRecentScore.toFixed(1)}</dd>
+                </div>
+                <div>
+                  <dt>Worst recent</dt>
+                  <dd>{prediction.worstRecentScore.toFixed(1)}</dd>
+                </div>
+                <div>
+                  <dt>Sources</dt>
+                  <dd>{prediction.sourceIds.map(sourceLabel).join(', ')}</dd>
+                </div>
+              </dl>
+            </div>
+          ) : (
+            <div className="empty-state">
+              <strong>No prediction yet.</strong>
+              <p>Save or import results for a combination to calculate its likely score.</p>
+            </div>
+          )}
+
+        </section>
+
+        <section className="results-card consolidated-card" aria-labelledby="consolidated-results-heading">
+          <div className="results-header">
+            <div>
+              <p className="eyebrow">Consolidated data</p>
+              <h2 id="consolidated-results-heading">Recent form guide</h2>
+            </div>
+            <label className="search-box">
+              Search
+              <input
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+                placeholder="Horse, rider, event, source"
+              />
+            </label>
+          </div>
+
+          {filteredConsolidatedResults.length === 0 ? (
+            <div className="empty-state">
+              <strong>No matching results.</strong>
+              <p>Try another horse, rider, event, country, level, or source.</p>
+            </div>
+          ) : (
+            <div className="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Combination</th>
+                    <th>Event</th>
+                    <th>Level</th>
+                    <th>Source</th>
+                    <th>Total</th>
+                    <th>Phases</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filteredConsolidatedResults.map((result) => (
+                    <tr key={`${result.sourceId}-${result.sourceRecordId}`}>
+                      <td>
+                        <strong>{result.horseName}</strong>
+                        <span>{result.riderName}</span>
+                      </td>
+                      <td>
+                        <strong>{result.eventName}</strong>
+                        <span>{formatDate(result.eventDate)}</span>
+                      </td>
+                      <td>
+                        <strong>{result.level}</strong>
+                        <span>{result.country}</span>
+                      </td>
+                      <td>
+                        <span className={`source-badge ${result.isUserEntered ? 'source-user' : ''}`}>
+                          {sourceLabel(result.sourceId)}
+                        </span>
+                      </td>
+                      <td className="total-cell">{finishingScore(result).toFixed(1)}</td>
+                      <td className="breakdown-cell">
+                        D {result.dressageScore.toFixed(1)} / SJ {result.showJumpingPenalties.toFixed(1)} / XC{' '}
+                        {(result.crossCountryJumpPenalties + result.crossCountryTimePenalties).toFixed(1)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
+      </section>
+
+      <section className="market-roadmap" aria-labelledby="market-roadmap-heading">
+        <div>
+          <p className="eyebrow">Free play only</p>
+          <h2 id="market-roadmap-heading">Prediction markets roadmap</h2>
+          <p>
+            Points-based predictions can sit on top of the probability model before any licensed real-money product
+            exists.
+          </p>
+        </div>
+        <ul>
+          {freePlayMarkets.map((market) => (
+            <li key={market}>{market}</li>
+          ))}
+        </ul>
+        <strong>No deposits, withdrawals, stakes, or paid betting odds.</strong>
       </section>
     </main>
   );

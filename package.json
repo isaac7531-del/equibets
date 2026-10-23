@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/isaac7531-del/equibets/issues"
   },
-  "homepage": "https://github.com/isaac7531-del/equibets#readme",
+  "homepage": "https://equibets.app",
   "dependencies": {
     "react": "^19.2.6",
     "react-dom": "^19.2.6"

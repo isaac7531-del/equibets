@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://equibets.app/sitemap.xml

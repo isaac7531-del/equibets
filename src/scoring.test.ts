@@ -49,8 +49,9 @@ describe('eventing scoring', () => {
       rider: 'Rider',
       horse: 'Horse',
       eventName: 'Event',
-      level: 'Training',
       date: '2026-05-13',
+      level: 'CCI2-S',
+      country: 'GBR',
       notes: '',
       dressagePercentage: 70,
       showJumpingPenalties: 0,
@@ -80,6 +81,7 @@ describe('eventing scoring', () => {
     const baseResult = {
       eventName: 'Event',
       date: '2026-05-13',
+      country: 'USA',
       notes: '',
       dressagePercentage: 70,
       showJumpingPenalties: 0,

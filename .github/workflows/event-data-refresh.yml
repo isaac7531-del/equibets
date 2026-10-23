@@ -1,0 +1,110 @@
+name: Event data refresh
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+    inputs:
+      days_ahead:
+        description: "Days of upcoming events to collect"
+        required: false
+        default: "180"
+      past_days:
+        description: "Days of recent results to collect"
+        required: false
+        default: "14"
+
+jobs:
+  refresh-event-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    env:
+      FEI_COOKIE: ${{ secrets.FEI_COOKIE }}
+      DAYS_AHEAD: ${{ inputs.days_ahead || '180' }}
+      PAST_DAYS: ${{ inputs.past_days || '14' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Install Python package and browser dependencies
+        run: |
+          python3 -m pip install -e .
+          python3 -m pip install -r requirements.txt
+          python3 -m playwright install --with-deps chromium
+
+      - name: Validate code before refresh
+        run: |
+          npm test
+          npm run build
+          python3 -m unittest discover -s tests
+
+      - name: Refresh upcoming FEI events
+        if: env.FEI_COOKIE != ''
+        run: |
+          python3 -m equibets.upcoming_events \
+            --days-ahead "$DAYS_AHEAD" \
+            --output data/upcoming_events.json \
+            --storage-state data/fei_state.json \
+            --compliance-policy data/source_compliance.json
+
+      - name: Refresh recent FEI results
+        if: env.FEI_COOKIE != ''
+        run: |
+          START_DATE="$(python3 - <<'PY'
+          from datetime import date, timedelta
+          import os
+          print((date.today() - timedelta(days=int(os.environ["PAST_DAYS"]))).isoformat())
+          PY
+          )"
+          END_DATE="$(python3 - <<'PY'
+          from datetime import date
+          print(date.today().isoformat())
+          PY
+          )"
+          python3 -m equibets.fei_bot \
+            --start-date "$START_DATE" \
+            --end-date "$END_DATE" \
+            --output data/fei_results.json \
+            --storage-state data/fei_state.json \
+            --compliance-policy data/source_compliance.json \
+            --verify warn
+
+      - name: Build horse index from all collected results
+        if: env.FEI_COOKIE != ''
+        run: |
+          if [ -f data/fei_results.json ]; then
+            python3 -m equibets.horses \
+              --results data/fei_results.json \
+              --output data/horse_index.json \
+              --active-window-days 730
+          else
+            echo "No FEI result store found; horse index skipped."
+          fi
+
+      - name: Explain skipped refresh
+        if: env.FEI_COOKIE == ''
+        run: |
+          echo "FEI_COOKIE secret is not configured; tests/build ran, data refresh skipped."
+
+      - name: Upload refresh artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: event-data-refresh
+          if-no-files-found: ignore
+          path: |
+            data/upcoming_events.json
+            data/fei_results.json
+            data/horse_index.json

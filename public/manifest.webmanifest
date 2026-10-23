@@ -1,0 +1,29 @@
+{
+  "name": "Equibets Eventing Form Guide",
+  "short_name": "Equibets",
+  "description": "Legal eventing analytics, score tracking, and free-play prediction markets.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f5f1e8",
+  "theme_color": "#23432d",
+  "orientation": "portrait-primary",
+  "categories": ["sports", "productivity"],
+  "icons": [
+    {
+      "src": "/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/app-icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "form_factor": "narrow",
+      "label": "Equibets app icon"
+    }
+  ]
+}
