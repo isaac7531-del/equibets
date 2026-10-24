@@ -32,7 +32,12 @@ DEFAULT_USER_AGENT = (
     "(KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
 )
 PRATONI_CCI2S_URL = "https://www.equiresults.com/competition/15751/404300/results"
-STATUS_RE = re.compile(r"Elim|W\.?\s*D\.?|\bWD\b|\bRET\b|Automatic", re.IGNORECASE)
+PRATONI_CCI4S_URL = "https://www.equiresults.com/competition/15751/404298/results"
+# Rit. is the Italian retirement token used on Equiresults penalty cells.
+STATUS_RE = re.compile(
+    r"Elim|W\.?\s*D\.?|\bWD\b|\bRET\b|\bRit\.?\b|Automatic",
+    re.IGNORECASE,
+)
 LEADING_NUMBER_RE = re.compile(r"^\s*(-?\d+(?:[.,]\d+)?)")
 
 
@@ -54,6 +59,18 @@ def pratoni_cci2s_2026_class() -> EquiresultsClass:
         url=PRATONI_CCI2S_URL,
         event_name="Pratoni del Vivaro · CCI2*-S",
         level="CCI2*-S",
+        event_date=date(2026, 10, 22),
+        country="ITA",
+    )
+
+
+def pratoni_cci4s_2026_class() -> EquiresultsClass:
+    """Return the Pratoni del Vivaro CCI4*-S classification."""
+
+    return EquiresultsClass(
+        url=PRATONI_CCI4S_URL,
+        event_name="Pratoni del Vivaro · CCI4*-S",
+        level="CCI4*-S",
         event_date=date(2026, 10, 22),
         country="ITA",
     )
@@ -321,6 +338,7 @@ def _date_arg(value: str) -> date:
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Collect a finished Equiresults eventing classification")
     parser.add_argument("--pratoni-cci2s-2026", action="store_true", help="Pull Pratoni del Vivaro CCI2*-S")
+    parser.add_argument("--pratoni-cci4s-2026", action="store_true", help="Pull Pratoni del Vivaro CCI4*-S")
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--start-date", type=_date_arg, required=True, help="Live snapshot window start, YYYY-MM-DD")
@@ -328,10 +346,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
 
-    if not args.pratoni_cci2s_2026:
-        raise SystemExit("Specify --pratoni-cci2s-2026")
+    if args.pratoni_cci2s_2026 == args.pratoni_cci4s_2026:
+        raise SystemExit("Specify one of --pratoni-cci2s-2026 or --pratoni-cci4s-2026")
 
-    results = collect_class(pratoni_cci2s_2026_class())
+    competition = pratoni_cci4s_2026_class() if args.pratoni_cci4s_2026 else pratoni_cci2s_2026_class()
+    results = collect_class(competition)
     print(f"Equiresults collect complete: results_collected={len(results)}")
     if args.dry_run:
         return 0
