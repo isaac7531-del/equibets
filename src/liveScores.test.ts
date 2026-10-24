@@ -71,6 +71,7 @@ describe('live score helpers', () => {
     expect(formatSourceList(['evententries'])).toBe('Event Entries');
     expect(formatSourceList(['usea'])).toBe('USEA');
     expect(formatSourceList(['worldsporttiming'])).toBe('World Sport Timing');
+    expect(formatSourceList(['equiresults'])).toBe('Equiresults');
   });
 
   it('formats missing live phase values as explicit dashes', () => {
