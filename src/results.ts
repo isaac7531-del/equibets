@@ -43,6 +43,7 @@ export const SOURCE_LABELS: Record<string, string> = {
   equestrian_sports_new_zealand: 'ESNZ',
   usea: 'USEA',
   worldsporttiming: 'World Sport Timing',
+  equiresults: 'Equiresults',
   user_submission: 'My score',
 };
 
