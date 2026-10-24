@@ -120,6 +120,31 @@ FINISHED_PAGE = """
   <td class="split thirdPhase"></td>
   <td class="splitBold">0.00</td>
 </tr>
+<tr id="result_404300_88">
+  <td>Rit.</td>
+  <td>88</td>
+  <td>
+    <a href="/rider/11">RYAN Philip</a>
+    <span class="flagContainer-right"><span class="clearfix">IRL</span></span>
+    <a href="/horse/12">DREAM POINT B</a>
+  </td>
+  <td class="splitBold">39.20</td>
+  <td class="split">0</td>
+  <td class="split">60.760</td>
+  <td class="splitBold">39.20</td>
+  <td class="split">11</td>
+  <td class="splitBold secondPhase">0</td>
+  <td class="split secondPhase">81.54</td>
+  <td class="split secondPhase">0.00</td>
+  <td class="split secondPhase">1</td>
+  <td class="splitBold secondPhase">39.20</td>
+  <td class="split secondPhase">6</td>
+  <td class="splitBold thirdPhase">Rit. X-Country r(10d) R(12a)</td>
+  <td class="split thirdPhase">0</td>
+  <td class="split thirdPhase">0.00</td>
+  <td class="split thirdPhase">Rit.</td>
+  <td class="splitBold">0.00</td>
+</tr>
 </table>
 """
 
