@@ -31,6 +31,8 @@ DEFAULT_USER_AGENT = (
     "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"
 )
+PRATONI_CCI1_INTRO_URL = "https://www.equiresults.com/competition/15751/404301/results"
+PRATONI_CCIP1S_URL = "https://www.equiresults.com/competition/15751/404302/results"
 PRATONI_CCI2S_URL = "https://www.equiresults.com/competition/15751/404300/results"
 PRATONI_CCI4S_URL = "https://www.equiresults.com/competition/15751/404298/results"
 # Rit. is the Italian retirement token used on Equiresults penalty cells.
@@ -50,6 +52,30 @@ class EquiresultsClass:
     level: str
     event_date: date
     country: str
+
+
+def pratoni_cci1_intro_2026_class() -> EquiresultsClass:
+    """Return the Pratoni del Vivaro CCI1*-Intro classification."""
+
+    return EquiresultsClass(
+        url=PRATONI_CCI1_INTRO_URL,
+        event_name="Pratoni del Vivaro · CCI1*-Intro",
+        level="CCI1*-Intro",
+        event_date=date(2026, 10, 22),
+        country="ITA",
+    )
+
+
+def pratoni_ccip1s_2026_class() -> EquiresultsClass:
+    """Return the Pratoni del Vivaro CCIP1-S classification."""
+
+    return EquiresultsClass(
+        url=PRATONI_CCIP1S_URL,
+        event_name="Pratoni del Vivaro · CCIP1-S",
+        level="CCIP1-S",
+        event_date=date(2026, 10, 23),
+        country="ITA",
+    )
 
 
 def pratoni_cci2s_2026_class() -> EquiresultsClass:
@@ -337,6 +363,8 @@ def _date_arg(value: str) -> date:
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Collect a finished Equiresults eventing classification")
+    parser.add_argument("--pratoni-cci1-intro-2026", action="store_true", help="Pull Pratoni del Vivaro CCI1*-Intro")
+    parser.add_argument("--pratoni-ccip1s-2026", action="store_true", help="Pull Pratoni del Vivaro CCIP1-S")
     parser.add_argument("--pratoni-cci2s-2026", action="store_true", help="Pull Pratoni del Vivaro CCI2*-S")
     parser.add_argument("--pratoni-cci4s-2026", action="store_true", help="Pull Pratoni del Vivaro CCI4*-S")
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
@@ -346,10 +374,19 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
 
-    if args.pratoni_cci2s_2026 == args.pratoni_cci4s_2026:
-        raise SystemExit("Specify one of --pratoni-cci2s-2026 or --pratoni-cci4s-2026")
-
-    competition = pratoni_cci4s_2026_class() if args.pratoni_cci4s_2026 else pratoni_cci2s_2026_class()
+    selected = [
+        pratoni_cci1_intro_2026_class() if args.pratoni_cci1_intro_2026 else None,
+        pratoni_ccip1s_2026_class() if args.pratoni_ccip1s_2026 else None,
+        pratoni_cci2s_2026_class() if args.pratoni_cci2s_2026 else None,
+        pratoni_cci4s_2026_class() if args.pratoni_cci4s_2026 else None,
+    ]
+    selected = [competition for competition in selected if competition is not None]
+    if len(selected) != 1:
+        raise SystemExit(
+            "Specify one of --pratoni-cci1-intro-2026, --pratoni-ccip1s-2026, "
+            "--pratoni-cci2s-2026, or --pratoni-cci4s-2026"
+        )
+    competition = selected[0]
     results = collect_class(competition)
     print(f"Equiresults collect complete: results_collected={len(results)}")
     if args.dry_run:
