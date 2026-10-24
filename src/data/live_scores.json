@@ -1,6 +1,85 @@
 {
-  "event_count": 69,
+  "event_count": 71,
   "events": [
+    {
+      "country": "ITA",
+      "event_date": "2026-10-23",
+      "event_name": "Pratoni del Vivaro \u00b7 CCIP1-S",
+      "latest_collected_at": "2026-10-24T16:13:16+00:00",
+      "level": "CCIP1-S",
+      "result_count": 6,
+      "source_ids": [
+        "equiresults"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-10-24T16:13:16+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.9,
+          "finishing_score": 32.9,
+          "horse_name": "BALLINAGORE HERO",
+          "rank": 1,
+          "rider_name": "NAVA Soraya Vittoria (SUI)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:13:16+00:00",
+          "cross_country_penalties": 3.2,
+          "dressage_score": 39.4,
+          "finishing_score": 42.6,
+          "horse_name": "NATION CUP",
+          "rank": 2,
+          "rider_name": "DELL'AMORE Luca (ITA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:13:16+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.0,
+          "finishing_score": 46.0,
+          "horse_name": "HEIGHT DE ST ANTOINE",
+          "rank": 3,
+          "rider_name": "LAMBERTI Carola (ITA)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:13:16+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 39.5,
+          "finishing_score": 47.5,
+          "horse_name": "LUCA'S LITTLE MELODY",
+          "rank": 4,
+          "rider_name": "FAVRETTO Noemi (ITA)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:13:16+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.3,
+          "finishing_score": 50.3,
+          "horse_name": "DOMINGO",
+          "rank": 5,
+          "rider_name": "DE SIMONI Aurora (ITA)",
+          "show_jumping_penalties": 12.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:13:16+00:00",
+          "cross_country_penalties": 0.4,
+          "dressage_score": 44.1,
+          "finishing_score": 52.5,
+          "horse_name": "FEEL GOOD DANCE",
+          "rank": 6,
+          "rider_name": "NAVA Soraya Vittoria (SUI)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "equiresults"
+        }
+      ]
+    },
     {
       "country": "ITA",
       "event_date": "2026-10-22",
@@ -485,6 +564,272 @@
           "rank": 30,
           "rider_name": "FANI CIOTTI Fabio (ITA)",
           "show_jumping_penalties": 8.0,
+          "source_id": "equiresults"
+        }
+      ]
+    },
+    {
+      "country": "ITA",
+      "event_date": "2026-10-22",
+      "event_name": "Pratoni del Vivaro \u00b7 CCI1*-Intro",
+      "latest_collected_at": "2026-10-24T16:12:48+00:00",
+      "level": "CCI1*-Intro",
+      "result_count": 23,
+      "source_ids": [
+        "equiresults"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 33.6,
+          "finishing_score": 37.6,
+          "horse_name": "KBS MR BRIGHTSIDE",
+          "rank": 1,
+          "rider_name": "PAPARELLA Lino (ITA)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 36.9,
+          "finishing_score": 37.7,
+          "horse_name": "BALLYGRIFFIN BOUNCE BACK",
+          "rank": 2,
+          "rider_name": "CECCONI Guido (ITA)",
+          "show_jumping_penalties": 0.8,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 30.8,
+          "finishing_score": 38.8,
+          "horse_name": "OSIRIS 43",
+          "rank": 3,
+          "rider_name": "DANESE Flaminia (ITA)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 31.3,
+          "finishing_score": 39.3,
+          "horse_name": "FARAOH",
+          "rank": 4,
+          "rider_name": "CORIGLIONE Maria Luisa (ITA)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 2.0,
+          "dressage_score": 34.5,
+          "finishing_score": 40.5,
+          "horse_name": "LET ME DOWN EASY",
+          "rank": 5,
+          "rider_name": "LUCIANI Camilla (ITA)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.0,
+          "finishing_score": 40.6,
+          "horse_name": "ANNAGHMORE DUNKIRK",
+          "rank": 6,
+          "rider_name": "MAGGI Beatrice (ITA)",
+          "show_jumping_penalties": 5.6,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 37.0,
+          "finishing_score": 41.0,
+          "horse_name": "BARESSA",
+          "rank": 7,
+          "rider_name": "LATINI Livia (ITA)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 1.6,
+          "dressage_score": 36.1,
+          "finishing_score": 41.7,
+          "horse_name": "BIG BAD WOLF",
+          "rank": 8,
+          "rider_name": "BERNARDI Maria Ludovica (ITA)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.5,
+          "finishing_score": 42.5,
+          "horse_name": "KILCOLGAN RED ROMANOV",
+          "rank": 9,
+          "rider_name": "SACRAMENTO Matilde (ITA)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 37.9,
+          "finishing_score": 42.7,
+          "horse_name": "L THE BLUESMAN",
+          "rank": 10,
+          "rider_name": "TRITARELLI Ilaria (ITA)",
+          "show_jumping_penalties": 4.8,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 4.8,
+          "dressage_score": 31.2,
+          "finishing_score": 44.0,
+          "horse_name": "RATHNAGEERA CARRAIGANARD BRUCE",
+          "rank": 11,
+          "rider_name": "MANDOLINI Isabella (ITA)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 45.5,
+          "finishing_score": 45.5,
+          "horse_name": "HARRANT",
+          "rank": 12,
+          "rider_name": "CRESPI Annalisa (ITA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 45.5,
+          "finishing_score": 45.5,
+          "horse_name": "CAEN ROSE DN Z",
+          "rank": 12,
+          "rider_name": "MINOTTI Beatrice (ITA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 4.0,
+          "dressage_score": 37.4,
+          "finishing_score": 46.2,
+          "horse_name": "CAHER WAITTILLITELLYE",
+          "rank": 14,
+          "rider_name": "BONACCORSI Margherita (ITA)",
+          "show_jumping_penalties": 4.8,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 34.8,
+          "finishing_score": 46.8,
+          "horse_name": "DEL AMOR",
+          "rank": 15,
+          "rider_name": "DE NEGRI Asia (ITA)",
+          "show_jumping_penalties": 12.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.1,
+          "finishing_score": 47.1,
+          "horse_name": "RATHDUFF EMERALD",
+          "rank": 16,
+          "rider_name": "BERNARDI Maria Ludovica (ITA)",
+          "show_jumping_penalties": 12.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 1.6,
+          "dressage_score": 42.7,
+          "finishing_score": 48.3,
+          "horse_name": "NEWTOWN SOCIETY",
+          "rank": 17,
+          "rider_name": "FORTINI Edoardo (ITA)",
+          "show_jumping_penalties": 4.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 52.0,
+          "finishing_score": 52.0,
+          "horse_name": "THE LITTLE LION MAN",
+          "rank": 18,
+          "rider_name": "PICCININI Greta (ITA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 20.0,
+          "dressage_score": 28.7,
+          "finishing_score": 53.9,
+          "horse_name": "FIFTY SHADES OF GREY",
+          "rank": 19,
+          "rider_name": "MAGGI Beatrice (ITA)",
+          "show_jumping_penalties": 5.2,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.7,
+          "finishing_score": 54.7,
+          "horse_name": "DEARCAN MILIS",
+          "rank": 20,
+          "rider_name": "FANTONI Francesco (ITA)",
+          "show_jumping_penalties": 16.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 20.0,
+          "dressage_score": 33.0,
+          "finishing_score": 61.0,
+          "horse_name": "TRASNA NA DTONNTA OBOS",
+          "rank": 21,
+          "rider_name": "COSTA Lucrezia (ITA)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 22.4,
+          "dressage_score": 35.1,
+          "finishing_score": 65.5,
+          "horse_name": "CUGLIERI",
+          "rank": 22,
+          "rider_name": "GRILLI Gabriele (ITA)",
+          "show_jumping_penalties": 8.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-24T16:12:48+00:00",
+          "cross_country_penalties": 34.4,
+          "dressage_score": 42.5,
+          "finishing_score": 93.3,
+          "horse_name": "BALLYTARSNA COLONEL LE",
+          "rank": 23,
+          "rider_name": "GIANNINI Beatrice (ITA)",
+          "show_jumping_penalties": 16.4,
           "source_id": "equiresults"
         }
       ]
@@ -21403,9 +21748,9 @@
       ]
     }
   ],
-  "generated_at": "2026-10-24T13:08:22+00:00",
-  "latest_collected_at": "2026-10-24T13:08:01+00:00",
-  "result_count": 1864,
+  "generated_at": "2026-10-24T16:13:38+00:00",
+  "latest_collected_at": "2026-10-24T16:13:16+00:00",
+  "result_count": 1893,
   "source_ids": [
     "asiangames",
     "equiresults",
@@ -21420,7 +21765,7 @@
   ],
   "version": 1,
   "window": {
-    "end_date": "2026-10-22",
+    "end_date": "2026-10-23",
     "start_date": "2026-08-29"
   }
 }
