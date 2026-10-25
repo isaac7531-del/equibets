@@ -10,6 +10,7 @@ from equibets.worldsporttiming import (
     mondial_du_lion_oct_2026_boards,
     morven_park_oct_2026_boards,
     parse_result_page,
+    pau_oct_2026_boards,
 )
 
 
@@ -168,6 +169,20 @@ class WorldSportTimingTests(unittest.TestCase):
         self.assertTrue(all(board.country == "FRA" for board in boards))
         self.assertTrue(boards[0].url.endswith("/6YO-SJ/result"))
         self.assertTrue(boards[1].url.endswith("/7YO-SJ/result"))
+
+    def test_pau_board_uses_the_show_start_date(self) -> None:
+        boards = pau_oct_2026_boards()
+
+        self.assertEqual(len(boards), 1)
+        board = boards[0]
+        self.assertEqual(board.level, "CCI5*-L")
+        self.assertEqual(board.event_name, "Les 5 Etoiles de Pau · CCI5*-L")
+        self.assertEqual(board.event_date, date(2026, 10, 22))
+        self.assertEqual(board.country, "FRA")
+        self.assertEqual(
+            board.url,
+            "https://results.worldsporttiming.com/2026/les-5-etoiles-de-pau/competition/SJ/result",
+        )
 
 
 if __name__ == "__main__":

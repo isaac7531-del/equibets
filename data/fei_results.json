@@ -72608,6 +72608,57 @@
       "source_record_id": "worldsporttiming:faee3ddc0cfdc8da"
     },
     {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 31.0,
+      "cross_country_time_penalties": 47.6,
+      "dressage_score": 33.5,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "HENTON AUDACIOUS",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Abby JONES (NZL)",
+      "show_jumping_penalties": 9.6,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:2323498a6839edca"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 20.0,
+      "cross_country_time_penalties": 29.6,
+      "dressage_score": 33.9,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "COOLEY FOXTROT",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Andrew DOWNES (GBR)",
+      "show_jumping_penalties": 1.2,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:f1c4826cd53c6443"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 20.0,
+      "cross_country_time_penalties": 42.4,
+      "dressage_score": 37.1,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "BALLINAGUILKEY FORTUNUS",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Anthony CLARK (GBR)",
+      "show_jumping_penalties": 9.2,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:1e2ed14a2717b848"
+    },
+    {
       "collected_at": "2026-10-24T13:08:01+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 11.0,
@@ -72759,6 +72810,57 @@
       "source_id": "equiresults",
       "source_priority": 8,
       "source_record_id": "equiresults:91f695781f3f0b23"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 11.0,
+      "cross_country_time_penalties": 14.4,
+      "dressage_score": 39.4,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "CRACK DU NOYER",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Bastien COMMECY (FRA)",
+      "show_jumping_penalties": 10.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:d9c3bc4c2066825d"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 11.0,
+      "cross_country_time_penalties": 15.6,
+      "dressage_score": 32.3,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "COLA",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Bubby UPTON (GBR)",
+      "show_jumping_penalties": 4.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:2f3d5caf7cf53235"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 3.6,
+      "dressage_score": 29.3,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "ITS COOLEY TIME",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Bubby UPTON (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:06d24a31abf6f9b3"
     },
     {
       "collected_at": "2026-10-24T13:08:01+00:00",
@@ -73084,6 +73186,23 @@
       "source_record_id": "equiresults:7f86e6451bda9bc1"
     },
     {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 11.2,
+      "dressage_score": 35.7,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "FRIEDA",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Felix VOGG (SUI)",
+      "show_jumping_penalties": 4.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:7a77a78960e90dd3"
+    },
+    {
       "collected_at": "2026-10-24T16:12:48+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 20.0,
@@ -73169,6 +73288,23 @@
       "source_record_id": "equiresults:2f451913408665f6"
     },
     {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 12.8,
+      "dressage_score": 31.4,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "KAPRICCIO",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Hallie COON (USA)",
+      "show_jumping_penalties": 8.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:7469552085eab050"
+    },
+    {
       "collected_at": "2026-10-24T12:12:02+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 0.0,
@@ -73184,6 +73320,91 @@
       "source_id": "equiresults",
       "source_priority": 8,
       "source_record_id": "equiresults:90cac248d3478be0"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 11.6,
+      "dressage_score": 35.2,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "CARPO VIVENDI",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Jack PINKNEY (GBR)",
+      "show_jumping_penalties": 12.8,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:8a7a3d433bcc4842"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 12.8,
+      "dressage_score": 33.7,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "CAPITAINE DE HUS Z",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Jonelle PRICE (NZL)",
+      "show_jumping_penalties": 4.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:7e881c0d9bbc006d"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 6.4,
+      "dressage_score": 36.0,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "GRAPPA NERA",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Jonelle PRICE (NZL)",
+      "show_jumping_penalties": 4.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:e367288b323c48cc"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 4.8,
+      "dressage_score": 29.8,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "SENOR CROCODILLO",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Jonelle PRICE (NZL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:4cae6e14d6b80ef6"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 20.0,
+      "cross_country_time_penalties": 18.8,
+      "dressage_score": 43.0,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "BRIN D'OR DES SOURCES",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Julie BILQUEZ (FRA)",
+      "show_jumping_penalties": 5.2,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:038cc1cf70846504"
     },
     {
       "collected_at": "2026-10-24T12:12:02+00:00",
@@ -73322,6 +73543,23 @@
       "source_record_id": "equiresults:856cb0429d0934c7"
     },
     {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 8.0,
+      "dressage_score": 35.8,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "PILTOWN CONCORDE",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Lizzie BAUGH (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:81d48158c08939c5"
+    },
+    {
       "collected_at": "2026-10-24T16:12:48+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 0.0,
@@ -73424,6 +73662,57 @@
       "source_record_id": "equiresults:713363870f985e24"
     },
     {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 36.4,
+      "dressage_score": 34.7,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "LINKIN PARK K",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Marcio CARVALHO JORGE (BRA)",
+      "show_jumping_penalties": 5.2,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:0d90d6545a2f906c"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 35.2,
+      "dressage_score": 39.2,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "LIONEL II",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Mary EDMUNDSON (GBR)",
+      "show_jumping_penalties": 16.4,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:89c72a991354d3a1"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 31.0,
+      "cross_country_time_penalties": 73.6,
+      "dressage_score": 35.9,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "CASH IN HAND",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Noor SLAOUI (MAR)",
+      "show_jumping_penalties": 20.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:981463bca451466d"
+    },
+    {
       "collected_at": "2026-10-24T16:12:48+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 0.0,
@@ -73524,6 +73813,40 @@
       "source_id": "equiresults",
       "source_priority": 8,
       "source_record_id": "equiresults:6ab2927c5172b0a8"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 40.0,
+      "cross_country_time_penalties": 38.8,
+      "dressage_score": 37.7,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "COOLEY AND CO",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Rafael MAMPRIN LOSANO (BRA)",
+      "show_jumping_penalties": 4.4,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:2f6bae3281ac2393"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 20.0,
+      "cross_country_time_penalties": 20.0,
+      "dressage_score": 31.9,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "MHS SEVENTEEN",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Rosalind CANTER (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:f5c6dc07ab695360"
     },
     {
       "collected_at": "2026-10-24T16:12:48+00:00",
@@ -73662,6 +73985,91 @@
       "source_record_id": "equiresults:5879235c798fbc60"
     },
     {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 11.0,
+      "cross_country_time_penalties": 5.2,
+      "dressage_score": 34.1,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "MISTER BIG EARS",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Sam ECROYD (GBR)",
+      "show_jumping_penalties": 4.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:61791eb684fafe1b"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 31.0,
+      "cross_country_time_penalties": 28.8,
+      "dressage_score": 36.9,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "BUT NOT TILL NOW",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Sam GILLESPIE (GBR)",
+      "show_jumping_penalties": 12.8,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:5b42e7f8f97fc0f2"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 31.0,
+      "cross_country_time_penalties": 26.4,
+      "dressage_score": 34.0,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "HASHTAG DE LA VIGNE",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Sebastien CAVAILLON (FRA)",
+      "show_jumping_penalties": 8.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:77a0fe50cc7de6a0"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 9.6,
+      "dressage_score": 39.7,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "BRYJAMOLGA VH MARIENSHOF Z",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Sofia SJ\u00d6BORG (SWE)",
+      "show_jumping_penalties": 1.6,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:7f04250e88c352bc"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 18.8,
+      "dressage_score": 34.0,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "HAGONDA",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Stephen HEAL (GBR)",
+      "show_jumping_penalties": 20.4,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:7ad12d7be4c7edf6"
+    },
+    {
       "collected_at": "2026-10-24T16:12:48+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 0.0,
@@ -73679,6 +74087,74 @@
       "source_record_id": "equiresults:a4d93f7d4fd8fd0c"
     },
     {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 11.0,
+      "cross_country_time_penalties": 15.6,
+      "dressage_score": 35.2,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "GARCON",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Tim PRICE (NZL)",
+      "show_jumping_penalties": 4.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:def91b53497b927c"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 3.2,
+      "dressage_score": 32.7,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "HAPPY BOY",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Tim PRICE (NZL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:f5431617b7f7ea48"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 5.2,
+      "dressage_score": 25.7,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "JARILLO",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Tim PRICE (NZL)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:0deeda0f0deb559d"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 8.0,
+      "dressage_score": 28.6,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "QUINTUS",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Tom MCEWEN (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:e952e221bd610b1e"
+    },
+    {
       "collected_at": "2026-10-24T12:12:02+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 0.0,
@@ -73694,6 +74170,23 @@
       "source_id": "equiresults",
       "source_priority": 8,
       "source_record_id": "equiresults:8ab08746cbd316b5"
+    },
+    {
+      "collected_at": "2026-10-25T16:11:05+00:00",
+      "country": "FRA",
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 11.2,
+      "dressage_score": 33.4,
+      "event_date": "2026-10-22",
+      "event_name": "Les 5 Etoiles de Pau \u00b7 CCI5*-L",
+      "horse_name": "HARTACKER",
+      "is_user_entered": false,
+      "level": "CCI5*-L",
+      "rider_name": "Willa NEWTON (GBR)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "worldsporttiming",
+      "source_priority": 6,
+      "source_record_id": "worldsporttiming:fb206cc47304a70d"
     },
     {
       "collected_at": "2026-10-24T12:12:02+00:00",
@@ -73781,7 +74274,7 @@
       "source_record_id": "equiresults:384dc41dc77b8b89"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 8.0,
       "cross_country_time_penalties": 0.0,
@@ -73798,7 +74291,7 @@
       "source_record_id": "equiresults:39d0256fdcefed44"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 4.0,
       "cross_country_time_penalties": 0.8,
@@ -73832,7 +74325,7 @@
       "source_record_id": "equiresults:67b02a9ac55d5d73"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -73849,7 +74342,7 @@
       "source_record_id": "equiresults:202c0172f6434a7b"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -73866,10 +74359,10 @@
       "source_record_id": "equiresults:fca0bf9cb20565cf"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
-      "cross_country_jump_penalties": 4.0,
-      "cross_country_time_penalties": 1.6,
+      "cross_country_jump_penalties": 0.0,
+      "cross_country_time_penalties": 0.0,
       "dressage_score": 32.7,
       "event_date": "2026-10-23",
       "event_name": "Pratoni del Vivaro \u00b7 CCI3*-S",
@@ -73883,7 +74376,7 @@
       "source_record_id": "equiresults:b9bca91c4c88aa2b"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -74070,7 +74563,7 @@
       "source_record_id": "equiresults:345c3572f387e0ab"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 8.0,
       "cross_country_time_penalties": 0.0,
@@ -74121,7 +74614,7 @@
       "source_record_id": "equiresults:b960b076a6b4bd08"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 4.0,
       "cross_country_time_penalties": 0.0,
@@ -74155,7 +74648,7 @@
       "source_record_id": "equiresults:5e85902456d936cb"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 8.0,
       "cross_country_time_penalties": 1.6,
@@ -74172,7 +74665,7 @@
       "source_record_id": "equiresults:4f7293d9b826db39"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 8.0,
       "cross_country_time_penalties": 0.8,
@@ -74274,7 +74767,7 @@
       "source_record_id": "equiresults:91b83dc50b2d53b6"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -74308,7 +74801,7 @@
       "source_record_id": "equiresults:0278a3be25ec029d"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -74325,7 +74818,7 @@
       "source_record_id": "equiresults:98ed23d56078c957"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 12.0,
       "cross_country_time_penalties": 0.0,
@@ -74359,7 +74852,7 @@
       "source_record_id": "equiresults:fb1b655e4f4b75c9"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 4.0,
       "cross_country_time_penalties": 0.0,
@@ -74512,7 +75005,7 @@
       "source_record_id": "equiresults:a3c15807008191f5"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 4.0,
       "cross_country_time_penalties": 1.6,
@@ -74529,7 +75022,7 @@
       "source_record_id": "equiresults:ea2fab939c2dbdb8"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 12.0,
       "cross_country_time_penalties": 0.4,
@@ -74614,7 +75107,7 @@
       "source_record_id": "equiresults:9c1db6d1c5813d5e"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.0,
@@ -74631,7 +75124,7 @@
       "source_record_id": "equiresults:d819fc7e5f68f2da"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 4.0,
       "cross_country_time_penalties": 0.0,
@@ -74648,7 +75141,7 @@
       "source_record_id": "equiresults:27f5ea01132d1d79"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 8.0,
       "cross_country_time_penalties": 0.0,
@@ -74733,7 +75226,7 @@
       "source_record_id": "equiresults:0e64d644e9405a84"
     },
     {
-      "collected_at": "2026-10-25T11:10:47+00:00",
+      "collected_at": "2026-10-25T16:10:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 0.0,
       "cross_country_time_penalties": 0.4,
@@ -74751,6 +75244,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-10-25T15:08:53+00:00",
+  "updated_at": "2026-10-25T16:11:05+00:00",
   "version": 1
 }
