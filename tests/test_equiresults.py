@@ -5,7 +5,7 @@ from __future__ import annotations
 import unittest
 from datetime import date, datetime, timezone
 
-from equibets.equiresults import EquiresultsClass, parse_results_page
+from equibets.equiresults import EquiresultsClass, parse_results_page, pratoni_cci4l_2026_class
 
 
 COMPETITION = EquiresultsClass(
@@ -185,6 +185,15 @@ class EquiresultsParserTests(unittest.TestCase):
         html = FINISHED_PAGE.replace("<h2>Classifica 003 - CCI2*-S</h2>", "<h2>Classifica live</h2>")
 
         self.assertEqual(parse_results_page(html, competition=COMPETITION, collected_at=COLLECTED_AT), [])
+
+    def test_pratoni_cci4l_class_uses_the_published_final_date(self) -> None:
+        competition = pratoni_cci4l_2026_class()
+
+        self.assertEqual(competition.url, "https://www.equiresults.com/competition/15751/404305/results")
+        self.assertEqual(competition.event_name, "Pratoni del Vivaro · CCI4*-L")
+        self.assertEqual(competition.level, "CCI4*-L")
+        self.assertEqual(competition.event_date, date(2026, 10, 23))
+        self.assertEqual(competition.country, "ITA")
 
     def test_blank_cross_country_cell_rejects_the_class(self) -> None:
         html = FINISHED_PAGE.replace(
