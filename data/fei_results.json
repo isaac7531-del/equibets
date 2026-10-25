@@ -73900,6 +73900,40 @@
       "source_record_id": "equiresults:63478a937d803375"
     },
     {
+      "collected_at": "2026-10-25T15:08:31+00:00",
+      "country": "ITA",
+      "cross_country_jump_penalties": 12.0,
+      "cross_country_time_penalties": 0.8,
+      "dressage_score": 33.3,
+      "event_date": "2026-10-23",
+      "event_name": "Pratoni del Vivaro \u00b7 CCIP2-S",
+      "horse_name": "KNIGHTBRIDGE DOLLY",
+      "is_user_entered": false,
+      "level": "CCIP2-S",
+      "rider_name": "CIPOLLETTI Mia (ITA)",
+      "show_jumping_penalties": 0.8,
+      "source_id": "equiresults",
+      "source_priority": 8,
+      "source_record_id": "equiresults:3a93bec4e01f1d3c"
+    },
+    {
+      "collected_at": "2026-10-25T15:08:31+00:00",
+      "country": "ITA",
+      "cross_country_jump_penalties": 8.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 41.1,
+      "event_date": "2026-10-23",
+      "event_name": "Pratoni del Vivaro \u00b7 CCIP2-S",
+      "horse_name": "SHIRSHEEN AURORA",
+      "is_user_entered": false,
+      "level": "CCIP2-S",
+      "rider_name": "CONGIU Maya Chantal (ITA)",
+      "show_jumping_penalties": 2.4,
+      "source_id": "equiresults",
+      "source_priority": 8,
+      "source_record_id": "equiresults:d81ccb9a2e4e43ed"
+    },
+    {
       "collected_at": "2026-10-25T13:09:31+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 4.0,
@@ -73915,6 +73949,23 @@
       "source_id": "equiresults",
       "source_priority": 8,
       "source_record_id": "equiresults:10108c406fb4d4e1"
+    },
+    {
+      "collected_at": "2026-10-25T15:08:31+00:00",
+      "country": "ITA",
+      "cross_country_jump_penalties": 16.0,
+      "cross_country_time_penalties": 1.6,
+      "dressage_score": 31.5,
+      "event_date": "2026-10-23",
+      "event_name": "Pratoni del Vivaro \u00b7 CCIP2-S",
+      "horse_name": "CAMELOT DAMGAARD",
+      "is_user_entered": false,
+      "level": "CCIP2-S",
+      "rider_name": "CORSINI Giulia (ITA)",
+      "show_jumping_penalties": 0.0,
+      "source_id": "equiresults",
+      "source_priority": 8,
+      "source_record_id": "equiresults:979fd0fc968731eb"
     },
     {
       "collected_at": "2026-10-24T16:13:16+00:00",
@@ -73983,6 +74034,23 @@
       "source_id": "equiresults",
       "source_priority": 8,
       "source_record_id": "equiresults:792e38fd75664505"
+    },
+    {
+      "collected_at": "2026-10-25T15:08:31+00:00",
+      "country": "ITA",
+      "cross_country_jump_penalties": 16.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 38.8,
+      "event_date": "2026-10-23",
+      "event_name": "Pratoni del Vivaro \u00b7 CCIP2-S",
+      "horse_name": "KILLADOON LADY",
+      "is_user_entered": false,
+      "level": "CCIP2-S",
+      "rider_name": "DIANA Matilde (ITA)",
+      "show_jumping_penalties": 4.4,
+      "source_id": "equiresults",
+      "source_priority": 8,
+      "source_record_id": "equiresults:340de412dbb67c49"
     },
     {
       "collected_at": "2026-10-25T13:09:31+00:00",
@@ -74119,6 +74187,40 @@
       "source_id": "equiresults",
       "source_priority": 8,
       "source_record_id": "equiresults:f22ec7dba2ef83e1"
+    },
+    {
+      "collected_at": "2026-10-25T15:08:31+00:00",
+      "country": "ITA",
+      "cross_country_jump_penalties": 4.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 38.3,
+      "event_date": "2026-10-23",
+      "event_name": "Pratoni del Vivaro \u00b7 CCIP2-S",
+      "horse_name": "CLONBERNE LEEDY",
+      "is_user_entered": false,
+      "level": "CCIP2-S",
+      "rider_name": "GIOVANNONI Isabella (ITA)",
+      "show_jumping_penalties": 2.0,
+      "source_id": "equiresults",
+      "source_priority": 8,
+      "source_record_id": "equiresults:d4798c003b48106b"
+    },
+    {
+      "collected_at": "2026-10-25T15:08:31+00:00",
+      "country": "ITA",
+      "cross_country_jump_penalties": 4.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 40.8,
+      "event_date": "2026-10-23",
+      "event_name": "Pratoni del Vivaro \u00b7 CCIP2-S",
+      "horse_name": "SNS APOLLO",
+      "is_user_entered": false,
+      "level": "CCIP2-S",
+      "rider_name": "GIOVANNONI Stella (ITA)",
+      "show_jumping_penalties": 12.4,
+      "source_id": "equiresults",
+      "source_priority": 8,
+      "source_record_id": "equiresults:0372901d32cb5f41"
     },
     {
       "collected_at": "2026-10-25T13:09:31+00:00",
@@ -74308,6 +74410,23 @@
       "source_record_id": "equiresults:8df73853108a94cd"
     },
     {
+      "collected_at": "2026-10-25T15:08:31+00:00",
+      "country": "ITA",
+      "cross_country_jump_penalties": 16.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 39.2,
+      "event_date": "2026-10-23",
+      "event_name": "Pratoni del Vivaro \u00b7 CCIP2-S",
+      "horse_name": "EXPAT'S FIREWORKS",
+      "is_user_entered": false,
+      "level": "CCIP2-S",
+      "rider_name": "NAVA Gaja Midori (SUI)",
+      "show_jumping_penalties": 3.6,
+      "source_id": "equiresults",
+      "source_priority": 8,
+      "source_record_id": "equiresults:d7b1397cc95241b6"
+    },
+    {
       "collected_at": "2026-10-24T16:13:16+00:00",
       "country": "ITA",
       "cross_country_jump_penalties": 0.0,
@@ -74357,6 +74476,23 @@
       "source_id": "equiresults",
       "source_priority": 8,
       "source_record_id": "equiresults:1a7a8cae14bb0099"
+    },
+    {
+      "collected_at": "2026-10-25T15:08:31+00:00",
+      "country": "ITA",
+      "cross_country_jump_penalties": 8.0,
+      "cross_country_time_penalties": 0.0,
+      "dressage_score": 34.0,
+      "event_date": "2026-10-23",
+      "event_name": "Pratoni del Vivaro \u00b7 CCIP2-S",
+      "horse_name": "FAIRYHOUSE IN A PICKLE",
+      "is_user_entered": false,
+      "level": "CCIP2-S",
+      "rider_name": "PANUCCIO Cloe (ITA)",
+      "show_jumping_penalties": 12.8,
+      "source_id": "equiresults",
+      "source_priority": 8,
+      "source_record_id": "equiresults:316036ead92e25d3"
     },
     {
       "collected_at": "2026-10-25T13:09:31+00:00",
@@ -74615,6 +74751,6 @@
     }
   ],
   "source_id": "mixed",
-  "updated_at": "2026-10-25T13:09:53+00:00",
+  "updated_at": "2026-10-25T15:08:53+00:00",
   "version": 1
 }
