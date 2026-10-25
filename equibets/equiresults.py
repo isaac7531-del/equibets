@@ -35,6 +35,7 @@ PRATONI_CCI1_INTRO_URL = "https://www.equiresults.com/competition/15751/404301/r
 PRATONI_CCIP1S_URL = "https://www.equiresults.com/competition/15751/404302/results"
 PRATONI_CCI2S_URL = "https://www.equiresults.com/competition/15751/404300/results"
 PRATONI_CCI4S_URL = "https://www.equiresults.com/competition/15751/404298/results"
+PRATONI_CCI4L_URL = "https://www.equiresults.com/competition/15751/404305/results"
 # Rit. is the Italian retirement token used on Equiresults penalty cells.
 STATUS_RE = re.compile(
     r"Elim|W\.?\s*D\.?|\bWD\b|\bRET\b|\bRit\.?\b|Automatic",
@@ -98,6 +99,18 @@ def pratoni_cci4s_2026_class() -> EquiresultsClass:
         event_name="Pratoni del Vivaro · CCI4*-S",
         level="CCI4*-S",
         event_date=date(2026, 10, 22),
+        country="ITA",
+    )
+
+
+def pratoni_cci4l_2026_class() -> EquiresultsClass:
+    """Return the Pratoni del Vivaro CCI4*-L classification."""
+
+    return EquiresultsClass(
+        url=PRATONI_CCI4L_URL,
+        event_name="Pratoni del Vivaro · CCI4*-L",
+        level="CCI4*-L",
+        event_date=date(2026, 10, 23),
         country="ITA",
     )
 
@@ -367,6 +380,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--pratoni-ccip1s-2026", action="store_true", help="Pull Pratoni del Vivaro CCIP1-S")
     parser.add_argument("--pratoni-cci2s-2026", action="store_true", help="Pull Pratoni del Vivaro CCI2*-S")
     parser.add_argument("--pratoni-cci4s-2026", action="store_true", help="Pull Pratoni del Vivaro CCI4*-S")
+    parser.add_argument("--pratoni-cci4l-2026", action="store_true", help="Pull Pratoni del Vivaro CCI4*-L")
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--start-date", type=_date_arg, required=True, help="Live snapshot window start, YYYY-MM-DD")
@@ -379,12 +393,13 @@ def main(argv: Sequence[str] | None = None) -> int:
         pratoni_ccip1s_2026_class() if args.pratoni_ccip1s_2026 else None,
         pratoni_cci2s_2026_class() if args.pratoni_cci2s_2026 else None,
         pratoni_cci4s_2026_class() if args.pratoni_cci4s_2026 else None,
+        pratoni_cci4l_2026_class() if args.pratoni_cci4l_2026 else None,
     ]
     selected = [competition for competition in selected if competition is not None]
     if len(selected) != 1:
         raise SystemExit(
             "Specify one of --pratoni-cci1-intro-2026, --pratoni-ccip1s-2026, "
-            "--pratoni-cci2s-2026, or --pratoni-cci4s-2026"
+            "--pratoni-cci2s-2026, --pratoni-cci4s-2026, or --pratoni-cci4l-2026"
         )
     competition = selected[0]
     results = collect_class(competition)

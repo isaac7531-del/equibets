@@ -1,5 +1,5 @@
 {
-  "event_count": 71,
+  "event_count": 72,
   "events": [
     {
       "country": "ITA",
@@ -76,6 +76,107 @@
           "rank": 6,
           "rider_name": "NAVA Soraya Vittoria (SUI)",
           "show_jumping_penalties": 8.0,
+          "source_id": "equiresults"
+        }
+      ]
+    },
+    {
+      "country": "ITA",
+      "event_date": "2026-10-23",
+      "event_name": "Pratoni del Vivaro \u00b7 CCI4*-L",
+      "latest_collected_at": "2026-10-25T09:15:57+00:00",
+      "level": "CCI4*-L",
+      "result_count": 8,
+      "source_ids": [
+        "equiresults"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-10-25T09:15:57+00:00",
+          "cross_country_penalties": 4.0,
+          "dressage_score": 34.0,
+          "finishing_score": 45.6,
+          "horse_name": "GATTO SALTA D'O",
+          "rank": 1,
+          "rider_name": "PROIA Alessio (ITA)",
+          "show_jumping_penalties": 7.6,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T09:15:57+00:00",
+          "cross_country_penalties": 8.0,
+          "dressage_score": 39.2,
+          "finishing_score": 48.4,
+          "horse_name": "ICARE DES DEVES",
+          "rank": 2,
+          "rider_name": "BRUN Lucas (FRA)",
+          "show_jumping_penalties": 1.2,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T09:15:57+00:00",
+          "cross_country_penalties": 20.0,
+          "dressage_score": 31.3,
+          "finishing_score": 51.3,
+          "horse_name": "A D'AUNIS",
+          "rank": 3,
+          "rider_name": "GUALTIERI Lisa (FRA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T09:15:57+00:00",
+          "cross_country_penalties": 8.0,
+          "dressage_score": 34.4,
+          "finishing_score": 52.8,
+          "horse_name": "GREEN DAY DESTROIS C",
+          "rank": 4,
+          "rider_name": "PRUD HON Regis (FRA)",
+          "show_jumping_penalties": 10.4,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T09:15:57+00:00",
+          "cross_country_penalties": 8.0,
+          "dressage_score": 37.0,
+          "finishing_score": 84.6,
+          "horse_name": "TABARO",
+          "rank": 5,
+          "rider_name": "R\u00dcEGG Patrick (SUI)",
+          "show_jumping_penalties": 39.6,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T09:15:57+00:00",
+          "cross_country_penalties": 0.4,
+          "dressage_score": 35.6,
+          "finishing_score": 86.8,
+          "horse_name": "DOLLAR BOY 9",
+          "rank": 6,
+          "rider_name": "PROIA Alessio (ITA)",
+          "show_jumping_penalties": 50.8,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T09:15:57+00:00",
+          "cross_country_penalties": 12.4,
+          "dressage_score": 32.8,
+          "finishing_score": 100.4,
+          "horse_name": "SUNNY FOR GAME",
+          "rank": 7,
+          "rider_name": "GUYOT Camille (SUI)",
+          "show_jumping_penalties": 55.2,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T09:15:57+00:00",
+          "cross_country_penalties": 9.2,
+          "dressage_score": 35.2,
+          "finishing_score": 120.0,
+          "horse_name": "DUBI DU",
+          "rank": 8,
+          "rider_name": "MAJOLINO Pietro (ITA)",
+          "show_jumping_penalties": 75.6,
           "source_id": "equiresults"
         }
       ]
@@ -21748,9 +21849,9 @@
       ]
     }
   ],
-  "generated_at": "2026-10-24T16:13:38+00:00",
-  "latest_collected_at": "2026-10-24T16:13:16+00:00",
-  "result_count": 1893,
+  "generated_at": "2026-10-25T09:16:19+00:00",
+  "latest_collected_at": "2026-10-25T09:15:57+00:00",
+  "result_count": 1901,
   "source_ids": [
     "asiangames",
     "equiresults",
