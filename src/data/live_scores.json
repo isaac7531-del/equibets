@@ -1,6 +1,107 @@
 {
-  "event_count": 74,
+  "event_count": 75,
   "events": [
+    {
+      "country": "ITA",
+      "event_date": "2026-10-23",
+      "event_name": "Pratoni del Vivaro \u00b7 CCIP2-S",
+      "latest_collected_at": "2026-10-25T15:08:31+00:00",
+      "level": "CCIP2-S",
+      "result_count": 8,
+      "source_ids": [
+        "equiresults"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-10-25T15:08:31+00:00",
+          "cross_country_penalties": 4.0,
+          "dressage_score": 38.3,
+          "finishing_score": 44.3,
+          "horse_name": "CLONBERNE LEEDY",
+          "rank": 1,
+          "rider_name": "GIOVANNONI Isabella (ITA)",
+          "show_jumping_penalties": 2.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T15:08:31+00:00",
+          "cross_country_penalties": 12.8,
+          "dressage_score": 33.3,
+          "finishing_score": 46.9,
+          "horse_name": "KNIGHTBRIDGE DOLLY",
+          "rank": 2,
+          "rider_name": "CIPOLLETTI Mia (ITA)",
+          "show_jumping_penalties": 0.8,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T15:08:31+00:00",
+          "cross_country_penalties": 17.6,
+          "dressage_score": 31.5,
+          "finishing_score": 49.1,
+          "horse_name": "CAMELOT DAMGAARD",
+          "rank": 3,
+          "rider_name": "CORSINI Giulia (ITA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T15:08:31+00:00",
+          "cross_country_penalties": 8.0,
+          "dressage_score": 41.1,
+          "finishing_score": 51.5,
+          "horse_name": "SHIRSHEEN AURORA",
+          "rank": 4,
+          "rider_name": "CONGIU Maya Chantal (ITA)",
+          "show_jumping_penalties": 2.4,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T15:08:31+00:00",
+          "cross_country_penalties": 8.0,
+          "dressage_score": 34.0,
+          "finishing_score": 54.8,
+          "horse_name": "FAIRYHOUSE IN A PICKLE",
+          "rank": 5,
+          "rider_name": "PANUCCIO Cloe (ITA)",
+          "show_jumping_penalties": 12.8,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T15:08:31+00:00",
+          "cross_country_penalties": 4.0,
+          "dressage_score": 40.8,
+          "finishing_score": 57.2,
+          "horse_name": "SNS APOLLO",
+          "rank": 6,
+          "rider_name": "GIOVANNONI Stella (ITA)",
+          "show_jumping_penalties": 12.4,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T15:08:31+00:00",
+          "cross_country_penalties": 16.0,
+          "dressage_score": 39.2,
+          "finishing_score": 58.8,
+          "horse_name": "EXPAT'S FIREWORKS",
+          "rank": 7,
+          "rider_name": "NAVA Gaja Midori (SUI)",
+          "show_jumping_penalties": 3.6,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T15:08:31+00:00",
+          "cross_country_penalties": 16.0,
+          "dressage_score": 38.8,
+          "finishing_score": 59.2,
+          "horse_name": "KILLADOON LADY",
+          "rank": 8,
+          "rider_name": "DIANA Matilde (ITA)",
+          "show_jumping_penalties": 4.4,
+          "source_id": "equiresults"
+        }
+      ]
+    },
     {
       "country": "ITA",
       "event_date": "2026-10-23",
@@ -22304,9 +22405,9 @@
       ]
     }
   ],
-  "generated_at": "2026-10-25T13:09:53+00:00",
-  "latest_collected_at": "2026-10-25T13:09:31+00:00",
-  "result_count": 1940,
+  "generated_at": "2026-10-25T15:08:53+00:00",
+  "latest_collected_at": "2026-10-25T15:08:31+00:00",
+  "result_count": 1948,
   "source_ids": [
     "asiangames",
     "equiresults",

@@ -11,6 +11,7 @@ from equibets.equiresults import (
     pratoni_cci3s_2026_class,
     pratoni_ccij2s_2026_class,
     pratoni_cci4l_2026_class,
+    pratoni_ccip2s_2026_class,
 )
 
 
@@ -216,6 +217,15 @@ class EquiresultsParserTests(unittest.TestCase):
         self.assertEqual(competition.url, "https://www.equiresults.com/competition/15751/404305/results")
         self.assertEqual(competition.event_name, "Pratoni del Vivaro · CCI4*-L")
         self.assertEqual(competition.level, "CCI4*-L")
+        self.assertEqual(competition.event_date, date(2026, 10, 23))
+        self.assertEqual(competition.country, "ITA")
+
+    def test_pratoni_ccip2s_class_uses_the_published_final_date(self) -> None:
+        competition = pratoni_ccip2s_2026_class()
+
+        self.assertEqual(competition.url, "https://www.equiresults.com/competition/15751/404303/results")
+        self.assertEqual(competition.event_name, "Pratoni del Vivaro · CCIP2-S")
+        self.assertEqual(competition.level, "CCIP2-S")
         self.assertEqual(competition.event_date, date(2026, 10, 23))
         self.assertEqual(competition.country, "ITA")
 
