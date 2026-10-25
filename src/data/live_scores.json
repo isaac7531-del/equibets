@@ -1,5 +1,5 @@
 {
-  "event_count": 72,
+  "event_count": 73,
   "events": [
     {
       "country": "ITA",
@@ -177,6 +177,239 @@
           "rank": 8,
           "rider_name": "MAJOLINO Pietro (ITA)",
           "show_jumping_penalties": 75.6,
+          "source_id": "equiresults"
+        }
+      ]
+    },
+    {
+      "country": "ITA",
+      "event_date": "2026-10-23",
+      "event_name": "Pratoni del Vivaro \u00b7 CCI3*-S",
+      "latest_collected_at": "2026-10-25T11:10:47+00:00",
+      "level": "CCI3*-S",
+      "result_count": 20,
+      "source_ids": [
+        "equiresults"
+      ],
+      "standings": [
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 38.5,
+          "finishing_score": 38.5,
+          "horse_name": "ISLANDWOOD CANDY MAN",
+          "rank": 1,
+          "rider_name": "CHECHI Anastasia (ITA)",
+          "show_jumping_penalties": 0.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 32.2,
+          "finishing_score": 38.6,
+          "horse_name": "ITALIA JOLLY JUMPER",
+          "rank": 2,
+          "rider_name": "HERMOSO FARRAS Albert (ESP)",
+          "show_jumping_penalties": 6.4,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 29.9,
+          "finishing_score": 39.1,
+          "horse_name": "CECELIA LAD",
+          "rank": 3,
+          "rider_name": "CINCINNATI Andrea (ITA)",
+          "show_jumping_penalties": 9.2,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 4.0,
+          "dressage_score": 34.9,
+          "finishing_score": 40.1,
+          "horse_name": "AURELIANA",
+          "rank": 4,
+          "rider_name": "RUMI Caterina (ITA)",
+          "show_jumping_penalties": 1.2,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 4.0,
+          "dressage_score": 31.9,
+          "finishing_score": 42.3,
+          "horse_name": "FERNHILL FUNTIME",
+          "rank": 5,
+          "rider_name": "FUMAGALLI Gregorio (ITA)",
+          "show_jumping_penalties": 6.4,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 35.9,
+          "finishing_score": 45.9,
+          "horse_name": "ORLANDO",
+          "rank": 6,
+          "rider_name": "CINCINNATI Andrea (ITA)",
+          "show_jumping_penalties": 10.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 12.0,
+          "dressage_score": 32.0,
+          "finishing_score": 47.2,
+          "horse_name": "EMILE DE CHIGNAN",
+          "rank": 7,
+          "rider_name": "KIM Hyeongho (KOR)",
+          "show_jumping_penalties": 3.2,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 0.4,
+          "dressage_score": 42.1,
+          "finishing_score": 48.5,
+          "horse_name": "BAD BOY Z",
+          "rank": 8,
+          "rider_name": "VINCENTI Federica (ITA)",
+          "show_jumping_penalties": 6.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 39.8,
+          "finishing_score": 49.0,
+          "horse_name": "GLADIATEUR DU BARY",
+          "rank": 9,
+          "rider_name": "RIVA Giorgia (ITA)",
+          "show_jumping_penalties": 9.2,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 4.0,
+          "dressage_score": 35.9,
+          "finishing_score": 49.1,
+          "horse_name": "ASTON 17",
+          "rank": 10,
+          "rider_name": "LUCIANI Mattia (ITA)",
+          "show_jumping_penalties": 9.2,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 0.0,
+          "dressage_score": 36.8,
+          "finishing_score": 52.8,
+          "horse_name": "JIMMY FOR GAME",
+          "rank": 11,
+          "rider_name": "GUYOT Camille (SUI)",
+          "show_jumping_penalties": 16.0,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 9.6,
+          "dressage_score": 37.9,
+          "finishing_score": 66.3,
+          "horse_name": "ANNAGHMORE GANECHO",
+          "rank": 12,
+          "rider_name": "GARDINI Gianluca (ITA)",
+          "show_jumping_penalties": 18.8,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 8.0,
+          "dressage_score": 40.4,
+          "finishing_score": 67.2,
+          "horse_name": "PEAK FREESTYLER",
+          "rank": 13,
+          "rider_name": "BRUNNER Carla (SUI)",
+          "show_jumping_penalties": 18.8,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 12.4,
+          "dressage_score": 36.9,
+          "finishing_score": 67.7,
+          "horse_name": "NORMANNO",
+          "rank": 14,
+          "rider_name": "PICANO Giulia (ITA)",
+          "show_jumping_penalties": 18.4,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 8.0,
+          "dressage_score": 33.3,
+          "finishing_score": 70.5,
+          "horse_name": "AMANSARA",
+          "rank": 15,
+          "rider_name": "RYAN Philip (SUI)",
+          "show_jumping_penalties": 29.2,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 5.6,
+          "dressage_score": 32.7,
+          "finishing_score": 85.5,
+          "horse_name": "MAGNETO MXL Z",
+          "rank": 16,
+          "rider_name": "CINCINNATI Andrea (ITA)",
+          "show_jumping_penalties": 47.2,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 4.8,
+          "dressage_score": 32.9,
+          "finishing_score": 87.3,
+          "horse_name": "BOLOGNA",
+          "rank": 17,
+          "rider_name": "CAPPAI Marco (ITA)",
+          "show_jumping_penalties": 49.6,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 8.8,
+          "dressage_score": 36.5,
+          "finishing_score": 88.1,
+          "horse_name": "THE GAME CHANGER",
+          "rank": 18,
+          "rider_name": "GIANELLO Matilde (ITA)",
+          "show_jumping_penalties": 42.8,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 8.0,
+          "dressage_score": 31.6,
+          "finishing_score": 106.0,
+          "horse_name": "JUNA R",
+          "rank": 19,
+          "rider_name": "FAVA Eleonora (ITA)",
+          "show_jumping_penalties": 66.4,
+          "source_id": "equiresults"
+        },
+        {
+          "collected_at": "2026-10-25T11:10:47+00:00",
+          "cross_country_penalties": 5.6,
+          "dressage_score": 35.3,
+          "finishing_score": 130.9,
+          "horse_name": "EMERALD JONNY",
+          "rank": 20,
+          "rider_name": "PETRINI Leopoldo (ITA)",
+          "show_jumping_penalties": 90.0,
           "source_id": "equiresults"
         }
       ]
@@ -21849,9 +22082,9 @@
       ]
     }
   ],
-  "generated_at": "2026-10-25T09:16:19+00:00",
-  "latest_collected_at": "2026-10-25T09:15:57+00:00",
-  "result_count": 1901,
+  "generated_at": "2026-10-25T11:11:09+00:00",
+  "latest_collected_at": "2026-10-25T11:10:47+00:00",
+  "result_count": 1921,
   "source_ids": [
     "asiangames",
     "equiresults",
