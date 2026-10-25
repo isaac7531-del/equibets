@@ -69,6 +69,21 @@ MONDIAL_DU_LION_OCT_2026 = (
     },
 )
 
+# Les 5 Etoiles de Pau, 22–25 Oct 2026.
+# Dressage opened on 22 Oct, so the stored show date stays on that start day.
+# The CCI5*-L show-jumping classification is the finish. Ingest it only after
+# the overview Live control is gone and every starter still in the class has
+# numeric cross-country and show-jumping penalties that reconcile to the total.
+PAU_OCT_2026 = (
+    {
+        "url": "https://results.worldsporttiming.com/2026/les-5-etoiles-de-pau/competition/SJ/result",
+        "event_name": "Les 5 Etoiles de Pau · CCI5*-L",
+        "level": "CCI5*-L",
+        "event_date": date(2026, 10, 22),
+        "country": "FRA",
+    },
+)
+
 
 @dataclass(frozen=True)
 class WorldSportTimingBoard:
@@ -214,6 +229,12 @@ def mondial_du_lion_oct_2026_boards() -> list[WorldSportTimingBoard]:
     return [WorldSportTimingBoard(**item) for item in MONDIAL_DU_LION_OCT_2026]
 
 
+def pau_oct_2026_boards() -> list[WorldSportTimingBoard]:
+    """Return the finished Pau October 2026 CCI5*-L show-jumping final."""
+
+    return [WorldSportTimingBoard(**item) for item in PAU_OCT_2026]
+
+
 def collect_boards(
     boards: Sequence[WorldSportTimingBoard],
     *,
@@ -331,6 +352,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         action="store_true",
         help="Pull the finished Mondial du Lion October 2026 6- and 7-year-old finals",
     )
+    parser.add_argument(
+        "--pau-2026",
+        action="store_true",
+        help="Pull the finished Les 5 Etoiles de Pau October 2026 CCI5*-L final",
+    )
     parser.add_argument("--output", type=Path, default=Path("data/fei_results.json"))
     parser.add_argument("--live-output", type=Path, default=Path("src/data/live_scores.json"))
     parser.add_argument("--start-date", type=_date_arg, help="Live snapshot window start, YYYY-MM-DD")
@@ -343,8 +369,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         boards.extend(morven_park_oct_2026_boards())
     if args.mondial_du_lion_2026:
         boards.extend(mondial_du_lion_oct_2026_boards())
+    if args.pau_2026:
+        boards.extend(pau_oct_2026_boards())
     if not boards:
-        raise SystemExit("Specify --morven-park-2026 or --mondial-du-lion-2026")
+        raise SystemExit("Specify --morven-park-2026, --mondial-du-lion-2026, or --pau-2026")
 
     collected_at = datetime.now(timezone.utc).replace(microsecond=0)
     results = collect_boards(boards, collected_at=collected_at)
